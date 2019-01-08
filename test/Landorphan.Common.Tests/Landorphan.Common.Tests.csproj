@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B8A9CD3C-B9DB-4A95-BC63-D12A999966A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Landorphan.Common.Tests</RootNamespace>
+    <AssemblyName>Landorphan.Common.Tests.NetFx</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>7.2</LangVersion>
+    <!-- MS Test: Test Project -->
+    <RuntimeIdentifier>win</RuntimeIdentifier>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <CodeAnalysisRuleSet>Landorphan.Common.Tests.NetFx.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <NoWarn>1701;1702;</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>..\..\obj\debug\$(AssemblyName)\</IntermediateOutputPath>
+    <OutputPath>..\..\bin\debug\$(AssemblyName)</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
+    <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.TestPlatform" Version="14.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Landorphan.Common\Landorphan.Common.csproj">
+      <Project>{d0da85ed-c35c-4b7d-85ac-93b498968403}</Project>
+      <Name>Landorphan.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Landorphan.TestUtilities.NoIoc\Landorphan.TestUtilities.NoIoc.csproj">
+      <Project>{86f6b3d5-3d6d-4bdc-a45d-cae58458722c}</Project>
+      <Name>Landorphan.TestUtilities.NoIoc.NetFx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\build\BuildFiles\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Architecture\ArchitectureTests.cs" />
+    <Compile Include="Architecture\ExceptionTests.cs" />
+    <Compile Include="Architecture\TestArchitecture.Tests.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Collections\BclBaseline\HashSet.Baseline.Tests.cs" />
+    <Compile Include="Collections\InlinePriorityQueue.Tests.cs" />
+    <Compile Include="Collections\SimpleBag.Tests.cs" />
+    <Compile Include="Collections\SimpleMap.Tests.cs" />
+    <Compile Include="Collections\SimpleQueue.Tests.cs" />
+    <Compile Include="Collections\SimpleSet.Tests.cs" />
+    <Compile Include="Collections\SimpleStack.Tests.cs" />
+    <Compile Include="Collections\TestClasses\EquatableTestItem.cs" />
+    <Compile Include="Collections\TestClasses\EquatableTestItemEqualityComparer.cs" />
+    <Compile Include="Collections\ThreadSafeBag.Tests.cs" />
+    <Compile Include="Collections\ThreadSafeMap.Tests.cs" />
+    <Compile Include="Collections\ThreadSafeQueue.Tests.cs" />
+    <Compile Include="Collections\ThreadSafeSet.Tests.cs" />
+    <Compile Include="Collections\ThreadSafeStack.Tests.cs" />
+    <Compile Include="Collections\ThreadSafeWeakReferenceBag.Tests.cs" />
+    <Compile Include="Decorators\EntityClasses\NameValueCloneableEquatableTestClass.cs" />
+    <Compile Include="Decorators\EntityClasses\NameValueComparableTestClass.cs" />
+    <Compile Include="Decorators\EntityClasses\NameValueMakeReadOnlyTestClass.cs" />
+    <Compile Include="Decorators\EntityClasses\NameValueTestClass.cs" />
+    <Compile Include="Decorators\Int32RankDecorator.Tests.cs" />
+    <Compile Include="Decorators\Int64RankDecorator.Tests.cs" />
+    <Compile Include="Decorators\RankDecorator.Tests.cs" />
+    <Compile Include="Decorators\RankDecoratorDeepComparer.Tests.cs" />
+    <Compile Include="Decorators\RankDecoratorDeepEqualityComparer.Tests.cs" />
+    <Compile Include="Decorators\RankDecoratorShallowComparer.Tests.cs" />
+    <Compile Include="Decorators\RankDecoratorShallowEqualityComparer.Tests.cs" />
+    <Compile Include="DisposableObject.Tests.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.Tests.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.Tests.cs" />
+    <Compile Include="Extensions\DateTimeOffset.Behavior.Tests.cs" />
+    <Compile Include="Extensions\EnumExtensionsFlags.Tests.cs" />
+    <Compile Include="Extensions\EnumExtensionsNonFlags.Tests.cs" />
+    <Compile Include="Extensions\Guard.Tests.cs" />
+    <Compile Include="Extensions\ObjectExtensions.Tests.cs" />
+    <Compile Include="Extensions\StringExtensions.Tests.cs" />
+    <Compile Include="Helpers\DisposableHelper.Tests.cs" />
+    <Compile Include="Helpers\SupportsReadOnlyHelper.Tests.cs" />
+    <Compile Include="ReferenceEqualityComparer.Tests.Core.cs" />
+    <Compile Include="SourceWeakEventHandlerSet.Tests.cs" />
+    <Compile Include="Specification\Specification.Tests.cs" />
+    <Compile Include="TestFacilities\TestAssemblyInitializeCleanup.cs" />
+    <Compile Include="TestFacilities\TestHardcodes.cs" />
+    <Compile Include="Threading\InterlockedBoolean.Tests.cs" />
+    <Compile Include="Threading\InterlockedDateTime.Tests.cs" />
+    <Compile Include="Threading\InterlockedDateTimeOffset.Tests.cs" />
+    <Compile Include="Threading\InterlockedTimeSpan.Tests.cs" />
+    <Compile Include="Threading\NonRecursiveLock.MultiThreaded.Tests.cs" />
+    <Compile Include="Threading\NonRecursiveLock.SingleThread.Tests.cs" />
+    <Compile Include="Validation\ExampleRules\MyTestEntity.cs" />
+    <Compile Include="Validation\ExampleRules\MyTestEntityIsNotNullValidationRule.cs" />
+    <Compile Include="Validation\ExampleRules\MyTestEntityNameValidationRule.cs" />
+    <Compile Include="Validation\ExampleRules\MyTestEntityValuePositiveRule.cs" />
+    <Compile Include="Validation\ValidationMessage.Tests.cs" />
+    <Compile Include="Validation\ValidationMessageFactory.Tests.cs" />
+    <Compile Include="Validation\ValidationRuleBase.Tests.cs" />
+    <Compile Include="Validation\ValidationRuleResult.Tests.cs" />
+    <Compile Include="Validation\Validator.Tests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Landorphan.Common.Tests.NetFx.ruleset">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
