@@ -13,7 +13,7 @@
    /// <seealso cref="IComparable{T}"/>
    /// <seealso cref="IEquatable{RegistrationValueTypeInstancePair}"/>
    // Note:  cannot override default constructor.
-   internal struct RegistrationValueTypeInstancePair :
+   public struct RegistrationValueTypeInstancePair :
       IRegistrationValue,
       IComparable,
       IComparable<RegistrationValueTypeInstancePair>,

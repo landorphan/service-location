@@ -11,7 +11,7 @@
    /// </summary>
    // Note:  cannot override default constructor.
    [DebuggerDisplay("FromType = {RegisteredType}, Name = {RegisteredName}, IsDefault = {IsDefaultRegistration}")]
-   internal struct RegistrationKeyTypeNamePair :
+   public struct RegistrationKeyTypeNamePair :
       IRegistrationKey,
       IComparable,
       IComparable<RegistrationKeyTypeNamePair>,

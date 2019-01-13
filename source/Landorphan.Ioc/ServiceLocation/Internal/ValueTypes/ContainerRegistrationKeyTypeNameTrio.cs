@@ -11,7 +11,7 @@
    /// </summary>
    // Note:  cannot override default constructor.
    [DebuggerDisplay("Container = ({_container.Uid}: {_container.Name}),\r\nFromType = {RegisteredType},\r\nName = {RegisteredName}, IsDefault = {IsDefaultRegistration}")]
-   internal struct ContainerRegistrationKeyTypeNameTrio :
+   public struct ContainerRegistrationKeyTypeNameTrio :
       IContainerRegistrationKey,
       IComparable,
       IComparable<ContainerRegistrationKeyTypeNameTrio>,

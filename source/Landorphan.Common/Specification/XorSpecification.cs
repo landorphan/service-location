@@ -10,7 +10,7 @@
    /// </typeparam>
    public sealed class XorSpecification<TEntity> : ISpecification<TEntity>
    {
-      internal XorSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
+      public XorSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
       {
          left.ArgumentNotNull(nameof(left));
          right.ArgumentNotNull(nameof(right));
@@ -19,9 +19,9 @@
          Right = right;
       }
 
-      internal ISpecification<TEntity> Left { get; }
+      public ISpecification<TEntity> Left { get; }
 
-      internal ISpecification<TEntity> Right { get; }
+      public ISpecification<TEntity> Right { get; }
 
       /// <inheritdoc/>
       public Type GetEntityType()

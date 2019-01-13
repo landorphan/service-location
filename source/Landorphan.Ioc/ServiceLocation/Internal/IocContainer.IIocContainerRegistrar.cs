@@ -7,7 +7,7 @@
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
 
-   internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
+   public sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       /// <inheritdoc cref="IIocContainer"/>
       event EventHandler<ContainerTypeRegistrationEventArgs> IIocContainerRegistrar.ContainerRegistrationAdded

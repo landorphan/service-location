@@ -10,5 +10,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en-US")]
-[assembly: InternalsVisibleTo("Landorphan.Ioc.Tests.Core")]
-[assembly: InternalsVisibleTo("Landorphan.Ioc.Tests.NetFx")]
+
+//[assembly: InternalsVisibleTo("Landorphan.Ioc.Tests.Core")]
+//[assembly: InternalsVisibleTo("Landorphan.Ioc.Tests.NetFx")]

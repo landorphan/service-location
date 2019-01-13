@@ -4,7 +4,7 @@
    using System.Collections.Generic;
    using Landorphan.Common;
 
-   internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
+   public sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       /// <inheritdoc/>
       IReadOnlyCollection<IIocContainer> IIocContainer.Children => _children;

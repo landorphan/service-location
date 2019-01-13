@@ -7,7 +7,7 @@
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
 
-   internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
+   public sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildAdded = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();
       private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildRemoved = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();

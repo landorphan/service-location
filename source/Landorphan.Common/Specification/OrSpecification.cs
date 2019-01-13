@@ -10,7 +10,7 @@ namespace Landorphan.Common.Specification
    /// </typeparam>
    public sealed class OrSpecification<TEntity> : ISpecification<TEntity>
    {
-      internal OrSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
+      public OrSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
       {
          left.ArgumentNotNull(nameof(left));
          right.ArgumentNotNull(nameof(right));
@@ -19,9 +19,9 @@ namespace Landorphan.Common.Specification
          Right = right;
       }
 
-      internal ISpecification<TEntity> Left { get; }
+      public ISpecification<TEntity> Left { get; }
 
-      internal ISpecification<TEntity> Right { get; }
+      public ISpecification<TEntity> Right { get; }
 
       /// <inheritdoc/>
       public Type GetEntityType()

@@ -10,14 +10,14 @@
    /// </typeparam>
    public sealed class NotSpecification<TEntity> : ISpecification<TEntity>
    {
-      internal NotSpecification(ISpecification<TEntity> specification)
+      public NotSpecification(ISpecification<TEntity> specification)
       {
          specification.ArgumentNotNull(nameof(specification));
 
          Negated = specification;
       }
 
-      internal ISpecification<TEntity> Negated { get; }
+      public ISpecification<TEntity> Negated { get; }
 
       /// <inheritdoc/>
       public Type GetEntityType()

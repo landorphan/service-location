@@ -32,7 +32,7 @@
          Delegate = predicate.Compile();
       }
 
-      internal Func<TEntity, Boolean> Delegate { get; }
+      public Func<TEntity, Boolean> Delegate { get; }
 
       /// <inheritdoc/>
       public Type GetEntityType()

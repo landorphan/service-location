@@ -3,7 +3,7 @@
    using System;
    using Landorphan.Common;
 
-   internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
+   public sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       private static readonly IocContainer t_root;
 
@@ -14,7 +14,7 @@
       /// <value>
       /// Factory method used by tests to create an isolated container with no pardon.
       /// </value>
-      internal static IocContainer TestHookCreateIsolatedContainer(Guid uid, String name)
+      public static IocContainer TestHookCreateIsolatedContainer(Guid uid, String name)
       {
          var rv = new IocContainer(uid, name);
          return rv;

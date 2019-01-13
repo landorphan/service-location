@@ -12,7 +12,7 @@
       "SonarLint.CodeSmell",
       "S2933: Fields that are only assigned in the constructor should be readonly",
       Justification = "False positive, these fields are set with impure method calls (MWP).")]
-   internal sealed class IocContainerConfiguration : IIocContainerConfiguration
+   public sealed class IocContainerConfiguration : IIocContainerConfiguration
    {
       private readonly IIocContainerMetaIdentity _container;
       private readonly SourceWeakEventHandlerSet<EventArgs> _listenersConfigurationChanged = new SourceWeakEventHandlerSet<EventArgs>();
@@ -27,7 +27,7 @@
       /// <param name="container">
       /// The container whose configuration this instance represents.
       /// </param>
-      internal IocContainerConfiguration(IIocContainerMetaIdentity container)
+      public IocContainerConfiguration(IIocContainerMetaIdentity container)
       {
          container.ArgumentNotNull(nameof(container));
 

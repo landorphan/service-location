@@ -8,7 +8,7 @@
    using System.Reflection;
    using Landorphan.Common;
 
-   internal sealed class AssemblyRegistrarRepository
+   public sealed class AssemblyRegistrarRepository
    {
       // TODO: rewrite this like RegistrationKeyTypeNamePair
       // This class was written before System.Collections.Immutable.
@@ -21,7 +21,7 @@
       {
       }
 
-      internal IImmutableList<IAssemblySelfRegistration> AssemblyRegistrarInstances
+      public IImmutableList<IAssemblySelfRegistration> AssemblyRegistrarInstances
       {
          get
          {
@@ -33,7 +33,7 @@
          }
       }
 
-      internal IImmutableList<Type> AssemblyRegistrarTypes
+      public IImmutableList<Type> AssemblyRegistrarTypes
       {
          get
          {

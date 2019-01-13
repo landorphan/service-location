@@ -5,7 +5,7 @@
    using System.Linq;
    using Landorphan.Common;
 
-   internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
+   public sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       /// <inheritdoc/>
       TFrom IIocContainerResolver.Resolve<TFrom>()
