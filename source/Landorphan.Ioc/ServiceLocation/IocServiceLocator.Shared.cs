@@ -7,7 +7,7 @@
    using Landorphan.Ioc.Logging.Internal;
    using Landorphan.Ioc.Resources;
    using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.Logging;
+//   using Landorphan.Logging;
    using Microsoft.Extensions.Logging;
 
    /// <summary>
@@ -54,14 +54,14 @@
          t_singletonInstance = new IocServiceLocator();
 
          var rootContainer = IocContainer.RootContainer;
-         ILoggerFactory loggerFactory = new LoggerFactory();
-         rootContainer.Registrar.RegisterInstance(loggerFactory);
+         //ILoggerFactory loggerFactory = new LoggerFactory();
+         //rootContainer.Registrar.RegisterInstance(loggerFactory);
 
-         ILogEntryFactory logEntryFactory = new LogEntryFactory();
-         rootContainer.Registrar.RegisterInstance(logEntryFactory);
-         
-         IIocLoggingUtilitiesService loggingUtils = new IocLoggingUtilitiesService();
-         rootContainer.Registrar.RegisterInstance(loggingUtils);
+         //ILogEntryFactory logEntryFactory = new LogEntryFactory();
+         //rootContainer.Registrar.RegisterInstance(logEntryFactory);
+
+         //IIocLoggingUtilitiesService loggingUtils = new IocLoggingUtilitiesService();
+         //rootContainer.Registrar.RegisterInstance(loggingUtils);
 
          // ..preclude selected IOC types.
          var iocInterfaces = GetIocInterfacesAndAbstractTypesExceptLoggingInterfaces();
