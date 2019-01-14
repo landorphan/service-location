@@ -104,7 +104,7 @@
       private InstanceMustImplementTypeArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
          Instance = info.GetValue("instance", typeof(Object));
-         FromType = (Type) info.GetValue("fromType", typeof(Type));
+         FromType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
       /// <inheritdoc/>

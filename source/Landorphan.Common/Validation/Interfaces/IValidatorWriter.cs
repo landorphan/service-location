@@ -13,9 +13,11 @@
       /// <summary>
       /// Adds a rule to this instance.
       /// </summary>
-      /// <param name="rule"> The rule to be added. </param>
+      /// <param name="rule">
+      /// The rule to be added.
+      /// </param>
       /// <returns>
-      /// <c> true </c> if the <paramref name="rule"/>  was added; otherwise <c> false </c> (e.g. duplicate rule).
+      /// <c> true </c> if the <paramref name="rule"/>was added; otherwise <c> false </c> (e.g. duplicate rule).
       /// </returns>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
@@ -33,7 +35,9 @@
       /// <summary>
       /// Removes a rule from this instance.
       /// </summary>
-      /// <param name="rule"> The rule to be removed. </param>
+      /// <param name="rule">
+      /// The rule to be removed.
+      /// </param>
       /// <returns>
       /// <c> true </c> if the <paramref name="rule"/>  was removed; otherwise <c> false </c> (e.g. no matching rule found).
       /// </returns>
@@ -45,6 +49,9 @@
       /// <summary>
       /// Sets the description of this validator.
       /// </summary>
+      /// <param name="description">
+      ///The description of the validator.
+      /// </param>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>
@@ -53,6 +60,9 @@
       /// <summary>
       /// Sets the name of this validator.
       /// </summary>
+      /// <param name="name">
+      /// The name of the validator.
+      /// </param>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>

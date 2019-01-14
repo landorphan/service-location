@@ -161,7 +161,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _lst.LongCount();
+            var hashcode = (Int32)_lst.LongCount();
             return hashcode;
          }
       }
@@ -190,7 +190,7 @@
             {
                if (weak.IsAlive)
                {
-                  var item = (T) weak.Target;
+                  var item = (T)weak.Target;
                   if (null != item)
                   {
                      rv.Add(item);
@@ -221,7 +221,7 @@
             {
                if (weak.IsAlive)
                {
-                  var target = (T) weak.Target;
+                  var target = (T)weak.Target;
                   if (null != target)
                   {
                      if (Equals(target, item))

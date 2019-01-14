@@ -89,56 +89,19 @@
       }
 
       [TestClass]
-      public class When_I_call_ValidationRuleBase_RemovePropertyName : TestBase
-      {
-         private readonly ValidationRuleBase<MyTestEntity> target = new MyTestEntityIsNotNullValidationRule();
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_not_not_throw_on_null()
-         {
-            var actual = target.RemovePropertyName(null);
-            actual.Should().BeFalse();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_not_remove_a_non_extant_property_name()
-         {
-            var extant = Guid.NewGuid().ToString();
-            target.AddPropertyName(extant);
-            target.PropertyNames.Count().Should().Be(1);
-            target.PropertyNames.Should().Contain(extant);
-
-            var actual = target.RemovePropertyName(Guid.NewGuid().ToString());
-            actual.Should().BeFalse();
-            target.PropertyNames.Count().Should().Be(1);
-            target.PropertyNames.Should().Contain(extant);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_remove_an_extant_property_name()
-         {
-            var expected = Guid.NewGuid().ToString();
-            target.AddPropertyName(expected);
-            target.PropertyNames.Count().Should().Be(1);
-            target.PropertyNames.Should().Contain(expected);
-
-            var actual = target.RemovePropertyName(expected);
-            actual.Should().BeTrue();
-            target.PropertyNames.Count().Should().Be(0);
-            target.PropertyNames.Should().NotContain(expected);
-         }
-      }
-
-      [TestClass]
       public class When_I_call_ValidationRuleBase_Clone : CloneableArrangeActAssert<IValidationRule<MyTestEntity>>
       {
          private Object actualObject;
          private String expectedPropertyName0;
          private String expectedPropertyName1;
          private String expectedPropertyName2;
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_Should_Clone_Correctly()
+         {
+            It_Should_Clone_Correctly_Implementation();
+         }
 
          protected override IValidationRule<MyTestEntity> Target { get; set; }
 
@@ -165,18 +128,11 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_Should_Clone_Correctly()
-         {
-            It_Should_Clone_Correctly_Implementation();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_an_equivalent_untyped_clone_and_set_IsReadOnly_to_false()
          {
             actualObject.Should().BeAssignableTo<ValidationRuleBase<MyTestEntity>>();
 
-            var actualInterface = (IValidationRule<MyTestEntity>) actualObject;
+            var actualInterface = (IValidationRule<MyTestEntity>)actualObject;
             actualInterface.Equals(Target).Should().BeTrue();
             actualInterface.PropertyNames.Should()
                .BeEquivalentTo(
@@ -211,7 +167,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_I_call_clone_It_should_create_an_equivalent_value_that_is_not_read_only()
          {
-            var actual = (ValidationRuleBase<MyTestEntity>) target.Clone();
+            var actual = (ValidationRuleBase<MyTestEntity>)target.Clone();
             actual.Equals(target).Should().BeTrue();
             actual.GetHashCode().Should().Be(target.GetHashCode());
             actual.IsReadOnly.Should().BeFalse();
@@ -276,6 +232,50 @@
       }
 
       [TestClass]
+      public class When_I_call_ValidationRuleBase_RemovePropertyName : TestBase
+      {
+         private readonly ValidationRuleBase<MyTestEntity> target = new MyTestEntityIsNotNullValidationRule();
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_not_not_throw_on_null()
+         {
+            var actual = target.RemovePropertyName(null);
+            actual.Should().BeFalse();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_not_remove_a_non_extant_property_name()
+         {
+            var extant = Guid.NewGuid().ToString();
+            target.AddPropertyName(extant);
+            target.PropertyNames.Count().Should().Be(1);
+            target.PropertyNames.Should().Contain(extant);
+
+            var actual = target.RemovePropertyName(Guid.NewGuid().ToString());
+            actual.Should().BeFalse();
+            target.PropertyNames.Count().Should().Be(1);
+            target.PropertyNames.Should().Contain(extant);
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_remove_an_extant_property_name()
+         {
+            var expected = Guid.NewGuid().ToString();
+            target.AddPropertyName(expected);
+            target.PropertyNames.Count().Should().Be(1);
+            target.PropertyNames.Should().Contain(expected);
+
+            var actual = target.RemovePropertyName(expected);
+            actual.Should().BeTrue();
+            target.PropertyNames.Count().Should().Be(0);
+            target.PropertyNames.Should().NotContain(expected);
+         }
+      }
+
+      [TestClass]
       public class When_I_construct_a_ValidationRuleBase : TestBase
       {
          [TestMethod]
@@ -283,7 +283,7 @@
          public void It_should_have_the_expected_default_values()
          {
             ValidationRuleBase<MyTestEntity> rule = new MyTestEntityIsNotNullValidationRule();
-            ((IValidationRule<MyTestEntity>) rule).GetStringComparer().Should().Be(EqualityComparer<String>.Default);
+            ((IValidationRule<MyTestEntity>)rule).GetStringComparer().Should().Be(EqualityComparer<String>.Default);
             rule.IsReadOnly.Should().BeFalse();
             rule.PropertyNames.Count().Should().Be(0);
             rule.Description.Should().NotBeNull(); // set by descendant class
@@ -296,7 +296,7 @@
          public void It_should_use_the_specified_string_comparer()
          {
             var rule = new MyTestEntityIsNotNullValidationRule(StringComparer.CurrentCulture);
-            ((IValidationRule<MyTestEntity>) rule).GetStringComparer().Should().Be(StringComparer.CurrentCulture);
+            ((IValidationRule<MyTestEntity>)rule).GetStringComparer().Should().Be(StringComparer.CurrentCulture);
          }
       }
 

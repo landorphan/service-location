@@ -34,7 +34,7 @@
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -77,7 +77,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_collection_is_null_It_should_return_an_empty_set()
          {
-            var target = new SimpleSet<Int32>((IEnumerable<Int32>) null);
+            var target = new SimpleSet<Int32>((IEnumerable<Int32>)null);
             target.IsEmpty.Should().BeTrue();
          }
 
@@ -252,7 +252,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_on_calls_to_Add()
          {
-            Action throwingAction = () => target.Add(int.MaxValue);
+            Action throwingAction = () => target.Add(Int32.MaxValue);
             throwingAction.Should().Throw<NotSupportedException>();
          }
 

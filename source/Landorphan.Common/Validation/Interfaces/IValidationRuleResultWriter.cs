@@ -49,9 +49,9 @@
       /// <summary>
       /// Gets the evaluated entity that gave rise to this instance.
       /// </summary>
-      /// <value>
+      /// <param name="evaluatedEntity">
       /// The evaluated entity.
-      /// </value>
+      /// </param>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>
@@ -60,9 +60,9 @@
       /// <summary>  
       /// Sets the description of the validation rule applied that gave rise to this instance.
       /// </summary>
-      /// <value> 
+      /// <param name="validationRuleDescription"> 
       /// The description of validation rule applied.
-      /// </value>
+      /// </param>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>
@@ -71,9 +71,9 @@
       /// <summary>  
       /// Sets the name of the validation rule applied that gave rise to this instance.
       /// </summary>
-      /// <value> 
+      /// <param name="validationRuleName"> 
       /// The name of validation rule applied. 
-      /// </value>
+      /// </param>>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>

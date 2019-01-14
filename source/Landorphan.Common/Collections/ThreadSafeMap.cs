@@ -239,7 +239,7 @@
       /// <inheritdoc/>
       IEnumerator IEnumerable.GetEnumerator()
       {
-         return ((IEnumerable<KeyValuePair<TKey, TValue>>) this).GetEnumerator();
+         return ((IEnumerable<KeyValuePair<TKey, TValue>>)this).GetEnumerator();
       }
 
       /// <inheritdoc/>
@@ -293,7 +293,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _underlyingMap.LongCount();
+            var hashcode = (Int32)_underlyingMap.LongCount();
             return hashcode;
          }
       }
@@ -307,7 +307,7 @@
 
             // note:  must enumerate key-value pairs not keys
             var kvps = new List<KeyValuePair<TKey, TValue>>();
-            using (var kvpEnumerator = ((IEnumerable<KeyValuePair<TKey, TValue>>) _underlyingMap).GetEnumerator())
+            using (var kvpEnumerator = ((IEnumerable<KeyValuePair<TKey, TValue>>)_underlyingMap).GetEnumerator())
             {
                while (kvpEnumerator.MoveNext())
                {

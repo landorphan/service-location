@@ -68,7 +68,7 @@ namespace Landorphan.Common.Tests.Collections
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -371,7 +371,7 @@ namespace Landorphan.Common.Tests.Collections
          {
             foreach (var item in expected)
             {
-               ((ICollection<Int32>) target).Add(item);
+               ((ICollection<Int32>)target).Add(item);
             }
          }
 
@@ -420,7 +420,7 @@ namespace Landorphan.Common.Tests.Collections
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_on_calls_to_Add()
          {
-            Action throwingAction = () => target.Add(int.MaxValue);
+            Action throwingAction = () => target.Add(Int32.MaxValue);
             throwingAction.Should().Throw<NotSupportedException>();
          }
 
@@ -428,7 +428,7 @@ namespace Landorphan.Common.Tests.Collections
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_on_calls_to_AddRange()
          {
-            Action throwingAction = () => target.AddRange(new[] {int.MinValue, int.MaxValue});
+            Action throwingAction = () => target.AddRange(new[] {Int32.MinValue, Int32.MaxValue});
             throwingAction.Should().Throw<NotSupportedException>();
          }
 
@@ -465,7 +465,7 @@ namespace Landorphan.Common.Tests.Collections
          protected override void ActMethod()
          {
             matchedResult = target.Remove(2);
-            unmatchedResult = target.Remove(int.MaxValue - 1);
+            unmatchedResult = target.Remove(Int32.MaxValue - 1);
          }
 
          [TestMethod]

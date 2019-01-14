@@ -454,13 +454,13 @@
          ExchangeValue(value.ToUtc());
       }
 
-      /// <inheritdoc cref="DateTime"/>
+      /// <inheritdoc cref="DateTime.ToString()"/>
       public override String ToString()
       {
          return GetValue().ToRoundtripString();
       }
 
-      /// <inheritdoc cref="DateTime"/>
+      /// <inheritdoc cref="DateTime.ToString(String)"/>
       [SuppressMessage(
          "Microsoft.Globalization",
          "CA1305:SpecifyIFormatProvider",
@@ -474,13 +474,13 @@
          return GetValue().ToString(format);
       }
 
-      /// <inheritdoc cref="DateTime"/>
+      /// <inheritdoc cref="DateTime.ToString(IFormatProvider)"/>
       public String ToString(IFormatProvider provider)
       {
          return GetValue().ToString(provider);
       }
 
-      /// <inheritdoc cref="DateTime"/>
+      /// <inheritdoc cref="DateTime.ToString(String, IFormatProvider)"/>
       public String ToString(String format, IFormatProvider provider)
       {
          return GetValue().ToString(format, provider);

@@ -97,8 +97,8 @@
       // ReSharper disable once UnusedMember.Local
       private ContainerFromTypePrecludedArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         Container = (IIocContainer) info.GetValue("container", typeof(IIocContainerMetaIdentity));
-         PrecludedType = (Type) info.GetValue("precludedType", typeof(Type));
+         Container = (IIocContainer)info.GetValue("container", typeof(IIocContainerMetaIdentity));
+         PrecludedType = (Type)info.GetValue("precludedType", typeof(Type));
       }
 
       /// <inheritdoc/>

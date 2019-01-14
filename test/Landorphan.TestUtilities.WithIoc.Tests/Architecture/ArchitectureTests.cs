@@ -2,7 +2,6 @@
 {
    using System.Collections.Immutable;
    using System.Reflection;
-   using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.ReusableTestImplementations;
    using Landorphan.TestUtilities.WithIoc.Tests.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,7 +24,6 @@
       {
          All_Declarations_Under_An_Internal_Namespace_Are_Not_Public_Implementation();
       }
-
 
       protected override IImmutableSet<Assembly> GetAssembliesUnderTest()
       {

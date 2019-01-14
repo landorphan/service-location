@@ -116,7 +116,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _stack.LongCount();
+            var hashcode = (Int32)_stack.LongCount();
             return hashcode;
          }
       }

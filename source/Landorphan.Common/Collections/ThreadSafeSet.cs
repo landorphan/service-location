@@ -190,7 +190,7 @@
       {
          using (_lock.EnterReadLock())
          {
-            ((ICollection<T>) _set).CopyTo(array, arrayIndex);
+            ((ICollection<T>)_set).CopyTo(array, arrayIndex);
          }
       }
 
@@ -413,7 +413,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _set.LongCount();
+            var hashcode = (Int32)_set.LongCount();
             return hashcode;
          }
       }

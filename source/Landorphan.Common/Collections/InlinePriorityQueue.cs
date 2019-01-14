@@ -78,7 +78,7 @@
          }
       }
 
-      /// <inheritdoc cref="ICollection{T}" />
+      /// <inheritdoc cref="ICollection{T}.Count" />
       public Int32 Count => _heap.Count;
 
       /// <inheritdoc/>
@@ -87,7 +87,7 @@
       /// <inheritdoc/>
       public Boolean IsEmpty => _heap.Count == 0;
 
-      /// <inheritdoc cref="ICollection{T}" />
+      /// <inheritdoc cref="IQueryReadOnly.IsReadOnly" />
       public Boolean IsReadOnly => false;
 
       /// <inheritdoc/>
@@ -134,7 +134,7 @@
          }
       }
 
-      /// <inheritdoc cref="ICollection{T}" />
+      /// <inheritdoc cref="ICollection{T}.Clear" />
       public void Clear()
       {
          _heap.Clear();
@@ -255,7 +255,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _heap.LongCount();
+            var hashcode = (Int32)_heap.LongCount();
             return hashcode;
          }
       }

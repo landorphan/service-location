@@ -139,9 +139,9 @@
       // ReSharper disable once UnusedMember.Local
       private ContainerFromTypeNameAlreadyRegisteredArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         Container = (IIocContainerMetaIdentity) info.GetValue("container", typeof(IIocContainerMetaIdentity));
-         RegisteredName = (String) info.GetValue("registeredName", typeof(String));
-         RegisteredType = (Type) info.GetValue("registeredType", typeof(Type));
+         Container = (IIocContainerMetaIdentity)info.GetValue("container", typeof(IIocContainerMetaIdentity));
+         RegisteredName = (String)info.GetValue("registeredName", typeof(String));
+         RegisteredType = (Type)info.GetValue("registeredType", typeof(Type));
       }
 
       /// <inheritdoc/>

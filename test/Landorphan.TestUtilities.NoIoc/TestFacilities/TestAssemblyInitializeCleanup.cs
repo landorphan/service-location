@@ -3,7 +3,7 @@
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    /// <summary>
-   /// Defines test assembly initialization and teardown.
+   /// Defines test assembly initialization and cleanup.
    /// </summary>
    [TestClass]
    public static class TestAssemblyInitializeCleanup

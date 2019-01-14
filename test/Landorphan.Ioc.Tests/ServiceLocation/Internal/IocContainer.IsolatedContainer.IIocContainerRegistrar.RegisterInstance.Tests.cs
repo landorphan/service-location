@@ -250,7 +250,7 @@
             var instance = new RegisteredTypeImplementingIRegisteredType();
             var registeredName = Guid.NewGuid().ToString("D");
 
-            Action throwingAction = () => target.RegisterInstance((Type) null, instance);
+            Action throwingAction = () => target.RegisterInstance((Type)null, instance);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
             e.And.ParamName.Should().Be("fromType");
 

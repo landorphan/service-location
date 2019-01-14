@@ -6,7 +6,7 @@
    using System.Globalization;
 
    /// <summary>
-   /// Enumeration extensions for flags.
+   /// Extension methods for working with <see cref="Enum"/> instances that do not have the <see cref="FlagsAttribute"/>.
    /// </summary>
    /// <remarks>
    /// Generic constraints do not support 'enum', so restricting to struct, IComparable, IFormattable, IConvertible.  However, this still leaves the
@@ -89,35 +89,35 @@
                Int64 convertedValue = 0;
                if (underlyingType == typeof(SByte))
                {
-                  convertedValue = (SByte) v;
+                  convertedValue = (SByte)v;
                }
                else if (underlyingType == typeof(Byte))
                {
-                  convertedValue = (Byte) v;
+                  convertedValue = (Byte)v;
                }
                else if (underlyingType == typeof(Int16))
                {
-                  convertedValue = (Int16) v;
+                  convertedValue = (Int16)v;
                }
                else if (underlyingType == typeof(UInt16))
                {
-                  convertedValue = (UInt16) v;
+                  convertedValue = (UInt16)v;
                }
                else if (underlyingType == typeof(Int32))
                {
-                  convertedValue = (Int32) v;
+                  convertedValue = (Int32)v;
                }
                else if (underlyingType == typeof(UInt32))
                {
-                  convertedValue = (UInt32) v;
+                  convertedValue = (UInt32)v;
                }
                else if (underlyingType == typeof(Int64))
                {
-                  convertedValue = (Int64) v;
+                  convertedValue = (Int64)v;
                }
                else if (underlyingType == typeof(UInt64))
                {
-                  convertedValue = (Int64) (UInt64) v;
+                  convertedValue = (Int64)(UInt64)v;
                }
 
                allValues.Add(convertedValue);
@@ -127,35 +127,35 @@
 
             if (underlyingType == typeof(SByte))
             {
-               castValue = (SByte) (Object) value;
+               castValue = (SByte)(Object)value;
             }
             else if (underlyingType == typeof(Byte))
             {
-               castValue = (Byte) (Object) value;
+               castValue = (Byte)(Object)value;
             }
             else if (underlyingType == typeof(Int16))
             {
-               castValue = (Int16) (Object) value;
+               castValue = (Int16)(Object)value;
             }
             else if (underlyingType == typeof(UInt16))
             {
-               castValue = (UInt16) (Object) value;
+               castValue = (UInt16)(Object)value;
             }
             else if (underlyingType == typeof(Int32))
             {
-               castValue = (Int32) (Object) value;
+               castValue = (Int32)(Object)value;
             }
             else if (underlyingType == typeof(UInt32))
             {
-               castValue = (UInt32) (Object) value;
+               castValue = (UInt32)(Object)value;
             }
             else if (underlyingType == typeof(Int64))
             {
-               castValue = (Int64) (Object) value;
+               castValue = (Int64)(Object)value;
             }
             else if (underlyingType == typeof(UInt64))
             {
-               castValue = (Int64) (UInt64) (Object) value;
+               castValue = (Int64)(UInt64)(Object)value;
             }
 
             return allValues.Contains(castValue);

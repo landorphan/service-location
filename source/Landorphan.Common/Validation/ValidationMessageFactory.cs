@@ -4,6 +4,8 @@
    using System.Globalization;
    using Landorphan.Common.Resources;
 
+   // ReSharper disable AssignNullToNotNullAttribute
+
    /// <summary>
    /// Factory for instantiating <see cref="ValidationMessage"/>.
    /// </summary>

@@ -12,13 +12,13 @@
    public static class TestTypeExtensions
    {
       /// <summary>
-      ///    Gets all constants declared in the given type.
+      /// Gets all constants declared in the given type.
       /// </summary>
       /// <param name="type">
-      ///    The type to inspected.
+      /// The type to inspected.
       /// </param>
       /// <returns>
-      ///    A non-null set of <see cref="FieldInfo" /> representing the constants.
+      /// A non-null set of <see cref="FieldInfo" /> representing the constants.
       /// </returns>
       public static ImmutableHashSet<FieldInfo> GetPublicAndPrivateConstantsDeclaredOnly(this Type type)
       {
@@ -35,19 +35,19 @@
          // IsInitOnly determine if the field can be set in the body of the constructor
          // -> C# 
          //     for a readonly field, both would be true
-         //     for a constant only IsLiterable will be true
+         //     for a constant only IsLiteral will be true
          var rv = (from fi in fieldInfos where fi.IsLiteral && !fi.IsInitOnly select fi).ToImmutableHashSet();
          return rv;
       }
 
       /// <summary>
-      ///    Gets all constants declared in the given type and its ancestors.
+      /// Gets all constants declared in the given type and its ancestors.
       /// </summary>
       /// <param name="type">
-      ///    The type to inspected.
+      /// The type to inspected.
       /// </param>
       /// <returns>
-      ///    A non-null set of <see cref="FieldInfo" /> representing the constants.
+      /// A non-null set of <see cref="FieldInfo" /> representing the constants.
       /// </returns>
       public static ImmutableHashSet<FieldInfo> GetPublicAndPrivateConstantsIncludingInherited(this Type type)
       {
@@ -64,19 +64,19 @@
          // IsInitOnly determine if the field can be set in the body of the constructor
          // -> C# 
          //     for a readonly field, both would be true
-         //     for a constant only IsLiterable will be true
+         //     for a constant only IsLiteral will be true
          var rv = (from fi in fieldInfos where fi.IsLiteral && !fi.IsInitOnly select fi).ToImmutableHashSet();
          return rv;
       }
 
       /// <summary>
-      ///    A Type extension method that queries if 'type' is nullable of t.
+      /// A Type extension method that queries if 'type' is nullable of t.
       /// </summary>
       /// <param name="type">
-      ///    The type to act on.
+      /// The type to act on.
       /// </param>
       /// <returns>
-      ///    true if nullable of t, false if not.
+      /// <c>true</c>if nullable{T}; otherwise <c>false</c>.
       /// </returns>
       public static Boolean IsNullableOfT(this Type type)
       {
@@ -85,13 +85,13 @@
       }
 
       /// <summary>
-      ///    A Type extension that determines if the given type is a member of the set of ordinal types.
+      /// A Type extension that determines if the given type is a member of the set of ordinal types.
       /// </summary>
       /// <param name="type">
-      ///    The type to inspected.
+      /// The type to inspected.
       /// </param>
       /// <returns>
-      ///    true if ordinal type; otherwise, false.
+      /// <c>true</c> if the type is ordinal; otherwise <c>false</c>.
       /// </returns>
       public static Boolean IsOrdinalType(this Type type)
       {

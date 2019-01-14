@@ -85,7 +85,7 @@
       /// <param name="context"> The <see cref="StreamingContext"/> that contains contextual information about the source or destination. </param>
       private AssemblyRegistrarMustHavePublicDefaultConstructorException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         ImplementationType = (Type) info.GetValue("fromType", typeof(Type));
+         ImplementationType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
       /// <inheritdoc/>
@@ -105,7 +105,7 @@
       private static String NullToDefaultMessage(Type implementationType, String message)
       {
          var rv = message ??
-                  string.Format(
+                  String.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.AssemblyRegistrarMustHavePublicDefaultConstructorExceptionDefaultMessageFmt,
                      implementationType.IsNull() ? StringResources.NullReplacementValue : implementationType.FullName);

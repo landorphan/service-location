@@ -116,10 +116,10 @@
          {
             var target = new InterlockedBoolean(true);
             target.Equals(null).Should().BeFalse();
-            target.Equals((Object) new InterlockedBoolean(true)).Should().BeTrue();
+            target.Equals((Object)new InterlockedBoolean(true)).Should().BeTrue();
 
             // ReSharper disable once SuspiciousTypeConversion.Global
-            target.Equals((Object) true).Should().BeTrue();
+            target.Equals((Object)true).Should().BeTrue();
             target.Equals(new Object()).Should().BeFalse();
          }
 
@@ -127,7 +127,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_Implement_Explicitly_IComparable()
          {
-            var target = (IComparable) new InterlockedBoolean(true);
+            var target = (IComparable)new InterlockedBoolean(true);
             target.CompareTo(true).Should().Be(0);
             target.CompareTo(new InterlockedBoolean(true)).Should().Be(0);
             target.CompareTo(null).Should().BeGreaterThan(0);

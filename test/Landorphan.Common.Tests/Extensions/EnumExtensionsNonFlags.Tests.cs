@@ -10,7 +10,7 @@
    // ReSharper disable InconsistentNaming
    // ReSharper disable UnusedMember.Local
 
-   [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+   [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
    public static class EnumExtensionsNonFlags_Tests
    {
       [SuppressMessage("SonarLint.Naming", "S2344:Enumeration type names should not have 'Flags' or 'Enum' suffixes", Justification = "Test target (MWP)")]
@@ -149,7 +149,7 @@
          Fifth
       }
 
-      [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+      [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
       [SuppressMessage("SonarLint.Naming", "S101:Types should be named in PascalCase", Justification = "Test code (MWP)")]
       [SuppressMessage("Microsoft.Design", "CA1034:Nested types should not be visible", Justification = "Test code (MWP)")]
       [TestClass]
@@ -181,9 +181,9 @@
          {
             const String parameterName = "arg";
 
-            const Int32 invalidValue = 1 + (Int32) TestTargetInt32Enum.Fifth;
+            const Int32 invalidValue = 1 + (Int32)TestTargetInt32Enum.Fifth;
 
-            Action throwingAction = () => ((TestTargetInt32Enum) invalidValue).ArgumentMustBeValidEnumValue(parameterName);
+            Action throwingAction = () => ((TestTargetInt32Enum)invalidValue).ArgumentMustBeValidEnumValue(parameterName);
             var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.EnumType.Should().Be<TestTargetInt32Enum>();
             e.And.UnderlyingType.Should().Be<Int32>();
@@ -193,13 +193,13 @@
                .Contain("The value of argument")
                .And.Contain("is invalid for Enum type")
                .And.Contain(parameterName)
-               .And.Contain(((Int64) invalidValue).ToString(CultureInfo.InvariantCulture))
+               .And.Contain(((Int64)invalidValue).ToString(CultureInfo.InvariantCulture))
                .And.Contain(typeof(TestTargetInt32Enum).Name);
 
             // The value of argument 'arg' (6) is invalid for Enum type 'TestTargetInt32Enum'.
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_InvalidOperationException_when_the_value_is_an_enum_but_is_flags()
@@ -220,7 +220,7 @@
          }
       }
 
-      [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+      [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
       [SuppressMessage("SonarLint.Naming", "S101:Types should be named in PascalCase", Justification = "Test code (MWP)")]
       public class When_I_call_NonFlagsEnumExtensions_IsValidEnumValue : TestBase
       {
@@ -244,12 +244,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_when_enum_value_is_invalid()
          {
-            const Int32 invalidValue = 1 + (Int32) TestTargetInt32Enum.Fifth;
-            const TestTargetInt32Enum invalidEnum = (TestTargetInt32Enum) invalidValue;
+            const Int32 invalidValue = 1 + (Int32)TestTargetInt32Enum.Fifth;
+            const TestTargetInt32Enum invalidEnum = (TestTargetInt32Enum)invalidValue;
             invalidEnum.IsValidEnumValue().Should().BeFalse();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_InvalidOperationException_when_the_value_is_an_enum_but_is_flags()

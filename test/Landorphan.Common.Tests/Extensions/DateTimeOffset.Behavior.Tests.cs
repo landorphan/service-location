@@ -76,7 +76,7 @@ namespace Landorphan.Common.Tests.Extensions
 
             [TestMethod]
             [Ignore("Failes on Build Server, needs further Investigation.  tistocks")]
-            [TestCategory(TestTiming.CheckIn)]
+			[TestCategory(TestTiming.CheckIn)]
             public void Bcl_Treats_Local_And_Utc_As_NOT_Equal_When_Ticks_Are_Equal()
             {
                _local.Should().NotBe(_utc);
@@ -164,14 +164,14 @@ namespace Landorphan.Common.Tests.Extensions
                Justification = "This rule is disabled for this project and most other test projects, but the rule still emits warnings")]
             public void Bcl_DateTimeOffset_ToString_Expresses_Local_TimeZone()
             {
-                // Switched to Regex match as date time offset can be either positive or negative
+                 // Switched to Regex match as date time offset can be either positive or negative
                _local.ToString("o").Should().MatchRegex(@"0001-02-03T04:05:06\.0000000[-+]\d\d:\d\d");
                _local.ToString("u").Should().Match("0001-02-?? ??:05:06Z");
             }
 
             [TestMethod]
             [Ignore]
-            [TestCategory(TestTiming.CheckIn)]
+           	[TestCategory(TestTiming.CheckIn)]
             [SuppressMessage(
                "Microsoft.Globalization",
                "CA1305: Specify IFormatProvide",

@@ -91,7 +91,7 @@
       // ReSharper disable once UnusedMember.Local
       private ToTypeMustNotBeInterfaceNorAbstractArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         ToType = (Type) info.GetValue("fromType", typeof(Type));
+         ToType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
       /// <inheritdoc/>

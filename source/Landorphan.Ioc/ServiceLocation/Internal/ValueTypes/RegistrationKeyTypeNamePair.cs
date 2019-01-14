@@ -47,6 +47,7 @@
          {
             throw new TypeMustNotBeAnOpenGenericArgumentException(registeredType, nameof(registeredType), null, null);
          }
+
          if (!(registeredType.IsAbstract || registeredType.IsInterface))
          {
             throw new FromTypeMustBeInterfaceOrAbstractTypeArgumentException(registeredType, nameof(registeredType), null, null);

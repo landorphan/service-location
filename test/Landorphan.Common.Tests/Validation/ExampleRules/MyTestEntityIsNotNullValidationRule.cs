@@ -6,7 +6,7 @@
 
    internal sealed class MyTestEntityIsNotNullValidationRule : ValidationRuleBase<MyTestEntity>
    {
-      public MyTestEntityIsNotNullValidationRule() : this((IEqualityComparer<String>) null)
+      public MyTestEntityIsNotNullValidationRule() : this((IEqualityComparer<String>)null)
       {
       }
 

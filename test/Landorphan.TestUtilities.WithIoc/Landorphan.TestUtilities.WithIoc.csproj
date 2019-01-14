@@ -71,10 +71,9 @@
     <Compile Include="Interfaces\ITestMockingService.cs" />
     <Compile Include="TestBaseWithIoc.cs" />
     <Compile Include="TestFacilities\TestAssemblyInitializeCleanup.cs" />
-    <Compile Include="TestFacilities\TestHardcodes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Landorphan.TestUtilities.WithIoc.NetFx.csproj.DotSettings" />
+    <None Include="Landorphan.TestUtilities.WithIoc.csproj.DotSettings" />
     <None Include="Landorphan.TestUtilities.WithIoc.NetFx.ruleset" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +87,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Landorphan.TestUtilities.NoIoc\Landorphan.TestUtilities.NoIoc.csproj">
       <Project>{86f6b3d5-3d6d-4bdc-a45d-cae58458722c}</Project>
-      <Name>Landorphan.TestUtilities.NoIoc.NetFx</Name>
+      <Name>Landorphan.TestUtilities.NoIoc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

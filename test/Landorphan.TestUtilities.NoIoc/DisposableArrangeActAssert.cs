@@ -21,7 +21,6 @@
       private Int32 _isDisposed;
       private Int32 _isDisposing;
 
-
       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Design", "CA1063: Implement IDisposable Correctly", Justification = "Reviewed (MWP)")]
       public void Dispose()

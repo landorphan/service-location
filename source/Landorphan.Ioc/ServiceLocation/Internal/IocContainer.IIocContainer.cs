@@ -4,6 +4,10 @@
    using System.Collections.Generic;
    using Landorphan.Common;
 
+   // ReSharper disable ConvertToAutoProperty
+   // ReSharper disable InheritdocConsiderUsage
+   // ReSharper disable RedundantExtendsListEntry
+
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       /// <inheritdoc/>

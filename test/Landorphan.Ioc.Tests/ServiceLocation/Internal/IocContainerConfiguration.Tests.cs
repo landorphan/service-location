@@ -52,18 +52,101 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_create_an_equivalent_untyped_clone_and_set_IsLocked_to_false()
+         public void It_should_create_an_equivalent_untyped_clone_and_set_IsReadOnly_to_false()
          {
             actualObject.Should().BeOfType<IocContainerConfiguration>();
 
-            ((IIocContainerConfiguration) actualObject).Should().BeOfType<IocContainerConfiguration>();
-            ((IIocContainerConfiguration) actualObject).Equals(Target).Should().BeTrue();
-            ((IIocContainerConfiguration) actualObject).AllowNamedImplementations.Should().Be(Target.AllowNamedImplementations);
-            ((IIocContainerConfiguration) actualObject).AllowPreclusionOfTypes.Should().Be(Target.AllowPreclusionOfTypes);
-            ((IIocContainerConfiguration) actualObject).Container.Uid.Should().Be(Target.Container.Uid);
-            ((IIocContainerConfiguration) actualObject).ThrowOnRegistrationCollision.Should().Be(Target.ThrowOnRegistrationCollision);
-            ((IIocContainerConfiguration) actualObject).IsLocked.Should().BeFalse();
-            ((IIocContainerConfiguration) actualObject).GetHashCode().Should().Be(Target.GetHashCode());
+            ((IIocContainerConfiguration)actualObject).Should().BeOfType<IocContainerConfiguration>();
+            ((IIocContainerConfiguration)actualObject).Equals(Target).Should().BeTrue();
+            ((IIocContainerConfiguration)actualObject).AllowNamedImplementations.Should().Be(Target.AllowNamedImplementations);
+            ((IIocContainerConfiguration)actualObject).AllowPreclusionOfTypes.Should().Be(Target.AllowPreclusionOfTypes);
+            ((IIocContainerConfiguration)actualObject).Container.Uid.Should().Be(Target.Container.Uid);
+            ((IIocContainerConfiguration)actualObject).ThrowOnRegistrationCollision.Should().Be(Target.ThrowOnRegistrationCollision);
+            ((IIocContainerConfiguration)actualObject).IsReadOnly.Should().BeFalse();
+            ((IIocContainerConfiguration)actualObject).GetHashCode().Should().Be(Target.GetHashCode());
+         }
+      }
+
+      [TestClass]
+      public class When_I_call_IocContainerConfiguration_MakeReadOnly : ArrangeActAssert
+      {
+         private const String containerName = "Mock container for IocContainerConfiguration Tests";
+         private readonly Guid containerUid = Guid.NewGuid();
+         private IList<PropertyInfo> _propertyInfos;
+         private IIocContainerMetaIdentity container;
+         private IocContainerConfiguration target;
+
+         protected override void ArrangeMethod()
+         {
+            container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, containerUid);
+            target = new IocContainerConfiguration(container);
+         }
+
+         /// <inheritdoc/>
+         protected override void ActMethod()
+         {
+            target.MakeReadOnly();
+            var type = typeof(IocContainerConfiguration);
+            _propertyInfos =
+               type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+                  .ToImmutableList();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_inform_that_it_IsReadOnly()
+         {
+            target.IsReadOnly.Should().BeTrue();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         [SuppressMessage(
+            "Microsoft.Globalization",
+            "CA1305: Specify IFormatProvide",
+            Justification = "This rule is disabled for this project and most other test projects, but the rule still emits warnings")]
+         public void It_should_throw_on_all_property_setters()
+         {
+            var unprotectedSetters = new List<String>();
+            foreach (var pi in _propertyInfos)
+            {
+               var propertyInfo = pi;
+               if (propertyInfo.CanWrite)
+               {
+                  Action throwingAction = () => propertyInfo.SetValue(target, GetDefaultValue(propertyInfo));
+                  try
+                  {
+                     throwingAction.Should().Throw<TargetInvocationException>().WithInnerException<NotSupportedException>();
+                  }
+                  catch (AssertFailedException e)
+                  {
+                     unprotectedSetters.Add(
+                        $"{target.GetType().FullName}.{propertyInfo.Name} should throw TargetInvocationException(NotSupportedException) when read only and the property setter is invoked, " +
+                        $"but the following was thrown by the test:\r\n{e}.");
+                  }
+                  catch (Exception e)
+                  {
+                     unprotectedSetters.Add(
+                        $"{target.GetType().FullName}.{propertyInfo.Name} should throw TargetInvocationException(NotSupportedException) when read only and the property setter is invoked, " +
+                        $"but it did throw:\r\n{e}.");
+                  }
+               }
+            }
+
+            if (unprotectedSetters.Any())
+            {
+               foreach (var unprotected in unprotectedSetters)
+               {
+                  Trace.WriteLine(unprotected);
+               }
+            }
+
+            unprotectedSetters.Should().BeEmpty();
+         }
+
+         private Object GetDefaultValue(PropertyInfo pi)
+         {
+            return pi.PropertyType.IsValueType ? Activator.CreateInstance(pi.PropertyType) : null;
          }
       }
 
@@ -80,29 +163,6 @@
             container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, containerUid);
 
             target = new IocContainerConfiguration(container);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_ConfigurationChanged_when_I_lock_the_instance()
-         {
-            Object actualSender = null;
-            EventArgs actualEventArgs = null;
-
-            var eh = new EventHandler<EventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
-
-            target.ConfigurationChanged += eh;
-
-            target.LockConfiguration();
-
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
          }
 
          [TestMethod]
@@ -179,10 +239,8 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_not_fire_ConfigurationChanged_when_I_lock_a_locked_instance()
+         public void It_should_not_fire_ConfigurationChanged_when_I_call_MakeReadOnly()
          {
-            target.LockConfiguration();
-
             Object actualSender = null;
             EventArgs actualEventArgs = null;
 
@@ -195,8 +253,7 @@
 
             target.ConfigurationChanged += eh;
 
-            // lock it "again"
-            target.LockConfiguration();
+            target.MakeReadOnly();
 
             actualSender.Should().BeNull();
             actualEventArgs.Should().BeNull();
@@ -316,94 +373,9 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_not_be_locked()
+         public void It_should_not_be_ReadOnly()
          {
-            target.IsLocked.Should().BeFalse();
-         }
-      }
-
-      [TestClass]
-      public class When_I_have_a_IocContainerConfiguration_IsLocked_tests : ArrangeActAssert
-      {
-         private const String containerName = "Mock container for IocContainerConfiguration Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IList<PropertyInfo> _propertyInfos;
-         private IIocContainerMetaIdentity container;
-         private IocContainerConfiguration target;
-
-         protected override void ArrangeMethod()
-         {
-            container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, containerUid);
-
-            target = new IocContainerConfiguration(container);
-         }
-
-         /// <inheritdoc/>
-         protected override void ActMethod()
-         {
-            target.LockConfiguration();
-
-            var type = typeof(IocContainerConfiguration);
-            _propertyInfos =
-               type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
-                  .ToImmutableList();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_inform_that_it_IsLocked()
-         {
-            target.IsLocked.Should().BeTrue();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [SuppressMessage(
-            "Microsoft.Globalization",
-            "CA1305: Specify IFormatProvide",
-            Justification = "This rule is disabled for this project and most other test projects, but the rule still emits warnings")]
-         public void It_should_throw_on_all_property_setters()
-         {
-            var unprotectedSetters = new List<String>();
-            foreach (var pi in _propertyInfos)
-            {
-               var propertyInfo = pi;
-               if (propertyInfo.CanWrite)
-               {
-                  Action throwingAction = () => propertyInfo.SetValue(target, GetDefaultValue(propertyInfo));
-                  try
-                  {
-                     throwingAction.Should().Throw<TargetInvocationException>().WithInnerException<ContainerConfigurationLockedException>();
-                  }
-                  catch (AssertFailedException e)
-                  {
-                     unprotectedSetters.Add(
-                        $"{target.GetType().FullName}.{propertyInfo.Name} should throw TargetInvocationException(ContainerConfigurationLockedException) " +
-                        $"when IsLocked==true and the property setter is invoked, but the following was thrown by the test:\r\n{e}.");
-                  }
-                  catch (Exception e)
-                  {
-                     unprotectedSetters.Add(
-                        $"{target.GetType().FullName}.{propertyInfo.Name} should throw TargetInvocationException(ContainerConfigurationLockedException) " +
-                        $"when IsLocked==true and the property setter is invoked, but it did throw:\r\n{e}.");
-                  }
-               }
-            }
-
-            if (unprotectedSetters.Any())
-            {
-               foreach (var unprotected in unprotectedSetters)
-               {
-                  Trace.WriteLine(unprotected);
-               }
-            }
-
-            unprotectedSetters.Should().BeEmpty();
-         }
-
-         private Object GetDefaultValue(PropertyInfo pi)
-         {
-            return pi.PropertyType.IsValueType ? Activator.CreateInstance(pi.PropertyType) : null;
+            target.IsReadOnly.Should().BeFalse();
          }
       }
    }

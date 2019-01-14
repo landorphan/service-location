@@ -77,7 +77,7 @@
       // ReSharper disable once UnusedMember.Local
       private ContainerConfigurationNamedImplementationsDisabledException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         Container = (IIocContainerMetaIdentity) info.GetValue("container", typeof(IIocContainerMetaIdentity));
+         Container = (IIocContainerMetaIdentity)info.GetValue("container", typeof(IIocContainerMetaIdentity));
       }
 
       /// <inheritdoc/>

@@ -5,7 +5,7 @@
    using System.Globalization;
 
    /// <summary>
-   /// Enumeration extensions for flags.
+   /// Extension methods for working with <see cref="Enum"/> instances that have the <see cref="FlagsAttribute"/>.
    /// </summary>
    /// <remarks>
    /// Generic constraints do not support 'enum', so restricting to struct, IComparable, IFormattable, IConvertible.  However, this still
@@ -116,35 +116,35 @@
                Int64 convertedFlag = 0;
                if (underlyingType == typeof(SByte))
                {
-                  convertedFlag = (SByte) flag;
+                  convertedFlag = (SByte)flag;
                }
                else if (underlyingType == typeof(Byte))
                {
-                  convertedFlag = (Byte) flag;
+                  convertedFlag = (Byte)flag;
                }
                else if (underlyingType == typeof(Int16))
                {
-                  convertedFlag = (Int16) flag;
+                  convertedFlag = (Int16)flag;
                }
                else if (underlyingType == typeof(UInt16))
                {
-                  convertedFlag = (UInt16) flag;
+                  convertedFlag = (UInt16)flag;
                }
                else if (underlyingType == typeof(Int32))
                {
-                  convertedFlag = (Int32) flag;
+                  convertedFlag = (Int32)flag;
                }
                else if (underlyingType == typeof(UInt32))
                {
-                  convertedFlag = (UInt32) flag;
+                  convertedFlag = (UInt32)flag;
                }
                else if (underlyingType == typeof(Int64))
                {
-                  convertedFlag = (Int64) flag;
+                  convertedFlag = (Int64)flag;
                }
                else if (underlyingType == typeof(UInt64))
                {
-                  convertedFlag = (Int64) (UInt64) flag;
+                  convertedFlag = (Int64)(UInt64)flag;
                }
 
                allValues |= convertedFlag;
@@ -153,35 +153,35 @@
             Int64 castValue = 0;
             if (underlyingType == typeof(SByte))
             {
-               castValue = (SByte) (Object) value;
+               castValue = (SByte)(Object)value;
             }
             else if (underlyingType == typeof(Byte))
             {
-               castValue = (Byte) (Object) value;
+               castValue = (Byte)(Object)value;
             }
             else if (underlyingType == typeof(Int16))
             {
-               castValue = (Int16) (Object) value;
+               castValue = (Int16)(Object)value;
             }
             else if (underlyingType == typeof(UInt16))
             {
-               castValue = (UInt16) (Object) value;
+               castValue = (UInt16)(Object)value;
             }
             else if (underlyingType == typeof(Int32))
             {
-               castValue = (Int32) (Object) value;
+               castValue = (Int32)(Object)value;
             }
             else if (underlyingType == typeof(UInt32))
             {
-               castValue = (UInt32) (Object) value;
+               castValue = (UInt32)(Object)value;
             }
             else if (underlyingType == typeof(Int64))
             {
-               castValue = (Int64) (Object) value;
+               castValue = (Int64)(Object)value;
             }
             else if (underlyingType == typeof(UInt64))
             {
-               castValue = (Int64) (UInt64) (Object) value;
+               castValue = (Int64)(UInt64)(Object)value;
             }
 
             // determine if any invalid bits are on.

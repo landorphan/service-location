@@ -95,7 +95,7 @@
       /// </param>
       private AbstractAssemblyRegistrarException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         AbstractType = (Type) info.GetValue("abstractType", typeof(Type));
+         AbstractType = (Type)info.GetValue("abstractType", typeof(Type));
       }
 
       /// <inheritdoc/>

@@ -78,7 +78,7 @@
             manager.ContainerChildRemoved += eh;
 
             var child = manager.CreateChildContainer(childContainerName);
-            ((IDisposable) child).Dispose();
+            ((IDisposable)child).Dispose();
 
             actualSender.Should().NotBeNull();
             actualSender.Should().Be(target);
@@ -106,7 +106,7 @@
          public void It_should_remove_the_child_when_I_dispose_the_child()
          {
             var child = manager.CreateChildContainer(childContainerName);
-            ((IDisposable) child).Dispose();
+            ((IDisposable)child).Dispose();
 
             target.Children.Should().BeEmpty();
          }

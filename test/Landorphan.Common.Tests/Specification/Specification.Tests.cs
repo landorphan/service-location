@@ -282,12 +282,12 @@
 
       private class Entity
       {
-         private String _name = string.Empty;
+         private String _name = String.Empty;
 
          internal String Name
          {
             get => _name;
-            set => _name = value ?? string.Empty;
+            set => _name = value ?? String.Empty;
          }
 
          internal Int32 Value { get; set; } = -1;

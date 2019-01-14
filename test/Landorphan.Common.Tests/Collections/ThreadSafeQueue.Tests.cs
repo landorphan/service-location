@@ -58,7 +58,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_be_empty()
          {
-            ((IQueue<Int32>) target).Count.Should().Be(0);
+            ((IQueue<Int32>)target).Count.Should().Be(0);
             target.IsEmpty.Should().BeTrue();
          }
 
@@ -69,7 +69,7 @@
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -160,8 +160,8 @@
             var below = (from value in target select value).Min() - 1;
             var above = (from value in target select value).Max() + 1;
 
-            ((IContainsEnumerable<Int32>) target).Contains(below).Should().BeFalse();
-            ((IContainsEnumerable<Int32>) target).Contains(above).Should().BeFalse();
+            ((IContainsEnumerable<Int32>)target).Contains(below).Should().BeFalse();
+            ((IContainsEnumerable<Int32>)target).Contains(above).Should().BeFalse();
          }
 
          [TestMethod]
@@ -171,7 +171,7 @@
             var values = (from value in target select value).Distinct().ToList();
             foreach (var v in values)
             {
-               ((IContainsEnumerable<Int32>) target).Contains(v).Should().BeTrue();
+               ((IContainsEnumerable<Int32>)target).Contains(v).Should().BeTrue();
             }
          }
       }
@@ -194,7 +194,7 @@
                target.Enqueue(item);
             }
 
-            originalCount = ((ICountEnumerable) target).Count;
+            originalCount = ((ICountEnumerable)target).Count;
          }
 
          protected override void ActMethod()
@@ -207,7 +207,7 @@
          public void It_should_remove_only_one_value()
          {
             value.Should().Be(3);
-            ((ICountEnumerable) target).Count.Should().Be(originalCount - 1);
+            ((ICountEnumerable)target).Count.Should().Be(originalCount - 1);
          }
       }
 
@@ -236,7 +236,7 @@
          public void It_should_contain_the_expected_values_in_the_expected_order()
          {
             var lst = new List<Int32>();
-            while (((ICountEnumerable) target).Count > 0)
+            while (((ICountEnumerable)target).Count > 0)
             {
                var v = target.Dequeue();
                lst.Add(v);

@@ -130,25 +130,6 @@
       }
 
       /// <summary>
-      /// Evaluates each exception to ensure that has a inner exception constructor.
-      /// </summary>
-      [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
-      protected void Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
-      {
-         var failureMessages = new List<String>();
-         var exceptionTypes = FindExceptionTypes().ToList();
-         foreach (var et in exceptionTypes)
-         {
-            failureMessages.AddRange(ValidatePublicInnerExceptionConstructor(et));
-         }
-
-         if (failureMessages.Count > 0)
-         {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
-         }
-      }
-
-      /// <summary>
       /// Evaluates each exception to ensure that has message and inner exception constructor.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
@@ -199,6 +180,25 @@
          foreach (var et in exceptionTypes)
          {
             failureMessages.AddRange(ValidateSerializationConstructor(et));
+         }
+
+         if (failureMessages.Count > 0)
+         {
+            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+         }
+      }
+
+      /// <summary>
+      /// Evaluates each exception to ensure that has a inner exception constructor.
+      /// </summary>
+      [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
+      protected void Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
+      {
+         var failureMessages = new List<String>();
+         var exceptionTypes = FindExceptionTypes().ToList();
+         foreach (var et in exceptionTypes)
+         {
+            failureMessages.AddRange(ValidatePublicInnerExceptionConstructor(et));
          }
 
          if (failureMessages.Count > 0)
@@ -289,7 +289,7 @@
       /// </code>
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1021: Avoid out parameters")]
-      [SuppressMessage("Microsoft.Design" ,"CA1007: Use generics where appropriate", Justification = "Sure, recommend generics, then require I implement this same method to avoid generics.")]
+      [SuppressMessage("Microsoft.Design", "CA1007: Use generics where appropriate", Justification = "Sure, recommend generics, then require I implement this same method to avoid generics.")]
       protected virtual Boolean GetDefaultValueForParameterType(Type parameterType, out Object defaultValue)
       {
          defaultValue = null;
@@ -836,23 +836,23 @@
                }
                else if (typeof(SByte?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte?) t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Byte?)t_random.Next(1, SByte.MaxValue));
                }
                else if (typeof(SByte) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte) t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Byte)t_random.Next(1, SByte.MaxValue));
                }
                else if (typeof(Byte?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte?) t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Byte?)t_random.Next(1, SByte.MaxValue));
                }
                else if (typeof(Byte) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte) t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Byte)t_random.Next(1, SByte.MaxValue));
                }
                else if (typeof(Boolean?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Boolean?) true);
+                  argumentNameValuePairs.Add(p.Name, (Boolean?)true);
                }
                else if (typeof(Boolean) == p.ParameterType)
                {
@@ -860,23 +860,23 @@
                }
                else if (typeof(Int16?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte?) t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Byte?)t_random.Next(1, Int16.MaxValue));
                }
                else if (typeof(Int16) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte) t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Byte)t_random.Next(1, Int16.MaxValue));
                }
                else if (typeof(UInt16?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt16?) t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (UInt16?)t_random.Next(1, Int16.MaxValue));
                }
                else if (typeof(UInt16) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt16) t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (UInt16)t_random.Next(1, Int16.MaxValue));
                }
                else if (typeof(Int32?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int32?) t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Int32?)t_random.Next(1, Int32.MaxValue));
                }
                else if (typeof(Int32) == p.ParameterType)
                {
@@ -884,7 +884,7 @@
                }
                else if (typeof(UInt32?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int32?) t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Int32?)t_random.Next(1, Int32.MaxValue));
                }
                else if (typeof(UInt32) == p.ParameterType)
                {
@@ -892,19 +892,19 @@
                }
                else if (typeof(Int64?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int64?) t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Int64?)t_random.Next(1, Int32.MaxValue));
                }
                else if (typeof(Int64) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int64) t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (Int64)t_random.Next(1, Int32.MaxValue));
                }
                else if (typeof(UInt64) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt64) t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (UInt64)t_random.Next(1, Int32.MaxValue));
                }
                else if (typeof(UInt64?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt64?) t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (UInt64?)t_random.Next(1, Int32.MaxValue));
                }
                else if (typeof(Guid) == p.ParameterType)
                {
@@ -912,7 +912,7 @@
                }
                else if (typeof(Guid?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Guid?) Guid.NewGuid());
+                  argumentNameValuePairs.Add(p.Name, (Guid?)Guid.NewGuid());
                }
                else if (typeof(DateTime) == p.ParameterType)
                {
@@ -920,7 +920,7 @@
                }
                else if (typeof(DateTime?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (DateTime?) new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc));
+                  argumentNameValuePairs.Add(p.Name, (DateTime?)new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc));
                }
                else if (typeof(DateTimeOffset) == p.ParameterType)
                {
@@ -930,7 +930,7 @@
                {
                   argumentNameValuePairs.Add(
                      p.Name,
-                     (DateTimeOffset?) new DateTimeOffset(new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc)));
+                     (DateTimeOffset?)new DateTimeOffset(new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc)));
                }
                else if (typeof(TimeSpan) == p.ParameterType)
                {
@@ -938,7 +938,7 @@
                }
                else if (typeof(TimeSpan?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (TimeSpan?) new TimeSpan(t_random.Next(1, Int32.MaxValue)));
+                  argumentNameValuePairs.Add(p.Name, (TimeSpan?)new TimeSpan(t_random.Next(1, Int32.MaxValue)));
                }
                else if (typeof(Type) == p.ParameterType)
                {
@@ -1014,7 +1014,7 @@
                           typeof(ArgumentException).IsAssignableFrom(exceptionType)))
                      {
                         // ArgumentException and derivatives append the argument name so use starts with.
-                        if (propertyValue is String stringValue && !stringValue.StartsWith((String) kvp.Value, StringComparison.CurrentCulture))
+                        if (propertyValue is String stringValue && !stringValue.StartsWith((String)kvp.Value, StringComparison.CurrentCulture))
                         {
                            rv.Add(
                               $"Exception type '{exceptionType.Name}' violates the pattern:  argument exceptions and derived types start " +
@@ -1037,7 +1037,7 @@
                                  if (typeof(ArgumentException).IsAssignableFrom(exceptionType) && theProperty.Name.Equals("Message", StringComparison.Ordinal))
                                  {
                                     // retest:  Argument Exception Appends \r\nParameter Name: parameter name;
-                                    if (!((String) propertyValue).StartsWith((String) kvp.Value, StringComparison.Ordinal))
+                                    if (!((String)propertyValue).StartsWith((String)kvp.Value, StringComparison.Ordinal))
                                     {
                                        rv.Add($"Exception type '{exceptionType.Name}' mangled the value of property '{theProperty.Name}'.\n");
                                     }

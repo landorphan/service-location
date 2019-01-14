@@ -25,7 +25,7 @@
          {
             parent = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             var manager = parent.Manager;
-            child = (IOwnedIocContainer) manager.CreateChildContainer(childContainerName);
+            child = (IOwnedIocContainer)manager.CreateChildContainer(childContainerName);
          }
 
          [TestMethod]

@@ -3,7 +3,6 @@
    using System;
    using System.Collections.Generic;
    using System.Collections.Immutable;
-   using System.Linq;
    using FluentAssertions;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Internal;
@@ -47,11 +46,11 @@
             grandParentContainer.Registrar.RegisterImplementation<IRegisteredInGrandParentAndChild, ClassImplementingIRegisteredInGrandParentAndChild>();
             grandParentContainer.Registrar.RegisterImplementation<IRegisteredInGrandParentAndChild, AnotherClassImplementingIRegisteredInGrandParentAndChild>(nonUniqueName);
 
-            parentContainer = (IOwnedIocContainer) grandParentContainer.Manager.CreateChildContainer(parentContainerName);
+            parentContainer = (IOwnedIocContainer)grandParentContainer.Manager.CreateChildContainer(parentContainerName);
             parentContainerUid = parentContainer.Uid;
             parentContainer.Registrar.RegisterImplementation<IRegisteredInParent, ClassImplementingIRegisteredInParent>();
 
-            childContainer = (IOwnedIocContainer) parentContainer.Manager.CreateChildContainer(childContainerName);
+            childContainer = (IOwnedIocContainer)parentContainer.Manager.CreateChildContainer(childContainerName);
             childContainerUid = childContainer.Uid;
             childContainer.Registrar.RegisterImplementation<IRegisteredInChild, ClassImplementingIRegisteredInChild>();
             childContainer.Registrar.RegisterImplementation<IRegisteredInChild, AnotherClassIRegisteredInChild>(nonUniqueName);
@@ -60,7 +59,7 @@
             childContainer.Registrar.RegisterImplementation<IRegisteredInChildAndSibling, ClassImplementingIRegisteredInChildAndSibling>();
             childContainer.Registrar.RegisterImplementation<IRegisteredInChildAndSibling, AnotherClassImplementingIRegisteredInChildAndSibling>(nonUniqueName);
 
-            siblingContainer = (IOwnedIocContainer) parentContainer.Manager.CreateChildContainer(siblingContainerName);
+            siblingContainer = (IOwnedIocContainer)parentContainer.Manager.CreateChildContainer(siblingContainerName);
             siblingContainerUid = siblingContainer.Uid;
             siblingContainer.Registrar.RegisterImplementation<IRegisterInSibling, ClassImplementingIRegisterInSibling>();
             siblingContainer.Registrar.RegisterImplementation<IRegisterInSiblingNamed, ClassImplementingIRegisterInSiblingNamed>(nonUniqueName);
@@ -113,26 +112,6 @@
 
             actual = ChildContainer.Registrar.GetRegistrationChain(null, null);
             actual.Should().BeEmpty();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_the_expected_chain_when_the_type_has_a_named_registration_only_in_an_ancestor_container()
-         {
-            var builder = ImmutableDictionary<IContainerRegistrationKey, IRegistrationValue>.Empty.ToBuilder();
-
-            var key = new ContainerRegistrationKeyTypeNameTrio(GrandParentContainer, typeof(IRegisteredInGrandParent), nonUniqueName);
-            var value = new RegistrationValueTypeInstancePair(typeof(ClassImplementingIRegisteredInGrandParent));
-            builder.Add(new KeyValuePair<IContainerRegistrationKey, IRegistrationValue>(key, value));
-
-            var expected = builder.ToImmutable();
-
-            var actual = ChildContainer.Registrar.GetRegistrationChain<IRegisteredInGrandParent>(nonUniqueName);
-
-            actual.Should().OnlyContain(element => expected.Contains(element));
-
-            actual = ChildContainer.Registrar.GetRegistrationChain(typeof(IRegisteredInGrandParent), nonUniqueName);
-            actual.Should().OnlyContain(element => expected.Contains(element));
          }
 
          [TestMethod]
@@ -201,6 +180,26 @@
             actual.Should().OnlyContain(element => expected.Contains(element));
 
             actual = ChildContainer.Registrar.GetRegistrationChain(typeof(IRegisteredInGrandParentAndChild), nonUniqueName);
+            actual.Should().OnlyContain(element => expected.Contains(element));
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_the_expected_chain_when_the_type_has_a_named_registration_only_in_an_ancestor_container()
+         {
+            var builder = ImmutableDictionary<IContainerRegistrationKey, IRegistrationValue>.Empty.ToBuilder();
+
+            var key = new ContainerRegistrationKeyTypeNameTrio(GrandParentContainer, typeof(IRegisteredInGrandParent), nonUniqueName);
+            var value = new RegistrationValueTypeInstancePair(typeof(ClassImplementingIRegisteredInGrandParent));
+            builder.Add(new KeyValuePair<IContainerRegistrationKey, IRegistrationValue>(key, value));
+
+            var expected = builder.ToImmutable();
+
+            var actual = ChildContainer.Registrar.GetRegistrationChain<IRegisteredInGrandParent>(nonUniqueName);
+
+            actual.Should().OnlyContain(element => expected.Contains(element));
+
+            actual = ChildContainer.Registrar.GetRegistrationChain(typeof(IRegisteredInGrandParent), nonUniqueName);
             actual.Should().OnlyContain(element => expected.Contains(element));
          }
       }

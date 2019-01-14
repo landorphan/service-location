@@ -67,7 +67,7 @@
                    $"\tAllowNamedImplementations:{configuration.AllowNamedImplementations}" +
                    $"\tAllowPreclusionOfTypes:{configuration.AllowPreclusionOfTypes}" +
                    $"\tThrowOnRegistrationCollision:{configuration.ThrowOnRegistrationCollision}" +
-                   $"\tIsLocked:{configuration.IsLocked}";
+                   $"\tIsReadOnly:{configuration.IsReadOnly}";
       }
 
       public void GetMessagePrecludedTypeAdded(IIocContainerMetaIdentity container, Type precludedType, out String message)

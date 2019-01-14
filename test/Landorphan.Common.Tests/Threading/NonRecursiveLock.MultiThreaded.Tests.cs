@@ -10,6 +10,7 @@
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
+   // ReSharper disable ImpureMethodCallOnReadonlyValueField
 
    [TestClass]
    public abstract class Multi_Threaded_Non_Recursive_Lock_Context : DisposableArrangeActAssert
@@ -65,19 +66,16 @@
 
       protected void ReleaseReadLock()
       {
-         // ReSharper disable once ImpureMethodCallOnReadonlyValueField
          _releaseReadLock.SetValue(true);
       }
 
       protected void ReleaseUpgradeableLock()
       {
-         // ReSharper disable once ImpureMethodCallOnReadonlyValueField
          _releaseUpgradeableLock.SetValue(true);
       }
 
       protected void ReleaseWriteLock()
       {
-         // ReSharper disable once ImpureMethodCallOnReadonlyValueField
          _releaseWriteLock.SetValue(true);
       }
 

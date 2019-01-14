@@ -8,14 +8,10 @@
    /// </summary>
    /// <remarks>
    /// <para>
-   /// The configuration of a container is unlocked by default.  Once it is locked, any attempt to change the configuration other than by subsequent attempts to call <see cref="LockConfiguration" />
-   /// throw <see cref="ContainerConfigurationLockedException" />.
-   /// </para>
-   /// <para>
    /// Containers are configured individually.
    /// </para>
    /// </remarks>
-   public interface IIocContainerConfiguration : ICloneable, IEquatable<IIocContainerConfiguration>
+   public interface IIocContainerConfiguration : ICloneable, IQueryReadOnly, IEquatable<IIocContainerConfiguration>
    {
       /// <summary>
       /// Event queue for all listeners interested in state changes to this instance.
@@ -58,14 +54,6 @@
       IIocContainerMetaIdentity Container { get; }
 
       /// <summary>
-      /// Gets a value indicating whether or not this instance is locked.
-      /// </summary>
-      /// <value>
-      /// The value indicating whether or not this instance is locked.
-      /// </value>
-      Boolean IsLocked { get; }
-
-      /// <summary>
       /// Gets or sets a value governing the behavior when a registration collision occurs.
       /// </summary>
       /// <value>
@@ -78,22 +66,5 @@
       /// <see cref="IIocContainerRegistrar.TryRegisterInstance(Type, Object)" /> and their overloads.
       /// </remarks>
       Boolean ThrowOnRegistrationCollision { get; set; }
-
-      /// <summary>
-      /// Locks the configuration.
-      /// </summary>
-      /// <returns>
-      /// The previous lock state.
-      /// </returns>
-      /// <remarks>
-      /// <para>
-      /// Locking an unlocked configuration makes any further attempts to change the configuration of this
-      /// <see cref="IIocContainer" /> throw;  Locking a locked instance has no effect.
-      /// </para>
-      /// <para>
-      /// Once locked, a container cannot be unlocked.
-      /// </para>
-      /// </remarks>
-      Boolean LockConfiguration();
    }
 }

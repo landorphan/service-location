@@ -3,8 +3,7 @@
    using System;
    using Landorphan.Common;
    using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities.WithIoc;
-   
+
    /// <summary>
    /// Represents the mocking capabilities of the test subsystem.
    /// </summary>
@@ -30,9 +29,9 @@
       internal TestMockingService()
       {
          RootContainer = IocServiceLocator.RootContainer;
-         _testRunContainer = (IOwnedIocContainer) ((IIocContainerManager) RootContainer).CreateChildContainer(TestRunContainerName);
-         _testInstanceOnTestRunOnRootContainer = (IOwnedIocContainer) ((IIocContainerManager) TestRunContainer).CreateChildContainer(TestInstanceOnTestRunOnRootContainerName);
-         _testInstanceOnRootContainer = (IOwnedIocContainer) ((IIocContainerManager) RootContainer).CreateChildContainer(TestInstanceOnRootContainerName);
+         _testRunContainer = (IOwnedIocContainer)RootContainer.Manager.CreateChildContainer(TestRunContainerName);
+         _testInstanceOnTestRunOnRootContainer = (IOwnedIocContainer)TestRunContainer.Manager.CreateChildContainer(TestInstanceOnTestRunOnRootContainerName);
+         _testInstanceOnRootContainer = (IOwnedIocContainer)RootContainer.Manager.CreateChildContainer(TestInstanceOnRootContainerName);
       }
 
       /// <inheritdoc/>
@@ -77,10 +76,10 @@
          lock (_syncRoot)
          {
             _testInstanceOnTestRunOnRootContainer.Dispose();
-            _testInstanceOnTestRunOnRootContainer = (IOwnedIocContainer) ((IIocContainerManager) TestRunContainer).CreateChildContainer(TestInstanceOnTestRunOnRootContainerName);
+            _testInstanceOnTestRunOnRootContainer = (IOwnedIocContainer)((IIocContainerManager)TestRunContainer).CreateChildContainer(TestInstanceOnTestRunOnRootContainerName);
 
             _testInstanceOnRootContainer.Dispose();
-            _testInstanceOnRootContainer = (IOwnedIocContainer) ((IIocContainerManager) RootContainer).CreateChildContainer(TestInstanceOnRootContainerName);
+            _testInstanceOnRootContainer = (IOwnedIocContainer)((IIocContainerManager)RootContainer).CreateChildContainer(TestInstanceOnRootContainerName);
          }
       }
    }

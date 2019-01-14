@@ -242,7 +242,7 @@
             var instance = new RegisteredTypeImplementingIRegisteredType();
             var registeredName = Guid.NewGuid().ToString("D");
 
-            var actual = target.TryRegisterInstance((Type) null, instance);
+            var actual = target.TryRegisterInstance((Type)null, instance);
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(null, null, instance);

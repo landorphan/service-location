@@ -12,7 +12,7 @@
       [TestClass]
       public class When_I_have_an_IocServiceLocator : ArrangeActAssert
       {
-         private readonly IocServiceLocator target = (IocServiceLocator) IocServiceLocator.Instance;
+         private readonly IocServiceLocator target = (IocServiceLocator)IocServiceLocator.Instance;
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

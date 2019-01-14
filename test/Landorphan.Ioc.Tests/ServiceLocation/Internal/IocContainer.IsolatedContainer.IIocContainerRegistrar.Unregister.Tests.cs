@@ -1,9 +1,7 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
    using System;
-   using System.Collections.Generic;
    using System.Globalization;
-   using System.Linq;
    using FluentAssertions;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Internal;

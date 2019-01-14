@@ -60,10 +60,10 @@
       {
          other.ArgumentNotNull(nameof(other));
 
-         _rank = !(other._rank is ICloneable rankAsCloneable) ? other._rank : (TRank) rankAsCloneable.Clone();
+         _rank = !(other._rank is ICloneable rankAsCloneable) ? other._rank : (TRank)rankAsCloneable.Clone();
 
          // shallow- or deep-copy based on implementation of ICloneable.
-         Value = !(other.Value is ICloneable valueAsCloneable) ? other.Value : (TEntity) valueAsCloneable.Clone();
+         Value = !(other.Value is ICloneable valueAsCloneable) ? other.Value : (TEntity)valueAsCloneable.Clone();
       }
 
       /// <summary>
@@ -136,10 +136,6 @@
       }
 
       /// <inheritdoc/>
-      [SuppressMessage(
-         "SonarLint.CodeSmell",
-         "S3240: The simplest possible condition syntax should be used",
-         Justification = "When converted to a ternary statement, sonar lint complains it is too complex")]
       public Boolean Equals(RankDecorator<TEntity, TRank> other)
       {
          if (other.IsNull())

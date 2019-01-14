@@ -76,8 +76,8 @@
          {
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
-            ((IEnumerable<Int32>) target).GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable<Int32>)target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -105,7 +105,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_support_EqualityComparer()
          {
-            ((IReadableBagEnumerable<Int32>) target).EqualityComparer.Should().BeNull();
+            ((IReadableBagEnumerable<Int32>)target).EqualityComparer.Should().BeNull();
          }
       }
 
@@ -241,7 +241,7 @@
          protected override void ActMethod()
          {
             addedValue = 3;
-            ((ICollection<Int32>) target).Add(addedValue);
+            ((ICollection<Int32>)target).Add(addedValue);
          }
 
          [TestMethod]
@@ -268,7 +268,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw()
          {
-            Action throwingAction = () => ((ICollection<Int32>) target).Remove(3);
+            Action throwingAction = () => ((ICollection<Int32>)target).Remove(3);
             throwingAction.Should().Throw<NotSupportedException>().WithMessage("*Specified method is not supported*");
          }
       }
@@ -349,11 +349,11 @@
             var below = (from value in target select value).Min() - 1;
             var above = (from value in target select value).Max() + 1;
 
-            ((IContainsEnumerable<Int32>) target).Contains(below).Should().BeFalse();
-            ((IContainsEnumerable<Int32>) target).Contains(above).Should().BeFalse();
+            ((IContainsEnumerable<Int32>)target).Contains(below).Should().BeFalse();
+            ((IContainsEnumerable<Int32>)target).Contains(above).Should().BeFalse();
 
-            ((ICollection<Int32>) target).Contains(below).Should().BeFalse();
-            ((ICollection<Int32>) target).Contains(above).Should().BeFalse();
+            ((ICollection<Int32>)target).Contains(below).Should().BeFalse();
+            ((ICollection<Int32>)target).Contains(above).Should().BeFalse();
          }
 
          [TestMethod]
@@ -363,8 +363,8 @@
             var values = (from value in target select value).Distinct().ToList();
             foreach (var v in values)
             {
-               ((IContainsEnumerable<Int32>) target).Contains(v).Should().BeTrue();
-               ((ICollection<Int32>) target).Contains(v).Should().BeTrue();
+               ((IContainsEnumerable<Int32>)target).Contains(v).Should().BeTrue();
+               ((ICollection<Int32>)target).Contains(v).Should().BeTrue();
             }
          }
       }
@@ -523,16 +523,6 @@
 
             public Int32 Value { get; set; }
 
-            public static Boolean operator ==(TestValue left, TestValue right)
-            {
-               return Equals(left, right);
-            }
-
-            public static Boolean operator !=(TestValue left, TestValue right)
-            {
-               return !Equals(left, right);
-            }
-
             public Int32 CompareTo(TestValue other)
             {
                if (ReferenceEquals(null, other))
@@ -575,12 +565,22 @@
                   return false;
                }
 
-               return Equals((TestValue) obj);
+               return Equals((TestValue)obj);
             }
 
             public override Int32 GetHashCode()
             {
                return Value;
+            }
+
+            public static Boolean operator ==(TestValue left, TestValue right)
+            {
+               return Equals(left, right);
+            }
+
+            public static Boolean operator !=(TestValue left, TestValue right)
+            {
+               return !Equals(left, right);
             }
          }
       }

@@ -2,8 +2,11 @@
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
-   using System.Linq;
    using Landorphan.Common;
+
+   // ReSharper disable ConvertToAutoProperty
+   // ReSharper disable InheritdocConsiderUsage
+   // ReSharper disable RedundantExtendsListEntry
 
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
@@ -102,7 +105,7 @@
          }
 
          // fromType: not precluded
-         if (Manager.PrecludedTypes.Contains(fromType))
+         if (_precludedTypes.Contains(fromType))
          {
             if (tryLogic)
             {
@@ -124,9 +127,16 @@
             throw new ContainerConfigurationNamedImplementationsDisabledException(this, null, null);
          }
 
-         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          CheckForNewRegistrations();
-         if (_registrations.TryGetValue(key, out var value))
+         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
+         RegistrationValueTypeInstancePair value;
+         Boolean found;
+         using (_registrationsLock.EnterReadLock())
+         {
+            found = _registrations.TryGetValue(key, out value);
+         }
+
+         if (found)
          {
             if (value.ImplementationInstance != null)
             {
@@ -135,15 +145,20 @@
             }
 
             // lazily construct registered instance using default ctor
+            // ReSharper disable once AssignNullToNotNullAttribute
             var newInstance = Activator.CreateInstance(value.ImplementationType);
             var replacementValue = new RegistrationValueTypeInstancePair(value.ImplementationType, newInstance);
-            _registrations = _registrations.SetItem(key, replacementValue);
+            using (_registrationsLock.EnterWriteLock())
+            {
+               _registrations = _registrations.SetItem(key, replacementValue);
+            }
+
             instance = newInstance;
             return true;
          }
 
          // no matching entry here, check ancestors...
-         var parent = this._parent;
+         var parent = _parent;
          if (parent != null)
          {
             return parent.ResolveImplementation(fromType, fromTypeParameterName, name, tryLogic, out instance);

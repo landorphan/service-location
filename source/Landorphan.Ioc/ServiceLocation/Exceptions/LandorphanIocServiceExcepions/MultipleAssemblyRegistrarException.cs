@@ -113,7 +113,7 @@
       /// </param>
       private MultipleAssemblyRegistrarException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         ImplementationTypes = (List<Type>) info.GetValue("implementationTypes", typeof(List<Type>));
+         ImplementationTypes = (List<Type>)info.GetValue("implementationTypes", typeof(List<Type>));
       }
 
       /// <inheritdoc/>
@@ -170,7 +170,7 @@
          }
 
          var rv = message ??
-                  string.Format(
+                  String.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.MultipleAssemblyRegistrarDetectedFmt,
                      assemblyName,

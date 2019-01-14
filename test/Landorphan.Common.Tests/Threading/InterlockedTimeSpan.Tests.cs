@@ -108,10 +108,10 @@
             var value = TimeSpan.FromHours(1);
             var target = new InterlockedTimeSpan(value);
             target.Equals(null).Should().BeFalse();
-            target.Equals((Object) new InterlockedTimeSpan(value)).Should().BeTrue();
+            target.Equals((Object)new InterlockedTimeSpan(value)).Should().BeTrue();
 
             // ReSharper disable once SuspiciousTypeConversion.Global
-            target.Equals((Object) value).Should().BeTrue();
+            target.Equals((Object)value).Should().BeTrue();
 
             target.Equals(new Object()).Should().BeFalse();
          }
@@ -122,7 +122,7 @@
          {
             var value = TimeSpan.FromHours(1);
 
-            var target = (IComparable) new InterlockedTimeSpan(value);
+            var target = (IComparable)new InterlockedTimeSpan(value);
             target.CompareTo(value).Should().Be(0);
             target.CompareTo(new InterlockedTimeSpan(value)).Should().Be(0);
             target.CompareTo(null).Should().BeGreaterThan(0);

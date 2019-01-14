@@ -6,7 +6,7 @@
 
    internal class MyTestEntityValuePositiveRule : ValidationRuleBase<MyTestEntity>
    {
-      public MyTestEntityValuePositiveRule() : this((IEqualityComparer<String>) null)
+      public MyTestEntityValuePositiveRule() : this((IEqualityComparer<String>)null)
       {
       }
 

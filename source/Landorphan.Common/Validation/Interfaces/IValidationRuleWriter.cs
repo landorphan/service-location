@@ -51,6 +51,9 @@
       /// <summary>
       /// Sets the description of this validation rule.
       /// </summary>
+      /// <param name="description">
+      /// The description of the rule.
+      /// </param>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>
@@ -59,6 +62,9 @@
       /// <summary>
       /// Sets the name of this validation rule.
       /// </summary>
+      /// <param name="name">
+      /// The name of the rule.
+      /// </param>
       /// <exception cref="NotSupportedException">
       /// The current instance is read-only.
       /// </exception>

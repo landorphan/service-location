@@ -98,8 +98,8 @@
       // ReSharper disable once UnusedMember.Local
       private ToTypeMustImplementTypeArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         ToType = (Type) info.GetValue("toType", typeof(Type));
-         FromType = (Type) info.GetValue("fromType", typeof(Type));
+         ToType = (Type)info.GetValue("toType", typeof(Type));
+         FromType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
       /// <inheritdoc/>

@@ -12,16 +12,14 @@
    public static class AssemblyExtensions
    {
       /// <summary>
-      /// Gets the types found in the given assembly, handling <see cref="ReflectionTypeLoadException"/>.
+      /// Safely gets the distinct types defined in the given <paramref name="assembly"/>.
       /// </summary>
-      /// <param name="assembly"> The assembly. </param>
+      /// <param name="assembly">
+      /// The assembly to inspect.
+      /// </param>
       /// <returns>
-      /// The set of types found in the given assembly.
+      /// A non-null collection of unique non-null <see cref="Type"/> elements found in the given <paramref name="assembly"/>.
       /// </returns>
-      //[SuppressMessage(
-      //   "SonarLint.CodeSmell",
-      //   "S125:Sections of code should not be commented out",
-      //   Justification = "False positive (MWP)")]
       public static IImmutableSet<Type> SafeGetTypes(this Assembly assembly)
       {
          assembly.ArgumentNotNull(nameof(assembly));

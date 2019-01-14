@@ -4,7 +4,6 @@
    using System.Collections.Immutable;
    using System.Reflection;
    using Landorphan.Common;
-   using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.ReusableTestImplementations;
    using Landorphan.TestUtilities.WithIoc.Tests.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +11,7 @@
    [TestClass]
    public class ExceptionTests : ExceptionValidityRequirements
    {
-     [TestMethod]
+      [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable()
       {

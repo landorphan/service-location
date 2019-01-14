@@ -81,12 +81,11 @@
     <Compile Include="ReusableTestImplementations\MakeReadOnlyArrangeActAssert.cs" />
     <Compile Include="TestBase.cs" />
     <Compile Include="TestFacilities\TestAssemblyInitializeCleanup.cs" />
-    <Compile Include="TestFacilities\TestHardcodes.cs" />
     <Compile Include="TestHelp.cs" />
     <Compile Include="TestTiming.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Landorphan.TestUtilities.NoIoc.NetFx.csproj.DotSettings" />
+    <None Include="Landorphan.TestUtilities.NoIoc.csproj.DotSettings" />
     <None Include="Landorphan.TestUtilities.NoIoc.NetFx.ruleset" />
   </ItemGroup>
   <ItemGroup>

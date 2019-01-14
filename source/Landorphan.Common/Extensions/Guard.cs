@@ -4,12 +4,13 @@
    using System.Collections;
    using System.Collections.Generic;
    using System.Diagnostics;
+   using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using System.Linq;
    using Landorphan.Common.Resources;
 
    /// <summary>
-   /// Argument validation extension methods.
+   /// Extension methods for performing validation of argument values.
    /// </summary>
    public static class Guard
    {
@@ -182,6 +183,7 @@
       /// <param name="argumentName">
       /// The argumentName.
       /// </param>
+      [SuppressMessage("SonarLint.CodeSmell" ,"S4225: Extension methods should not extend object")]
       [DebuggerStepThrough]
       public static void ArgumentNotNull([ValidatedNotNull] this Object value, String argumentName)
       {

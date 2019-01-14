@@ -14,14 +14,13 @@
    // ReSharper disable InconsistentNaming
 
    /// <summary>
-   ///    Test implementations for test architectural requirements.
+   /// Test implementations for test architectural requirements.
    /// </summary>
    public abstract class TestArchitecturalRequirements : TestBase
    {
       /// <summary>
-      ///    Verifies that all test classes descend from <see cref="TestBase" /> except for those explicitly excluded.
+      /// Verifies that all test classes descend from <see cref="TestBase" /> except for those explicitly excluded.
       /// </summary>
-      /// <exception cref="AssertFailedException"></exception>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
       {
@@ -50,9 +49,8 @@
       }
 
       /// <summary>
-      ///    Verifies that all tests that are not ignored have one and only one timing category.
+      /// Verifies that all tests that are not ignored have one and only one timing category.
       /// </summary>
-      /// <exception cref="Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException"></exception>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Control flow statements if, switch, for, foreach, while, do and try should not be nested too deeply")]
       [SuppressMessage("SonarLint.CodeSmell", "S134: Control flow statements if, switch, for, foreach, while, do  and try should not be nested too deeply")]
@@ -66,7 +64,7 @@
          var fields = categoryTimingType.GetFields(BindingFlags.Public | BindingFlags.Static);
          foreach (var f in fields)
          {
-            testTimingValues.Add((String) f.GetValue(null));
+            testTimingValues.Add((String)f.GetValue(null));
          }
 
          var testClassTypes = GetAllEffectiveTestTypesTestAssembly();
@@ -80,7 +78,7 @@
                {
                   var testMethod = m.Name;
 
-                  var testCategories = (TestCategoryAttribute[]) m.GetCustomAttributes(typeof(TestCategoryAttribute), true);
+                  var testCategories = (TestCategoryAttribute[])m.GetCustomAttributes(typeof(TestCategoryAttribute), true);
                   var timingMatches = 0;
                   foreach (var c in testCategories)
                   {
@@ -127,22 +125,22 @@
       }
 
       /// <summary>
-      ///    Gets the test assembly to be evaluated.
+      /// Gets the test assembly to be evaluated.
       /// </summary>
       /// <returns>
-      ///    The test assembly to be evaluated.
+      /// The test assembly to be evaluated.
       /// </returns>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       protected abstract Assembly GetTestAssembly();
 
       /// <summary>
-      ///    Gets the test types not required to descend from <see cref="TestBase" />.
+      /// Gets the test types not required to descend from <see cref="TestBase" />.
       /// </summary>
       /// <returns>
-      ///    The set of types that are not required to descend from <see cref="TestBase" />.
+      /// The set of types that are not required to descend from <see cref="TestBase" />.
       /// </returns>
       /// <remarks>
-      ///    May not be null.
+      /// May not be null.
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       protected virtual IImmutableSet<Type> GetTestTypesNotRequiredToDescendFromTestBase()
@@ -152,7 +150,8 @@
 
       private IList<Type> GetAllEffectiveTestTypesTestAssembly()
       {
-         return (from t in GetAllTestTypesInTestAssembly()
+         return (
+            from t in GetAllTestTypesInTestAssembly()
             where
                (t.IsPublic || t.IsNestedPublic) &&
                !t.IsAbstract /* excludes statics as well */ &&

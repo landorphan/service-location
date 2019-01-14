@@ -22,14 +22,13 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_decorated_class_is_ICloneable_and_IEquatable_It_should_create_an_equivalent_clone_and_set_IsReadOnly_to_false()
          {
-            var decorated = new NameValueCloneableEquatableTestClass { Name = ExpectedName, Value = ExpectedValue };
+            var decorated = new NameValueCloneableEquatableTestClass {Name = ExpectedName, Value = ExpectedValue};
             using (var original = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(decorated, ExpectedRank)))
             {
                original.MakeReadOnly();
                // ReSharper disable once AccessToDisposedClosure
                using (var cloned = DisposableHelper.SafeCreate(() => (RankDecorator<NameValueCloneableEquatableTestClass, Int64>)original.Clone()))
                {
-
                   cloned.Rank.Should().Be(ExpectedRank);
                   cloned.Value.Name.Should().Be(ExpectedName);
                   cloned.Value.Value.Should().Be(ExpectedValue);
@@ -50,7 +49,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_decorated_class_is_not_cloneable_It_should_create_an_equivalent_clone_and_set_IsReadOnly_to_false()
          {
-            var decorated = new NameValueTestClass { Name = ExpectedName, Value = ExpectedValue };
+            var decorated = new NameValueTestClass {Name = ExpectedName, Value = ExpectedValue};
             using (var original = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueTestClass, Int64>(decorated, ExpectedRank)))
             {
                original.MakeReadOnly();
@@ -80,10 +79,10 @@
 
          protected override void ArrangeMethod()
          {
-            var notMakeReadOnlyItem = new NameValueTestClass { Name = Guid.NewGuid().ToString(), Value = 1 };
+            var notMakeReadOnlyItem = new NameValueTestClass {Name = Guid.NewGuid().ToString(), Value = 1};
             targetDecoratedNotMakeReadOnly = new RankDecorator<NameValueTestClass, Int64>(notMakeReadOnlyItem, 2);
 
-            var makeReadOnlyItem = new NameValueMakeReadOnlyTestClass { Name = Guid.NewGuid().ToString(), Value = 3 };
+            var makeReadOnlyItem = new NameValueMakeReadOnlyTestClass {Name = Guid.NewGuid().ToString(), Value = 3};
             targetDecoratedMakeReadOnly = new RankDecorator<NameValueMakeReadOnlyTestClass, Int64>(makeReadOnlyItem, 4);
          }
 
@@ -148,7 +147,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_decorated_class_is_ICloneable_and_IEquatable_It_should_create_an_equivalent_clone_and_set_IsReadOnly_to_false()
          {
-            var decorated = new NameValueCloneableEquatableTestClass { Name = ExpectedName, Value = ExpectedValue };
+            var decorated = new NameValueCloneableEquatableTestClass {Name = ExpectedName, Value = ExpectedValue};
             using (var original = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(decorated, ExpectedRank)))
             {
                original.MakeReadOnly();
@@ -175,12 +174,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_decorated_class_is_not_cloneable_It_should_create_an_equivalent_clone_and_set_IsReadOnly_to_false()
          {
-            var decorated = new NameValueTestClass { Name = ExpectedName, Value = ExpectedValue };
+            var decorated = new NameValueTestClass {Name = ExpectedName, Value = ExpectedValue};
             var original = new RankDecorator<NameValueTestClass, Int64>(decorated, ExpectedRank);
             original.MakeReadOnly();
             using (var cloned = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueTestClass, Int64>(original)))
             {
-
                cloned.Rank.Should().Be(ExpectedRank);
                cloned.Value.Name.Should().Be(ExpectedName);
                cloned.Value.Value.Should().Be(ExpectedValue);
@@ -206,7 +204,7 @@
 
          protected override void ArrangeMethod()
          {
-            decorated = new NameValueTestClass { Name = ExpectedName, Value = ExpectedValue };
+            decorated = new NameValueTestClass {Name = ExpectedName, Value = ExpectedValue};
             target = new RankDecorator<NameValueTestClass, Int64>(decorated, ExpectedRank);
          }
 
@@ -257,7 +255,7 @@
 
          protected override void ArrangeMethod()
          {
-            decorated = new NameValueTestClass { Name = ExpectedName, Value = ExpectedValue };
+            decorated = new NameValueTestClass {Name = ExpectedName, Value = ExpectedValue};
             target = new RankDecorator<NameValueTestClass, Int64>(decorated);
          }
 
@@ -312,9 +310,9 @@
             const Int32 SameRank = 4;
             const Int32 DifferentRank = 5;
 
-            var decoratedSameValue0 = new NameValueTestClass { Name = SameName, Value = SameValue };
-            var decoratedSameValue1 = new NameValueTestClass { Name = SameName, Value = SameValue };
-            var decoratedDifferentValue = new NameValueTestClass { Name = DifferentName, Value = DifferentValue };
+            var decoratedSameValue0 = new NameValueTestClass {Name = SameName, Value = SameValue};
+            var decoratedSameValue1 = new NameValueTestClass {Name = SameName, Value = SameValue};
+            var decoratedDifferentValue = new NameValueTestClass {Name = DifferentName, Value = DifferentValue};
 
             using (var targetSameRankSameValue0 = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueTestClass, Int64>(decoratedSameValue0, SameRank)))
             using (var targetSameRankSameReferenceValue = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueTestClass, Int64>(decoratedSameValue0, SameRank)))
@@ -346,9 +344,9 @@
             const Int32 SameRank = 4;
             const Int32 DifferentRank = 5;
 
-            var decoratedSameValue0 = new NameValueCloneableEquatableTestClass { Name = SameName, Value = SameValue };
-            var decoratedSameValue1 = new NameValueCloneableEquatableTestClass { Name = SameName, Value = SameValue };
-            var decoratedDifferentValue = new NameValueCloneableEquatableTestClass { Name = DifferentName, Value = DifferentValue };
+            var decoratedSameValue0 = new NameValueCloneableEquatableTestClass {Name = SameName, Value = SameValue};
+            var decoratedSameValue1 = new NameValueCloneableEquatableTestClass {Name = SameName, Value = SameValue};
+            var decoratedDifferentValue = new NameValueCloneableEquatableTestClass {Name = DifferentName, Value = DifferentValue};
 
             using (var targetSameRankSameValue0 = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(decoratedSameValue0, SameRank)))
             using (var targetSameRankSameReferenceValue = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(decoratedSameValue0, SameRank)))
@@ -383,7 +381,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_null()
          {
-            var decorated = new NameValueCloneableEquatableTestClass { Name = Guid.NewGuid().ToString(), Value = 4 };
+            var decorated = new NameValueCloneableEquatableTestClass {Name = Guid.NewGuid().ToString(), Value = 4};
             using (var target = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(decorated, 2)))
             {
                target.Equals(null).Should().BeFalse();
@@ -394,7 +392,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_objects()
          {
-            var decorated = new NameValueCloneableEquatableTestClass { Name = Guid.NewGuid().ToString(), Value = 4 };
+            var decorated = new NameValueCloneableEquatableTestClass {Name = Guid.NewGuid().ToString(), Value = 4};
             using (var target = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(decorated, 2)))
             {
                target.Equals(new Object()).Should().BeFalse();

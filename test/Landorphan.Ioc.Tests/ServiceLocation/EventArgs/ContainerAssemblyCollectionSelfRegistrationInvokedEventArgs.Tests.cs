@@ -78,17 +78,17 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_have_an_empty_Assemblies_collection()
+         public void It_should_have_a_null_Container()
          {
-            target.Assemblies.Should().NotBeNull();
-            target.Assemblies.Should().BeEmpty();
+            target.Container.Should().BeNull();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_have_a_null_Container()
+         public void It_should_have_an_empty_Assemblies_collection()
          {
-            target.Container.Should().BeNull();
+            target.Assemblies.Should().NotBeNull();
+            target.Assemblies.Should().BeEmpty();
          }
       }
    }

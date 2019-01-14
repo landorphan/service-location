@@ -2,10 +2,13 @@
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
-   using System.Linq;
    using System.Reflection;
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
+
+   // ReSharper disable ConvertToAutoProperty
+   // ReSharper disable InheritdocConsiderUsage
+   // ReSharper disable RedundantExtendsListEntry
 
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
@@ -26,7 +29,7 @@
       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterImplementation<TFrom, TTo>()
       {
-         ((IIocContainerRegistrar) this).RegisterImplementation<TFrom, TTo>(null);
+         ((IIocContainerRegistrar)this).RegisterImplementation<TFrom, TTo>(null);
       }
 
       /// <inheritdoc/>
@@ -39,7 +42,7 @@
       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterImplementation(Type fromType, Type toType)
       {
-         ((IIocContainerRegistrar) this).RegisterImplementation(fromType, null, toType);
+         ((IIocContainerRegistrar)this).RegisterImplementation(fromType, null, toType);
       }
 
       /// <inheritdoc/>
@@ -51,7 +54,7 @@
       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterInstance<TFrom>(TFrom instance)
       {
-         ((IIocContainerRegistrar) this).RegisterInstance(null, instance);
+         ((IIocContainerRegistrar)this).RegisterInstance(null, instance);
       }
 
       /// <inheritdoc/>
@@ -64,7 +67,7 @@
       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterInstance(Type fromType, Object instance)
       {
-         ((IIocContainerRegistrar) this).RegisterInstance(fromType, null, instance);
+         ((IIocContainerRegistrar)this).RegisterInstance(fromType, null, instance);
       }
 
       /// <inheritdoc/>
@@ -76,7 +79,7 @@
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.TryRegisterImplementation<TFrom, TTo>()
       {
-         return ((IIocContainerRegistrar) this).TryRegisterImplementation<TFrom, TTo>(null);
+         return ((IIocContainerRegistrar)this).TryRegisterImplementation<TFrom, TTo>(null);
       }
 
       /// <inheritdoc/>
@@ -88,7 +91,7 @@
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.TryRegisterImplementation(Type fromType, Type toType)
       {
-         return ((IIocContainerRegistrar) this).TryRegisterImplementation(fromType, null, toType);
+         return ((IIocContainerRegistrar)this).TryRegisterImplementation(fromType, null, toType);
       }
 
       /// <inheritdoc/>
@@ -100,7 +103,7 @@
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.TryRegisterInstance<TFrom>(TFrom instance)
       {
-         return ((IIocContainerRegistrar) this).TryRegisterInstance(null, instance);
+         return ((IIocContainerRegistrar)this).TryRegisterInstance(null, instance);
       }
 
       /// <inheritdoc/>
@@ -112,11 +115,10 @@
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.TryRegisterInstance(Type fromType, Object instance)
       {
-         return ((IIocContainerRegistrar) this).TryRegisterInstance(fromType, null, instance);
+         return ((IIocContainerRegistrar)this).TryRegisterInstance(fromType, null, instance);
       }
 
       /// <inheritdoc/>
-      [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       Boolean IIocContainerRegistrar.TryRegisterInstance(Type fromType, String name, Object instance)
       {
          return RegisterInstanceImplementation(fromType, nameof(fromType), name, instance, nameof(instance), true);
@@ -125,86 +127,26 @@
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.Unregister<TFrom>()
       {
-         return ((IIocContainerRegistrar) this).Unregister(typeof(TFrom), null);
+         return ((IIocContainerRegistrar)this).Unregister(typeof(TFrom), null);
       }
 
       /// <inheritdoc/>
-      [SuppressMessage("SonarLint.CodeSmell", "S2583:Conditionally executed blocks should be reachable")]
+      // [SuppressMessage("SonarLint.CodeSmell", "S2583:Conditionally executed blocks should be reachable")]
       Boolean IIocContainerRegistrar.Unregister<TFrom>(String name)
       {
-         // Duplicate implementation because in .Net Core Argument Exceptions do not always have the expected inner exception constructors.
-         var fromType = typeof(TFrom);
-
-         // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-         if (!(fromType.IsAbstract || fromType.IsInterface) || fromType.ContainsGenericParameters)
-         {
-            return false;
-         }
-
-         var cleanedName = name.TrimNullToEmpty();
-         if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
-         {
-            return false;
-         }
-
-         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
-         var was = _registrations;
-         Boolean rv;
-         _registrations = _registrations.Remove(key);
-         if (ReferenceEquals(was, _registrations))
-         {
-            // no change
-            // the desired state exists; the fromType is not registered.  Do not throw. 
-            rv = false;
-         }
-         else
-         {
-            // removed
-            rv = true;
-            OnContainerRegistrationRemoved(key);
-         }
-
-         return rv;
+         return UnregisterImplementation(typeof(TFrom), name);
       }
 
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.Unregister(Type fromType)
       {
-         return ((IIocContainerRegistrar) this).Unregister(fromType, null);
+         return ((IIocContainerRegistrar)this).Unregister(fromType, null);
       }
 
       /// <inheritdoc/>
       Boolean IIocContainerRegistrar.Unregister(Type fromType, String name)
       {
-         if (fromType == null || !(fromType.IsAbstract || fromType.IsInterface) || fromType.ContainsGenericParameters)
-         {
-            return false;
-         }
-
-         var cleanedName = name.TrimNullToEmpty();
-         if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
-         {
-            return false;
-         }
-
-         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
-         var was = _registrations;
-         Boolean rv;
-         _registrations = _registrations.Remove(key);
-         if (ReferenceEquals(was, _registrations))
-         {
-            // no change
-            // the desired state exists; the fromType is not registered.  Do not throw. 
-            rv = false;
-         }
-         else
-         {
-            // removed
-            rv = true;
-            OnContainerRegistrationRemoved(key);
-         }
-
-         return rv;
+         return UnregisterImplementation(fromType, name);
       }
 
       private void OnContainerRegistrationAdded(RegistrationKeyTypeNamePair typeNamePair, Type toType, Object instance)
@@ -267,7 +209,7 @@
          }
 
          // fromType: not precluded
-         if (Manager.PrecludedTypes.Contains(fromType))
+         if (_precludedTypes.Contains(fromType))
          {
             if (tryLogic)
             {
@@ -350,17 +292,20 @@
          CheckForNewRegistrations();
          try
          {
-            var was = _registrations;
-            _registrations = _registrations.Add(key, value);
-            if (ReferenceEquals(was, _registrations) && Manager.Configuration.ThrowOnRegistrationCollision)
+            using (_registrationsLock.EnterWriteLock())
             {
-               // duplicate key, duplicate value: no change.
-               if (tryLogic)
+               var was = _registrations;
+               _registrations = _registrations.Add(key, value);
+               if (ReferenceEquals(was, _registrations) && Manager.Configuration.ThrowOnRegistrationCollision)
                {
-                  return false;
-               }
+                  // duplicate key, duplicate value: no change.
+                  if (tryLogic)
+                  {
+                     return false;
+                  }
 
-               throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType));
+                  throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType));
+               }
             }
 
             OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
@@ -380,17 +325,20 @@
             }
 
             // last updater wins: update in place
-            var was = _registrations;
-            _registrations = _registrations.SetItem(key, value);
-            if (!ReferenceEquals(was, _registrations))
+            using (_registrationsLock.EnterWriteLock())
             {
-               OnContainerRegistrationRemoved(key);
-               OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
-               return true;
+               var was = _registrations;
+               _registrations = _registrations.SetItem(key, value);
+               if (ReferenceEquals(was, _registrations))
+               {
+                  return false;
+               }
             }
-         }
 
-         return false;
+            OnContainerRegistrationRemoved(key);
+            OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
+            return true;
+         }
       }
 
       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
@@ -432,7 +380,7 @@
          }
 
          // fromType: not precluded
-         if (Manager.PrecludedTypes.Contains(fromType))
+         if (_precludedTypes.Contains(fromType))
          {
             if (tryLogic)
             {
@@ -481,17 +429,20 @@
          CheckForNewRegistrations();
          try
          {
-            var was = _registrations;
-            _registrations = _registrations.Add(key, value);
-            if (ReferenceEquals(was, _registrations) && Manager.Configuration.ThrowOnRegistrationCollision)
+            using (_registrationsLock.EnterWriteLock())
             {
-               // duplicate key, duplicate value: no change.
-               if (tryLogic)
+               var was = _registrations;
+               _registrations = _registrations.Add(key, value);
+               if (ReferenceEquals(was, _registrations) && Manager.Configuration.ThrowOnRegistrationCollision)
                {
-                  return false;
-               }
+                  // duplicate key, duplicate value: no change.
+                  if (tryLogic)
+                  {
+                     return false;
+                  }
 
-               throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType));
+                  throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType));
+               }
             }
 
             OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
@@ -511,17 +462,60 @@
             }
 
             // last updater wins: update in place
-            var was = _registrations;
-            _registrations = _registrations.SetItem(key, value);
-            if (!ReferenceEquals(was, _registrations))
+            using (_registrationsLock.EnterWriteLock())
             {
-               OnContainerRegistrationRemoved(key);
-               OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
-               return true;
+               var was = _registrations;
+               _registrations = _registrations.SetItem(key, value);
+               if (ReferenceEquals(was, _registrations))
+               {
+                  return false;
+               }
+            }
+
+            OnContainerRegistrationRemoved(key);
+            OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
+            return true;
+         }
+      }
+
+      private Boolean UnregisterImplementation(Type fromType, String name)
+      {
+         if (fromType == null || !(fromType.IsAbstract || fromType.IsInterface) || fromType.ContainsGenericParameters)
+         {
+            return false;
+         }
+
+         var cleanedName = name.TrimNullToEmpty();
+         if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
+         {
+            return false;
+         }
+
+         Boolean rv;
+         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
+         using (_registrationsLock.EnterWriteLock())
+         {
+            var was = _registrations;
+            _registrations = _registrations.Remove(key);
+            if (ReferenceEquals(was, _registrations))
+            {
+               // no change
+               // the desired state exists; the fromType is not registered.  Do not throw. 
+               rv = false;
+            }
+            else
+            {
+               // removed
+               rv = true;
             }
          }
 
-         return false;
+         if (rv)
+         {
+            OnContainerRegistrationRemoved(key);
+         }
+
+         return rv;
       }
    }
 }

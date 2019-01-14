@@ -45,11 +45,11 @@
             grandParentContainer.Registrar.RegisterImplementation<IRegisteredInGrandParentAndChild, ClassImplementingIRegisteredInGrandParentAndChild>();
             grandParentContainer.Registrar.RegisterImplementation<IRegisteredInGrandParentAndChild, AnotherClassImplementingIRegisteredInGrandParentAndChild>(nonUniqueName);
 
-            parentContainer = (IOwnedIocContainer) grandParentContainer.Manager.CreateChildContainer(parentContainerName);
+            parentContainer = (IOwnedIocContainer)grandParentContainer.Manager.CreateChildContainer(parentContainerName);
             parentContainerUid = parentContainer.Uid;
             parentContainer.Registrar.RegisterImplementation<IRegisteredInParent, ClassImplementingIRegisteredInParent>();
 
-            childContainer = (IOwnedIocContainer) parentContainer.Manager.CreateChildContainer(childContainerName);
+            childContainer = (IOwnedIocContainer)parentContainer.Manager.CreateChildContainer(childContainerName);
             childContainerUid = childContainer.Uid;
             childContainer.Registrar.RegisterImplementation<IRegisteredInChild, ClassImplementingIRegisteredInChild>();
             childContainer.Registrar.RegisterImplementation<IRegisteredInChild, AnotherClassIRegisteredInChild>(nonUniqueName);
@@ -58,7 +58,7 @@
             childContainer.Registrar.RegisterImplementation<IRegisteredInChildAndSibling, ClassImplementingIRegisteredInChildAndSibling>();
             childContainer.Registrar.RegisterImplementation<IRegisteredInChildAndSibling, AnotherClassImplementingIRegisteredInChildAndSibling>(nonUniqueName);
 
-            siblingContainer = (IOwnedIocContainer) parentContainer.Manager.CreateChildContainer(siblingContainerName);
+            siblingContainer = (IOwnedIocContainer)parentContainer.Manager.CreateChildContainer(siblingContainerName);
             siblingContainerUid = siblingContainer.Uid;
             siblingContainer.Registrar.RegisterImplementation<IRegisterInSibling, ClassImplementingIRegisterInSibling>();
             siblingContainer.Registrar.RegisterImplementation<IRegisterInSiblingNamed, ClassImplementingIRegisterInSiblingNamed>(nonUniqueName);

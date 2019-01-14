@@ -165,7 +165,7 @@
             actualObject.GetType().Should().Be<MyService>();
             ReferenceEquals(actualObject, registeredInChildNamed).Should().BeTrue();
 
-            ((IDisposable) childContainer).Dispose();
+            ((IDisposable)childContainer).Dispose();
 
             actual = IocServiceLocator.Resolve<IMyService>();
             actual.GetType().Should().Be<MyService>();
@@ -305,7 +305,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_set_the_ambient_container_to_the_root_container_when_I_dispose_the_ambient_container()
          {
-            ((IDisposable) childContainer).Dispose();
+            ((IDisposable)childContainer).Dispose();
             ReferenceEquals(IocServiceLocator.RootContainer, IocServiceLocator.AmbientContainer).Should().BeTrue();
          }
       }
