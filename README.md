@@ -1,3 +1,7 @@
+###### Master		[![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=master)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=master) 
+
+###### Develop	[![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=develop)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=develop) 
+
 
 
 Source:
