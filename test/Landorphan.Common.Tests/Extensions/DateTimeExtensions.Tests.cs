@@ -122,9 +122,10 @@ namespace Landorphan.Common.Tests.Extensions
                Justification = "This rule is disabled for this project and most other test projects, but the rule still emits warnings")]
             public void Bcl_DateTime_ToString_Expresses_The_Local_TimeZone()
             {
-               // not testing default ToString() because it is affected by user settings and does not match ToString("g")
-               _local.ToString("o").Should().Match("0001-02-03T04:05:06.0000000-??:00");
-               _local.ToString("u").Should().Be("0001-02-03 04:05:06Z");
+                // not testing default ToString() because it is affected by user settings and does not match ToString("g")
+                // Switched to Regex match as date time offset can be either positive or negative
+                _local.ToString("o").Should().MatchRegex(@"0001-02-03T04:05:06\.0000000[-+]\d\d:\d\d");
+                _local.ToString("u").Should().Be("0001-02-03 04:05:06Z");
             }
 
             [TestMethod]
