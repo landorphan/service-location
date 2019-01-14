@@ -1,0 +1,787 @@
+﻿namespace Ioc.Collections.Performance.Tests
+{
+   using System;
+   using System.Collections.Immutable;
+   using System.Diagnostics;
+   using System.Diagnostics.CodeAnalysis;
+   using System.Reflection;
+   using Landorphan.Common;
+   using Landorphan.Common.Threading;
+   using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Internal;
+
+   // ReSharper disable IdentifierTypo
+
+   public sealed class ImmutableDictionaryTarget : DisposableObject, IRegistrationTarget
+   {
+#pragma warning disable S125 // Sections of code should not be commented out
+      private readonly IocContainerConfiguration _configuration;
+      private readonly ImmutableDictionaryTarget _parent = null;
+      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
+      private readonly Stopwatch _swPrecludedTypeAdd;
+      private readonly Stopwatch _swPrecludedTypeRemove;
+      private readonly Stopwatch _swRegister;
+      private readonly Stopwatch _swRegisterValidation;
+      private readonly Stopwatch _swRegistrationOverwrite;
+      private readonly Stopwatch _swResolve;
+      private readonly Stopwatch _swResolveOverwrite;
+      private readonly Stopwatch _swResolveValidation;
+      private readonly Stopwatch _swUnregister;
+      private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
+      private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
+         ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>.Empty;
+      private Int32 _registrationTotalCount;
+      private Int32 _registrationOverwriteCount;
+      private Int32 _unregistrationTotalCount;
+      private Int32 _resolutionNewInstancesCount;
+      private Int32 _resolutionTotalCount;
+
+      public ImmutableDictionaryTarget(Boolean allowNamedImplementations, Boolean allowPreclusionOfTypes, Boolean throwOnRegistrationCollision)
+      {
+         var configuration = new IocContainerConfiguration((IIocContainerMetaIdentity) this)
+         {
+            AllowNamedImplementations = allowNamedImplementations,
+            AllowPreclusionOfTypes = allowPreclusionOfTypes,
+            ThrowOnRegistrationCollision = throwOnRegistrationCollision
+         };
+         configuration.MakeReadOnly();
+         _configuration = configuration;
+
+         _swRegisterValidation = new Stopwatch();
+         _swRegister = new Stopwatch();
+         _swRegistrationOverwrite = new Stopwatch();
+         _swResolveValidation = new Stopwatch();
+         _swResolve = new Stopwatch();
+         _swResolveOverwrite = new Stopwatch();
+         _swPrecludedTypeAdd = new Stopwatch();
+         _swPrecludedTypeRemove = new Stopwatch();
+         _swUnregister = new Stopwatch();
+      }
+
+      public Object Clone()
+      {
+         throw new NotSupportedException();
+      }
+
+      public event EventHandler<EventArgs> ConfigurationChanged
+      {
+         add => throw new NotSupportedException();
+         remove => throw new NotSupportedException();
+      }
+
+      public Boolean AllowNamedImplementations
+      {
+         get => _configuration.AllowNamedImplementations;
+         set => throw new NotSupportedException();
+      }
+
+      public Boolean AllowPreclusionOfTypes
+      {
+         get => _configuration.AllowPreclusionOfTypes;
+         set => throw new NotSupportedException();
+      }
+
+      public IIocContainerMetaIdentity Container => this;
+
+      public Boolean ThrowOnRegistrationCollision
+      {
+         get => _configuration.ThrowOnRegistrationCollision;
+         set => throw new NotSupportedException();
+      }
+
+      public Boolean IsReadOnly => false;
+
+      public Boolean Equals(IIocContainerConfiguration other)
+      {
+         throw new NotImplementedException();
+      }
+
+      public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
+
+      public Guid Uid { get; } = Guid.NewGuid();
+
+      public Boolean AddPrecludedType(Type precludedType)
+      {
+         try
+         {
+            _swPrecludedTypeAdd.Start();
+            if (!_configuration.AllowPreclusionOfTypes)
+            {
+               throw new ContainerConfigurationPrecludedTypesDisabledException(this, null, null);
+            }
+
+            //'/'if (IsRegisteredDefaultOrNamedInThisOrAncestorContainer(this, precludedType))
+            //'/'{
+            //'/'   throw new CannotPrecludeRegisteredTypeArgumentException(precludedType, nameof(precludedType));
+            //'/'}
+
+            var was = _precludedTypes;
+
+            if (precludedType != null && (precludedType.IsInterface || precludedType.IsAbstract))
+            {
+               _precludedTypes = _precludedTypes.Add(precludedType);
+            }
+
+            var rv = !ReferenceEquals(was, _precludedTypes);
+            if (rv)
+            {
+               //'/'OnContainerPrecludedTypeAdded(precludedType);
+            }
+
+            return rv;
+         }
+         finally
+         {
+            _swPrecludedTypeAdd.Stop();
+         }
+      }
+
+      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
+      {
+         if (_swRegister.IsRunning)
+         {
+            throw new InvalidOperationException("_swRegister.IsRunning");
+         }
+
+         registrationTotalTime = _swRegister.Elapsed;
+         registrationTotalCount = _registrationTotalCount;
+      }
+
+      public void GetRegistrationOverwriteStats(out TimeSpan registrationOverwriteTime, out Int32 registrationOverwriteCount)
+      {
+         if (_swRegistrationOverwrite.IsRunning)
+         {
+            throw new InvalidOperationException("_swRegistrationOverwrite.IsRunning");
+         }
+
+         registrationOverwriteTime = _swRegistrationOverwrite.Elapsed;
+         registrationOverwriteCount = _registrationOverwriteCount;
+      }
+
+      public void GetRegistrationValidationStats(out TimeSpan registrationValidationTime)
+      {
+         if (_swRegisterValidation.IsRunning)
+         {
+            throw new InvalidOperationException("_swRegisterValidation.IsRunning");
+         }
+
+         registrationValidationTime = _swRegisterValidation.Elapsed;
+      }
+
+      public void GetResolutionOverwriteStats(out TimeSpan resolutionOverwriteTime, out Int32 resolutionNewInstancesCount)
+      {
+         if (_swResolveOverwrite.IsRunning)
+         {
+            throw new InvalidOperationException("_swResolveOverwrite.IsRunning");
+         }
+
+         resolutionOverwriteTime = _swResolveOverwrite.Elapsed;
+         resolutionNewInstancesCount = _resolutionNewInstancesCount;
+      }
+
+      public void GetResolutionTotalStats(out TimeSpan resolutionTotalTime, out Int32 resolutionTotalCount)
+      {
+         if (_swResolve.IsRunning)
+         {
+            throw new InvalidOperationException("_swResolve.IsRunning");
+         }
+
+         resolutionTotalTime = _swResolve.Elapsed;
+         resolutionTotalCount = _resolutionTotalCount;
+      }
+
+      public void GetResolutionValidationStats(out TimeSpan resolutionValidationTime)
+      {
+         if (_swResolveValidation.IsRunning)
+         {
+            throw new InvalidOperationException("_swResolveValidation.IsRunning");
+         }
+
+         resolutionValidationTime = _swResolveValidation.Elapsed;
+      }
+
+      public void GetUnregistrationStats(out TimeSpan unregistrationTotalTime, out Int32 unregistrationTotalCount)
+      {
+         if (_swUnregister.IsRunning)
+         {
+            throw new InvalidOperationException("_swUnregister.IsRunning");
+         }
+
+         unregistrationTotalTime = _swUnregister.Elapsed;
+         unregistrationTotalCount = _unregistrationTotalCount;
+      }
+
+      [SuppressMessage("Microsoft.Maintainability", "CA1502: Avoid excessive complexity")]
+      [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
+      [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
+      [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+      public Boolean RegisterImplementationImplementation(Type fromType, String fromTypeParameterName, String name, Type toType, String toTypeParameterName, Boolean tryLogic)
+      {
+         String cleanedName;
+         try
+         {
+            _registrationTotalCount++;
+            _swRegisterValidation.Start();
+            // fromType: not null
+            if (fromType == null)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ArgumentNullException(fromTypeParameterName);
+            }
+
+            // fromType: not open generic
+            if (fromType.ContainsGenericParameters)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new TypeMustNotBeAnOpenGenericArgumentException(fromType, fromTypeParameterName, null, null);
+            }
+
+            // fromType: is interface or abstract type
+            if (!(fromType.IsInterface || fromType.IsAbstract))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new FromTypeMustBeInterfaceOrAbstractTypeArgumentException(fromType, fromTypeParameterName, null, null);
+            }
+
+            // fromType: not precluded
+            if (_precludedTypes.Contains(fromType))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ContainerFromTypePrecludedArgumentException(null, fromType, fromTypeParameterName);
+            }
+
+            // name:  clean and names allowed
+            cleanedName = name.TrimNullToEmpty();
+            if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ContainerConfigurationNamedImplementationsDisabledException(this, null, null);
+            }
+
+            // toType: not null
+            if (toType == null)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ArgumentNullException(toTypeParameterName);
+            }
+
+            // toType: not open generic
+            if (toType.ContainsGenericParameters)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new TypeMustNotBeAnOpenGenericArgumentException(toType, toTypeParameterName, null, null);
+            }
+
+            // toType: not interface and not abstract
+            if (toType.IsInterface || toType.IsAbstract)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ToTypeMustNotBeInterfaceNorAbstractArgumentException(toType, toTypeParameterName);
+            }
+
+            // toType: implements fromType
+            if (!fromType.IsAssignableFrom(toType))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ToTypeMustImplementTypeArgumentException(fromType, toType, toTypeParameterName, null, null);
+            }
+
+            // toType: has public default ctor
+            var defaultPublicCtor = toType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, Type.EmptyTypes, null);
+            if (defaultPublicCtor == null)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ToTypeMustHavePublicDefaultConstructorArgumentException(toType, toTypeParameterName);
+            }
+         }
+         finally
+         {
+            _swRegisterValidation.Stop();
+         }
+
+         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
+         var value = new RegistrationValueTypeInstancePair(toType);
+         //'/'CheckForNewRegistrations();
+         try
+         {
+            _swRegister.Start();
+            try
+            {
+               using (_registrationsLock.EnterWriteLock())
+               {
+                  var was = _registrations;
+                  _registrations = _registrations.Add(key, value);
+                  if (ReferenceEquals(was, _registrations) && _configuration.ThrowOnRegistrationCollision)
+                  {
+                     // duplicate key, duplicate value: no change.
+                     if (tryLogic)
+                     {
+                        return false;
+                     }
+
+                     throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType));
+                  }
+               }
+
+               //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
+               return true;
+            }
+            catch (ArgumentException ae)
+            {
+               // duplicate key, different value.
+               if (_configuration.ThrowOnRegistrationCollision)
+               {
+                  if (tryLogic)
+                  {
+                     return false;
+                  }
+
+                  throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType), null, ae);
+               }
+
+               // last updater wins: update in place
+               try
+               {
+                  _registrationOverwriteCount++;
+                  _swRegistrationOverwrite.Start();
+                  using (_registrationsLock.EnterWriteLock())
+                  {
+                     var was = _registrations;
+                     _registrations = _registrations.SetItem(key, value);
+                     if (ReferenceEquals(was, _registrations))
+                     {
+                        return false;
+                     }
+                  }
+
+                  //'/'OnContainerRegistrationRemoved(key);
+                  //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
+                  return true;
+               }
+               finally
+               {
+                  _swRegistrationOverwrite.Stop();
+               }
+            }
+         }
+         finally
+         {
+            _swRegister.Stop();
+         }
+      }
+
+      [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
+      [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
+      [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+      public Boolean RegisterInstanceImplementation(Type fromType, String fromTypeParameterName, String name, Object instance, String instanceParameterName, Boolean tryLogic)
+      {
+         String cleanedName;
+         try
+         {
+            _registrationTotalCount++;
+            _swRegisterValidation.Start();
+            // fromType: not null
+            if (fromType == null)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ArgumentNullException(fromTypeParameterName);
+            }
+
+            // fromType: not open generic
+            if (fromType.ContainsGenericParameters)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new TypeMustNotBeAnOpenGenericArgumentException(fromType, fromTypeParameterName, null, null);
+            }
+
+            // fromType: is interface or abstract type
+            if (!(fromType.IsInterface || fromType.IsAbstract))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new FromTypeMustBeInterfaceOrAbstractTypeArgumentException(fromType, fromTypeParameterName, null, null);
+            }
+
+            // fromType: not precluded
+            if (_precludedTypes.Contains(fromType))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ContainerFromTypePrecludedArgumentException(null, fromType, fromTypeParameterName);
+            }
+
+            // name:  clean and names allowed
+            cleanedName = name.TrimNullToEmpty();
+            if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ContainerConfigurationNamedImplementationsDisabledException(this, null, null);
+            }
+
+            // instance: not null
+            if (instance == null)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ArgumentNullException(instanceParameterName);
+            }
+
+            // instance: implements fromType
+            if (!fromType.IsInstanceOfType(instance))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new InstanceMustImplementTypeArgumentException(fromType, instance, instanceParameterName);
+            }
+         }
+         finally
+         {
+            _swRegisterValidation.Stop();
+         }
+
+         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
+         var value = new RegistrationValueTypeInstancePair(instance);
+         //'/'CheckForNewRegistrations();
+         try
+         {
+            _swRegister.Start();
+            try
+            {
+               using (_registrationsLock.EnterWriteLock())
+               {
+                  var was = _registrations;
+                  _registrations = _registrations.Add(key, value);
+                  if (ReferenceEquals(was, _registrations) && _configuration.ThrowOnRegistrationCollision)
+                  {
+                     // duplicate key, duplicate value: no change.
+                     if (tryLogic)
+                     {
+                        return false;
+                     }
+
+                     throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType));
+                  }
+               }
+
+               //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
+               return true;
+            }
+            catch (ArgumentException ae)
+            {
+               // duplicate key, different value.
+               if (_configuration.ThrowOnRegistrationCollision)
+               {
+                  if (tryLogic)
+                  {
+                     return false;
+                  }
+
+                  throw new ContainerFromTypeNameAlreadyRegisteredArgumentException(this, fromType, cleanedName, nameof(fromType), null, ae);
+               }
+
+               // last updater wins: update in place
+               try
+               {
+                  _registrationOverwriteCount++;
+                  _swRegistrationOverwrite.Start();
+                  using (_registrationsLock.EnterWriteLock())
+                  {
+                     var was = _registrations;
+                     _registrations = _registrations.SetItem(key, value);
+                     if (ReferenceEquals(was, _registrations))
+                     {
+                        return false;
+                     }
+                  }
+
+                  //'/'OnContainerRegistrationRemoved(key);
+                  //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
+                  return true;
+               }
+               finally
+               {
+                  _swRegistrationOverwrite.Stop();
+               }
+            }
+         }
+         finally
+         {
+            _swRegister.Stop();
+         }
+      }
+
+      public Boolean RemovePrecludedType(Type precludedType)
+      {
+         try
+         {
+            _swPrecludedTypeRemove.Start();
+            // does not check whether preclusion of types configuration is disabled by design.
+            var was = _precludedTypes;
+            _precludedTypes = _precludedTypes.Remove(precludedType);
+            var rv = !ReferenceEquals(was, _precludedTypes);
+            if (rv)
+            {
+               //'/'OnContainerPrecludedTypeRemoved(precludedType);
+            }
+
+            return rv;
+         }
+         finally
+         {
+            _swPrecludedTypeRemove.Stop();
+         }
+      }
+
+      [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
+      [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+      public Boolean ResolveImplementation(Type fromType, String fromTypeParameterName, String name, Boolean tryLogic, out Object instance)
+      {
+         instance = null;
+         String cleanedName;
+         try
+         {
+            _resolutionTotalCount++;
+            _swResolveValidation.Start();
+            // fromType: not null
+            if (fromType == null)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ArgumentNullException(fromTypeParameterName);
+            }
+
+            // fromType: not open generic
+            if (fromType.ContainsGenericParameters)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new TypeMustNotBeAnOpenGenericArgumentException(fromType, fromTypeParameterName, null, null);
+            }
+
+            // fromType: is interface or abstract type
+            if (!(fromType.IsInterface || fromType.IsAbstract))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new FromTypeMustBeInterfaceOrAbstractTypeArgumentException(fromType, fromTypeParameterName, null, null);
+            }
+
+            // fromType: not precluded
+            if (_precludedTypes.Contains(fromType))
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ContainerFromTypePrecludedArgumentException(null, fromType, fromTypeParameterName);
+            }
+
+            // name:  clean and names allowed
+            cleanedName = name.TrimNullToEmpty();
+            if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
+            {
+               if (tryLogic)
+               {
+                  return false;
+               }
+
+               throw new ContainerConfigurationNamedImplementationsDisabledException(this, null, null);
+            }
+         }
+         finally
+         {
+            _swResolveValidation.Stop();
+         }
+
+         var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
+         // ReSharper disable once TooWideLocalVariableScope
+         RegistrationValueTypeInstancePair value;
+         //'/'CheckForNewRegistrations();
+         // ReSharper disable once TooWideLocalVariableScope
+         // ReSharper disable once RedundantAssignment
+         var found = false;
+         try
+         {
+            _swResolve.Start();
+            using (_registrationsLock.EnterReadLock())
+            {
+               found = _registrations.TryGetValue(key, out value);
+            }
+
+            if (found)
+            {
+               if (value.ImplementationInstance != null)
+               {
+                  instance = value.ImplementationInstance;
+                  return true;
+               }
+
+               // lazily construct registered instance using default ctor
+               // ReSharper disable once AssignNullToNotNullAttribute
+               try
+               {
+                  _swResolveOverwrite.Start();
+                  _resolutionNewInstancesCount++;
+                  var newInstance = Activator.CreateInstance(value.ImplementationType);
+                  var replacementValue = new RegistrationValueTypeInstancePair(value.ImplementationType, newInstance);
+                  using (_registrationsLock.EnterWriteLock())
+                  {
+                     _registrations = _registrations.SetItem(key, replacementValue);
+                  }
+
+                  instance = newInstance;
+                  return true;
+               }
+               finally
+               {
+                  _swResolveOverwrite.Stop();
+               }
+            }
+
+            // no matching entry here, check ancestors...
+            var parent = _parent;
+            if (parent != null)
+            {
+               return parent.ResolveImplementation(fromType, fromTypeParameterName, name, tryLogic, out instance);
+            }
+
+            // no matching entry here nor in ancestor chain, throw...
+            if (tryLogic)
+            {
+               return false;
+            }
+
+            throw new ResolutionException(fromType, cleanedName);
+         }
+         finally
+         {
+            _swResolve.Stop();
+         }
+      }
+
+      public Boolean UnregisterImplementation(Type fromType, String name)
+      {
+         try
+         {
+            _unregistrationTotalCount++;
+            _swUnregister.Start();
+            if (fromType == null || !(fromType.IsAbstract || fromType.IsInterface) || fromType.ContainsGenericParameters)
+            {
+               return false;
+            }
+
+            var cleanedName = name.TrimNullToEmpty();
+            if (cleanedName.Length > 0 && !_configuration.AllowNamedImplementations)
+            {
+               return false;
+            }
+
+            Boolean rv;
+            var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
+            using (_registrationsLock.EnterWriteLock())
+            {
+               var was = _registrations;
+               _registrations = _registrations.Remove(key);
+               if (ReferenceEquals(was, _registrations))
+               {
+                  // no change
+                  // the desired state exists; the fromType is not registered.  Do not throw. 
+                  rv = false;
+               }
+               else
+               {
+                  // removed
+                  rv = true;
+               }
+            }
+
+            if (rv)
+            {
+               //'/'OnContainerRegistrationRemoved(key);
+            }
+
+            return rv;
+         }
+         finally
+         {
+            _swUnregister.Stop();
+         }
+      }
+
+#pragma warning restore S125 // Sections of code should not be commented out
+   }
+}

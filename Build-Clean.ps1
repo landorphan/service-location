@@ -3,9 +3,9 @@ $ErrorActionPreference = 'SilentlyContinue'
 
 $started = [DateTime]::UtcNow
 
-dotnet clean PokerPro.sln > $null
-dotnet clean PokerPro.sln -c debug > $null
-dotnet clean PokerPro.sln -c release > $null
+dotnet clean Landorphan.sln > $null
+dotnet clean Landorphan.sln -c debug > $null
+dotnet clean Landorphan.sln -c release > $null
 
 # Attempt to delete each and every bin and obj directory
 Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
