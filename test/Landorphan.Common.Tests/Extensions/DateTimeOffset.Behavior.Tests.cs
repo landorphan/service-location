@@ -75,20 +75,28 @@ namespace Landorphan.Common.Tests.Extensions
             }
 
             [TestMethod]
-            //'/' [Ignore("Fails on Build Server, needs further Investigation.  tistocks")]
             [TestCategory(TestTiming.CheckIn)]
             public void Bcl_Treats_Local_And_Utc_As_NOT_Equal_When_Ticks_Are_Equal()
             {
+               if (TimeZoneInfo.Local.BaseUtcOffset.Ticks == 0)
+               {
+                  Assert.Inconclusive("This test is inconclusive when run in UTC(0).");
+               }
+
                _local.Should().NotBe(_utc);
                _local.Ticks.Should().Be(_utc.Ticks);
                _local.UtcTicks.Should().NotBe(_utc.UtcTicks);
             }
 
             [TestMethod]
-            //'/' [Ignore("Fails on Build Server, needs further Investigation. tistocks")]
             [TestCategory(TestTiming.CheckIn)]
             public void Bcl_Treats_Unspecified_And_Utc_As_NOT_Equal_When_Ticks_Are_Equal()
             {
+               if (TimeZoneInfo.Local.BaseUtcOffset.Ticks == 0)
+               {
+                  Assert.Inconclusive("This test is inconclusive when run in UTC(0).");
+               }
+
                _unspecified.Should().NotBe(_utc);
                _unspecified.Ticks.Should().Be(_utc.Ticks);
                _unspecified.UtcTicks.Should().NotBe(_utc.UtcTicks);
@@ -134,7 +142,7 @@ namespace Landorphan.Common.Tests.Extensions
 
             [TestMethod]
             [TestCategory(TestTiming.CheckIn)]
-            public void Bcl_DateTimeOffset_ToLocalTime_On_Utc_Groks_Releative_Ticks()
+            public void Bcl_DateTimeOffset_ToLocalTime_On_Utc_Groks_Relative_Ticks()
             {
                // this behavior is the opposite of how DateTime treats UTC
                if (TimeZoneInfo.Local.BaseUtcOffset.Ticks == 0)
@@ -170,7 +178,6 @@ namespace Landorphan.Common.Tests.Extensions
             }
 
             [TestMethod]
-            //'/' [Ignore("Fails on Build Server, needs further Investigation. tistocks")]
             [TestCategory(TestTiming.CheckIn)]
             [SuppressMessage(
                "Microsoft.Globalization",
