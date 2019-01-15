@@ -74,18 +74,18 @@
          {
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<KeyValuePair<Int64, Int32>>));
-            ((IEnumerable<KeyValuePair<Int64, Int32>>) target).GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable<KeyValuePair<Int64, Int32>>)target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
 
             target.Keys.Should().BeAssignableTo(typeof(IEnumerable));
             target.Keys.Should().BeAssignableTo(typeof(IEnumerable<Int64>));
             target.Keys.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target.Keys).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target.Keys).GetEnumerator().Should().NotBeNull();
 
             target.Values.Should().BeAssignableTo(typeof(IEnumerable));
             target.Values.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.Values.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target.Values).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target.Values).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -488,7 +488,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_on_calls_to_Add()
          {
-            Action throwingAction = () => target.Add(long.MaxValue, int.MaxValue);
+            Action throwingAction = () => target.Add(Int64.MaxValue, Int32.MaxValue);
             throwingAction.Should().Throw<NotSupportedException>();
          }
 
@@ -496,7 +496,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_on_calls_to_AddOrUpdate()
          {
-            Action throwingAction = () => target.AddOrUpdate(0, int.MaxValue);
+            Action throwingAction = () => target.AddOrUpdate(0, Int32.MaxValue);
             throwingAction.Should().Throw<NotSupportedException>();
          }
 

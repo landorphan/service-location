@@ -75,18 +75,18 @@
          {
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<KeyValuePair<Int64, Int32>>));
-            ((IEnumerable<KeyValuePair<Int64, Int32>>) target).GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable<KeyValuePair<Int64, Int32>>)target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
 
             target.Keys.Should().BeAssignableTo(typeof(IEnumerable));
             target.Keys.Should().BeAssignableTo(typeof(IEnumerable<Int64>));
             target.Keys.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target.Keys).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target.Keys).GetEnumerator().Should().NotBeNull();
 
             target.Values.Should().BeAssignableTo(typeof(IEnumerable));
             target.Values.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.Values.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target.Values).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target.Values).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]

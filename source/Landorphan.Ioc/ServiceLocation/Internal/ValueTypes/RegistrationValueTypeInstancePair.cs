@@ -80,7 +80,6 @@
             throw new ToTypeMustNotBeInterfaceNorAbstractArgumentException(implementationType, nameof(implementationType));
          }
 
-         
          if (!implementationType.IsInstanceOfType(implementationInstance))
          {
             throw new InstanceMustImplementTypeArgumentException(implementationType, implementationInstance, nameof(implementationInstance));
@@ -154,11 +153,6 @@
       }
 
       /// <inheritdoc/>
-      [SuppressMessage(
-         "SonarLint.CodeSmell",
-         "S3240:The simplest possible condition syntax should be used",
-         Justification = "Code analysis loop.  Sonar wants to convert the implementation to a ternary statement, but then " +
-                         "but then complains about nested ternary statements.  I'm just guarding against null and nested null (MWP).")]
       public Int32 CompareTo(IRegistrationValue other)
       {
          if (other == null)

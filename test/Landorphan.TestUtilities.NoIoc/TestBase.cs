@@ -13,12 +13,10 @@ namespace Landorphan.TestUtilities
    /// In particular, TestInitialize attributed members of base classes fire before ClassInitialize attributed members of
    /// descendant classes.
    /// </remarks>
-   [CLSCompliant(false)]
    [TestClass]
    public abstract class TestBase
    {
       private readonly String _originalCurrentDirectory;
-
       private Lazy<EventMonitor> _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
 
       /// <summary>

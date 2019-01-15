@@ -12,7 +12,7 @@
    /// the lock, and allows one thread that has read access to be in upgradeable read mode, from which the thread can upgrade to write mode without
    /// having to relinquish its read access to the resource.
    /// </remarks>
-   public interface INonRecursiveLock : IQueryDisposable
+   public interface INonRecursiveLock : IQueryDisposable, IQueryAllowsRecursion
    {
       /// <summary>
       /// A timeout value representing "never".

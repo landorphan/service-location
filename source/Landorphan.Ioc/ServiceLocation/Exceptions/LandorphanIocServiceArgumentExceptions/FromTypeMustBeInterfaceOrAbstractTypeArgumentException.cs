@@ -89,7 +89,7 @@
       // ReSharper disable once UnusedMember.Local
       private FromTypeMustBeInterfaceOrAbstractTypeArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         ActualType = (Type) info.GetValue("toType", typeof(Type));
+         ActualType = (Type)info.GetValue("toType", typeof(Type));
       }
 
       /// <inheritdoc/>

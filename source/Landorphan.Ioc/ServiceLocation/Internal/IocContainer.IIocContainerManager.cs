@@ -7,6 +7,10 @@
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
 
+   // ReSharper disable ConvertToAutoProperty
+   // ReSharper disable InheritdocConsiderUsage
+   // ReSharper disable RedundantExtendsListEntry
+
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildAdded = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();
@@ -51,8 +55,10 @@
       }
 
       /// <inheritdoc />
-      // ReSharper disable once ConvertToAutoProperty
       IIocContainerConfiguration IIocContainerManager.Configuration => _configuration;
+
+      /// <inheritdoc />
+      Boolean IIocContainerManager.IsConfigurationLocked => _configuration.IsReadOnly;
 
       IReadOnlyCollection<Type> IIocContainerManager.PrecludedTypes => _precludedTypes;
 
@@ -122,6 +128,18 @@
 
          OnContainerChildAdded(this, ownedChildContainer);
          return ownedChildContainer;
+      }
+
+      /// <inheritdoc />
+      Boolean IIocContainerManager.LockConfiguration()
+      {
+         var was = _configuration.IsReadOnly;
+         if (!was)
+         {
+            _configuration.MakeReadOnly();
+         }
+
+         return was;
       }
 
       /// <inheritdoc/>
@@ -205,7 +223,7 @@
       private void OnContainerConfigurationChanged()
       {
          // fires the event
-         
+
          var configuration = _configuration;
          TryLogConfigurationChanged(IocEventIdCodes.IocContainer.ConfigurationChanged, configuration);
 

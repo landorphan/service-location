@@ -68,7 +68,7 @@
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -407,7 +407,7 @@
          {
             foreach (var item in expected)
             {
-               ((ICollection<Int32>) target).Add(item);
+               ((ICollection<Int32>)target).Add(item);
             }
          }
 
@@ -446,7 +446,7 @@
          protected override void ActMethod()
          {
             matchedResult = target.Remove(2);
-            unmatchedResult = target.Remove(int.MaxValue - 1);
+            unmatchedResult = target.Remove(Int32.MaxValue - 1);
          }
 
          [TestMethod]

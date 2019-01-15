@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(false)]
 [assembly: NeutralResourcesLanguage("en-US")]
 
-#if (NETCOREAPP2_2 || NETSTANDARD2_0)
+#if NETCOREAPP2_2 || NETSTANDARD2_0
 #else
-   [assembly: AssemblyVersionAttribute("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
 #endif

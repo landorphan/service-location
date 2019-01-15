@@ -3,7 +3,6 @@
    using System;
    using System.Collections.Generic;
    using System.Collections.Immutable;
-   using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using FluentAssertions;
@@ -83,7 +82,6 @@
             var allAssemblyTypes = asm.SafeGetTypes();
             foreach (var type in allAssemblyTypes)
             {
-
                var namespaceName = type.Namespace ?? String.Empty;
                // No StringComparison argument available in .Net Standard
                if (namespaceName.Contains(".Internal") && (type.IsPublic || type.IsNestedPublic))

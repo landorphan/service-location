@@ -27,6 +27,11 @@
       event EventHandler<ContainerParentChildEventArgs> ContainerChildRemoved;
 
       /// <summary>
+      /// Occurs when the configuration of this container is changed.
+      /// </summary>
+      event EventHandler<ContainerConfigurationEventArgs> ContainerConfigurationChanged;
+
+      /// <summary>
       /// Occurs when a type is precluded with this container.
       /// </summary>
       event EventHandler<ContainerTypeEventArgs> ContainerPrecludedTypeAdded;
@@ -37,17 +42,20 @@
       event EventHandler<ContainerTypeEventArgs> ContainerPrecludedTypeRemoved;
 
       /// <summary>
-      /// Occurs when the configuration of this container is changed.
-      /// </summary>
-      event EventHandler<ContainerConfigurationEventArgs> ContainerConfigurationChanged;
-
-      /// <summary>
       /// Gets the configuration settings for this container.
       /// </summary>
       /// <value>
       /// The configuration settings for this container.
       /// </value>
       IIocContainerConfiguration Configuration { get; }
+
+      /// <summary>
+      /// Gets a value indicating whether or not the configuration of this instance is locked.
+      /// </summary>
+      /// <value>
+      /// The value indicating whether or not the configuration of this instance is locked.
+      /// </value>
+      Boolean IsConfigurationLocked { get; }
 
       /// <summary>
       /// Gets the collection of types precluded from registration by this container.
@@ -113,6 +121,23 @@
       /// This instance becomes the owner of the newly created child instance.
       /// </remarks>
       IIocContainer CreateChildContainer(String name);
+
+      /// <summary>
+      /// Locks the configuration of this instance.
+      /// </summary>
+      /// <returns>
+      /// The previous lock state.
+      /// </returns>
+      /// <remarks>
+      /// <para>
+      /// Locking an unlocked configuration makes any further attempts to change the configuration of this
+      /// <see cref="IIocContainer" /> throw;  Locking a locked configuration has no effect.
+      /// </para>
+      /// <para>
+      /// Once locked, the container configuration cannot be unlocked.
+      /// </para>
+      /// </remarks>
+      Boolean LockConfiguration();
 
       /// <summary>
       /// Removes a precluded type.

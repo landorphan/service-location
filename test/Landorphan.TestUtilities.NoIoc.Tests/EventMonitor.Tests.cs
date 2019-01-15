@@ -1,7 +1,6 @@
 namespace Landorphan.TestUtilities.Tests
 {
    using System;
-   using System.Collections.Generic;
    using System.Diagnostics;
    using System.IO;
    using System.Linq;
@@ -56,7 +55,7 @@ namespace Landorphan.TestUtilities.Tests
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_record_that_the_event_fired()
          {
-            List<IRecordedEvent> recordedEvents = (from re in MonitoredEvents select re).ToList();
+            var recordedEvents = (from re in MonitoredEvents select re).ToList();
             recordedEvents.Count.Should().Be(1);
             var evt = recordedEvents.First();
             evt.ActualEventSource.Should().Be(_eventSource);
@@ -64,7 +63,7 @@ namespace Landorphan.TestUtilities.Tests
             evt.EventName.Should().Be("MyEvent");
             evt.SequenceNumber.Should().Be(1);
             evt.AdditionalData.Should().BeOfType(typeof(TestClassAdditionalDataEventArgs));
-            ((TestClassAdditionalDataEventArgs) evt.AdditionalData).Value.Should().Be(_expected);
+            ((TestClassAdditionalDataEventArgs)evt.AdditionalData).Value.Should().Be(_expected);
          }
       }
 

@@ -1,0 +1,1411 @@
+<Patterns xmlns="urn:schemas-jetbrains-com:member-reordering-patterns">
+   <TypePattern Priority="200" DisplayName="Non-reorderable types" RemoveRegions="All">
+      <TypePattern.Match>
+         <Or>
+            <And>
+               <Kind Is="Interface" />
+               <Or>
+                  <HasAttribute Name="System.Runtime.InteropServices.InterfaceTypeAttribute" />
+                  <HasAttribute Name="System.Runtime.InteropServices.ComImport" />
+               </Or>
+            </And>
+            <Kind Is="Struct" />
+            <HasAttribute Name="JetBrains.Annotations.NoReorderAttribute" />
+            <HasAttribute Name="JetBrains.Annotations.NoReorder" />
+            <HasAttribute Name="System.Runtime.InteropServices.StructLayoutAttribute" Inherited="True" />
+         </Or>
+      </TypePattern.Match>
+   </TypePattern>
+
+   <TypePattern Priority="95" DisplayName="Spec Flow Bindings" RemoveRegions="All">
+      <!-- TODO: Test with Resharper 2018.2.3 or later-->
+      <TypePattern.Match>
+         <Or>
+            <And>
+               <Kind Is="Class" />
+               <HasAttribute Name="TechTalk.SpecFlow.BindingAttribute" />
+            </And>
+         </Or>
+      </TypePattern.Match>
+      <Entry Priority="150" DisplayName="Delegates">
+         <Entry.Match>
+            <Kind Is="Delegate" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="145" DisplayName="Fields And Constants">
+         <Entry.Match>
+            <Or>
+               <Kind Is="Constant" />
+               <Kind Is="Field" />
+            </Or>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access />
+            <Kind Is="Member" />
+            <Static />
+            <Readonly />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="140" DisplayName="Enumerations">
+         <Entry.Match>
+            <Kind Is="Enum" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="135" DisplayName="Constructors">
+         <Entry.Match>
+            <Kind Is="Constructor" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="132" DisplayName="Clone">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="Clone" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="130" DisplayName="CloneTyped">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="CloneTyped" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="125" DisplayName="Dispose">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="Dispose" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="120" DisplayName="ReleaseManagedResources">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="ReleaseManagedResources" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="115" DisplayName="ReleaseUnmanagedResources">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="ReleaseUnmanagedResources" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="110" DisplayName="Destructor">
+         <Entry.Match>
+            <Kind Is="Destructor" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="105" DisplayName="GetObjectData">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="GetObjectData" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="100" DisplayName="OnSerializing">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="System.Runtime.Serialization.OnSerializingAttribute" Inherited="True" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="95" DisplayName="OnSerialized">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="System.Runtime.Serialization.OnSerializedAttribute" Inherited="True" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="90" DisplayName="OnDeserializing">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="System.Runtime.Serialization.OnDeserializingAttribute" Inherited="True" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="85" DisplayName="OnDeserialized">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="System.Runtime.Serialization.OnDeserializedAttribute" Inherited="True" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="80" DisplayName="Factory Methods">
+         <Entry.Match>
+            <And>
+               <Static />
+               <Kind Is="Method" />
+               <Name Is="\bCreate" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="75" DisplayName="Events">
+         <Entry.Match>
+            <Kind Is="Event" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="70" DisplayName="Properties">
+         <Entry.Match>
+            <And>
+               <Kind Is="Property" />
+               <Not>
+                  <Kind Is="Indexer" />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="65" DisplayName="Indexers">
+         <Entry.Match>
+            <Kind Is="Indexer" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="64" DisplayName="BeforeTestRun">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.BeforeTestRunAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="63" DisplayName="BeforeFeature">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.BeforeFeatureAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="62" DisplayName="BeforeScenario">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.BeforeScenarioAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="61" DisplayName="BeforeScenarioBlock">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.BeforeScenarioBlockAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="60" DisplayName="BeforeStep">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.BeforeStepAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="59" DisplayName="AfterStep">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.AfterStepAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="58" DisplayName="AfterScenarioBlock">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.AfterScenarioBlockAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="57" DisplayName="AfterScenario">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.AfterScenarioAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="56" DisplayName="AfterFeatureA">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.AfterFeatureAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry Priority="55" DisplayName="AfterTestRun">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <HasAttribute Name="TechTalk.SpecFlow.AfterTestRunAttribute" />
+            </And>
+         </Entry.Match>
+      </Entry>
+      <Entry DisplayName="Methods">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Not>
+                  <Kind Is="Destructor" />
+               </Not>
+               <Not>
+                  <HandlesEvent />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="45" DisplayName="Event Handlers">
+         <Entry.Match>
+            <And>
+               <HandlesEvent />
+               <Not>
+                  <Kind Is="Destructor" />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="20" DisplayName="Operators">
+         <Entry.Match>
+            <And>
+               <Kind Is="Operator" />
+               <Not>
+                  <Kind Is="Destructor" />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Abstract />
+            <Virtual />
+            <Override />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <Entry Priority="10" DisplayName="All other members" />
+      <Entry Priority="1" DisplayName="Nested Classes">
+         <Entry.Match>
+            <Kind Is="Type" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+   </TypePattern>
+
+   <TypePattern Priority="90" DisplayName="MSTest (BDD)" RemoveRegions="All">
+      <!-- Note: Currently evaluating with Resharper 2018.2.3-->
+      <TypePattern.Match>
+         <Or>
+            <And>
+               <Kind Is="Class" />
+               <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute" Inherited="True" />
+            </And>
+         </Or>
+      </TypePattern.Match>
+      <!-- Match the default up to but not including Default Methods (Add initialization before methods) -->
+
+      <!--<Region Name="${0} A" Priority="150">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="150" DisplayName="All Delegates">
+            <Entry.Match>
+               <Kind Is="Delegate" />
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} B" Priority="145">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="145" DisplayName="All Enumerations">
+            <Entry.Match>
+               <Kind Is="Enum" />
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} C" Priority="140">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="140" DisplayName="All Fields And Constants">
+            <Entry.Match>
+               <Or>
+                  <Kind Is="Constant" />
+                  <Kind Is="Field" />
+               </Or>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access />
+               <Static />
+               <Kind Is="Member" />
+               <Readonly />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} D" Priority="135">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="135" DisplayName="Constructors">
+            <Entry.Match>
+               <Kind Is="Constructor" />
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} E" Priority="130">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="130" DisplayName="Dispose">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="Dispose" />
+                  <Not>
+                     <!-- 
+                     Resharper was treating event handlers for INotifyDisposed.OnDisposed
+                     as if they were dispose methods, ignoring the Name constraint above.
+                     This kludge fixes the problem.
+                     -->
+                     <HandlesEvent/>
+                  </Not>
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} F" Priority="125">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="125" DisplayName="ReleaseManagedResources">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="ReleaseManagedResources" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} G" Priority="120">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="120" DisplayName="ReleaseUnmanagedResources">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="ReleaseUnmanagedResources" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} H" Priority="115">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="115" DisplayName="Destructor">
+            <Entry.Match>
+               <Kind Is="Destructor" />
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} I" Priority="110">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="110" DisplayName="Static Factory Methods">
+            <Entry.Match>
+               <And>
+                  <Static />
+                  <Kind Is="Method" />
+                  <Name Is="\bCreate*" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} J" Priority="100">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="100" DisplayName="Clone">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="Clone" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} K" Priority="90">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="90" DisplayName="CloneTyped">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="CloneTyped" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} L" Priority="85">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="85" DisplayName="GetObjectData">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="GetObjectData" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} M" Priority="80">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="80" DisplayName="Events">
+            <Entry.Match>
+               <Kind Is="Event" />
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} N" Priority="75">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="75" DisplayName="Properties">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Property" />
+                  <Not>
+                     <Kind Is="Indexer" />
+                  </Not>
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} O" Priority="70">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="70" DisplayName="Indexers">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Indexer" />
+                  <Not>
+                     <Kind Is="Property" />
+                  </Not>
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--End match default production: break for initialization teardown-->
+      <!-- Start MSTest Specific -->
+      <!--<Region Name="${0} TEST A" Priority="69">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="69" DisplayName="AssemblyInitialize">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.AssemblyInitializeAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST B" Priority="68">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="68" DisplayName="ClassInitialize">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST C" Priority="67">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="67" DisplayName="TestInitialize">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST D" Priority="66">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="66" DisplayName="TestBase.InitializeTestMethod">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="InitializeTestMethod" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST E" Priority="65">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="65" DisplayName="TestBase.TeardownTestMethod">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="TeardownTestMethod" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST F" Priority="64">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="64" DisplayName="TestCleanup">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST G" Priority="63">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="63" DisplayName="ClassCleanup">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST H" Priority="62">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="62" DisplayName="AssemblyCleanup">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.AssemblyCleanupAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST I" Priority="61">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="61" DisplayName="ArrangeContext">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="ArrangeContext" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+      <!--<Region Name="${0} TEST J" Priority="60">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="60" DisplayName="ActContext">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="ActContext" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST K" Priority="59">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="59" DisplayName="ArrangeMethod">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="ArrangeMethod" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST L" Priority="58">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="56" DisplayName="ActMethod">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="ActMethod" />
+               </And>
+            </Entry.Match>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} TEST M" Priority="57">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority ="57" DisplayName="Test Methods">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute" Inherited="True" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--End MSTest Specific -->
+
+      <!--Continue matching default pattern-->
+
+      <!--<Region Name="${0} P" Priority="55">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="55" DisplayName="Interface Implementations" >
+            <Entry.Match>
+               <And>
+                  <Kind Is="Member" />
+                  <ImplementsInterface />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <ImplementsInterface Immediate="true" />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} Q" Priority="11">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority ="11" DisplayName="Non Test/Non Interface Methods">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Not>
+                     <Kind Is="Destructor" />
+                  </Not>
+                  <Not>
+                     <HandlesEvent />
+                  </Not>
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} R" Priority="50">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+         <Entry Priority="50" DisplayName="Event Handlers">
+            <Entry.Match>
+               <Or>
+                  <HandlesEvent/>
+               </Or>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Static />
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} S" Priority="45">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="45" DisplayName="Operators">
+            <Entry.Match>
+               <And>
+                  <Kind Is="Operator" />
+                  <Not>
+                     <Kind Is="Destructor" />
+                  </Not>
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Abstract />
+               <Virtual />
+               <Override />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} T" Priority="40">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="40" DisplayName="All Test Hooks" >
+            <Entry.Match>
+               <And>
+                  <Kind Is="Method" />
+                  <Name Is="\bTestHook*" />
+               </And>
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Abstract />
+               <Virtual />
+               <Override />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} U All Other Members" Priority="10">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="10" DisplayName="All other members" />
+      <!--</Region>-->
+
+      <!--<Region Name="${0} v Nested Types" Priority="10">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+         <Entry Priority="10" DisplayName="Nested Types">
+            <Entry.Match>
+               <Kind Is="Type" />
+            </Entry.Match>
+            <Entry.SortBy>
+               <Access Order="Public Internal ProtectedInternal Protected Private" />
+               <Static />
+               <Name />
+            </Entry.SortBy>
+         </Entry>
+      <!--</Region>-->
+   </TypePattern>
+
+   <TypePattern Priority="0" DisplayName="Default Pattern" RemoveRegions="All">
+      <!--<Region Name="${0} A" Priority="150">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="150" DisplayName="All Delegates">
+         <Entry.Match>
+            <Kind Is="Delegate" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+
+      <!--<Region Name="${0} B" Priority="145">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="145" DisplayName="All Enumerations">
+         <Entry.Match>
+            <Kind Is="Enum" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} C" Priority="140">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="140" DisplayName="All Fields And Constants">
+         <Entry.Match>
+            <Or>
+               <Kind Is="Constant" />
+               <Kind Is="Field" />
+            </Or>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access />
+            <Static />
+            <Kind Is="Member" />
+            <Readonly />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} D" Priority="135">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="135" DisplayName="Constructors">
+         <Entry.Match>
+            <Kind Is="Constructor" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} E" Priority="130">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="130" DisplayName="Dispose">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="Dispose" />
+               <Not>
+                  <!-- 
+                     Resharper was treating event handlers for INotifyDisposed.OnDisposed
+                     as if they were dispose methods, ignoring the Name constraint above.
+                     This kludge fixes the problem.
+                     -->
+                  <HandlesEvent/>
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} F" Priority="125">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+
+      <Entry Priority="125" DisplayName="ReleaseManagedResources">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="ReleaseManagedResources" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} G" Priority="120">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="120" DisplayName="ReleaseUnmanagedResources">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="ReleaseUnmanagedResources" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} H" Priority="115">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="115" DisplayName="Destructor">
+         <Entry.Match>
+            <Kind Is="Destructor" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} I" Priority="110">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="110" DisplayName="Static Factory Methods">
+         <Entry.Match>
+            <And>
+               <Static />
+               <Kind Is="Method" />
+               <Name Is="\bCreate*" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} J" Priority="100">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="100" DisplayName="Clone">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="Clone" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} K" Priority="90">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="90" DisplayName="CloneTyped">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="CloneTyped" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} L" Priority="85">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="85" DisplayName="GetObjectData">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="GetObjectData" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} M" Priority="80">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="80" DisplayName="Events">
+         <Entry.Match>
+            <Kind Is="Event" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} N" Priority="75">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="75" DisplayName="Properties">
+         <Entry.Match>
+            <And>
+               <Kind Is="Property" />
+               <Not>
+                  <Kind Is="Indexer" />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} O" Priority="70">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+      <!--</Region>-->
+      <Entry Priority="70" DisplayName="Indexers">
+         <Entry.Match>
+            <And>
+               <Kind Is="Indexer" />
+               <Not>
+                  <Kind Is="Property" />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+
+      <!-- INSERT MS TEST BDD Entries HERE -->
+      <!-- Methods is altered int MS Test pattern, the rest are the same-->
+
+      <!--<Region Name="${0} P" Priority="65">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="55" DisplayName="Interface Implementations" >
+         <Entry.Match>
+            <And>
+               <Kind Is="Member" />
+               <ImplementsInterface />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <ImplementsInterface Immediate="true" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} Q" Priority="11">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+      <Entry Priority ="11" DisplayName="Methods">
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Not>
+                  <Kind Is="Destructor" />
+               </Not>
+               <Not>
+                  <HandlesEvent />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} R" Priority="80">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+
+      <Entry Priority="50" DisplayName="Event Handlers">
+         <Entry.Match>
+            <Or>
+               <HandlesEvent/>
+            </Or>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Static />
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} S" Priority="55">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+      <Entry Priority="45" DisplayName="Operators">
+         <Entry.Match>
+            <And>
+               <Kind Is="Operator" />
+               <Not>
+                  <Kind Is="Destructor" />
+               </Not>
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Abstract />
+            <Virtual />
+            <Override />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} T" Priority="15">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+      <Entry Priority="40" DisplayName="All Test Hooks" >
+         <Entry.Match>
+            <And>
+               <Kind Is="Method" />
+               <Name Is="\bTestHook*" />
+            </And>
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Abstract />
+            <Virtual />
+            <Override />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+
+      <!--<Region Name="${0} U All Other Members" Priority="10">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+      <Entry Priority="10" DisplayName="All other members" />
+      <!--</Region>-->
+
+      <!--<Region Name="${0} V Nested Types" Priority="10">
+         <Region.GroupBy>
+            <Name />
+         </Region.GroupBy>-->
+      <Entry Priority="10" DisplayName="Nested Types">
+         <Entry.Match>
+            <Kind Is="Type" />
+         </Entry.Match>
+         <Entry.SortBy>
+            <Access Order="Public Internal ProtectedInternal Protected Private" />
+            <Static />
+            <Name />
+         </Entry.SortBy>
+      </Entry>
+      <!--</Region>-->
+   </TypePattern>
+</Patterns>

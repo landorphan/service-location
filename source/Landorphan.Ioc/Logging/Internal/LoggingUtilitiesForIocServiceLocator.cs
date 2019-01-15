@@ -41,9 +41,7 @@
       public void GetMessageContainerAssemblyCollectionSelfRegistrationInvokedAfter(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies, out String message)
       {
          container.ArgumentNotNull(nameof(container));
-         // ReSharper disable once PossibleMultipleEnumeration
          assemblies.ArgumentNotNullNorContainsNull(nameof(assemblies));
-         // ReSharper disable once PossibleMultipleEnumeration
          var workingAssemblies = assemblies.ToList();
 
          var timestamp = _parent.GetTimestamp();
@@ -66,9 +64,7 @@
       public void GetMessageContainerAssemblyCollectionSelfRegistrationInvokedBefore(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies, out String message)
       {
          container.ArgumentNotNull(nameof(container));
-         // ReSharper disable once PossibleMultipleEnumeration
          assemblies.ArgumentNotNullNorContainsNull(nameof(assemblies));
-         // ReSharper disable once PossibleMultipleEnumeration
          var workingAssemblies = assemblies.ToList();
 
          var timestamp = _parent.GetTimestamp();

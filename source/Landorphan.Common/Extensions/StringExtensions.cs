@@ -7,12 +7,12 @@
    using System.Text;
 
    /// <summary>
-   /// Extension methods for <see cref="string"/> instances.
+   /// Extension methods for working with <see cref="String"/> instances.
    /// </summary>
    public static class StringExtensions
    {
       /// <summary>
-      /// Determines if a given <see cref="string"/>  is neither null nor empty.
+      /// Determines if a given <see cref="String"/>  is neither null nor empty.
       /// </summary>
       /// <param name="value">
       /// The value to evaluate.
@@ -26,7 +26,7 @@
       }
 
       /// <summary>
-      /// Determines if a given <see cref="string"/>  is neither null nor empty nor composed entirely of white-space.
+      /// Determines if a given <see cref="String"/>  is neither null nor empty nor composed entirely of white-space.
       /// </summary>
       /// <param name="value">
       /// The value to evaluate.
@@ -41,7 +41,7 @@
       }
 
       /// <summary>
-      /// Determines if a given <see cref="string"/>  is null nor empty.
+      /// Determines if a given <see cref="String"/>  is null nor empty.
       /// </summary>
       /// <param name="value">
       /// The value to evaluate.
@@ -55,7 +55,7 @@
       }
 
       /// <summary>
-      /// Determines if a given <see cref="string"/>  is null, or empty, or composed entirely of white-space.
+      /// Determines if a given <see cref="String"/>  is null, or empty, or composed entirely of white-space.
       /// </summary>
       /// <param name="value">
       /// The value to evaluate.

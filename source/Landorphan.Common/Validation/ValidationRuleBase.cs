@@ -6,6 +6,8 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Linq;
 
+   // ReSharper disable AssignNullToNotNullAttribute
+
    /// <summary>
    /// Base implementation of validation rules for a domain entity.
    /// </summary>
@@ -25,7 +27,7 @@
       /// <summary>
       /// Initializes a new instance of the <see cref="ValidationRuleBase{TEntity}"/> class.
       /// </summary>
-      protected ValidationRuleBase() : this((IEqualityComparer<String>) null)
+      protected ValidationRuleBase() : this((IEqualityComparer<String>)null)
       {
       }
 
@@ -97,7 +99,7 @@
       /// <summary>  
       /// Gets string comparer. 
       /// </summary>
-      protected IEqualityComparer<String> StringComparer => ((IValidationRule<TEntity>) this).GetStringComparer();
+      protected IEqualityComparer<String> StringComparer => ((IValidationRule<TEntity>)this).GetStringComparer();
 
       /// <inheritdoc/>
       public virtual Boolean Equals(IValidationRule<TEntity> other)
@@ -121,7 +123,7 @@
 
       /// <inheritdoc/>
       [SuppressMessage("SonarLint.CodeSmell", "S4039:Interface methods should be callable by derived types", Justification = "Reviewed (MWP)")]
-      [SuppressMessage("Microsoft.Design" ,"CA1033: Interface methods should be callable by child types", Justification = "Exposed via the StringCompararer property")]
+      [SuppressMessage("Microsoft.Design", "CA1033: Interface methods should be callable by child types", Justification = "Exposed via the StringCompararer property")]
       IEqualityComparer<String> IValidationRule<TEntity>.GetStringComparer()
       {
          return _stringComparer;
@@ -212,6 +214,9 @@
       /// <summary>
       /// Builds validation rule result with property names taken from this instance as well as the rule name and description.
       /// </summary>
+      /// <param name="evaluatedEntity">
+      /// The evaluated entity.
+      /// </param>
       /// <returns>
       /// An initialized <see cref="IValidationRuleResultWriter"/>.
       /// </returns>

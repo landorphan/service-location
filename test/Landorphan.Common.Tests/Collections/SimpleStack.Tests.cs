@@ -64,7 +64,7 @@
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Int32>));
             target.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -144,8 +144,8 @@
             var below = (from value in target select value).Min() - 1;
             var above = (from value in target select value).Max() + 1;
 
-            ((IContainsEnumerable<Int32>) target).Contains(below).Should().BeFalse();
-            ((IContainsEnumerable<Int32>) target).Contains(above).Should().BeFalse();
+            ((IContainsEnumerable<Int32>)target).Contains(below).Should().BeFalse();
+            ((IContainsEnumerable<Int32>)target).Contains(above).Should().BeFalse();
          }
 
          [TestMethod]
@@ -155,7 +155,7 @@
             var values = (from value in target select value).Distinct().ToList();
             foreach (var v in values)
             {
-               ((IContainsEnumerable<Int32>) target).Contains(v).Should().BeTrue();
+               ((IContainsEnumerable<Int32>)target).Contains(v).Should().BeTrue();
             }
          }
       }

@@ -5,11 +5,14 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Linq;
    using Landorphan.Common;
+   using Landorphan.Common.Threading;
    using Landorphan.Ioc.Logging.Internal;
    using Landorphan.Ioc.Resources;
    using Microsoft.Extensions.Logging;
 
    // ReSharper disable ConvertToAutoProperty
+   // ReSharper disable InheritdocConsiderUsage
+   // ReSharper disable RedundantExtendsListEntry
 
    /// <summary>
    /// <para>
@@ -19,30 +22,23 @@
    /// Represents a scope of service location registration and resolution.
    /// </para>
    /// </summary>
-   // ReSharper disable once InheritdocConsiderUsage
    [SuppressMessage("SonarLint.CodeSmell", "S1200: Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
+   // ReSharper disable RedundantExtendsListEntry
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       private readonly IocContainerConfiguration _configuration;
-
       private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationAdded =
          new SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs>();
       private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationRemoved =
          new SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs>();
-
       private readonly String _name;
-
-      // Parents own children, reverse references are not owned.
-      [DoNotDispose] private readonly IocContainer _parent;
-
+      [DoNotDispose]
+      private readonly IocContainer _parent;
+      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
       private readonly Guid _uid;
-
       private IImmutableSet<IOwnedIocContainer> _children = ImmutableHashSet<IOwnedIocContainer>.Empty;
-
       private ILogger<IocContainer> _logger;
-
       private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
-
       private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
          ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>.Empty;
 
@@ -171,10 +167,15 @@
          get
          {
             CheckForNewRegistrations();
-            var rv = _registrations.ToImmutableDictionary(
-               kvp => (IRegistrationKey) kvp.Key,
-               kvp => (IRegistrationValue) kvp.Value
-            );
+            IImmutableDictionary<IRegistrationKey, IRegistrationValue> rv;
+            using (_registrationsLock.EnterReadLock())
+            {
+               rv = _registrations.ToImmutableDictionary(
+                  kvp => (IRegistrationKey)kvp.Key,
+                  kvp => (IRegistrationValue)kvp.Value
+               );
+            }
+
             return rv;
          }
       }
@@ -219,17 +220,14 @@
 
       private void CheckForNewRegistrations()
       {
-         var thisAssembly = GetType().Assembly;
-         var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().ToImmutableHashSet();
          // TODO: figure out the performance cost of this kludge.  
-         // This optimization breaks dependent assemblies.  Perhaps locating the assembly of the requested typ and checking for the self-registrar.
+         // Current theory:  AssemblyLoaded is an after event, allowing a new assembly to request services before it's self-registration
+         // var thisAssembly = GetType().Assembly;
+         // var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().ToImmutableHashSet();
          //if (loadedAssemblies.Contains(thisAssembly))
          //{
-         //   // stop using the kludge, rely on the CurrentDomain.AssemblyLoaded event to maintain the state of service locator and the root container.
          //   return;
          //}
-
-         // To make things even more interesting, the misbehavior this kludge guards against seems to be intermittent.
 
          // Kludge to address initialization race.
          IocServiceLocator.InternalInstance.CurrentDomainAssemblyLoad(null, null);
@@ -374,8 +372,13 @@
          {
             // removed named registrations...
             CheckForNewRegistrations();
-            var was = _registrations;
-            _registrations = (from reg in _registrations where reg.Key.IsDefaultRegistration select reg).ToImmutableDictionary();
+            IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> was;
+            using (_registrationsLock.EnterWriteLock())
+            {
+               was = _registrations;
+               _registrations = (from reg in _registrations where reg.Key.IsDefaultRegistration select reg).ToImmutableDictionary();
+            }
+
             var removedKeys = (from reg in was where !reg.Key.IsDefaultRegistration select reg.Key).ToImmutableHashSet();
             foreach (var key in removedKeys)
             {
@@ -400,5 +403,7 @@
          // Fire the event for this instance.
          OnContainerConfigurationChanged();
       }
+
+      // Parents own children, reverse references are not owned.
    }
 }

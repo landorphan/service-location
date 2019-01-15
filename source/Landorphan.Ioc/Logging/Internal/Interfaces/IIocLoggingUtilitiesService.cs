@@ -5,8 +5,8 @@
 
    internal interface IIocLoggingUtilitiesService
    {
-      ILoggingUtilitiesForIocServiceLocator LoggingUtilitiesForIocIocServiceLocator { get; }
       ILoggingUtilitiesForIocContainer LoggingUtilitiesForIocContainer { get; }
+      ILoggingUtilitiesForIocServiceLocator LoggingUtilitiesForIocIocServiceLocator { get; }
       EventId GetEventId(Int32 iocEventIdCode);
       String GetThreadId();
       String GetTimestamp();

@@ -3,7 +3,7 @@
    using System;
 
    /// <summary>
-   /// Denotes an instance that supports read-only behavior.
+   /// Denotes an instance that indicates whether or not it is read-only.
    /// </summary>
    public interface IQueryReadOnly
    {

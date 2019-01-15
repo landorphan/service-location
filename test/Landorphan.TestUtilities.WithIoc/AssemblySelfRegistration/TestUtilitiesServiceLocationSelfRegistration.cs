@@ -1,5 +1,6 @@
 ﻿namespace Landorphan.TestUtilities.WithIoc
 {
+   using System.Diagnostics.CodeAnalysis;
    using Landorphan.Common;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities.WithIoc.Internal;
@@ -13,7 +14,7 @@
    public sealed class TestUtilitiesServiceLocationSelfRegistration : IAssemblySelfRegistration
    {
       /// <inheritdoc/>
-      [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
+      [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
       public void RegisterServiceInstances(IIocContainerRegistrar registrar)
       {
          registrar.ArgumentNotNull(nameof(registrar));

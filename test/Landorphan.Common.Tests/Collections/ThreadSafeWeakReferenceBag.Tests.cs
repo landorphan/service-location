@@ -36,7 +36,7 @@
             target.Should().BeAssignableTo(typeof(IEnumerable));
             target.Should().BeAssignableTo(typeof(IEnumerable<Object>));
             target.GetEnumerator().Should().NotBeNull();
-            ((IEnumerable) target).GetEnumerator().Should().NotBeNull();
+            ((IEnumerable)target).GetEnumerator().Should().NotBeNull();
          }
 
          [TestMethod]
@@ -89,7 +89,7 @@
             }
          }
 
-         [SuppressMessage("SonarLint.CodeSmell" ,"S1215:GC.Collect should not be called")]
+         [SuppressMessage("SonarLint.CodeSmell", "S1215:GC.Collect should not be called")]
          [SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.GC.Collect")]
          protected override void ActMethod()
          {
@@ -158,7 +158,7 @@
             }
          }
 
-         [SuppressMessage("SonarLint.CodeSmell" ,"S1215:GC.Collect should not be called")]
+         [SuppressMessage("SonarLint.CodeSmell", "S1215:GC.Collect should not be called")]
          [SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.GC.Collect")]
          protected override void ActMethod()
          {

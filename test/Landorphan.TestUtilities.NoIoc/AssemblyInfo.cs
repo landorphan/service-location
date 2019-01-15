@@ -10,5 +10,5 @@ using System.Runtime.InteropServices;
 
 #if (NETCOREAPP2_2 || NETSTANDARD2_0)
 #else
-   [assembly: AssemblyVersionAttribute("1.0.0.0")]
+[assembly: AssemblyVersionAttribute("1.0.0.0")]
 #endif

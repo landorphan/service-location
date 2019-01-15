@@ -13,10 +13,10 @@
    using Landorphan.TestUtilities.Internal.EventMonitoring;
 
    /// <summary>
-   ///    Monitors events from one or more event sources.
+   /// Monitors events from one or more event sources.
    /// </summary>
    /// <remarks>
-   ///    Used to track events both public and non-public that follow the void (Object sender, EventArgs e) pattern.
+   /// Used to track events both public and non-public that follow the void (Object sender, EventArgs e) pattern.
    /// </remarks>
    [SuppressMessage("Microsoft.Naming", "CA1710: Identifiers should have correct suffix")]
    public sealed class EventMonitor : IEnumerable<IRecordedEvent>, IEventStore
@@ -33,7 +33,7 @@
       /// <inheritdoc />
       public IEnumerator<IRecordedEvent> GetEnumerator()
       {
-         return ((IEnumerable<IRecordedEvent>) _recordedEvents).GetEnumerator();
+         return ((IEnumerable<IRecordedEvent>)_recordedEvents).GetEnumerator();
       }
 
       /// <inheritdoc />
@@ -58,19 +58,19 @@
       }
 
       /// <summary>
-      ///    Adds an event source.
+      /// Adds an event source.
       /// </summary>
       /// <exception cref="ArgumentNullException">
-      ///    Thrown when <paramref name="eventSource" /> is null.
+      /// Thrown when <paramref name="eventSource" /> is null.
       /// </exception>
       /// <exception cref="ArgumentException">
-      ///    Thrown when <paramref name="eventSource" /> is of a type that does not source events.
+      /// Thrown when <paramref name="eventSource" /> is of a type that does not source events.
       /// </exception>
       /// <param name="eventSource">
-      ///    The event source.
+      /// The event source.
       /// </param>
       /// <returns>
-      ///    <c>true</c> if the event source is added; otherwise <c>false</c> (the instance was previously added).
+      /// <c>true</c> if the event source is added; otherwise <c>false</c> (the instance was previously added).
       /// </returns>
       [SuppressMessage("SonarLint.CodeSmell", "S125: Sections of code should not be commented out")]
       [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
@@ -124,7 +124,7 @@
                null,
                recorderCtorTypes,
                null);
-            var recorderInstance = (IEventRecorder) ctor.Invoke(new[] {eventSource, eventInfo, this});
+            var recorderInstance = (IEventRecorder)ctor.Invoke(new[] {eventSource, eventInfo, this});
             lock (_recordersLock)
             {
                _eventRecorders = _eventRecorders.Add(recorderInstance);

@@ -164,13 +164,13 @@
             It_Should_Clone_Correctly_Implementation();
          }
 
+         protected override IValidationRuleResult Target { get; set; }
+
          protected override void TeardownTestMethod()
          {
             (Target as IDisposable)?.Dispose();
             base.TeardownTestMethod();
          }
-
-         protected override IValidationRuleResult Target { get; set; }
 
          [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
          protected override void ArrangeMethod()

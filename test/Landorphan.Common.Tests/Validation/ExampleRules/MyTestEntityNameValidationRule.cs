@@ -8,7 +8,7 @@
 
    internal class MyTestEntityNameValidationRule : ValidationRuleBase<MyTestEntity>
    {
-      public MyTestEntityNameValidationRule() : this((IEqualityComparer<String>) null)
+      public MyTestEntityNameValidationRule() : this((IEqualityComparer<String>)null)
       {
       }
 

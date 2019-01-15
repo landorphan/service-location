@@ -1,7 +1,5 @@
 namespace Landorphan.TestUtilities.WithIoc
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
    using Landorphan.Ioc.ServiceLocation;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +12,6 @@ namespace Landorphan.TestUtilities.WithIoc
    /// In particular, TestInitialize attributed members of base classes fire before ClassInitialize attributed members of
    /// descendant classes.
    /// </remarks>
-   [CLSCompliant(false)]
    [TestClass]
    public abstract class TestBaseWithIoc : TestBase
    {
@@ -24,10 +21,6 @@ namespace Landorphan.TestUtilities.WithIoc
       /// <value>
       /// The test mocking service.
       /// </value>
-      [SuppressMessage(
-         "SonarLint:CodeSmell",
-         "S2325: Methods and properties that don't access instance data should be static",
-         Justification = "I prefer this 'interface', the performance advantage is negligible (MWP)")]
       protected ITestMockingService TestMockingService => IocServiceLocator.Resolve<ITestMockingService>();
 
       /// <summary>

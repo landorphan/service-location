@@ -26,7 +26,6 @@
          All_Declarations_Under_An_Internal_Namespace_Are_Not_Public_Implementation();
       }
 
-
       protected override IImmutableSet<Assembly> GetAssembliesUnderTest()
       {
          return TestAssemblyInitializeCleanup.AssembliesUnderTest;

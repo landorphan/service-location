@@ -4,6 +4,8 @@
    using System.Collections.Generic;
    using System.Diagnostics.CodeAnalysis;
 
+   // ReSharper disable AssignNullToNotNullAttribute
+
    /// <summary>
    /// Default implementation of <see cref="IValidationMessage"/> and <see cref="IValidationMessageWriter"/>.
    /// </summary>
@@ -20,14 +22,16 @@
       /// <summary>
       /// Initializes a new instance of the <see cref="ValidationMessage"/> class.
       /// </summary>
-      public ValidationMessage() : this((IEqualityComparer<String>) null)
+      public ValidationMessage() : this((IEqualityComparer<String>)null)
       {
       }
 
       /// <summary>
       /// Initializes a new instance of the <see cref="ValidationMessage"/> class.
       /// </summary>
-      /// <param name="stringComparer"> The String comparer or <c> null </c> to use the default comparer. </param>
+      /// <param name="stringComparer">
+      /// The String comparer or <c>null</c> to use the default comparer.
+      /// </param>
       public ValidationMessage(IEqualityComparer<String> stringComparer)
       {
          // EqualityComparer<String>.Default does not throw on null values unlike StringComparer implementations for GetHashCode.

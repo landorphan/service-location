@@ -61,7 +61,7 @@
     <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Landorphan.TestUtilities.NoIoc.Tests.NetFx.csproj.DotSettings" />
+    <None Include="Landorphan.TestUtilities.NoIoc.Tests.csproj.DotSettings" />
     <None Include="Landorphan.TestUtilities.NoIoc.Tests.NetFx.ruleset" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +71,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Landorphan.TestUtilities.NoIoc\Landorphan.TestUtilities.NoIoc.csproj">
       <Project>{86f6b3d5-3d6d-4bdc-a45d-cae58458722c}</Project>
-      <Name>Landorphan.TestUtilities.NoIoc.NetFx</Name>
+      <Name>Landorphan.TestUtilities.NoIoc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +86,6 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="EventMonitor.Tests.cs" />
     <Compile Include="TestFacilities\TestAssemblyInitializeCleanup.cs" />
-    <Compile Include="TestFacilities\TestHardcodes.cs" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

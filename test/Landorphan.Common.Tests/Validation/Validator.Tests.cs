@@ -361,13 +361,13 @@
                }
 
                // ReSharper disable once AccessToDisposedClosure
-               using (var right = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity>(left) { Description = Guid.NewGuid().ToString() }))
+               using (var right = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity>(left) {Description = Guid.NewGuid().ToString()}))
                {
                   left.Equals(right).Should().BeFalse();
                }
 
                // ReSharper disable once AccessToDisposedClosure
-               using (var right = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity>(left) { Name = Guid.NewGuid().ToString() }))
+               using (var right = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity>(left) {Name = Guid.NewGuid().ToString()}))
                {
                   left.Equals(right).Should().BeFalse();
                }
@@ -417,7 +417,7 @@
          {
             const String ExpectedName = "My Validator Name";
 
-            using (var target = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity> { Name = null }))
+            using (var target = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity> {Name = null}))
             {
                target.Name.Should().Be(String.Empty);
 
@@ -442,7 +442,7 @@
          {
             const String ExpectedDescription = "My Validator Description";
 
-            using (var target = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity> { Description = null }))
+            using (var target = DisposableHelper.SafeCreate(() => new Validator<MyTestEntity> {Description = null}))
             {
                target.Description.Should().Be(String.Empty);
 

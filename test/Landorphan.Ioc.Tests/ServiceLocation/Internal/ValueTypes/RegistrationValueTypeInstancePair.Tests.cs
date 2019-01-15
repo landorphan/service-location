@@ -46,7 +46,7 @@
          {
             actualObject.Should().BeOfType<RegistrationValueTypeInstancePair>();
 
-            var actualInterface = (IRegistrationValue) actualObject;
+            var actualInterface = (IRegistrationValue)actualObject;
             actualInterface.Equals(Target).Should().BeTrue();
 
             actualInterface.ImplementationType.Should().Be(type);
@@ -87,7 +87,7 @@
          public void It_should_compare_equivalent_to_itself_and_an_equivalent_instance()
          {
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) target).Should().Be(0);
+            target.CompareTo((IRegistrationValue)target).Should().Be(0);
             target.CompareTo(new RegistrationValueTypeInstancePair()).Should().Be(0);
          }
 
@@ -95,9 +95,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_compare_greater_than_null()
          {
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -125,9 +125,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_equal_null()
          {
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue) null).Should().BeFalse();
+            target.Equals((IRegistrationValue)null).Should().BeFalse();
          }
       }
 
@@ -189,7 +189,7 @@
          {
             var instance = new ConcreteClass();
             var target = new RegistrationValueTypeInstancePair(instance);
-            target.CompareTo((IRegistrationValue) target).Should().Be(0);
+            target.CompareTo((IRegistrationValue)target).Should().Be(0);
             target.CompareTo(new RegistrationValueTypeInstancePair(instance)).Should().Be(0);
          }
 
@@ -199,9 +199,9 @@
          {
             var instance = new ConcreteClass();
             var target = new RegistrationValueTypeInstancePair(instance);
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -233,16 +233,16 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationValueTypeInstancePair(new ConcreteClass());
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue) null).Should().BeFalse();
+            target.Equals((IRegistrationValue)null).Should().BeFalse();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_reject_null()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair((Object) null);
+            Action throwingAction = () => new RegistrationValueTypeInstancePair((Object)null);
             var e = throwingAction.Should().Throw<ArgumentNullException>().WithMessage("*cannot be null*");
             e.And.ParamName.Should().Be("implementationInstance");
          }
@@ -253,7 +253,7 @@
          {
             var target = new RegistrationValueTypeInstancePair(new ConcreteClassImplementingInterface());
 
-            Action throwingAction = () => ((IComparable) target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -281,7 +281,7 @@
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
             Object o = target;
-            ((IComparable) target).CompareTo(o).Should().Be(0);
+            ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
          [TestMethod]
@@ -291,7 +291,7 @@
             var type = typeof(ConcreteClassImplementingInterface);
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -339,7 +339,7 @@
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) target).Should().Be(0);
+            target.CompareTo((IRegistrationValue)target).Should().Be(0);
             target.CompareTo(new RegistrationValueTypeInstancePair(type, instance)).Should().Be(0);
          }
 
@@ -350,9 +350,9 @@
             var type = typeof(ConcreteClassImplementingInterface);
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -384,9 +384,9 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClass), new ConcreteClass());
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue) null).Should().BeFalse();
+            target.Equals((IRegistrationValue)null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -403,7 +403,7 @@
          [SuppressMessage("ReSharper", "RedundantCast")]
          public void It_should_reject_a_null_type()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair((Type) null, new Object());
+            Action throwingAction = () => new RegistrationValueTypeInstancePair((Type)null, new Object());
             var e = throwingAction.Should().Throw<ArgumentNullException>().WithMessage("*cannot be null*");
             e.And.ParamName.Should().Be("implementationType");
          }
@@ -447,7 +447,7 @@
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
 
-            Action throwingAction = () => ((IComparable) target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -462,7 +462,7 @@
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
             Object o = target;
-            ((IComparable) target).CompareTo(o).Should().Be(0);
+            ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
          [TestMethod]
@@ -470,7 +470,7 @@
          public void It_be_greater_than_null_when_I_call_IComparable_CompareTo()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -523,7 +523,7 @@
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) target).Should().Be(0);
+            target.CompareTo((IRegistrationValue)target).Should().Be(0);
             target.CompareTo(new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface))).Should().Be(0);
          }
 
@@ -532,9 +532,9 @@
          public void It_should_compare_greater_than_null()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -564,9 +564,9 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClass));
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue) null).Should().BeFalse();
+            target.Equals((IRegistrationValue)null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -594,7 +594,7 @@
          [SuppressMessage("ReSharper", "RedundantCast")]
          public void It_should_reject_null()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair((Type) null);
+            Action throwingAction = () => new RegistrationValueTypeInstancePair((Type)null);
             var e = throwingAction.Should().Throw<ArgumentNullException>().WithMessage("*cannot be null*");
             e.And.ParamName.Should().Be("implementationType");
          }
@@ -605,7 +605,7 @@
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
 
-            Action throwingAction = () => ((IComparable) target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -638,17 +638,17 @@
             (implementedTypeAndInstance == implementedTypeAndInstance).Should().BeTrue();
             (instanceOnly == instanceOnly).Should().BeTrue();
 
-            (implementedTypeNoInstance == (IRegistrationValue) implementedTypeNoInstance).Should().BeTrue();
-            (implementedTypeAndInstance == (IRegistrationValue) implementedTypeAndInstance).Should().BeTrue();
-            (instanceOnly == (IRegistrationValue) instanceOnly).Should().BeTrue();
+            (implementedTypeNoInstance == (IRegistrationValue)implementedTypeNoInstance).Should().BeTrue();
+            (implementedTypeAndInstance == (IRegistrationValue)implementedTypeAndInstance).Should().BeTrue();
+            (instanceOnly == (IRegistrationValue)instanceOnly).Should().BeTrue();
 
-            ((IRegistrationValue) implementedTypeNoInstance == implementedTypeNoInstance).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeAndInstance == implementedTypeAndInstance).Should().BeTrue();
-            ((IRegistrationValue) instanceOnly == instanceOnly).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeNoInstance == implementedTypeNoInstance).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeAndInstance == implementedTypeAndInstance).Should().BeTrue();
+            ((IRegistrationValue)instanceOnly == instanceOnly).Should().BeTrue();
 
             (emptyEquivalent == emptyEquivalent).Should().BeTrue();
-            (emptyEquivalent == (IRegistrationValue) emptyEquivalent).Should().BeTrue();
-            ((IRegistrationValue) emptyEquivalent == emptyEquivalent).Should().BeTrue();
+            (emptyEquivalent == (IRegistrationValue)emptyEquivalent).Should().BeTrue();
+            ((IRegistrationValue)emptyEquivalent == emptyEquivalent).Should().BeTrue();
 
             (emptyEquivalent == RegistrationValueTypeInstancePair.Empty).Should().BeTrue();
          }
@@ -666,27 +666,27 @@
             (instanceOnly > implementedTypeAndInstance).Should().BeFalse();
             (implementedTypeAndInstance > instanceOnly).Should().BeTrue();
 
-            (implementedTypeNoInstance > (IRegistrationValue) implementedTypeNoInstance).Should().BeFalse();
-            (implementedTypeAndInstance > (IRegistrationValue) implementedTypeNoInstance).Should().BeTrue();
-            (instanceOnly > (IRegistrationValue) implementedTypeAndInstance).Should().BeFalse();
-            (implementedTypeAndInstance > (IRegistrationValue) instanceOnly).Should().BeTrue();
+            (implementedTypeNoInstance > (IRegistrationValue)implementedTypeNoInstance).Should().BeFalse();
+            (implementedTypeAndInstance > (IRegistrationValue)implementedTypeNoInstance).Should().BeTrue();
+            (instanceOnly > (IRegistrationValue)implementedTypeAndInstance).Should().BeFalse();
+            (implementedTypeAndInstance > (IRegistrationValue)instanceOnly).Should().BeTrue();
 
-            ((IRegistrationValue) implementedTypeNoInstance > implementedTypeNoInstance).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeAndInstance > implementedTypeNoInstance).Should().BeTrue();
-            ((IRegistrationValue) instanceOnly > implementedTypeAndInstance).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeAndInstance > instanceOnly).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeNoInstance > implementedTypeNoInstance).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeAndInstance > implementedTypeNoInstance).Should().BeTrue();
+            ((IRegistrationValue)instanceOnly > implementedTypeAndInstance).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeAndInstance > instanceOnly).Should().BeTrue();
 
             (emptyEquivalent > emptyEquivalent).Should().BeFalse();
             (implementedTypeNoInstance > emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent > (IRegistrationValue) emptyEquivalent).Should().BeFalse();
-            (implementedTypeNoInstance > (IRegistrationValue) emptyEquivalent).Should().BeTrue();
+            (emptyEquivalent > (IRegistrationValue)emptyEquivalent).Should().BeFalse();
+            (implementedTypeNoInstance > (IRegistrationValue)emptyEquivalent).Should().BeTrue();
 
-            ((IRegistrationValue) emptyEquivalent > emptyEquivalent).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeNoInstance > emptyEquivalent).Should().BeTrue();
+            ((IRegistrationValue)emptyEquivalent > emptyEquivalent).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeNoInstance > emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent > (IRegistrationValue) null).Should().BeTrue();
-            (implementedTypeNoInstance > (IRegistrationValue) null).Should().BeTrue();
+            (emptyEquivalent > (IRegistrationValue)null).Should().BeTrue();
+            (implementedTypeNoInstance > (IRegistrationValue)null).Should().BeTrue();
          }
 
          [TestMethod]
@@ -702,27 +702,27 @@
             (instanceOnly >= implementedTypeAndInstance).Should().BeFalse();
             (implementedTypeAndInstance >= instanceOnly).Should().BeTrue();
 
-            (implementedTypeNoInstance >= (IRegistrationValue) implementedTypeNoInstance).Should().BeTrue();
-            (implementedTypeAndInstance >= (IRegistrationValue) implementedTypeNoInstance).Should().BeTrue();
-            (instanceOnly >= (IRegistrationValue) implementedTypeAndInstance).Should().BeFalse();
-            (implementedTypeAndInstance >= (IRegistrationValue) instanceOnly).Should().BeTrue();
+            (implementedTypeNoInstance >= (IRegistrationValue)implementedTypeNoInstance).Should().BeTrue();
+            (implementedTypeAndInstance >= (IRegistrationValue)implementedTypeNoInstance).Should().BeTrue();
+            (instanceOnly >= (IRegistrationValue)implementedTypeAndInstance).Should().BeFalse();
+            (implementedTypeAndInstance >= (IRegistrationValue)instanceOnly).Should().BeTrue();
 
-            ((IRegistrationValue) implementedTypeNoInstance >= implementedTypeNoInstance).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeAndInstance >= implementedTypeNoInstance).Should().BeTrue();
-            ((IRegistrationValue) instanceOnly >= implementedTypeAndInstance).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeAndInstance >= instanceOnly).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeNoInstance >= implementedTypeNoInstance).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeAndInstance >= implementedTypeNoInstance).Should().BeTrue();
+            ((IRegistrationValue)instanceOnly >= implementedTypeAndInstance).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeAndInstance >= instanceOnly).Should().BeTrue();
 
             (emptyEquivalent >= emptyEquivalent).Should().BeTrue();
             (implementedTypeNoInstance >= emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent >= (IRegistrationValue) emptyEquivalent).Should().BeTrue();
-            (implementedTypeNoInstance >= (IRegistrationValue) emptyEquivalent).Should().BeTrue();
+            (emptyEquivalent >= (IRegistrationValue)emptyEquivalent).Should().BeTrue();
+            (implementedTypeNoInstance >= (IRegistrationValue)emptyEquivalent).Should().BeTrue();
 
-            ((IRegistrationValue) emptyEquivalent >= emptyEquivalent).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeNoInstance >= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationValue)emptyEquivalent >= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeNoInstance >= emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent >= (IRegistrationValue) null).Should().BeTrue();
-            (implementedTypeNoInstance >= (IRegistrationValue) null).Should().BeTrue();
+            (emptyEquivalent >= (IRegistrationValue)null).Should().BeTrue();
+            (implementedTypeNoInstance >= (IRegistrationValue)null).Should().BeTrue();
          }
 
          [TestMethod]
@@ -736,13 +736,13 @@
             (implementedTypeAndInstance != implementedTypeAndInstance).Should().BeFalse();
             (instanceOnly != instanceOnly).Should().BeFalse();
 
-            (implementedTypeNoInstance != (IRegistrationValue) implementedTypeNoInstance).Should().BeFalse();
-            (implementedTypeAndInstance != (IRegistrationValue) implementedTypeAndInstance).Should().BeFalse();
-            (instanceOnly != (IRegistrationValue) instanceOnly).Should().BeFalse();
+            (implementedTypeNoInstance != (IRegistrationValue)implementedTypeNoInstance).Should().BeFalse();
+            (implementedTypeAndInstance != (IRegistrationValue)implementedTypeAndInstance).Should().BeFalse();
+            (instanceOnly != (IRegistrationValue)instanceOnly).Should().BeFalse();
 
-            ((IRegistrationValue) implementedTypeNoInstance != implementedTypeNoInstance).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeAndInstance != implementedTypeAndInstance).Should().BeFalse();
-            ((IRegistrationValue) instanceOnly != instanceOnly).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeNoInstance != implementedTypeNoInstance).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeAndInstance != implementedTypeAndInstance).Should().BeFalse();
+            ((IRegistrationValue)instanceOnly != instanceOnly).Should().BeFalse();
 
             (emptyEquivalent != emptyEquivalent).Should().BeFalse();
 
@@ -762,27 +762,27 @@
             (instanceOnly < implementedTypeAndInstance).Should().BeTrue();
             (implementedTypeAndInstance < instanceOnly).Should().BeFalse();
 
-            (implementedTypeNoInstance < (IRegistrationValue) implementedTypeNoInstance).Should().BeFalse();
-            (implementedTypeAndInstance < (IRegistrationValue) implementedTypeNoInstance).Should().BeFalse();
-            (instanceOnly < (IRegistrationValue) implementedTypeAndInstance).Should().BeTrue();
-            (implementedTypeAndInstance < (IRegistrationValue) instanceOnly).Should().BeFalse();
+            (implementedTypeNoInstance < (IRegistrationValue)implementedTypeNoInstance).Should().BeFalse();
+            (implementedTypeAndInstance < (IRegistrationValue)implementedTypeNoInstance).Should().BeFalse();
+            (instanceOnly < (IRegistrationValue)implementedTypeAndInstance).Should().BeTrue();
+            (implementedTypeAndInstance < (IRegistrationValue)instanceOnly).Should().BeFalse();
 
-            ((IRegistrationValue) implementedTypeNoInstance < implementedTypeNoInstance).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeAndInstance < implementedTypeNoInstance).Should().BeFalse();
-            ((IRegistrationValue) instanceOnly < implementedTypeAndInstance).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeAndInstance < instanceOnly).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeNoInstance < implementedTypeNoInstance).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeAndInstance < implementedTypeNoInstance).Should().BeFalse();
+            ((IRegistrationValue)instanceOnly < implementedTypeAndInstance).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeAndInstance < instanceOnly).Should().BeFalse();
 
             (emptyEquivalent < emptyEquivalent).Should().BeFalse();
             (implementedTypeNoInstance < emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent < (IRegistrationValue) emptyEquivalent).Should().BeFalse();
-            (implementedTypeNoInstance < (IRegistrationValue) emptyEquivalent).Should().BeFalse();
+            (emptyEquivalent < (IRegistrationValue)emptyEquivalent).Should().BeFalse();
+            (implementedTypeNoInstance < (IRegistrationValue)emptyEquivalent).Should().BeFalse();
 
-            ((IRegistrationValue) emptyEquivalent < emptyEquivalent).Should().BeFalse();
-            ((IRegistrationValue) implementedTypeNoInstance < emptyEquivalent).Should().BeFalse();
+            ((IRegistrationValue)emptyEquivalent < emptyEquivalent).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeNoInstance < emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent < (IRegistrationValue) null).Should().BeFalse();
-            (implementedTypeNoInstance < (IRegistrationValue) null).Should().BeFalse();
+            (emptyEquivalent < (IRegistrationValue)null).Should().BeFalse();
+            (implementedTypeNoInstance < (IRegistrationValue)null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -798,27 +798,27 @@
             (instanceOnly <= implementedTypeAndInstance).Should().BeTrue();
             (implementedTypeAndInstance <= instanceOnly).Should().BeFalse();
 
-            (implementedTypeNoInstance <= (IRegistrationValue) implementedTypeNoInstance).Should().BeTrue();
-            (implementedTypeAndInstance <= (IRegistrationValue) implementedTypeNoInstance).Should().BeFalse();
-            (instanceOnly <= (IRegistrationValue) implementedTypeAndInstance).Should().BeTrue();
-            (implementedTypeAndInstance <= (IRegistrationValue) instanceOnly).Should().BeFalse();
+            (implementedTypeNoInstance <= (IRegistrationValue)implementedTypeNoInstance).Should().BeTrue();
+            (implementedTypeAndInstance <= (IRegistrationValue)implementedTypeNoInstance).Should().BeFalse();
+            (instanceOnly <= (IRegistrationValue)implementedTypeAndInstance).Should().BeTrue();
+            (implementedTypeAndInstance <= (IRegistrationValue)instanceOnly).Should().BeFalse();
 
-            ((IRegistrationValue) implementedTypeNoInstance <= implementedTypeNoInstance).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeAndInstance <= implementedTypeNoInstance).Should().BeFalse();
-            ((IRegistrationValue) instanceOnly <= implementedTypeAndInstance).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeAndInstance <= instanceOnly).Should().BeFalse();
+            ((IRegistrationValue)implementedTypeNoInstance <= implementedTypeNoInstance).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeAndInstance <= implementedTypeNoInstance).Should().BeFalse();
+            ((IRegistrationValue)instanceOnly <= implementedTypeAndInstance).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeAndInstance <= instanceOnly).Should().BeFalse();
 
             (emptyEquivalent <= emptyEquivalent).Should().BeTrue();
             (implementedTypeNoInstance <= emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent <= (IRegistrationValue) emptyEquivalent).Should().BeTrue();
-            (implementedTypeNoInstance <= (IRegistrationValue) emptyEquivalent).Should().BeFalse();
+            (emptyEquivalent <= (IRegistrationValue)emptyEquivalent).Should().BeTrue();
+            (implementedTypeNoInstance <= (IRegistrationValue)emptyEquivalent).Should().BeFalse();
 
-            ((IRegistrationValue) emptyEquivalent <= emptyEquivalent).Should().BeTrue();
-            ((IRegistrationValue) implementedTypeNoInstance <= emptyEquivalent).Should().BeFalse();
+            ((IRegistrationValue)emptyEquivalent <= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationValue)implementedTypeNoInstance <= emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent <= (IRegistrationValue) null).Should().BeFalse();
-            (implementedTypeNoInstance <= (IRegistrationValue) null).Should().BeFalse();
+            (emptyEquivalent <= (IRegistrationValue)null).Should().BeFalse();
+            (implementedTypeNoInstance <= (IRegistrationValue)null).Should().BeFalse();
          }
       }
 

@@ -92,6 +92,16 @@
          // ReSharper disable once NotAccessedField.Local
          private IDisposable flatField;
 
+         public IEnumerator<IDisposable> GetEnumerator()
+         {
+            return listOfDisposables.GetEnumerator();
+         }
+
+         IEnumerator IEnumerable.GetEnumerator()
+         {
+            return GetEnumerator();
+         }
+
          public void AddDisposable(IDisposable item)
          {
             ThrowIfDisposed();
@@ -99,19 +109,9 @@
             listOfDisposables.Add(item);
          }
 
-         public IEnumerator<IDisposable> GetEnumerator()
-         {
-            return listOfDisposables.GetEnumerator();
-         }
-
          public void SetFlatField(IDisposable value)
          {
             flatField = value;
-         }
-
-         IEnumerator IEnumerable.GetEnumerator()
-         {
-            return GetEnumerator();
          }
       }
 

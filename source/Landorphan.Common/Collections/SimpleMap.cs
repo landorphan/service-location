@@ -223,7 +223,7 @@
       /// <inheritdoc/>
       IEnumerator IEnumerable.GetEnumerator()
       {
-         return ((IEnumerable<KeyValuePair<TKey, TValue>>) this).GetEnumerator();
+         return ((IEnumerable<KeyValuePair<TKey, TValue>>)this).GetEnumerator();
       }
 
       /// <inheritdoc/>
@@ -263,7 +263,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _underlyingMap.LongCount();
+            var hashcode = (Int32)_underlyingMap.LongCount();
             return hashcode;
          }
       }

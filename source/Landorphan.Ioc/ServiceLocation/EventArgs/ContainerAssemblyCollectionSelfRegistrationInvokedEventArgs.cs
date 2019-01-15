@@ -19,7 +19,6 @@
       /// </summary>
       public ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs() : this(null, null)
       {
-         
       }
 
       /// <summary>

@@ -3,7 +3,6 @@
    using System.Collections.Immutable;
    using System.Reflection;
    using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    [TestClass]

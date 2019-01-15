@@ -49,7 +49,7 @@
          {
             actualObject.Should().BeOfType<RegistrationKeyTypeNamePair>();
 
-            var actualInterface = (IRegistrationKey) actualObject;
+            var actualInterface = (IRegistrationKey)actualObject;
             actualInterface.Equals(Target).Should().BeTrue();
 
             actualInterface.RegisteredType.Should().Be(type);
@@ -91,7 +91,7 @@
          public void It_should_compare_equivalent_to_itself_and_an_equivalent_instance()
          {
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationKey) target).Should().Be(0);
+            target.CompareTo((IRegistrationKey)target).Should().Be(0);
             target.CompareTo(new RegistrationKeyTypeNamePair()).Should().Be(0);
          }
 
@@ -99,9 +99,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_compare_greater_than_null()
          {
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationKey) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationKey)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -129,9 +129,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_equal_null()
          {
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationKey) null).Should().BeFalse();
+            target.Equals((IRegistrationKey)null).Should().BeFalse();
          }
       }
 
@@ -144,7 +144,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
             Object o = target;
-            ((IComparable) target).CompareTo(o).Should().Be(0);
+            ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
          [TestMethod]
@@ -152,7 +152,7 @@
          public void It_be_greater_than_null_when_I_call_IComparable_CompareTo()
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -218,7 +218,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationKey) target).Should().Be(0);
+            target.CompareTo((IRegistrationKey)target).Should().Be(0);
             target.CompareTo(new RegistrationKeyTypeNamePair(typeof(IInterface))).Should().Be(0);
          }
 
@@ -227,9 +227,9 @@
          public void It_should_compare_greater_than_null()
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationKey) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationKey)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -259,9 +259,9 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationKeyTypeNamePair(typeof(AbstractClass));
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationKey) null).Should().BeFalse();
+            target.Equals((IRegistrationKey)null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -290,7 +290,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
 
-            Action throwingAction = () => ((IComparable) target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -373,7 +373,7 @@
             var name = Guid.NewGuid().ToString("D");
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface), name);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationKey) target).Should().Be(0);
+            target.CompareTo((IRegistrationKey)target).Should().Be(0);
             target.CompareTo(new RegistrationKeyTypeNamePair(typeof(IInterface), name)).Should().Be(0);
          }
 
@@ -383,9 +383,9 @@
          {
             var name = Guid.NewGuid().ToString("D");
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface), name);
-            ((IComparable) target).CompareTo(null).Should().BeGreaterThan(0);
+            ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationKey) null).Should().BeGreaterThan(0);
+            target.CompareTo((IRegistrationKey)null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -429,9 +429,9 @@
          {
             var name = Guid.NewGuid().ToString("D");
             var target = new RegistrationKeyTypeNamePair(typeof(AbstractClass), name);
-            target.Equals((Object) null).Should().BeFalse();
+            target.Equals((Object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationKey) null).Should().BeFalse();
+            target.Equals((IRegistrationKey)null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -461,7 +461,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
 
-            Action throwingAction = () => ((IComparable) target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -518,34 +518,34 @@
             (abstractTypeNameZ == abstractTypeNameZ).Should().BeTrue();
             (abstractTypeNoName == abstractTypeNoName).Should().BeTrue();
 
-            (abstractTypeEmptyName == (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (abstractTypeNameA == (IRegistrationKey) abstractTypeNameA).Should().BeTrue();
-            (abstractTypeNameZ == (IRegistrationKey) abstractTypeNameZ).Should().BeTrue();
-            (abstractTypeNoName == (IRegistrationKey) abstractTypeNoName).Should().BeTrue();
+            (abstractTypeEmptyName == (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (abstractTypeNameA == (IRegistrationKey)abstractTypeNameA).Should().BeTrue();
+            (abstractTypeNameZ == (IRegistrationKey)abstractTypeNameZ).Should().BeTrue();
+            (abstractTypeNoName == (IRegistrationKey)abstractTypeNoName).Should().BeTrue();
 
-            ((IRegistrationKey) abstractTypeEmptyName == abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameA == abstractTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameZ == abstractTypeNameZ).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNoName == abstractTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName == abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameA == abstractTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameZ == abstractTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNoName == abstractTypeNoName).Should().BeTrue();
 
             (emptyEquivalent == emptyEquivalent).Should().BeTrue();
-            (emptyEquivalent == (IRegistrationKey) emptyEquivalent).Should().BeTrue();
-            ((IRegistrationKey) emptyEquivalent == emptyEquivalent).Should().BeTrue();
+            (emptyEquivalent == (IRegistrationKey)emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)emptyEquivalent == emptyEquivalent).Should().BeTrue();
 
             (interfaceTypeEmptyName == interfaceTypeEmptyName).Should().BeTrue();
             (interfaceTypeNameA == interfaceTypeNameA).Should().BeTrue();
             (interfaceTypeNameZ == interfaceTypeNameZ).Should().BeTrue();
             (interfaceTypeNoName == interfaceTypeNoName).Should().BeTrue();
 
-            (interfaceTypeEmptyName == (IRegistrationKey) interfaceTypeEmptyName).Should().BeTrue();
-            (interfaceTypeNameA == (IRegistrationKey) interfaceTypeNameA).Should().BeTrue();
-            (interfaceTypeNameZ == (IRegistrationKey) interfaceTypeNameZ).Should().BeTrue();
-            (interfaceTypeNoName == (IRegistrationKey) interfaceTypeNoName).Should().BeTrue();
+            (interfaceTypeEmptyName == (IRegistrationKey)interfaceTypeEmptyName).Should().BeTrue();
+            (interfaceTypeNameA == (IRegistrationKey)interfaceTypeNameA).Should().BeTrue();
+            (interfaceTypeNameZ == (IRegistrationKey)interfaceTypeNameZ).Should().BeTrue();
+            (interfaceTypeNoName == (IRegistrationKey)interfaceTypeNoName).Should().BeTrue();
 
-            ((IRegistrationKey) interfaceTypeEmptyName == interfaceTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA == interfaceTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameZ == interfaceTypeNameZ).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNoName == interfaceTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName == interfaceTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA == interfaceTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameZ == interfaceTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNoName == interfaceTypeNoName).Should().BeTrue();
 
             (emptyEquivalent == RegistrationKeyTypeNamePair.Empty).Should().BeTrue();
 
@@ -554,15 +554,15 @@
             (abstractTypeNameZ == interfaceTypeNameZ).Should().BeFalse();
             (abstractTypeNoName == interfaceTypeNoName).Should().BeFalse();
 
-            (abstractTypeEmptyName == (IRegistrationKey) interfaceTypeEmptyName).Should().BeFalse();
-            (abstractTypeNameA == (IRegistrationKey) interfaceTypeNameA).Should().BeFalse();
-            (abstractTypeNameZ == (IRegistrationKey) interfaceTypeNameZ).Should().BeFalse();
-            (abstractTypeNoName == (IRegistrationKey) interfaceTypeNoName).Should().BeFalse();
+            (abstractTypeEmptyName == (IRegistrationKey)interfaceTypeEmptyName).Should().BeFalse();
+            (abstractTypeNameA == (IRegistrationKey)interfaceTypeNameA).Should().BeFalse();
+            (abstractTypeNameZ == (IRegistrationKey)interfaceTypeNameZ).Should().BeFalse();
+            (abstractTypeNoName == (IRegistrationKey)interfaceTypeNoName).Should().BeFalse();
 
-            ((IRegistrationKey) abstractTypeEmptyName == interfaceTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameA == interfaceTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameZ == interfaceTypeNameZ).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNoName == interfaceTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName == interfaceTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameA == interfaceTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameZ == interfaceTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNoName == interfaceTypeNoName).Should().BeFalse();
          }
 
          [TestMethod]
@@ -579,33 +579,33 @@
             (abstractTypeNameZ > abstractTypeNameA).Should().BeTrue();
             (abstractTypeNameA > abstractTypeNameZ).Should().BeFalse();
 
-            (abstractTypeEmptyName > (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (abstractTypeEmptyName > (IRegistrationKey) abstractTypeNoName).Should().BeFalse();
-            (abstractTypeNameA > (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (abstractTypeNameZ > (IRegistrationKey) abstractTypeNameA).Should().BeTrue();
-            (abstractTypeNameA > (IRegistrationKey) abstractTypeNameZ).Should().BeFalse();
+            (abstractTypeEmptyName > (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (abstractTypeEmptyName > (IRegistrationKey)abstractTypeNoName).Should().BeFalse();
+            (abstractTypeNameA > (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (abstractTypeNameZ > (IRegistrationKey)abstractTypeNameA).Should().BeTrue();
+            (abstractTypeNameA > (IRegistrationKey)abstractTypeNameZ).Should().BeFalse();
 
-            ((IRegistrationKey) abstractTypeEmptyName > abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeEmptyName > abstractTypeNoName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameA > abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameZ > abstractTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameA > abstractTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName > abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName > abstractTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameA > abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameZ > abstractTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameA > abstractTypeNameZ).Should().BeFalse();
 
             (emptyEquivalent > emptyEquivalent).Should().BeFalse();
             (abstractTypeEmptyName > emptyEquivalent).Should().BeTrue();
             (abstractTypeNoName > emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent > (IRegistrationKey) emptyEquivalent).Should().BeFalse();
-            (abstractTypeEmptyName > (IRegistrationKey) emptyEquivalent).Should().BeTrue();
-            (abstractTypeNoName > (IRegistrationKey) emptyEquivalent).Should().BeTrue();
+            (emptyEquivalent > (IRegistrationKey)emptyEquivalent).Should().BeFalse();
+            (abstractTypeEmptyName > (IRegistrationKey)emptyEquivalent).Should().BeTrue();
+            (abstractTypeNoName > (IRegistrationKey)emptyEquivalent).Should().BeTrue();
 
-            ((IRegistrationKey) emptyEquivalent > emptyEquivalent).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeEmptyName > emptyEquivalent).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNoName > emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)emptyEquivalent > emptyEquivalent).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName > emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNoName > emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent > (IRegistrationKey) null).Should().BeTrue();
-            (abstractTypeEmptyName > (IRegistrationKey) null).Should().BeTrue();
-            (abstractTypeNoName > (IRegistrationKey) null).Should().BeTrue();
+            (emptyEquivalent > (IRegistrationKey)null).Should().BeTrue();
+            (abstractTypeEmptyName > (IRegistrationKey)null).Should().BeTrue();
+            (abstractTypeNoName > (IRegistrationKey)null).Should().BeTrue();
 
             (interfaceTypeEmptyName > interfaceTypeEmptyName).Should().BeFalse();
             (interfaceTypeEmptyName > interfaceTypeNoName).Should().BeFalse();
@@ -613,27 +613,27 @@
             (interfaceTypeNameZ > interfaceTypeNameA).Should().BeTrue();
             (interfaceTypeNameA > interfaceTypeNameZ).Should().BeFalse();
 
-            (interfaceTypeEmptyName > (IRegistrationKey) interfaceTypeEmptyName).Should().BeFalse();
-            (interfaceTypeEmptyName > (IRegistrationKey) interfaceTypeNoName).Should().BeFalse();
-            (interfaceTypeNameA > (IRegistrationKey) interfaceTypeEmptyName).Should().BeTrue();
-            (interfaceTypeNameZ > (IRegistrationKey) interfaceTypeNameA).Should().BeTrue();
-            (interfaceTypeNameA > (IRegistrationKey) interfaceTypeNameZ).Should().BeFalse();
+            (interfaceTypeEmptyName > (IRegistrationKey)interfaceTypeEmptyName).Should().BeFalse();
+            (interfaceTypeEmptyName > (IRegistrationKey)interfaceTypeNoName).Should().BeFalse();
+            (interfaceTypeNameA > (IRegistrationKey)interfaceTypeEmptyName).Should().BeTrue();
+            (interfaceTypeNameZ > (IRegistrationKey)interfaceTypeNameA).Should().BeTrue();
+            (interfaceTypeNameA > (IRegistrationKey)interfaceTypeNameZ).Should().BeFalse();
 
-            ((IRegistrationKey) interfaceTypeEmptyName > interfaceTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeEmptyName > interfaceTypeNoName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA > interfaceTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameZ > interfaceTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA > interfaceTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName > interfaceTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName > interfaceTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA > interfaceTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameZ > interfaceTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA > interfaceTypeNameZ).Should().BeFalse();
 
             // interfaces are checked before names
             (interfaceTypeEmptyName > abstractTypeEmptyName).Should().BeTrue();
             (interfaceTypeNameA > abstractTypeNameA).Should().BeTrue();
 
-            (interfaceTypeEmptyName > (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (interfaceTypeNameA > (IRegistrationKey) abstractTypeNameA).Should().BeTrue();
+            (interfaceTypeEmptyName > (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (interfaceTypeNameA > (IRegistrationKey)abstractTypeNameA).Should().BeTrue();
 
-            ((IRegistrationKey) interfaceTypeEmptyName > abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA > abstractTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName > abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA > abstractTypeNameA).Should().BeTrue();
          }
 
          [TestMethod]
@@ -650,33 +650,33 @@
             (abstractTypeNameZ >= abstractTypeNameA).Should().BeTrue();
             (abstractTypeNameA >= abstractTypeNameZ).Should().BeFalse();
 
-            (abstractTypeEmptyName >= (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (abstractTypeEmptyName >= (IRegistrationKey) abstractTypeNoName).Should().BeTrue();
-            (abstractTypeNameA >= (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (abstractTypeNameZ >= (IRegistrationKey) abstractTypeNameA).Should().BeTrue();
-            (abstractTypeNameA >= (IRegistrationKey) abstractTypeNameZ).Should().BeFalse();
+            (abstractTypeEmptyName >= (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (abstractTypeEmptyName >= (IRegistrationKey)abstractTypeNoName).Should().BeTrue();
+            (abstractTypeNameA >= (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (abstractTypeNameZ >= (IRegistrationKey)abstractTypeNameA).Should().BeTrue();
+            (abstractTypeNameA >= (IRegistrationKey)abstractTypeNameZ).Should().BeFalse();
 
-            ((IRegistrationKey) abstractTypeEmptyName >= abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeEmptyName >= abstractTypeNoName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameA >= abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameZ >= abstractTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameA >= abstractTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName >= abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName >= abstractTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameA >= abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameZ >= abstractTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameA >= abstractTypeNameZ).Should().BeFalse();
 
             (emptyEquivalent >= emptyEquivalent).Should().BeTrue();
             (abstractTypeEmptyName >= emptyEquivalent).Should().BeTrue();
             (abstractTypeNoName >= emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent >= (IRegistrationKey) emptyEquivalent).Should().BeTrue();
-            (abstractTypeEmptyName >= (IRegistrationKey) emptyEquivalent).Should().BeTrue();
-            (abstractTypeNoName >= (IRegistrationKey) emptyEquivalent).Should().BeTrue();
+            (emptyEquivalent >= (IRegistrationKey)emptyEquivalent).Should().BeTrue();
+            (abstractTypeEmptyName >= (IRegistrationKey)emptyEquivalent).Should().BeTrue();
+            (abstractTypeNoName >= (IRegistrationKey)emptyEquivalent).Should().BeTrue();
 
-            ((IRegistrationKey) emptyEquivalent >= emptyEquivalent).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeEmptyName >= emptyEquivalent).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNoName >= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)emptyEquivalent >= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName >= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNoName >= emptyEquivalent).Should().BeTrue();
 
-            (emptyEquivalent >= (IRegistrationKey) null).Should().BeTrue();
-            (abstractTypeEmptyName >= (IRegistrationKey) null).Should().BeTrue();
-            (abstractTypeNoName >= (IRegistrationKey) null).Should().BeTrue();
+            (emptyEquivalent >= (IRegistrationKey)null).Should().BeTrue();
+            (abstractTypeEmptyName >= (IRegistrationKey)null).Should().BeTrue();
+            (abstractTypeNoName >= (IRegistrationKey)null).Should().BeTrue();
 
             (interfaceTypeEmptyName >= interfaceTypeEmptyName).Should().BeTrue();
             (interfaceTypeEmptyName >= interfaceTypeNoName).Should().BeTrue();
@@ -684,27 +684,27 @@
             (interfaceTypeNameZ >= interfaceTypeNameA).Should().BeTrue();
             (interfaceTypeNameA >= interfaceTypeNameZ).Should().BeFalse();
 
-            (interfaceTypeEmptyName >= (IRegistrationKey) interfaceTypeEmptyName).Should().BeTrue();
-            (interfaceTypeEmptyName >= (IRegistrationKey) interfaceTypeNoName).Should().BeTrue();
-            (interfaceTypeNameA >= (IRegistrationKey) interfaceTypeEmptyName).Should().BeTrue();
-            (interfaceTypeNameZ >= (IRegistrationKey) interfaceTypeNameA).Should().BeTrue();
-            (interfaceTypeNameA >= (IRegistrationKey) interfaceTypeNameZ).Should().BeFalse();
+            (interfaceTypeEmptyName >= (IRegistrationKey)interfaceTypeEmptyName).Should().BeTrue();
+            (interfaceTypeEmptyName >= (IRegistrationKey)interfaceTypeNoName).Should().BeTrue();
+            (interfaceTypeNameA >= (IRegistrationKey)interfaceTypeEmptyName).Should().BeTrue();
+            (interfaceTypeNameZ >= (IRegistrationKey)interfaceTypeNameA).Should().BeTrue();
+            (interfaceTypeNameA >= (IRegistrationKey)interfaceTypeNameZ).Should().BeFalse();
 
-            ((IRegistrationKey) interfaceTypeEmptyName >= interfaceTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeEmptyName >= interfaceTypeNoName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA >= interfaceTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameZ >= interfaceTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA >= interfaceTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName >= interfaceTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName >= interfaceTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA >= interfaceTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameZ >= interfaceTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA >= interfaceTypeNameZ).Should().BeFalse();
 
             // interfaces are checked before names
             (interfaceTypeEmptyName >= abstractTypeEmptyName).Should().BeTrue();
             (interfaceTypeNameA >= abstractTypeNameA).Should().BeTrue();
 
-            (interfaceTypeEmptyName >= (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (interfaceTypeNameA >= (IRegistrationKey) abstractTypeNameA).Should().BeTrue();
+            (interfaceTypeEmptyName >= (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (interfaceTypeNameA >= (IRegistrationKey)abstractTypeNameA).Should().BeTrue();
 
-            ((IRegistrationKey) interfaceTypeEmptyName >= abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA >= abstractTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName >= abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA >= abstractTypeNameA).Should().BeTrue();
          }
 
          [TestMethod]
@@ -719,15 +719,15 @@
             (abstractTypeNameZ != abstractTypeNameZ).Should().BeFalse();
             (abstractTypeNoName != abstractTypeNoName).Should().BeFalse();
 
-            (abstractTypeEmptyName != (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (abstractTypeNameA != (IRegistrationKey) abstractTypeNameA).Should().BeFalse();
-            (abstractTypeNameZ != (IRegistrationKey) abstractTypeNameZ).Should().BeFalse();
-            (abstractTypeNoName != (IRegistrationKey) abstractTypeNoName).Should().BeFalse();
+            (abstractTypeEmptyName != (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (abstractTypeNameA != (IRegistrationKey)abstractTypeNameA).Should().BeFalse();
+            (abstractTypeNameZ != (IRegistrationKey)abstractTypeNameZ).Should().BeFalse();
+            (abstractTypeNoName != (IRegistrationKey)abstractTypeNoName).Should().BeFalse();
 
-            ((IRegistrationKey) abstractTypeEmptyName != abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameA != abstractTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameZ != abstractTypeNameZ).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNoName != abstractTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName != abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameA != abstractTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameZ != abstractTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNoName != abstractTypeNoName).Should().BeFalse();
 
             (emptyEquivalent != emptyEquivalent).Should().BeFalse();
 
@@ -736,15 +736,15 @@
             (interfaceTypeNameZ != interfaceTypeNameZ).Should().BeFalse();
             (interfaceTypeNoName != interfaceTypeNoName).Should().BeFalse();
 
-            (interfaceTypeEmptyName != (IRegistrationKey) interfaceTypeEmptyName).Should().BeFalse();
-            (interfaceTypeNameA != (IRegistrationKey) interfaceTypeNameA).Should().BeFalse();
-            (interfaceTypeNameZ != (IRegistrationKey) interfaceTypeNameZ).Should().BeFalse();
-            (interfaceTypeNoName != (IRegistrationKey) interfaceTypeNoName).Should().BeFalse();
+            (interfaceTypeEmptyName != (IRegistrationKey)interfaceTypeEmptyName).Should().BeFalse();
+            (interfaceTypeNameA != (IRegistrationKey)interfaceTypeNameA).Should().BeFalse();
+            (interfaceTypeNameZ != (IRegistrationKey)interfaceTypeNameZ).Should().BeFalse();
+            (interfaceTypeNoName != (IRegistrationKey)interfaceTypeNoName).Should().BeFalse();
 
-            ((IRegistrationKey) interfaceTypeEmptyName != interfaceTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA != interfaceTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameZ != interfaceTypeNameZ).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNoName != interfaceTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName != interfaceTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA != interfaceTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameZ != interfaceTypeNameZ).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNoName != interfaceTypeNoName).Should().BeFalse();
 
             (emptyEquivalent != RegistrationKeyTypeNamePair.Empty).Should().BeFalse();
 
@@ -753,15 +753,15 @@
             (abstractTypeNameZ != interfaceTypeNameZ).Should().BeTrue();
             (abstractTypeNoName != interfaceTypeNoName).Should().BeTrue();
 
-            (abstractTypeEmptyName != (IRegistrationKey) interfaceTypeEmptyName).Should().BeTrue();
-            (abstractTypeNameA != (IRegistrationKey) interfaceTypeNameA).Should().BeTrue();
-            (abstractTypeNameZ != (IRegistrationKey) interfaceTypeNameZ).Should().BeTrue();
-            (abstractTypeNoName != (IRegistrationKey) interfaceTypeNoName).Should().BeTrue();
+            (abstractTypeEmptyName != (IRegistrationKey)interfaceTypeEmptyName).Should().BeTrue();
+            (abstractTypeNameA != (IRegistrationKey)interfaceTypeNameA).Should().BeTrue();
+            (abstractTypeNameZ != (IRegistrationKey)interfaceTypeNameZ).Should().BeTrue();
+            (abstractTypeNoName != (IRegistrationKey)interfaceTypeNoName).Should().BeTrue();
 
-            ((IRegistrationKey) abstractTypeEmptyName != interfaceTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameA != interfaceTypeNameA).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameZ != interfaceTypeNameZ).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNoName != interfaceTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName != interfaceTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameA != interfaceTypeNameA).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameZ != interfaceTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNoName != interfaceTypeNoName).Should().BeTrue();
          }
 
          [TestMethod]
@@ -778,33 +778,33 @@
             (abstractTypeNameZ < abstractTypeNameA).Should().BeFalse();
             (abstractTypeNameA < abstractTypeNameZ).Should().BeTrue();
 
-            (abstractTypeEmptyName < (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (abstractTypeEmptyName < (IRegistrationKey) abstractTypeNoName).Should().BeFalse();
-            (abstractTypeNameA < (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (abstractTypeNameZ < (IRegistrationKey) abstractTypeNameA).Should().BeFalse();
-            (abstractTypeNameA < (IRegistrationKey) abstractTypeNameZ).Should().BeTrue();
+            (abstractTypeEmptyName < (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (abstractTypeEmptyName < (IRegistrationKey)abstractTypeNoName).Should().BeFalse();
+            (abstractTypeNameA < (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (abstractTypeNameZ < (IRegistrationKey)abstractTypeNameA).Should().BeFalse();
+            (abstractTypeNameA < (IRegistrationKey)abstractTypeNameZ).Should().BeTrue();
 
-            ((IRegistrationKey) abstractTypeEmptyName < abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeEmptyName < abstractTypeNoName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameA < abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameZ < abstractTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameA < abstractTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName < abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName < abstractTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameA < abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameZ < abstractTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameA < abstractTypeNameZ).Should().BeTrue();
 
             (emptyEquivalent < emptyEquivalent).Should().BeFalse();
             (abstractTypeEmptyName < emptyEquivalent).Should().BeFalse();
             (abstractTypeNoName < emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent < (IRegistrationKey) emptyEquivalent).Should().BeFalse();
-            (abstractTypeEmptyName < (IRegistrationKey) emptyEquivalent).Should().BeFalse();
-            (abstractTypeNoName < (IRegistrationKey) emptyEquivalent).Should().BeFalse();
+            (emptyEquivalent < (IRegistrationKey)emptyEquivalent).Should().BeFalse();
+            (abstractTypeEmptyName < (IRegistrationKey)emptyEquivalent).Should().BeFalse();
+            (abstractTypeNoName < (IRegistrationKey)emptyEquivalent).Should().BeFalse();
 
-            ((IRegistrationKey) emptyEquivalent < emptyEquivalent).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeEmptyName < emptyEquivalent).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNoName < emptyEquivalent).Should().BeFalse();
+            ((IRegistrationKey)emptyEquivalent < emptyEquivalent).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeEmptyName < emptyEquivalent).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNoName < emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent < (IRegistrationKey) null).Should().BeFalse();
-            (abstractTypeEmptyName < (IRegistrationKey) null).Should().BeFalse();
-            (abstractTypeNoName < (IRegistrationKey) null).Should().BeFalse();
+            (emptyEquivalent < (IRegistrationKey)null).Should().BeFalse();
+            (abstractTypeEmptyName < (IRegistrationKey)null).Should().BeFalse();
+            (abstractTypeNoName < (IRegistrationKey)null).Should().BeFalse();
 
             (interfaceTypeEmptyName < interfaceTypeEmptyName).Should().BeFalse();
             (interfaceTypeEmptyName < interfaceTypeNoName).Should().BeFalse();
@@ -812,27 +812,27 @@
             (interfaceTypeNameZ < interfaceTypeNameA).Should().BeFalse();
             (interfaceTypeNameA < interfaceTypeNameZ).Should().BeTrue();
 
-            (interfaceTypeEmptyName < (IRegistrationKey) interfaceTypeEmptyName).Should().BeFalse();
-            (interfaceTypeEmptyName < (IRegistrationKey) interfaceTypeNoName).Should().BeFalse();
-            (interfaceTypeNameA < (IRegistrationKey) interfaceTypeEmptyName).Should().BeFalse();
-            (interfaceTypeNameZ < (IRegistrationKey) interfaceTypeNameA).Should().BeFalse();
-            (interfaceTypeNameA < (IRegistrationKey) interfaceTypeNameZ).Should().BeTrue();
+            (interfaceTypeEmptyName < (IRegistrationKey)interfaceTypeEmptyName).Should().BeFalse();
+            (interfaceTypeEmptyName < (IRegistrationKey)interfaceTypeNoName).Should().BeFalse();
+            (interfaceTypeNameA < (IRegistrationKey)interfaceTypeEmptyName).Should().BeFalse();
+            (interfaceTypeNameZ < (IRegistrationKey)interfaceTypeNameA).Should().BeFalse();
+            (interfaceTypeNameA < (IRegistrationKey)interfaceTypeNameZ).Should().BeTrue();
 
-            ((IRegistrationKey) interfaceTypeEmptyName < interfaceTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeEmptyName < interfaceTypeNoName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA < interfaceTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameZ < interfaceTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA < interfaceTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName < interfaceTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName < interfaceTypeNoName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA < interfaceTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameZ < interfaceTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA < interfaceTypeNameZ).Should().BeTrue();
 
             // interfaces are checked before names
             (interfaceTypeEmptyName < abstractTypeEmptyName).Should().BeFalse();
             (interfaceTypeNameA < abstractTypeNameA).Should().BeFalse();
 
-            (interfaceTypeEmptyName < (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (interfaceTypeNameA < (IRegistrationKey) abstractTypeNameA).Should().BeFalse();
+            (interfaceTypeEmptyName < (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (interfaceTypeNameA < (IRegistrationKey)abstractTypeNameA).Should().BeFalse();
 
-            ((IRegistrationKey) interfaceTypeEmptyName < abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA < abstractTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName < abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA < abstractTypeNameA).Should().BeFalse();
          }
 
          [TestMethod]
@@ -850,33 +850,33 @@
             (abstractTypeNameZ <= abstractTypeNameA).Should().BeFalse();
             (abstractTypeNameA <= abstractTypeNameZ).Should().BeTrue();
 
-            (abstractTypeEmptyName <= (IRegistrationKey) abstractTypeEmptyName).Should().BeTrue();
-            (abstractTypeEmptyName <= (IRegistrationKey) abstractTypeNoName).Should().BeTrue();
-            (abstractTypeNameA <= (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (abstractTypeNameZ <= (IRegistrationKey) abstractTypeNameA).Should().BeFalse();
-            (abstractTypeNameA <= (IRegistrationKey) abstractTypeNameZ).Should().BeTrue();
+            (abstractTypeEmptyName <= (IRegistrationKey)abstractTypeEmptyName).Should().BeTrue();
+            (abstractTypeEmptyName <= (IRegistrationKey)abstractTypeNoName).Should().BeTrue();
+            (abstractTypeNameA <= (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (abstractTypeNameZ <= (IRegistrationKey)abstractTypeNameA).Should().BeFalse();
+            (abstractTypeNameA <= (IRegistrationKey)abstractTypeNameZ).Should().BeTrue();
 
-            ((IRegistrationKey) abstractTypeEmptyName <= abstractTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeEmptyName <= abstractTypeNoName).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeNameA <= abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameZ <= abstractTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNameA <= abstractTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName <= abstractTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName <= abstractTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeNameA <= abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameZ <= abstractTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNameA <= abstractTypeNameZ).Should().BeTrue();
 
             (emptyEquivalent <= emptyEquivalent).Should().BeTrue();
             (abstractTypeEmptyName <= emptyEquivalent).Should().BeFalse();
             (abstractTypeNoName <= emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent <= (IRegistrationKey) emptyEquivalent).Should().BeTrue();
-            (abstractTypeEmptyName <= (IRegistrationKey) emptyEquivalent).Should().BeFalse();
-            (abstractTypeNoName <= (IRegistrationKey) emptyEquivalent).Should().BeFalse();
+            (emptyEquivalent <= (IRegistrationKey)emptyEquivalent).Should().BeTrue();
+            (abstractTypeEmptyName <= (IRegistrationKey)emptyEquivalent).Should().BeFalse();
+            (abstractTypeNoName <= (IRegistrationKey)emptyEquivalent).Should().BeFalse();
 
-            ((IRegistrationKey) emptyEquivalent <= emptyEquivalent).Should().BeTrue();
-            ((IRegistrationKey) abstractTypeEmptyName <= emptyEquivalent).Should().BeFalse();
-            ((IRegistrationKey) abstractTypeNoName <= emptyEquivalent).Should().BeFalse();
+            ((IRegistrationKey)emptyEquivalent <= emptyEquivalent).Should().BeTrue();
+            ((IRegistrationKey)abstractTypeEmptyName <= emptyEquivalent).Should().BeFalse();
+            ((IRegistrationKey)abstractTypeNoName <= emptyEquivalent).Should().BeFalse();
 
-            (emptyEquivalent <= (IRegistrationKey) null).Should().BeFalse();
-            (abstractTypeEmptyName <= (IRegistrationKey) null).Should().BeFalse();
-            (abstractTypeNoName <= (IRegistrationKey) null).Should().BeFalse();
+            (emptyEquivalent <= (IRegistrationKey)null).Should().BeFalse();
+            (abstractTypeEmptyName <= (IRegistrationKey)null).Should().BeFalse();
+            (abstractTypeNoName <= (IRegistrationKey)null).Should().BeFalse();
 
             (interfaceTypeEmptyName <= interfaceTypeEmptyName).Should().BeTrue();
             (interfaceTypeEmptyName <= interfaceTypeNoName).Should().BeTrue();
@@ -884,27 +884,27 @@
             (interfaceTypeNameZ <= interfaceTypeNameA).Should().BeFalse();
             (interfaceTypeNameA <= interfaceTypeNameZ).Should().BeTrue();
 
-            (interfaceTypeEmptyName <= (IRegistrationKey) interfaceTypeEmptyName).Should().BeTrue();
-            (interfaceTypeEmptyName <= (IRegistrationKey) interfaceTypeNoName).Should().BeTrue();
-            (interfaceTypeNameA <= (IRegistrationKey) interfaceTypeEmptyName).Should().BeFalse();
-            (interfaceTypeNameZ <= (IRegistrationKey) interfaceTypeNameA).Should().BeFalse();
-            (interfaceTypeNameA <= (IRegistrationKey) interfaceTypeNameZ).Should().BeTrue();
+            (interfaceTypeEmptyName <= (IRegistrationKey)interfaceTypeEmptyName).Should().BeTrue();
+            (interfaceTypeEmptyName <= (IRegistrationKey)interfaceTypeNoName).Should().BeTrue();
+            (interfaceTypeNameA <= (IRegistrationKey)interfaceTypeEmptyName).Should().BeFalse();
+            (interfaceTypeNameZ <= (IRegistrationKey)interfaceTypeNameA).Should().BeFalse();
+            (interfaceTypeNameA <= (IRegistrationKey)interfaceTypeNameZ).Should().BeTrue();
 
-            ((IRegistrationKey) interfaceTypeEmptyName <= interfaceTypeEmptyName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeEmptyName <= interfaceTypeNoName).Should().BeTrue();
-            ((IRegistrationKey) interfaceTypeNameA <= interfaceTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameZ <= interfaceTypeNameA).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA <= interfaceTypeNameZ).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName <= interfaceTypeEmptyName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeEmptyName <= interfaceTypeNoName).Should().BeTrue();
+            ((IRegistrationKey)interfaceTypeNameA <= interfaceTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameZ <= interfaceTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA <= interfaceTypeNameZ).Should().BeTrue();
 
             // interfaces are checked before names
             (interfaceTypeEmptyName <= abstractTypeEmptyName).Should().BeFalse();
             (interfaceTypeNameA <= abstractTypeNameA).Should().BeFalse();
 
-            (interfaceTypeEmptyName <= (IRegistrationKey) abstractTypeEmptyName).Should().BeFalse();
-            (interfaceTypeNameA <= (IRegistrationKey) abstractTypeNameA).Should().BeFalse();
+            (interfaceTypeEmptyName <= (IRegistrationKey)abstractTypeEmptyName).Should().BeFalse();
+            (interfaceTypeNameA <= (IRegistrationKey)abstractTypeNameA).Should().BeFalse();
 
-            ((IRegistrationKey) interfaceTypeEmptyName <= abstractTypeEmptyName).Should().BeFalse();
-            ((IRegistrationKey) interfaceTypeNameA <= abstractTypeNameA).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeEmptyName <= abstractTypeEmptyName).Should().BeFalse();
+            ((IRegistrationKey)interfaceTypeNameA <= abstractTypeNameA).Should().BeFalse();
          }
       }
 

@@ -9,14 +9,12 @@
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    /// <summary>
-   ///    Provides common services for BDD-style (context/specification) unit tests.  Serves as an adapter between the MSTest
-   ///    and  BDD-style tests.
+   /// Provides common services for BDD-style (context/specification) unit tests.  Serves as an adapter between the MSTest and BDD-style tests.
    /// </summary>
    /// <remarks>
-   ///    Used when <see cref="IDisposable" /> fields are present.
+   /// Used when <see cref="IDisposable" /> fields are present.
    /// </remarks>
    [SuppressMessage("SonarLint.CodeSmell", "S3881:IDisposable should be implemented correctly", Justification = "Reviewed (MWP)")]
-   [CLSCompliant(false)]
    [TestClass]
    public abstract class DisposableArrangeActAssertWithIoc : ArrangeActAssertWithIoc, INotifyingQueryDisposable
    {
@@ -46,12 +44,10 @@
       }
 
       /// <summary>
-      ///    Releases the unmanaged resources used by the <see cref="DisposableArrangeActAssert" /> and optionally releases the
-      ///    managed resources.
+      /// Releases the unmanaged resources used by the <see cref="DisposableArrangeActAssert" /> and optionally releases the managed resources.
       /// </summary>
       /// <param name="disposing">
-      ///    true to release both managed and unmanaged resources; false to release only unmanaged
-      ///    resources.
+      /// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
       /// </param>
       protected virtual void Dispose(Boolean disposing)
       {
@@ -69,7 +65,7 @@
       }
 
       /// <summary>
-      ///    Throws an <see cref="ObjectDisposedException" /> if this instance has been disposed.
+      /// Throws an <see cref="ObjectDisposedException" /> if this instance has been disposed.
       /// </summary>
       protected void ThrowIfDisposed()
       {
@@ -80,7 +76,7 @@
       }
 
       /// <summary>
-      ///    Finds and releases all managed resources.
+      /// Finds and releases all managed resources.
       /// </summary>
       [SuppressMessage("SonarLint.CodeSmell", "S134: Control flow statements if, switch, for, foreach, while, do  and try should not be nested too deeply")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
@@ -140,15 +136,14 @@
       }
 
       /// <summary>
-      ///    Releases the unmanaged resources.
+      /// Releases the unmanaged resources.
       /// </summary>
       protected virtual void ReleaseUnmanagedResources()
       {
       }
 
       /// <summary>
-      ///    Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the
-      ///    <see cref="DisposableArrangeActAssert" />.
+      /// Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the <see cref="DisposableArrangeActAssert"/>.
       /// </summary>
       ~DisposableArrangeActAssertWithIoc()
       {
@@ -165,7 +160,7 @@
       public Boolean IsDisposing => _isDisposing != 0;
 
       /// <summary>
-      ///    Notifies all listeners that this instance is being disposed.
+      /// Notifies all listeners that this instance is being disposed.
       /// </summary>
       protected virtual void OnDisposing()
       {

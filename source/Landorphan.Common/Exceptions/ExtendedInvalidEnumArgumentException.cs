@@ -146,8 +146,8 @@
       private ExtendedInvalidEnumArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
          InvalidValue = info.GetInt64("invalidValue");
-         EnumType = (Type) info.GetValue("enumType", typeof(Type));
-         UnderlyingType = (Type) info.GetValue("underlyingType", typeof(Type));
+         EnumType = (Type)info.GetValue("enumType", typeof(Type));
+         UnderlyingType = (Type)info.GetValue("underlyingType", typeof(Type));
       }
 
       /// <inheritdoc/>

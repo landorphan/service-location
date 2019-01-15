@@ -104,7 +104,7 @@
       /// </exception>
       private TimeoutElapsedBeforeLockObtainedException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         Timeout = (TimeSpan) info.GetValue("timeout", typeof(TimeSpan));
+         Timeout = (TimeSpan)info.GetValue("timeout", typeof(TimeSpan));
       }
 
       /// <summary>

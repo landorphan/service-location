@@ -80,7 +80,7 @@
       /// <inheritdoc/>
       public IEnumerator<T> GetEnumerator()
       {
-         return ((IEnumerable<T>) _stack).GetEnumerator();
+         return ((IEnumerable<T>)_stack).GetEnumerator();
       }
 
       /// <inheritdoc/>
@@ -119,7 +119,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _stack.LongCount();
+            var hashcode = (Int32)_stack.LongCount();
             return hashcode;
          }
       }

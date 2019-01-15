@@ -224,7 +224,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _collection.LongCount();
+            var hashcode = (Int32)_collection.LongCount();
             return hashcode;
          }
       }

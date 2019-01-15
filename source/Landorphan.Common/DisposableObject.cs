@@ -7,11 +7,8 @@
    using Landorphan.Common.Threading;
 
    /// <summary>
-   /// Base implementation for classes implementing <see cref="IQueryDisposable"/>.
+   /// Base implementation for classes implementing <see cref="IDisposable"/>.
    /// </summary>
-   /// <remarks>
-   /// Avoid deriving from this class if binary serialization is needed.
-   /// </remarks>
    [SuppressMessage("Microsoft.", "CA1063: Implement IDisposable Correctly", Justification = "Reviewed (MWP)")]
    public abstract class DisposableObject : INotifyingQueryDisposable
    {
@@ -89,7 +86,6 @@
          var derivedType = GetType();
          while (derivedType != typeof(DisposableObject))
          {
-            // TODO: (MWP) double check the auto-property fields are grabbed since port to this platform .
             var fields = derivedType.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
             foreach (var field in fields)
             {
@@ -148,8 +144,7 @@
       }
 
       /// <summary>
-      /// Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the
-      /// <see cref="DisposableObject"/>.
+      /// Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the <see cref="DisposableObject"/>.
       /// </summary>
       ~DisposableObject()
       {

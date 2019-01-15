@@ -44,6 +44,9 @@
       /// <summary>  
       /// Gets a value indicating whether this instance contains a message that represents an error condition.
       /// </summary>
+      /// <returns>
+      /// <c>true</c> if the current instance contains an error; otherwise <c>false</c>.
+      /// </returns>
       Boolean GetHasError();
    }
 }

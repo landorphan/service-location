@@ -88,7 +88,7 @@
       // ReSharper disable once UnusedMember.Local
       private ToTypeMustHavePublicDefaultConstructorArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         ToType = (Type) info.GetValue("toType", typeof(Type));
+         ToType = (Type)info.GetValue("toType", typeof(Type));
       }
 
       /// <inheritdoc/>

@@ -438,7 +438,7 @@
          ExchangeValue(value);
       }
 
-      /// <inheritdoc cref="DateTimeOffset"/>
+      /// <inheritdoc cref="DateTimeOffset.ToString()"/>
       [SuppressMessage(
          "Microsoft.Globalization",
          "CA1305:SpecifyIFormatProvider",
@@ -452,7 +452,7 @@
          return GetValue().ToString(CultureInfo.InvariantCulture);
       }
 
-      /// <inheritdoc cref="DateTimeOffset"/>
+      /// <inheritdoc cref="DateTimeOffset.ToString(String)"/>
       [SuppressMessage(
          "Microsoft.Globalization",
          "CA1305:SpecifyIFormatProvider",
@@ -466,13 +466,13 @@
          return GetValue().ToString(format);
       }
 
-      /// <inheritdoc cref="DateTimeOffset"/>
+      /// <inheritdoc cref="DateTimeOffset.ToString(IFormatProvider)"/>
       public String ToString(IFormatProvider formatProvider)
       {
          return GetValue().ToString(formatProvider);
       }
 
-      /// <inheritdoc cref="DateTimeOffset"/>
+      /// <inheritdoc cref="DateTimeOffset.ToString(String, IFormatProvider)"/>
       public String ToString(String format, IFormatProvider formatProvider)
       {
          return GetValue().ToString(format, formatProvider);

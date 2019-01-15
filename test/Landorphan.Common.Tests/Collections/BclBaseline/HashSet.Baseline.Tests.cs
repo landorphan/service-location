@@ -5,7 +5,6 @@
    using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
    using System.Linq;
-   using System.Runtime.CompilerServices;
    using FluentAssertions;
    using Landorphan.Common.Collections;
    using Landorphan.TestUtilities;
@@ -326,7 +325,7 @@
             target.Count.Should().Be(0);
 
             // ReSharper disable once RedundantCast
-            target.Add((EquatableTestItem) null);
+            target.Add((EquatableTestItem)null);
             target.Count.Should().Be(1);
             target.Contains(null).Should().BeTrue();
          }
@@ -347,7 +346,7 @@
 
       private sealed class EquatableTestItem : IEquatable<EquatableTestItem>
       {
-         private String _name = string.Empty;
+         private String _name = String.Empty;
 
          public EquatableTestItem()
          {
@@ -430,7 +429,7 @@
             }
 
             return x.Value == y.Value &&
-                   string.Equals(
+                   String.Equals(
                       x.Name.TrimNullToEmpty().ToUpperInvariant(),
                       y.Name.TrimNullToEmpty().ToUpperInvariant(),
                       StringComparison.Ordinal);

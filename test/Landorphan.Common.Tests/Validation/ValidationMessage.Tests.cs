@@ -23,6 +23,13 @@
          private const String ExpectedMessageType = "My Message Type";
          private Object actualObject;
 
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_Should_Clone_Correctly()
+         {
+            It_Should_Clone_Correctly_Implementation();
+         }
+
          protected override IValidationMessage Target { get; set; }
 
          protected override void ArrangeMethod()
@@ -39,18 +46,11 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_Should_Clone_Correctly()
-         {
-            It_Should_Clone_Correctly_Implementation();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_an_equivalent_untyped_clone_and_set_IsReadOnly_to_false()
          {
             actualObject.Should().BeOfType<ValidationMessage>();
 
-            var actualInterface = (IValidationMessage) actualObject;
+            var actualInterface = (IValidationMessage)actualObject;
             actualInterface.Equals(Target).Should().BeTrue();
 
             actualInterface.IsError.Should().Be(ExpectedIsError);
@@ -81,7 +81,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_I_call_clone_It_should_create_an_equivalent_value_that_is_not_read_only()
          {
-            var actual = (ValidationMessage) target.Clone();
+            var actual = (ValidationMessage)target.Clone();
             actual.Equals(target).Should().BeTrue();
             actual.GetHashCode().Should().Be(target.GetHashCode());
             actual.IsReadOnly.Should().BeFalse();
@@ -130,7 +130,7 @@
          public void Using_the_clone_constructor_and_other_is_null_It_should_throw_ArgumentNullException()
          {
             // ReSharper disable once ObjectCreationAsStatement
-            Action throwingAction = () => new ValidationMessage((ValidationMessage) null);
+            Action throwingAction = () => new ValidationMessage((ValidationMessage)null);
             throwingAction.Should()
                .Throw<ArgumentNullException>()
                .And.ParamName.Should()
@@ -165,8 +165,8 @@
             var target = new ValidationMessage();
             target.IsError.Should().BeFalse();
             target.IsReadOnly.Should().BeFalse();
-            target.Message.Should().Be(string.Empty);
-            target.MessageType.Should().Be(string.Empty);
+            target.Message.Should().Be(String.Empty);
+            target.MessageType.Should().Be(String.Empty);
          }
       }
 
@@ -256,13 +256,13 @@
             var target = new ValidationMessage();
 
             target.Message = null;
-            target.Message.Should().Be(string.Empty);
+            target.Message.Should().Be(String.Empty);
 
-            target.Message = string.Empty;
-            target.Message.Should().Be(string.Empty);
+            target.Message = String.Empty;
+            target.Message.Should().Be(String.Empty);
 
             target.Message = Whitespace;
-            target.Message.Should().Be(string.Empty);
+            target.Message.Should().Be(String.Empty);
 
             target.Message = ExpectedMessage;
             target.Message.Should().Be(ExpectedMessage);
@@ -280,13 +280,13 @@
             var target = new ValidationMessage();
 
             target.MessageType = null;
-            target.MessageType.Should().Be(string.Empty);
+            target.MessageType.Should().Be(String.Empty);
 
-            target.MessageType = string.Empty;
-            target.MessageType.Should().Be(string.Empty);
+            target.MessageType = String.Empty;
+            target.MessageType.Should().Be(String.Empty);
 
             target.MessageType = Whitespace;
-            target.MessageType.Should().Be(string.Empty);
+            target.MessageType.Should().Be(String.Empty);
 
             target.MessageType = ExpectedMessageType;
             target.MessageType.Should().Be(ExpectedMessageType);

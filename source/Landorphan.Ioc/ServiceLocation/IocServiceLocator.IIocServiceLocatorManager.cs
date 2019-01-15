@@ -124,11 +124,9 @@
       private void OnAfterContainerAssemblyCollectionSelfRegistrationInvoked(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
       {
          // fires the event
-         // ReSharper disable once PossibleMultipleEnumeration
          TryLogContainerAssemblyCollectionSelfRegistrationsInvoked(IocEventIdCodes.ServiceLocator.ContainerAssemblyCollectionSelfRegistrationsInvokedAfter, assemblies);
 
          // need null propagation because the listeners field will be set to null when this instance is disposing, creating a race condition.
-         // ReSharper disable once PossibleMultipleEnumeration
          var e = new ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(container, assemblies);
          _listenersAfterContainerAssemblyCollectionSelfRegistrationInvoked?.Invoke(this, e);
       }
@@ -154,11 +152,9 @@
       private void OnBeforeContainerAssemblyCollectionSelfRegistrationInvoked(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
       {
          // fires the event
-         // ReSharper disable once PossibleMultipleEnumeration
          TryLogContainerAssemblyCollectionSelfRegistrationsInvoked(IocEventIdCodes.ServiceLocator.ContainerAssemblyCollectionSelfRegistrationInvokedBefore, assemblies);
 
          // need null propagation because the listeners field will be set to null when this instance is disposing, creating a race condition.
-         // ReSharper disable once PossibleMultipleEnumeration
          var e = new ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(container, assemblies);
          _listenersBeforeContainerAssemblyCollectionSelfRegistrationInvoked?.Invoke(this, e);
       }
@@ -173,6 +169,15 @@
          _listenersBeforeContainerAssemblySingleSelfRegistrationInvoked?.Invoke(this, e);
       }
 
+      internal void CurrentDomainAssemblyLoad(Object sender, AssemblyLoadEventArgs args)
+      {
+         // Normal use:  an event handler fired when assemblies are loaded.
+         // Kludge used by IocContainer.CheckForNewRegistrations() to ensure assemblies are loaded before accessing container registrations.
+         // This works in concert with SelfRegisterAssembliesWithRootContainer()
+         _assemblyLoaded.SetValue(true);
+         SelfRegisterAssembliesWithRootContainer();
+      }
+
       private void ContainerDisposing(Object sender, EventArgs e)
       {
          // maintain _ambientContainer:
@@ -182,14 +187,14 @@
             var parent = _ambientContainer.Parent;
             if (parent != null)
             {
-               ((IIocServiceLocatorManager) this).SetAmbientContainer(parent);
+               ((IIocServiceLocatorManager)this).SetAmbientContainer(parent);
             }
             else
             {
                // Fall back to root container
                if (IocContainer.InternalRootContainer != null && !ReferenceEquals(sender, IocContainer.InternalRootContainer))
                {
-                  ((IIocServiceLocatorManager) this).SetAmbientContainer(IocContainer.InternalRootContainer);
+                  ((IIocServiceLocatorManager)this).SetAmbientContainer(IocContainer.InternalRootContainer);
                }
                else
                {
@@ -198,15 +203,6 @@
                }
             }
          }
-      }
-
-      internal void CurrentDomainAssemblyLoad(Object sender, AssemblyLoadEventArgs args)
-      {
-         // Normal use:  an event handler fired when assemblies are loaded.
-         // Kludge used by IocContainer.CheckForNewRegistrations() to ensure assemblies are loaded before accessing container registrations.
-         // This works in concert with SelfRegisterAssembliesWithRootContainer()
-         _assemblyLoaded.SetValue(true);
-         SelfRegisterAssembliesWithRootContainer();
       }
    }
 }

@@ -1,7 +1,6 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
-   using System.Collections.Generic;
    using System.Diagnostics.CodeAnalysis;
 
    /// <summary>
@@ -91,7 +90,7 @@
       /// Thrown when an error occurs resolving the <paramref name="fromType"/> service instance.
       /// </exception>
       Object Resolve(Type fromType, String name);
-      
+
       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>

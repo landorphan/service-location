@@ -19,14 +19,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_on_empty()
          {
-            string.Empty.IsNotNullNorEmptyNorWhiteSpace().Should().BeFalse();
+            String.Empty.IsNotNullNorEmptyNorWhiteSpace().Should().BeFalse();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_on_null()
          {
-            ((String) null).IsNotNullNorEmptyNorWhiteSpace().Should().BeFalse();
+            ((String)null).IsNotNullNorEmptyNorWhiteSpace().Should().BeFalse();
          }
 
          [TestMethod]
@@ -59,7 +59,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_on_an_empty_string()
          {
-            var value = string.Empty;
+            var value = String.Empty;
             var actual = StringExtensions.IsNotNullNorEmpty(value);
             actual.Should().BeFalse();
          }
@@ -80,38 +80,6 @@
             const String value = "   ";
             var actual = StringExtensions.IsNotNullNorEmpty(value);
             actual.Should().BeTrue();
-         }
-      }
-
-      [TestClass]
-      public class When_I_call_IsNullOrEmptyOrWhiteSpace : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_false_on_non_matching_values()
-         {
-            " x ".IsNullOrEmptyOrWhiteSpace().Should().BeFalse();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_true_on_empty()
-         {
-            "".IsNullOrEmptyOrWhiteSpace().Should().BeTrue();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_true_on_null()
-         {
-            ((String) null).IsNullOrEmptyOrWhiteSpace().Should().BeTrue();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_true_on_whitespace()
-         {
-            " ".IsNullOrEmptyOrWhiteSpace().Should().BeTrue();
          }
       }
 
@@ -151,9 +119,41 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_true_on_an_empty_string()
          {
-            var value = string.Empty;
+            var value = String.Empty;
             var actual = StringExtensions.IsNullOrEmpty(value);
             actual.Should().BeTrue();
+         }
+      }
+
+      [TestClass]
+      public class When_I_call_IsNullOrEmptyOrWhiteSpace : TestBase
+      {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_false_on_non_matching_values()
+         {
+            " x ".IsNullOrEmptyOrWhiteSpace().Should().BeFalse();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_true_on_empty()
+         {
+            "".IsNullOrEmptyOrWhiteSpace().Should().BeTrue();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_true_on_null()
+         {
+            ((String)null).IsNullOrEmptyOrWhiteSpace().Should().BeTrue();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_true_on_whitespace()
+         {
+            " ".IsNullOrEmptyOrWhiteSpace().Should().BeTrue();
          }
       }
 
@@ -186,7 +186,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_empty_when_invoked_on_empty()
          {
-            var value = string.Empty;
+            var value = String.Empty;
 
             value.LeftTrim().Length.Should().Be(0);
             value.LeftTrim(' ').Length.Should().Be(0);
@@ -215,9 +215,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_an_empty_string()
          {
-            var original = string.Empty;
+            var original = String.Empty;
             var actual = original.ReverseString();
-            actual.Should().Be(string.Empty);
+            actual.Should().Be(String.Empty);
          }
 
          [TestMethod]
@@ -234,7 +234,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_on_null()
          {
-            Action throwingAction = () => ((String) null).ReverseString();
+            Action throwingAction = () => ((String)null).ReverseString();
             throwingAction.Should()
                .Throw<ArgumentNullException>()
                .And.ParamName.Should()
@@ -271,7 +271,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_empty_when_invoked_on_empty()
          {
-            var value = string.Empty;
+            var value = String.Empty;
 
             value.RightTrim().Length.Should().Be(0);
             value.RightTrim(' ').Length.Should().Be(0);

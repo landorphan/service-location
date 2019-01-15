@@ -4,7 +4,7 @@
    using System.Globalization;
 
    /// <summary>
-   /// Extension methods for <see cref="DateTime"/>.
+   /// Extension methods for working with <see cref="DateTime"/> instances.
    /// </summary>
    /// <remarks>
    /// The challenge is to consistently deal with DateTime values of Kind == DateTimeKind.Unspecified.  The BCL is schizophrenic,
@@ -72,7 +72,7 @@
             default:
                // .Net 4.5 throws on invalid DateTimeKind values so this code is unreachable on that platform.  
                throw new ArgumentException(
-                  String.Format(CultureInfo.InvariantCulture, "Unrecognized DateTime.Kind ({0}).", (Int32) value.Kind),
+                  String.Format(CultureInfo.InvariantCulture, "Unrecognized DateTime.Kind ({0}).", (Int32)value.Kind),
                   nameof(value));
          }
       }

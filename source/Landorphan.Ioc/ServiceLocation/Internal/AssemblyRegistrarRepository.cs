@@ -15,19 +15,15 @@
       // Should this be a set?  A sorted set?
       private IImmutableList<AssemblyRegistrarRecord> _assemblyRegistrarRecords = ImmutableList<AssemblyRegistrarRecord>.Empty;
 
-      /// <inheritdoc/>
-      // ReSharper disable once EmptyConstructor
-      public AssemblyRegistrarRepository()
-      {
-      }
-
       internal IImmutableList<IAssemblySelfRegistration> AssemblyRegistrarInstances
       {
          get
          {
             {
                var snapshot = _assemblyRegistrarRecords;
-               IImmutableList<IAssemblySelfRegistration> rv = (from r in snapshot select r.Instance).ToImmutableList();
+               IImmutableList<IAssemblySelfRegistration> rv = (
+                  from r in snapshot
+                  select r.Instance).ToImmutableList();
                return rv;
             }
          }
@@ -38,7 +34,9 @@
          get
          {
             var snapshot = _assemblyRegistrarRecords;
-            IImmutableList<Type> rv = (from r in snapshot select r.AssemblyRegistrarType).ToImmutableList();
+            IImmutableList<Type> rv = (
+               from r in snapshot
+               select r.AssemblyRegistrarType).ToImmutableList();
             return rv;
          }
       }
@@ -63,14 +61,16 @@
          var recBuilder = ImmutableList<AssemblyRegistrarRecord>.Empty.ToBuilder();
          foreach (var mr in ordered)
          {
-            var instance = (IAssemblySelfRegistration) Activator.CreateInstance(mr);
+            var instance = (IAssemblySelfRegistration)Activator.CreateInstance(mr);
             var rec = new AssemblyRegistrarRecord(instance);
             recBuilder.Add(rec);
          }
 
          var was = _assemblyRegistrarRecords;
          _assemblyRegistrarRecords = recBuilder.ToImmutable();
-         var newSelfRegistrationInstances = (from arr in _assemblyRegistrarRecords.Except(was) select arr.Instance).ToImmutableList();
+         var newSelfRegistrationInstances = (
+            from arr in _assemblyRegistrarRecords.Except(was)
+            select arr.Instance).ToImmutableList();
          return newSelfRegistrationInstances;
       }
 
@@ -92,15 +92,13 @@
 
          var allLoadedAssemblies = AppDomain.CurrentDomain.GetAssemblies();
          var assemblyNameEqualityComparer = new AssemblyNameEqualityComparer();
-         var rv =
-            (from a in allLoadedAssemblies
-               where a.GetReferencedAssemblies().Contains(thisAssemblyName, assemblyNameEqualityComparer)
-               select a).ToList
-               ();
+         var rv = (
+            from a in allLoadedAssemblies
+            where a.GetReferencedAssemblies().Contains(thisAssemblyName, assemblyNameEqualityComparer)
+            select a).ToList();
 
          // No need to add this module, it does not have an IAssemblyRegistrar implementation.
          // (If this assembly is collapsed into another assembly, that may change).
-         // rv.Add(thisAssembly);
          return rv;
       }
 
@@ -117,8 +115,7 @@
             var add = true;
             foreach (var t in unordered)
             {
-               if (currentAssemblyRegistrarType.Assembly.GetReferencedAssemblies()
-                  .Contains(t.Assembly.GetName(), assemblyNameEqualityComparer))
+               if (currentAssemblyRegistrarType.Assembly.GetReferencedAssemblies().Contains(t.Assembly.GetName(), assemblyNameEqualityComparer))
                {
                   add = false;
                   unordered.Enqueue(currentAssemblyRegistrarType);
@@ -196,6 +193,7 @@
          return rv;
       }
 
+      [SuppressMessage("Microsoft.?", "IDE0048: add parentheses for clarity")]
       [SuppressMessage(
          "SonarLint.CodeSmell",
          "S1067: Expressions should not be too complex",
@@ -218,7 +216,10 @@
                 x.Version.Equals(y.Version) &&
                 x.CultureInfo.Equals(y.CultureInfo) &&
                 (ReferenceEquals(x.KeyPair, y.KeyPair) ||
-                 x.KeyPair.IsNotNull() && y.KeyPair.IsNotNull() && x.KeyPair.PublicKey.SequenceEqual(y.KeyPair.PublicKey)))
+                 x.KeyPair.IsNotNull() &&
+                 y.KeyPair.IsNotNull() &&
+                 x.KeyPair.PublicKey.SequenceEqual(y.KeyPair.PublicKey)
+                ))
             {
                return true;
             }
@@ -241,12 +242,9 @@
          "SonarLint.CodeSmell",
          "S1210: 'Equals' and the comparison operators should be overridden when implementing 'IComparable'",
          Justification = "Private nested class, operators not used/needed (MWP)")]
+
       // Remarks Identity consists solely of the AssemblyRegistrarType, Instance values not considered.
-      private sealed class AssemblyRegistrarRecord :
-         ICloneable,
-         IComparable,
-         IComparable<AssemblyRegistrarRecord>,
-         IEquatable<AssemblyRegistrarRecord>
+      private sealed class AssemblyRegistrarRecord : ICloneable, IComparable, IComparable<AssemblyRegistrarRecord>, IEquatable<AssemblyRegistrarRecord>
       {
          internal AssemblyRegistrarRecord(IAssemblySelfRegistration instance)
          {

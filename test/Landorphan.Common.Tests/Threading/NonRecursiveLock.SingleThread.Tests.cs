@@ -15,7 +15,7 @@
       [TestClass]
       public class It_should_be_able_to_determine_the_validity_of_a_timeout_value : TestBase
       {
-         private static INonRecursiveLock _target;
+         private static INonRecursiveLock target;
 
          /// <summary>
          /// Code that executes before any of the tests methods in the test class are executed.
@@ -23,7 +23,7 @@
          [ClassInitialize]
          public static void ThisTestClassInitialize(TestContext context)
          {
-            _target = new NonRecursiveLock();
+            target = new NonRecursiveLock();
          }
 
          /// <summary>
@@ -32,10 +32,10 @@
          [ClassCleanup]
          public static void ThisTestClassCleanup()
          {
-            if (_target != null)
+            if (target != null)
             {
-               _target.Dispose();
-               _target = null;
+               target.Dispose();
+               target = null;
             }
          }
 
@@ -43,26 +43,33 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_valid_values()
          {
-            _target.IsValidTimeout(NonRecursiveLock.TimeoutNever).Should().BeTrue();
-            _target.IsValidTimeout(TimeSpan.FromMilliseconds(0)).Should().BeTrue();
-            _target.IsValidTimeout(TimeSpan.FromMilliseconds(1)).Should().BeTrue();
-            _target.IsValidTimeout(TimeSpan.FromMilliseconds(int.MaxValue)).Should().BeTrue();
+            target.IsValidTimeout(NonRecursiveLock.TimeoutNever).Should().BeTrue();
+            target.IsValidTimeout(TimeSpan.FromMilliseconds(0)).Should().BeTrue();
+            target.IsValidTimeout(TimeSpan.FromMilliseconds(1)).Should().BeTrue();
+            target.IsValidTimeout(TimeSpan.FromMilliseconds(Int32.MaxValue)).Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_disallow_negative_values_other_than_timeout_never()
          {
-            _target.IsValidTimeout(TimeSpan.FromMilliseconds(-2)).Should().BeFalse();
-            _target.IsValidTimeout(NonRecursiveLock.TimeoutNever).Should().BeTrue();
+            target.IsValidTimeout(TimeSpan.FromMilliseconds(-2)).Should().BeFalse();
+            target.IsValidTimeout(NonRecursiveLock.TimeoutNever).Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_disallow_positive_values_that_are_too_large()
          {
-            _target.IsValidTimeout(TimeSpan.FromMilliseconds(int.MaxValue + 1L)).Should().BeFalse();
-            _target.IsValidTimeout(TimeSpan.MaxValue).Should().BeFalse();
+            target.IsValidTimeout(TimeSpan.FromMilliseconds(Int32.MaxValue + 1L)).Should().BeFalse();
+            target.IsValidTimeout(TimeSpan.MaxValue).Should().BeFalse();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_not_allow_recursion()
+         {
+            target.AllowsRecursion.Should().BeFalse();
          }
       }
 
@@ -75,11 +82,6 @@
 
          protected IDiagnosticNonRecursiveLock TargetDiagnostic => _target;
 
-         protected override void ActMethod()
-         {
-            _target = new NonRecursiveLock();
-         }
-
          protected override void TeardownTestMethod()
          {
             if (_target.IsNotNull())
@@ -88,12 +90,28 @@
                _target = null;
             }
          }
+
+         protected override void ActMethod()
+         {
+            _target = new NonRecursiveLock();
+         }
       }
 
       [TestClass]
       public class When_a_thread_holds_a_read_lock : NonRecursiveLockContext
       {
          private IDisposable exitLock;
+
+         protected override void TeardownTestMethod()
+         {
+            if (exitLock.IsNotNull())
+            {
+               exitLock.Dispose();
+               exitLock = null;
+            }
+
+            base.TeardownTestMethod();
+         }
 
          protected override void ActMethod()
          {
@@ -146,6 +164,12 @@
 
             TargetDiagnostic.CurrentReadCount.Should().Be(1);
          }
+      }
+
+      [TestClass]
+      public class When_a_thread_holds_a_write_lock : NonRecursiveLockContext
+      {
+         private IDisposable exitLock;
 
          protected override void TeardownTestMethod()
          {
@@ -157,12 +181,6 @@
 
             base.TeardownTestMethod();
          }
-      }
-
-      [TestClass]
-      public class When_a_thread_holds_a_write_lock : NonRecursiveLockContext
-      {
-         private IDisposable exitLock;
 
          protected override void ActMethod()
          {
@@ -213,6 +231,12 @@
             TargetDiagnostic.IsUpgradeableLockHeld.Should().BeFalse();
             TargetDiagnostic.IsWriteLockHeld.Should().BeTrue();
          }
+      }
+
+      [TestClass]
+      public class When_a_thread_holds_an_upgradeable_read_lock : NonRecursiveLockContext
+      {
+         private IDisposable exitLock;
 
          protected override void TeardownTestMethod()
          {
@@ -224,12 +248,6 @@
 
             base.TeardownTestMethod();
          }
-      }
-
-      [TestClass]
-      public class When_a_thread_holds_an_upgradeable_read_lock : NonRecursiveLockContext
-      {
-         private IDisposable exitLock;
 
          protected override void ActMethod()
          {
@@ -288,17 +306,6 @@
             TargetDiagnostic.IsReadLockHeld.Should().BeFalse();
             TargetDiagnostic.IsUpgradeableLockHeld.Should().BeTrue();
             TargetDiagnostic.IsWriteLockHeld.Should().BeFalse();
-         }
-
-         protected override void TeardownTestMethod()
-         {
-            if (exitLock.IsNotNull())
-            {
-               exitLock.Dispose();
-               exitLock = null;
-            }
-
-            base.TeardownTestMethod();
          }
       }
 
@@ -410,6 +417,17 @@
             exitLock.Dispose();
          }
 
+         protected override void TeardownTestMethod()
+         {
+            if (exitLock.IsNotNull())
+            {
+               exitLock.Dispose();
+               exitLock = null;
+            }
+
+            base.TeardownTestMethod();
+         }
+
          protected override void ActMethod()
          {
             base.ActMethod();
@@ -422,17 +440,6 @@
          public void It_should_release_the_lock()
          {
             TargetDiagnostic.IsReadLockHeld.Should().BeFalse();
-         }
-
-         protected override void TeardownTestMethod()
-         {
-            if (exitLock.IsNotNull())
-            {
-               exitLock.Dispose();
-               exitLock = null;
-            }
-
-            base.TeardownTestMethod();
          }
       }
 
@@ -448,6 +455,17 @@
             exitLock.Dispose();
          }
 
+         protected override void TeardownTestMethod()
+         {
+            if (exitLock.IsNotNull())
+            {
+               exitLock.Dispose();
+               exitLock = null;
+            }
+
+            base.TeardownTestMethod();
+         }
+
          protected override void ActMethod()
          {
             base.ActMethod();
@@ -460,17 +478,6 @@
          public void It_should_release_the_lock()
          {
             TargetDiagnostic.IsWriteLockHeld.Should().BeFalse();
-         }
-
-         protected override void TeardownTestMethod()
-         {
-            if (exitLock.IsNotNull())
-            {
-               exitLock.Dispose();
-               exitLock = null;
-            }
-
-            base.TeardownTestMethod();
          }
       }
 
@@ -486,6 +493,17 @@
             exitLock.Dispose();
          }
 
+         protected override void TeardownTestMethod()
+         {
+            if (exitLock.IsNotNull())
+            {
+               exitLock.Dispose();
+               exitLock = null;
+            }
+
+            base.TeardownTestMethod();
+         }
+
          protected override void ActMethod()
          {
             base.ActMethod();
@@ -498,17 +516,6 @@
          public void It_should_release_the_lock()
          {
             TargetDiagnostic.IsUpgradeableLockHeld.Should().BeFalse();
-         }
-
-         protected override void TeardownTestMethod()
-         {
-            if (exitLock.IsNotNull())
-            {
-               exitLock.Dispose();
-               exitLock = null;
-            }
-
-            base.TeardownTestMethod();
          }
       }
 

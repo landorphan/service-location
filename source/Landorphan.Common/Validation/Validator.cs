@@ -7,9 +7,14 @@
    using System.Linq;
    using Landorphan.Common.Threading;
 
+   // ReSharper disable AssignNullToNotNullAttribute
+
    /// <summary>
    /// Default implementation of <see cref="IValidator{TEntity}"/> and <see cref="IValidatorWriter{TEntity}"/>.
    /// </summary>
+   /// <typeparam name="TEntity">
+   /// The type of the entity to which this validator applies.
+   /// </typeparam>
    [SuppressMessage("SonarLint.CodeSmell", "S1939: Inheritance list should not be redundant", Justification = "Being explicit (MWP)")]
    public sealed class Validator<TEntity> : DisposableObject, IValidator<TEntity>, IValidatorWriter<TEntity> where TEntity : class
    {
@@ -25,7 +30,7 @@
       /// <summary>
       /// Initializes a new instance of the <see cref="Validator{TEntity}"/> class.
       /// </summary>
-      public Validator() : this((IEqualityComparer<String>) null)
+      public Validator() : this((IEqualityComparer<String>)null)
       {
       }
 
@@ -58,7 +63,7 @@
          var builder = ImmutableHashSet<IValidationRule<TEntity>>.Empty.ToBuilder();
          foreach (var rule in other.Rules)
          {
-            builder.Add((IValidationRule<TEntity>) rule.Clone());
+            builder.Add((IValidationRule<TEntity>)rule.Clone());
          }
 
          _rules = builder.ToImmutable();
@@ -212,7 +217,7 @@
       {
          unchecked
          {
-            var rv = (Int32) _rules.LongCount();
+            var rv = (Int32)_rules.LongCount();
             rv = (rv * 397) ^ _stringComparer.GetHashCode(_description);
             rv = (rv * 397) ^ _stringComparer.GetHashCode(_name);
             return rv;

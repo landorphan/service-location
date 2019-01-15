@@ -469,23 +469,13 @@
          ExchangeValue(value);
       }
 
-      /// <summary>
-      /// Converts the value of this instance to its equivalent string representation (either "True" or "False").
-      /// </summary>
-      /// <returns>
-      /// "True" if the value of this instance is <c> true </c>, else "False" when the value of this instance is <c> false </c>.
-      /// </returns>
-      /// <remarks>
-      /// This method returns the constants "True" or "False".  Note that XML is case-sensitive, and that the XML specification recognizes
-      /// "true" and "false" as the valid set of Boolean values.  If the String Object returned by the ToString() method is to be written to an XML
-      /// file, its <see cref="String.ToLower()"/> method should be called first to convert it to lowercase.
-      /// </remarks>
+      /// <inheritdoc cref="Boolean.ToString()"/>
       public override String ToString()
       {
          return GetValue().ToString(CultureInfo.InvariantCulture);
       }
 
-      /// <inheritdoc cref="Boolean"/>
+      /// <inheritdoc cref="Boolean.ToString(IFormatProvider)"/>
       public String ToString(IFormatProvider provider)
       {
          return GetValue().ToString(provider);

@@ -96,7 +96,7 @@
       /// <param name="context"> The <see cref="StreamingContext"/> that contains contextual information about the source or destination. </param>
       private ResolutionException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         RequestedType = (Type) info.GetValue("requestedType", typeof(Type));
+         RequestedType = (Type)info.GetValue("requestedType", typeof(Type));
          Name = info.GetString("name");
       }
 
@@ -123,11 +123,11 @@
       private static String NullToDefaultMessage(String message, Type requestedType, String name)
       {
          var rv = message ??
-                  string.Format(
+                  String.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ResolutionIocExceptionDefaultMessageFmt,
                      requestedType == null ? StringResources.NullReplacementValue : requestedType.FullName,
-                     name ?? string.Empty);
+                     name ?? String.Empty);
 
          return rv;
       }

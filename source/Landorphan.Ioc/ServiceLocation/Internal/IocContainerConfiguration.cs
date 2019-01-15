@@ -12,13 +12,13 @@
       "SonarLint.CodeSmell",
       "S2933: Fields that are only assigned in the constructor should be readonly",
       Justification = "False positive, these fields are set with impure method calls (MWP).")]
-   internal sealed class IocContainerConfiguration : IIocContainerConfiguration
+   internal sealed class IocContainerConfiguration : IIocContainerConfiguration, IConvertsToReadOnly
    {
       private readonly IIocContainerMetaIdentity _container;
       private readonly SourceWeakEventHandlerSet<EventArgs> _listenersConfigurationChanged = new SourceWeakEventHandlerSet<EventArgs>();
+      private readonly SupportsReadOnlyHelper _supportsReadOnlyHelper = new SupportsReadOnlyHelper();
       private InterlockedBoolean _allowNamedImplementations;
       private InterlockedBoolean _allowPreclusionOfTypes;
-      private InterlockedBoolean _locked;
       private InterlockedBoolean _throwOnRegistrationCollision;
 
       /// <summary>
@@ -36,7 +36,6 @@
          _allowNamedImplementations = true;
          _allowPreclusionOfTypes = true;
          _throwOnRegistrationCollision = false;
-         _locked = false;
       }
 
       /// <summary>
@@ -46,7 +45,7 @@
       /// The instance to clone.
       /// </param>
       /// <remarks>
-      /// Neither the event queue for <see cref="IIocContainerConfiguration.ConfigurationChanged"/> nor the value of <see cref="IIocContainerConfiguration.IsLocked"/> is copied.
+      /// Neither the event queue for <see cref="IIocContainerConfiguration.ConfigurationChanged"/> nor the value of <see cref="IQueryReadOnly.IsReadOnly"/> is copied.
       /// </remarks>
       internal IocContainerConfiguration(IIocContainerConfiguration other)
       {
@@ -57,9 +56,6 @@
          _allowNamedImplementations = other.AllowNamedImplementations;
          _allowPreclusionOfTypes = other.AllowPreclusionOfTypes;
          _throwOnRegistrationCollision = other.ThrowOnRegistrationCollision;
-
-         // Clones are never locked.
-         _locked = false;
       }
 
       /// <inheritdoc/>
@@ -86,10 +82,7 @@
          get => _allowNamedImplementations;
          set
          {
-            if (_locked)
-            {
-               throw new ContainerConfigurationLockedException(_container, null, null);
-            }
+            _supportsReadOnlyHelper.ThrowIfReadOnlyInstance();
 
             var was = _allowNamedImplementations.ExchangeValue(value);
             if (was != value)
@@ -105,10 +98,7 @@
          get => _allowPreclusionOfTypes;
          set
          {
-            if (_locked)
-            {
-               throw new ContainerConfigurationLockedException(_container, null, null);
-            }
+            _supportsReadOnlyHelper.ThrowIfReadOnlyInstance();
 
             var was = _allowPreclusionOfTypes.ExchangeValue(value);
             if (was != value)
@@ -122,7 +112,7 @@
       public IIocContainerMetaIdentity Container => _container;
 
       /// <inheritdoc/>
-      public Boolean IsLocked => _locked.GetValue();
+      public Boolean IsReadOnly => _supportsReadOnlyHelper.IsReadOnly;
 
       /// <inheritdoc/>
       public Boolean ThrowOnRegistrationCollision
@@ -130,16 +120,22 @@
          get => _throwOnRegistrationCollision;
          set
          {
-            if (_locked)
-            {
-               throw new ContainerConfigurationLockedException(_container, null, null);
-            }
+            _supportsReadOnlyHelper.ThrowIfReadOnlyInstance();
 
             var was = _throwOnRegistrationCollision.ExchangeValue(value);
             if (was != value)
             {
                OnConfigurationChanged();
             }
+         }
+      }
+
+      /// <inheritdoc/>
+      public void MakeReadOnly()
+      {
+         if (!_supportsReadOnlyHelper.IsReadOnly)
+         {
+            _supportsReadOnlyHelper.MakeReadOnly();
          }
       }
 
@@ -158,18 +154,6 @@
                 _allowNamedImplementations.Equals(other.AllowNamedImplementations) &&
                 _allowPreclusionOfTypes.Equals(other.AllowPreclusionOfTypes) &&
                 _throwOnRegistrationCollision.Equals(other.ThrowOnRegistrationCollision);
-      }
-
-      /// <inheritdoc/>
-      public Boolean LockConfiguration()
-      {
-         var was = _locked.ExchangeValue(true);
-         if (!was)
-         {
-            OnConfigurationChanged();
-         }
-
-         return was;
       }
 
       /// <inheritdoc/>

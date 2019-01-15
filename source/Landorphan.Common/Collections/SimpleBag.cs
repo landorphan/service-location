@@ -31,7 +31,12 @@
       {
       }
 
-      /// <inheritdoc/>
+      /// <summary>
+      /// Initializes a new instance of the <see cref="SimpleBag{T}"/> class.
+      /// </summary>
+      /// <param name="collection">
+      /// The collection whose elements are copied to the new bag.
+      /// </param>
       public SimpleBag(IEnumerable<T> collection) : this(collection, null, true)
       {
       }
@@ -62,7 +67,7 @@
          }
       }
 
-      /// <inheritdoc cref="ICollection{T}"/>
+      /// <inheritdoc cref="ICollection{T}.Count"/>
       public Int32 Count => _collection.Count;
 
       /// <inheritdoc/>
@@ -74,7 +79,7 @@
       /// <inheritdoc/>
       public Boolean IsEmpty => _collection.Count == 0;
 
-      /// <inheritdoc cref="IBag{T}" />
+      /// <inheritdoc cref="IQueryReadOnly.IsReadOnly" />
       public Boolean IsReadOnly => _supportsReadOnlyHelper.IsReadOnly;
 
       /// <inheritdoc/>
@@ -104,14 +109,14 @@
          }
       }
 
-      /// <inheritdoc cref="ICollection{T}"/>
+      /// <inheritdoc cref="ICollection{T}.Clear"/>
       public void Clear()
       {
          _supportsReadOnlyHelper.ThrowIfReadOnlyInstance();
          _collection.Clear();
       }
 
-      /// <inheritdoc cref="ICollection{T}"/>
+      /// <inheritdoc cref="IContainsEnumerable{T}.Contains"/>
       public Boolean Contains(T item)
       {
          return _collection.Any(contained => _equalityComparer.Equals(contained, item));
@@ -129,7 +134,7 @@
          return GetEnumerator();
       }
 
-      /// <inheritdoc cref="ICollection{T}"/>
+      /// <inheritdoc cref="IRemoveEnumerable{T}.Remove"/>.
       public Boolean Remove(T item)
       {
          _supportsReadOnlyHelper.ThrowIfReadOnlyInstance();

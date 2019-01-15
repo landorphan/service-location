@@ -10,7 +10,7 @@
    // ReSharper disable InconsistentNaming
    // ReSharper disable UnusedMember.Local
 
-   [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+   [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
    public static class FlagsEnumExtensions_Tests
    {
       [SuppressMessage(
@@ -36,7 +36,7 @@
          Third = 0x04,
          Fourth = 0x08,
          Fifth = 0x10,
-         All = ulong.MaxValue
+         All = UInt64.MaxValue
       }
 
       [Flags]
@@ -221,7 +221,7 @@
 
       //[SuppressMessage("SonarLint.Naming", "S101:Types should be named in PascalCase", Justification = "Test code (MWP)")]
       [SuppressMessage("Microsoft.Design", "CA1034:Nested types should not be visible", Justification = "Test code (MWP)")]
-      [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+      [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
       [TestClass]
       public class When_I_call_FlagsEnumExtensions_ArgumentMustBeValidFlagsEnumValue : TestBase
       {
@@ -244,7 +244,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledSByteFlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledSByteFlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -255,7 +255,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledByteFlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledByteFlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -266,7 +266,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledInt16FlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledInt16FlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -277,7 +277,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledUInt16FlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledUInt16FlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -288,7 +288,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledInt32FlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledInt32FlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -299,7 +299,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledUInt32FlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledUInt32FlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -310,7 +310,7 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledInt64FlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledInt64FlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
 
             // ---
 
@@ -321,10 +321,10 @@
             }
 
             allFlags.Should().Be(31);
-            ((TestTargetUnfilledUInt64FlagsEnum) allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
+            ((TestTargetUnfilledUInt64FlagsEnum)allFlags).ArgumentMustBeValidFlagsEnumValue(parameterName);
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_ExtendedInvalidEnumArgumentException_when_evaluating_invalid_flags()
@@ -337,7 +337,7 @@
                allFlagsCombined |= Convert.ToInt64(flag, CultureInfo.InvariantCulture);
             }
 
-            var value = (TestTargetUnfilledInt32FlagsEnum) (allFlagsCombined + 1);
+            var value = (TestTargetUnfilledInt32FlagsEnum)(allFlagsCombined + 1);
             Action throwingAction = () => value.ArgumentMustBeValidFlagsEnumValue(parameterName);
             var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.EnumType.Should().Be(typeof(TestTargetUnfilledInt32FlagsEnum));
@@ -348,11 +348,11 @@
                .Contain("The value of argument")
                .And.Contain("is invalid for Enum type")
                .And.Contain(parameterName)
-               .And.Contain(((Int64) value).ToString(CultureInfo.InvariantCulture))
+               .And.Contain(((Int64)value).ToString(CultureInfo.InvariantCulture))
                .And.Contain(typeof(TestTargetUnfilledInt32FlagsEnum).Name);
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_InvalidOperationException_when_the_value_is_an_enum_but_not_flags()
@@ -373,13 +373,13 @@
          }
       }
 
-      [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+      [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
       [SuppressMessage("Microsoft.Design", "CA1034:Nested types should not be visible", Justification = "Test code (MWP)")]
       [SuppressMessage("SonarLint.Naming", "S101:Types should be named in PascalCase", Justification = "Test code (MWP)")]
       [TestClass]
       public class When_I_call_FlagsEnumExtensions_IsFlagSet : TestBase
       {
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_enums_with_duplicate_flags()
@@ -389,7 +389,7 @@
             value.IsFlagSet(TestTargetFlagsEnumWithDuplicates.One).Should().BeTrue();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_when_multiple_flags_are_set_excluding_the_examined_flag()
@@ -399,7 +399,7 @@
             value.IsFlagSet(TestTargetFilledUnsignedFlagsEnum.Second).Should().BeFalse();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_when_multiple_mixed_flags_are_queried()
@@ -414,7 +414,7 @@
                .BeFalse();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_false_when_no_flags_are_set()
@@ -423,7 +423,7 @@
             value.IsFlagSet(TestTargetFilledUnsignedFlagsEnum.Fifth).Should().BeFalse();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_true_when_many_flags_are_set_including_the_examined_flag()
@@ -433,7 +433,7 @@
             value.IsFlagSet(TestTargetFilledUnsignedFlagsEnum.Second).Should().BeTrue();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_true_when_multiple_set_flags_are_queried()
@@ -443,7 +443,7 @@
             value.IsFlagSet(TestTargetFilledUnsignedFlagsEnum.First | TestTargetFilledUnsignedFlagsEnum.Third).Should().BeTrue();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_true_when_only_the_flag_itself_is_set()
@@ -452,7 +452,7 @@
             value.IsFlagSet(TestTargetFilledUnsignedFlagsEnum.Second).Should().BeTrue();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_InvalidOperationException_when_the_value_passed_is_not_a_flags_enumeration()
@@ -465,13 +465,13 @@
          }
       }
 
-      [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+      [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
       [SuppressMessage("Microsoft.Design", "CA1034:Nested types should not be visible", Justification = "Test code (MWP)")]
       [SuppressMessage("SonarLint.Naming", "S101:Types should be named in PascalCase", Justification = "Test code (MWP)")]
       [TestClass]
       public class When_I_call_FlagsEnumExtensions_IsValidFlagsValue : TestBase
       {
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_return_true_when_the_enum_value_is_valid()
@@ -489,7 +489,7 @@
             }
 
             allFlags.Should().Be(31);
-            var sbyteValue = (TestTargetUnfilledSByteFlagsEnum) allFlags;
+            var sbyteValue = (TestTargetUnfilledSByteFlagsEnum)allFlags;
             sbyteValue.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -501,7 +501,7 @@
             }
 
             allFlags.Should().Be(31);
-            var byteValue = (TestTargetUnfilledByteFlagsEnum) allFlags;
+            var byteValue = (TestTargetUnfilledByteFlagsEnum)allFlags;
             byteValue.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -513,7 +513,7 @@
             }
 
             allFlags.Should().Be(31);
-            var int16Value = (TestTargetUnfilledInt16FlagsEnum) allFlags;
+            var int16Value = (TestTargetUnfilledInt16FlagsEnum)allFlags;
             int16Value.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -525,7 +525,7 @@
             }
 
             allFlags.Should().Be(31);
-            var uint16Value = (TestTargetUnfilledUInt16FlagsEnum) allFlags;
+            var uint16Value = (TestTargetUnfilledUInt16FlagsEnum)allFlags;
             uint16Value.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -537,7 +537,7 @@
             }
 
             allFlags.Should().Be(31);
-            var int32Value = (TestTargetUnfilledInt32FlagsEnum) allFlags;
+            var int32Value = (TestTargetUnfilledInt32FlagsEnum)allFlags;
             int32Value.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -549,7 +549,7 @@
             }
 
             allFlags.Should().Be(31);
-            var uint32Value = (TestTargetUnfilledUInt32FlagsEnum) allFlags;
+            var uint32Value = (TestTargetUnfilledUInt32FlagsEnum)allFlags;
             uint32Value.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -561,7 +561,7 @@
             }
 
             allFlags.Should().Be(31);
-            var int64Value = (TestTargetUnfilledInt64FlagsEnum) allFlags;
+            var int64Value = (TestTargetUnfilledInt64FlagsEnum)allFlags;
             int64Value.IsValidFlagsValue().Should().BeTrue();
 
             // ---
@@ -573,7 +573,7 @@
             }
 
             allFlags.Should().Be(31);
-            var uint64Value = (TestTargetUnfilledUInt64FlagsEnum) allFlags;
+            var uint64Value = (TestTargetUnfilledUInt64FlagsEnum)allFlags;
             uint64Value.IsValidFlagsValue().Should().BeTrue();
          }
 
@@ -588,11 +588,11 @@
             }
 
             var outOfRangeValue = allFlagsCombined + 1;
-            var value = (TestTargetUnfilledInt32FlagsEnum) outOfRangeValue;
+            var value = (TestTargetUnfilledInt32FlagsEnum)outOfRangeValue;
             value.IsValidFlagsValue().Should().BeFalse();
          }
 
-         [SuppressMessage("Microsoft.Naming" , "CA1726: Use preferred terms")]
+         [SuppressMessage("Microsoft.Naming", "CA1726: Use preferred terms")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw_InvalidOperationException_when_the_value_is_an_enum_but_not_flags()

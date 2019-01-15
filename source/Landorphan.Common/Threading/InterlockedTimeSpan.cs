@@ -444,7 +444,7 @@
          ExchangeValue(value);
       }
 
-      /// <inheritdoc cref="TimeSpan"/>
+      /// <inheritdoc cref="TimeSpan.ToString()"/>
       [SuppressMessage(
          "Microsoft.Globalization",
          "CA1305:SpecifyIFormatProvider",
@@ -458,7 +458,7 @@
          return GetValue().ToString();
       }
 
-      /// <inheritdoc cref="TimeSpan"/>
+      /// <inheritdoc cref="TimeSpan.ToString(String)"/>
       [SuppressMessage(
          "Microsoft.Globalization",
          "CA1305:SpecifyIFormatProvider",
@@ -472,7 +472,7 @@
          return GetValue().ToString(format);
       }
 
-      /// <inheritdoc cref="TimeSpan"/>
+      /// <inheritdoc cref="TimeSpan.ToString(String, IFormatProvider)"/>
       public String ToString(String format, IFormatProvider formatProvider)
       {
          return GetValue().ToString(format, formatProvider);

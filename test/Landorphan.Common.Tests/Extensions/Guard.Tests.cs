@@ -35,7 +35,7 @@
             const String givenParameterName = "myParameterName";
             const Int32 value = 1;
             const Int32 comparand = 1;
-            var expectedMessage = string.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
+            var expectedMessage = String.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
 
             Action throwingAction = () => value.ArgumentGreaterThan(comparand, givenParameterName);
 
@@ -52,7 +52,7 @@
             const String givenParameterName = "myParameterName";
             const Int32 value = 1;
             const Int32 comparand = 5;
-            var expectedMessage = string.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
+            var expectedMessage = String.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
 
             Action throwingAction = () => value.ArgumentGreaterThan(comparand, givenParameterName);
 
@@ -71,7 +71,7 @@
             const String givenParameterName = null;
             const Int32 value = 1;
             const Int32 comparand = 5;
-            var expectedMessage = string.Format(
+            var expectedMessage = String.Format(
                CultureInfo.InvariantCulture,
                NullParamNameExceptionMessageFmt,
                comparand,
@@ -118,7 +118,7 @@
             const String givenParameterName = "myParameterName";
             const Int32 value = 1;
             const Int32 comparand = 5;
-            var expectedMessage = string.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
+            var expectedMessage = String.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
 
             Action throwingAction = () => value.ArgumentGreaterThanOrEqualTo(comparand, givenParameterName);
 
@@ -137,7 +137,7 @@
             const String givenParameterName = null;
             const Int32 value = 1;
             const Int32 comparand = 5;
-            var expectedMessage = string.Format(
+            var expectedMessage = String.Format(
                CultureInfo.InvariantCulture,
                NullParamNameExceptionMessageFmt,
                comparand,
@@ -176,7 +176,7 @@
             const String givenParameterName = "myParameterName";
             const Int32 value = 1;
             const Int32 comparand = 1;
-            var expectedMessage = string.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
+            var expectedMessage = String.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
 
             Action throwingAction = () => value.ArgumentLessThan(comparand, givenParameterName);
 
@@ -193,7 +193,7 @@
             const String givenParameterName = "myParameterName";
             const Int32 value = 5;
             const Int32 comparand = 1;
-            var expectedMessage = string.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
+            var expectedMessage = String.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
 
             Action throwingAction = () => value.ArgumentLessThan(comparand, givenParameterName);
 
@@ -212,7 +212,7 @@
             const String givenParameterName = null;
             const Int32 value = 5;
             const Int32 comparand = 1;
-            var expectedMessage = string.Format(
+            var expectedMessage = String.Format(
                CultureInfo.InvariantCulture,
                NullParamNameExceptionMessageFmt,
                comparand,
@@ -259,7 +259,7 @@
             const String givenParameterName = "myParameterName";
             const Int32 value = 5;
             const Int32 comparand = 1;
-            var expectedMessage = string.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
+            var expectedMessage = String.Format(CultureInfo.InvariantCulture, ExceptionMessageFmt, comparand, value, givenParameterName);
 
             Action throwingAction = () => value.ArgumentLessThanOrEqualTo(comparand, givenParameterName);
 
@@ -278,7 +278,7 @@
             const String givenParameterName = null;
             const Int32 value = 5;
             const Int32 comparand = 1;
-            var expectedMessage = string.Format(
+            var expectedMessage = String.Format(
                CultureInfo.InvariantCulture,
                NullParamNameExceptionMessageFmt,
                comparand,
@@ -322,7 +322,7 @@
          public void It_should_throw_when_the_value_is_empty()
          {
             const String givenParameterName = "myParameterName";
-            var value = string.Empty;
+            var value = String.Empty;
 
             Action throwingAction = () => value.ArgumentNotEmptyNorWhiteSpace(givenParameterName);
 
@@ -350,11 +350,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_null_argument_names()
          {
-            Action throwingAction = () => ((String) null).ArgumentNotNull(null);
+            Action throwingAction = () => ((String)null).ArgumentNotNull(null);
 
             var e = throwingAction.Should().Throw<ArgumentNullException>();
             e.WithMessage("Value cannot be null.");
-            e.And.ParamName.Should().Be(string.Empty);
+            e.And.ParamName.Should().Be(String.Empty);
          }
 
          [TestMethod]
@@ -370,12 +370,12 @@
          public void It_should_throw_ArgumentNullException_with_the_provided_argument_name_on_null_references()
          {
             const String givenParameterName = "myParameterName";
-            var expectedMessage = string.Format(
+            var expectedMessage = String.Format(
                CultureInfo.InvariantCulture,
                "Value cannot be null.\r\nParameter name: {0}",
                givenParameterName);
 
-            Action throwingAction = () => ((String) null).ArgumentNotNull(givenParameterName);
+            Action throwingAction = () => ((String)null).ArgumentNotNull(givenParameterName);
 
             var e = throwingAction.Should().Throw<ArgumentNullException>();
             e.WithMessage(expectedMessage);
@@ -394,16 +394,16 @@
 
             Action throwingAction = () => value.ArgumentNotNullNorContainsNull(null);
             var e = throwingAction.Should().Throw<ArgumentContainsNullException>();
-            e.And.ParamName.Should().Be(string.Empty);
+            e.And.ParamName.Should().Be(String.Empty);
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_null_argument_names_when_null()
          {
-            Action throwingAction = () => ((IEnumerable<String>) null).ArgumentNotNullNorContainsNull(null);
+            Action throwingAction = () => ((IEnumerable<String>)null).ArgumentNotNullNorContainsNull(null);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
-            e.And.ParamName.Should().Be(string.Empty);
+            e.And.ParamName.Should().Be(String.Empty);
          }
 
          [TestMethod]
@@ -424,7 +424,7 @@
          {
             var givenParamName = Guid.NewGuid().ToString();
 
-            Action throwingAction = () => ((IEnumerable<String>) null).ArgumentNotNullNorContainsNull(givenParamName);
+            Action throwingAction = () => ((IEnumerable<String>)null).ArgumentNotNullNorContainsNull(givenParamName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
             e.And.ParamName.Should().Be(givenParamName);
          }
@@ -441,16 +441,16 @@
 
             Action throwingAction = () => value.ArgumentNotNullNorEmpty(null);
             var e = throwingAction.Should().Throw<ArgumentEmptyException>();
-            e.And.ParamName.Should().Be(string.Empty);
+            e.And.ParamName.Should().Be(String.Empty);
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_null_argument_names_when_null()
          {
-            Action throwingAction = () => ((IEnumerable<String>) null).ArgumentNotNullNorEmpty(null);
+            Action throwingAction = () => ((IEnumerable<String>)null).ArgumentNotNullNorEmpty(null);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
-            e.And.ParamName.Should().Be(string.Empty);
+            e.And.ParamName.Should().Be(String.Empty);
          }
 
          [TestMethod]
@@ -471,7 +471,7 @@
          {
             var givenParamName = Guid.NewGuid().ToString();
 
-            Action throwingAction = () => ((IEnumerable<String>) null).ArgumentNotNullNorEmpty(givenParamName);
+            Action throwingAction = () => ((IEnumerable<String>)null).ArgumentNotNullNorEmpty(givenParamName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
             e.And.ParamName.Should().Be(givenParamName);
          }
@@ -495,7 +495,7 @@
          public void It_should_throw_when_the_value_is_empty()
          {
             const String givenParameterName = "myParameterName";
-            var value = string.Empty;
+            var value = String.Empty;
 
             Action throwingAction = () => value.ArgumentNotNullNorEmptyNorWhiteSpace(givenParameterName);
 

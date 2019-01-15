@@ -56,7 +56,7 @@
       /// <remarks>
       /// Enables syntax simplification:
       /// <para>
-      ///    <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
+      /// <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
       /// </para>
       /// </remarks>
       /// <exception cref="ResolutionException">
@@ -64,7 +64,7 @@
       /// </exception>
       public static TFrom Resolve<TFrom>() where TFrom : class
       {
-         return ((IIocServiceLocator) t_singletonInstance).Resolve<TFrom>();
+         return ((IIocServiceLocator)t_singletonInstance).Resolve<TFrom>();
       }
 
       /// <summary>
@@ -82,7 +82,7 @@
       /// <remarks>
       /// Enables syntax simplification:
       /// <para>
-      ///    <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
+      /// <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
       /// </para>
       /// </remarks>
       /// <exception cref="ResolutionException">
@@ -90,7 +90,7 @@
       /// </exception>
       public static TFrom Resolve<TFrom>(String name) where TFrom : class
       {
-         return ((IIocServiceLocator) t_singletonInstance).Resolve<TFrom>(name);
+         return ((IIocServiceLocator)t_singletonInstance).Resolve<TFrom>(name);
       }
 
       /// <summary>
@@ -105,7 +105,7 @@
       /// <remarks>
       /// Enables syntax simplification:
       /// <para>
-      ///    <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
+      /// <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
       /// </para>
       /// </remarks>
       /// <exception cref="ResolutionException">
@@ -113,7 +113,7 @@
       /// </exception>
       public static Object Resolve(Type fromType)
       {
-         return ((IIocServiceLocator) t_singletonInstance).Resolve(fromType);
+         return ((IIocServiceLocator)t_singletonInstance).Resolve(fromType);
       }
 
       /// <summary>
@@ -131,7 +131,7 @@
       /// <remarks>
       /// Enables syntax simplification:
       /// <para>
-      ///    <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
+      /// <code>IocServiceLocator.Instance.Resolve</code> can be written as <code>IocServiceLocator.Resolve</code>
       /// </para>
       /// </remarks>
       /// <exception cref="ResolutionException">
@@ -139,7 +139,7 @@
       /// </exception>
       public static Object Resolve(Type fromType, String name)
       {
-         return ((IIocServiceLocator) t_singletonInstance).Resolve(fromType, name);
+         return ((IIocServiceLocator)t_singletonInstance).Resolve(fromType, name);
       }
 
       /// <summary>
@@ -156,7 +156,7 @@
       /// </returns>
       public static Boolean TryResolve<TFrom>(out TFrom instance) where TFrom : class
       {
-         var rv = ((IIocServiceLocator) t_singletonInstance).TryResolve<TFrom>(out var working);
+         var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve<TFrom>(out var working);
          instance = working;
          return rv;
       }
@@ -178,7 +178,7 @@
       /// </returns>
       public static Boolean TryResolve<TFrom>(String name, out TFrom instance) where TFrom : class
       {
-         var rv = ((IIocServiceLocator) t_singletonInstance).TryResolve<TFrom>(name, out var working);
+         var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve<TFrom>(name, out var working);
          instance = working;
          return rv;
       }
@@ -197,7 +197,7 @@
       /// </returns>
       public static Boolean TryResolve(Type fromType, out Object instance)
       {
-         var rv = ((IIocServiceLocator) t_singletonInstance).TryResolve(fromType, out var working);
+         var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve(fromType, out var working);
          instance = working;
          return rv;
       }
@@ -219,7 +219,7 @@
       /// </returns>
       public static Boolean TryResolve(Type fromType, String name, out Object instance)
       {
-         var rv = ((IIocServiceLocator) t_singletonInstance).TryResolve(fromType, name, out var working);
+         var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve(fromType, name, out var working);
          instance = working;
          return rv;
       }

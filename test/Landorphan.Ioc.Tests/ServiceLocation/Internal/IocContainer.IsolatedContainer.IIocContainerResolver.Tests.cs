@@ -201,7 +201,7 @@
             var actualInstance = target.Resolve<IRegisteredType>();
             actualInstance.Should().Be(defaultInstance);
 
-            actualInstance = (IRegisteredType) target.Resolve(typeof(IRegisteredType));
+            actualInstance = (IRegisteredType)target.Resolve(typeof(IRegisteredType));
             actualInstance.Should().Be(defaultInstance);
          }
 
@@ -212,7 +212,7 @@
             var actualInstance = target.Resolve<IRegisteredType>(registeredName);
             actualInstance.Should().Be(namedInstance);
 
-            actualInstance = (IRegisteredType) target.Resolve(typeof(IRegisteredType), registeredName);
+            actualInstance = (IRegisteredType)target.Resolve(typeof(IRegisteredType), registeredName);
             actualInstance.Should().Be(namedInstance);
          }
       }
@@ -297,7 +297,7 @@
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
             var obj = new Object();
-            var actual = target.TryResolve((Type) null, out obj);
+            var actual = target.TryResolve((Type)null, out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();
 
@@ -400,7 +400,7 @@
             var actualInstance = target.Resolve<IRegisteredType>();
             actualInstance.Should().Be(defaultInstance);
 
-            actualInstance = (IRegisteredType) target.Resolve(typeof(IRegisteredType));
+            actualInstance = (IRegisteredType)target.Resolve(typeof(IRegisteredType));
             actualInstance.Should().Be(defaultInstance);
          }
 
@@ -411,7 +411,7 @@
             var actualInstance = target.Resolve<IRegisteredType>(registeredName);
             actualInstance.Should().Be(namedInstance);
 
-            actualInstance = (IRegisteredType) target.Resolve(typeof(IRegisteredType), registeredName);
+            actualInstance = (IRegisteredType)target.Resolve(typeof(IRegisteredType), registeredName);
             actualInstance.Should().Be(namedInstance);
          }
       }

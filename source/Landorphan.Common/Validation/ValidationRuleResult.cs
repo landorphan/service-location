@@ -8,6 +8,8 @@
    using System.Runtime.Serialization;
    using Landorphan.Common.Threading;
 
+   // ReSharper disable AssignNullToNotNullAttribute
+
    /// <summary>
    /// Contains a single result from a call to <see cref="IValidationRule{TEntity}.Validate"/>; a mash-up of a human-readable rule name, a
    /// human-readable rule description, and a set of line item messages.
@@ -22,10 +24,11 @@
       private readonly IEqualityComparer<String> _stringComparer;
       private readonly SupportsReadOnlyHelper _supportsReadOnlyHelper;
 
-      // TODO: HOW TO HANDLE?
-      [NonSerialized] private Object _evaluatedEntity;
+      [NonSerialized]
+      private Object _evaluatedEntity;
 
-      [NonSerialized] private ImmutableHashSet<IValidationMessage> _messages;
+      [NonSerialized]
+      private ImmutableHashSet<IValidationMessage> _messages;
 
       private IValidationMessage[] _serializedMessages;
       private String _validationRuleDescription;
@@ -34,7 +37,7 @@
       /// <summary>
       /// Initializes a new instance of the <see cref="ValidationRuleResult"/> class.
       /// </summary>
-      public ValidationRuleResult() : this((IEqualityComparer<String>) null)
+      public ValidationRuleResult() : this((IEqualityComparer<String>)null)
       {
       }
 
@@ -231,7 +234,6 @@
       [OnDeserialized]
       private void OnDeserialized(StreamingContext context)
       {
-         // TODO: (mwp) review in light of .net core
          var builder = ImmutableHashSet<IValidationMessage>.Empty.ToBuilder();
          foreach (var msg in _serializedMessages)
          {
@@ -245,7 +247,6 @@
       [OnSerializing]
       private void OnSerializing(StreamingContext context)
       {
-         // TODO: (mwp) review in light of .net core
          using (_lock.EnterReadLock())
          {
             _serializedMessages = _messages.ToArray();

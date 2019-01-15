@@ -22,14 +22,15 @@
       private InterlockedBoolean _isDisposed = new InterlockedBoolean(false);
       private InterlockedBoolean _isDisposing = new InterlockedBoolean(false);
 
-      [NonSerialized] private ReaderWriterLockSlim _wrappedLock;
+      [NonSerialized]
+      private ReaderWriterLockSlim _wrappedLock;
 
       /// <summary>
       /// Initializes a new instance of the <see cref="NonRecursiveLock"/> class.
       /// </summary>
       public NonRecursiveLock()
       {
-         _wrappedLock = new ReaderWriterLockSlim();
+         _wrappedLock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
       }
 
       /// <inheritdoc/>
@@ -76,6 +77,9 @@
             throw new ObjectDisposedException(GetType().Name);
          }
       }
+
+      /// <inheritdoc/>
+      public Boolean AllowsRecursion => _wrappedLock.RecursionPolicy != LockRecursionPolicy.NoRecursion;
 
       /// <inheritdoc/>
       public Boolean IsDisposed => _isDisposed;
@@ -214,7 +218,7 @@
       public Boolean IsValidTimeout(TimeSpan timeSpan)
       {
          var rv = true;
-         var totalMilliseconds = (Int64) timeSpan.TotalMilliseconds;
+         var totalMilliseconds = (Int64)timeSpan.TotalMilliseconds;
          if (totalMilliseconds < -1 || totalMilliseconds > Int32.MaxValue)
          {
             rv = false;

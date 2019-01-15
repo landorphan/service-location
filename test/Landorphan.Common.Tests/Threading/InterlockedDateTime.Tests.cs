@@ -108,10 +108,10 @@
             var now = DateTime.UtcNow;
             var target = new InterlockedDateTime(now);
             target.Equals(null).Should().BeFalse();
-            target.Equals((Object) new InterlockedDateTime(now)).Should().BeTrue();
+            target.Equals((Object)new InterlockedDateTime(now)).Should().BeTrue();
 
             // ReSharper disable once SuspiciousTypeConversion.Global
-            target.Equals((Object) now).Should().BeTrue();
+            target.Equals((Object)now).Should().BeTrue();
 
             target.Equals(new Object()).Should().BeFalse();
          }
@@ -122,7 +122,7 @@
          {
             var now = DateTime.UtcNow;
 
-            var target = (IComparable) new InterlockedDateTime(now);
+            var target = (IComparable)new InterlockedDateTime(now);
             target.CompareTo(now).Should().Be(0);
             target.CompareTo(new InterlockedDateTime(now)).Should().Be(0);
             target.CompareTo(null).Should().BeGreaterThan(0);

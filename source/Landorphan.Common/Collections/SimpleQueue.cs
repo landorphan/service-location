@@ -115,7 +115,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _queue.LongCount();
+            var hashcode = (Int32)_queue.LongCount();
             return hashcode;
          }
       }

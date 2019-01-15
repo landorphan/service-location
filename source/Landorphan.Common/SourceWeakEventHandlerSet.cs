@@ -211,7 +211,7 @@
          {
             handler.ArgumentNotNull(nameof(handler));
 
-            var d = (Delegate) handler;
+            var d = (Delegate)handler;
 
             // will be null for static methods.
             var target = d.Target;
@@ -237,7 +237,7 @@
                         eht.Name));
                }
 
-               _weakEventHandler = (IWeakEventHandler) ctor.Invoke(new Object[] {handler});
+               _weakEventHandler = (IWeakEventHandler)ctor.Invoke(new Object[] {handler});
             }
          }
 
@@ -417,7 +417,7 @@
             }
 
             _targetReference = new WeakReference(handler.Target);
-            _openHandler = (OpenEventHandler) Delegate.CreateDelegate(typeof(OpenEventHandler), null, handler.Method);
+            _openHandler = (OpenEventHandler)Delegate.CreateDelegate(typeof(OpenEventHandler), null, handler.Method);
          }
 
          /// <inheritdoc/>
@@ -436,7 +436,7 @@
          /// <inheritdoc/>
          public void Invoke(Object sender, TEventArgs e)
          {
-            var target = (TTarget) _targetReference.Target;
+            var target = (TTarget)_targetReference.Target;
 
             if (ReferenceEquals(target, null))
             {

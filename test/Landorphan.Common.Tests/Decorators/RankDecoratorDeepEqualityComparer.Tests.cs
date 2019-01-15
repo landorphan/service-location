@@ -92,14 +92,14 @@
                Equals(x, y).Should().BeFalse();
             }
 
-            using (var x = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass { Name = "5", Value = 5 }, 6)))
-            using (var y = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass { Name = "5", Value = 5 }, 6)))
+            using (var x = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass {Name = "5", Value = 5}, 6)))
+            using (var y = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass {Name = "5", Value = 5}, 6)))
             {
                Equals(x, y).Should().BeTrue();
             }
 
-            using (var x = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass { Name = "5", Value = 5 }, 100)))
-            using (var y = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass { Name = "5", Value = 5 }, 6)))
+            using (var x = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass {Name = "5", Value = 5}, 100)))
+            using (var y = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass {Name = "5", Value = 5}, 6)))
             {
                Equals(x, y).Should().BeFalse();
             }
@@ -133,8 +133,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_same_value_for_equal_ranks()
          {
-            using (var x = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass { Name = "5", Value = 5 }, 2)))
-            using (var y = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass { Name = "5", Value = 5 }, 2)))
+            using (var x = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass {Name = "5", Value = 5}, 2)))
+            using (var y = DisposableHelper.SafeCreate(() => new RankDecorator<NameValueCloneableEquatableTestClass, Int64>(new NameValueCloneableEquatableTestClass {Name = "5", Value = 5}, 2)))
             {
                target.GetHashCode(x).Should().Be(target.GetHashCode(y));
             }

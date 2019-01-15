@@ -336,7 +336,7 @@
       {
          unchecked
          {
-            var hashcode = (Int32) _set.LongCount();
+            var hashcode = (Int32)_set.LongCount();
             return hashcode;
          }
       }

@@ -39,7 +39,6 @@
             // Make life easier for the caller and strip the outer TIE, resetting the stack trace.
             var remoteStackTrace = typeof(Exception).GetField("_remoteStackTraceString", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            
             remoteStackTrace.SetValue(tie.InnerException, tie.InnerException.StackTrace + Environment.NewLine);
             throw tie.InnerException;
          }

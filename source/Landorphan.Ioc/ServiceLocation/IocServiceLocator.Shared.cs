@@ -2,13 +2,12 @@
 {
    using System;
    using System.Collections.Generic;
-   using System.ComponentModel;
-   using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using Landorphan.Ioc.Logging.Internal;
    using Landorphan.Ioc.Resources;
    using Landorphan.Ioc.ServiceLocation.Internal;
+//   using Landorphan.Logging;
    using Microsoft.Extensions.Logging;
 
    /// <summary>
@@ -55,11 +54,14 @@
          t_singletonInstance = new IocServiceLocator();
 
          var rootContainer = IocContainer.RootContainer;
-         ILoggerFactory loggerFactory = new LoggerFactory();
-         rootContainer.Registrar.RegisterInstance(loggerFactory);
+         //ILoggerFactory loggerFactory = new LoggerFactory();
+         //rootContainer.Registrar.RegisterInstance(loggerFactory);
 
-         IIocLoggingUtilitiesService loggingUtils = new IocLoggingUtilitiesService();
-         rootContainer.Registrar.RegisterInstance(loggingUtils);
+         //ILogEntryFactory logEntryFactory = new LogEntryFactory();
+         //rootContainer.Registrar.RegisterInstance(logEntryFactory);
+
+         //IIocLoggingUtilitiesService loggingUtils = new IocLoggingUtilitiesService();
+         //rootContainer.Registrar.RegisterInstance(loggingUtils);
 
          // ..preclude selected IOC types.
          var iocInterfaces = GetIocInterfacesAndAbstractTypesExceptLoggingInterfaces();
@@ -119,7 +121,8 @@
             return false;
          }
 
-         // lazily create the logger
+         // lazily create the logger for this class instance (a  singleton).
+         // (the logger factory is registered by the IocServiceLocator static ctor)
          var loggerFactory = _ambientContainer.Resolver.Resolve<ILoggerFactory>();
          {
             if (_logger == null)
@@ -127,6 +130,7 @@
                _logger = loggerFactory?.CreateLogger<IocServiceLocator>();
             }
 
+            // Microsoft guidance: one logger instance per logging class instance.
             logger = _logger;
 
             if (_ambientContainer.Resolver.TryResolve(out loggingUtilitiesService))

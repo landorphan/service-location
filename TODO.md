@@ -47,3 +47,21 @@ TODO:  IocServiceLocator and IocContainer:  too much duplication interacting wit
       Boolean IsValidStartingStandardText(String holdemStartingStandardsCardsText);
 
 Write reusable test looking for duplicate Rule Id= values
+
+Strange Test Failure:
+Configuration system failed to initialize
+   at System.Configuration.ClientConfigurationSystem.EnsureInit(String configKey)
+   at System.Configuration.ClientConfigurationSystem.PrepareClientConfigSystem(String sectionName)
+   at System.Configuration.ClientConfigurationSystem.System.Configuration.Internal.IInternalConfigSystem.GetSection(String sectionName)
+   at System.Configuration.ConfigurationManager.GetSection(String sectionName)
+   at System.Configuration.PrivilegedConfigurationManager.GetSection(String sectionName)
+   at System.Diagnostics.DiagnosticsConfiguration.GetConfigSection()
+   at System.Diagnostics.DiagnosticsConfiguration.Initialize()
+   at System.Diagnostics.DiagnosticsConfiguration.get_IndentSize()
+   at System.Diagnostics.TraceInternal.InitializeSettings()
+   at System.Diagnostics.TraceInternal.get_Listeners()
+   at System.Diagnostics.Trace.get_Listeners()
+   at Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.TraceListenerManager.Add(ITraceListener traceListener)
+
+
+This started affecting all Landorphan.Ioc.Tests even though the App.Config file for the same had not been changed (specflow only).  Deleting the config file resolved the issue.

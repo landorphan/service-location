@@ -297,6 +297,12 @@
          private EventSource source;
          private List<String> traceLines;
 
+         protected override void TeardownTestMethod()
+         {
+            Trace.Listeners.Remove(memoryListener);
+            base.TeardownTestMethod();
+         }
+
          protected override void ArrangeMethod()
          {
             traceLines = new List<String>();
@@ -324,7 +330,7 @@
             TestHelp.DoNothing(keptInstanceSink);
          }
 
-         [SuppressMessage("SonarLint.CodeSmell" ,"S1215:GC.Collect should not be called")]
+         [SuppressMessage("SonarLint.CodeSmell", "S1215:GC.Collect should not be called")]
          [SuppressMessage("Microsoft.Reliability", "CA2001:AvoidCallingProblematicMethods", MessageId = "System.GC.Collect")]
          protected override void ActMethod()
          {
@@ -372,12 +378,6 @@
          public void It_should_notify_the_static_event_sink()
          {
             traceLines.Should().Contain(String.Format(CultureInfo.InvariantCulture, "{0}: Static event received.", Guid.Empty));
-         }
-
-         protected override void TeardownTestMethod()
-         {
-            Trace.Listeners.Remove(memoryListener);
-            base.TeardownTestMethod();
          }
       }
 

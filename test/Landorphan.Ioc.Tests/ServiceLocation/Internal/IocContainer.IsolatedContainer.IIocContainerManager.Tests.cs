@@ -113,29 +113,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerConfigurationChanged()
-         {
-            Object actualSender = null;
-            ContainerConfigurationEventArgs actualEventArgs = null;
-
-            var eh = new EventHandler<ContainerConfigurationEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
-
-            target.Manager.ContainerConfigurationChanged += eh;
-
-            target.Configuration.LockConfiguration();
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Configuration.IsLocked.Should().BeTrue();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerPrecludedTypeAdded_event_generic()
          {
             Object actualSender = null;
@@ -284,7 +261,7 @@
                });
 
             target.ContainerChildAdded += eh;
-            child = (IOwnedIocContainer) target.CreateChildContainer(childContainerName);
+            child = (IOwnedIocContainer)target.CreateChildContainer(childContainerName);
          }
 
          [TestMethod]
@@ -454,9 +431,9 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void Its_configuration_should_not_be_Locked_by_default()
+         public void Its_configuration_should_not_be_ReadOnly_by_default()
          {
-            target.Configuration.IsLocked.Should().BeFalse();
+            target.Configuration.IsReadOnly.Should().BeFalse();
          }
 
          [TestMethod]

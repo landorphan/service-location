@@ -90,7 +90,7 @@
       // ReSharper disable once UnusedMember.Local
       private CannotPrecludeRegisteredTypeArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         RegisteredType = (Type) info.GetValue("registeredType", typeof(Type));
+         RegisteredType = (Type)info.GetValue("registeredType", typeof(Type));
       }
 
       /// <inheritdoc/>
