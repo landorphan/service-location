@@ -80,32 +80,6 @@
     <Compile Include="Architecture\ExceptionTests.cs" />
     <Compile Include="Architecture\TestArchitecture.Tests.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Collections\BclBaseline\HashSet.Baseline.Tests.cs" />
-    <Compile Include="Collections\InlinePriorityQueue.Tests.cs" />
-    <Compile Include="Collections\SimpleBag.Tests.cs" />
-    <Compile Include="Collections\SimpleMap.Tests.cs" />
-    <Compile Include="Collections\SimpleQueue.Tests.cs" />
-    <Compile Include="Collections\SimpleSet.Tests.cs" />
-    <Compile Include="Collections\SimpleStack.Tests.cs" />
-    <Compile Include="Collections\TestClasses\EquatableTestItem.cs" />
-    <Compile Include="Collections\TestClasses\EquatableTestItemEqualityComparer.cs" />
-    <Compile Include="Collections\ThreadSafeBag.Tests.cs" />
-    <Compile Include="Collections\ThreadSafeMap.Tests.cs" />
-    <Compile Include="Collections\ThreadSafeQueue.Tests.cs" />
-    <Compile Include="Collections\ThreadSafeSet.Tests.cs" />
-    <Compile Include="Collections\ThreadSafeStack.Tests.cs" />
-    <Compile Include="Collections\ThreadSafeWeakReferenceBag.Tests.cs" />
-    <Compile Include="Decorators\EntityClasses\NameValueCloneableEquatableTestClass.cs" />
-    <Compile Include="Decorators\EntityClasses\NameValueComparableTestClass.cs" />
-    <Compile Include="Decorators\EntityClasses\NameValueMakeReadOnlyTestClass.cs" />
-    <Compile Include="Decorators\EntityClasses\NameValueTestClass.cs" />
-    <Compile Include="Decorators\Int32RankDecorator.Tests.cs" />
-    <Compile Include="Decorators\Int64RankDecorator.Tests.cs" />
-    <Compile Include="Decorators\RankDecorator.Tests.cs" />
-    <Compile Include="Decorators\RankDecoratorDeepComparer.Tests.cs" />
-    <Compile Include="Decorators\RankDecoratorDeepEqualityComparer.Tests.cs" />
-    <Compile Include="Decorators\RankDecoratorShallowComparer.Tests.cs" />
-    <Compile Include="Decorators\RankDecoratorShallowEqualityComparer.Tests.cs" />
     <Compile Include="DisposableObject.Tests.cs" />
     <Compile Include="Extensions\AssemblyExtensions.Tests.cs" />
     <Compile Include="Extensions\DateTimeExtensions.Tests.cs" />
@@ -119,7 +93,6 @@
     <Compile Include="Helpers\SupportsReadOnlyHelper.Tests.cs" />
     <Compile Include="ReferenceEqualityComparer.Tests.cs" />
     <Compile Include="SourceWeakEventHandlerSet.Tests.cs" />
-    <Compile Include="Specification\Specification.Tests.cs" />
     <Compile Include="TestFacilities\TestAssemblyInitializeCleanup.cs" />
     <Compile Include="Threading\InterlockedBoolean.Tests.cs" />
     <Compile Include="Threading\InterlockedDateTime.Tests.cs" />
@@ -127,15 +100,6 @@
     <Compile Include="Threading\InterlockedTimeSpan.Tests.cs" />
     <Compile Include="Threading\NonRecursiveLock.MultiThreaded.Tests.cs" />
     <Compile Include="Threading\NonRecursiveLock.SingleThread.Tests.cs" />
-    <Compile Include="Validation\ExampleRules\MyTestEntity.cs" />
-    <Compile Include="Validation\ExampleRules\MyTestEntityIsNotNullValidationRule.cs" />
-    <Compile Include="Validation\ExampleRules\MyTestEntityNameValidationRule.cs" />
-    <Compile Include="Validation\ExampleRules\MyTestEntityValuePositiveRule.cs" />
-    <Compile Include="Validation\ValidationMessage.Tests.cs" />
-    <Compile Include="Validation\ValidationMessageFactory.Tests.cs" />
-    <Compile Include="Validation\ValidationRuleBase.Tests.cs" />
-    <Compile Include="Validation\ValidationRuleResult.Tests.cs" />
-    <Compile Include="Validation\Validator.Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Landorphan.Common.Tests.NetFx.ruleset">

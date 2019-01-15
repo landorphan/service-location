@@ -8,7 +8,6 @@
       internal const String ArgumentContainsNullExceptionDefaultMessage = "The value must not contain null values.";
       internal const String ArgumentEmptyExceptionDefaultMessage = "The value must not be empty.";
       internal const String ArgumentWhitespaceExceptionDefaultMessage = "The value must not be composed entirely of white-space.";
-      internal const String EmptyPriorityQueue = "The priority queue is empty.";
       internal const String EventHandlerMustNotHaveNullMethodArgumentExceptionFmt =
          "The event handler argument '{0}' must not return a null method, but did.";
       internal const String EventHandlerMustNotHaveStaticMethodArgumentExceptionFmt =
@@ -19,10 +18,6 @@
          @"The value of argument '{0}' ({1} ms) is invalid.  Timeout values must be between -1 (which represents ""never"") and {2} total milliseconds.";
       internal const String LockRecursionExceptionReadAfterUpgradeNotAllowed =
          "A read lock may not be acquired with the upgradeable read lock held in this mode.";
-      internal const String MessageTypeError = "Error";
-      internal const String MessageTypeInformation = "Information";
-      internal const String MessageTypeVerbose = "Verbose";
-      internal const String MessageTypeWarning = "Warning";
       internal const String NullReplacementValue = "null";
       internal const String TheCurrentInstanceIsReadOnly = "The current instance is read-only.";
       internal const String TimeoutElapsedBeforeLockObtainedExceptionDefaultMessageFmt =
