@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+   <metadata>
+      <!-- Required elements-->
+      <id>Landorphan.ServiceLocator</id>
+      <version>$version$</version>
+      <description>Light weight Ioc System designed around testing.</description>
+      <!-- Need additional nuget.org profile names, mprochaska links to mprochaska@landorphan.org-->
+      <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
+
+      <!-- Optional elements -->
+      <title>Landorphan.ServiceLocation</title>
+      <!-- Need additional nuget.org profile names, mprochaska links to mprochaska@landorphan.org-->
+      <owners>landorphan, mprochaska, tstockstill</owners>
+      <projectUrl>https://github.com/landorphan/service-location</projectUrl>
+      <!--verify this is the desired SPDX/license:  see https://spdx.org/licenses/-->
+      <license type="expression">MIT</license>
+      <!-- Not deployed yet
+        <iconUrl>https://github.com/landorphan/common/raw/master/logo.png</iconUrl>
+        -->
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+      <developmentDependency>false</developmentDependency>
+      <summary>Utilities for use in all landorphan projects.</summary>
+      <releaseNotes>Initial public release.</releaseNotes>
+      <copyright>Copyright © 2019 - Landorphan, LLC.</copyright>
+      <language></language>
+      <tags>common, utility</tags>
+      <repository type="git" url="https://github.com/landorphan/service-location"></repository>
+      <packageTypes>
+         <packageType name="Dependency" />
+      </packageTypes>
+      <dependencies>
+         <group targetFramework=".NETStandard2.0">
+            <dependency id="Landorphan.Common" version="0.9.428" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Logging" version="3.0.0-preview.185721" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Configuration" version="3.0.0-preview.185721" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.CodeQuality.Analyzers" version="2.6.3" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.CodeAnalysis.Analyzers" version="2.6.3" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Configuration" version="3.0.0-preview.185721" exclude="Build,Analyzers" />
+            <dependency id="System.Collections.Immutable" version="1.5.0" exclude="Build,Analyzers" />
+         </group>
+      </dependencies>
+      <!-- Not Required:
+      <files>
+      </files>
+      -->
+   </metadata>
+   <!-- Optional 'files' node -->
+</package>
