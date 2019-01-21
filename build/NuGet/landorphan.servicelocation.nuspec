@@ -4,12 +4,12 @@
       <!-- Required elements-->
       <id>Landorphan.ServiceLocator</id>
       <version>$version$</version>
-      <description>Utilities for use in all landorphan projects.</description>
+      <description>Light weight Ioc System designed around testing.</description>
       <!-- Need additional nuget.org profile names, mprochaska links to mprochaska@landorphan.org-->
       <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
 
       <!-- Optional elements -->
-      <title>Landorphan.Common</title>
+      <title>Landorphan.ServiceLocation</title>
       <!-- Need additional nuget.org profile names, mprochaska links to mprochaska@landorphan.org-->
       <owners>landorphan, mprochaska, tstockstill</owners>
       <projectUrl>https://github.com/landorphan/service-location</projectUrl>
