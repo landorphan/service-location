@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.5.3" />
+    <PackageReference Include="Landorphan.Common">
+      <Version>0.9.428</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.TestPlatform" Version="14.0.0" />
@@ -87,12 +90,6 @@
   <ItemGroup>
     <None Include="Landorphan.TestUtilities.NoIoc.csproj.DotSettings" />
     <None Include="Landorphan.TestUtilities.NoIoc.NetFx.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\source\Landorphan.Common\Landorphan.Common.csproj">
-      <Project>{fe5437ab-edc3-4ceb-a337-bf87a5a27a5e}</Project>
-      <Name>Landorphan.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\..\build\BuildFiles\CustomDictionary.xml">
