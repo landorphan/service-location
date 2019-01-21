@@ -77,13 +77,9 @@
     <Compile Include="TestFacilities\TestAssemblyInitializeCleanup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\Landorphan.Common\Landorphan.Common.csproj">
-      <Project>{fe5437ab-edc3-4ceb-a337-bf87a5a27a5e}</Project>
-      <Name>Landorphan.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\source\Landorphan.Ioc\Landorphan.Ioc.csproj">
+    <ProjectReference Include="..\..\source\Landorphan.ServiceLocator\Landorphan.ServiceLocator.csproj">
       <Project>{d5c74292-045c-401d-ac97-a04e2b565e57}</Project>
-      <Name>Landorphan.Ioc</Name>
+      <Name>Landorphan.ServiceLocator</Name>
     </ProjectReference>
     <ProjectReference Include="..\Landorphan.TestUtilities.NoIoc\Landorphan.TestUtilities.NoIoc.csproj">
       <Project>{86f6b3d5-3d6d-4bdc-a45d-cae58458722c}</Project>
