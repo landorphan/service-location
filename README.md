@@ -1,13 +1,9 @@
 # service-location 
-[![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=master)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=master) 
+Channel  | Under Development | Released 
+-------- | :------------: | :-------------: 
+ Build  | [![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=master)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=master) | [![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=develop)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=develop) 
 
 Very light weight Service Locator pattern designed specifically for encouraging testable code and dependency abstraction.
-
-###### Master		[![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=master)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=master) 
-
-###### Develop	[![Build Status](https://dev.azure.com/landorphan/Service-Location/_apis/build/status/Service%20Location%20PR?branchName=develop)](https://dev.azure.com/landorphan/Service-Location/_build/latest?definitionId=13?branchName=develop) 
-
-
 
 Source:
 
