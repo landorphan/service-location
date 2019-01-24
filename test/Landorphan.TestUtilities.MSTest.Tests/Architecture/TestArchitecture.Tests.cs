@@ -8,6 +8,7 @@
 
    // ReSharper disable InconsistentNaming
 
+   [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
    [TestClass]
    public class TestArchitectureTests : TestArchitecturalRequirements
    {

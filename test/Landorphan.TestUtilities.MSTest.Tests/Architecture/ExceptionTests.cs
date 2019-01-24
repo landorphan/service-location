@@ -2,6 +2,7 @@
 {
    using System;
    using System.Collections.Immutable;
+   using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using Landorphan.Common;
    using Landorphan.TestUtilities;
@@ -9,6 +10,7 @@
    using Landorphan.TestUtilities.ReusableTestImplementations;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+   [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
    [TestClass]
    public class ExceptionTests : ExceptionValidityRequirements
    {
