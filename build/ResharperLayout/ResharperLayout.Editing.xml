@@ -73,7 +73,7 @@
          <Entry.Match>
             <And>
                <Kind Is="Method" />
-               <Name Is="Clone" />
+               <Name Is="^Clone$" />
             </And>
          </Entry.Match>
          <Entry.SortBy>
@@ -85,7 +85,7 @@
          <Entry.Match>
             <And>
                <Kind Is="Method" />
-               <Name Is="Dispose" />
+               <Name Is="^Dispose$" />
             </And>
          </Entry.Match>
          <Entry.SortBy>
@@ -97,7 +97,7 @@
          <Entry.Match>
             <And>
                <Kind Is="Method" />
-               <Name Is="ReleaseManagedResources" />
+               <Name Is="^ReleaseManagedResources$" />
             </And>
          </Entry.Match>
          <Entry.SortBy>
@@ -109,7 +109,7 @@
          <Entry.Match>
             <And>
                <Kind Is="Method" />
-               <Name Is="ReleaseUnmanagedResources" />
+               <Name Is="^ReleaseUnmanagedResources$" />
             </And>
          </Entry.Match>
          <Entry.SortBy>
@@ -130,7 +130,7 @@
          <Entry.Match>
             <And>
                <Kind Is="Method" />
-               <Name Is="GetObjectData" />
+               <Name Is="^GetObjectData$" />
             </And>
          </Entry.Match>
          <Entry.SortBy>
@@ -175,7 +175,7 @@
             <And>
                <Static />
                <Kind Is="Method" />
-               <Name Is="\bCreate" />
+               <Name Is="^Create$" />
             </And>
          </Entry.Match>
          <Entry.SortBy>
@@ -448,15 +448,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="Dispose" />
-                  <Not>
-                     <!-- 
-                     Resharper was treating event handlers for INotifyDisposed.OnDisposed
-                     as if they were dispose methods, ignoring the Name constraint above.
-                     This kludge fixes the problem.
-                     -->
-                     <HandlesEvent/>
-                  </Not>
+                  <Name Is="^Dispose$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -474,7 +466,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ReleaseManagedResources" />
+                  <Name Is="^ReleaseManagedResources$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -492,7 +484,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ReleaseUnmanagedResources" />
+                  <Name Is="^ReleaseUnmanagedResources$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -526,7 +518,7 @@
                <And>
                   <Static />
                   <Kind Is="Method" />
-                  <Name Is="\bCreate*" />
+                  <Name Is="^Create$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -545,12 +537,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="Clone" />
-                  <Not>
-                     <!-- Bug in R#, Name Is ="" means contains, not equals in 2018.1.4 -->
-                     <!-- Adding this condition to exclude tests of clone methods -->
-                     <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute" />
-                  </Not>
+                  <Name Is="^Clone$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -568,7 +555,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="GetObjectData" />
+                  <Name Is="^GetObjectData$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -687,7 +674,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="InitializeTestMethod" />
+                  <Name Is="^InitializeTestMethod$" />
                </And>
             </Entry.Match>
          </Entry>
@@ -701,7 +688,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="TeardownTestMethod" />
+                  <Name Is="^TeardownTestMethod$" />
                </And>
             </Entry.Match>
          </Entry>
@@ -757,12 +744,12 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ArrangeContext" />
+                  <Name Is="^ArrangeContext$" />
                </And>
             </Entry.Match>
          </Entry>
       <!--</Region>-->
-    
+
       <!--<Region Name="${0} TEST J" Priority="60">
          <Region.GroupBy>
             <Name />
@@ -771,7 +758,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ActContext" />
+                  <Name Is="^ActContext$" />
                </And>
             </Entry.Match>
          </Entry>
@@ -785,7 +772,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ArrangeMethod" />
+                  <Name Is="^ArrangeMethod$" />
                </And>
             </Entry.Match>
          </Entry>
@@ -799,7 +786,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ActMethod" />
+                  <Name Is="^ActMethod$" />
                </And>
             </Entry.Match>
          </Entry>
@@ -1039,7 +1026,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="Dispose" />
+                  <Name Is="^Dispose$" />
                   <Not>
                      <!-- 
                      Resharper was treating event handlers for INotifyDisposed.OnDisposed
@@ -1067,7 +1054,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ReleaseManagedResources" />
+                  <Name Is="^ReleaseManagedResources$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -1086,7 +1073,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="ReleaseUnmanagedResources" />
+                  <Name Is="^ReleaseUnmanagedResources$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -1122,7 +1109,7 @@
                <And>
                   <Static />
                   <Kind Is="Method" />
-                  <Name Is="\bCreate*" />
+                  <Name Is="^Create$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -1142,7 +1129,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="Clone" />
+                  <Name Is="^Clone$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -1161,7 +1148,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="GetObjectData" />
+                  <Name Is="^GetObjectData$" />
                </And>
             </Entry.Match>
             <Entry.SortBy>
@@ -1328,7 +1315,7 @@
             <Entry.Match>
                <And>
                   <Kind Is="Method" />
-                  <Name Is="\bTestHook*" />
+                  <Name Is="^TestHook*" />
                </And>
             </Entry.Match>
             <Entry.SortBy>

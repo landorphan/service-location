@@ -14,10 +14,13 @@
 
    public sealed class ImmutableDictionaryTarget : DisposableObject, IRegistrationTarget
    {
-#pragma warning disable S125 // Sections of code should not be commented out
       private readonly IocContainerConfiguration _configuration;
-      private readonly ImmutableDictionaryTarget _parent = null;
       private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
+#pragma warning disable S3459 // Unassigned members should be removed
+#pragma warning disable S3052 // Members should not be initialized to default values
+      private readonly ImmutableDictionaryTarget _parent = null;
+#pragma warning restore S3052 // Members should not be initialized to default values
+#pragma warning restore S3459 // Unassigned members should be removed
       private readonly Stopwatch _swPrecludedTypeAdd;
       private readonly Stopwatch _swPrecludedTypeRemove;
       private readonly Stopwatch _swRegister;
@@ -38,7 +41,7 @@
 
       public ImmutableDictionaryTarget(Boolean allowNamedImplementations, Boolean allowPreclusionOfTypes, Boolean throwOnRegistrationCollision)
       {
-         var configuration = new IocContainerConfiguration((IIocContainerMetaIdentity) this)
+         var configuration = new IocContainerConfiguration((IIocContainerMetaIdentity)this)
          {
             AllowNamedImplementations = allowNamedImplementations,
             AllowPreclusionOfTypes = allowPreclusionOfTypes,
@@ -91,9 +94,11 @@
 
       public Boolean IsReadOnly => false;
 
+      [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
+      [SuppressMessage("Microsoft.Design", "CA1065: Do not raise exceptions in unexpected locations", Justification = "Reviewed (MWP)")]
       public Boolean Equals(IIocContainerConfiguration other)
       {
-         throw new NotImplementedException();
+         throw new NotSupportedException();
       }
 
       public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
@@ -136,6 +141,8 @@
          }
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegister")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
       {
          if (_swRegister.IsRunning)
@@ -147,6 +154,8 @@
          registrationTotalCount = _registrationTotalCount;
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegistrationOverwrite")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetRegistrationOverwriteStats(out TimeSpan registrationOverwriteTime, out Int32 registrationOverwriteCount)
       {
          if (_swRegistrationOverwrite.IsRunning)
@@ -158,6 +167,8 @@
          registrationOverwriteCount = _registrationOverwriteCount;
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegisterValidation")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetRegistrationValidationStats(out TimeSpan registrationValidationTime)
       {
          if (_swRegisterValidation.IsRunning)
@@ -168,6 +179,8 @@
          registrationValidationTime = _swRegisterValidation.Elapsed;
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swResolveOverwrite")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetResolutionOverwriteStats(out TimeSpan resolutionOverwriteTime, out Int32 resolutionNewInstancesCount)
       {
          if (_swResolveOverwrite.IsRunning)
@@ -179,6 +192,8 @@
          resolutionNewInstancesCount = _resolutionNewInstancesCount;
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swResolve")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetResolutionTotalStats(out TimeSpan resolutionTotalTime, out Int32 resolutionTotalCount)
       {
          if (_swResolve.IsRunning)
@@ -190,6 +205,8 @@
          resolutionTotalCount = _resolutionTotalCount;
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swResolveValidation")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetResolutionValidationStats(out TimeSpan resolutionValidationTime)
       {
          if (_swResolveValidation.IsRunning)
@@ -200,6 +217,8 @@
          resolutionValidationTime = _swResolveValidation.Elapsed;
       }
 
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swUnregister")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
       public void GetUnregistrationStats(out TimeSpan unregistrationTotalTime, out Int32 unregistrationTotalCount)
       {
          if (_swUnregister.IsRunning)

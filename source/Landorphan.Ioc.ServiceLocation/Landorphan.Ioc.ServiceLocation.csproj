@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+   <PropertyGroup>
+      <TargetFramework>netstandard2.0</TargetFramework>
+      <LangVersion>7.2</LangVersion>
+      <RootNamespace>Landorphan.Ioc</RootNamespace>
+      <NoWarn>1701;1702;</NoWarn>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DefineConstants>DEBUG;TRACE</DefineConstants>
+      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+      <WarningLevel>4</WarningLevel>
+
+      <IntermediateOutputPath>..\..\obj\debug\$(AssemblyName)\</IntermediateOutputPath>
+      <OutputPath>..\..\bin\debug\$(AssemblyName)</OutputPath>
+      <DocumentationFile>..\..\bin\debug\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DefineConstants>TRACE</DefineConstants>
+      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+      <WarningLevel>4</WarningLevel>
+
+      <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
+      <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
+      <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
+   </PropertyGroup>
+
+   <PropertyGroup>
+      <CodeAnalysisRuleSet>Landorphan.Ioc.ServiceLocation.NetStd.ruleset</CodeAnalysisRuleSet>
+   </PropertyGroup>
+   <ItemGroup>
+      <None Remove="Landorphan.Ioc.ServiceLocation.NetStd.ruleset" />
+   </ItemGroup>
+   <ItemGroup>
+      <AdditionalFiles Include="Landorphan.Ioc.ServiceLocation.NetStd.ruleset" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <PackageReference Include="Landorphan.Common" Version="0.9.428" />
+      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
+         <PrivateAssets>all</PrivateAssets>
+         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
+         <PrivateAssets>all</PrivateAssets>
+         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="2.6.3">
+         <PrivateAssets>all</PrivateAssets>
+         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
+         <PrivateAssets>all</PrivateAssets>
+         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+      <PackageReference Include="Text.Analyzers" Version="2.6.3">
+         <PrivateAssets>all</PrivateAssets>
+         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+      </PackageReference>
+   </ItemGroup>
+</Project>
