@@ -1,11 +1,13 @@
-﻿namespace Landorphan.Ioc.Tests.Architecture
+﻿namespace Landorphan.TestUtilities.MSTest.Tests.Architecture
 {
+   using System.Diagnostics.CodeAnalysis;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.ReusableTestImplementations;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
 
+   [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
    [TestClass]
    public class Ruleset_Tests : RulesetRequirements
    {
