@@ -12,7 +12,9 @@
 
    public sealed class TestTypesBuilder : DisposableObject
    {
+#pragma warning disable S4017 // Method signatures should not contain nested generic types
       public void BuildTypePairs(Int32 count, out AssemblyName assemblyName, out IList<KeyValuePair<Type, Type>> list)
+#pragma warning restore S4017 // Method signatures should not contain nested generic types
       {
          var currentAppDomain = AppDomain.CurrentDomain;
          var randomName = BuildRandomIdentifierName();
