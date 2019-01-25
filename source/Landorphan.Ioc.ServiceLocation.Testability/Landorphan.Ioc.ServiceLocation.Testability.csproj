@@ -6,7 +6,7 @@
       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
       <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-      <AssemblyName>Landorphan.ServiceLocator.Testability</AssemblyName>
+      <AssemblyName>Landorphan.Ioc.ServiceLocation.Testability</AssemblyName>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -38,7 +38,7 @@
    </ItemGroup>
 
    <ItemGroup>
-     <PackageReference Include="Landorphan.Common" Version="0.9.428" />
+     <PackageReference Include="Landorphan.Common" Version="0.9.467" />
      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
        <PrivateAssets>all</PrivateAssets>
        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

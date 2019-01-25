@@ -12,15 +12,13 @@
 
    // ReSharper disable IdentifierTypo
 
+   [SuppressMessage("SonarLint.CodeSmell", "S3459: Unassigned members should be removed")]
+   [SuppressMessage("SonarLint.CodeSmell", "S3052: Members should not be initialized to default values")]
    public sealed class ImmutableDictionaryTarget : DisposableObject, IRegistrationTarget
    {
       private readonly IocContainerConfiguration _configuration;
-      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
-#pragma warning disable S3459 // Unassigned members should be removed
-#pragma warning disable S3052 // Members should not be initialized to default values
       private readonly ImmutableDictionaryTarget _parent = null;
-#pragma warning restore S3052 // Members should not be initialized to default values
-#pragma warning restore S3459 // Unassigned members should be removed
+      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
       private readonly Stopwatch _swPrecludedTypeAdd;
       private readonly Stopwatch _swPrecludedTypeRemove;
       private readonly Stopwatch _swRegister;
@@ -31,13 +29,13 @@
       private readonly Stopwatch _swResolveValidation;
       private readonly Stopwatch _swUnregister;
       private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
+      private Int32 _registrationOverwriteCount;
       private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
          ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>.Empty;
       private Int32 _registrationTotalCount;
-      private Int32 _registrationOverwriteCount;
-      private Int32 _unregistrationTotalCount;
       private Int32 _resolutionNewInstancesCount;
       private Int32 _resolutionTotalCount;
+      private Int32 _unregistrationTotalCount;
 
       public ImmutableDictionaryTarget(Boolean allowNamedImplementations, Boolean allowPreclusionOfTypes, Boolean throwOnRegistrationCollision)
       {
@@ -86,22 +84,15 @@
 
       public IIocContainerMetaIdentity Container => this;
 
+      public Boolean IsReadOnly => false;
+
+      public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
+
       public Boolean ThrowOnRegistrationCollision
       {
          get => _configuration.ThrowOnRegistrationCollision;
          set => throw new NotSupportedException();
       }
-
-      public Boolean IsReadOnly => false;
-
-      [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
-      [SuppressMessage("Microsoft.Design", "CA1065: Do not raise exceptions in unexpected locations", Justification = "Reviewed (MWP)")]
-      public Boolean Equals(IIocContainerConfiguration other)
-      {
-         throw new NotSupportedException();
-      }
-
-      public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
 
       public Guid Uid { get; } = Guid.NewGuid();
 
@@ -141,17 +132,11 @@
          }
       }
 
-      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegister")]
-      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
+      [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
+      [SuppressMessage("Microsoft.Design", "CA1065: Do not raise exceptions in unexpected locations", Justification = "Reviewed (MWP)")]
+      public Boolean Equals(IIocContainerConfiguration other)
       {
-         if (_swRegister.IsRunning)
-         {
-            throw new InvalidOperationException("_swRegister.IsRunning");
-         }
-
-         registrationTotalTime = _swRegister.Elapsed;
-         registrationTotalCount = _registrationTotalCount;
+         throw new NotSupportedException();
       }
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegistrationOverwrite")]
@@ -165,6 +150,19 @@
 
          registrationOverwriteTime = _swRegistrationOverwrite.Elapsed;
          registrationOverwriteCount = _registrationOverwriteCount;
+      }
+
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegister")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
+      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
+      {
+         if (_swRegister.IsRunning)
+         {
+            throw new InvalidOperationException("_swRegister.IsRunning");
+         }
+
+         registrationTotalTime = _swRegister.Elapsed;
+         registrationTotalCount = _registrationTotalCount;
       }
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegisterValidation")]
@@ -800,7 +798,5 @@
             _swUnregister.Stop();
          }
       }
-
-#pragma warning restore S125 // Sections of code should not be commented out
    }
 }

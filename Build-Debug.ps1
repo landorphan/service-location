@@ -5,7 +5,7 @@ $started = [DateTime]::UtcNow
 
 & .\Build-Clean.ps1
 
-dotnet build Landorphan.ServiceLocator.sln -c debug
+dotnet build Landorphan.Ioc.ServiceLocation.sln -c debug
 
 $completed = [DateTime]::UtcNow
 $elapsed = $completed - $started

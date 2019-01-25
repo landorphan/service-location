@@ -130,9 +130,9 @@
                }
 
                var fieldType = value.GetType();
-               if (fieldType.IsValueType)
+               if (fieldType.IsValueType || fieldType == typeof(String))
                {
-                  // can ignore value type fields in this context.
+                  // can ignore value type and string fields in this context.
                   continue;
                }
 
@@ -264,7 +264,6 @@
          return rv;
       }
 
-      [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Reviewed(MWP)")]
       [SuppressMessage(
          "SonarLint.CodeSmell",
          "S134: Control flow statements ... should not be nested too deeply",
@@ -282,6 +281,8 @@
          "S3776:Cognitive Complexity of methods should not be too high",
          Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
       [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used", Justification = "Not displaying")]
+      [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
+      [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used", Justification = "2 is not a magic number for dictionary type arguments.")]
       private Boolean TryHandleDictionaryOfDisposables(Object fieldValue)
       {
          // Handles:
@@ -300,84 +301,96 @@
          var fieldType = fieldValue.GetType();
          if (fieldType.IsGenericType)
          {
-            var genericType = fieldType.GetGenericTypeDefinition();
-            var genericImplementsIDictionary = (
-               from i in genericType.GetInterfaces()
-               where typeof(IDictionary<,>).IsAssignableFrom(i)
-               select i).Any();
-            if (genericImplementsIDictionary)
+            var genericDictionaryType = fieldType.GetInterface(typeof(IDictionary<,>).Name);
+            if (genericDictionaryType == null)
             {
-               var typeArguments = fieldType.GetGenericArguments();
-               var keyType = typeArguments[0];
-               var valueType = typeArguments[1];
+               return false;
+            }
 
-               IEnumerable keysCollection = null;
-               if (typeof(IDisposable).IsAssignableFrom(keyType) || typeof(IEnumerable<IDisposable>).IsAssignableFrom(keyType))
+            var typeArguments = genericDictionaryType.GetGenericArguments();
+            Type keyType;
+            Type valueType;
+            if (typeArguments.Length == 2)
+            {
+               keyType = typeArguments[0];
+               valueType = typeArguments[1];
+            }
+            else if (typeArguments.Length == 1)
+            {
+               keyType = typeArguments[0];
+               valueType = typeArguments[0];
+            }
+            else
+            {
+               throw new NotSupportedException($"Expected 1 or 2 type arguments but found {typeArguments.Length} type arguments");
+            }
+
+            IEnumerable keysCollection = null;
+            if (typeof(IDisposable).IsAssignableFrom(keyType) || typeof(IEnumerable<IDisposable>).IsAssignableFrom(keyType))
+            {
+               try
                {
-                  try
-                  {
-                     var keysProperty = fieldType.GetProperty("Keys");
-                     // ReSharper disable once PossibleNullReferenceException
-                     keysCollection = keysProperty.GetValue(fieldValue) as IEnumerable;
-                  }
-                  catch (Exception)
-                  {
-                     // eat the exception.
-                     // made best effort to capture the keys collection, there is no telling what the implementation of IDictionary<,> actually is in this code.
-                     keysCollection = null;
-                  }
+                  var keysProperty = fieldType.GetProperty("Keys");
+                  // ReSharper disable once PossibleNullReferenceException
+                  keysCollection = keysProperty.GetValue(fieldValue) as IEnumerable;
                }
-
-               IEnumerable valuesCollection = null;
-               if (typeof(IDisposable).IsAssignableFrom(valueType) || typeof(IEnumerable<IDisposable>).IsAssignableFrom(valueType))
+               catch (Exception)
                {
-                  try
-                  {
-                     var valuesProperty = fieldType.GetProperty("Values");
-                     // ReSharper disable once PossibleNullReferenceException
-                     valuesCollection = valuesProperty.GetValue(fieldValue) as IEnumerable;
-                  }
-                  catch (Exception)
-                  {
-                     // eat the exception.
-                     // made best effort to capture the keys collection, there is no telling what the implementation of IDictionary<,> actually is in this code.
-                     valuesCollection = null;
-                  }
+                  // eat the exception.
+                  // made best effort to capture the keys collection, there is no telling what the implementation of IDictionary<,> actually is in this code.
+                  keysCollection = null;
                }
+            }
 
-               var collections = new List<IEnumerable>();
-               if (valuesCollection != null)
+            IEnumerable valuesCollection = null;
+            if (typeof(IDisposable).IsAssignableFrom(valueType) || typeof(IEnumerable<IDisposable>).IsAssignableFrom(valueType))
+            {
+               try
                {
-                  collections.Add(valuesCollection);
+                  var valuesProperty = fieldType.GetProperty("Values");
+                  // ReSharper disable once PossibleNullReferenceException
+                  valuesCollection = valuesProperty.GetValue(fieldValue) as IEnumerable;
                }
-
-               if (keysCollection != null)
+               catch (Exception)
                {
-                  collections.Add(keysCollection);
+                  // eat the exception.
+                  // made best effort to capture the keys collection, there is no telling what the implementation of IDictionary<,> actually is in this code.
+                  valuesCollection = null;
                }
+            }
 
-               foreach (var col in collections)
+            var collections = new List<IEnumerable>();
+            if (valuesCollection != null)
+            {
+               collections.Add(valuesCollection);
+            }
+
+            if (keysCollection != null)
+            {
+               collections.Add(keysCollection);
+            }
+
+            foreach (var col in collections)
+            {
+               foreach (var val in col)
                {
-                  foreach (var val in col)
+                  if (val == null)
                   {
-                     if (val == null)
-                     {
-                        continue;
-                     }
-
-                     if (TryHandleSimpleDisposable(val))
-                     {
-                        // disposed
-                        rv = true;
-                     }
-                     else if (TryHandleEnumerableOfDisposables(val))
-                     {
-                        // disposed
-                        rv = true;
-                     }
-
-                     // stop going down the rabbit hole....
+                     continue;
                   }
+
+                  if (TryHandleSimpleDisposable(val))
+                  {
+                     // disposed
+                     rv = true;
+                  }
+                  else if (TryHandleEnumerableOfDisposables(val))
+                  {
+                     // disposed
+                     rv = true;
+                  }
+
+                  // stop going down the rabbit hole....
                }
             }
          }
