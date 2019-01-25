@@ -3,13 +3,12 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 
+[assembly: AssemblyCompany("Landorphan, LLC.")]
+[assembly: AssemblyProduct("Landorphan.TestUtilities.MSTest.Tests")]
+[assembly: AssemblyTitle("Landorphan.TestUtilities.MSTest.Tests")]
+[assembly: AssemblyDescription("Unit Tests of Landorphan.TestUtilities.MSTest")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: CLSCompliant(false)]
+[assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en-US")]
-
-// Version now handled in build
-//#if (NETCOREAPP2_2 || NETSTANDARD2_0)
-//#else
-//[assembly: AssemblyVersion("1.0.0.0")]
-//#endif
