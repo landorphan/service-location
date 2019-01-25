@@ -5,10 +5,11 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using Landorphan.Common;
-   using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.MSTest.Tests.TestFacilities;
    using Landorphan.TestUtilities.ReusableTestImplementations;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+   // ReSharper disable InconsistentNaming
 
    [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
    [TestClass]

@@ -78,9 +78,6 @@
     <None Include="SampleResults\ImmutableDictionary.Random.Resuls.SB2.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions">
-      <Version>5.6.0</Version>
-    </PackageReference>
     <PackageReference Include="Landorphan.Common">
       <Version>0.9.467</Version>
     </PackageReference>
@@ -95,9 +92,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging">
       <Version>2.2.0</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk">
-      <Version>15.9.0</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NetCore.Analyzers">
       <Version>2.6.3</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -107,15 +101,6 @@
       <Version>2.6.3</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.TestPlatform">
-      <Version>14.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestAdapter">
-      <Version>1.4.0</Version>
-    </PackageReference>
-    <PackageReference Include="MSTest.TestFramework">
-      <Version>1.4.0</Version>
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp">
       <Version>7.10.0.7896</Version>

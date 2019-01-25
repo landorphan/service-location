@@ -8,6 +8,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F10433A2-DCDF-476B-98D2-F3D9939EB5A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2B05C482-3783-4E78-B382-561792F5197B}"
+	ProjectSection(SolutionItems) = preProject
+		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
+		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
+		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildFiles", "BuildFiles", "{F4EC09B2-5F75-407D-AD71-4527BE778A49}"
 	ProjectSection(SolutionItems) = preProject
@@ -67,7 +72,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.MSTest.Tests", "test\Landorphan.TestUtilities.MSTest.Tests\Landorphan.TestUtilities.MSTest.Tests.csproj", "{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.ServiceLocation.Testability.Tests", "test\Landorphan.Ioc.ServiceLocation.Testability.Tests\Landorphan.Ioc.ServiceLocation.Testability.Tests.csproj", "{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Testability.Tests", "test\Landorphan.Ioc.ServiceLocation.Testability.Tests\Landorphan.Ioc.ServiceLocation.Testability.Tests.csproj", "{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690-4432-4990-A9A0-BBB16EB45438}"
+	ProjectSection(SolutionItems) = preProject
+		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
+		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
+		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +129,7 @@ Global
 		{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{40821690-4432-4990-A9A0-BBB16EB45438} = {2B05C482-3783-4E78-B382-561792F5197B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}
