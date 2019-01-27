@@ -35,10 +35,11 @@ items:
     content: 'public interface IIocContainerConfiguration : ICloneable, IQueryReadOnly, IEquatable<IIocContainerConfiguration>'
     content.vb: >-
       Public Interface IIocContainerConfiguration
+
           Inherits ICloneable, IQueryReadOnly, IEquatable(Of IIocContainerConfiguration)
   inheritedMembers:
   - System.ICloneable.Clone
-  - Landorphan.Common.IQueryReadOnly.IsReadOnly
+  - Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
   - System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
   modifiers.csharp:
   - public
@@ -262,13 +263,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Landorphan.Common.IQueryReadOnly.IsReadOnly
-  commentId: P:Landorphan.Common.IQueryReadOnly.IsReadOnly
-  parent: Landorphan.Common.IQueryReadOnly
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  commentId: P:Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  parent: Landorphan.Common.Interfaces.IQueryReadOnly
   isExternal: true
   name: IsReadOnly
   nameWithType: IQueryReadOnly.IsReadOnly
-  fullName: Landorphan.Common.IQueryReadOnly.IsReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
 - uid: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
   commentId: M:System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
   parent: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}
@@ -317,13 +318,13 @@ references:
   name: ICloneable
   nameWithType: ICloneable
   fullName: System.ICloneable
-- uid: Landorphan.Common.IQueryReadOnly
-  commentId: T:Landorphan.Common.IQueryReadOnly
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly
+  commentId: T:Landorphan.Common.Interfaces.IQueryReadOnly
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: IQueryReadOnly
   nameWithType: IQueryReadOnly
-  fullName: Landorphan.Common.IQueryReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly
 - uid: System.IEquatable`1.Equals(`0)
   commentId: M:System.IEquatable`1.Equals(`0)
   isExternal: true
@@ -410,12 +411,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Interfaces
+  commentId: N:Landorphan.Common.Interfaces
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Interfaces
+  nameWithType: Landorphan.Common.Interfaces
+  fullName: Landorphan.Common.Interfaces
 - uid: System.IEquatable`1
   commentId: T:System.IEquatable`1
   isExternal: true

@@ -1,5 +1,4 @@
-﻿
-namespace Landorphan.TestUtilities.MSTest.Tests
+﻿namespace Landorphan.TestUtilities.MSTest.Tests
 {
    using System;
    using System.Diagnostics;
@@ -81,8 +80,6 @@ namespace Landorphan.TestUtilities.MSTest.Tests
 
          protected override void ActMethod()
          {
-
-
             _eventSource.FireMyEvent();
          }
 
@@ -114,8 +111,6 @@ namespace Landorphan.TestUtilities.MSTest.Tests
 
          protected override void ActMethod()
          {
-
-
             _eventSource.FireMyEvent();
          }
 
@@ -142,7 +137,7 @@ namespace Landorphan.TestUtilities.MSTest.Tests
 
          protected override void ArrangeMethod()
          {
-            var listener = new TextWriterTraceListener(_memoryStream) { Filter = new EventTypeFilter(SourceLevels.Warning) };
+            var listener = new TextWriterTraceListener(_memoryStream) {Filter = new EventTypeFilter(SourceLevels.Warning)};
 
             Trace.Listeners.Add(listener);
             _eventSource = new TestClassSourcingAPublicEventArgsEvent();
@@ -150,9 +145,6 @@ namespace Landorphan.TestUtilities.MSTest.Tests
 
          protected override void ActMethod()
          {
-
-
-
             MonitoredEvents.AddEventSource(_eventSource);
             MonitoredEvents.AddEventSource(_eventSource);
 
@@ -202,7 +194,6 @@ namespace Landorphan.TestUtilities.MSTest.Tests
          private readonly SourceWeakEventHandlerSet<TestClassAdditionalDataEventArgs> _eventListeners =
             new SourceWeakEventHandlerSet<TestClassAdditionalDataEventArgs>();
 
-
          // This event is dynamically subscribed to
          // ReSharper disable once EventNeverSubscribedTo.Local
          [SuppressMessage("SonarLint.CodeSmell", "S1144: Unused private types or members should be removed")]
@@ -246,7 +237,7 @@ namespace Landorphan.TestUtilities.MSTest.Tests
       }
 
       private class TestClassSourcingNoEvents
-      { }
+      {
+      }
    }
 }
-

@@ -4,12 +4,6 @@ items:
   commentId: N:Landorphan.Ioc.ServiceLocation
   id: Landorphan.Ioc.ServiceLocation
   children:
-  - Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  - Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
-  - Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
-  - Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
-  - Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
-  - Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
   - Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
   - Landorphan.Ioc.ServiceLocation.IocServiceLocator
   - Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions
@@ -24,36 +18,6 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
 references:
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
-  name: ContainerConfigurationEventArgs
-  nameWithType: ContainerConfigurationEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
-  name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-  nameWithType: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
-  name: ContainerParentChildEventArgs
-  nameWithType: ContainerParentChildEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
-  name: ContainerTypeEventArgs
-  nameWithType: ContainerTypeEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
-  name: ContainerTypeRegistrationEventArgs
-  nameWithType: ContainerTypeRegistrationEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
 - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
   commentId: T:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
   parent: Landorphan.Ioc.ServiceLocation

@@ -33,10 +33,11 @@ items:
     content: 'public interface IRegistrationValue : ICloneable, IQueryReadOnly, IComparable, IComparable<IRegistrationValue>, IEquatable<IRegistrationValue>'
     content.vb: >-
       Public Interface IRegistrationValue
+
           Inherits ICloneable, IQueryReadOnly, IComparable, IComparable(Of IRegistrationValue), IEquatable(Of IRegistrationValue)
   inheritedMembers:
   - System.ICloneable.Clone
-  - Landorphan.Common.IQueryReadOnly.IsReadOnly
+  - Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
   - System.IComparable.CompareTo(System.Object)
   - System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationValue}.CompareTo(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationValue)
   - System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationValue}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationValue)
@@ -191,13 +192,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Landorphan.Common.IQueryReadOnly.IsReadOnly
-  commentId: P:Landorphan.Common.IQueryReadOnly.IsReadOnly
-  parent: Landorphan.Common.IQueryReadOnly
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  commentId: P:Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  parent: Landorphan.Common.Interfaces.IQueryReadOnly
   isExternal: true
   name: IsReadOnly
   nameWithType: IQueryReadOnly.IsReadOnly
-  fullName: Landorphan.Common.IQueryReadOnly.IsReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
 - uid: System.IComparable.CompareTo(System.Object)
   commentId: M:System.IComparable.CompareTo(System.Object)
   parent: System.IComparable
@@ -328,13 +329,13 @@ references:
   name: ICloneable
   nameWithType: ICloneable
   fullName: System.ICloneable
-- uid: Landorphan.Common.IQueryReadOnly
-  commentId: T:Landorphan.Common.IQueryReadOnly
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly
+  commentId: T:Landorphan.Common.Interfaces.IQueryReadOnly
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: IQueryReadOnly
   nameWithType: IQueryReadOnly
-  fullName: Landorphan.Common.IQueryReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly
 - uid: System.IComparable
   commentId: T:System.IComparable
   parent: System
@@ -508,12 +509,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Interfaces
+  commentId: N:Landorphan.Common.Interfaces
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Interfaces
+  nameWithType: Landorphan.Common.Interfaces
+  fullName: Landorphan.Common.Interfaces
 - uid: System.IComparable`1
   commentId: T:System.IComparable`1
   isExternal: true

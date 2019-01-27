@@ -17,18 +17,21 @@
    /// <para>
    /// Service location allows for the narrow* resolution of registered types (and only registered types) with AppDomain life-time.
    /// Typical usage is as follows:
-   /// <example><code>IocServiceLocator.Resolve<IService>()</IService></code></example>
+   /// <example><code>IocServiceLocator.Resolve(typeof(IService))</code></example>
    /// It also allows for overrides of default implementation to support test scenarios.  To support test scenarios, implementations should perform the following:
    ///    1) Create a child container.
    ///    2) Set the ambient container to the child container.
    ///    3) Register services with the child container that should override the default (production/implementation) interfaces.
    ///    4) Execute tests
    ///    5) Dispose of the child container.
+   /// An implementation of the above pattern in provided in Landorphan.Ioc.ServiceLocation.Testability.
+   /// </para>
+   /// <para>
    /// *narrow:  Suppose InterfaceB descends from InterfaceA, and suppose InterfaceB is registered.  Attempting to resolve InterfaceA will fail.
    /// </para>
    /// <para>
    /// This implementation of the service locator allows class libraries to self-register default implementations.  If you need to manually add a registration, you do so as follows:
-   /// 
+   /// <example><code>IocServiceLocator.RootContainer.Registrar.RegisterInstance(typeof(IService), new Service());</code></example>
    /// </para>
    /// <para>
    /// Type discovery is limited to registered types.  Inheritance is not considered.
@@ -62,14 +65,14 @@
          t_singletonInstance = new IocServiceLocator();
          
          var rootContainer = IocContainer.RootContainer;
-         //ILoggerFactory loggerFactory = new LoggerFactory();
-         //rootContainer.Registrar.RegisterInstance(loggerFactory);
+         //'/'ILoggerFactory loggerFactory = new LoggerFactory();
+         //'/'rootContainer.Registrar.RegisterInstance(loggerFactory);
 
-         //ILogEntryFactory logEntryFactory = new LogEntryFactory();
-         //rootContainer.Registrar.RegisterInstance(logEntryFactory);
+         //'/'ILogEntryFactory logEntryFactory = new LogEntryFactory();
+         //'/'rootContainer.Registrar.RegisterInstance(logEntryFactory);
 
-         //IIocLoggingUtilitiesService loggingUtils = new IocLoggingUtilitiesService();
-         //rootContainer.Registrar.RegisterInstance(loggingUtils);
+         //'/'IIocLoggingUtilitiesService loggingUtils = new IocLoggingUtilitiesService();
+         //'/'rootContainer.Registrar.RegisterInstance(loggingUtils);
 
          // ..preclude selected IOC types.
          var iocInterfaces = GetIocInterfacesAndAbstractTypesExceptLoggingInterfaces();

@@ -33,7 +33,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerManager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 17
+    startLine: 18
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -44,6 +44,7 @@ items:
     content: 'public interface IIocContainerManager : IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
     content.vb: >-
       Public Interface IIocContainerManager
+
           Inherits IIocContainerMetaSharedCapacities
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
@@ -79,7 +80,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerChildAdded
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 22
+    startLine: 23
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -88,7 +89,7 @@ items:
   syntax:
     content: event EventHandler<ContainerParentChildEventArgs> ContainerChildAdded
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs}
     content.vb: Event ContainerChildAdded As EventHandler(Of ContainerParentChildEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerChildRemoved
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerChildRemoved
@@ -108,7 +109,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerChildRemoved
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 27
+    startLine: 28
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -117,7 +118,7 @@ items:
   syntax:
     content: event EventHandler<ContainerParentChildEventArgs> ContainerChildRemoved
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs}
     content.vb: Event ContainerChildRemoved As EventHandler(Of ContainerParentChildEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerConfigurationChanged
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerConfigurationChanged
@@ -137,7 +138,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerConfigurationChanged
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 32
+    startLine: 33
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -146,7 +147,7 @@ items:
   syntax:
     content: event EventHandler<ContainerConfigurationEventArgs> ContainerConfigurationChanged
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs}
     content.vb: Event ContainerConfigurationChanged As EventHandler(Of ContainerConfigurationEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerPrecludedTypeAdded
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerPrecludedTypeAdded
@@ -166,7 +167,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerPrecludedTypeAdded
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -175,7 +176,7 @@ items:
   syntax:
     content: event EventHandler<ContainerTypeEventArgs> ContainerPrecludedTypeAdded
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs}
     content.vb: Event ContainerPrecludedTypeAdded As EventHandler(Of ContainerTypeEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerPrecludedTypeRemoved
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerPrecludedTypeRemoved
@@ -195,7 +196,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerPrecludedTypeRemoved
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -204,7 +205,7 @@ items:
   syntax:
     content: event EventHandler<ContainerTypeEventArgs> ContainerPrecludedTypeRemoved
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs}
     content.vb: Event ContainerPrecludedTypeRemoved As EventHandler(Of ContainerTypeEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.Configuration
   commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.Configuration
@@ -224,7 +225,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Configuration
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -260,7 +261,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: IsConfigurationLocked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -296,7 +297,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: PrecludedTypes
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 69
+    startLine: 70
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -333,7 +334,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: AddPrecludedType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 89
+    startLine: 90
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -378,7 +379,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: AddPrecludedType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 109
+    startLine: 110
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -421,7 +422,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: CreateChildContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 123
+    startLine: 124
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -457,7 +458,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: LockConfiguration
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 140
+    startLine: 141
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -489,7 +490,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RemovePrecludedType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 154
+    startLine: 155
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -527,7 +528,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RemovePrecludedType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerManager.cs
-    startLine: 168
+    startLine: 169
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -842,15 +843,15 @@ references:
   name: Landorphan.Ioc.ServiceLocation
   nameWithType: Landorphan.Ioc.ServiceLocation
   fullName: Landorphan.Ioc.ServiceLocation
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerParentChildEventArgs>
   nameWithType: EventHandler<ContainerParentChildEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs>
   nameWithType.vb: EventHandler(Of ContainerParentChildEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs)
   name.vb: EventHandler(Of ContainerParentChildEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -861,10 +862,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs
     name: ContainerParentChildEventArgs
     nameWithType: ContainerParentChildEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -877,10 +878,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs
     name: ContainerParentChildEventArgs
     nameWithType: ContainerParentChildEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -923,15 +924,15 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerConfigurationEventArgs>
   nameWithType: EventHandler<ContainerConfigurationEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs>
   nameWithType.vb: EventHandler(Of ContainerConfigurationEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs)
   name.vb: EventHandler(Of ContainerConfigurationEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -942,10 +943,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs
     name: ContainerConfigurationEventArgs
     nameWithType: ContainerConfigurationEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -958,22 +959,22 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs
     name: ContainerConfigurationEventArgs
     nameWithType: ContainerConfigurationEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs
   - name: )
     nameWithType: )
     fullName: )
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerTypeEventArgs>
   nameWithType: EventHandler<ContainerTypeEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs>
   nameWithType.vb: EventHandler(Of ContainerTypeEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs)
   name.vb: EventHandler(Of ContainerTypeEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -984,10 +985,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs
     name: ContainerTypeEventArgs
     nameWithType: ContainerTypeEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1000,10 +1001,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs
     name: ContainerTypeEventArgs
     nameWithType: ContainerTypeEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs
   - name: )
     nameWithType: )
     fullName: )

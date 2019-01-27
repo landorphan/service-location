@@ -28,12 +28,12 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestMockingService
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 17
+    startLine: 23
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
   summary: "\nRepresents the mocking capabilities of the test subsystem.\n"
-  remarks: "\nContainer Structure:\n(root)   -> (TestRunContainerName) -> (TestInstanceOnTestRunOnRootContainerName)\n       |\n       -> (TestInstanceOnRootContainerName)\nResolution evaluates the current ambient container, then the chain of parent containers.\n"
+  remarks: "\n|  Grandparent Container |  Parent Container | Leaf Container                       |\n| :--------------------- | :---------------- | :----------------------------------- |\n| RootContainer          | TestRunContainer  | TestInstanceOnTestRunOnRootContainer |\n| RootContainer          | -                 | TestInstanceOnRootContainer          |\n<p>\nAdds 3 containers to the root container configured as above.\n</p>\n<p>\nResolution evaluates the current ambient container, then the chain of parent containers up to the\nroot (production) container.\n</p>\n"
   example: []
   syntax:
     content: 'public sealed class TestMockingService : DisposableObject, INotifyingQueryDisposable, IQueryDisposable, IDisposable, IQueryThreadSafe, ITestMockingService'
@@ -45,10 +45,10 @@ items:
   - System.Object
   - Landorphan.Common.DisposableObject
   implements:
-  - Landorphan.Common.INotifyingQueryDisposable
-  - Landorphan.Common.IQueryDisposable
+  - Landorphan.Common.Interfaces.INotifyingQueryDisposable
+  - Landorphan.Common.Interfaces.IQueryDisposable
   - System.IDisposable
-  - Landorphan.Common.IQueryThreadSafe
+  - Landorphan.Common.Interfaces.IQueryThreadSafe
   - Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
   inheritedMembers:
   - Landorphan.Common.DisposableObject.Dispose
@@ -87,7 +87,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 38
+    startLine: 44
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -127,7 +127,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestInstanceOnRootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 41
+    startLine: 47
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -167,7 +167,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestInstanceOnTestRunOnRootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 44
+    startLine: 50
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -207,7 +207,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestRunContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 47
+    startLine: 53
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -247,7 +247,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyNoMocking
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 50
+    startLine: 56
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -281,7 +281,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestInstanceMockingOnly
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 56
+    startLine: 62
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -315,7 +315,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestInstanceMockingOnTopOfTestRunMocking
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 62
+    startLine: 68
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -349,7 +349,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestRunMockingOnly
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 68
+    startLine: 74
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -383,12 +383,11 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ResetIndividualTestContainers
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-    startLine: 74
+    startLine: 80
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
   summary: "\nResets the individual test containers.\n"
-  remarks: "\nUse when initializing a test method.  The <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> instances dedicated to an individual test method are reset to new instances.\n"
   example: []
   syntax:
     content: public void ResetIndividualTestContainers()
@@ -420,20 +419,20 @@ references:
   name: DisposableObject
   nameWithType: DisposableObject
   fullName: Landorphan.Common.DisposableObject
-- uid: Landorphan.Common.INotifyingQueryDisposable
-  commentId: T:Landorphan.Common.INotifyingQueryDisposable
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Interfaces.INotifyingQueryDisposable
+  commentId: T:Landorphan.Common.Interfaces.INotifyingQueryDisposable
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: INotifyingQueryDisposable
   nameWithType: INotifyingQueryDisposable
-  fullName: Landorphan.Common.INotifyingQueryDisposable
-- uid: Landorphan.Common.IQueryDisposable
-  commentId: T:Landorphan.Common.IQueryDisposable
-  parent: Landorphan.Common
+  fullName: Landorphan.Common.Interfaces.INotifyingQueryDisposable
+- uid: Landorphan.Common.Interfaces.IQueryDisposable
+  commentId: T:Landorphan.Common.Interfaces.IQueryDisposable
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: IQueryDisposable
   nameWithType: IQueryDisposable
-  fullName: Landorphan.Common.IQueryDisposable
+  fullName: Landorphan.Common.Interfaces.IQueryDisposable
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -441,13 +440,13 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Landorphan.Common.IQueryThreadSafe
-  commentId: T:Landorphan.Common.IQueryThreadSafe
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Interfaces.IQueryThreadSafe
+  commentId: T:Landorphan.Common.Interfaces.IQueryThreadSafe
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: IQueryThreadSafe
   nameWithType: IQueryThreadSafe
-  fullName: Landorphan.Common.IQueryThreadSafe
+  fullName: Landorphan.Common.Interfaces.IQueryThreadSafe
 - uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
   commentId: T:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
   parent: Landorphan.Ioc.ServiceLocation.Testability
@@ -690,6 +689,12 @@ references:
   name: Landorphan.Common
   nameWithType: Landorphan.Common
   fullName: Landorphan.Common
+- uid: Landorphan.Common.Interfaces
+  commentId: N:Landorphan.Common.Interfaces
+  isExternal: true
+  name: Landorphan.Common.Interfaces
+  nameWithType: Landorphan.Common.Interfaces
+  fullName: Landorphan.Common.Interfaces
 - uid: Landorphan.Ioc.ServiceLocation.Testability.TestMockingService.RootContainer*
   commentId: Overload:Landorphan.Ioc.ServiceLocation.Testability.TestMockingService.RootContainer
   name: RootContainer

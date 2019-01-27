@@ -37,6 +37,7 @@ items:
     content: 'public interface IIocServiceLocator : IServiceProvider, IIocServiceLocatorMetaSharedCapacities'
     content.vb: >-
       Public Interface IIocServiceLocator
+
           Inherits IServiceProvider, IIocServiceLocatorMetaSharedCapacities
   seealso:
   - linkId: System.IServiceProvider
@@ -78,6 +79,7 @@ items:
   syntax:
     content: >-
       TFrom Resolve<TFrom>()
+
           where TFrom : class
     typeParameters:
     - id: TFrom
@@ -121,6 +123,7 @@ items:
   syntax:
     content: >-
       TFrom Resolve<TFrom>(string name)
+
           where TFrom : class
     parameters:
     - id: name
@@ -249,6 +252,7 @@ items:
   syntax:
     content: >-
       bool TryResolve<TFrom>(out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: instance
@@ -292,6 +296,7 @@ items:
   syntax:
     content: >-
       bool TryResolve<TFrom>(string name, out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: name

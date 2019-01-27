@@ -2,6 +2,7 @@
 {
    using System;
    using System.Collections.Generic;
+   using Landorphan.Ioc.ServiceLocation.EventArguments;
    using Landorphan.Ioc.ServiceLocation.Exceptions;
 
    /// <summary>

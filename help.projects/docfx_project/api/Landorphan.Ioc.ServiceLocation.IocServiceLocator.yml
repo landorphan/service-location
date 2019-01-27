@@ -54,12 +54,13 @@ items:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
   summary: "\nAn inversion of control service locator implementation for dependency injection.\n"
-  remarks: "\n<p>\nService location allows for the narrow* resolution of registered types (and only registered types) with AppDomain life-time.\n*narrow:  Suppose InterfaceB descends from InterfaceA, and suppose InterfaceB is registered.  Attempting to resolve InterfaceA will fail.\nIt also allows for overrides of default implementation to support test scenarios.  To support test scenarios, implementations should perform the following:\n   1) Create a child container.\n   2) Set the ambient container to the child container.\n   3) Register services with the child container that should override the default (production/implementation) interfaces.\n   4) Execute tests\n   5) Dispose of the child container.\n</p>\n<p>\nType discovery is limited to registered types.  Inheritance is not considered.\n</p>\n<p>\nExposes service location capacities as a collection of capacities/roles in <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities\" data-throw-if-not-resolved=\"false\"></xref>.  For typical client scenarios, static methods are available\nfor simplified syntax.  For example, <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator.Resolve(System.Type)\" data-throw-if-not-resolved=\"false\"></xref>.  For more advanced usage, use <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator.Manager\" data-throw-if-not-resolved=\"false\"></xref> to monitor and manipulate the behavior\nof the service locator.\n</p>\n"
+  remarks: "\n<p>\nService location allows for the narrow* resolution of registered types (and only registered types) with AppDomain life-time.\nTypical usage is as follows:\n<example><pre><code>IocServiceLocator.Resolve(typeof(IService))</code></pre></example>\nIt also allows for overrides of default implementation to support test scenarios.  To support test scenarios, implementations should perform the following:\n   1) Create a child container.\n   2) Set the ambient container to the child container.\n   3) Register services with the child container that should override the default (production/implementation) interfaces.\n   4) Execute tests\n   5) Dispose of the child container.\nAn implementation of the above pattern in provided in Landorphan.Ioc.ServiceLocation.Testability.\n</p>\n<p>\n*narrow:  Suppose InterfaceB descends from InterfaceA, and suppose InterfaceB is registered.  Attempting to resolve InterfaceA will fail.\n</p>\n<p>\nThis implementation of the service locator allows class libraries to self-register default implementations.  If you need to manually add a registration, you do so as follows:\n<example><pre><code>IocServiceLocator.RootContainer.Registrar.RegisterInstance(typeof(IService), new Service());</code></pre></example>\n</p>\n<p>\nType discovery is limited to registered types.  Inheritance is not considered.\n</p>\n<p>\nExposes service location capacities as a collection of capacities/roles in <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities\" data-throw-if-not-resolved=\"false\"></xref>.  For typical client scenarios, static methods are available\nfor simplified syntax.  For example, <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator.Resolve(System.Type)\" data-throw-if-not-resolved=\"false\"></xref>.  For more advanced usage, use <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator.Manager\" data-throw-if-not-resolved=\"false\"></xref> to monitor and manipulate the behavior\nof the service locator.\n</p>\n"
   example: []
   syntax:
     content: 'public sealed class IocServiceLocator : IIocServiceLocator, IServiceProvider, IIocServiceLocatorManager, IIocServiceLocatorMetaSharedCapacities'
     content.vb: >-
       Public NotInheritable Class IocServiceLocator
+
           Implements IIocServiceLocator, IServiceProvider, IIocServiceLocatorManager, IIocServiceLocatorMetaSharedCapacities
   inheritance:
   - System.Object
@@ -136,24 +137,18 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nResolves the default instance of the requested type.\n"
   example: []
   syntax:
     content: >-
       TFrom IIocServiceLocator.Resolve<TFrom>()
+
           where TFrom : class
     typeParameters:
     - id: TFrom
-      description: "\nThe requested service interface type\n"
     return:
       type: '{TFrom}'
-      description: "\nThe default implementation instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom As Class) As TFrom Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
-  exceptions:
-  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TFrom</code> service default instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve``1
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom)()
@@ -182,28 +177,21 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nResolves a named instance of the requested type.\n"
   example: []
   syntax:
     content: >-
       TFrom IIocServiceLocator.Resolve<TFrom>(string name)
+
           where TFrom : class
     parameters:
     - id: name
       type: System.String
-      description: "\nThe name of the instance to retrieve, null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> for the default instance.\n"
     typeParameters:
     - id: TFrom
-      description: "\nThe requested service interface type.\n"
     return:
       type: '{TFrom}'
-      description: "\nThe retrieved instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom As Class)(name As String) As TFrom Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
-  exceptions:
-  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TFrom</code> service instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve``1(System.String)
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom)(String)
@@ -232,23 +220,16 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nResolves the default instance of the requested type.\n"
   example: []
   syntax:
     content: object IIocServiceLocator.Resolve(Type fromType)
     parameters:
     - id: fromType
       type: System.Type
-      description: "\nThe requested type.\n"
     return:
       type: System.Object
-      description: "\nThe retrieved instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(fromType As Type) As Object Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
-  exceptions:
-  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromType</code> service instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(System.Type)
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Type)
@@ -276,26 +257,18 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nResolves a named instance of the requested type.\n"
   example: []
   syntax:
     content: object IIocServiceLocator.Resolve(Type fromType, string name)
     parameters:
     - id: fromType
       type: System.Type
-      description: "\nThe requested service interface type.\n"
     - id: name
       type: System.String
-      description: "\nThe name of the instance to retrieve, specify null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the default instance.\n"
     return:
       type: System.Object
-      description: "\nThe retrieved instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(fromType As Type, name As String) As Object Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
-  exceptions:
-  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-    description: "\nThrown when an error occurs resolving the named <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromType</code> service instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(System.Type,System.String)
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Type, String)
@@ -327,6 +300,7 @@ items:
   syntax:
     content: >-
       bool IIocServiceLocator.TryResolve<TFrom>(out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: instance
@@ -369,6 +343,7 @@ items:
   syntax:
     content: >-
       bool IIocServiceLocator.TryResolve<TFrom>(string name, out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: name
@@ -409,20 +384,16 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nAttempts to resolve the default instance of the requested type.\n"
   example: []
   syntax:
     content: bool IIocServiceLocator.TryResolve(Type fromType, out object instance)
     parameters:
     - id: fromType
       type: System.Type
-      description: "\nThe requested service interface type.\n"
     - id: instance
       type: System.Object
-      description: "\nThe default registered instance when found; otherwise a null reference.\n"
     return:
       type: System.Boolean
-      description: "\n<code>true</code> when a default registered instance was found; otherwise <code>false</code>.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve(fromType As Type, ByRef instance As Object) As Boolean Implements IIocServiceLocator.TryResolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#TryResolve*
   implements:
@@ -453,23 +424,18 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nResolves a named instance of the requested type.\n"
   example: []
   syntax:
     content: bool IIocServiceLocator.TryResolve(Type fromType, string name, out object instance)
     parameters:
     - id: fromType
       type: System.Type
-      description: "\nThe requested service interface type.\n"
     - id: name
       type: System.String
-      description: "\nThe name of the instance to retrieve, specify null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the default instance.\n"
     - id: instance
       type: System.Object
-      description: "\nThe named registered instance when found; otherwise a null reference.\n"
     return:
       type: System.Boolean
-      description: "\n<code>true</code> when the named registered instance was found; otherwise <code>false</code>.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve(fromType As Type, name As String, ByRef instance As Object) As Boolean Implements IIocServiceLocator.TryResolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#TryResolve*
   implements:
@@ -496,17 +462,15 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 34
+    startLine: 36
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nEvent queue for all listeners interested the completion of a collection of assemblies having their <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invoked.\n"
-  remarks: "\nOccurs just after the completion of a collection of assemblies <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances  are invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
     content.vb: Event Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked As EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs) Implements IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
@@ -531,17 +495,15 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 41
+    startLine: 43
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nEvent queue for all listeners interested in the completion of an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invocation.\n"
-  remarks: "\nOccurs just after an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instance is invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
     content.vb: Event Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked As EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs) Implements IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
@@ -566,12 +528,10 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainerChanged
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 48
+    startLine: 50
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nEvent queue for all listeners interested in changes to the ambient container.\n"
-  remarks: "\nOccurs when ambient dependency injection container changes.\n"
   example: []
   syntax:
     content: event EventHandler<EventArgs> IIocServiceLocatorManager.AmbientContainerChanged
@@ -601,17 +561,15 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 55
+    startLine: 57
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nEvent queue for all listeners interested the initiation of a collection of assemblies having their <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invoked.\n"
-  remarks: "\nOccurs just before the a collection of assemblies <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances are invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
     content.vb: Event Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked As EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs) Implements IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
@@ -636,17 +594,15 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 62
+    startLine: 64
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nEvent queue for all listeners interested in the initiation of an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invocation.\n"
-  remarks: "\nOccurs just before an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instance is invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
     content.vb: Event Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked As EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs) Implements IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
@@ -671,18 +627,16 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 69
+    startLine: 71
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nGets the ambient container.\n"
   example: []
   syntax:
     content: IIocContainer IIocServiceLocatorManager.AmbientContainer { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
-      description: "\nThe ambient container.\n"
     content.vb: ReadOnly WriteOnly Property Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainer As IIocContainer Implements IIocServiceLocatorManager.AmbientContainer
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocatorManager#AmbientContainer*
   implements:
@@ -712,18 +666,16 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 72
+    startLine: 74
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nGets the root container.\n"
   example: []
   syntax:
     content: IIocContainer IIocServiceLocatorManager.RootContainer { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
-      description: "\nThe root container.\n"
     content.vb: ReadOnly WriteOnly Property Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.RootContainer As IIocContainer Implements IIocServiceLocatorManager.RootContainer
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocatorManager#RootContainer*
   implements:
@@ -753,18 +705,16 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.SetAmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-    startLine: 75
+    startLine: 77
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nSets the ambient container.\n"
   example: []
   syntax:
     content: void IIocServiceLocatorManager.SetAmbientContainer(IIocContainer container)
     parameters:
     - id: container
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
-      description: "\nThe container.\n"
     content.vb: Sub Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.SetAmbientContainer(container As IIocContainer) Implements IIocServiceLocatorManager.SetAmbientContainer
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocatorManager#SetAmbientContainer*
   implements:
@@ -789,19 +739,16 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Manager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Shared.cs
-    startLine: 97
+    startLine: 106
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nGets the manager of the service locator.\n"
-  remarks: "\nUsed to monitor and manipulate the behavior of <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public IIocServiceLocatorManager Manager { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager
-      description: "\nThe manager of the service locator.\n"
     content.vb: Public ReadOnly Property Manager As IIocServiceLocatorManager
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Manager*
   implements:
@@ -830,19 +777,16 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ServiceLocator
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Shared.cs
-    startLine: 100
+    startLine: 109
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nGets the service locator.\n"
-  remarks: "\nUsed to resolve interfaces to implementations.\n"
   example: []
   syntax:
     content: public IIocServiceLocator ServiceLocator { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator
-      description: "\nThe service locator client interface.\n"
     content.vb: Public ReadOnly Property ServiceLocator As IIocServiceLocator
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.ServiceLocator*
   implements:
@@ -1000,6 +944,7 @@ items:
   syntax:
     content: >-
       public static TFrom Resolve<TFrom>()
+
           where TFrom : class
     typeParameters:
     - id: TFrom
@@ -1050,6 +995,7 @@ items:
   syntax:
     content: >-
       public static TFrom Resolve<TFrom>(string name)
+
           where TFrom : class
     parameters:
     - id: name
@@ -1198,6 +1144,7 @@ items:
   syntax:
     content: >-
       public static bool TryResolve<TFrom>(out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: instance
@@ -1247,6 +1194,7 @@ items:
   syntax:
     content: >-
       public static bool TryResolve<TFrom>(string name, out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: name
@@ -1517,11 +1465,6 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-  name: ResolutionException
-  nameWithType: ResolutionException
-  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
 - uid: '{TFrom}'
   commentId: '!:TFrom'
   definition: TFrom
@@ -2002,15 +1945,15 @@ references:
   name: AfterContainerAssemblyCollectionSelfRegistrationInvoked
   nameWithType: IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
   fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
   nameWithType: EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
   nameWithType.vb: EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
   name.vb: EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -2021,10 +1964,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -2037,10 +1980,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -2089,15 +2032,15 @@ references:
   name: AfterContainerAssemblySingleSelfRegistrationInvoked
   nameWithType: IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
   fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs>
   nameWithType: EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs>
   nameWithType.vb: EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs)
   name.vb: EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -2108,10 +2051,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
     name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
     nameWithType: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -2124,10 +2067,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
     name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
     nameWithType: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -2305,6 +2248,11 @@ references:
   name: RootContainer
   nameWithType: IocServiceLocator.RootContainer
   fullName: Landorphan.Ioc.ServiceLocation.IocServiceLocator.RootContainer
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+  name: ResolutionException
+  nameWithType: ResolutionException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
 - uid: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Resolve*
   commentId: Overload:Landorphan.Ioc.ServiceLocation.IocServiceLocator.Resolve
   name: Resolve

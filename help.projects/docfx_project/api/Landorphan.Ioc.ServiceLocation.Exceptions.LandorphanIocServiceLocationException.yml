@@ -33,15 +33,17 @@ items:
     content: 'public abstract class LandorphanIocServiceLocationException : LandorphanException, ISerializable'
     content.vb: >-
       Public MustInherit Class LandorphanIocServiceLocationException
+
           Inherits LandorphanException
+
           Implements ISerializable
   seealso:
-  - linkId: Landorphan.Common.LandorphanArgumentException
-    commentId: T:Landorphan.Common.LandorphanArgumentException
+  - linkId: Landorphan.Common.Exceptions.LandorphanArgumentException
+    commentId: T:Landorphan.Common.Exceptions.LandorphanArgumentException
   inheritance:
   - System.Object
   - System.Exception
-  - Landorphan.Common.LandorphanException
+  - Landorphan.Common.Exceptions.LandorphanException
   derivedClasses:
   - Landorphan.Ioc.ServiceLocation.Exceptions.AbstractAssemblyRegistrarException
   - Landorphan.Ioc.ServiceLocation.Exceptions.AssemblyRegistrarMustHavePublicDefaultConstructorException
@@ -219,13 +221,13 @@ references:
   name: Landorphan.Ioc.ServiceLocation
   nameWithType: Landorphan.Ioc.ServiceLocation
   fullName: Landorphan.Ioc.ServiceLocation
-- uid: Landorphan.Common.LandorphanArgumentException
-  commentId: T:Landorphan.Common.LandorphanArgumentException
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Exceptions.LandorphanArgumentException
+  commentId: T:Landorphan.Common.Exceptions.LandorphanArgumentException
+  parent: Landorphan.Common.Exceptions
   isExternal: true
   name: LandorphanArgumentException
   nameWithType: LandorphanArgumentException
-  fullName: Landorphan.Common.LandorphanArgumentException
+  fullName: Landorphan.Common.Exceptions.LandorphanArgumentException
 - uid: Landorphan.Ioc.ServiceLocation.Exceptions
   commentId: N:Landorphan.Ioc.ServiceLocation.Exceptions
   name: Landorphan.Ioc.ServiceLocation.Exceptions
@@ -238,13 +240,13 @@ references:
   name: Object
   nameWithType: Object
   fullName: System.Object
-- uid: Landorphan.Common.LandorphanException
-  commentId: T:Landorphan.Common.LandorphanException
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Exceptions.LandorphanException
+  commentId: T:Landorphan.Common.Exceptions.LandorphanException
+  parent: Landorphan.Common.Exceptions
   isExternal: true
   name: LandorphanException
   nameWithType: LandorphanException
-  fullName: Landorphan.Common.LandorphanException
+  fullName: Landorphan.Common.Exceptions.LandorphanException
 - uid: System.Runtime.Serialization.ISerializable
   commentId: T:System.Runtime.Serialization.ISerializable
   parent: System.Runtime.Serialization
@@ -258,12 +260,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Exceptions
+  commentId: N:Landorphan.Common.Exceptions
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Exceptions
+  nameWithType: Landorphan.Common.Exceptions
+  fullName: Landorphan.Common.Exceptions
 - uid: System.Runtime.Serialization
   commentId: N:System.Runtime.Serialization
   isExternal: true

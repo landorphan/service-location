@@ -9,7 +9,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations.Architecture
    using System.Linq;
    using System.Xml.Linq;
    using FluentAssertions;
-   using global::Landorphan.Common;
+   using Landorphan.Common;
 
    // ReSharper disable StringLiteralTypo
    // ReSharper disable InconsistentNaming

@@ -1,7 +1,6 @@
 ﻿namespace Landorphan.Ioc.Tests.Mocks
 {
    using System;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    public sealed class MockContainerImplementingIIocContainerMetaIdentity : IIocContainerMetaIdentity

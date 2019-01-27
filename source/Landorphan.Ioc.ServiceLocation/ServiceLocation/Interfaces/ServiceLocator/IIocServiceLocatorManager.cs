@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    using System;
+   using Landorphan.Ioc.ServiceLocation.EventArguments;
 
    /// <summary>
    /// Represents the management interface of the service locator.

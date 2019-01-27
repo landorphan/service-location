@@ -28,12 +28,12 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ITestMockingService
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 15
+    startLine: 27
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
   summary: "\nRepresents the mocking capabilities of the test subsystem.\n"
-  remarks: "\nContainer Structure:\n(root)   -> (TestRunContainerName) -> (TestInstanceOnTestRunOnRootContainerName)\n       |\n       -> (TestInstanceOnRootContainerName)\nResolution evaluates the current ambient container, then the chain of parent containers.\n"
+  remarks: "\n|  Grandparent Container |  Parent Container | Leaf Container                       |\n| :--------------------- | :---------------- | :----------------------------------- |\n| RootContainer          | TestRunContainer  | TestInstanceOnTestRunOnRootContainer |\n| RootContainer          | -                 | TestInstanceOnRootContainer          |\n<p>\nThe default implementation of <xref href=\"Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService\" data-throw-if-not-resolved=\"false\"></xref> adds 3 containers to the root container configured as above.\n</p>\n<p>\nResolution evaluates the current ambient container, then the chain of parent containers up to the\nroot (production) container.\n</p>\n<p>\nNo containers are added for single test methods.  Experience has shown they are not needed.  If you feel differently, you can achieve the result in one of two ways:\n1. Call <xref href=\"Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers\" data-throw-if-not-resolved=\"false\"></xref> in your test method, this resets both <xref href=\"Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnTestRunOnRootContainer\" data-throw-if-not-resolved=\"false\"></xref>\nand <xref href=\"Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnRootContainer\" data-throw-if-not-resolved=\"false\"></xref> and arrange your test; or\n2. Call add your own containers, for example, you could call ITestMockingService.TestInstanceOnRootContainer.Manager.CreateChildContainer(&quot;some name&quot;)\n</p>\n"
   example: []
   syntax:
     content: public interface ITestMockingService
@@ -62,7 +62,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 23
+    startLine: 35
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -98,7 +98,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestInstanceOnRootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 31
+    startLine: 43
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -134,7 +134,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestInstanceOnTestRunOnRootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 39
+    startLine: 51
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -170,7 +170,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestRunContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 47
+    startLine: 59
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -206,7 +206,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyNoMocking
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 52
+    startLine: 64
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -234,7 +234,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestInstanceMockingOnly
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 57
+    startLine: 69
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -262,7 +262,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestInstanceMockingOnTopOfTestRunMocking
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 62
+    startLine: 74
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -290,7 +290,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestRunMockingOnly
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 67
+    startLine: 79
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -318,18 +318,63 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ResetIndividualTestContainers
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/ITestMockingService.cs
-    startLine: 75
+    startLine: 84
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
   summary: "\nResets the individual test containers.\n"
-  remarks: "\nUse when initializing a test method.  The <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> instances dedicated to an individual test method are reset to new instances.\n"
   example: []
   syntax:
     content: void ResetIndividualTestContainers()
     content.vb: Sub ResetIndividualTestContainers
   overload: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers*
 references:
+- uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  commentId: T:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  parent: Landorphan.Ioc.ServiceLocation.Testability
+  name: ITestMockingService
+  nameWithType: ITestMockingService
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+- uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers
+  commentId: M:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers
+  parent: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  name: ResetIndividualTestContainers()
+  nameWithType: ITestMockingService.ResetIndividualTestContainers()
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers()
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers
+    name: ResetIndividualTestContainers
+    nameWithType: ITestMockingService.ResetIndividualTestContainers
+    fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers
+    name: ResetIndividualTestContainers
+    nameWithType: ITestMockingService.ResetIndividualTestContainers
+    fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.ResetIndividualTestContainers
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnTestRunOnRootContainer
+  commentId: P:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnTestRunOnRootContainer
+  parent: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  name: TestInstanceOnTestRunOnRootContainer
+  nameWithType: ITestMockingService.TestInstanceOnTestRunOnRootContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnTestRunOnRootContainer
+- uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnRootContainer
+  commentId: P:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnRootContainer
+  parent: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  name: TestInstanceOnRootContainer
+  nameWithType: ITestMockingService.TestInstanceOnRootContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService.TestInstanceOnRootContainer
 - uid: Landorphan.Ioc.ServiceLocation.Testability
   commentId: N:Landorphan.Ioc.ServiceLocation.Testability
   name: Landorphan.Ioc.ServiceLocation.Testability

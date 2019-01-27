@@ -27,7 +27,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: IIocServiceLocatorManager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 7
+    startLine: 8
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -37,6 +37,7 @@ items:
     content: 'public interface IIocServiceLocatorManager : IIocServiceLocatorMetaSharedCapacities'
     content.vb: >-
       Public Interface IIocServiceLocatorManager
+
           Inherits IIocServiceLocatorMetaSharedCapacities
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
@@ -65,7 +66,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: AfterContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 15
+    startLine: 16
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -75,7 +76,7 @@ items:
   syntax:
     content: event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> AfterContainerAssemblyCollectionSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
     content.vb: Event AfterContainerAssemblyCollectionSelfRegistrationInvoked As EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
@@ -95,7 +96,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: AfterContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -105,7 +106,7 @@ items:
   syntax:
     content: event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> AfterContainerAssemblySingleSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
     content.vb: Event AfterContainerAssemblySingleSelfRegistrationInvoked As EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainerChanged
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainerChanged
@@ -125,7 +126,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: AmbientContainerChanged
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 31
+    startLine: 32
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -155,7 +156,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: BeforeContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 39
+    startLine: 40
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -165,7 +166,7 @@ items:
   syntax:
     content: event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> BeforeContainerAssemblyCollectionSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
     content.vb: Event BeforeContainerAssemblyCollectionSelfRegistrationInvoked As EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
@@ -185,7 +186,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: BeforeContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -195,7 +196,7 @@ items:
   syntax:
     content: event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> BeforeContainerAssemblySingleSelfRegistrationInvoked
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
     content.vb: Event BeforeContainerAssemblySingleSelfRegistrationInvoked As EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainer
   commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainer
@@ -215,7 +216,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: AmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 55
+    startLine: 56
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -251,7 +252,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 63
+    startLine: 64
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -287,7 +288,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: SetAmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-    startLine: 71
+    startLine: 72
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -331,15 +332,15 @@ references:
   name: IAssemblySelfRegistration
   nameWithType: IAssemblySelfRegistration
   fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
   nameWithType: EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>
   nameWithType.vb: EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
   name.vb: EventHandler(Of ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -350,10 +351,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -366,10 +367,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   - name: )
     nameWithType: )
     fullName: )
@@ -418,15 +419,15 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs>
   nameWithType: EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs>
   nameWithType.vb: EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs)
   name.vb: EventHandler(Of ContainerIndividualAssemblyRegistrarInvokedEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -437,10 +438,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
     name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
     nameWithType: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -453,10 +454,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
     name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
     nameWithType: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
   - name: )
     nameWithType: )
     fullName: )

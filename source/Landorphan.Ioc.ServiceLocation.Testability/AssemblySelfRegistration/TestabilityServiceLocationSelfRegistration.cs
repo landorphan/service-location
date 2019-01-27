@@ -1,12 +1,11 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability
 {
-   using System.Diagnostics.CodeAnalysis;
    using Landorphan.Common;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
-   /// Registers services with the IoC for use by this assembly.
+   /// Registers the services of this assembly with the <see cref="IocServiceLocator"/>.
    /// </summary>
    /// <remarks>
    /// "Auto-registers" these interfaces (currently only <see cref="ITestMockingService"/>) in the root container.
@@ -14,7 +13,6 @@
    public sealed class TestabilityServiceLocationSelfRegistration : IAssemblySelfRegistration
    {
       /// <inheritdoc/>
-      // [SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
       public void RegisterServiceInstances(IIocContainerRegistrar registrar)
       {
          registrar.ArgumentNotNull(nameof(registrar));

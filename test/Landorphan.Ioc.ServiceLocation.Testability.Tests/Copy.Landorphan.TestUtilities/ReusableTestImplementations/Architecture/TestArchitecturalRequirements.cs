@@ -9,7 +9,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations.Architecture
    using System.Globalization;
    using System.Linq;
    using System.Reflection;
-   using global::Landorphan.Common;
+   using Landorphan.Common;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming

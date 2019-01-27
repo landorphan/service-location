@@ -1,7 +1,6 @@
 ﻿namespace Landorphan.Ioc.Logging.Internal
 {
    using System;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>

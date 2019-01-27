@@ -69,6 +69,7 @@ items:
   syntax:
     content: >-
       public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container)
+
           where TFrom : class
     parameters:
     - id: container
@@ -122,6 +123,7 @@ items:
   syntax:
     content: >-
       public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container, string name)
+
           where TFrom : class
     parameters:
     - id: container

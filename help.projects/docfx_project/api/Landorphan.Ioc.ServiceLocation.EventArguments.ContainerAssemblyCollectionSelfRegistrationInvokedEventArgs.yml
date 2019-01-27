@@ -1,38 +1,39 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  commentId: T:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   id: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  parent: Landorphan.Ioc.ServiceLocation
+  parent: Landorphan.Ioc.ServiceLocation.EventArguments
   children:
-  - Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
-  - Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
-  - Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
-  - Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+  - Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
+  - Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+  - Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+  - Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
   langs:
   - csharp
   - vb
   name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   type: Class
   source:
     remote:
-      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
       branch: mprochaska.documentation.1
       repo: https://github.com/landorphan/service-location.git
     id: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
     startLine: 13
   assemblies:
   - Landorphan.Ioc.ServiceLocation
-  namespace: Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.EventArguments
   summary: "\nProvides data for the <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked\" data-throw-if-not-resolved=\"false\"></xref> event and the\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
   example: []
   syntax:
     content: 'public sealed class ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs : EventArgs'
     content.vb: >-
       Public NotInheritable Class ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+
           Inherits EventArgs
   seealso:
   - linkId: System.EventArgs
@@ -50,61 +51,61 @@ items:
   - Public
   - NotInheritable
   - Class
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
-  commentId: M:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
+  commentId: M:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
   id: '#ctor'
-  parent: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  parent: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   langs:
   - csharp
   - vb
   name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs()
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs()
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs()
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs()
   type: Constructor
   source:
     remote:
-      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
       branch: mprochaska.documentation.1
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
-    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
     startLine: 20
   assemblies:
   - Landorphan.Ioc.ServiceLocation
-  namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  namespace: Landorphan.Ioc.ServiceLocation.EventArguments
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
   example: []
   syntax:
     content: public ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs()
     content.vb: Public Sub New
-  overload: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor*
+  overload: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor*
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
-  commentId: M:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+  commentId: M:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
   id: '#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})'
-  parent: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  parent: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   langs:
   - csharp
   - vb
   name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(IIocContainerMetaIdentity, IEnumerable<Assembly>)
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(IIocContainerMetaIdentity, IEnumerable<Assembly>)
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity, System.Collections.Generic.IEnumerable<System.Reflection.Assembly>)
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity, System.Collections.Generic.IEnumerable<System.Reflection.Assembly>)
   type: Constructor
   source:
     remote:
-      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
       branch: mprochaska.documentation.1
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
-    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
     startLine: 34
   assemblies:
   - Landorphan.Ioc.ServiceLocation
-  namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class using the specified\n<xref href=\"Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies\" data-throw-if-not-resolved=\"false\"></xref> collection.\n"
+  namespace: Landorphan.Ioc.ServiceLocation.EventArguments
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class using the specified\n<xref href=\"Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies\" data-throw-if-not-resolved=\"false\"></xref> collection.\n"
   example: []
   syntax:
     content: public ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
@@ -116,36 +117,36 @@ items:
       type: System.Collections.Generic.IEnumerable{System.Reflection.Assembly}
       description: "\nA collection of assemblies whose <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances will be/were invoked.\n"
     content.vb: Public Sub New(container As IIocContainerMetaIdentity, assemblies As IEnumerable(Of Assembly))
-  overload: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor*
+  overload: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor*
   nameWithType.vb: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(IIocContainerMetaIdentity, IEnumerable(Of Assembly))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
-  fullName.vb: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity, System.Collections.Generic.IEnumerable(Of System.Reflection.Assembly))
+  fullName.vb: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity, System.Collections.Generic.IEnumerable(Of System.Reflection.Assembly))
   name.vb: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs(IIocContainerMetaIdentity, IEnumerable(Of Assembly))
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
-  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+  commentId: P:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
   id: Assemblies
-  parent: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  parent: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   langs:
   - csharp
   - vb
   name: Assemblies
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
   type: Property
   source:
     remote:
-      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
       branch: mprochaska.documentation.1
       repo: https://github.com/landorphan/service-location.git
     id: Assemblies
-    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
     startLine: 70
   assemblies:
   - Landorphan.Ioc.ServiceLocation
-  namespace: Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.EventArguments
   summary: "\nGets a collection of <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> that represents the assemblies <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances were invoked to register services.\n"
   remarks: "\nNever null, nor contains null.\n"
   example: []
@@ -156,36 +157,36 @@ items:
       type: System.Collections.Generic.IEnumerable{System.Reflection.Assembly}
       description: "\nA non-null collection of <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> of zero or more non null <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> instances representing the collection of assemblies in which\nthe <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances were invoked to register services.\n"
     content.vb: Public ReadOnly Property Assemblies As IEnumerable(Of Assembly)
-  overload: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies*
+  overload: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies*
   modifiers.csharp:
   - public
   - get
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
-  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+  commentId: P:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
   id: Container
-  parent: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  parent: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   langs:
   - csharp
   - vb
   name: Container
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
   type: Property
   source:
     remote:
-      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
       branch: mprochaska.documentation.1
       repo: https://github.com/landorphan/service-location.git
     id: Container
-    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
     startLine: 82
   assemblies:
   - Landorphan.Ioc.ServiceLocation
-  namespace: Landorphan.Ioc.ServiceLocation
-  summary: "\nGets the <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity\" data-throw-if-not-resolved=\"false\"></xref> in which the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies\" data-throw-if-not-resolved=\"false\"></xref>&quot;/> collection of <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances were invoked\nto register services.\n"
+  namespace: Landorphan.Ioc.ServiceLocation.EventArguments
+  summary: "\nGets the <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity\" data-throw-if-not-resolved=\"false\"></xref> in which the <xref href=\"Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies\" data-throw-if-not-resolved=\"false\"></xref>&quot;/> collection of <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances were invoked\nto register services.\n"
   remarks: "\nMay be a null-reference.\n"
   example: []
   syntax:
@@ -193,9 +194,9 @@ items:
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
-      description: "\nThe <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity\" data-throw-if-not-resolved=\"false\"></xref> in which the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies\" data-throw-if-not-resolved=\"false\"></xref>&quot;/> collection of <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances were invoked to register services.\n"
+      description: "\nThe <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity\" data-throw-if-not-resolved=\"false\"></xref> in which the <xref href=\"Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies\" data-throw-if-not-resolved=\"false\"></xref>&quot;/> collection of <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances were invoked to register services.\n"
     content.vb: Public ReadOnly Property Container As IIocContainerMetaIdentity
-  overload: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container*
+  overload: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container*
   modifiers.csharp:
   - public
   - get
@@ -222,11 +223,11 @@ references:
   name: EventArgs
   nameWithType: EventArgs
   fullName: System.EventArgs
-- uid: Landorphan.Ioc.ServiceLocation
-  commentId: N:Landorphan.Ioc.ServiceLocation
-  name: Landorphan.Ioc.ServiceLocation
-  nameWithType: Landorphan.Ioc.ServiceLocation
-  fullName: Landorphan.Ioc.ServiceLocation
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments
+  commentId: N:Landorphan.Ioc.ServiceLocation.EventArguments
+  name: Landorphan.Ioc.ServiceLocation.EventArguments
+  nameWithType: Landorphan.Ioc.ServiceLocation.EventArguments
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments
 - uid: System.Object
   commentId: T:System.Object
   parent: System
@@ -258,21 +259,21 @@ references:
   name: Landorphan.Ioc.ServiceLocation.Interfaces
   nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
   fullName: Landorphan.Ioc.ServiceLocation.Interfaces
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  commentId: T:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor*
-  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.#ctor
   name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
-  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+  commentId: P:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
   isExternal: true
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
-  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+  commentId: P:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
   isExternal: true
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
   commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
@@ -382,19 +383,19 @@ references:
   name: Assembly
   nameWithType: Assembly
   fullName: System.Reflection.Assembly
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies*
-  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
   name: Assemblies
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Assemblies
 - uid: System.Reflection
   commentId: N:System.Reflection
   isExternal: true
   name: System.Reflection
   nameWithType: System.Reflection
   fullName: System.Reflection
-- uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container*
-  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
   name: Container
   nameWithType: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
-  fullName: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container
+  fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.Container

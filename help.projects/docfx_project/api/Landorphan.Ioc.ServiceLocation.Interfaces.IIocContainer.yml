@@ -33,6 +33,7 @@ items:
     content: 'public interface IIocContainer : IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
     content.vb: >-
       Public Interface IIocContainer
+
           Inherits IIocContainerMetaSharedCapacities
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container

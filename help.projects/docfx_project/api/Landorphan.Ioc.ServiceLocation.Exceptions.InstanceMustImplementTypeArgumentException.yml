@@ -37,14 +37,16 @@ items:
     content: 'public sealed class InstanceMustImplementTypeArgumentException : LandorphanIocServiceLocationArgumentException, ISerializable'
     content.vb: >-
       Public NotInheritable Class InstanceMustImplementTypeArgumentException
+
           Inherits LandorphanIocServiceLocationArgumentException
+
           Implements ISerializable
   inheritance:
   - System.Object
   - System.Exception
   - System.SystemException
   - System.ArgumentException
-  - Landorphan.Common.LandorphanArgumentException
+  - Landorphan.Common.Exceptions.LandorphanArgumentException
   - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
   implements:
   - System.Runtime.Serialization.ISerializable
@@ -400,13 +402,13 @@ references:
   name: ArgumentException
   nameWithType: ArgumentException
   fullName: System.ArgumentException
-- uid: Landorphan.Common.LandorphanArgumentException
-  commentId: T:Landorphan.Common.LandorphanArgumentException
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Exceptions.LandorphanArgumentException
+  commentId: T:Landorphan.Common.Exceptions.LandorphanArgumentException
+  parent: Landorphan.Common.Exceptions
   isExternal: true
   name: LandorphanArgumentException
   nameWithType: LandorphanArgumentException
-  fullName: Landorphan.Common.LandorphanArgumentException
+  fullName: Landorphan.Common.Exceptions.LandorphanArgumentException
 - uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
   commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
   parent: Landorphan.Ioc.ServiceLocation.Exceptions
@@ -426,12 +428,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Exceptions
+  commentId: N:Landorphan.Common.Exceptions
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Exceptions
+  nameWithType: Landorphan.Common.Exceptions
+  fullName: Landorphan.Common.Exceptions
 - uid: System.Runtime.Serialization
   commentId: N:System.Runtime.Serialization
   isExternal: true

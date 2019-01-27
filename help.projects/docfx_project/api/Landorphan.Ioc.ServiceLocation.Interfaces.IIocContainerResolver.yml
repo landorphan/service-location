@@ -38,6 +38,7 @@ items:
     content: 'public interface IIocContainerResolver : IIocContainerRegistrationRepository, IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
     content.vb: >-
       Public Interface IIocContainerResolver
+
           Inherits IIocContainerMetaSharedCapacities, IIocContainerRegistrationRepository
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Registrations
@@ -93,6 +94,7 @@ items:
   syntax:
     content: >-
       TFrom Resolve<TFrom>()
+
           where TFrom : class
     typeParameters:
     - id: TFrom
@@ -139,6 +141,7 @@ items:
   syntax:
     content: >-
       TFrom Resolve<TFrom>(string name)
+
           where TFrom : class
     parameters:
     - id: name
@@ -276,6 +279,7 @@ items:
   syntax:
     content: >-
       bool TryResolve<TFrom>(out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: instance
@@ -319,6 +323,7 @@ items:
   syntax:
     content: >-
       bool TryResolve<TFrom>(string name, out TFrom instance)
+
           where TFrom : class
     parameters:
     - id: name

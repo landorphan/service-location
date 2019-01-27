@@ -8,6 +8,7 @@
    using Landorphan.Common.Threading;
    using Landorphan.Ioc.Logging.Internal;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.EventArguments;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Microsoft.Extensions.Logging;
 
@@ -24,7 +25,6 @@
    /// </para>
    /// </summary>
    [SuppressMessage("SonarLint.CodeSmell", "S1200: Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
-   // ReSharper disable RedundantExtendsListEntry
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
       private readonly IocContainerConfiguration _configuration;
@@ -33,6 +33,8 @@
       private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationRemoved =
          new SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs>();
       private readonly String _name;
+
+      // Parents own children, reverse references are not owned.
       [DoNotDispose]
       private readonly IocContainer _parent;
       private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
@@ -221,15 +223,6 @@
 
       private void CheckForNewRegistrations()
       {
-         // TODO: figure out the performance cost of this kludge.  
-         // Current theory:  AssemblyLoaded is an after event, allowing a new assembly to request services before it's self-registration
-         // var thisAssembly = GetType().Assembly;
-         // var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().ToImmutableHashSet();
-         //if (loadedAssemblies.Contains(thisAssembly))
-         //{
-         //   return;
-         //}
-
          // Kludge to address initialization race.
          IocServiceLocator.InternalInstance.CurrentDomainAssemblyLoad(null, null);
       }
@@ -404,7 +397,5 @@
          // Fire the event for this instance.
          OnContainerConfigurationChanged();
       }
-
-      // Parents own children, reverse references are not owned.
    }
 }

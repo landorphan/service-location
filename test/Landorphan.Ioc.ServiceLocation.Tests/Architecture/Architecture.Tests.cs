@@ -3,8 +3,8 @@
    using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
-   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities;
-   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
+   using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
    using Landorphan.Ioc.Tests.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 

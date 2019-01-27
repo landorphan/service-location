@@ -2,6 +2,7 @@
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
+   using Landorphan.Ioc.ServiceLocation.EventArguments;
    using Landorphan.Ioc.ServiceLocation.Exceptions;
 
    /// <summary>

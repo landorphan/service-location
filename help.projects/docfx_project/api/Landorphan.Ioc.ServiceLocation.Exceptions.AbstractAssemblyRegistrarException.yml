@@ -37,7 +37,9 @@ items:
     content: 'public sealed class AbstractAssemblyRegistrarException : LandorphanIocServiceLocationException, ISerializable'
     content.vb: >-
       Public NotInheritable Class AbstractAssemblyRegistrarException
+
           Inherits LandorphanIocServiceLocationException
+
           Implements ISerializable
   seealso:
   - linkId: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
@@ -45,7 +47,7 @@ items:
   inheritance:
   - System.Object
   - System.Exception
-  - Landorphan.Common.LandorphanException
+  - Landorphan.Common.Exceptions.LandorphanException
   - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
   implements:
   - System.Runtime.Serialization.ISerializable
@@ -390,13 +392,13 @@ references:
   name: Exception
   nameWithType: Exception
   fullName: System.Exception
-- uid: Landorphan.Common.LandorphanException
-  commentId: T:Landorphan.Common.LandorphanException
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Exceptions.LandorphanException
+  commentId: T:Landorphan.Common.Exceptions.LandorphanException
+  parent: Landorphan.Common.Exceptions
   isExternal: true
   name: LandorphanException
   nameWithType: LandorphanException
-  fullName: Landorphan.Common.LandorphanException
+  fullName: Landorphan.Common.Exceptions.LandorphanException
 - uid: System.Runtime.Serialization.ISerializable
   commentId: T:System.Runtime.Serialization.ISerializable
   parent: System.Runtime.Serialization
@@ -415,12 +417,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Exceptions
+  commentId: N:Landorphan.Common.Exceptions
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Exceptions
+  nameWithType: Landorphan.Common.Exceptions
+  fullName: Landorphan.Common.Exceptions
 - uid: System.Runtime.Serialization
   commentId: N:System.Runtime.Serialization
   isExternal: true

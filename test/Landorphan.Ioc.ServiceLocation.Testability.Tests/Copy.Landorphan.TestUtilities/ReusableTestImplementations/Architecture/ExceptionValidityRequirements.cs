@@ -11,7 +11,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations.Architecture
    using System.Reflection;
    using System.Runtime.Serialization;
    using System.Text;
-   using global::Landorphan.Common;
+   using Landorphan.Common;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    /// <summary>

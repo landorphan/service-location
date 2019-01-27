@@ -30,6 +30,7 @@ items:
     content: 'public interface IOwnedIocContainer : IIocContainer, IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity, IQueryDisposable, IDisposable'
     content.vb: >-
       Public Interface IOwnedIocContainer
+
           Inherits IIocContainer, IDisposable, IQueryDisposable
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
@@ -41,8 +42,8 @@ items:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
-  - Landorphan.Common.IQueryDisposable.IsDisposed
-  - Landorphan.Common.IQueryDisposable.IsDisposing
+  - Landorphan.Common.Interfaces.IQueryDisposable.IsDisposed
+  - Landorphan.Common.Interfaces.IQueryDisposable.IsDisposing
   - System.IDisposable.Dispose
   modifiers.csharp:
   - public
@@ -110,20 +111,20 @@ references:
   name: Uid
   nameWithType: IIocContainerMetaIdentity.Uid
   fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
-- uid: Landorphan.Common.IQueryDisposable.IsDisposed
-  commentId: P:Landorphan.Common.IQueryDisposable.IsDisposed
-  parent: Landorphan.Common.IQueryDisposable
+- uid: Landorphan.Common.Interfaces.IQueryDisposable.IsDisposed
+  commentId: P:Landorphan.Common.Interfaces.IQueryDisposable.IsDisposed
+  parent: Landorphan.Common.Interfaces.IQueryDisposable
   isExternal: true
   name: IsDisposed
   nameWithType: IQueryDisposable.IsDisposed
-  fullName: Landorphan.Common.IQueryDisposable.IsDisposed
-- uid: Landorphan.Common.IQueryDisposable.IsDisposing
-  commentId: P:Landorphan.Common.IQueryDisposable.IsDisposing
-  parent: Landorphan.Common.IQueryDisposable
+  fullName: Landorphan.Common.Interfaces.IQueryDisposable.IsDisposed
+- uid: Landorphan.Common.Interfaces.IQueryDisposable.IsDisposing
+  commentId: P:Landorphan.Common.Interfaces.IQueryDisposable.IsDisposing
+  parent: Landorphan.Common.Interfaces.IQueryDisposable
   isExternal: true
   name: IsDisposing
   nameWithType: IQueryDisposable.IsDisposing
-  fullName: Landorphan.Common.IQueryDisposable.IsDisposing
+  fullName: Landorphan.Common.Interfaces.IQueryDisposable.IsDisposing
 - uid: System.IDisposable.Dispose
   commentId: M:System.IDisposable.Dispose
   parent: System.IDisposable
@@ -173,13 +174,13 @@ references:
   name: IIocContainerMetaIdentity
   nameWithType: IIocContainerMetaIdentity
   fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
-- uid: Landorphan.Common.IQueryDisposable
-  commentId: T:Landorphan.Common.IQueryDisposable
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Interfaces.IQueryDisposable
+  commentId: T:Landorphan.Common.Interfaces.IQueryDisposable
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: IQueryDisposable
   nameWithType: IQueryDisposable
-  fullName: Landorphan.Common.IQueryDisposable
+  fullName: Landorphan.Common.Interfaces.IQueryDisposable
 - uid: System.IDisposable
   commentId: T:System.IDisposable
   parent: System
@@ -187,12 +188,12 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Interfaces
+  commentId: N:Landorphan.Common.Interfaces
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Interfaces
+  nameWithType: Landorphan.Common.Interfaces
+  fullName: Landorphan.Common.Interfaces
 - uid: System
   commentId: N:System
   isExternal: true

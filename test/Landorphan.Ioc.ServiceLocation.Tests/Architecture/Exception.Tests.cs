@@ -4,11 +4,10 @@
    using System.Collections.Immutable;
    using System.Globalization;
    using System.Reflection;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Exceptions;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities;
-   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
+   using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
    using Landorphan.Ioc.Tests.Mocks;
    using Landorphan.Ioc.Tests.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;

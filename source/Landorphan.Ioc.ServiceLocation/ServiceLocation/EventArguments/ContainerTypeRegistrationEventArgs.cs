@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
    using System;
    using Landorphan.Common;

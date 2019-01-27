@@ -20,11 +20,11 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TestabilityServiceLocationSelfRegistration
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/AssemblySelfRegistration/TestabilityServiceLocationSelfRegistration.cs
-    startLine: 13
+    startLine: 12
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
-  summary: "\nRegisters services with the IoC for use by this assembly.\n"
+  summary: "\nRegisters the services of this assembly with the <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   remarks: "\n&quot;Auto-registers&quot; these interfaces (currently only <xref href=\"Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService\" data-throw-if-not-resolved=\"false\"></xref>) in the root container.\n"
   example: []
   syntax:
@@ -62,7 +62,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterServiceInstances
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/AssemblySelfRegistration/TestabilityServiceLocationSelfRegistration.cs
-    startLine: 17
+    startLine: 15
   assemblies:
   - Landorphan.Ioc.ServiceLocation.Testability
   namespace: Landorphan.Ioc.ServiceLocation.Testability
@@ -84,6 +84,11 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: Landorphan.Ioc.ServiceLocation.IocServiceLocator
+  commentId: T:Landorphan.Ioc.ServiceLocation.IocServiceLocator
+  name: IocServiceLocator
+  nameWithType: IocServiceLocator
+  fullName: Landorphan.Ioc.ServiceLocation.IocServiceLocator
 - uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
   commentId: T:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
   parent: Landorphan.Ioc.ServiceLocation.Testability

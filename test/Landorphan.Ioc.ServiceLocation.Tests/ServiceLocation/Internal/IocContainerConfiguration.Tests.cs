@@ -9,11 +9,10 @@
    using System.Linq;
    using System.Reflection;
    using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities;
-   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities.ReusableTestImplementations;
+   using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.ReusableTestImplementations;
    using Landorphan.Ioc.Tests.Mocks;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 

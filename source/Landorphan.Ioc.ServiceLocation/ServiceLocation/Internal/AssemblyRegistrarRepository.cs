@@ -204,12 +204,12 @@
       {
          public Boolean Equals(AssemblyName x, AssemblyName y)
          {
-            if (x.IsNull())
+            if (x == null)
             {
-               return y.IsNull();
+               return y == null;
             }
 
-            if (y.IsNull())
+            if (y == null)
             {
                return false;
             }
@@ -231,7 +231,8 @@
 
          public Int32 GetHashCode(AssemblyName obj)
          {
-            if (obj.IsNotNull())
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+            if (obj != null)
             {
                return obj.GetHashCode();
             }
@@ -244,10 +245,10 @@
          "SonarLint.CodeSmell",
          "S1210: 'Equals' and the comparison operators should be overridden when implementing 'IComparable'",
          Justification = "Private nested class, operators not used/needed (MWP)")]
-
-      // Remarks Identity consists solely of the AssemblyRegistrarType, Instance values not considered.
       private sealed class AssemblyRegistrarRecord : ICloneable, IComparable, IComparable<AssemblyRegistrarRecord>, IEquatable<AssemblyRegistrarRecord>
       {
+         // Identity consists solely of the AssemblyRegistrarType, Instance values not considered.
+
          internal AssemblyRegistrarRecord(IAssemblySelfRegistration instance)
          {
             instance.ArgumentNotNull("instance");

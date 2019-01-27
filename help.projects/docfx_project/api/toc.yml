@@ -2,18 +2,6 @@
 - uid: Landorphan.Ioc.ServiceLocation
   name: Landorphan.Ioc.ServiceLocation
   items:
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-    name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
-    name: ContainerConfigurationEventArgs
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerIndividualAssemblyRegistrarInvokedEventArgs
-    name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
-    name: ContainerParentChildEventArgs
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
-    name: ContainerTypeEventArgs
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
-    name: ContainerTypeRegistrationEventArgs
   - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
     name: GetRegistrationChainExtensions
   - uid: Landorphan.Ioc.ServiceLocation.IocServiceLocator
@@ -22,6 +10,21 @@
     name: IsPrecludedExtensions
   - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
     name: IsRegisteredExtensions
+- uid: Landorphan.Ioc.ServiceLocation.EventArguments
+  name: Landorphan.Ioc.ServiceLocation.EventArguments
+  items:
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+    name: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerConfigurationEventArgs
+    name: ContainerConfigurationEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerIndividualAssemblyRegistrarInvokedEventArgs
+    name: ContainerIndividualAssemblyRegistrarInvokedEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerParentChildEventArgs
+    name: ContainerParentChildEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeEventArgs
+    name: ContainerTypeEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs
+    name: ContainerTypeRegistrationEventArgs
 - uid: Landorphan.Ioc.ServiceLocation.Exceptions
   name: Landorphan.Ioc.ServiceLocation.Exceptions
   items:

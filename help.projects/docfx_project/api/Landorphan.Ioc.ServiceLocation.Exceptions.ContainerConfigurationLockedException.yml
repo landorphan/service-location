@@ -35,12 +35,14 @@ items:
     content: 'public sealed class ContainerConfigurationLockedException : LandorphanIocServiceLocationException, ISerializable'
     content.vb: >-
       Public NotInheritable Class ContainerConfigurationLockedException
+
           Inherits LandorphanIocServiceLocationException
+
           Implements ISerializable
   inheritance:
   - System.Object
   - System.Exception
-  - Landorphan.Common.LandorphanException
+  - Landorphan.Common.Exceptions.LandorphanException
   - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
   implements:
   - System.Runtime.Serialization.ISerializable
@@ -305,13 +307,13 @@ references:
   name: Exception
   nameWithType: Exception
   fullName: System.Exception
-- uid: Landorphan.Common.LandorphanException
-  commentId: T:Landorphan.Common.LandorphanException
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Exceptions.LandorphanException
+  commentId: T:Landorphan.Common.Exceptions.LandorphanException
+  parent: Landorphan.Common.Exceptions
   isExternal: true
   name: LandorphanException
   nameWithType: LandorphanException
-  fullName: Landorphan.Common.LandorphanException
+  fullName: Landorphan.Common.Exceptions.LandorphanException
 - uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
   commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
   parent: Landorphan.Ioc.ServiceLocation.Exceptions
@@ -336,12 +338,12 @@ references:
   name: System
   nameWithType: System
   fullName: System
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Exceptions
+  commentId: N:Landorphan.Common.Exceptions
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Exceptions
+  nameWithType: Landorphan.Common.Exceptions
+  fullName: Landorphan.Common.Exceptions
 - uid: System.Runtime.Serialization
   commentId: N:System.Runtime.Serialization
   isExternal: true

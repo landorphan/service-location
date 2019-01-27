@@ -27,7 +27,7 @@ items:
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities.ReusableTestImplementations
-  summary: "\nImplements test of <xref href=\"Landorphan.Common.IConvertsToReadOnly\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Landorphan.Common.IQueryReadOnly\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  summary: "\nImplements test of <xref href=\"Landorphan.Common.Interfaces.IConvertsToReadOnly\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Landorphan.Common.Interfaces.IQueryReadOnly\" data-throw-if-not-resolved=\"false\"></xref>\n"
   example: []
   syntax:
     content: 'public abstract class MakeReadOnlyArrangeActAssert<T> : ArrangeActAssert where T : IConvertsToReadOnly, IQueryReadOnly'
@@ -163,7 +163,7 @@ items:
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities.ReusableTestImplementations
-  summary: "\nAsserts <xref href=\"Landorphan.Common.IQueryReadOnly.IsReadOnly\" data-throw-if-not-resolved=\"false\"></xref> is true.\n"
+  summary: "\nAsserts <xref href=\"Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly\" data-throw-if-not-resolved=\"false\"></xref> is true.\n"
   example: []
   syntax:
     content: protected void It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
@@ -210,16 +210,16 @@ items:
   - Protected
   fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).It_Should_Throw_On_All_Property_Setters_Implementation()
 references:
-- uid: Landorphan.Common.IConvertsToReadOnly
-  commentId: T:Landorphan.Common.IConvertsToReadOnly
+- uid: Landorphan.Common.Interfaces.IConvertsToReadOnly
+  commentId: T:Landorphan.Common.Interfaces.IConvertsToReadOnly
   isExternal: true
-- uid: Landorphan.Common.IQueryReadOnly
-  commentId: T:Landorphan.Common.IQueryReadOnly
-  parent: Landorphan.Common
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly
+  commentId: T:Landorphan.Common.Interfaces.IQueryReadOnly
+  parent: Landorphan.Common.Interfaces
   isExternal: true
   name: IQueryReadOnly
   nameWithType: IQueryReadOnly
-  fullName: Landorphan.Common.IQueryReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly
 - uid: Landorphan.TestUtilities.ReusableTestImplementations
   commentId: N:Landorphan.TestUtilities.ReusableTestImplementations
   name: Landorphan.TestUtilities.ReusableTestImplementations
@@ -463,12 +463,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-- uid: Landorphan.Common
-  commentId: N:Landorphan.Common
+- uid: Landorphan.Common.Interfaces
+  commentId: N:Landorphan.Common.Interfaces
   isExternal: true
-  name: Landorphan.Common
-  nameWithType: Landorphan.Common
-  fullName: Landorphan.Common
+  name: Landorphan.Common.Interfaces
+  nameWithType: Landorphan.Common.Interfaces
+  fullName: Landorphan.Common.Interfaces
 - uid: System
   commentId: N:System
   isExternal: true
@@ -532,13 +532,13 @@ references:
   fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.ActMethod
   nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).ActMethod
   fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).ActMethod
-- uid: Landorphan.Common.IQueryReadOnly.IsReadOnly
-  commentId: P:Landorphan.Common.IQueryReadOnly.IsReadOnly
-  parent: Landorphan.Common.IQueryReadOnly
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  commentId: P:Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  parent: Landorphan.Common.Interfaces.IQueryReadOnly
   isExternal: true
   name: IsReadOnly
   nameWithType: IQueryReadOnly.IsReadOnly
-  fullName: Landorphan.Common.IQueryReadOnly.IsReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
 - uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation*
   commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
   name: It_Should_Inform_That_It_Is_A_Read_Only_Implementation

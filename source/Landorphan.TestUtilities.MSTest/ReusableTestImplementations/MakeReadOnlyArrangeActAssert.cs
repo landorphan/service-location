@@ -8,7 +8,7 @@
    using System.Linq;
    using System.Reflection;
    using FluentAssertions;
-   using Landorphan.Common;
+   using Landorphan.Common.Interfaces;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable  InconsistentNaming

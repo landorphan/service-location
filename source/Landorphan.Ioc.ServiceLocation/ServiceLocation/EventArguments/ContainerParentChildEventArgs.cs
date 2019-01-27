@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
    using System;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
@@ -8,38 +8,38 @@
    /// </summary>
    /// <seealso cref="EventArgs"/>
    // ReSharper disable once InheritdocConsiderUsage
-   public class ContainerTypeEventArgs : EventArgs
+   public class ContainerParentChildEventArgs : EventArgs
    {
       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerTypeEventArgs"/> class.
       /// </summary>
-      public ContainerTypeEventArgs() : this(null, null)
+      public ContainerParentChildEventArgs() : this(null, null)
       {
       }
 
       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerTypeEventArgs"/> class.
       /// </summary>
-      /// <param name="container">
-      /// The inversion of control container in which the type was registered.
+      /// <param name="parent">
+      /// The parent container.
       /// </param>
-      /// <param name="type">
-      /// The registered type.
+      /// <param name="child">
+      /// The child container.
       /// </param>
-      public ContainerTypeEventArgs(IIocContainerMetaIdentity container, Type type)
+      public ContainerParentChildEventArgs(IIocContainerMetaIdentity parent, IIocContainerMetaIdentity child)
       {
-         Container = container;
-         Type = type;
+         Parent = parent;
+         Child = child;
       }
 
       /// <summary>
-      /// Gets the inversion of control container in which type was registered.
+      /// Gets the child container.
       /// </summary>
-      public IIocContainerMetaIdentity Container { get; }
+      public IIocContainerMetaIdentity Child { get; }
 
       /// <summary>
-      /// Gets the type registered.
+      /// Gets the parent container.
       /// </summary>
-      public Type Type { get; }
+      public IIocContainerMetaIdentity Parent { get; }
    }
 }

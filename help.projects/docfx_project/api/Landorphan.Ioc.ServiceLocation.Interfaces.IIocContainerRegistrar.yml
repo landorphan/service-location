@@ -41,7 +41,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerRegistrar
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -52,6 +52,7 @@ items:
     content: 'public interface IIocContainerRegistrar : IIocContainerRegistrationRepository, IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
     content.vb: >-
       Public Interface IIocContainerRegistrar
+
           Inherits IIocContainerMetaSharedCapacities, IIocContainerRegistrationRepository
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Registrations
@@ -98,7 +99,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerRegistrationAdded
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 29
+    startLine: 30
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -107,7 +108,7 @@ items:
   syntax:
     content: event EventHandler<ContainerTypeRegistrationEventArgs> ContainerRegistrationAdded
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs}
     content.vb: Event ContainerRegistrationAdded As EventHandler(Of ContainerTypeRegistrationEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.ContainerRegistrationRemoved
   commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.ContainerRegistrationRemoved
@@ -127,7 +128,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: ContainerRegistrationRemoved
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 34
+    startLine: 35
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -136,7 +137,7 @@ items:
   syntax:
     content: event EventHandler<ContainerTypeRegistrationEventArgs> ContainerRegistrationRemoved
     return:
-      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs}
+      type: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs}
     content.vb: Event ContainerRegistrationRemoved As EventHandler(Of ContainerTypeRegistrationEventArgs)
 - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.RegisterImplementation``2
   commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.RegisterImplementation``2
@@ -156,7 +157,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 59
+    startLine: 60
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -166,6 +167,7 @@ items:
   syntax:
     content: >-
       void RegisterImplementation<TFrom, TTo>()
+
           where TFrom : class where TTo : class, TFrom, new()
     typeParameters:
     - id: TFrom
@@ -202,7 +204,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 84
+    startLine: 85
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -245,7 +247,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 116
+    startLine: 117
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -255,6 +257,7 @@ items:
   syntax:
     content: >-
       void RegisterImplementation<TFrom, TTo>(string name)
+
           where TFrom : class where TTo : class, TFrom, new()
     parameters:
     - id: name
@@ -298,7 +301,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 148
+    startLine: 149
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -347,7 +350,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 173
+    startLine: 174
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -357,6 +360,7 @@ items:
   syntax:
     content: >-
       void RegisterInstance<TFrom>(TFrom instance)
+
           where TFrom : class
     parameters:
     - id: instance
@@ -395,7 +399,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 193
+    startLine: 194
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -438,7 +442,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 219
+    startLine: 220
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -448,6 +452,7 @@ items:
   syntax:
     content: >-
       void RegisterInstance<TFrom>(string name, TFrom instance)
+
           where TFrom : class
     parameters:
     - id: name
@@ -492,7 +497,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: RegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 245
+    startLine: 246
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -541,7 +546,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 267
+    startLine: 268
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -551,6 +556,7 @@ items:
   syntax:
     content: >-
       bool TryRegisterImplementation<TFrom, TTo>()
+
           where TFrom : class where TTo : class, TFrom, new()
     typeParameters:
     - id: TFrom
@@ -583,7 +589,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 289
+    startLine: 290
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -622,7 +628,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 314
+    startLine: 315
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -632,6 +638,7 @@ items:
   syntax:
     content: >-
       bool TryRegisterImplementation<TFrom, TTo>(string name)
+
           where TFrom : class where TTo : class, TFrom, new()
     parameters:
     - id: name
@@ -668,7 +675,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterImplementation
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 339
+    startLine: 340
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -710,7 +717,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 367
+    startLine: 368
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -720,6 +727,7 @@ items:
   syntax:
     content: >-
       bool TryRegisterInstance<TFrom>(TFrom instance)
+
           where TFrom : class
     parameters:
     - id: instance
@@ -761,7 +769,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 390
+    startLine: 391
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -807,7 +815,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 416
+    startLine: 417
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -817,6 +825,7 @@ items:
   syntax:
     content: >-
       bool TryRegisterInstance<TFrom>(string name, TFrom instance)
+
           where TFrom : class
     parameters:
     - id: name
@@ -861,7 +870,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: TryRegisterInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 442
+    startLine: 443
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -910,7 +919,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Unregister
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 461
+    startLine: 462
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -920,6 +929,7 @@ items:
   syntax:
     content: >-
       bool Unregister<TFrom>()
+
           where TFrom : class
     typeParameters:
     - id: TFrom
@@ -950,7 +960,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Unregister
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 480
+    startLine: 481
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -986,7 +996,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Unregister
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 502
+    startLine: 503
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -996,6 +1006,7 @@ items:
   syntax:
     content: >-
       bool Unregister<TFrom>(string name)
+
           where TFrom : class
     parameters:
     - id: name
@@ -1030,7 +1041,7 @@ items:
       repo: https://github.com/landorphan/service-location.git
     id: Unregister
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrar.cs
-    startLine: 524
+    startLine: 525
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation.Interfaces
@@ -2301,15 +2312,15 @@ references:
   name: Landorphan.Ioc.ServiceLocation
   nameWithType: Landorphan.Ioc.ServiceLocation
   fullName: Landorphan.Ioc.ServiceLocation
-- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs}
-  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs}
+- uid: System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs}
+  commentId: T:System.EventHandler{Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<ContainerTypeRegistrationEventArgs>
   nameWithType: EventHandler<ContainerTypeRegistrationEventArgs>
-  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs>
+  fullName: System.EventHandler<Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs>
   nameWithType.vb: EventHandler(Of ContainerTypeRegistrationEventArgs)
-  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs)
+  fullName.vb: System.EventHandler(Of Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs)
   name.vb: EventHandler(Of ContainerTypeRegistrationEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
@@ -2320,10 +2331,10 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs
     name: ContainerTypeRegistrationEventArgs
     nameWithType: ContainerTypeRegistrationEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -2336,10 +2347,10 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - uid: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
+  - uid: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs
     name: ContainerTypeRegistrationEventArgs
     nameWithType: ContainerTypeRegistrationEventArgs
-    fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeRegistrationEventArgs
+    fullName: Landorphan.Ioc.ServiceLocation.EventArguments.ContainerTypeRegistrationEventArgs
   - name: )
     nameWithType: )
     fullName: )
