@@ -2,6 +2,7 @@
 {
    using System;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Represents logging utilities specific to <see cref="Landorphan.Ioc.ServiceLocation.Internal.IocContainer"/> instances.

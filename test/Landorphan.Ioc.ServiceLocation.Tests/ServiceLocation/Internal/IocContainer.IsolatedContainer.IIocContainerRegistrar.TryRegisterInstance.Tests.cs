@@ -6,8 +6,9 @@
    using System.Linq;
    using FluentAssertions;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
+   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming

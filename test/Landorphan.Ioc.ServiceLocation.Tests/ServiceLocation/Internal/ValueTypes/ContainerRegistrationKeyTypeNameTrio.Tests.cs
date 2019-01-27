@@ -4,10 +4,12 @@
    using System.Diagnostics.CodeAnalysis;
    using FluentAssertions;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
+   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities;
+   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities.ReusableTestImplementations;
    using Landorphan.Ioc.Tests.Mocks;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming

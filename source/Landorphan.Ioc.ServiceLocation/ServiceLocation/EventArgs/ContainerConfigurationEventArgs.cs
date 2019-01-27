@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Provides data for the <see cref="IIocContainerManager.ContainerConfigurationChanged"/> event.

@@ -8,6 +8,7 @@
    using Landorphan.Common.Threading;
    using Landorphan.Ioc.Logging.Internal;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Microsoft.Extensions.Logging;
 
    // ReSharper disable ConvertToAutoProperty

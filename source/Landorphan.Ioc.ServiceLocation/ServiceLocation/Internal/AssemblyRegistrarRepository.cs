@@ -7,6 +7,8 @@
    using System.Linq;
    using System.Reflection;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    internal sealed class AssemblyRegistrarRepository
    {

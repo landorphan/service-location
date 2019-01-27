@@ -3,6 +3,7 @@
    using System;
    using Landorphan.Common;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Represents the mocking capabilities of the test subsystem.

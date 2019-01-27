@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
@@ -7,6 +7,7 @@
    using System.Security;
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Thrown when attempting to change the configuration of a locked <see cref="IIocContainerConfiguration"/> instance.

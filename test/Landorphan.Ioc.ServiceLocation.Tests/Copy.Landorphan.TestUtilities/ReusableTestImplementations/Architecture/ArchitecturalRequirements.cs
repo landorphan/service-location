@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace Landorphan.TestUtilities.ReusableTestImplementations
+namespace Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities.ReusableTestImplementations.Architecture
 {
    using System;
    using System.Collections.Generic;
@@ -7,7 +7,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using FluentAssertions;
-   using Landorphan.Common;
+   using global::Landorphan.Common;
 
    /// <summary>
    /// Test implementations for architectural requirements.

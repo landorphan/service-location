@@ -1,5 +1,5 @@
 ﻿// ReSharper disable once CheckNamespace
-namespace Landorphan.TestUtilities
+namespace Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities
 {
    /// <summary>
    /// Provides common services for BDD-style (arrange/act/assert) tests.

@@ -6,6 +6,7 @@
    using System.Reflection;
    using Landorphan.Ioc.Logging.Internal;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
 //   using Landorphan.Logging;
    using Microsoft.Extensions.Logging;

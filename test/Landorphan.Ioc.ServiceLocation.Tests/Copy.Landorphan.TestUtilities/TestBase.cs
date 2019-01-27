@@ -1,5 +1,5 @@
 // ReSharper disable once CheckNamespace
-namespace Landorphan.TestUtilities
+namespace Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities
 {
    using System;
    using System.IO;

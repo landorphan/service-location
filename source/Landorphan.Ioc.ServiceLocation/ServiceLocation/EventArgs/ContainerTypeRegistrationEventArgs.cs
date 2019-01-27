@@ -2,6 +2,7 @@
 {
    using System;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Provides data for the <see cref="IIocContainerRegistrar.ContainerRegistrationAdded"/> event and <see cref="IIocContainerRegistrar.ContainerRegistrationRemoved"/> event.

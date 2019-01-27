@@ -3,6 +3,7 @@
    using System;
    using System.Collections.Generic;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage

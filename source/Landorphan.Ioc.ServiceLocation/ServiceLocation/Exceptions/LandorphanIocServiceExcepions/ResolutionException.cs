@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
    using System;
    using System.Globalization;

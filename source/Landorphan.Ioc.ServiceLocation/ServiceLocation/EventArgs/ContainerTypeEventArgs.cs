@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Provides data for events that provide container and type information.

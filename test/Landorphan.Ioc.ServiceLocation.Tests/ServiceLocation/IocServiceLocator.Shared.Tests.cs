@@ -2,7 +2,7 @@
 {
    using FluentAssertions;
    using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
+   using Landorphan.Ioc.Tests.Copy.Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming

@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    /// <summary>
    /// Represents the meta capacities shared by

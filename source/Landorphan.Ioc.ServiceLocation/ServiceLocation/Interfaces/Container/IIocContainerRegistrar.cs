@@ -1,7 +1,8 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
 
    /// <summary>
    /// Represents registration services for an <see cref="IIocContainer"/> container.

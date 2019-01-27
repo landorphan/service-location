@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability
 {
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Represents the mocking capabilities of the test subsystem.
