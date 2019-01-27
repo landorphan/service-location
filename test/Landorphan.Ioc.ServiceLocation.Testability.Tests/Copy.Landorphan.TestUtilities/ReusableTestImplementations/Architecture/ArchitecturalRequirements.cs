@@ -7,7 +7,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations.Architecture
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using FluentAssertions;
-   using global::Landorphan.Common;
+   using Landorphan.Common;
 
    /// <summary>
    /// Test implementations for architectural requirements.

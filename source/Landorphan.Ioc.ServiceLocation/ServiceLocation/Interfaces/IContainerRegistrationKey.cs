@@ -1,7 +1,7 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    using System;
-   using Landorphan.Common;
+   using Landorphan.Common.Interfaces;
 
    /// <summary>
    /// Represents a specified container and <see cref="IRegistrationKey"/>.

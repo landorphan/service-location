@@ -1,7 +1,7 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability.Tests
 {
    using FluentAssertions;
-   using Landorphan.Common;
+   using Landorphan.Common.Interfaces;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -43,7 +43,7 @@
          sb.Append(Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture));
          // remove the leading and trailing brace characters
          sb.Remove(0, 1);
-         sb.Remove(sb.Length - 2, 1);
+         sb.Remove(sb.Length - 1 -1, 1);
          // remove the embedded dashes
          sb.Replace("-", null);
          // prepend a T in case the GUID started with a numeric character

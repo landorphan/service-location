@@ -1,7 +1,8 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
    using System;
    using System.Reflection;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Provides data for the <see cref="IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked"/> event and the

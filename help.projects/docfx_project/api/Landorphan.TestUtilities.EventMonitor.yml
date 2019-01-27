@@ -1,0 +1,501 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.EventMonitor
+  commentId: T:Landorphan.TestUtilities.EventMonitor
+  id: EventMonitor
+  parent: Landorphan.TestUtilities
+  children:
+  - Landorphan.TestUtilities.EventMonitor.AddEventSource(System.Object)
+  - Landorphan.TestUtilities.EventMonitor.GetEnumerator
+  - Landorphan.TestUtilities.EventMonitor.System#Collections#IEnumerable#GetEnumerator
+  langs:
+  - csharp
+  - vb
+  name: EventMonitor
+  nameWithType: EventMonitor
+  fullName: Landorphan.TestUtilities.EventMonitor
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: EventMonitor
+    path: ../../source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+    startLine: 20
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nMonitors events from one or more event sources.\n"
+  remarks: "\nUsed to track events both public and non-public that follow the void (Object sender, EventArgs e) pattern.\n"
+  example: []
+  syntax:
+    content: 'public sealed class EventMonitor : IEnumerable<IRecordedEvent>, IEnumerable, IEventStore'
+    content.vb: >-
+      Public NotInheritable Class EventMonitor
+          Implements IEnumerable(Of IRecordedEvent), IEnumerable, IEventStore
+  inheritance:
+  - System.Object
+  implements:
+  - System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}
+  - System.Collections.IEnumerable
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: Landorphan.TestUtilities.EventMonitor.GetEnumerator
+  commentId: M:Landorphan.TestUtilities.EventMonitor.GetEnumerator
+  id: GetEnumerator
+  parent: Landorphan.TestUtilities.EventMonitor
+  langs:
+  - csharp
+  - vb
+  name: GetEnumerator()
+  nameWithType: EventMonitor.GetEnumerator()
+  fullName: Landorphan.TestUtilities.EventMonitor.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetEnumerator
+    path: ../../source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+    startLine: 33
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  example: []
+  syntax:
+    content: public IEnumerator<IRecordedEvent> GetEnumerator()
+    return:
+      type: System.Collections.Generic.IEnumerator{Landorphan.TestUtilities.IRecordedEvent}
+    content.vb: Public Function GetEnumerator As IEnumerator(Of IRecordedEvent)
+  overload: Landorphan.TestUtilities.EventMonitor.GetEnumerator*
+  implements:
+  - System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}.GetEnumerator
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.TestUtilities.EventMonitor.System#Collections#IEnumerable#GetEnumerator
+  commentId: M:Landorphan.TestUtilities.EventMonitor.System#Collections#IEnumerable#GetEnumerator
+  id: System#Collections#IEnumerable#GetEnumerator
+  isEii: true
+  parent: Landorphan.TestUtilities.EventMonitor
+  langs:
+  - csharp
+  - vb
+  name: IEnumerable.GetEnumerator()
+  nameWithType: EventMonitor.IEnumerable.GetEnumerator()
+  fullName: Landorphan.TestUtilities.EventMonitor.System.Collections.IEnumerable.GetEnumerator()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: System.Collections.IEnumerable.GetEnumerator
+    path: ../../source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+    startLine: 39
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  example: []
+  syntax:
+    content: IEnumerator IEnumerable.GetEnumerator()
+    return:
+      type: System.Collections.IEnumerator
+    content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
+  overload: Landorphan.TestUtilities.EventMonitor.System#Collections#IEnumerable#GetEnumerator*
+  implements:
+  - System.Collections.IEnumerable.GetEnumerator
+  nameWithType.vb: EventMonitor.System.Collections.IEnumerable.GetEnumerator()
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+- uid: Landorphan.TestUtilities.EventMonitor.AddEventSource(System.Object)
+  commentId: M:Landorphan.TestUtilities.EventMonitor.AddEventSource(System.Object)
+  id: AddEventSource(System.Object)
+  parent: Landorphan.TestUtilities.EventMonitor
+  langs:
+  - csharp
+  - vb
+  name: AddEventSource(Object)
+  nameWithType: EventMonitor.AddEventSource(Object)
+  fullName: Landorphan.TestUtilities.EventMonitor.AddEventSource(System.Object)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: AddEventSource
+    path: ../../source/Landorphan.TestUtilities.MSTest/EventMonitor.cs
+    startLine: 74
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nAdds an event source.\n"
+  example: []
+  syntax:
+    content: public bool AddEventSource(object eventSource)
+    parameters:
+    - id: eventSource
+      type: System.Object
+      description: "\nThe event source.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if the event source is added; otherwise <code>false</code> (the instance was previously added).\n"
+    content.vb: Public Function AddEventSource(eventSource As Object) As Boolean
+  overload: Landorphan.TestUtilities.EventMonitor.AddEventSource*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\nThrown when <code data-dev-comment-type=\"paramref\" class=\"paramref\">eventSource</code> is null.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThrown when <code data-dev-comment-type=\"paramref\" class=\"paramref\">eventSource</code> is of a type that does not source events.\n"
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}
+  commentId: T:System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<IRecordedEvent>
+  nameWithType: IEnumerable<IRecordedEvent>
+  fullName: System.Collections.Generic.IEnumerable<Landorphan.TestUtilities.IRecordedEvent>
+  nameWithType.vb: IEnumerable(Of IRecordedEvent)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Landorphan.TestUtilities.IRecordedEvent)
+  name.vb: IEnumerable(Of IRecordedEvent)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.TestUtilities.IRecordedEvent
+    name: IRecordedEvent
+    nameWithType: IRecordedEvent
+    fullName: Landorphan.TestUtilities.IRecordedEvent
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.TestUtilities.IRecordedEvent
+    name: IRecordedEvent
+    nameWithType: IRecordedEvent
+    fullName: Landorphan.TestUtilities.IRecordedEvent
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.IEnumerable
+  commentId: T:System.Collections.IEnumerable
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerable
+  nameWithType: IEnumerable
+  fullName: System.Collections.IEnumerable
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Collections
+  commentId: N:System.Collections
+  isExternal: true
+  name: System.Collections
+  nameWithType: System.Collections
+  fullName: System.Collections
+- uid: Landorphan.TestUtilities.EventMonitor.GetEnumerator*
+  commentId: Overload:Landorphan.TestUtilities.EventMonitor.GetEnumerator
+  name: GetEnumerator
+  nameWithType: EventMonitor.GetEnumerator
+  fullName: Landorphan.TestUtilities.EventMonitor.GetEnumerator
+- uid: System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}.GetEnumerator
+  parent: System.Collections.Generic.IEnumerable{Landorphan.TestUtilities.IRecordedEvent}
+  definition: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  name: GetEnumerator()
+  nameWithType: IEnumerable<IRecordedEvent>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<Landorphan.TestUtilities.IRecordedEvent>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of IRecordedEvent).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Landorphan.TestUtilities.IRecordedEvent).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable<IRecordedEvent>.GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable<Landorphan.TestUtilities.IRecordedEvent>.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable(Of IRecordedEvent).GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable(Of Landorphan.TestUtilities.IRecordedEvent).GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerator{Landorphan.TestUtilities.IRecordedEvent}
+  commentId: T:System.Collections.Generic.IEnumerator{Landorphan.TestUtilities.IRecordedEvent}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerator`1
+  name: IEnumerator<IRecordedEvent>
+  nameWithType: IEnumerator<IRecordedEvent>
+  fullName: System.Collections.Generic.IEnumerator<Landorphan.TestUtilities.IRecordedEvent>
+  nameWithType.vb: IEnumerator(Of IRecordedEvent)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of Landorphan.TestUtilities.IRecordedEvent)
+  name.vb: IEnumerator(Of IRecordedEvent)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.TestUtilities.IRecordedEvent
+    name: IRecordedEvent
+    nameWithType: IRecordedEvent
+    fullName: Landorphan.TestUtilities.IRecordedEvent
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.TestUtilities.IRecordedEvent
+    name: IRecordedEvent
+    nameWithType: IRecordedEvent
+    fullName: Landorphan.TestUtilities.IRecordedEvent
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+  commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: IEnumerable<T>.GetEnumerator()
+  fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+  nameWithType.vb: IEnumerable(Of T).GetEnumerator()
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T).GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable<T>.GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable<T>.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable(Of T).GetEnumerator
+    fullName: System.Collections.Generic.IEnumerable(Of T).GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerator`1
+  commentId: T:System.Collections.Generic.IEnumerator`1
+  isExternal: true
+  name: IEnumerator<T>
+  nameWithType: IEnumerator<T>
+  fullName: System.Collections.Generic.IEnumerator<T>
+  nameWithType.vb: IEnumerator(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name.vb: IEnumerator(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerator`1
+    name: IEnumerator
+    nameWithType: IEnumerator
+    fullName: System.Collections.Generic.IEnumerator
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.EventMonitor.System#Collections#IEnumerable#GetEnumerator*
+  commentId: Overload:Landorphan.TestUtilities.EventMonitor.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator
+  nameWithType: EventMonitor.IEnumerable.GetEnumerator
+  fullName: Landorphan.TestUtilities.EventMonitor.System.Collections.IEnumerable.GetEnumerator
+  nameWithType.vb: EventMonitor.System.Collections.IEnumerable.GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+- uid: System.Collections.IEnumerable.GetEnumerator
+  commentId: M:System.Collections.IEnumerable.GetEnumerator
+  parent: System.Collections.IEnumerable
+  isExternal: true
+  name: GetEnumerator()
+  nameWithType: IEnumerable.GetEnumerator()
+  fullName: System.Collections.IEnumerable.GetEnumerator()
+  spec.csharp:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable.GetEnumerator
+    fullName: System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Collections.IEnumerable.GetEnumerator
+    name: GetEnumerator
+    nameWithType: IEnumerable.GetEnumerator
+    fullName: System.Collections.IEnumerable.GetEnumerator
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.IEnumerator
+  commentId: T:System.Collections.IEnumerator
+  parent: System.Collections
+  isExternal: true
+  name: IEnumerator
+  nameWithType: IEnumerator
+  fullName: System.Collections.IEnumerator
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: Landorphan.TestUtilities.EventMonitor.AddEventSource*
+  commentId: Overload:Landorphan.TestUtilities.EventMonitor.AddEventSource
+  name: AddEventSource
+  nameWithType: EventMonitor.AddEventSource
+  fullName: Landorphan.TestUtilities.EventMonitor.AddEventSource
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

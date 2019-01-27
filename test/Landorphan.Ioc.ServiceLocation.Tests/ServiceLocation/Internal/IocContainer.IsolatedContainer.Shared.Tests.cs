@@ -4,7 +4,7 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;

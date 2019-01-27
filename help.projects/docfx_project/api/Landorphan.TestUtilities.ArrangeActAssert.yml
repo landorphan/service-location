@@ -1,0 +1,393 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.ArrangeActAssert
+  commentId: T:Landorphan.TestUtilities.ArrangeActAssert
+  id: ArrangeActAssert
+  parent: Landorphan.TestUtilities
+  children:
+  - Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  - Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  langs:
+  - csharp
+  - vb
+  name: ArrangeActAssert
+  nameWithType: ArrangeActAssert
+  fullName: Landorphan.TestUtilities.ArrangeActAssert
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ArrangeActAssert
+    path: ../../source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+    startLine: 8
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nProvides common services for BDD-style (arrange/act/assert) tests.\n"
+  remarks: "\nServes as an adapter between the MSTest framework and BDD-style tests.\n"
+  example: []
+  syntax:
+    content: 'public abstract class ArrangeActAssert : TestBase'
+    content.vb: >-
+      Public MustInherit Class ArrangeActAssert
+          Inherits TestBase
+  inheritance:
+  - System.Object
+  - Landorphan.TestUtilities.TestBase
+  derivedClasses:
+  - Landorphan.TestUtilities.DisposableArrangeActAssert
+  - Landorphan.TestUtilities.ReusableTestImplementations.CloneableArrangeActAssert`1
+  - Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  inheritedMembers:
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  id: InitializeTestMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: InitializeTestMethod()
+  nameWithType: ArrangeActAssert.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: InitializeTestMethod
+    path: ../../source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+    startLine: 11
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nCalled once before each test method invocation.\n"
+  example: []
+  syntax:
+    content: protected override void InitializeTestMethod()
+    content.vb: Protected Overrides Sub InitializeTestMethod
+  overridden: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  overload: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod*
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  id: ArrangeMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: ArrangeMethod()
+  nameWithType: ArrangeActAssert.ArrangeMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ArrangeMethod
+    path: ../../source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+    startLine: 21
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nFurther refines the context for a single test method invocation.\n"
+  example: []
+  syntax:
+    content: protected virtual void ArrangeMethod()
+    content.vb: Protected Overridable Sub ArrangeMethod
+  overload: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  id: ActMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: ActMethod()
+  nameWithType: ArrangeActAssert.ActMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ActMethod
+    path: ../../source/Landorphan.TestUtilities.MSTest/ArrangeActAssert.cs
+    startLine: 28
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nActs on the context for a single test method invocation.\n"
+  example: []
+  syntax:
+    content: protected virtual void ActMethod()
+    content.vb: Protected Overridable Sub ActMethod
+  overload: Landorphan.TestUtilities.ArrangeActAssert.ActMethod*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+references:
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  isExternal: true
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: InitializeTestMethod()
+  nameWithType: TestBase.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod*
+  commentId: Overload:Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  name: InitializeTestMethod
+  nameWithType: ArrangeActAssert.InitializeTestMethod
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod*
+  commentId: Overload:Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  name: ArrangeMethod
+  nameWithType: ArrangeActAssert.ArrangeMethod
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod*
+  commentId: Overload:Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  name: ActMethod
+  nameWithType: ArrangeActAssert.ActMethod
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod

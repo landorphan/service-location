@@ -4,6 +4,7 @@
    using System.Collections.Generic;
    using System.Reflection;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Represents logging utilities specific to the<see cref="IocServiceLocator"/> singleton instance.

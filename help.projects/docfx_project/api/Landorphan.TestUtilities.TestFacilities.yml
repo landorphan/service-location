@@ -1,0 +1,34 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.TestFacilities
+  commentId: N:Landorphan.TestUtilities.TestFacilities
+  id: Landorphan.TestUtilities.TestFacilities
+  children:
+  - Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
+  - Landorphan.TestUtilities.TestFacilities.TestHardCodes
+  - Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  langs:
+  - csharp
+  - vb
+  name: Landorphan.TestUtilities.TestFacilities
+  nameWithType: Landorphan.TestUtilities.TestFacilities
+  fullName: Landorphan.TestUtilities.TestFacilities
+  type: Namespace
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+references:
+- uid: Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
+  commentId: T:Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
+  name: TestAssemblyInitializeCleanup
+  nameWithType: TestAssemblyInitializeCleanup
+  fullName: Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
+- uid: Landorphan.TestUtilities.TestFacilities.TestHardCodes
+  commentId: T:Landorphan.TestUtilities.TestFacilities.TestHardCodes
+  name: TestHardCodes
+  nameWithType: TestHardCodes
+  fullName: Landorphan.TestUtilities.TestFacilities.TestHardCodes
+- uid: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  commentId: T:Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  name: WellKnownTestCategories
+  nameWithType: WellKnownTestCategories
+  fullName: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories

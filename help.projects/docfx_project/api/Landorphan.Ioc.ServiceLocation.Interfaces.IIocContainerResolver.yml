@@ -1,0 +1,1747 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  id: IIocContainerResolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  children:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type,System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve``1
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve``1(System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type,System.Object@)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type,System.String,System.Object@)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve``1(``0@)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve``1(System.String,``0@)
+  langs:
+  - csharp
+  - vb
+  name: IIocContainerResolver
+  nameWithType: IIocContainerResolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IIocContainerResolver
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 17
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nRepresents resolving services for an <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> container.\n"
+  remarks: "\n<p>\nReads registrations and overrides from the container.\n</p>\n<p>\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> works in concert with a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager\" data-throw-if-not-resolved=\"false\"></xref>, a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar\" data-throw-if-not-resolved=\"false\"></xref>,  and a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
+  example: []
+  syntax:
+    content: 'public interface IIocContainerResolver : IIocContainerRegistrationRepository, IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
+    content.vb: >-
+      Public Interface IIocContainerResolver
+
+          Inherits IIocContainerMetaSharedCapacities, IIocContainerRegistrationRepository
+  inheritedMembers:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Registrations
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  extensionMethods:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type,System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type,System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(System.String)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type)
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type,System.String)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve``1
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve``1
+  id: Resolve``1
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve<TFrom>()
+  nameWithType: IIocContainerResolver.Resolve<TFrom>()
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve<TFrom>()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Resolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 35
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nResolves the default instance of the requested type.\n"
+  example: []
+  syntax:
+    content: >-
+      TFrom Resolve<TFrom>()
+
+          where TFrom : class
+    typeParameters:
+    - id: TFrom
+      description: "\nThe requested type.\n"
+    return:
+      type: '{TFrom}'
+      description: "\nThe retrieved instance.\n"
+    content.vb: Function Resolve(Of TFrom As Class) As TFrom
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    description: "\nThrown when an the type has been precluded from service location.\n"
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TFrom</code> service instance.\n"
+  nameWithType.vb: IIocContainerResolver.Resolve(Of TFrom)()
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(Of TFrom)()
+  name.vb: Resolve(Of TFrom)()
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve``1(System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve``1(System.String)
+  id: Resolve``1(System.String)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve<TFrom>(String)
+  nameWithType: IIocContainerResolver.Resolve<TFrom>(String)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve<TFrom>(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Resolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 55
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nResolves a named instance of the requested type.\n"
+  example: []
+  syntax:
+    content: >-
+      TFrom Resolve<TFrom>(string name)
+
+          where TFrom : class
+    parameters:
+    - id: name
+      type: System.String
+      description: "\nThe name of the instance to retrieve, null for the default instance.\n"
+    typeParameters:
+    - id: TFrom
+      description: "\nThe requested type.\n"
+    return:
+      type: '{TFrom}'
+      description: "\nThe retrieved instance.\n"
+    content.vb: Function Resolve(Of TFrom As Class)(name As String) As TFrom
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    description: "\nThrown when an the type has been precluded from service location.\n"
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TFrom</code> service instance.\n"
+  nameWithType.vb: IIocContainerResolver.Resolve(Of TFrom)(String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(Of TFrom)(System.String)
+  name.vb: Resolve(Of TFrom)(String)
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type)
+  id: Resolve(System.Type)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Type)
+  nameWithType: IIocContainerResolver.Resolve(Type)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Resolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 72
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nResolves the default instance of the requested type.\n"
+  example: []
+  syntax:
+    content: object Resolve(Type fromType)
+    parameters:
+    - id: fromType
+      type: System.Type
+      description: "\nThe requested type.\n"
+    return:
+      type: System.Object
+      description: "\nThe retrieved instance.\n"
+    content.vb: Function Resolve(fromType As Type) As Object
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    description: "\nThrown when an the type has been precluded from service location.\n"
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromType</code> service instance.\n"
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type,System.String)
+  id: Resolve(System.Type,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: Resolve(Type, String)
+  nameWithType: IIocContainerResolver.Resolve(Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve(System.Type, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Resolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 92
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nResolves a named instance of the requested type.\n"
+  example: []
+  syntax:
+    content: object Resolve(Type fromType, string name)
+    parameters:
+    - id: fromType
+      type: System.Type
+      description: "\nThe requested type.\n"
+    - id: name
+      type: System.String
+      description: "\nThe name of the instance to retrieve, null for the default instance.\n"
+    return:
+      type: System.Object
+      description: "\nThe retrieved instance.\n"
+    content.vb: Function Resolve(fromType As Type, name As String) As Object
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+    description: "\nThrown when an the type has been precluded from service location.\n"
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromType</code> service instance.\n"
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve``1(``0@)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve``1(``0@)
+  id: TryResolve``1(``0@)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: TryResolve<TFrom>(out TFrom)
+  nameWithType: IIocContainerResolver.TryResolve<TFrom>(out TFrom)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve<TFrom>(out TFrom)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TryResolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 106
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nAttempts to resolve the default instance of the requested type.\n"
+  example: []
+  syntax:
+    content: >-
+      bool TryResolve<TFrom>(out TFrom instance)
+
+          where TFrom : class
+    parameters:
+    - id: instance
+      type: '{TFrom}'
+      description: "\nThe default registered instance when found; otherwise a null reference.\n"
+    typeParameters:
+    - id: TFrom
+      description: "\nThe requested service interface type.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> when a default registered instance was found; otherwise <code>false</code>.\n"
+    content.vb: Function TryResolve(Of TFrom As Class)(ByRef instance As TFrom) As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve*
+  nameWithType.vb: IIocContainerResolver.TryResolve(Of TFrom)(ByRef TFrom)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(Of TFrom)(ByRef TFrom)
+  name.vb: TryResolve(Of TFrom)(ByRef TFrom)
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve``1(System.String,``0@)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve``1(System.String,``0@)
+  id: TryResolve``1(System.String,``0@)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: TryResolve<TFrom>(String, out TFrom)
+  nameWithType: IIocContainerResolver.TryResolve<TFrom>(String, out TFrom)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve<TFrom>(System.String, out TFrom)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TryResolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 123
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nResolves a named instance of the requested type.\n"
+  example: []
+  syntax:
+    content: >-
+      bool TryResolve<TFrom>(string name, out TFrom instance)
+
+          where TFrom : class
+    parameters:
+    - id: name
+      type: System.String
+      description: "\nThe name of the instance to retrieve, specify null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the default instance.\n"
+    - id: instance
+      type: '{TFrom}'
+      description: "\nThe named registered instance when found; otherwise a null reference.\n"
+    typeParameters:
+    - id: TFrom
+      description: "\nThe requested service interface type.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> when the named registered instance was found; otherwise <code>false</code>.\n"
+    content.vb: Function TryResolve(Of TFrom As Class)(name As String, ByRef instance As TFrom) As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve*
+  nameWithType.vb: IIocContainerResolver.TryResolve(Of TFrom)(String, ByRef TFrom)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(Of TFrom)(System.String, ByRef TFrom)
+  name.vb: TryResolve(Of TFrom)(String, ByRef TFrom)
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type,System.Object@)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type,System.Object@)
+  id: TryResolve(System.Type,System.Object@)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: TryResolve(Type, out Object)
+  nameWithType: IIocContainerResolver.TryResolve(Type, out Object)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type, out System.Object)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TryResolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 137
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nAttempts to resolve the default instance of the requested type.\n"
+  example: []
+  syntax:
+    content: bool TryResolve(Type fromType, out object instance)
+    parameters:
+    - id: fromType
+      type: System.Type
+      description: "\nThe requested service interface type.\n"
+    - id: instance
+      type: System.Object
+      description: "\nThe default registered instance when found; otherwise a null reference.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> when a default registered instance was found; otherwise <code>false</code>.\n"
+    content.vb: Function TryResolve(fromType As Type, ByRef instance As Object) As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve*
+  nameWithType.vb: IIocContainerResolver.TryResolve(Type, ByRef Object)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type, ByRef System.Object)
+  name.vb: TryResolve(Type, ByRef Object)
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type,System.String,System.Object@)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type,System.String,System.Object@)
+  id: TryResolve(System.Type,System.String,System.Object@)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  langs:
+  - csharp
+  - vb
+  name: TryResolve(Type, String, out Object)
+  nameWithType: IIocContainerResolver.TryResolve(Type, String, out Object)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type, System.String, out System.Object)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TryResolve
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerResolver.cs
+    startLine: 154
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nResolves a named instance of the requested type.\n"
+  example: []
+  syntax:
+    content: bool TryResolve(Type fromType, string name, out object instance)
+    parameters:
+    - id: fromType
+      type: System.Type
+      description: "\nThe requested service interface type.\n"
+    - id: name
+      type: System.String
+      description: "\nThe name of the instance to retrieve, specify null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the default instance.\n"
+    - id: instance
+      type: System.Object
+      description: "\nThe named registered instance when found; otherwise a null reference.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> when the named registered instance was found; otherwise <code>false</code>.\n"
+    content.vb: Function TryResolve(fromType As Type, name As String, ByRef instance As Object) As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve*
+  nameWithType.vb: IIocContainerResolver.TryResolve(Type, String, ByRef Object)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve(System.Type, System.String, ByRef System.Object)
+  name.vb: TryResolve(Type, String, ByRef Object)
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainer
+  nameWithType: IIocContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerManager
+  nameWithType: IIocContainerManager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerRegistrar
+  nameWithType: IIocContainerRegistrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerResolver
+  nameWithType: IIocContainerResolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Registrations
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Registrations
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  name: Registrations
+  nameWithType: IIocContainerRegistrationRepository.Registrations
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Registrations
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Container
+  nameWithType: IIocContainerMetaSharedCapacities.Container
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Manager
+  nameWithType: IIocContainerMetaSharedCapacities.Manager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Registrar
+  nameWithType: IIocContainerMetaSharedCapacities.Registrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Resolver
+  nameWithType: IIocContainerMetaSharedCapacities.Resolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  name: Name
+  nameWithType: IIocContainerMetaIdentity.Name
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  name: Uid
+  nameWithType: IIocContainerMetaIdentity.Uid
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  parent: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+  definition: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name: GetRegistrationChain<TFrom>()
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>()
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>()
+  nameWithType.vb: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)()
+  fullName.vb: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)()
+  name.vb: GetRegistrationChain(Of TFrom)()
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1
+    name: GetRegistrationChain<TFrom>
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1
+    name: GetRegistrationChain(Of TFrom)
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+  definition: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  name: GetRegistrationChain<TFrom>(String)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>(String)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>(System.String)
+  nameWithType.vb: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)(String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)(System.String)
+  name.vb: GetRegistrationChain(Of TFrom)(String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(System.String)
+    name: GetRegistrationChain<TFrom>
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(System.String)
+    name: GetRegistrationChain(Of TFrom)
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  parent: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+  definition: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  name: GetRegistrationChain(Type)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(Type)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+  definition: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  name: GetRegistrationChain(Type, String)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type, System.String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type,System.String)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(System.Type,System.String)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name: IsRegistered<TFrom>()
+  nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>()
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>()
+  nameWithType.vb: IsRegisteredExtensions.IsRegistered(Of TFrom)()
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)()
+  name.vb: IsRegistered(Of TFrom)()
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1
+    name: IsRegistered<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1
+    name: IsRegistered(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegistered(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  name: IsRegistered<TFrom>(String)
+  nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>(String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>(System.String)
+  nameWithType.vb: IsRegisteredExtensions.IsRegistered(Of TFrom)(String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)(System.String)
+  name.vb: IsRegistered(Of TFrom)(String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(System.String)
+    name: IsRegistered<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(System.String)
+    name: IsRegistered(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegistered(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  name: IsRegistered(Type)
+  nameWithType: IsRegisteredExtensions.IsRegistered(Type)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  name: IsRegistered(Type, String)
+  nameWithType: IsRegisteredExtensions.IsRegistered(Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type, System.String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type,System.String)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(System.Type,System.String)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name: IsRegisteredChain<TFrom>()
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>()
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>()
+  nameWithType.vb: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)()
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)()
+  name.vb: IsRegisteredChain(Of TFrom)()
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1
+    name: IsRegisteredChain<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1
+    name: IsRegisteredChain(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  name: IsRegisteredChain<TFrom>(String)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>(String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>(System.String)
+  nameWithType.vb: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)(String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)(System.String)
+  name.vb: IsRegisteredChain(Of TFrom)(String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(System.String)
+    name: IsRegisteredChain<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(System.String)
+    name: IsRegisteredChain(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  name: IsRegisteredChain(Type)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain(Type)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository.Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  parent: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  definition: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  name: IsRegisteredChain(Type, String)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain(Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type, System.String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type,System.String)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(System.Type,System.String)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerRegistrationRepository
+  nameWithType: IIocContainerRegistrationRepository
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaSharedCapacities
+  nameWithType: IIocContainerMetaSharedCapacities
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaIdentity
+  nameWithType: IIocContainerMetaIdentity
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+- uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name: GetRegistrationChain<TFrom>(IIocContainerRegistrationRepository)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>(IIocContainerRegistrationRepository)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  nameWithType.vb: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)(IIocContainerRegistrationRepository)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name.vb: GetRegistrationChain(Of TFrom)(IIocContainerRegistrationRepository)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+    name: GetRegistrationChain<TFrom>
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+    name: GetRegistrationChain(Of TFrom)
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+  commentId: T:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+  parent: Landorphan.Ioc.ServiceLocation
+  name: GetRegistrationChainExtensions
+  nameWithType: GetRegistrationChainExtensions
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions
+- uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  isExternal: true
+  name: GetRegistrationChain<TFrom>(IIocContainerRegistrationRepository, String)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>(IIocContainerRegistrationRepository, String)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.String)
+  nameWithType.vb: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)(IIocContainerRegistrationRepository, String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.String)
+  name.vb: GetRegistrationChain(Of TFrom)(IIocContainerRegistrationRepository, String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+    name: GetRegistrationChain<TFrom>
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+    name: GetRegistrationChain(Of TFrom)
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  isExternal: true
+  name: GetRegistrationChain(IIocContainerRegistrationRepository, Type)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(IIocContainerRegistrationRepository, Type)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.Type)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  isExternal: true
+  name: GetRegistrationChain(IIocContainerRegistrationRepository, Type, String)
+  nameWithType: GetRegistrationChainExtensions.GetRegistrationChain(IIocContainerRegistrationRepository, Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.Type, System.String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+    name: GetRegistrationChain
+    nameWithType: GetRegistrationChainExtensions.GetRegistrationChain
+    fullName: Landorphan.Ioc.ServiceLocation.GetRegistrationChainExtensions.GetRegistrationChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name: IsRegistered<TFrom>(IIocContainerRegistrationRepository)
+  nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>(IIocContainerRegistrationRepository)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  nameWithType.vb: IsRegisteredExtensions.IsRegistered(Of TFrom)(IIocContainerRegistrationRepository)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name.vb: IsRegistered(Of TFrom)(IIocContainerRegistrationRepository)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+    name: IsRegistered<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+    name: IsRegistered(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegistered(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  commentId: T:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+  parent: Landorphan.Ioc.ServiceLocation
+  name: IsRegisteredExtensions
+  nameWithType: IsRegisteredExtensions
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  isExternal: true
+  name: IsRegistered<TFrom>(IIocContainerRegistrationRepository, String)
+  nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>(IIocContainerRegistrationRepository, String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.String)
+  nameWithType.vb: IsRegisteredExtensions.IsRegistered(Of TFrom)(IIocContainerRegistrationRepository, String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.String)
+  name.vb: IsRegistered(Of TFrom)(IIocContainerRegistrationRepository, String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+    name: IsRegistered<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegistered<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+    name: IsRegistered(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegistered(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  isExternal: true
+  name: IsRegistered(IIocContainerRegistrationRepository, Type)
+  nameWithType: IsRegisteredExtensions.IsRegistered(IIocContainerRegistrationRepository, Type)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.Type)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  isExternal: true
+  name: IsRegistered(IIocContainerRegistrationRepository, Type, String)
+  nameWithType: IsRegisteredExtensions.IsRegistered(IIocContainerRegistrationRepository, Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.Type, System.String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+    name: IsRegistered
+    nameWithType: IsRegisteredExtensions.IsRegistered
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegistered
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name: IsRegisteredChain<TFrom>(IIocContainerRegistrationRepository)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>(IIocContainerRegistrationRepository)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  nameWithType.vb: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)(IIocContainerRegistrationRepository)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+  name.vb: IsRegisteredChain(Of TFrom)(IIocContainerRegistrationRepository)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+    name: IsRegisteredChain<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository)
+    name: IsRegisteredChain(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+  isExternal: true
+  name: IsRegisteredChain<TFrom>(IIocContainerRegistrationRepository, String)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>(IIocContainerRegistrationRepository, String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.String)
+  nameWithType.vb: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)(IIocContainerRegistrationRepository, String)
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.String)
+  name.vb: IsRegisteredChain(Of TFrom)(IIocContainerRegistrationRepository, String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+    name: IsRegisteredChain<TFrom>
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain<TFrom>
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain<TFrom>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.String)
+    name: IsRegisteredChain(Of TFrom)
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Of TFrom)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+  isExternal: true
+  name: IsRegisteredChain(IIocContainerRegistrationRepository, Type)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain(IIocContainerRegistrationRepository, Type)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.Type)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+  isExternal: true
+  name: IsRegisteredChain(IIocContainerRegistrationRepository, Type, String)
+  nameWithType: IsRegisteredExtensions.IsRegisteredChain(IIocContainerRegistrationRepository, Type, String)
+  fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository, System.Type, System.String)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository,System.Type,System.String)
+    name: IsRegisteredChain
+    nameWithType: IsRegisteredExtensions.IsRegisteredChain
+    fullName: Landorphan.Ioc.ServiceLocation.IsRegisteredExtensions.IsRegisteredChain
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+    name: IIocContainerRegistrationRepository
+    nameWithType: IIocContainerRegistrationRepository
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrationRepository
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation
+  commentId: N:Landorphan.Ioc.ServiceLocation
+  name: Landorphan.Ioc.ServiceLocation
+  nameWithType: Landorphan.Ioc.ServiceLocation
+  fullName: Landorphan.Ioc.ServiceLocation
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+  name: ContainerFromTypePrecludedArgumentException
+  nameWithType: ContainerFromTypePrecludedArgumentException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+  name: ResolutionException
+  nameWithType: ResolutionException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve
+  name: Resolve
+  nameWithType: IIocContainerResolver.Resolve
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.Resolve
+- uid: '{TFrom}'
+  commentId: '!:TFrom'
+  definition: TFrom
+  name: TFrom
+  nameWithType: TFrom
+  fullName: TFrom
+- uid: TFrom
+  name: TFrom
+  nameWithType: TFrom
+  fullName: TFrom
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve
+  name: TryResolve
+  nameWithType: IIocContainerResolver.TryResolve
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver.TryResolve
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.String.Empty
+  commentId: F:System.String.Empty
+  isExternal: true

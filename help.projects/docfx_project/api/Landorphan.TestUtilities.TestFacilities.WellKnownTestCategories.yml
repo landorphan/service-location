@@ -1,0 +1,106 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  commentId: T:Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  id: WellKnownTestCategories
+  parent: Landorphan.TestUtilities.TestFacilities
+  children:
+  - Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.PreventRegressionBug
+  langs:
+  - csharp
+  - vb
+  name: WellKnownTestCategories
+  nameWithType: WellKnownTestCategories
+  fullName: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: WellKnownTestCategories
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
+    startLine: 7
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.TestFacilities
+  summary: "\nA collection of well known test categories excluding those found in <xref href=\"Landorphan.TestUtilities.TestTiming\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public static class WellKnownTestCategories
+    content.vb: Public Module WellKnownTestCategories
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.PreventRegressionBug
+  commentId: F:Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.PreventRegressionBug
+  id: PreventRegressionBug
+  parent: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  langs:
+  - csharp
+  - vb
+  name: PreventRegressionBug
+  nameWithType: WellKnownTestCategories.PreventRegressionBug
+  fullName: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.PreventRegressionBug
+  type: Field
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: PreventRegressionBug
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
+    startLine: 12
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.TestFacilities
+  summary: "\nUsed by the test designer to signify a class that proves a defect and is used to prevent regression of the same issue in future releases.\n"
+  example: []
+  syntax:
+    content: public const string PreventRegressionBug = "Prevent Regression Bug"
+    return:
+      type: System.String
+    content.vb: Public Const PreventRegressionBug As String = "Prevent Regression Bug"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Landorphan.TestUtilities.TestTiming
+  commentId: T:Landorphan.TestUtilities.TestTiming
+  name: TestTiming
+  nameWithType: TestTiming
+  fullName: Landorphan.TestUtilities.TestTiming
+- uid: Landorphan.TestUtilities.TestFacilities
+  commentId: N:Landorphan.TestUtilities.TestFacilities
+  name: Landorphan.TestUtilities.TestFacilities
+  nameWithType: Landorphan.TestUtilities.TestFacilities
+  fullName: Landorphan.TestUtilities.TestFacilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

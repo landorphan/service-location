@@ -1,7 +1,7 @@
 ﻿namespace Ioc.Collections.Performance.Tests
 {
    using System;
-   using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    public interface ITargetElapsedTime : IIocContainerConfiguration
    {

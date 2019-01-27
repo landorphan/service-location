@@ -1,0 +1,259 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  id: IIocContainerMetaSharedCapacities
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  children:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  langs:
+  - csharp
+  - vb
+  name: IIocContainerMetaSharedCapacities
+  nameWithType: IIocContainerMetaSharedCapacities
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IIocContainerMetaSharedCapacities
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+    startLine: 16
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nRepresents the meta capacities shared by\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> in concert with\na <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager\" data-throw-if-not-resolved=\"false\"></xref>,\na <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar\" data-throw-if-not-resolved=\"false\"></xref>,\nand a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nThese interfaces work in tandem in 1:1 relationships but with separate responsibilities:\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> represents the existence, relationship to other containers, and the identity of a registration &quot;database&quot;,\nwhereas <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar\" data-throw-if-not-resolved=\"false\"></xref> represents the capacity to add, remove, and query registrations,\nand <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager\" data-throw-if-not-resolved=\"false\"></xref> represents the additional management capacities,\nand <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver\" data-throw-if-not-resolved=\"false\"></xref> is the client-side interface for finding implementation instances for queried service location interfaces.\n"
+  example: []
+  syntax:
+    content: 'public interface IIocContainerMetaSharedCapacities : IIocContainerMetaIdentity'
+    content.vb: >-
+      Public Interface IIocContainerMetaSharedCapacities
+
+          Inherits IIocContainerMetaIdentity
+  inheritedMembers:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  id: Container
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  langs:
+  - csharp
+  - vb
+  name: Container
+  nameWithType: IIocContainerMetaSharedCapacities.Container
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Container
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+    startLine: 24
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the container.\n"
+  example: []
+  syntax:
+    content: IIocContainer Container { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+      description: "\nThe container, a simple 1:1 navigation reference.\n"
+    content.vb: ReadOnly Property Container As IIocContainer
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  id: Manager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  langs:
+  - csharp
+  - vb
+  name: Manager
+  nameWithType: IIocContainerMetaSharedCapacities.Manager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Manager
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+    startLine: 32
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the container manager.\n"
+  example: []
+  syntax:
+    content: IIocContainerManager Manager { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+      description: "\nThe container manager, a simple 1:1 navigation reference.\n"
+    content.vb: ReadOnly Property Manager As IIocContainerManager
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  id: Registrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  langs:
+  - csharp
+  - vb
+  name: Registrar
+  nameWithType: IIocContainerMetaSharedCapacities.Registrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Registrar
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+    startLine: 40
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the container registrar.\n"
+  example: []
+  syntax:
+    content: IIocContainerRegistrar Registrar { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+      description: "\nThe container registrar, a simple 1:1 navigation reference.\n"
+    content.vb: ReadOnly Property Registrar As IIocContainerRegistrar
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  id: Resolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  langs:
+  - csharp
+  - vb
+  name: Resolver
+  nameWithType: IIocContainerMetaSharedCapacities.Resolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Resolver
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
+    startLine: 48
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the container resolver.\n"
+  example: []
+  syntax:
+    content: IIocContainerResolver Resolver { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+      description: "\nThe container resolver, a simple 1:1 navigation reference.\n"
+    content.vb: ReadOnly Property Resolver As IIocContainerResolver
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainer
+  nameWithType: IIocContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerManager
+  nameWithType: IIocContainerManager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerRegistrar
+  nameWithType: IIocContainerRegistrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerResolver
+  nameWithType: IIocContainerResolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  name: Name
+  nameWithType: IIocContainerMetaIdentity.Name
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  name: Uid
+  nameWithType: IIocContainerMetaIdentity.Uid
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaIdentity
+  nameWithType: IIocContainerMetaIdentity
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  name: Container
+  nameWithType: IIocContainerMetaSharedCapacities.Container
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  name: Manager
+  nameWithType: IIocContainerMetaSharedCapacities.Manager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  name: Registrar
+  nameWithType: IIocContainerMetaSharedCapacities.Registrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  name: Resolver
+  nameWithType: IIocContainerMetaSharedCapacities.Resolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver

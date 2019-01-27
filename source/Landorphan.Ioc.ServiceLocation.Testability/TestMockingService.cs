@@ -3,16 +3,23 @@
    using System;
    using Landorphan.Common;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Represents the mocking capabilities of the test subsystem.
    /// </summary>
    /// <remarks>
-   /// Container Structure:
-   ///   (root)   -> (TestRunContainerName) -> (TestInstanceOnTestRunOnRootContainerName)
-   ///            |
-   ///            -> (TestInstanceOnRootContainerName)
-   /// Resolution evaluates the current ambient container, then the chain of parent containers.
+   /// |  Grandparent Container |  Parent Container | Leaf Container                       |
+   /// | :--------------------- | :---------------- | :----------------------------------- |
+   /// | RootContainer          | TestRunContainer  | TestInstanceOnTestRunOnRootContainer |
+   /// | RootContainer          | -                 | TestInstanceOnRootContainer          |
+   /// <para>
+   /// Adds 3 containers to the root container configured as above.
+   /// </para>
+   /// <para>
+   /// Resolution evaluates the current ambient container, then the chain of parent containers up to the
+   /// root (production) container.
+   /// </para>
    /// </remarks>
    public sealed class TestMockingService : DisposableObject, ITestMockingService
    {

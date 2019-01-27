@@ -5,6 +5,8 @@
    using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Represents a registration key.

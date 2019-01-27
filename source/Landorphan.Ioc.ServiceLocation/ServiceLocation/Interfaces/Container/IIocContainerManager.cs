@@ -1,7 +1,9 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    using System;
    using System.Collections.Generic;
+   using Landorphan.Ioc.ServiceLocation.EventArguments;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
 
    /// <summary>
    /// Represents the management capabilities of a dependency injection container.

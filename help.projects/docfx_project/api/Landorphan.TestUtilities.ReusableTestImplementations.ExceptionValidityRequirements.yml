@@ -1,0 +1,956 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  commentId: T:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  id: ExceptionValidityRequirements
+  parent: Landorphan.TestUtilities.ReusableTestImplementations
+  children:
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType(System.Type,System.Object@)
+  langs:
+  - csharp
+  - vb
+  name: ExceptionValidityRequirements
+  nameWithType: ExceptionValidityRequirements
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ExceptionValidityRequirements
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 18
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nTest implementations for exception validity requirements.\n"
+  example: []
+  syntax:
+    content: 'public abstract class ExceptionValidityRequirements : TestBase'
+    content.vb: >-
+      Public MustInherit Class ExceptionValidityRequirements
+          Inherits TestBase
+  inheritance:
+  - System.Object
+  - Landorphan.TestUtilities.TestBase
+  inheritedMembers:
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  - Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  id: Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 25
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that it is NOT decorated with [Serializable].\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
+    content.vb: Protected Sub Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  id: Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 45
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that it is either abstract or sealed.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation*
+  exceptions:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+    commentId: T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation
+  id: Exceptions_Should_Be_Public_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Be_Public_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Be_Public_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 66
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that it is public.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Be_Public_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Be_Public_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation*
+  exceptions:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+    commentId: T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  id: Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 95
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure it is descended from an acceptable base exception.\n"
+  remarks: "\nAcceptable base classes are specified by the concrete test class by overriding\n<xref href=\"Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation*
+  exceptions:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+    commentId: T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation
+  id: Exceptions_Should_Have_A_Default_Constructor_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Have_A_Default_Constructor_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Have_A_Default_Constructor_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 114
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that has a default constructor.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Have_A_Default_Constructor_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Have_A_Default_Constructor_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  id: Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 134
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that has message and inner exception constructor.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation
+  id: Exceptions_Should_Have_A_Message_Constructor_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Have_A_Message_Constructor_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Have_A_Message_Constructor_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 153
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that has a message constructor.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Have_A_Message_Constructor_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Have_A_Message_Constructor_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  id: Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 174
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that has an serialization constructor.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  id: Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 193
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that has a inner exception constructor.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  id: Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 214
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nEvaluates each exception to ensure that valid constructors excluding the default constructor, the inner exception\nconstructor,\nthe message constructor and the serialization constructor.\n"
+  example: []
+  syntax:
+    content: protected void Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
+    content.vb: Protected Sub Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  id: GetAcceptableBaseExceptionTypes
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: GetAcceptableBaseExceptionTypes()
+  nameWithType: ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetAcceptableBaseExceptionTypes
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 236
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nGets the type or types from which all exceptions must descend.\n"
+  example: []
+  syntax:
+    content: protected abstract IImmutableSet<Type> GetAcceptableBaseExceptionTypes()
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.Type}
+      description: "\nThe acceptable base exception types.\n"
+    content.vb: Protected MustOverride Function GetAcceptableBaseExceptionTypes As IImmutableSet(Of Type)
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest
+  id: GetAssembliesUnderTest
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: GetAssembliesUnderTest()
+  nameWithType: ExceptionValidityRequirements.GetAssembliesUnderTest()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetAssembliesUnderTest
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 244
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nGets the assemblies to be evaluated.\n"
+  example: []
+  syntax:
+    content: protected abstract IImmutableSet<Assembly> GetAssembliesUnderTest()
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.Reflection.Assembly}
+      description: "\nThe assemblies to be evaluated.\n"
+    content.vb: Protected MustOverride Function GetAssembliesUnderTest As IImmutableSet(Of Assembly)
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType(System.Type,System.Object@)
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType(System.Type,System.Object@)
+  id: GetDefaultValueForParameterType(System.Type,System.Object@)
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  langs:
+  - csharp
+  - vb
+  name: GetDefaultValueForParameterType(Type, out Object)
+  nameWithType: ExceptionValidityRequirements.GetDefaultValueForParameterType(Type, out Object)
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType(System.Type, out System.Object)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetDefaultValueForParameterType
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/ExceptionValidityRequirements.cs
+    startLine: 289
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nGets a default test value for the given parameter type.\n"
+  remarks: "\nThe base class, ExceptionValidityRequirements, &quot;knows&quot; how to instantiate values for the following types:\nBoolean              Guid?                   SByte?\nBoolean?             IEnumerable{String}     String\nByte                 IEnumerable{type}       Timespan\nByte?                Int16                   Timespan?\nDateTime             Int16?                  Type\nDateTime?            Int32                   UInt16\nDateTimeOffset       Int32?                  UInt16?\nDateTimeOffset?      Int64                   UInt32\nEnums                Int64?                  UInt32?\nException            Object                  UInt64\nGuid                 SByte                   UInt64?\nIf your assembly uses exception constructor parameters or fields of another type, override this method and provide a\ndefault value for each type used in your assembly that is\nnot in the list.\nCode Example\n<pre><code>protected override GetDefaultValueForParameterType(Type parameterType, out Object defaultValue)\n{\n  if(parameterType == typeof(IMyObject))\n  {\n  defaultValue = new MyObject(Guid.NewGuid());\n  return true;\n  }\n\n  defaultValue = null;\n  return false; \n}</code></pre>\n"
+  example: []
+  syntax:
+    content: protected virtual bool GetDefaultValueForParameterType(Type parameterType, out object defaultValue)
+    parameters:
+    - id: parameterType
+      type: System.Type
+      description: "\nType of the parameter.\n"
+    - id: defaultValue
+      type: System.Object
+      description: "\nThe default value to use in the test.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if the type is known, and a defaultValue is provided; otherwise <code>false</code>.\n"
+    content.vb: Protected Overridable Function GetDefaultValueForParameterType(parameterType As Type, ByRef defaultValue As Object) As Boolean
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType*
+  nameWithType.vb: ExceptionValidityRequirements.GetDefaultValueForParameterType(Type, ByRef Object)
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType(System.Type, ByRef System.Object)
+  name.vb: GetDefaultValueForParameterType(Type, ByRef Object)
+references:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations
+  commentId: N:Landorphan.TestUtilities.ReusableTestImplementations
+  name: Landorphan.TestUtilities.ReusableTestImplementations
+  nameWithType: Landorphan.TestUtilities.ReusableTestImplementations
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  isExternal: true
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: InitializeTestMethod()
+  nameWithType: TestBase.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  name: Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation
+- uid: Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+  commentId: T:Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException
+  isExternal: true
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  name: Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Abstract_Or_Sealed_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation
+  name: Exceptions_Should_Be_Public_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Be_Public_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  isExternal: true
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  name: Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation
+  name: Exceptions_Should_Have_A_Default_Constructor_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Default_Constructor_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  name: Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation
+  name: Exceptions_Should_Have_A_Message_Constructor_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Message_Constructor_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  name: Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_A_Serialization_Constructor_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  name: Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  name: Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  nameWithType: ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  name: GetAcceptableBaseExceptionTypes
+  nameWithType: ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAcceptableBaseExceptionTypes
+- uid: System.Collections.Immutable.IImmutableSet{System.Type}
+  commentId: T:System.Collections.Immutable.IImmutableSet{System.Type}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.IImmutableSet`1
+  name: IImmutableSet<Type>
+  nameWithType: IImmutableSet<Type>
+  fullName: System.Collections.Immutable.IImmutableSet<System.Type>
+  nameWithType.vb: IImmutableSet(Of Type)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of System.Type)
+  name.vb: IImmutableSet(Of Type)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable.IImmutableSet`1
+  commentId: T:System.Collections.Immutable.IImmutableSet`1
+  isExternal: true
+  name: IImmutableSet<T>
+  nameWithType: IImmutableSet<T>
+  fullName: System.Collections.Immutable.IImmutableSet<T>
+  nameWithType.vb: IImmutableSet(Of T)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of T)
+  name.vb: IImmutableSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest
+  name: GetAssembliesUnderTest
+  nameWithType: ExceptionValidityRequirements.GetAssembliesUnderTest
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetAssembliesUnderTest
+- uid: System.Collections.Immutable.IImmutableSet{System.Reflection.Assembly}
+  commentId: T:System.Collections.Immutable.IImmutableSet{System.Reflection.Assembly}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.IImmutableSet`1
+  name: IImmutableSet<Assembly>
+  nameWithType: IImmutableSet<Assembly>
+  fullName: System.Collections.Immutable.IImmutableSet<System.Reflection.Assembly>
+  nameWithType.vb: IImmutableSet(Of Assembly)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of System.Reflection.Assembly)
+  name.vb: IImmutableSet(Of Assembly)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Reflection.Assembly
+    name: Assembly
+    nameWithType: Assembly
+    fullName: System.Reflection.Assembly
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType
+  name: GetDefaultValueForParameterType
+  nameWithType: ExceptionValidityRequirements.GetDefaultValueForParameterType
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements.GetDefaultValueForParameterType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

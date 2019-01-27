@@ -1,7 +1,7 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    using System;
-   using Landorphan.Common;
+   using Landorphan.Common.Interfaces;
 
    /// <summary>
    /// Represents the configuration of an <see cref="IIocContainer" />.

@@ -9,6 +9,7 @@ namespace Landorphan.TestUtilities
    using System.Reflection;
    using System.Runtime.CompilerServices;
    using Landorphan.Common;
+   using Landorphan.Common.Interfaces;
    using Landorphan.Common.Threading;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 

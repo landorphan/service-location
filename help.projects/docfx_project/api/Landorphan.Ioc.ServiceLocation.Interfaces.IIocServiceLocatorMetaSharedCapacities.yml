@@ -1,0 +1,146 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities
+  id: IIocServiceLocatorMetaSharedCapacities
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  children:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  langs:
+  - csharp
+  - vb
+  name: IIocServiceLocatorMetaSharedCapacities
+  nameWithType: IIocServiceLocatorMetaSharedCapacities
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IIocServiceLocatorMetaSharedCapacities
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
+    startLine: 12
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nRepresents the meta capacities shared by\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator\" data-throw-if-not-resolved=\"false\"></xref> in concert with\nand a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager\" data-throw-if-not-resolved=\"false\"></xref>,\n"
+  remarks: "\nThese interfaces work in tandem in 1:1 relationships but with separate responsibilities:\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator\" data-throw-if-not-resolved=\"false\"></xref> represents the existence and basic state of the service locator,\nand <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager\" data-throw-if-not-resolved=\"false\"></xref> represents the additional management capacities.\n"
+  example: []
+  syntax:
+    content: public interface IIocServiceLocatorMetaSharedCapacities
+    content.vb: Public Interface IIocServiceLocatorMetaSharedCapacities
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
+  id: Manager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities
+  langs:
+  - csharp
+  - vb
+  name: Manager
+  nameWithType: IIocServiceLocatorMetaSharedCapacities.Manager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Manager
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
+    startLine: 23
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the manager of the service locator.\n"
+  remarks: "\nUsed to monitor and manipulate the behavior of <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: IIocServiceLocatorManager Manager { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager
+      description: "\nThe manager of the service locator.\n"
+    content.vb: ReadOnly Property Manager As IIocServiceLocatorManager
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  id: ServiceLocator
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities
+  langs:
+  - csharp
+  - vb
+  name: ServiceLocator
+  nameWithType: IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ServiceLocator
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
+    startLine: 34
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the service locator.\n"
+  remarks: "\nUsed to resolve interfaces to implementations.\n"
+  example: []
+  syntax:
+    content: IIocServiceLocator ServiceLocator { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator
+      description: "\nThe service locator client interface.\n"
+    content.vb: ReadOnly Property ServiceLocator As IIocServiceLocator
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocServiceLocator
+  nameWithType: IIocServiceLocator
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocServiceLocatorManager
+  nameWithType: IIocServiceLocatorManager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.IocServiceLocator
+  commentId: T:Landorphan.Ioc.ServiceLocation.IocServiceLocator
+  name: IocServiceLocator
+  nameWithType: IocServiceLocator
+  fullName: Landorphan.Ioc.ServiceLocation.IocServiceLocator
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
+  name: Manager
+  nameWithType: IIocServiceLocatorMetaSharedCapacities.Manager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  name: ServiceLocator
+  nameWithType: IIocServiceLocatorMetaSharedCapacities.ServiceLocator
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.ServiceLocator

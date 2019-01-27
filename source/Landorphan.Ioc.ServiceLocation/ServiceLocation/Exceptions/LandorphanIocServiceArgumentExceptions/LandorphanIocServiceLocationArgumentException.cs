@@ -1,9 +1,9 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
    using System.Runtime.Serialization;
-   using Landorphan.Common;
+   using Landorphan.Common.Exceptions;
 
    /// <summary>
    /// Base class for thrown <see cref="ArgumentException"/> instances specific to the <see cref="Landorphan.Ioc.ServiceLocation"/> implementations.

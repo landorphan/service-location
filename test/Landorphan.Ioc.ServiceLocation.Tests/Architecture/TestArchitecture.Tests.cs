@@ -3,7 +3,7 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
+   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
