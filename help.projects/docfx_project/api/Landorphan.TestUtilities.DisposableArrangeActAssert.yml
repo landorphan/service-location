@@ -1,0 +1,986 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert
+  commentId: T:Landorphan.TestUtilities.DisposableArrangeActAssert
+  id: DisposableArrangeActAssert
+  parent: Landorphan.TestUtilities
+  children:
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose(System.Boolean)
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.Disposing
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources
+  - Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed
+  langs:
+  - csharp
+  - vb
+  name: DisposableArrangeActAssert
+  nameWithType: DisposableArrangeActAssert
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: DisposableArrangeActAssert
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 32
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nProvides common services for BDD-style (context/specification) unit tests.  Serves as an adapter between the MSTest and  BDD-style tests when\nfields and auto-properties of the test class are owned and implement <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\n<p>\nThis class uses reflection to dispose of all fields and Auto-Properties in descendant classes provided those fields or auto-properties match the following requirements:\n  NOT decorated with [DoNotDispose]\n  Implements IDisposable or implements IEnumerable{IDisposable}\nNote:  This class does not handle IDictionary{TKey,TValue}.  When a descendant class has an &quot;owned&quot; IDictionary{TKey,TValue} or any other\nnested structure containing IDisposable resources, override the <xref href=\"Landorphan.Common.DisposableObject.ReleaseManagedResources\" data-throw-if-not-resolved=\"false\"></xref> method, calling the base implementation at the end of the override.\n</p>\n<p>\nCall <xref href=\"Landorphan.Common.DisposableObject.ThrowIfDisposed\" data-throw-if-not-resolved=\"false\"></xref> on member access as appropriate.\n</p>\n<p>\nThe implementation of <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> has been altered from the recommended pattern to make it thread-safe to call.\n</p>\n"
+  example: []
+  syntax:
+    content: >-
+      [TestClass]
+
+      public abstract class DisposableArrangeActAssert : ArrangeActAssert, INotifyingQueryDisposable, IQueryDisposable, IDisposable
+    content.vb: >-
+      <TestClass>
+
+      Public MustInherit Class DisposableArrangeActAssert
+          Inherits ArrangeActAssert
+          Implements INotifyingQueryDisposable, IQueryDisposable, IDisposable
+  inheritance:
+  - System.Object
+  - Landorphan.TestUtilities.TestBase
+  - Landorphan.TestUtilities.ArrangeActAssert
+  implements:
+  - Landorphan.Common.INotifyingQueryDisposable
+  - Landorphan.Common.IQueryDisposable
+  - System.IDisposable
+  inheritedMembers:
+  - Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  - Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+  id: Dispose
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: DisposableArrangeActAssert.Dispose()
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Dispose
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 48
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  example: []
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose*
+  implements:
+  - System.IDisposable.Dispose
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose(System.Boolean)
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose(System.Boolean)
+  id: Dispose(System.Boolean)
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: Dispose(Boolean)
+  nameWithType: DisposableArrangeActAssert.Dispose(Boolean)
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Dispose
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 75
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nReleases the unmanaged resources used by the <xref href=\"Landorphan.Common.DisposableObject\" data-throw-if-not-resolved=\"false\"></xref> and optionally releases the managed resources.\n"
+  example: []
+  syntax:
+    content: protected virtual void Dispose(bool disposing)
+    parameters:
+    - id: disposing
+      type: System.Boolean
+      description: "\n<code> true </code> to release both managed and unmanaged resources; <code> false </code> to release only unmanaged resources.\n"
+    content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+  id: ReleaseManagedResources
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: ReleaseManagedResources()
+  nameWithType: DisposableArrangeActAssert.ReleaseManagedResources()
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ReleaseManagedResources
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 93
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nFinds and releases all managed resources.\n"
+  example: []
+  syntax:
+    content: protected virtual void ReleaseManagedResources()
+    content.vb: Protected Overridable Sub ReleaseManagedResources
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources
+  id: ReleaseUnmanagedResources
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: ReleaseUnmanagedResources()
+  nameWithType: DisposableArrangeActAssert.ReleaseUnmanagedResources()
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ReleaseUnmanagedResources
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 191
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nReleases the unmanaged resources.\n"
+  example: []
+  syntax:
+    content: protected virtual void ReleaseUnmanagedResources()
+    content.vb: Protected Overridable Sub ReleaseUnmanagedResources
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize
+  id: Finalize
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: Finalize()
+  nameWithType: DisposableArrangeActAssert.Finalize()
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Finalize
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 199
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nEnsures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the <xref href=\"Landorphan.Common.DisposableObject\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: protected void Finalize()
+    content.vb: Protected Sub Finalize
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Disposing
+  commentId: E:Landorphan.TestUtilities.DisposableArrangeActAssert.Disposing
+  id: Disposing
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: Disposing
+  nameWithType: DisposableArrangeActAssert.Disposing
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.Disposing
+  type: Event
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Disposing
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 205
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  example: []
+  syntax:
+    content: public event EventHandler<EventArgs> Disposing
+    return:
+      type: System.EventHandler{System.EventArgs}
+    content.vb: Public Event Disposing As EventHandler(Of EventArgs)
+  implements:
+  - Landorphan.Common.INotifyingQueryDisposable.Disposing
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed
+  commentId: P:Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed
+  id: IsDisposed
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: IsDisposed
+  nameWithType: DisposableArrangeActAssert.IsDisposed
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsDisposed
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 212
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  example: []
+  syntax:
+    content: public bool IsDisposed { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsDisposed As Boolean
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed*
+  implements:
+  - Landorphan.Common.IQueryDisposable.IsDisposed
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing
+  commentId: P:Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing
+  id: IsDisposing
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: IsDisposing
+  nameWithType: DisposableArrangeActAssert.IsDisposing
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsDisposing
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 215
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  example: []
+  syntax:
+    content: public bool IsDisposing { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsDisposing As Boolean
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing*
+  implements:
+  - Landorphan.Common.IQueryDisposable.IsDisposing
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing
+  id: OnDisposing
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: OnDisposing()
+  nameWithType: DisposableArrangeActAssert.OnDisposing()
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: OnDisposing
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 220
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nNotifies all listeners that this instance is being disposed.\n"
+  example: []
+  syntax:
+    content: protected virtual void OnDisposing()
+    content.vb: Protected Overridable Sub OnDisposing
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed
+  id: ThrowIfDisposed
+  parent: Landorphan.TestUtilities.DisposableArrangeActAssert
+  langs:
+  - csharp
+  - vb
+  name: ThrowIfDisposed()
+  nameWithType: DisposableArrangeActAssert.ThrowIfDisposed()
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ThrowIfDisposed
+    path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
+    startLine: 228
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nThrows an <xref href=\"System.ObjectDisposedException\" data-throw-if-not-resolved=\"false\"></xref> if this instance has been disposed.\n"
+  example: []
+  syntax:
+    content: protected void ThrowIfDisposed()
+    content.vb: Protected Sub ThrowIfDisposed
+  overload: Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+references:
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: Landorphan.Common.DisposableObject.ReleaseManagedResources
+  commentId: M:Landorphan.Common.DisposableObject.ReleaseManagedResources
+  parent: Landorphan.Common.DisposableObject
+  isExternal: true
+  name: ReleaseManagedResources()
+  nameWithType: DisposableObject.ReleaseManagedResources()
+  fullName: Landorphan.Common.DisposableObject.ReleaseManagedResources()
+  spec.csharp:
+  - uid: Landorphan.Common.DisposableObject.ReleaseManagedResources
+    name: ReleaseManagedResources
+    nameWithType: DisposableObject.ReleaseManagedResources
+    fullName: Landorphan.Common.DisposableObject.ReleaseManagedResources
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Common.DisposableObject.ReleaseManagedResources
+    name: ReleaseManagedResources
+    nameWithType: DisposableObject.ReleaseManagedResources
+    fullName: Landorphan.Common.DisposableObject.ReleaseManagedResources
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Common.DisposableObject.ThrowIfDisposed
+  commentId: M:Landorphan.Common.DisposableObject.ThrowIfDisposed
+  parent: Landorphan.Common.DisposableObject
+  isExternal: true
+  name: ThrowIfDisposed()
+  nameWithType: DisposableObject.ThrowIfDisposed()
+  fullName: Landorphan.Common.DisposableObject.ThrowIfDisposed()
+  spec.csharp:
+  - uid: Landorphan.Common.DisposableObject.ThrowIfDisposed
+    name: ThrowIfDisposed
+    nameWithType: DisposableObject.ThrowIfDisposed
+    fullName: Landorphan.Common.DisposableObject.ThrowIfDisposed
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Common.DisposableObject.ThrowIfDisposed
+    name: ThrowIfDisposed
+    nameWithType: DisposableObject.ThrowIfDisposed
+    fullName: Landorphan.Common.DisposableObject.ThrowIfDisposed
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IDisposable.Dispose
+  commentId: M:System.IDisposable.Dispose
+  parent: System.IDisposable
+  isExternal: true
+  name: Dispose()
+  nameWithType: IDisposable.Dispose()
+  fullName: System.IDisposable.Dispose()
+  spec.csharp:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IDisposable.Dispose
+    name: Dispose
+    nameWithType: IDisposable.Dispose
+    fullName: System.IDisposable.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.ArrangeActAssert
+  commentId: T:Landorphan.TestUtilities.ArrangeActAssert
+  parent: Landorphan.TestUtilities
+  name: ArrangeActAssert
+  nameWithType: ArrangeActAssert
+  fullName: Landorphan.TestUtilities.ArrangeActAssert
+- uid: Landorphan.Common.INotifyingQueryDisposable
+  commentId: T:Landorphan.Common.INotifyingQueryDisposable
+  parent: Landorphan.Common
+  isExternal: true
+  name: INotifyingQueryDisposable
+  nameWithType: INotifyingQueryDisposable
+  fullName: Landorphan.Common.INotifyingQueryDisposable
+- uid: Landorphan.Common.IQueryDisposable
+  commentId: T:Landorphan.Common.IQueryDisposable
+  parent: Landorphan.Common
+  isExternal: true
+  name: IQueryDisposable
+  nameWithType: IQueryDisposable
+  fullName: Landorphan.Common.IQueryDisposable
+- uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  name: InitializeTestMethod()
+  nameWithType: ArrangeActAssert.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: ArrangeActAssert.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: ArrangeActAssert.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  name: ArrangeMethod()
+  nameWithType: ArrangeActAssert.ArrangeMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+    name: ArrangeMethod
+    nameWithType: ArrangeActAssert.ArrangeMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+    name: ArrangeMethod
+    nameWithType: ArrangeActAssert.ArrangeMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  name: ActMethod()
+  nameWithType: ArrangeActAssert.ActMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+    name: ActMethod
+    nameWithType: ArrangeActAssert.ActMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+    name: ActMethod
+    nameWithType: ArrangeActAssert.ActMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  isExternal: true
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Common.DisposableObject
+  commentId: T:Landorphan.Common.DisposableObject
+  parent: Landorphan.Common
+  isExternal: true
+  name: DisposableObject
+  nameWithType: DisposableObject
+  fullName: Landorphan.Common.DisposableObject
+- uid: Landorphan.Common
+  commentId: N:Landorphan.Common
+  isExternal: true
+  name: Landorphan.Common
+  nameWithType: Landorphan.Common
+  fullName: Landorphan.Common
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+  name: Dispose
+  nameWithType: DisposableArrangeActAssert.Dispose
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+  name: ReleaseManagedResources
+  nameWithType: DisposableArrangeActAssert.ReleaseManagedResources
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources
+  name: ReleaseUnmanagedResources
+  nameWithType: DisposableArrangeActAssert.ReleaseUnmanagedResources
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseUnmanagedResources
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize
+  name: Finalize
+  nameWithType: DisposableArrangeActAssert.Finalize
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.Finalize
+- uid: Landorphan.Common.INotifyingQueryDisposable.Disposing
+  commentId: E:Landorphan.Common.INotifyingQueryDisposable.Disposing
+  parent: Landorphan.Common.INotifyingQueryDisposable
+  isExternal: true
+  name: Disposing
+  nameWithType: INotifyingQueryDisposable.Disposing
+  fullName: Landorphan.Common.INotifyingQueryDisposable.Disposing
+- uid: System.EventHandler{System.EventArgs}
+  commentId: T:System.EventHandler{System.EventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<EventArgs>
+  nameWithType: EventHandler<EventArgs>
+  fullName: System.EventHandler<System.EventArgs>
+  nameWithType.vb: EventHandler(Of EventArgs)
+  fullName.vb: System.EventHandler(Of System.EventArgs)
+  name.vb: EventHandler(Of EventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed
+  name: IsDisposed
+  nameWithType: DisposableArrangeActAssert.IsDisposed
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposed
+- uid: Landorphan.Common.IQueryDisposable.IsDisposed
+  commentId: P:Landorphan.Common.IQueryDisposable.IsDisposed
+  parent: Landorphan.Common.IQueryDisposable
+  isExternal: true
+  name: IsDisposed
+  nameWithType: IQueryDisposable.IsDisposed
+  fullName: Landorphan.Common.IQueryDisposable.IsDisposed
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing
+  name: IsDisposing
+  nameWithType: DisposableArrangeActAssert.IsDisposing
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.IsDisposing
+- uid: Landorphan.Common.IQueryDisposable.IsDisposing
+  commentId: P:Landorphan.Common.IQueryDisposable.IsDisposing
+  parent: Landorphan.Common.IQueryDisposable
+  isExternal: true
+  name: IsDisposing
+  nameWithType: IQueryDisposable.IsDisposing
+  fullName: Landorphan.Common.IQueryDisposable.IsDisposing
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing
+  name: OnDisposing
+  nameWithType: DisposableArrangeActAssert.OnDisposing
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.OnDisposing
+- uid: System.ObjectDisposedException
+  commentId: T:System.ObjectDisposedException
+  isExternal: true
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed*
+  commentId: Overload:Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed
+  name: ThrowIfDisposed
+  nameWithType: DisposableArrangeActAssert.ThrowIfDisposed
+  fullName: Landorphan.TestUtilities.DisposableArrangeActAssert.ThrowIfDisposed

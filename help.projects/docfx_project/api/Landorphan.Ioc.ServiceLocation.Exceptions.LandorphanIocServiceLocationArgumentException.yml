@@ -1,0 +1,359 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  id: LandorphanIocServiceLocationArgumentException
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions
+  children:
+  - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor
+  - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String,System.Exception)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String,System.String,System.Exception)
+  langs:
+  - csharp
+  - vb
+  name: LandorphanIocServiceLocationArgumentException
+  nameWithType: LandorphanIocServiceLocationArgumentException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: LandorphanIocServiceLocationArgumentException
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+    startLine: 19
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nBase class for thrown <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> instances specific to the <xref href=\"Landorphan.Ioc.ServiceLocation\" data-throw-if-not-resolved=\"false\"></xref> implementations.\n"
+  remarks: "\n<p>\n<xref href=\"Landorphan.Ioc.ServiceLocation\" data-throw-if-not-resolved=\"false\"></xref> throws BCL exceptions as appropriate; for example <xref href=\"System.ArgumentNullException\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n<p>\nThis class changes the order of (paramName, message, innerException) arguments to be consistent all other exceptions.\nThis is in contrast with <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> and its derivatives in the BCL which violate the pattern.\n</p>\n"
+  example: []
+  syntax:
+    content: 'public abstract class LandorphanIocServiceLocationArgumentException : LandorphanArgumentException, ISerializable'
+    content.vb: >-
+      Public MustInherit Class LandorphanIocServiceLocationArgumentException
+          Inherits LandorphanArgumentException
+          Implements ISerializable
+  inheritance:
+  - System.Object
+  - System.Exception
+  - System.SystemException
+  - System.ArgumentException
+  - Landorphan.Common.LandorphanArgumentException
+  derivedClasses:
+  - Landorphan.Ioc.ServiceLocation.Exceptions.CannotPrecludeRegisteredTypeArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypeNameAlreadyRegisteredArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.ContainerFromTypePrecludedArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.FromTypeMustBeInterfaceOrAbstractTypeArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.InstanceMustImplementTypeArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.ToTypeMustHavePublicDefaultConstructorArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.ToTypeMustImplementTypeArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.ToTypeMustNotBeInterfaceNorAbstractArgumentException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.TypeMustNotBeAnOpenGenericArgumentException
+  implements:
+  - System.Runtime.Serialization.ISerializable
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor
+  id: '#ctor'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  langs:
+  - csharp
+  - vb
+  name: LandorphanIocServiceLocationArgumentException()
+  nameWithType: LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException()
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException()
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+    startLine: 26
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: protected LandorphanIocServiceLocationArgumentException()
+    content.vb: Protected Sub New
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  langs:
+  - csharp
+  - vb
+  name: LandorphanIocServiceLocationArgumentException(String)
+  nameWithType: LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(String)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+    startLine: 36
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: protected LandorphanIocServiceLocationArgumentException(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: "\nThe message that explains the reason for the exception.\n"
+    content.vb: Protected Sub New(message As String)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String,System.Exception)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  langs:
+  - csharp
+  - vb
+  name: LandorphanIocServiceLocationArgumentException(String, Exception)
+  nameWithType: LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(String, Exception)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+    startLine: 49
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: protected LandorphanIocServiceLocationArgumentException(string message, Exception innerException)
+    parameters:
+    - id: message
+      type: System.String
+      description: "\nThe message that explains the reason for the exception.\n"
+    - id: innerException
+      type: System.Exception
+      description: "\nThe exception that is the cause of the current exception, or a null reference if no inner exception is specified.\n"
+    content.vb: Protected Sub New(message As String, innerException As Exception)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String,System.String,System.Exception)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.String,System.String,System.Exception)
+  id: '#ctor(System.String,System.String,System.Exception)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  langs:
+  - csharp
+  - vb
+  name: LandorphanIocServiceLocationArgumentException(String, String, Exception)
+  nameWithType: LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(String, String, Exception)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(System.String, System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+    startLine: 65
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: protected LandorphanIocServiceLocationArgumentException(string paramName, string message, Exception innerException)
+    parameters:
+    - id: paramName
+      type: System.String
+      description: "\nThe name of the parameter that caused the current exception.\n"
+    - id: message
+      type: System.String
+      description: "\nThe message that explains the reason for the exception.\n"
+    - id: innerException
+      type: System.Exception
+      description: "\nThe exception that is the cause of the current exception, or a null reference if no inner exception is specified.\n"
+    content.vb: Protected Sub New(paramName As String, message As String, innerException As Exception)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  id: '#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  langs:
+  - csharp
+  - vb
+  name: LandorphanIocServiceLocationArgumentException(SerializationInfo, StreamingContext)
+  nameWithType: LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(SerializationInfo, StreamingContext)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/LandorphanIocServiceLocationArgumentException.cs
+    startLine: 79
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: protected LandorphanIocServiceLocationArgumentException(SerializationInfo info, StreamingContext context)
+    parameters:
+    - id: info
+      type: System.Runtime.Serialization.SerializationInfo
+      description: "\nThe <xref href=\"System.Runtime.Serialization.SerializationInfo\" data-throw-if-not-resolved=\"false\"></xref> that holds the serialized Object data about the exception being thrown.\n"
+    - id: context
+      type: System.Runtime.Serialization.StreamingContext
+      description: "\nThe <xref href=\"System.Runtime.Serialization.StreamingContext\" data-throw-if-not-resolved=\"false\"></xref> that contains contextual information about the source or destination.\n"
+    content.vb: Protected Sub New(info As SerializationInfo, context As StreamingContext)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+references:
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: Landorphan.Ioc.ServiceLocation
+  commentId: N:Landorphan.Ioc.ServiceLocation
+  name: Landorphan.Ioc.ServiceLocation
+  nameWithType: Landorphan.Ioc.ServiceLocation
+  fullName: Landorphan.Ioc.ServiceLocation
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions
+  commentId: N:Landorphan.Ioc.ServiceLocation.Exceptions
+  name: Landorphan.Ioc.ServiceLocation.Exceptions
+  nameWithType: Landorphan.Ioc.ServiceLocation.Exceptions
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.SystemException
+  commentId: T:System.SystemException
+  parent: System
+  isExternal: true
+  name: SystemException
+  nameWithType: SystemException
+  fullName: System.SystemException
+- uid: Landorphan.Common.LandorphanArgumentException
+  commentId: T:Landorphan.Common.LandorphanArgumentException
+  parent: Landorphan.Common
+  isExternal: true
+  name: LandorphanArgumentException
+  nameWithType: LandorphanArgumentException
+  fullName: Landorphan.Common.LandorphanArgumentException
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Common
+  commentId: N:Landorphan.Common
+  isExternal: true
+  name: Landorphan.Common
+  nameWithType: Landorphan.Common
+  fullName: Landorphan.Common
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions
+  name: LandorphanIocServiceLocationArgumentException
+  nameWithType: LandorphanIocServiceLocationArgumentException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.#ctor
+  name: LandorphanIocServiceLocationArgumentException
+  nameWithType: LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationArgumentException.LandorphanIocServiceLocationArgumentException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Runtime.Serialization.SerializationInfo
+  commentId: T:System.Runtime.Serialization.SerializationInfo
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: SerializationInfo
+  nameWithType: SerializationInfo
+  fullName: System.Runtime.Serialization.SerializationInfo
+- uid: System.Runtime.Serialization.StreamingContext
+  commentId: T:System.Runtime.Serialization.StreamingContext
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: StreamingContext
+  nameWithType: StreamingContext
+  fullName: System.Runtime.Serialization.StreamingContext

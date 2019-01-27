@@ -1,0 +1,168 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  commentId: T:Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  id: TestabilityServiceLocationSelfRegistration
+  parent: Landorphan.Ioc.ServiceLocation.Testability
+  children:
+  - Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  langs:
+  - csharp
+  - vb
+  name: TestabilityServiceLocationSelfRegistration
+  nameWithType: TestabilityServiceLocationSelfRegistration
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation.Testability/AssemblySelfRegistration/TestabilityServiceLocationSelfRegistration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestabilityServiceLocationSelfRegistration
+    path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/AssemblySelfRegistration/TestabilityServiceLocationSelfRegistration.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation.Testability
+  namespace: Landorphan.Ioc.ServiceLocation.Testability
+  summary: "\nRegisters services with the IoC for use by this assembly.\n"
+  remarks: "\n&quot;Auto-registers&quot; these interfaces (currently only <xref href=\"Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService\" data-throw-if-not-resolved=\"false\"></xref>) in the root container.\n"
+  example: []
+  syntax:
+    content: 'public sealed class TestabilityServiceLocationSelfRegistration : IAssemblySelfRegistration'
+    content.vb: >-
+      Public NotInheritable Class TestabilityServiceLocationSelfRegistration
+          Implements IAssemblySelfRegistration
+  inheritance:
+  - System.Object
+  implements:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  id: RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  parent: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  langs:
+  - csharp
+  - vb
+  name: RegisterServiceInstances(IIocContainerRegistrar)
+  nameWithType: TestabilityServiceLocationSelfRegistration.RegisterServiceInstances(IIocContainerRegistrar)
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation.Testability/AssemblySelfRegistration/TestabilityServiceLocationSelfRegistration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: RegisterServiceInstances
+    path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/AssemblySelfRegistration/TestabilityServiceLocationSelfRegistration.cs
+    startLine: 17
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation.Testability
+  namespace: Landorphan.Ioc.ServiceLocation.Testability
+  summary: "\nRegisters service interface types with instances, or implementation types with default constructors, for the assembly that defines a single class that implements this interface.\n"
+  remarks: "\nUse the <code data-dev-comment-type=\"paramref\" class=\"paramref\">registrar</code> to register types defined in the assembly as well as overrides of types registered in other assemblies.\nUse the registrar.Resolver to resolve types already registered.\n"
+  example: []
+  syntax:
+    content: public void RegisterServiceInstances(IIocContainerRegistrar registrar)
+    parameters:
+    - id: registrar
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+      description: "\nThe inversion of control container registrar.\n"
+    content.vb: Public Sub RegisterServiceInstances(registrar As IIocContainerRegistrar)
+  overload: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances*
+  implements:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  commentId: T:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  parent: Landorphan.Ioc.ServiceLocation.Testability
+  name: ITestMockingService
+  nameWithType: ITestMockingService
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+- uid: Landorphan.Ioc.ServiceLocation.Testability
+  commentId: N:Landorphan.Ioc.ServiceLocation.Testability
+  name: Landorphan.Ioc.ServiceLocation.Testability
+  nameWithType: Landorphan.Ioc.ServiceLocation.Testability
+  fullName: Landorphan.Ioc.ServiceLocation.Testability
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IAssemblySelfRegistration
+  nameWithType: IAssemblySelfRegistration
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances
+  name: RegisterServiceInstances
+  nameWithType: TestabilityServiceLocationSelfRegistration.RegisterServiceInstances
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration.RegisterServiceInstances
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+  name: RegisterServiceInstances(IIocContainerRegistrar)
+  nameWithType: IAssemblySelfRegistration.RegisterServiceInstances(IIocContainerRegistrar)
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+  spec.csharp:
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+    name: RegisterServiceInstances
+    nameWithType: IAssemblySelfRegistration.RegisterServiceInstances
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+    name: IIocContainerRegistrar
+    nameWithType: IIocContainerRegistrar
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar)
+    name: RegisterServiceInstances
+    nameWithType: IAssemblySelfRegistration.RegisterServiceInstances
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration.RegisterServiceInstances
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+    name: IIocContainerRegistrar
+    nameWithType: IIocContainerRegistrar
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerRegistrar
+  nameWithType: IIocContainerRegistrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar

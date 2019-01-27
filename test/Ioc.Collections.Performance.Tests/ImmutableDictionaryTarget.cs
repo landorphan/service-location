@@ -15,8 +15,10 @@
 
    [SuppressMessage("SonarLint.CodeSmell", "S3459: Unassigned members should be removed")]
    [SuppressMessage("SonarLint.CodeSmell", "S3052: Members should not be initialized to default values")]
+   [SuppressMessage("SonarLint.CodeSmell", "S1200: Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
    public sealed class ImmutableDictionaryTarget : DisposableObject, IRegistrationTarget
    {
+      // this class mimics the implementation of IocContainer so as to allow for performance testing.
       private readonly IocContainerConfiguration _configuration;
       private readonly ImmutableDictionaryTarget _parent = null;
       private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
@@ -107,11 +109,6 @@
                throw new ContainerConfigurationPrecludedTypesDisabledException(this, null, null);
             }
 
-            //'/'if (IsRegisteredDefaultOrNamedInThisOrAncestorContainer(this, precludedType))
-            //'/'{
-            //'/'   throw new CannotPrecludeRegisteredTypeArgumentException(precludedType, nameof(precludedType));
-            //'/'}
-
             var was = _precludedTypes;
 
             if (precludedType != null && (precludedType.IsInterface || precludedType.IsAbstract))
@@ -120,10 +117,6 @@
             }
 
             var rv = !ReferenceEquals(was, _precludedTypes);
-            if (rv)
-            {
-               //'/'OnContainerPrecludedTypeAdded(precludedType);
-            }
 
             return rv;
          }
@@ -359,7 +352,6 @@
 
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          var value = new RegistrationValueTypeInstancePair(toType);
-         //'/'CheckForNewRegistrations();
          try
          {
             _swRegister.Start();
@@ -381,7 +373,6 @@
                   }
                }
 
-               //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                return true;
             }
             catch (ArgumentException ae)
@@ -412,8 +403,6 @@
                      }
                   }
 
-                  //'/'OnContainerRegistrationRemoved(key);
-                  //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                   return true;
                }
                finally
@@ -523,7 +512,6 @@
 
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          var value = new RegistrationValueTypeInstancePair(instance);
-         //'/'CheckForNewRegistrations();
          try
          {
             _swRegister.Start();
@@ -545,7 +533,6 @@
                   }
                }
 
-               //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                return true;
             }
             catch (ArgumentException ae)
@@ -576,8 +563,6 @@
                      }
                   }
 
-                  //'/'OnContainerRegistrationRemoved(key);
-                  //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                   return true;
                }
                finally
@@ -601,10 +586,6 @@
             var was = _precludedTypes;
             _precludedTypes = _precludedTypes.Remove(precludedType);
             var rv = !ReferenceEquals(was, _precludedTypes);
-            if (rv)
-            {
-               //'/'OnContainerPrecludedTypeRemoved(precludedType);
-            }
 
             return rv;
          }
@@ -616,6 +597,7 @@
 
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+      [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       public Boolean ResolveImplementation(Type fromType, String fromTypeParameterName, String name, Boolean tryLogic, out Object instance)
       {
          instance = null;
@@ -688,7 +670,6 @@
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          // ReSharper disable once TooWideLocalVariableScope
          RegistrationValueTypeInstancePair value;
-         //'/'CheckForNewRegistrations();
          // ReSharper disable once TooWideLocalVariableScope
          // ReSharper disable once RedundantAssignment
          var found = false;
@@ -785,11 +766,6 @@
                   // removed
                   rv = true;
                }
-            }
-
-            if (rv)
-            {
-               //'/'OnContainerRegistrationRemoved(key);
             }
 
             return rv;

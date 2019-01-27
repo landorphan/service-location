@@ -1,0 +1,558 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  commentId: T:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  id: MakeReadOnlyArrangeActAssert`1
+  parent: Landorphan.TestUtilities.ReusableTestImplementations
+  children:
+  - Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.ActMethod
+  - Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Throw_On_All_Property_Setters_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.Target
+  langs:
+  - csharp
+  - vb
+  name: MakeReadOnlyArrangeActAssert<T>
+  nameWithType: MakeReadOnlyArrangeActAssert<T>
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: MakeReadOnlyArrangeActAssert
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+    startLine: 21
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nImplements test of <xref href=\"Landorphan.Common.IConvertsToReadOnly\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Landorphan.Common.IQueryReadOnly\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  example: []
+  syntax:
+    content: 'public abstract class MakeReadOnlyArrangeActAssert<T> : ArrangeActAssert where T : IConvertsToReadOnly, IQueryReadOnly'
+    typeParameters:
+    - id: T
+      description: "\nThe type being tested.\n"
+    content.vb: >-
+      Public MustInherit Class MakeReadOnlyArrangeActAssert(Of T As {IConvertsToReadOnly, IQueryReadOnly})
+          Inherits ArrangeActAssert
+  inheritance:
+  - System.Object
+  - Landorphan.TestUtilities.TestBase
+  - Landorphan.TestUtilities.ArrangeActAssert
+  inheritedMembers:
+  - Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  - Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T)
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T)
+  name.vb: MakeReadOnlyArrangeActAssert(Of T)
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.Target
+  commentId: P:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.Target
+  id: Target
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  langs:
+  - csharp
+  - vb
+  name: Target
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.Target
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.Target
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Target
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+    startLine: 31
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nDescendants should assign a value before calling the test implementation.\n"
+  example: []
+  syntax:
+    content: protected abstract T Target { get; set; }
+    parameters: []
+    return:
+      type: '{T}'
+      description: "\nThe target.\n"
+    content.vb: Protected MustOverride Property Target As T
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.Target*
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).Target
+  modifiers.csharp:
+  - protected
+  - abstract
+  - get
+  - set
+  modifiers.vb:
+  - Protected
+  - MustOverride
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).Target
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.ActMethod
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.ActMethod
+  id: ActMethod
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  langs:
+  - csharp
+  - vb
+  name: ActMethod()
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.ActMethod()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.ActMethod()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ActMethod
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+    startLine: 34
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nActs on the context for a single test method invocation.\n"
+  example: []
+  syntax:
+    content: protected override void ActMethod()
+    content.vb: Protected Overrides Sub ActMethod
+  overridden: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.ActMethod*
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).ActMethod()
+  modifiers.csharp:
+  - protected
+  - override
+  modifiers.vb:
+  - Protected
+  - Overrides
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).ActMethod()
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  id: It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  langs:
+  - csharp
+  - vb
+  name: It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+    startLine: 46
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts <xref href=\"Landorphan.Common.IQueryReadOnly.IsReadOnly\" data-throw-if-not-resolved=\"false\"></xref> is true.\n"
+  example: []
+  syntax:
+    content: protected void It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
+    content.vb: Protected Sub It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation*
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Throw_On_All_Property_Setters_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Throw_On_All_Property_Setters_Implementation
+  id: It_Should_Throw_On_All_Property_Setters_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1
+  langs:
+  - csharp
+  - vb
+  name: It_Should_Throw_On_All_Property_Setters_Implementation()
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.It_Should_Throw_On_All_Property_Setters_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.It_Should_Throw_On_All_Property_Setters_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: It_Should_Throw_On_All_Property_Setters_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
+    startLine: 55
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts all property setters throw <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: protected void It_Should_Throw_On_All_Property_Setters_Implementation()
+    content.vb: Protected Sub It_Should_Throw_On_All_Property_Setters_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Throw_On_All_Property_Setters_Implementation*
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).It_Should_Throw_On_All_Property_Setters_Implementation()
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).It_Should_Throw_On_All_Property_Setters_Implementation()
+references:
+- uid: Landorphan.Common.IConvertsToReadOnly
+  commentId: T:Landorphan.Common.IConvertsToReadOnly
+  isExternal: true
+- uid: Landorphan.Common.IQueryReadOnly
+  commentId: T:Landorphan.Common.IQueryReadOnly
+  parent: Landorphan.Common
+  isExternal: true
+  name: IQueryReadOnly
+  nameWithType: IQueryReadOnly
+  fullName: Landorphan.Common.IQueryReadOnly
+- uid: Landorphan.TestUtilities.ReusableTestImplementations
+  commentId: N:Landorphan.TestUtilities.ReusableTestImplementations
+  name: Landorphan.TestUtilities.ReusableTestImplementations
+  nameWithType: Landorphan.TestUtilities.ReusableTestImplementations
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.ArrangeActAssert
+  commentId: T:Landorphan.TestUtilities.ArrangeActAssert
+  parent: Landorphan.TestUtilities
+  name: ArrangeActAssert
+  nameWithType: ArrangeActAssert
+  fullName: Landorphan.TestUtilities.ArrangeActAssert
+- uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  name: InitializeTestMethod()
+  nameWithType: ArrangeActAssert.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: ArrangeActAssert.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: ArrangeActAssert.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  name: ArrangeMethod()
+  nameWithType: ArrangeActAssert.ArrangeMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+    name: ArrangeMethod
+    nameWithType: ArrangeActAssert.ArrangeMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+    name: ArrangeMethod
+    nameWithType: ArrangeActAssert.ArrangeMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ArrangeMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  isExternal: true
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Common
+  commentId: N:Landorphan.Common
+  isExternal: true
+  name: Landorphan.Common
+  nameWithType: Landorphan.Common
+  fullName: Landorphan.Common
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.Target*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.Target
+  name: Target
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.Target
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.Target
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).Target
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).Target
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  commentId: M:Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  parent: Landorphan.TestUtilities.ArrangeActAssert
+  name: ActMethod()
+  nameWithType: ArrangeActAssert.ActMethod()
+  fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+    name: ActMethod
+    nameWithType: ArrangeActAssert.ActMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+    name: ActMethod
+    nameWithType: ArrangeActAssert.ActMethod
+    fullName: Landorphan.TestUtilities.ArrangeActAssert.ActMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.ActMethod*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.ActMethod
+  name: ActMethod
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.ActMethod
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.ActMethod
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).ActMethod
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).ActMethod
+- uid: Landorphan.Common.IQueryReadOnly.IsReadOnly
+  commentId: P:Landorphan.Common.IQueryReadOnly.IsReadOnly
+  parent: Landorphan.Common.IQueryReadOnly
+  isExternal: true
+  name: IsReadOnly
+  nameWithType: IQueryReadOnly.IsReadOnly
+  fullName: Landorphan.Common.IQueryReadOnly.IsReadOnly
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  name: It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).It_Should_Inform_That_It_Is_A_Read_Only_Implementation
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Throw_On_All_Property_Setters_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert`1.It_Should_Throw_On_All_Property_Setters_Implementation
+  name: It_Should_Throw_On_All_Property_Setters_Implementation
+  nameWithType: MakeReadOnlyArrangeActAssert<T>.It_Should_Throw_On_All_Property_Setters_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert<T>.It_Should_Throw_On_All_Property_Setters_Implementation
+  nameWithType.vb: MakeReadOnlyArrangeActAssert(Of T).It_Should_Throw_On_All_Property_Setters_Implementation
+  fullName.vb: Landorphan.TestUtilities.ReusableTestImplementations.MakeReadOnlyArrangeActAssert(Of T).It_Should_Throw_On_All_Property_Setters_Implementation

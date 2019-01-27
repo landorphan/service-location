@@ -1,0 +1,351 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  id: IIocContainer
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  children:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent
+  langs:
+  - csharp
+  - vb
+  name: IIocContainer
+  nameWithType: IIocContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IIocContainer
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+    startLine: 11
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nRepresents a dependency injection container.\n"
+  remarks: "\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref> works in concert with a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager\" data-throw-if-not-resolved=\"false\"></xref>, a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar\" data-throw-if-not-resolved=\"false\"></xref>,  and a <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public interface IIocContainer : IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
+    content.vb: >-
+      Public Interface IIocContainer
+          Inherits IIocContainerMetaSharedCapacities
+  inheritedMembers:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
+  id: Children
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  langs:
+  - csharp
+  - vb
+  name: Children
+  nameWithType: IIocContainer.Children
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Children
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+    startLine: 23
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets all of the immediate children of this container.\n"
+  remarks: "\nChildren are owned, the reference to the parent is not.  When a container is disposed; all of its children are also disposed.  The collection of children does not expose the &quot;ownership&quot; in\nits interface, but does enforce it in its implementation.\n"
+  example: []
+  syntax:
+    content: IReadOnlyCollection<IIocContainer> Children { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IReadOnlyCollection{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer}
+      description: "\nThe immediate children of this container.\n"
+    content.vb: ReadOnly Property Children As IReadOnlyCollection(Of IIocContainer)
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot
+  id: IsRoot
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  langs:
+  - csharp
+  - vb
+  name: IsRoot
+  nameWithType: IIocContainer.IsRoot
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsRoot
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+    startLine: 31
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets a value indicating whether this instance is a root container.\n"
+  example: []
+  syntax:
+    content: bool IsRoot { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if this instance is a root container; otherwise <code> false </code>.\n"
+    content.vb: ReadOnly Property IsRoot As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent
+  id: Parent
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  langs:
+  - csharp
+  - vb
+  name: Parent
+  nameWithType: IIocContainer.Parent
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Parent
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainer.cs
+    startLine: 39
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the parent of this container.\n"
+  example: []
+  syntax:
+    content: IIocContainer Parent { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+      description: "\nThe parent container if this container is a child container; otherwise <code> null </code>.\n"
+    content.vb: ReadOnly Property Parent As IIocContainer
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainer
+  nameWithType: IIocContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerManager
+  nameWithType: IIocContainerManager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerRegistrar
+  nameWithType: IIocContainerRegistrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerResolver
+  nameWithType: IIocContainerResolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerResolver
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Container
+  nameWithType: IIocContainerMetaSharedCapacities.Container
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Container
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Manager
+  nameWithType: IIocContainerMetaSharedCapacities.Manager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Manager
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Registrar
+  nameWithType: IIocContainerMetaSharedCapacities.Registrar
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Registrar
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  name: Resolver
+  nameWithType: IIocContainerMetaSharedCapacities.Resolver
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities.Resolver
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  name: Name
+  nameWithType: IIocContainerMetaIdentity.Name
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  name: Uid
+  nameWithType: IIocContainerMetaIdentity.Uid
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Uid
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaSharedCapacities
+  nameWithType: IIocContainerMetaSharedCapacities
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaSharedCapacities
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaIdentity
+  nameWithType: IIocContainerMetaIdentity
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
+  name: Children
+  nameWithType: IIocContainer.Children
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Children
+- uid: System.Collections.Generic.IReadOnlyCollection{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer}
+  commentId: T:System.Collections.Generic.IReadOnlyCollection{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyCollection`1
+  name: IReadOnlyCollection<IIocContainer>
+  nameWithType: IReadOnlyCollection<IIocContainer>
+  fullName: System.Collections.Generic.IReadOnlyCollection<Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer>
+  nameWithType.vb: IReadOnlyCollection(Of IIocContainer)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer)
+  name.vb: IReadOnlyCollection(Of IIocContainer)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    nameWithType: IReadOnlyCollection
+    fullName: System.Collections.Generic.IReadOnlyCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+    name: IIocContainer
+    nameWithType: IIocContainer
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    nameWithType: IReadOnlyCollection
+    fullName: System.Collections.Generic.IReadOnlyCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+    name: IIocContainer
+    nameWithType: IIocContainer
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IReadOnlyCollection`1
+  commentId: T:System.Collections.Generic.IReadOnlyCollection`1
+  isExternal: true
+  name: IReadOnlyCollection<T>
+  nameWithType: IReadOnlyCollection<T>
+  fullName: System.Collections.Generic.IReadOnlyCollection<T>
+  nameWithType.vb: IReadOnlyCollection(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyCollection(Of T)
+  name.vb: IReadOnlyCollection(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    nameWithType: IReadOnlyCollection
+    fullName: System.Collections.Generic.IReadOnlyCollection
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyCollection`1
+    name: IReadOnlyCollection
+    nameWithType: IReadOnlyCollection
+    fullName: System.Collections.Generic.IReadOnlyCollection
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot
+  name: IsRoot
+  nameWithType: IIocContainer.IsRoot
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.IsRoot
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent
+  name: Parent
+  nameWithType: IIocContainer.Parent
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer.Parent

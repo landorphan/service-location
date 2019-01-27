@@ -1,0 +1,131 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.TestHelp
+  commentId: T:Landorphan.TestUtilities.TestHelp
+  id: TestHelp
+  parent: Landorphan.TestUtilities
+  children:
+  - Landorphan.TestUtilities.TestHelp.DoNothing(System.Object[])
+  langs:
+  - csharp
+  - vb
+  name: TestHelp
+  nameWithType: TestHelp
+  fullName: Landorphan.TestUtilities.TestHelp
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestHelp.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestHelp
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestHelp.cs
+    startLine: 8
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nHelper methods for test projects.\n"
+  example: []
+  syntax:
+    content: public static class TestHelp
+    content.vb: Public Module TestHelp
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Landorphan.TestUtilities.TestHelp.DoNothing(System.Object[])
+  commentId: M:Landorphan.TestUtilities.TestHelp.DoNothing(System.Object[])
+  id: DoNothing(System.Object[])
+  parent: Landorphan.TestUtilities.TestHelp
+  langs:
+  - csharp
+  - vb
+  name: DoNothing(Object[])
+  nameWithType: TestHelp.DoNothing(Object[])
+  fullName: Landorphan.TestUtilities.TestHelp.DoNothing(System.Object[])
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestHelp.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: DoNothing
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestHelp.cs
+    startLine: 16
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nUsed by tests to suppress CA1801:ReviewUnusedParameters.\n"
+  example: []
+  syntax:
+    content: public static void DoNothing(params object[] inputs)
+    parameters:
+    - id: inputs
+      type: System.Object[]
+      description: "\nThe inputs.\n"
+    content.vb: Public Shared Sub DoNothing(ParamArray inputs As Object())
+  overload: Landorphan.TestUtilities.TestHelp.DoNothing*
+  nameWithType.vb: TestHelp.DoNothing(Object())
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Landorphan.TestUtilities.TestHelp.DoNothing(System.Object())
+  name.vb: DoNothing(Object())
+references:
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities.TestHelp.DoNothing*
+  commentId: Overload:Landorphan.TestUtilities.TestHelp.DoNothing
+  name: DoNothing
+  nameWithType: TestHelp.DoNothing
+  fullName: Landorphan.TestUtilities.TestHelp.DoNothing
+- uid: System.Object[]
+  isExternal: true
+  name: Object[]
+  nameWithType: Object[]
+  fullName: System.Object[]
+  nameWithType.vb: Object()
+  fullName.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

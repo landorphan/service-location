@@ -1,0 +1,213 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  id: ContainerConfigurationEventArgs
+  parent: Landorphan.Ioc.ServiceLocation
+  children:
+  - Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor
+  - Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  - Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration
+  langs:
+  - csharp
+  - vb
+  name: ContainerConfigurationEventArgs
+  nameWithType: ContainerConfigurationEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ContainerConfigurationEventArgs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+    startLine: 8
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nProvides data for the <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerConfigurationChanged\" data-throw-if-not-resolved=\"false\"></xref> event.\n"
+  example: []
+  syntax:
+    content: 'public class ContainerConfigurationEventArgs : EventArgs'
+    content.vb: >-
+      Public Class ContainerConfigurationEventArgs
+          Inherits EventArgs
+  inheritance:
+  - System.Object
+  - System.EventArgs
+  inheritedMembers:
+  - System.EventArgs.Empty
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor
+  commentId: M:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor
+  id: '#ctor'
+  parent: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ContainerConfigurationEventArgs()
+  nameWithType: ContainerConfigurationEventArgs.ContainerConfigurationEventArgs()
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.ContainerConfigurationEventArgs()
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ContainerConfigurationEventArgs()
+    content.vb: Public Sub New
+  overload: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  commentId: M:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  id: '#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)'
+  parent: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ContainerConfigurationEventArgs(IIocContainerConfiguration)
+  nameWithType: ContainerConfigurationEventArgs.ContainerConfigurationEventArgs(IIocContainerConfiguration)
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.ContainerConfigurationEventArgs(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+    startLine: 23
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ContainerConfigurationEventArgs(IIocContainerConfiguration configuration)
+    parameters:
+    - id: configuration
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+      description: "\nThe inversion of control container configuration.\n"
+    content.vb: Public Sub New(configuration As IIocContainerConfiguration)
+  overload: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration
+  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration
+  id: Configuration
+  parent: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Configuration
+  nameWithType: ContainerConfigurationEventArgs.Configuration
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Configuration
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerConfigurationEventArgs.cs
+    startLine: 31
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the inversion of control container configuration.\n"
+  example: []
+  syntax:
+    content: public IIocContainerConfiguration Configuration { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+    content.vb: Public ReadOnly Property Configuration As IIocContainerConfiguration
+  overload: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerConfigurationChanged
+  commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager.ContainerConfigurationChanged
+  isExternal: true
+- uid: Landorphan.Ioc.ServiceLocation
+  commentId: N:Landorphan.Ioc.ServiceLocation
+  name: Landorphan.Ioc.ServiceLocation
+  nameWithType: Landorphan.Ioc.ServiceLocation
+  fullName: Landorphan.Ioc.ServiceLocation
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: System.EventArgs.Empty
+  commentId: F:System.EventArgs.Empty
+  parent: System.EventArgs
+  isExternal: true
+  name: Empty
+  nameWithType: EventArgs.Empty
+  fullName: System.EventArgs.Empty
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+  name: ContainerConfigurationEventArgs
+  nameWithType: ContainerConfigurationEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.#ctor
+  name: ContainerConfigurationEventArgs
+  nameWithType: ContainerConfigurationEventArgs.ContainerConfigurationEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.ContainerConfigurationEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerConfiguration
+  nameWithType: IIocContainerConfiguration
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration
+  name: Configuration
+  nameWithType: ContainerConfigurationEventArgs.Configuration
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerConfigurationEventArgs.Configuration

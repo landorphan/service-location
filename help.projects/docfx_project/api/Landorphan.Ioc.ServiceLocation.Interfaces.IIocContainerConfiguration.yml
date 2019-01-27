@@ -1,0 +1,579 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  id: IIocContainerConfiguration
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  children:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ConfigurationChanged
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision
+  langs:
+  - csharp
+  - vb
+  name: IIocContainerConfiguration
+  nameWithType: IIocContainerConfiguration
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IIocContainerConfiguration
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nRepresents the configuration of an <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\n<p>\nContainers are configured individually.\n</p>\n"
+  example: []
+  syntax:
+    content: 'public interface IIocContainerConfiguration : ICloneable, IQueryReadOnly, IEquatable<IIocContainerConfiguration>'
+    content.vb: >-
+      Public Interface IIocContainerConfiguration
+          Inherits ICloneable, IQueryReadOnly, IEquatable(Of IIocContainerConfiguration)
+  inheritedMembers:
+  - System.ICloneable.Clone
+  - Landorphan.Common.IQueryReadOnly.IsReadOnly
+  - System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ConfigurationChanged
+  commentId: E:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ConfigurationChanged
+  id: ConfigurationChanged
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  langs:
+  - csharp
+  - vb
+  name: ConfigurationChanged
+  nameWithType: IIocContainerConfiguration.ConfigurationChanged
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ConfigurationChanged
+  type: Event
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ConfigurationChanged
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+    startLine: 18
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nEvent queue for all listeners interested in state changes to this instance.\n"
+  example: []
+  syntax:
+    content: event EventHandler<EventArgs> ConfigurationChanged
+    return:
+      type: System.EventHandler{System.EventArgs}
+    content.vb: Event ConfigurationChanged As EventHandler(Of EventArgs)
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations
+  id: AllowNamedImplementations
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  langs:
+  - csharp
+  - vb
+  name: AllowNamedImplementations
+  nameWithType: IIocContainerConfiguration.AllowNamedImplementations
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: AllowNamedImplementations
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+    startLine: 32
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets or sets a value governing the behavior or named implementations.\n"
+  remarks: "\nWhen the value changes from <code>true</code> to <code>false</code>; the collection of named registrations is emptied for this\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: bool AllowNamedImplementations { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\nWhen <code>true</code> registrations are distinguished by both registered &quot;fromType&quot; and name;\nwhen <code>false</code> only default registrations are allowed, any attempt to use named resolutions throws an exception\nby default.\n"
+    content.vb: Property AllowNamedImplementations As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes
+  id: AllowPreclusionOfTypes
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  langs:
+  - csharp
+  - vb
+  name: AllowPreclusionOfTypes
+  nameWithType: IIocContainerConfiguration.AllowPreclusionOfTypes
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: AllowPreclusionOfTypes
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+    startLine: 45
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets or sets a value governing the behavior of precluded types.\n"
+  remarks: "\nWhen the value changes from <code>true</code> to <code>false</code>; the collection of precluded types is emptied for this\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: bool AllowPreclusionOfTypes { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\nWhen <code>true</code>types can be precluded from registration and/or resolution;\nWhen <code>false</code>, attempting to preclude a type throws an exception.\n"
+    content.vb: Property AllowPreclusionOfTypes As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container
+  id: Container
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  langs:
+  - csharp
+  - vb
+  name: Container
+  nameWithType: IIocContainerConfiguration.Container
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Container
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+    startLine: 53
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the container to which this configuration applies.\n"
+  example: []
+  syntax:
+    content: IIocContainerMetaIdentity Container { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+      description: "\nThe container to which this configuration applies.\n"
+    content.vb: ReadOnly Property Container As IIocContainerMetaIdentity
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision
+  id: ThrowOnRegistrationCollision
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  langs:
+  - csharp
+  - vb
+  name: ThrowOnRegistrationCollision
+  nameWithType: IIocContainerConfiguration.ThrowOnRegistrationCollision
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ThrowOnRegistrationCollision
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
+    startLine: 67
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets or sets a value governing the behavior when a registration collision occurs.\n"
+  remarks: "\nThis setting has no affect on the behavior of\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.TryRegisterImplementation(System.Type%2cSystem.Type)\" data-throw-if-not-resolved=\"false\"></xref> and\n<xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.TryRegisterInstance(System.Type%2cSystem.Object)\" data-throw-if-not-resolved=\"false\"></xref> and their overloads.\n"
+  example: []
+  syntax:
+    content: bool ThrowOnRegistrationCollision { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\nWhen <code>true</code>, a registration type/name collection throws and exceptions;\nwhen <code>false</code>, a registration type/name collision lets the last updater win.\n"
+    content.vb: Property ThrowOnRegistrationCollision As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision*
+  modifiers.csharp:
+  - get
+  - set
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainer
+  nameWithType: IIocContainer
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: System.ICloneable.Clone
+  commentId: M:System.ICloneable.Clone
+  parent: System.ICloneable
+  isExternal: true
+  name: Clone()
+  nameWithType: ICloneable.Clone()
+  fullName: System.ICloneable.Clone()
+  spec.csharp:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    nameWithType: ICloneable.Clone
+    fullName: System.ICloneable.Clone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    nameWithType: ICloneable.Clone
+    fullName: System.ICloneable.Clone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Common.IQueryReadOnly.IsReadOnly
+  commentId: P:Landorphan.Common.IQueryReadOnly.IsReadOnly
+  parent: Landorphan.Common.IQueryReadOnly
+  isExternal: true
+  name: IsReadOnly
+  nameWithType: IQueryReadOnly.IsReadOnly
+  fullName: Landorphan.Common.IQueryReadOnly.IsReadOnly
+- uid: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  commentId: M:System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  parent: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(IIocContainerConfiguration)
+  nameWithType: IEquatable<IIocContainerConfiguration>.Equals(IIocContainerConfiguration)
+  fullName: System.IEquatable<Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration>.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  nameWithType.vb: IEquatable(Of IIocContainerConfiguration).Equals(IIocContainerConfiguration)
+  fullName.vb: System.IEquatable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration).Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<IIocContainerConfiguration>.Equals
+    fullName: System.IEquatable<Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+    name: IIocContainerConfiguration
+    nameWithType: IIocContainerConfiguration
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of IIocContainerConfiguration).Equals
+    fullName: System.IEquatable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+    name: IIocContainerConfiguration
+    nameWithType: IIocContainerConfiguration
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ICloneable
+  commentId: T:System.ICloneable
+  parent: System
+  isExternal: true
+  name: ICloneable
+  nameWithType: ICloneable
+  fullName: System.ICloneable
+- uid: Landorphan.Common.IQueryReadOnly
+  commentId: T:Landorphan.Common.IQueryReadOnly
+  parent: Landorphan.Common
+  isExternal: true
+  name: IQueryReadOnly
+  nameWithType: IQueryReadOnly
+  fullName: Landorphan.Common.IQueryReadOnly
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}
+  commentId: T:System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<IIocContainerConfiguration>
+  nameWithType: IEquatable<IIocContainerConfiguration>
+  fullName: System.IEquatable<Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration>
+  nameWithType.vb: IEquatable(Of IIocContainerConfiguration)
+  fullName.vb: System.IEquatable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration)
+  name.vb: IEquatable(Of IIocContainerConfiguration)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+    name: IIocContainerConfiguration
+    nameWithType: IIocContainerConfiguration
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+    name: IIocContainerConfiguration
+    nameWithType: IIocContainerConfiguration
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Common
+  commentId: N:Landorphan.Common
+  isExternal: true
+  name: Landorphan.Common
+  nameWithType: Landorphan.Common
+  fullName: Landorphan.Common
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler{System.EventArgs}
+  commentId: T:System.EventHandler{System.EventArgs}
+  parent: System
+  definition: System.EventHandler`1
+  name: EventHandler<EventArgs>
+  nameWithType: EventHandler<EventArgs>
+  fullName: System.EventHandler<System.EventArgs>
+  nameWithType.vb: EventHandler(Of EventArgs)
+  fullName.vb: System.EventHandler(Of System.EventArgs)
+  name.vb: EventHandler(Of EventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.EventArgs
+    name: EventArgs
+    nameWithType: EventArgs
+    fullName: System.EventArgs
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.EventHandler`1
+  commentId: T:System.EventHandler`1
+  isExternal: true
+  name: EventHandler<TEventArgs>
+  nameWithType: EventHandler<TEventArgs>
+  fullName: System.EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
+  fullName.vb: System.EventHandler(Of TEventArgs)
+  name.vb: EventHandler(Of TEventArgs)
+  spec.csharp:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.EventHandler`1
+    name: EventHandler
+    nameWithType: EventHandler
+    fullName: System.EventHandler
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TEventArgs
+    nameWithType: TEventArgs
+    fullName: TEventArgs
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations
+  name: AllowNamedImplementations
+  nameWithType: IIocContainerConfiguration.AllowNamedImplementations
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowNamedImplementations
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes
+  name: AllowPreclusionOfTypes
+  nameWithType: IIocContainerConfiguration.AllowPreclusionOfTypes
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.AllowPreclusionOfTypes
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container
+  name: Container
+  nameWithType: IIocContainerConfiguration.Container
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.Container
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaIdentity
+  nameWithType: IIocContainerMetaIdentity
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.TryRegisterImplementation(System.Type,System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.TryRegisterImplementation(System.Type,System.Type)
+  isExternal: true
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.TryRegisterInstance(System.Type,System.Object)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerRegistrar.TryRegisterInstance(System.Type,System.Object)
+  isExternal: true
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision
+  name: ThrowOnRegistrationCollision
+  nameWithType: IIocContainerConfiguration.ThrowOnRegistrationCollision
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerConfiguration.ThrowOnRegistrationCollision

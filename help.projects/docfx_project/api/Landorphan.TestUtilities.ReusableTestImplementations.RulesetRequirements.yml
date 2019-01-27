@@ -1,0 +1,510 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  commentId: T:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  id: RulesetRequirements
+  parent: Landorphan.TestUtilities.ReusableTestImplementations
+  children:
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation(System.String)
+  langs:
+  - csharp
+  - vb
+  name: RulesetRequirements
+  nameWithType: RulesetRequirements
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: RulesetRequirements
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 18
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nTest implementations for static analyzer ruleset files.\n"
+  example: []
+  syntax:
+    content: 'public class RulesetRequirements : TestBase'
+    content.vb: >-
+      Public Class RulesetRequirements
+          Inherits TestBase
+  inheritance:
+  - System.Object
+  - Landorphan.TestUtilities.TestBase
+  inheritedMembers:
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  - Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  id: Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  langs:
+  - csharp
+  - vb
+  name: Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+  nameWithType: RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 25
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts the default production ruleset for .Net Core analyzers contains no duplicate rule id values.\n"
+  example: []
+  syntax:
+    content: protected void Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+    content.vb: Protected Sub Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  id: Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  langs:
+  - csharp
+  - vb
+  name: Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+  nameWithType: RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 35
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts the default production ruleset for .Net Framework analyzers contains no duplicate rule id values.\n"
+  example: []
+  syntax:
+    content: protected void Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+    content.vb: Protected Sub Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  id: Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  langs:
+  - csharp
+  - vb
+  name: Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation()
+  nameWithType: RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 45
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts the default production ruleset for .Net Standard analyzers contains no duplicate rule id values.\n"
+  example: []
+  syntax:
+    content: protected void Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation()
+    content.vb: Protected Sub Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  id: Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  langs:
+  - csharp
+  - vb
+  name: Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+  nameWithType: RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 55
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts the default test ruleset for .Net Core analyzers contains no duplicate rule id values.\n"
+  example: []
+  syntax:
+    content: protected void Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation()
+    content.vb: Protected Sub Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  id: Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  langs:
+  - csharp
+  - vb
+  name: Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+  nameWithType: RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 65
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts the default test ruleset for .Net Framework analyzers contains no duplicate rule id values.\n"
+  example: []
+  syntax:
+    content: protected void Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation()
+    content.vb: Protected Sub Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation(System.String)
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation(System.String)
+  id: Rulesets_should_not_have_duplicate_rule_ids_implementation(System.String)
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  langs:
+  - csharp
+  - vb
+  name: Rulesets_should_not_have_duplicate_rule_ids_implementation(String)
+  nameWithType: RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation(String)
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Rulesets_should_not_have_duplicate_rule_ids_implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
+    startLine: 78
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nAsserts the given ruleset file contains no duplicate rule id values.\n"
+  example: []
+  syntax:
+    content: protected void Rulesets_should_not_have_duplicate_rule_ids_implementation(string rulesetPath)
+    parameters:
+    - id: rulesetPath
+      type: System.String
+      description: "\nThe path the the ruleset file to inspect.\n"
+    content.vb: Protected Sub Rulesets_should_not_have_duplicate_rule_ids_implementation(rulesetPath As String)
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+references:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations
+  commentId: N:Landorphan.TestUtilities.ReusableTestImplementations
+  name: Landorphan.TestUtilities.ReusableTestImplementations
+  nameWithType: Landorphan.TestUtilities.ReusableTestImplementations
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  isExternal: true
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: InitializeTestMethod()
+  nameWithType: TestBase.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  name: Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  nameWithType: RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  name: Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  nameWithType: RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  name: Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  nameWithType: RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  name: Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  nameWithType: RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  name: Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  nameWithType: RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation
+  name: Rulesets_should_not_have_duplicate_rule_ids_implementation
+  nameWithType: RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements.Rulesets_should_not_have_duplicate_rule_ids_implementation
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

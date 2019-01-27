@@ -1,0 +1,259 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  id: ContainerParentChildEventArgs
+  parent: Landorphan.Ioc.ServiceLocation
+  children:
+  - Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor
+  - Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity)
+  - Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child
+  - Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent
+  langs:
+  - csharp
+  - vb
+  name: ContainerParentChildEventArgs
+  nameWithType: ContainerParentChildEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ContainerParentChildEventArgs
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+    startLine: 10
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nProvides data for events that provide container and type information.\n"
+  example: []
+  syntax:
+    content: 'public class ContainerParentChildEventArgs : EventArgs'
+    content.vb: >-
+      Public Class ContainerParentChildEventArgs
+          Inherits EventArgs
+  seealso:
+  - linkId: System.EventArgs
+    commentId: T:System.EventArgs
+  inheritance:
+  - System.Object
+  - System.EventArgs
+  inheritedMembers:
+  - System.EventArgs.Empty
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor
+  commentId: M:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor
+  id: '#ctor'
+  parent: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ContainerParentChildEventArgs()
+  nameWithType: ContainerParentChildEventArgs.ContainerParentChildEventArgs()
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.ContainerParentChildEventArgs()
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+    startLine: 15
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ContainerParentChildEventArgs()
+    content.vb: Public Sub New
+  overload: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity)
+  commentId: M:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity)
+  id: '#ctor(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity,Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity)'
+  parent: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  langs:
+  - csharp
+  - vb
+  name: ContainerParentChildEventArgs(IIocContainerMetaIdentity, IIocContainerMetaIdentity)
+  nameWithType: ContainerParentChildEventArgs.ContainerParentChildEventArgs(IIocContainerMetaIdentity, IIocContainerMetaIdentity)
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.ContainerParentChildEventArgs(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity, Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+    startLine: 28
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ContainerParentChildEventArgs(IIocContainerMetaIdentity parent, IIocContainerMetaIdentity child)
+    parameters:
+    - id: parent
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+      description: "\nThe parent container.\n"
+    - id: child
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+      description: "\nThe child container.\n"
+    content.vb: Public Sub New(parent As IIocContainerMetaIdentity, child As IIocContainerMetaIdentity)
+  overload: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child
+  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child
+  id: Child
+  parent: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Child
+  nameWithType: ContainerParentChildEventArgs.Child
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Child
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+    startLine: 37
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the child container.\n"
+  example: []
+  syntax:
+    content: public IIocContainerMetaIdentity Child { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+    content.vb: Public ReadOnly Property Child As IIocContainerMetaIdentity
+  overload: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent
+  commentId: P:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent
+  id: Parent
+  parent: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs
+  langs:
+  - csharp
+  - vb
+  name: Parent
+  nameWithType: ContainerParentChildEventArgs.Parent
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Parent
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArgs/ContainerParentChildEventArgs.cs
+    startLine: 42
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the parent container.\n"
+  example: []
+  syntax:
+    content: public IIocContainerMetaIdentity Parent { get; }
+    parameters: []
+    return:
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+    content.vb: Public ReadOnly Property Parent As IIocContainerMetaIdentity
+  overload: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: System.EventArgs
+  commentId: T:System.EventArgs
+  parent: System
+  isExternal: true
+  name: EventArgs
+  nameWithType: EventArgs
+  fullName: System.EventArgs
+- uid: Landorphan.Ioc.ServiceLocation
+  commentId: N:Landorphan.Ioc.ServiceLocation
+  name: Landorphan.Ioc.ServiceLocation
+  nameWithType: Landorphan.Ioc.ServiceLocation
+  fullName: Landorphan.Ioc.ServiceLocation
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.EventArgs.Empty
+  commentId: F:System.EventArgs.Empty
+  parent: System.EventArgs
+  isExternal: true
+  name: Empty
+  nameWithType: EventArgs.Empty
+  fullName: System.EventArgs.Empty
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+  commentId: T:Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+  name: ContainerTypeEventArgs
+  nameWithType: ContainerTypeEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerTypeEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.#ctor
+  name: ContainerParentChildEventArgs
+  nameWithType: ContainerParentChildEventArgs.ContainerParentChildEventArgs
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.ContainerParentChildEventArgs
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerMetaIdentity
+  nameWithType: IIocContainerMetaIdentity
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child
+  name: Child
+  nameWithType: ContainerParentChildEventArgs.Child
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Child
+- uid: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent
+  name: Parent
+  nameWithType: ContainerParentChildEventArgs.Parent
+  fullName: Landorphan.Ioc.ServiceLocation.ContainerParentChildEventArgs.Parent

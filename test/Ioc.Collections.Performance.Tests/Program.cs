@@ -13,6 +13,8 @@
    [SuppressMessage("SonarLint.CodeSmell", "S1144: Unused private types or members should be removed")]
    internal static class Program
    {
+      private const String Line = "--------------------";
+
       // the *key* in IOC registrations is a type, with an optional name.
       // off the top of my head, that leaves n obvious implementation choices
       //    Dictionary<Type, String>
@@ -34,7 +36,7 @@
       {
          var rnd = new Random();
 
-         var count = 10000;
+         const Int32 count = 10000;
          IList<KeyValuePair<Type, Type>> list;
          using (var builder = new TestTypesBuilder())
          {
@@ -42,9 +44,9 @@
             builder.BuildTypePairs(count, out var asmName, out list);
          }
 
-         var allowNamedImplementations = true;
-         var allowPreclusionOfTypes = true;
-         var throwOnRegistrationCollision = true;
+         const Boolean allowNamedImplementations = true;
+         const Boolean allowPreclusionOfTypes = true;
+         const Boolean throwOnRegistrationCollision = true;
 
          using (var target = new ImmutableDictionaryTarget(allowNamedImplementations, allowPreclusionOfTypes, throwOnRegistrationCollision))
          {
@@ -68,11 +70,13 @@
 
             Thread.Sleep(0);
 
+            
+
             var sb = new StringBuilder();
             sb.AppendLine($"AllowNamedImplementations:={target.AllowNamedImplementations}");
             sb.AppendLine($"AllowPreclusionOfTypes:={target.AllowPreclusionOfTypes}");
             sb.AppendLine($"ThrowOnRegistrationCollision:={target.ThrowOnRegistrationCollision}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
 
             target.GetRegistrationTotalStats(out var registrationTotalTime, out var registrationTotalCount);
             var sRegistrationTotalTimeMs = $"{registrationTotalTime.TotalMilliseconds.ToString("N0", CultureInfo.InvariantCulture)}";
@@ -85,7 +89,7 @@
             sb.AppendLine($"Registration Over-write Time(ms):={sRegistrationOverwriteTimeMs}");
             sb.AppendLine($"Registration Count:={registrationTotalCount.ToString("N0", CultureInfo.InvariantCulture)}");
             sb.AppendLine($"Over-write Count:={registrationOverwriteCount.ToString("N0", CultureInfo.InvariantCulture)}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
 
             target.GetResolutionTotalStats(out var resolutionTotalTime, out var resolutionTotalCount);
             var sResolutionTotalTimeMs = $"{resolutionTotalTime.TotalMilliseconds.ToString("N0", CultureInfo.InvariantCulture)}";
@@ -98,14 +102,14 @@
             sb.AppendLine($"Resolution Over-write with new instance Time(ms):={sResolutionOverwriteTimeMs}");
             sb.AppendLine($"Resolution Count:= {resolutionTotalCount.ToString("N0", CultureInfo.InvariantCulture)} (random)");
             sb.AppendLine($"New Instances Created := {resolutionNewInstancesCount.ToString("N0", CultureInfo.InvariantCulture)}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
 
             target.GetUnregistrationStats(out var unregistrationTotalTime, out var unregistrationTotalCount);
 
             var sUnregistrationTotalTimeMs = $"{unregistrationTotalTime.TotalMilliseconds.ToString("N0", CultureInfo.InvariantCulture)}";
             sb.AppendLine($"Unregister Total Time(ms):={sUnregistrationTotalTimeMs}");
             sb.AppendLine($"Unregister Count :={unregistrationTotalCount.ToString("N0", CultureInfo.InvariantCulture)}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
             sb.AppendLine();
 
             return sb.ToString();
@@ -115,7 +119,7 @@
       // ReSharper disable once UnusedMember.Local
       private static String RunSequential()
       {
-         var count = 10000;
+         const Int32 count = 10000;
          // ReSharper disable once NotAccessedVariable
          IList<KeyValuePair<Type, Type>> list;
          using (var builder = new TestTypesBuilder())
@@ -123,9 +127,9 @@
             builder.BuildTypePairs(count, out var asmName, out list);
          }
 
-         var allowNamedImplementations = true;
-         var allowPreclusionOfTypes = true;
-         var throwOnRegistrationCollision = true;
+         const Boolean allowNamedImplementations = true;
+         const Boolean allowPreclusionOfTypes = true;
+         const Boolean throwOnRegistrationCollision = true;
 
          using (var target = new ImmutableDictionaryTarget(allowNamedImplementations, allowPreclusionOfTypes, throwOnRegistrationCollision))
          {
@@ -151,7 +155,7 @@
             sb.AppendLine($"AllowNamedImplementations:={target.AllowNamedImplementations}");
             sb.AppendLine($"AllowPreclusionOfTypes:={target.AllowPreclusionOfTypes}");
             sb.AppendLine($"ThrowOnRegistrationCollision:={target.ThrowOnRegistrationCollision}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
 
             target.GetRegistrationTotalStats(out var registrationTotalTime, out var registrationTotalCount);
             var sRegistrationTotalTimeMs = $"{registrationTotalTime.TotalMilliseconds.ToString("N0", CultureInfo.InvariantCulture)}";
@@ -164,7 +168,7 @@
             sb.AppendLine($"Registration Over-write Time(ms):={sRegistrationOverwriteTimeMs}");
             sb.AppendLine($"Registration Count:={registrationTotalCount.ToString("N0", CultureInfo.InvariantCulture)}");
             sb.AppendLine($"Over-write Count:={registrationOverwriteCount.ToString("N0", CultureInfo.InvariantCulture)}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
 
             target.GetResolutionTotalStats(out var resolutionTotalTime, out var resolutionTotalCount);
             var sResolutionTotalTimeMs = $"{resolutionTotalTime.TotalMilliseconds.ToString("N0", CultureInfo.InvariantCulture)}";
@@ -177,14 +181,14 @@
             sb.AppendLine($"Resolution Over-write with new instance Time(ms):={sResolutionOverwriteTimeMs}");
             sb.AppendLine($"Resolution Count:= {resolutionTotalCount.ToString("N0", CultureInfo.InvariantCulture)} (sequential)");
             sb.AppendLine($"New Instances Created := {resolutionNewInstancesCount.ToString("N0", CultureInfo.InvariantCulture)}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
 
             target.GetUnregistrationStats(out var unregistrationTotalTime, out var unregistrationTotalCount);
 
             var sUnregistrationTotalTimeMs = $"{unregistrationTotalTime.TotalMilliseconds.ToString("N0", CultureInfo.InvariantCulture)}";
             sb.AppendLine($"Unregister Total Time(ms):={sUnregistrationTotalTimeMs}");
             sb.AppendLine($"Unregister Count :={unregistrationTotalCount.ToString("N0", CultureInfo.InvariantCulture)}");
-            sb.AppendLine("--------------------");
+            sb.AppendLine(Line);
             sb.AppendLine();
 
             return sb.ToString();

@@ -8,11 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F10433A2-DCDF-476B-98D2-F3D9939EB5A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2B05C482-3783-4E78-B382-561792F5197B}"
-	ProjectSection(SolutionItems) = preProject
-		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
-		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
-		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildFiles", "BuildFiles", "{F4EC09B2-5F75-407D-AD71-4527BE778A49}"
 	ProjectSection(SolutionItems) = preProject
@@ -80,6 +75,41 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690
 		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
+	ProjectSection(SolutionItems) = preProject
+		help.projects\Build-Serve.ps1 = help.projects\Build-Serve.ps1
+		help.projects\readme.md = help.projects\readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelpInstall", "HelpInstall", "{80489C8E-0C1C-4A88-B69C-ED23C29BF86F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docfx", "docfx", "{CBEF2132-EC0E-43E7-B292-093F93206824}"
+	ProjectSection(SolutionItems) = preProject
+		build\HelpInstall\docfx\docfx.Install.md = build\HelpInstall\docfx\docfx.Install.md
+		build\HelpInstall\docfx\docfx.zip = build\HelpInstall\docfx\docfx.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doxygen", "doxygen", "{27FFA91A-3BE1-4B0D-BD50-3A77E877227A}"
+	ProjectSection(SolutionItems) = preProject
+		build\HelpInstall\doxygen\doxygen-1.8.15-setup.exe = build\HelpInstall\doxygen\doxygen-1.8.15-setup.exe
+		build\HelpInstall\doxygen\Doxygen.Install.md = build\HelpInstall\doxygen\Doxygen.Install.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shfb", "shfb", "{1F6B1E0C-DBD2-4CE0-8AD5-637C44BF02BA}"
+	ProjectSection(SolutionItems) = preProject
+		build\HelpInstall\shfb\shfb.install.MD = build\HelpInstall\shfb\shfb.install.MD
+		build\HelpInstall\shfb\SHFBInstaller_v2018.12.10.0.zip = build\HelpInstall\shfb\SHFBInstaller_v2018.12.10.0.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docfx_project", "docfx_project", "{CF16DA58-823A-46B1-89D7-83183BB98926}"
+	ProjectSection(SolutionItems) = preProject
+		help.projects\docfx_project\.gitignore = help.projects\docfx_project\.gitignore
+		help.projects\docfx_project\docfx.json = help.projects\docfx_project\docfx.json
+		help.projects\docfx_project\filterConfig.yml = help.projects\docfx_project\filterConfig.yml
+		help.projects\docfx_project\index.md = help.projects\docfx_project\index.md
+		help.projects\docfx_project\toc.yml = help.projects\docfx_project\toc.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +159,11 @@ Global
 		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{40821690-4432-4990-A9A0-BBB16EB45438} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{80489C8E-0C1C-4A88-B69C-ED23C29BF86F} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{CBEF2132-EC0E-43E7-B292-093F93206824} = {80489C8E-0C1C-4A88-B69C-ED23C29BF86F}
+		{27FFA91A-3BE1-4B0D-BD50-3A77E877227A} = {80489C8E-0C1C-4A88-B69C-ED23C29BF86F}
+		{1F6B1E0C-DBD2-4CE0-8AD5-637C44BF02BA} = {80489C8E-0C1C-4A88-B69C-ED23C29BF86F}
+		{CF16DA58-823A-46B1-89D7-83183BB98926} = {4EF5277F-5624-477A-9142-B2892EB32B15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}
