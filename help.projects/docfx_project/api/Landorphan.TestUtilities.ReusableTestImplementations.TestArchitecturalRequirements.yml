@@ -1,0 +1,581 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  commentId: T:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  id: TestArchitecturalRequirements
+  parent: Landorphan.TestUtilities.ReusableTestImplementations
+  children:
+  - Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  - Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly(System.Reflection.Assembly)
+  - Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly
+  - Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase
+  langs:
+  - csharp
+  - vb
+  name: TestArchitecturalRequirements
+  nameWithType: TestArchitecturalRequirements
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestArchitecturalRequirements
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+    startLine: 18
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nTest implementations for test architectural requirements.\n"
+  example: []
+  syntax:
+    content: 'public abstract class TestArchitecturalRequirements : TestBase'
+    content.vb: >-
+      Public MustInherit Class TestArchitecturalRequirements
+          Inherits TestBase
+  inheritance:
+  - System.Object
+  - Landorphan.TestUtilities.TestBase
+  inheritedMembers:
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  - Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  id: All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  langs:
+  - csharp
+  - vb
+  name: All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
+  nameWithType: TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+    startLine: 23
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nVerifies that all test classes descend from <xref href=\"Landorphan.TestUtilities.TestBase\" data-throw-if-not-resolved=\"false\"></xref> except for those explicitly excluded.\n"
+  example: []
+  syntax:
+    content: protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
+    content.vb: Protected Sub All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  id: All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  langs:
+  - csharp
+  - vb
+  name: All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
+  nameWithType: TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+    startLine: 53
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nVerifies that all tests that are not ignored have one and only one timing category.\n"
+  example: []
+  syntax:
+    content: protected void All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
+    content.vb: Protected Sub All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly(System.Reflection.Assembly)
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly(System.Reflection.Assembly)
+  id: Find_ignored_tests_in_assembly(System.Reflection.Assembly)
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  langs:
+  - csharp
+  - vb
+  name: Find_ignored_tests_in_assembly(Assembly)
+  nameWithType: TestArchitecturalRequirements.Find_ignored_tests_in_assembly(Assembly)
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly(System.Reflection.Assembly)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: Find_ignored_tests_in_assembly
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+    startLine: 134
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nSearches the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">assembly</code> for ignored tests.\n"
+  remarks: "\nTrace output enumerates the ignored tests, if any.\n"
+  example: []
+  syntax:
+    content: protected void Find_ignored_tests_in_assembly(Assembly assembly)
+    parameters:
+    - id: assembly
+      type: System.Reflection.Assembly
+      description: "\nThe assembly to inspect.\n"
+    content.vb: Protected Sub Find_ignored_tests_in_assembly(assembly As Assembly)
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly
+  id: GetTestAssembly
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  langs:
+  - csharp
+  - vb
+  name: GetTestAssembly()
+  nameWithType: TestArchitecturalRequirements.GetTestAssembly()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetTestAssembly
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+    startLine: 169
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nGets the test assembly to be evaluated.\n"
+  example: []
+  syntax:
+    content: protected abstract Assembly GetTestAssembly()
+    return:
+      type: System.Reflection.Assembly
+      description: "\nThe test assembly to be evaluated.\n"
+    content.vb: Protected MustOverride Function GetTestAssembly As Assembly
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase
+  commentId: M:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase
+  id: GetTestTypesNotRequiredToDescendFromTestBase
+  parent: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  langs:
+  - csharp
+  - vb
+  name: GetTestTypesNotRequiredToDescendFromTestBase()
+  nameWithType: TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase()
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetTestTypesNotRequiredToDescendFromTestBase
+    path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
+    startLine: 181
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.ReusableTestImplementations
+  summary: "\nGets the test types not required to descend from <xref href=\"Landorphan.TestUtilities.TestBase\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  remarks: "\nMay not be null.\n"
+  example: []
+  syntax:
+    content: protected virtual IImmutableSet<Type> GetTestTypesNotRequiredToDescendFromTestBase()
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.Type}
+      description: "\nThe set of types that are not required to descend from <xref href=\"Landorphan.TestUtilities.TestBase\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: Protected Overridable Function GetTestTypesNotRequiredToDescendFromTestBase As IImmutableSet(Of Type)
+  overload: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+references:
+- uid: Landorphan.TestUtilities.ReusableTestImplementations
+  commentId: N:Landorphan.TestUtilities.ReusableTestImplementations
+  name: Landorphan.TestUtilities.ReusableTestImplementations
+  nameWithType: Landorphan.TestUtilities.ReusableTestImplementations
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  isExternal: true
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+    name: TestClassInitialize
+    nameWithType: TestBase.TestClassInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    name: TestContext
+    nameWithType: TestContext
+    fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestInitialize
+    name: TestInitialize
+    nameWithType: TestBase.TestInitialize
+    fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: InitializeTestMethod()
+  nameWithType: TestBase.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+    name: InitializeTestMethod
+    nameWithType: TestBase.InitializeTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+    name: TeardownTestMethod
+    nameWithType: TestBase.TeardownTestMethod
+    fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestCleanup
+    name: TestCleanup
+    nameWithType: TestBase.TestCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  spec.csharp:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+    name: TestClassCleanup
+    nameWithType: TestBase.TestClassCleanup
+    fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  name: All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  nameWithType: TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_But_Excluded_Tests_Descend_From_TestBase_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  name: All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  nameWithType: TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly
+  name: Find_ignored_tests_in_assembly
+  nameWithType: TestArchitecturalRequirements.Find_ignored_tests_in_assembly
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.Find_ignored_tests_in_assembly
+- uid: System.Reflection.Assembly
+  commentId: T:System.Reflection.Assembly
+  parent: System.Reflection
+  isExternal: true
+  name: Assembly
+  nameWithType: Assembly
+  fullName: System.Reflection.Assembly
+- uid: System.Reflection
+  commentId: N:System.Reflection
+  isExternal: true
+  name: System.Reflection
+  nameWithType: System.Reflection
+  fullName: System.Reflection
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly
+  name: GetTestAssembly
+  nameWithType: TestArchitecturalRequirements.GetTestAssembly
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestAssembly
+- uid: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase*
+  commentId: Overload:Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase
+  name: GetTestTypesNotRequiredToDescendFromTestBase
+  nameWithType: TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase
+  fullName: Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements.GetTestTypesNotRequiredToDescendFromTestBase
+- uid: System.Collections.Immutable.IImmutableSet{System.Type}
+  commentId: T:System.Collections.Immutable.IImmutableSet{System.Type}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.IImmutableSet`1
+  name: IImmutableSet<Type>
+  nameWithType: IImmutableSet<Type>
+  fullName: System.Collections.Immutable.IImmutableSet<System.Type>
+  nameWithType.vb: IImmutableSet(Of Type)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of System.Type)
+  name.vb: IImmutableSet(Of Type)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable.IImmutableSet`1
+  commentId: T:System.Collections.Immutable.IImmutableSet`1
+  isExternal: true
+  name: IImmutableSet<T>
+  nameWithType: IImmutableSet<T>
+  fullName: System.Collections.Immutable.IImmutableSet<T>
+  nameWithType.vb: IImmutableSet(Of T)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of T)
+  name.vb: IImmutableSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable

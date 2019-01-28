@@ -7,20 +7,21 @@
    using System.Reflection;
    using Landorphan.Common;
    using Landorphan.Common.Threading;
-   using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
 
    // ReSharper disable IdentifierTypo
 
+   [SuppressMessage("SonarLint.CodeSmell", "S3459: Unassigned members should be removed")]
+   [SuppressMessage("SonarLint.CodeSmell", "S3052: Members should not be initialized to default values")]
+   [SuppressMessage("SonarLint.CodeSmell", "S1200: Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
    public sealed class ImmutableDictionaryTarget : DisposableObject, IRegistrationTarget
    {
+      // this class mimics the implementation of IocContainer so as to allow for performance testing.
       private readonly IocContainerConfiguration _configuration;
-      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
-#pragma warning disable S3459 // Unassigned members should be removed
-#pragma warning disable S3052 // Members should not be initialized to default values
       private readonly ImmutableDictionaryTarget _parent = null;
-#pragma warning restore S3052 // Members should not be initialized to default values
-#pragma warning restore S3459 // Unassigned members should be removed
+      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
       private readonly Stopwatch _swPrecludedTypeAdd;
       private readonly Stopwatch _swPrecludedTypeRemove;
       private readonly Stopwatch _swRegister;
@@ -31,13 +32,13 @@
       private readonly Stopwatch _swResolveValidation;
       private readonly Stopwatch _swUnregister;
       private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
+      private Int32 _registrationOverwriteCount;
       private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
          ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>.Empty;
       private Int32 _registrationTotalCount;
-      private Int32 _registrationOverwriteCount;
-      private Int32 _unregistrationTotalCount;
       private Int32 _resolutionNewInstancesCount;
       private Int32 _resolutionTotalCount;
+      private Int32 _unregistrationTotalCount;
 
       public ImmutableDictionaryTarget(Boolean allowNamedImplementations, Boolean allowPreclusionOfTypes, Boolean throwOnRegistrationCollision)
       {
@@ -86,22 +87,15 @@
 
       public IIocContainerMetaIdentity Container => this;
 
+      public Boolean IsReadOnly => false;
+
+      public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
+
       public Boolean ThrowOnRegistrationCollision
       {
          get => _configuration.ThrowOnRegistrationCollision;
          set => throw new NotSupportedException();
       }
-
-      public Boolean IsReadOnly => false;
-
-      [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
-      [SuppressMessage("Microsoft.Design", "CA1065: Do not raise exceptions in unexpected locations", Justification = "Reviewed (MWP)")]
-      public Boolean Equals(IIocContainerConfiguration other)
-      {
-         throw new NotSupportedException();
-      }
-
-      public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
 
       public Guid Uid { get; } = Guid.NewGuid();
 
@@ -115,11 +109,6 @@
                throw new ContainerConfigurationPrecludedTypesDisabledException(this, null, null);
             }
 
-            //'/'if (IsRegisteredDefaultOrNamedInThisOrAncestorContainer(this, precludedType))
-            //'/'{
-            //'/'   throw new CannotPrecludeRegisteredTypeArgumentException(precludedType, nameof(precludedType));
-            //'/'}
-
             var was = _precludedTypes;
 
             if (precludedType != null && (precludedType.IsInterface || precludedType.IsAbstract))
@@ -128,10 +117,6 @@
             }
 
             var rv = !ReferenceEquals(was, _precludedTypes);
-            if (rv)
-            {
-               //'/'OnContainerPrecludedTypeAdded(precludedType);
-            }
 
             return rv;
          }
@@ -141,17 +126,11 @@
          }
       }
 
-      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegister")]
-      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
+      [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
+      [SuppressMessage("Microsoft.Design", "CA1065: Do not raise exceptions in unexpected locations", Justification = "Reviewed (MWP)")]
+      public Boolean Equals(IIocContainerConfiguration other)
       {
-         if (_swRegister.IsRunning)
-         {
-            throw new InvalidOperationException("_swRegister.IsRunning");
-         }
-
-         registrationTotalTime = _swRegister.Elapsed;
-         registrationTotalCount = _registrationTotalCount;
+         throw new NotSupportedException();
       }
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegistrationOverwrite")]
@@ -165,6 +144,19 @@
 
          registrationOverwriteTime = _swRegistrationOverwrite.Elapsed;
          registrationOverwriteCount = _registrationOverwriteCount;
+      }
+
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegister")]
+      [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
+      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
+      {
+         if (_swRegister.IsRunning)
+         {
+            throw new InvalidOperationException("_swRegister.IsRunning");
+         }
+
+         registrationTotalTime = _swRegister.Elapsed;
+         registrationTotalCount = _registrationTotalCount;
       }
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegisterValidation")]
@@ -360,7 +352,6 @@
 
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          var value = new RegistrationValueTypeInstancePair(toType);
-         //'/'CheckForNewRegistrations();
          try
          {
             _swRegister.Start();
@@ -382,7 +373,6 @@
                   }
                }
 
-               //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                return true;
             }
             catch (ArgumentException ae)
@@ -413,8 +403,6 @@
                      }
                   }
 
-                  //'/'OnContainerRegistrationRemoved(key);
-                  //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                   return true;
                }
                finally
@@ -524,7 +512,6 @@
 
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          var value = new RegistrationValueTypeInstancePair(instance);
-         //'/'CheckForNewRegistrations();
          try
          {
             _swRegister.Start();
@@ -546,7 +533,6 @@
                   }
                }
 
-               //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                return true;
             }
             catch (ArgumentException ae)
@@ -577,8 +563,6 @@
                      }
                   }
 
-                  //'/'OnContainerRegistrationRemoved(key);
-                  //'/'OnContainerRegistrationAdded(key, value.ImplementationType, value.ImplementationInstance);
                   return true;
                }
                finally
@@ -602,10 +586,6 @@
             var was = _precludedTypes;
             _precludedTypes = _precludedTypes.Remove(precludedType);
             var rv = !ReferenceEquals(was, _precludedTypes);
-            if (rv)
-            {
-               //'/'OnContainerPrecludedTypeRemoved(precludedType);
-            }
 
             return rv;
          }
@@ -617,6 +597,7 @@
 
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+      [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       public Boolean ResolveImplementation(Type fromType, String fromTypeParameterName, String name, Boolean tryLogic, out Object instance)
       {
          instance = null;
@@ -689,7 +670,6 @@
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          // ReSharper disable once TooWideLocalVariableScope
          RegistrationValueTypeInstancePair value;
-         //'/'CheckForNewRegistrations();
          // ReSharper disable once TooWideLocalVariableScope
          // ReSharper disable once RedundantAssignment
          var found = false;
@@ -788,11 +768,6 @@
                }
             }
 
-            if (rv)
-            {
-               //'/'OnContainerRegistrationRemoved(key);
-            }
-
             return rv;
          }
          finally
@@ -800,7 +775,5 @@
             _swUnregister.Stop();
          }
       }
-
-#pragma warning restore S125 // Sections of code should not be commented out
    }
 }

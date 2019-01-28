@@ -5,6 +5,7 @@
    using System.Collections.Immutable;
    using System.Linq;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
 
    /// <summary>

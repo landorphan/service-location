@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
    using System;
    using System.Collections.Generic;
@@ -8,6 +8,7 @@
    using System.Text;
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Exception thrown when service location finds an assembly with multiple implementations of <see cref="IAssemblySelfRegistration"/>.

@@ -3,6 +3,7 @@
    using System;
    using System.Linq;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Extension methods for IoC querying whether a type/name is registered in the given container, or the given container and its chain of parents.

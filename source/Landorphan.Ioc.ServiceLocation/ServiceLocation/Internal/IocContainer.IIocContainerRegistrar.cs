@@ -5,6 +5,9 @@
    using System.Reflection;
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.EventArguments;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage
@@ -131,7 +134,6 @@
       }
 
       /// <inheritdoc/>
-      // [SuppressMessage("SonarLint.CodeSmell", "S2583:Conditionally executed blocks should be reachable")]
       Boolean IIocContainerRegistrar.Unregister<TFrom>(String name)
       {
          return UnregisterImplementation(typeof(TFrom), name);

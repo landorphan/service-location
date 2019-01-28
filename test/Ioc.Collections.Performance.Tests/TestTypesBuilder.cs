@@ -2,6 +2,7 @@
 {
    using System;
    using System.Collections.Generic;
+   using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using System.Reflection;
    using System.Reflection.Emit;
@@ -10,11 +11,10 @@
 
    // ReSharper disable AssignNullToNotNullAttribute
 
+   [SuppressMessage("SonarLint.CodeSmell", "S4017: Method signatures should not contain nested generic types")]
    public sealed class TestTypesBuilder : DisposableObject
    {
-#pragma warning disable S4017 // Method signatures should not contain nested generic types
       public void BuildTypePairs(Int32 count, out AssemblyName assemblyName, out IList<KeyValuePair<Type, Type>> list)
-#pragma warning restore S4017 // Method signatures should not contain nested generic types
       {
          var currentAppDomain = AppDomain.CurrentDomain;
          var randomName = BuildRandomIdentifierName();
@@ -43,7 +43,7 @@
          sb.Append(Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture));
          // remove the leading and trailing brace characters
          sb.Remove(0, 1);
-         sb.Remove(sb.Length - 2, 1);
+         sb.Remove(sb.Length - 1 -1, 1);
          // remove the embedded dashes
          sb.Replace("-", null);
          // prepend a T in case the GUID started with a numeric character

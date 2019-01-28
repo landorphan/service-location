@@ -1,0 +1,508 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  id: TestBase
+  parent: Landorphan.TestUtilities
+  children:
+  - Landorphan.TestUtilities.TestBase.#ctor
+  - Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  - Landorphan.TestUtilities.TestBase.MonitoredEvents
+  - Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  - Landorphan.TestUtilities.TestBase.TestClassCleanup
+  - Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  - Landorphan.TestUtilities.TestBase.TestCleanup
+  - Landorphan.TestUtilities.TestBase.TestContext
+  - Landorphan.TestUtilities.TestBase.TestInitialize
+  langs:
+  - csharp
+  - vb
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestBase
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 17
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nBase class for tests that use TestUtilities.\n"
+  remarks: "\nMSTest attribute inheritance and interaction is tricky.  Ensure your test classes are executing in the order you\nexpect!!!\nIn particular, TestInitialize attributed members of base classes fire before ClassInitialize attributed members of\ndescendant classes.\n"
+  example: []
+  syntax:
+    content: >-
+      [TestClass]
+
+      public abstract class TestBase
+    content.vb: >-
+      <TestClass>
+
+      Public MustInherit Class TestBase
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Landorphan.TestUtilities.ArrangeActAssert
+  - Landorphan.TestUtilities.ReusableTestImplementations.ArchitecturalRequirements
+  - Landorphan.TestUtilities.ReusableTestImplementations.ExceptionValidityRequirements
+  - Landorphan.TestUtilities.ReusableTestImplementations.RulesetRequirements
+  - Landorphan.TestUtilities.ReusableTestImplementations.TestArchitecturalRequirements
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Landorphan.TestUtilities.TestBase.#ctor
+  commentId: M:Landorphan.TestUtilities.TestBase.#ctor
+  id: '#ctor'
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TestBase()
+  nameWithType: TestBase.TestBase()
+  fullName: Landorphan.TestUtilities.TestBase.TestBase()
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 26
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.TestUtilities.TestBase\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: protected TestBase()
+    content.vb: Protected Sub New
+  overload: Landorphan.TestUtilities.TestBase.#ctor*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+- uid: Landorphan.TestUtilities.TestBase.TestContext
+  commentId: P:Landorphan.TestUtilities.TestBase.TestContext
+  id: TestContext
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestContext
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 40
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nGets or sets the test context which provides information about and functionality for the current test run.\n"
+  example: []
+  syntax:
+    content: public TestContext TestContext { get; protected set; }
+    parameters: []
+    return:
+      type: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    content.vb: Public Property TestContext As TestContext
+  overload: Landorphan.TestUtilities.TestBase.TestContext*
+  modifiers.csharp:
+  - public
+  - get
+  - protected set
+  modifiers.vb:
+  - Public
+  - Get
+  - Protected Set
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  commentId: P:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  id: MonitoredEvents
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: MonitoredEvents
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 48
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nGets the monitored events.\n"
+  example: []
+  syntax:
+    content: protected EventMonitor MonitoredEvents { get; }
+    parameters: []
+    return:
+      type: Landorphan.TestUtilities.EventMonitor
+      description: "\nThe monitored events.\n"
+    content.vb: Protected ReadOnly Property MonitoredEvents As EventMonitor
+  overload: Landorphan.TestUtilities.TestBase.MonitoredEvents*
+  modifiers.csharp:
+  - protected
+  - get
+  modifiers.vb:
+  - Protected
+  - ReadOnly
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  id: TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TestClassInitialize(TestContext)
+  nameWithType: TestBase.TestClassInitialize(TestContext)
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestClassInitialize
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 56
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nCode that executes before any of the tests methods in the test class are executed.\n"
+  remarks: "\nNote:  ClassInitializeAttribute is not inheritable.\n"
+  example: []
+  syntax:
+    content: >-
+      [ClassInitialize]
+
+      public static void TestClassInitialize(TestContext context)
+    parameters:
+    - id: context
+      type: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+    content.vb: >-
+      <ClassInitialize>
+
+      Public Shared Sub TestClassInitialize(context As TestContext)
+  overload: Landorphan.TestUtilities.TestBase.TestClassInitialize*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize
+  commentId: M:Landorphan.TestUtilities.TestBase.TestInitialize
+  id: TestInitialize
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TestInitialize()
+  nameWithType: TestBase.TestInitialize()
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestInitialize
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 68
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nSteps that are run before each test.\n"
+  example: []
+  syntax:
+    content: >-
+      [TestInitialize]
+
+      public void TestInitialize()
+    content.vb: >-
+      <TestInitialize>
+
+      Public Sub TestInitialize
+  overload: Landorphan.TestUtilities.TestBase.TestInitialize*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestInitializeAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  id: InitializeTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: InitializeTestMethod()
+  nameWithType: TestBase.InitializeTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: InitializeTestMethod
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 77
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nCalled once before each test method invocation.\n"
+  example: []
+  syntax:
+    content: protected virtual void InitializeTestMethod()
+    content.vb: Protected Overridable Sub InitializeTestMethod
+  overload: Landorphan.TestUtilities.TestBase.InitializeTestMethod*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  commentId: M:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  id: TeardownTestMethod
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TeardownTestMethod()
+  nameWithType: TestBase.TeardownTestMethod()
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TeardownTestMethod
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 90
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nCalled once after each test method invocation.\n"
+  example: []
+  syntax:
+    content: protected virtual void TeardownTestMethod()
+    content.vb: Protected Overridable Sub TeardownTestMethod
+  overload: Landorphan.TestUtilities.TestBase.TeardownTestMethod*
+  modifiers.csharp:
+  - protected
+  - virtual
+  modifiers.vb:
+  - Protected
+  - Overridable
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestCleanup
+  id: TestCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TestCleanup()
+  nameWithType: TestBase.TestCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestCleanup
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 101
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nSteps that are run after each test.\n"
+  example: []
+  syntax:
+    content: >-
+      [TestCleanup]
+
+      public void TestCleanup()
+    content.vb: >-
+      <TestCleanup>
+
+      Public Sub TestCleanup
+  overload: Landorphan.TestUtilities.TestBase.TestCleanup*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.TestCleanupAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup
+  commentId: M:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  id: TestClassCleanup
+  parent: Landorphan.TestUtilities.TestBase
+  langs:
+  - csharp
+  - vb
+  name: TestClassCleanup()
+  nameWithType: TestBase.TestClassCleanup()
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: TestClassCleanup
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
+    startLine: 110
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities
+  summary: "\nCode that executes after all of the test methods in the test class are executed.\n"
+  example: []
+  syntax:
+    content: >-
+      [ClassCleanup]
+
+      public static void TestClassCleanup()
+    content.vb: >-
+      <ClassCleanup>
+
+      Public Shared Sub TestClassCleanup
+  overload: Landorphan.TestUtilities.TestBase.TestClassCleanup*
+  attributes:
+  - type: Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute
+    ctor: Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Landorphan.TestUtilities
+  commentId: N:Landorphan.TestUtilities
+  name: Landorphan.TestUtilities
+  nameWithType: Landorphan.TestUtilities
+  fullName: Landorphan.TestUtilities
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.TestUtilities.TestBase
+  commentId: T:Landorphan.TestUtilities.TestBase
+  parent: Landorphan.TestUtilities
+  name: TestBase
+  nameWithType: TestBase
+  fullName: Landorphan.TestUtilities.TestBase
+- uid: Landorphan.TestUtilities.TestBase.#ctor*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.#ctor
+  name: TestBase
+  nameWithType: TestBase.TestBase
+  fullName: Landorphan.TestUtilities.TestBase.TestBase
+- uid: Landorphan.TestUtilities.TestBase.TestContext*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.TestContext
+  name: TestContext
+  nameWithType: TestBase.TestContext
+  fullName: Landorphan.TestUtilities.TestBase.TestContext
+- uid: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+  commentId: T:Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+  parent: Microsoft.VisualStudio.TestTools.UnitTesting
+  isExternal: true
+  name: TestContext
+  nameWithType: TestContext
+  fullName: Microsoft.VisualStudio.TestTools.UnitTesting.TestContext
+- uid: Microsoft.VisualStudio.TestTools.UnitTesting
+  commentId: N:Microsoft.VisualStudio.TestTools.UnitTesting
+  isExternal: true
+  name: Microsoft.VisualStudio.TestTools.UnitTesting
+  nameWithType: Microsoft.VisualStudio.TestTools.UnitTesting
+  fullName: Microsoft.VisualStudio.TestTools.UnitTesting
+- uid: Landorphan.TestUtilities.TestBase.MonitoredEvents*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.MonitoredEvents
+  name: MonitoredEvents
+  nameWithType: TestBase.MonitoredEvents
+  fullName: Landorphan.TestUtilities.TestBase.MonitoredEvents
+- uid: Landorphan.TestUtilities.EventMonitor
+  commentId: T:Landorphan.TestUtilities.EventMonitor
+  parent: Landorphan.TestUtilities
+  name: EventMonitor
+  nameWithType: EventMonitor
+  fullName: Landorphan.TestUtilities.EventMonitor
+- uid: Landorphan.TestUtilities.TestBase.TestClassInitialize*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.TestClassInitialize
+  name: TestClassInitialize
+  nameWithType: TestBase.TestClassInitialize
+  fullName: Landorphan.TestUtilities.TestBase.TestClassInitialize
+- uid: Landorphan.TestUtilities.TestBase.TestInitialize*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.TestInitialize
+  name: TestInitialize
+  nameWithType: TestBase.TestInitialize
+  fullName: Landorphan.TestUtilities.TestBase.TestInitialize
+- uid: Landorphan.TestUtilities.TestBase.InitializeTestMethod*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.InitializeTestMethod
+  name: InitializeTestMethod
+  nameWithType: TestBase.InitializeTestMethod
+  fullName: Landorphan.TestUtilities.TestBase.InitializeTestMethod
+- uid: Landorphan.TestUtilities.TestBase.TeardownTestMethod*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.TeardownTestMethod
+  name: TeardownTestMethod
+  nameWithType: TestBase.TeardownTestMethod
+  fullName: Landorphan.TestUtilities.TestBase.TeardownTestMethod
+- uid: Landorphan.TestUtilities.TestBase.TestCleanup*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.TestCleanup
+  name: TestCleanup
+  nameWithType: TestBase.TestCleanup
+  fullName: Landorphan.TestUtilities.TestBase.TestCleanup
+- uid: Landorphan.TestUtilities.TestBase.TestClassCleanup*
+  commentId: Overload:Landorphan.TestUtilities.TestBase.TestClassCleanup
+  name: TestClassCleanup
+  nameWithType: TestBase.TestClassCleanup
+  fullName: Landorphan.TestUtilities.TestBase.TestClassCleanup

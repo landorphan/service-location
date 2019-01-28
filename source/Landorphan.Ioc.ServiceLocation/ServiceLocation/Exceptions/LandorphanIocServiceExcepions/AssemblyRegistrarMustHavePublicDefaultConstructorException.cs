@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
    using System;
    using System.Globalization;
@@ -6,6 +6,7 @@
    using System.Security;
    using Landorphan.Common;
    using Landorphan.Ioc.Resources;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>
    /// Exception thrown when service location finds an implementation of <see cref="IAssemblySelfRegistration"/> without a public parameterless constructor.

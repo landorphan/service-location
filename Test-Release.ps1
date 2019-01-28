@@ -9,12 +9,27 @@ $started = [DateTime]::UtcNow
 # On my machine, the path is: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe
 
 $scriptDirectory = Split-Path $script:MyInvocation.MyCommand.Path
-$commonTests = Join-Path $scriptDirectory bin\release\Landorphan.Common.Tests\netcoreapp2.2\Landorphan.Common.Tests.dll
+$LandorphanIocTests = Join-Path $scriptDirectory \bin\release\Landorphan.Ioc.ServiceLocation.Tests\netcoreapp2.2\Landorphan.Ioc.ServiceLocation.Tests.dll
+if(!(Test-Path $LandorphanIocTests))
+{
+  Write-Error "Could not find IOC Service Location Tests at: $LandorphanIocTests"
+}
+$LandorphanIocTestabilityTests = Join-Path $scriptDirectory \bin\release\Landorphan.Ioc.ServiceLocation.Testability.Tests\netcoreapp2.2\Landorphan.Ioc.ServiceLocation.Testability.Tests.dll
+if(!(Test-Path $LandorphanIocTestabilityTests))
+{
+  Write-Error "Could not find IOC Service Location Testability Tests at: $LandorphanIocTestabilityTests"
+}
+$LandorphanTestUtilitiesMSTestTests = Join-Path $scriptDirectory \bin\release\Landorphan.TestUtilities.MSTest.Tests\netcoreapp2.2\Landorphan.TestUtilities.MSTest.Tests.dll
+if(!(Test-Path $LandorphanTestUtilitiesMSTestTests))
+{
+  Write-Error "Could not find TestUtilities Tests at: $LandorphanIocTests"
+}
+
 $results = Join-Path $scriptDirectory TestResults
 
 # TODO: switch to dotnet test implementation
 # TODO: figure out while the trx file is not being written
-vstest.console.exe $commonTests /logger:trx /ResultsDirectory:$results /Parallel /TestCaseFilter:"TestCategory!=Nightly&TestCategory!=Manual&TestCategory!=IDE-Only"
+vstest.console.exe $LandorphanIocTests, $LandorphanIocTestabilityTests, $LandorphanTestUtilitiesMSTestTests /logger:trx /ResultsDirectory:$results /Parallel /TestCaseFilter:"TestCategory!=Nightly&TestCategory!=Manual&TestCategory!=IDE-Only"
 
 $completed = [DateTime]::UtcNow
 $elapsed = $completed - $started

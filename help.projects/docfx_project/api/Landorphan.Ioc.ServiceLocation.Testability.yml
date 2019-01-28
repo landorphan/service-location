@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Testability
+  commentId: N:Landorphan.Ioc.ServiceLocation.Testability
+  id: Landorphan.Ioc.ServiceLocation.Testability
+  children:
+  - Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  - Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  - Landorphan.Ioc.ServiceLocation.Testability.TestMockingService
+  langs:
+  - csharp
+  - vb
+  name: Landorphan.Ioc.ServiceLocation.Testability
+  nameWithType: Landorphan.Ioc.ServiceLocation.Testability
+  fullName: Landorphan.Ioc.ServiceLocation.Testability
+  type: Namespace
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation.Testability
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  commentId: T:Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+  name: TestabilityServiceLocationSelfRegistration
+  nameWithType: TestabilityServiceLocationSelfRegistration
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.TestabilityServiceLocationSelfRegistration
+- uid: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  commentId: T:Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+  parent: Landorphan.Ioc.ServiceLocation.Testability
+  name: ITestMockingService
+  nameWithType: ITestMockingService
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.ITestMockingService
+- uid: Landorphan.Ioc.ServiceLocation.Testability.TestMockingService
+  commentId: T:Landorphan.Ioc.ServiceLocation.Testability.TestMockingService
+  name: TestMockingService
+  nameWithType: TestMockingService
+  fullName: Landorphan.Ioc.ServiceLocation.Testability.TestMockingService
+- uid: Landorphan.Ioc.ServiceLocation.Testability
+  commentId: N:Landorphan.Ioc.ServiceLocation.Testability
+  name: Landorphan.Ioc.ServiceLocation.Testability
+  nameWithType: Landorphan.Ioc.ServiceLocation.Testability
+  fullName: Landorphan.Ioc.ServiceLocation.Testability

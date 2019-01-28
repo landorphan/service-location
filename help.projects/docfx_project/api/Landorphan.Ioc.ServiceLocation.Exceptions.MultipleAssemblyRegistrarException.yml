@@ -1,0 +1,669 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  id: MultipleAssemblyRegistrarException
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions
+  children:
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type})
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.Exception)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String,System.Exception)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.String)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.String,System.Exception)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  - Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException
+  nameWithType: MultipleAssemblyRegistrarException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: MultipleAssemblyRegistrarException
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 16
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nException thrown when service location finds an assembly with multiple implementations of <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public sealed class MultipleAssemblyRegistrarException : LandorphanIocServiceLocationException, ISerializable'
+    content.vb: >-
+      Public NotInheritable Class MultipleAssemblyRegistrarException
+
+          Inherits LandorphanIocServiceLocationException
+
+          Implements ISerializable
+  seealso:
+  - linkId: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
+  inheritance:
+  - System.Object
+  - System.Exception
+  - Landorphan.Common.Exceptions.LandorphanException
+  - Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
+  implements:
+  - System.Runtime.Serialization.ISerializable
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor
+  id: '#ctor'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException()
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException()
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException()
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 21
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException()
+    content.vb: Public Sub New
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException(String)
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(String)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 29
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: 'The message that describes the error. '
+    content.vb: Public Sub New(message As String)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.String,System.Exception)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.String,System.Exception)
+  id: '#ctor(System.String,System.Exception)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException(String, Exception)
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(String, Exception)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 41
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException(string message, Exception innerException)
+    parameters:
+    - id: message
+      type: System.String
+      description: 'The error message that explains the reason for the exception. '
+    - id: innerException
+      type: System.Exception
+      description: "\nThe exception that is the cause of the current exception, or a null reference if no inner\nexception is specified.\n"
+    content.vb: Public Sub New(message As String, innerException As Exception)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type})
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type})
+  id: '#ctor(System.Collections.Generic.IEnumerable{System.Type})'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException(IEnumerable<Type>)
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable<Type>)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable<System.Type>)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 49
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes)
+    parameters:
+    - id: implementationTypes
+      type: System.Collections.Generic.IEnumerable{System.Type}
+      description: 'The abstract type that gave rise to this exception. '
+    content.vb: Public Sub New(implementationTypes As IEnumerable(Of Type))
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  nameWithType.vb: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable(Of Type))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable(Of System.Type))
+  name.vb: MultipleAssemblyRegistrarException(IEnumerable(Of Type))
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String)
+  id: '#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException(IEnumerable<Type>, String)
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable<Type>, String)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable<System.Type>, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 58
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, string message)
+    parameters:
+    - id: implementationTypes
+      type: System.Collections.Generic.IEnumerable{System.Type}
+      description: 'The implementation types that gave rise to this exception. '
+    - id: message
+      type: System.String
+      description: 'The error message that explains the reason for the exception. '
+    content.vb: Public Sub New(implementationTypes As IEnumerable(Of Type), message As String)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  nameWithType.vb: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable(Of Type), String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable(Of System.Type), System.String)
+  name.vb: MultipleAssemblyRegistrarException(IEnumerable(Of Type), String)
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.Exception)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.Exception)
+  id: '#ctor(System.Collections.Generic.IEnumerable{System.Type},System.Exception)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException(IEnumerable<Type>, Exception)
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable<Type>, Exception)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable<System.Type>, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 73
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, Exception innerException)
+    parameters:
+    - id: implementationTypes
+      type: System.Collections.Generic.IEnumerable{System.Type}
+      description: 'The implementation types that gave rise to this exception. '
+    - id: innerException
+      type: System.Exception
+      description: "\nThe exception that is the cause of the current exception, or a null reference if no inner\nexception is specified.\n"
+    content.vb: Public Sub New(implementationTypes As IEnumerable(Of Type), innerException As Exception)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  nameWithType.vb: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable(Of Type), Exception)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable(Of System.Type), System.Exception)
+  name.vb: MultipleAssemblyRegistrarException(IEnumerable(Of Type), Exception)
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String,System.Exception)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String,System.Exception)
+  id: '#ctor(System.Collections.Generic.IEnumerable{System.Type},System.String,System.Exception)'
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: MultipleAssemblyRegistrarException(IEnumerable<Type>, String, Exception)
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable<Type>, String, Exception)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable<System.Type>, System.String, System.Exception)
+  type: Constructor
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: .ctor
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 87
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nInitializes a new instance of the <xref href=\"Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, string message, Exception innerException)
+    parameters:
+    - id: implementationTypes
+      type: System.Collections.Generic.IEnumerable{System.Type}
+      description: 'The abstract type that gave rise to this exception. '
+    - id: message
+      type: System.String
+      description: 'The error message that explains the reason for the exception. '
+    - id: innerException
+      type: System.Exception
+      description: "\nThe exception that is the cause of the current exception, or a null reference if no inner\nexception is specified.\n"
+    content.vb: Public Sub New(implementationTypes As IEnumerable(Of Type), message As String, innerException As Exception)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  nameWithType.vb: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(IEnumerable(Of Type), String, Exception)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException(System.Collections.Generic.IEnumerable(Of System.Type), System.String, System.Exception)
+  name.vb: MultipleAssemblyRegistrarException(IEnumerable(Of Type), String, Exception)
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  id: GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: MultipleAssemblyRegistrarException.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: GetObjectData
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 120
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  example: []
+  syntax:
+    content: public override void GetObjectData(SerializationInfo info, StreamingContext context)
+    parameters:
+    - id: info
+      type: System.Runtime.Serialization.SerializationInfo
+    - id: context
+      type: System.Runtime.Serialization.StreamingContext
+    content.vb: Public Overrides Sub GetObjectData(info As SerializationInfo, context As StreamingContext)
+  overridden: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes
+  commentId: P:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes
+  id: ImplementationTypes
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  langs:
+  - csharp
+  - vb
+  name: ImplementationTypes
+  nameWithType: MultipleAssemblyRegistrarException.ImplementationTypes
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: ImplementationTypes
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
+    startLine: 131
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Exceptions
+  summary: "\nGets the implementation types that gave rise to this exception\n"
+  example: []
+  syntax:
+    content: public IEnumerable<Type> ImplementationTypes { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Type}
+    content.vb: Public ReadOnly Property ImplementationTypes As IEnumerable(Of Type)
+  overload: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IAssemblySelfRegistration
+  nameWithType: IAssemblySelfRegistration
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
+  parent: Landorphan.Ioc.ServiceLocation.Exceptions
+  name: LandorphanIocServiceLocationException
+  nameWithType: LandorphanIocServiceLocationException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions
+  commentId: N:Landorphan.Ioc.ServiceLocation.Exceptions
+  name: Landorphan.Ioc.ServiceLocation.Exceptions
+  nameWithType: Landorphan.Ioc.ServiceLocation.Exceptions
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: Landorphan.Common.Exceptions.LandorphanException
+  commentId: T:Landorphan.Common.Exceptions.LandorphanException
+  parent: Landorphan.Common.Exceptions
+  isExternal: true
+  name: LandorphanException
+  nameWithType: LandorphanException
+  fullName: Landorphan.Common.Exceptions.LandorphanException
+- uid: System.Runtime.Serialization.ISerializable
+  commentId: T:System.Runtime.Serialization.ISerializable
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: ISerializable
+  nameWithType: ISerializable
+  fullName: System.Runtime.Serialization.ISerializable
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Common.Exceptions
+  commentId: N:Landorphan.Common.Exceptions
+  isExternal: true
+  name: Landorphan.Common.Exceptions
+  nameWithType: Landorphan.Common.Exceptions
+  fullName: Landorphan.Common.Exceptions
+- uid: System.Runtime.Serialization
+  commentId: N:System.Runtime.Serialization
+  isExternal: true
+  name: System.Runtime.Serialization
+  nameWithType: System.Runtime.Serialization
+  fullName: System.Runtime.Serialization
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+  name: MultipleAssemblyRegistrarException
+  nameWithType: MultipleAssemblyRegistrarException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.#ctor
+  name: MultipleAssemblyRegistrarException
+  nameWithType: MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.MultipleAssemblyRegistrarException
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Collections.Generic.IEnumerable{System.Type}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Type}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Type>
+  nameWithType: IEnumerable<Type>
+  fullName: System.Collections.Generic.IEnumerable<System.Type>
+  nameWithType.vb: IEnumerable(Of Type)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Type)
+  name.vb: IEnumerable(Of Type)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  commentId: M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  parent: System.Exception
+  isExternal: true
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType: Exception.GetObjectData(SerializationInfo, StreamingContext)
+  fullName: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  spec.csharp:
+  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: Exception.GetObjectData
+    fullName: System.Exception.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+    name: GetObjectData
+    nameWithType: Exception.GetObjectData
+    fullName: System.Exception.GetObjectData
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Runtime.Serialization.SerializationInfo
+    name: SerializationInfo
+    nameWithType: SerializationInfo
+    fullName: System.Runtime.Serialization.SerializationInfo
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Runtime.Serialization.StreamingContext
+    name: StreamingContext
+    nameWithType: StreamingContext
+    fullName: System.Runtime.Serialization.StreamingContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData
+  name: GetObjectData
+  nameWithType: MultipleAssemblyRegistrarException.GetObjectData
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.GetObjectData
+- uid: System.Runtime.Serialization.SerializationInfo
+  commentId: T:System.Runtime.Serialization.SerializationInfo
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: SerializationInfo
+  nameWithType: SerializationInfo
+  fullName: System.Runtime.Serialization.SerializationInfo
+- uid: System.Runtime.Serialization.StreamingContext
+  commentId: T:System.Runtime.Serialization.StreamingContext
+  parent: System.Runtime.Serialization
+  isExternal: true
+  name: StreamingContext
+  nameWithType: StreamingContext
+  fullName: System.Runtime.Serialization.StreamingContext
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes
+  name: ImplementationTypes
+  nameWithType: MultipleAssemblyRegistrarException.ImplementationTypes
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.MultipleAssemblyRegistrarException.ImplementationTypes

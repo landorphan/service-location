@@ -3,6 +3,8 @@
    using System;
    using System.Diagnostics.CodeAnalysis;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage

@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    /// <summary>
    /// Represents the capacity for an assembly to self-register services.

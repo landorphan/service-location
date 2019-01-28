@@ -5,6 +5,8 @@
    using System.Linq;
    using Landorphan.Common;
    using Landorphan.Ioc.Logging.Internal;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
 
    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager

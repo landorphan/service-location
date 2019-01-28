@@ -1,0 +1,671 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  id: IRegistrationKey
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  children:
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName
+  - Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType
+  langs:
+  - csharp
+  - vb
+  name: IRegistrationKey
+  nameWithType: IRegistrationKey
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IRegistrationKey
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+    startLine: 8
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nRepresents a registration key.\n"
+  example: []
+  syntax:
+    content: 'public interface IRegistrationKey : ICloneable, IQueryReadOnly, IComparable, IComparable<IRegistrationKey>, IEquatable<IRegistrationKey>'
+    content.vb: >-
+      Public Interface IRegistrationKey
+
+          Inherits ICloneable, IQueryReadOnly, IComparable, IComparable(Of IRegistrationKey), IEquatable(Of IRegistrationKey)
+  inheritedMembers:
+  - System.ICloneable.Clone
+  - Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  - System.IComparable.CompareTo(System.Object)
+  - System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}.CompareTo(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  - System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration
+  id: IsDefaultRegistration
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  langs:
+  - csharp
+  - vb
+  name: IsDefaultRegistration
+  nameWithType: IRegistrationKey.IsDefaultRegistration
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsDefaultRegistration
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+    startLine: 18
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets a value indicating whether or not this registration represents the default registration for its container.\n"
+  example: []
+  syntax:
+    content: bool IsDefaultRegistration { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: ReadOnly Property IsDefaultRegistration As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty
+  id: IsEmpty
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  langs:
+  - csharp
+  - vb
+  name: IsEmpty
+  nameWithType: IRegistrationKey.IsEmpty
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsEmpty
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+    startLine: 26
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets a value indicating whether or not this instance is empty.\n"
+  example: []
+  syntax:
+    content: bool IsEmpty { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> when this instance is empty; otherwise <code>false</code>.\n"
+    content.vb: ReadOnly Property IsEmpty As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName
+  id: RegisteredName
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  langs:
+  - csharp
+  - vb
+  name: RegisteredName
+  nameWithType: IRegistrationKey.RegisteredName
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: RegisteredName
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+    startLine: 34
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the abstract type or interface registered.\n"
+  example: []
+  syntax:
+    content: string RegisteredName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe abstract type or interface registered.\n"
+    content.vb: ReadOnly Property RegisteredName As String
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType
+  commentId: P:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType
+  id: RegisteredType
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  langs:
+  - csharp
+  - vb
+  name: RegisteredType
+  nameWithType: IRegistrationKey.RegisteredType
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: RegisteredType
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
+    startLine: 42
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation.Interfaces
+  summary: "\nGets the name associated with the registration.\n"
+  example: []
+  syntax:
+    content: Type RegisteredType { get; }
+    parameters: []
+    return:
+      type: System.Type
+      description: "\nThe name associated with the registration.\n"
+    content.vb: ReadOnly Property RegisteredType As Type
+  overload: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+references:
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: System.ICloneable.Clone
+  commentId: M:System.ICloneable.Clone
+  parent: System.ICloneable
+  isExternal: true
+  name: Clone()
+  nameWithType: ICloneable.Clone()
+  fullName: System.ICloneable.Clone()
+  spec.csharp:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    nameWithType: ICloneable.Clone
+    fullName: System.ICloneable.Clone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.ICloneable.Clone
+    name: Clone
+    nameWithType: ICloneable.Clone
+    fullName: System.ICloneable.Clone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  commentId: P:Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+  parent: Landorphan.Common.Interfaces.IQueryReadOnly
+  isExternal: true
+  name: IsReadOnly
+  nameWithType: IQueryReadOnly.IsReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly.IsReadOnly
+- uid: System.IComparable.CompareTo(System.Object)
+  commentId: M:System.IComparable.CompareTo(System.Object)
+  parent: System.IComparable
+  isExternal: true
+  name: CompareTo(Object)
+  nameWithType: IComparable.CompareTo(Object)
+  fullName: System.IComparable.CompareTo(System.Object)
+  spec.csharp:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    nameWithType: IComparable.CompareTo
+    fullName: System.IComparable.CompareTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    nameWithType: IComparable.CompareTo
+    fullName: System.IComparable.CompareTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}.CompareTo(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  commentId: M:System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}.CompareTo(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  parent: System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}
+  definition: System.IComparable`1.CompareTo(`0)
+  name: CompareTo(IRegistrationKey)
+  nameWithType: IComparable<IRegistrationKey>.CompareTo(IRegistrationKey)
+  fullName: System.IComparable<Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey>.CompareTo(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  nameWithType.vb: IComparable(Of IRegistrationKey).CompareTo(IRegistrationKey)
+  fullName.vb: System.IComparable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey).CompareTo(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  spec.csharp:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    nameWithType: IComparable<IRegistrationKey>.CompareTo
+    fullName: System.IComparable<Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey>.CompareTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    nameWithType: IComparable(Of IRegistrationKey).CompareTo
+    fullName: System.IComparable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey).CompareTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  commentId: M:System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  parent: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}
+  definition: System.IEquatable`1.Equals(`0)
+  name: Equals(IRegistrationKey)
+  nameWithType: IEquatable<IRegistrationKey>.Equals(IRegistrationKey)
+  fullName: System.IEquatable<Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey>.Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  nameWithType.vb: IEquatable(Of IRegistrationKey).Equals(IRegistrationKey)
+  fullName.vb: System.IEquatable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey).Equals(Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<IRegistrationKey>.Equals
+    fullName: System.IEquatable<Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of IRegistrationKey).Equals
+    fullName: System.IEquatable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ICloneable
+  commentId: T:System.ICloneable
+  parent: System
+  isExternal: true
+  name: ICloneable
+  nameWithType: ICloneable
+  fullName: System.ICloneable
+- uid: Landorphan.Common.Interfaces.IQueryReadOnly
+  commentId: T:Landorphan.Common.Interfaces.IQueryReadOnly
+  parent: Landorphan.Common.Interfaces
+  isExternal: true
+  name: IQueryReadOnly
+  nameWithType: IQueryReadOnly
+  fullName: Landorphan.Common.Interfaces.IQueryReadOnly
+- uid: System.IComparable
+  commentId: T:System.IComparable
+  parent: System
+  isExternal: true
+  name: IComparable
+  nameWithType: IComparable
+  fullName: System.IComparable
+- uid: System.IComparable`1.CompareTo(`0)
+  commentId: M:System.IComparable`1.CompareTo(`0)
+  isExternal: true
+  name: CompareTo(T)
+  nameWithType: IComparable<T>.CompareTo(T)
+  fullName: System.IComparable<T>.CompareTo(T)
+  nameWithType.vb: IComparable(Of T).CompareTo(T)
+  fullName.vb: System.IComparable(Of T).CompareTo(T)
+  spec.csharp:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    nameWithType: IComparable<T>.CompareTo
+    fullName: System.IComparable<T>.CompareTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    nameWithType: IComparable(Of T).CompareTo
+    fullName: System.IComparable(Of T).CompareTo
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}
+  commentId: T:System.IComparable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}
+  parent: System
+  definition: System.IComparable`1
+  name: IComparable<IRegistrationKey>
+  nameWithType: IComparable<IRegistrationKey>
+  fullName: System.IComparable<Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey>
+  nameWithType.vb: IComparable(Of IRegistrationKey)
+  fullName.vb: System.IComparable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  name.vb: IComparable(Of IRegistrationKey)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    nameWithType: IComparable
+    fullName: System.IComparable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    nameWithType: IComparable
+    fullName: System.IComparable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable<T>.Equals
+    fullName: System.IEquatable<T>.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    nameWithType: IEquatable(Of T).Equals
+    fullName: System.IEquatable(Of T).Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}
+  commentId: T:System.IEquatable{Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey}
+  parent: System
+  definition: System.IEquatable`1
+  name: IEquatable<IRegistrationKey>
+  nameWithType: IEquatable<IRegistrationKey>
+  fullName: System.IEquatable<Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey>
+  nameWithType.vb: IEquatable(Of IRegistrationKey)
+  fullName.vb: System.IEquatable(Of Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey)
+  name.vb: IEquatable(Of IRegistrationKey)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+    name: IRegistrationKey
+    nameWithType: IRegistrationKey
+    fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Common.Interfaces
+  commentId: N:Landorphan.Common.Interfaces
+  isExternal: true
+  name: Landorphan.Common.Interfaces
+  nameWithType: Landorphan.Common.Interfaces
+  fullName: Landorphan.Common.Interfaces
+- uid: System.IComparable`1
+  commentId: T:System.IComparable`1
+  isExternal: true
+  name: IComparable<T>
+  nameWithType: IComparable<T>
+  fullName: System.IComparable<T>
+  nameWithType.vb: IComparable(Of T)
+  fullName.vb: System.IComparable(Of T)
+  name.vb: IComparable(Of T)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    nameWithType: IComparable
+    fullName: System.IComparable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    nameWithType: IComparable
+    fullName: System.IComparable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    nameWithType: IEquatable
+    fullName: System.IEquatable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration
+  name: IsDefaultRegistration
+  nameWithType: IRegistrationKey.IsDefaultRegistration
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsDefaultRegistration
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty
+  name: IsEmpty
+  nameWithType: IRegistrationKey.IsEmpty
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.IsEmpty
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName
+  name: RegisteredName
+  nameWithType: IRegistrationKey.RegisteredName
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType
+  name: RegisteredType
+  nameWithType: IRegistrationKey.RegisteredType
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IRegistrationKey.RegisteredType
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type

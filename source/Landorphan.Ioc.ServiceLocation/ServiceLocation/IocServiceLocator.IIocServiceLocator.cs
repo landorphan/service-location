@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
    {

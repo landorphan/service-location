@@ -1,6 +1,7 @@
-namespace Landorphan.Ioc.ServiceLocation
+namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
    using System;
+   using Landorphan.Ioc.ServiceLocation.Exceptions;
 
    /// <summary>
    /// Represents the client interface for service location.

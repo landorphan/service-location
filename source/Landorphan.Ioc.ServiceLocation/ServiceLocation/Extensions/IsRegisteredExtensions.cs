@@ -2,6 +2,7 @@
 {
    using System;
    using Landorphan.Common;
+   using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
 
    /// <summary>

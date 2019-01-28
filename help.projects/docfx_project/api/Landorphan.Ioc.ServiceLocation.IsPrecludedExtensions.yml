@@ -1,0 +1,191 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions
+  commentId: T:Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions
+  id: IsPrecludedExtensions
+  parent: Landorphan.Ioc.ServiceLocation
+  children:
+  - Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager,System.Type)
+  - Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager)
+  langs:
+  - csharp
+  - vb
+  name: IsPrecludedExtensions
+  nameWithType: IsPrecludedExtensions
+  fullName: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsPrecludedExtensions
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
+    startLine: 10
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nExtension methods for IoC querying whether a type/name is registered in the given container, or the given container and its chain of parents.\n"
+  example: []
+  syntax:
+    content: public static class IsPrecludedExtensions
+    content.vb: Public Module IsPrecludedExtensions
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager)
+  id: IsPrecluded``1(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager)
+  isExtensionMethod: true
+  parent: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsPrecluded<TPrecluded>(IIocContainerManager)
+  nameWithType: IsPrecludedExtensions.IsPrecluded<TPrecluded>(IIocContainerManager)
+  fullName: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded<TPrecluded>(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsPrecluded
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
+    startLine: 27
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nDetermines whether or not a given type is precluded from service location.\n"
+  remarks: "\nChecks the types precluded by this container, as well as any types precluded on the parent chain.\n"
+  example: []
+  syntax:
+    content: public static bool IsPrecluded<TPrecluded>(this IIocContainerManager manager)
+    parameters:
+    - id: manager
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+      description: "\nThe container manager.\n"
+    typeParameters:
+    - id: TPrecluded
+      description: "\nThe type to check.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if this instance is precluded from registration for service location; otherwise <code> false </code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsPrecluded(Of TPrecluded)(manager As IIocContainerManager) As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded*
+  nameWithType.vb: IsPrecludedExtensions.IsPrecluded(Of TPrecluded)(IIocContainerManager)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded(Of TPrecluded)(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager)
+  name.vb: IsPrecluded(Of TPrecluded)(IIocContainerManager)
+- uid: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager,System.Type)
+  commentId: M:Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager,System.Type)
+  id: IsPrecluded(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager,System.Type)
+  isExtensionMethod: true
+  parent: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions
+  langs:
+  - csharp
+  - vb
+  name: IsPrecluded(IIocContainerManager, Type)
+  nameWithType: IsPrecludedExtensions.IsPrecluded(IIocContainerManager, Type)
+  fullName: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded(Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager, System.Type)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
+      branch: mprochaska.documentation.1
+      repo: https://github.com/landorphan/service-location.git
+    id: IsPrecluded
+    path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
+    startLine: 51
+  assemblies:
+  - Landorphan.Ioc.ServiceLocation
+  namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nDetermines whether or not a given type is precluded from service location.\n"
+  remarks: "\nChecks the types precluded by this container, as well as any types precluded on the parent chain.\n"
+  example: []
+  syntax:
+    content: public static bool IsPrecluded(this IIocContainerManager manager, Type fromType)
+    parameters:
+    - id: manager
+      type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+      description: "\nThe container manager.\n"
+    - id: fromType
+      type: System.Type
+      description: "\nThe type to check.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if this instance is precluded from registration for service location; otherwise <code> false </code>.\n"
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function IsPrecluded(manager As IIocContainerManager, fromType As Type) As Boolean
+  overload: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Landorphan.Ioc.ServiceLocation
+  commentId: N:Landorphan.Ioc.ServiceLocation
+  name: Landorphan.Ioc.ServiceLocation
+  nameWithType: Landorphan.Ioc.ServiceLocation
+  fullName: Landorphan.Ioc.ServiceLocation
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded*
+  commentId: Overload:Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded
+  name: IsPrecluded
+  nameWithType: IsPrecludedExtensions.IsPrecluded
+  fullName: Landorphan.Ioc.ServiceLocation.IsPrecludedExtensions.IsPrecluded
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  commentId: T:Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+  parent: Landorphan.Ioc.ServiceLocation.Interfaces
+  name: IIocContainerManager
+  nameWithType: IIocContainerManager
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerManager
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Ioc.ServiceLocation.Interfaces
+  commentId: N:Landorphan.Ioc.ServiceLocation.Interfaces
+  name: Landorphan.Ioc.ServiceLocation.Interfaces
+  nameWithType: Landorphan.Ioc.ServiceLocation.Interfaces
+  fullName: Landorphan.Ioc.ServiceLocation.Interfaces
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
