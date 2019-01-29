@@ -7,12 +7,6 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 
    internal static class TestHardCodes
    {
-      internal const String DeniedToAllButOwnerFile = @"x:\UnitTestTarget\SharedEveryoneFullControl\DeniedToAllButOwner.txt";
-      internal const String ExistingOuterDirectoryEveryoneFullControl = @"x:\UnitTestTarget\SharedEveryoneFullControl";
-      internal const String ExistingOuterDirectoryWithoutPermissions = @"x:\UnitTestTarget\Outer";
-      internal const String ExistingOuterDirectoryWithoutPermissionsChildDirectory = @"x:\UnitTestTarget\Outer\Inner";
-      internal const String ExistingOuterDirectoryWithoutPermissionsChildDirectoryChildFile = @"x:\UnitTestTarget\Outer\Inner\InnerExistingFile.txt";
-      internal const String ExistingOuterDirectoryWithoutPermissionsChildFile = @"x:\UnitTestTarget\Outer\OuterExistingFile.txt";
       /* ****************************************************************************************************************************************************************
       Starting with apps running under the .NET Framework 4.6.2, the .NET Framework supports long paths in excess of 260 (or MAX_PATH) characters. 
       The conditions under which a PathTooLongException exception are thrown depend on the version of the .NET Framework that an app targets:
@@ -36,17 +30,68 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
       // it could be something smaller based on the operating system.
       internal const Int32 PathMaxDirLengthWithTrailingSepChar = Int16.MaxValue;
 
-      internal const String ReadExecuteListFolderContentsDirectory = @"X:\UnitTestTarget\ReadExecuteListFolderContents";
-
-      // TODO: need to think about creating known good UNC paths both locally and on build server in a mixed environment
-      internal const String TodoRethinkNetworkShareEveryoneFullControl = @"\\localhost\SharedEveryoneFullControl";
-      internal const String UnitTestTargetDirectory = @"x:\UnitTestTarget";
-
       internal const String WindowsInvalidPathCharacter = "|";
 
       internal static IEnumerable<Char> GetDirSepChars()
       {
          return new[] {'\\', '/'};
+      }
+
+      internal static class WindowsTestPaths
+      {
+         // TODO: local and remote UNC paths
+         internal const String TodoRethinkNetworkShareEveryoneFullControl = @"\\localhost\SharedEveryoneFullControl";
+
+         internal static String LocalOuterFolderWithoutPermissions { get; private set; }
+         internal static String LocalOuterFolderWithoutPermissionsChildFile { get; private set; }
+         internal static String LocalOuterFolderWithoutPermissionsChildFolder { get; private set; }
+         internal static String LocalOuterFolderWithoutPermissionsChildFolderChildFile { get; private set; }
+         internal static String LocalReadExecuteListFolderContentsFolder { get; private set; }
+         internal static String LocalSharedEveryoneFolderDeniedToAllButOwnerFile { get; private set; }
+         internal static String LocalSharedFolderEveryoneFullControl { get; private set; }
+         internal static String LocalTestTargetRootFolder { get; private set; }
+
+         internal static void SetFilePathLocalOuterFolderWithoutPermissionsChildFile(String value)
+         {
+            LocalOuterFolderWithoutPermissionsChildFile = value;
+         }
+
+         internal static void SetFilePathLocalOuterFolderWithoutPermissionsChildFolderChildFile(String value)
+         {
+            LocalOuterFolderWithoutPermissionsChildFolderChildFile = value;
+         }
+
+         internal static void SetFilePathLocalSharedEveryoneFolderDeniedToAllButOwnerFile(String value)
+         {
+            LocalSharedEveryoneFolderDeniedToAllButOwnerFile = value;
+         }
+
+         internal static void SetFolderPathLocalOuterFolderWithoutPermissions(String value)
+         {
+            LocalOuterFolderWithoutPermissions = value;
+         }
+
+         internal static void SetFolderPathLocalOuterFolderWithoutPermissionsChildFolder(String value)
+         {
+            LocalOuterFolderWithoutPermissionsChildFolder = value;
+         }
+
+         // Setters are called by TestAssemblyInitializeCleanup
+
+         internal static void SetFolderPathLocalReadExecuteListFolderContentsFolder(String value)
+         {
+            LocalReadExecuteListFolderContentsFolder = value;
+         }
+
+         internal static void SetFolderPathLocalSharedFolderEveryoneFullControl(String value)
+         {
+            LocalSharedFolderEveryoneFullControl = value;
+         }
+
+         internal static void SetFolderPathLocalTestTargetRootFolder(String value)
+         {
+            LocalTestTargetRootFolder = value;
+         }
       }
    }
 }

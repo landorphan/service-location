@@ -131,7 +131,7 @@
          {
             const String expected = "zero\r\none\r\ntwo\r\nthree";
 
-            var path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
 
             try
             {

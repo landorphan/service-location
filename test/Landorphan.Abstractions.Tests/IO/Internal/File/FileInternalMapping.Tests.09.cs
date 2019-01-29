@@ -708,7 +708,7 @@
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_write_the_file()
          {
             var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
-            var path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
             try
             {
                _target.FileExists(path).Should().BeFalse();

@@ -22,27 +22,25 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_parent()
          {
             // HAPPY PATH TEST:
-            const String path = TestHardCodes.ExistingOuterDirectoryWithoutPermissions;
-
+            var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions;
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(@"x:\UnitTestTarget");
-
+            actual.Should().Be(TestHardCodes.WindowsTestPaths.LocalTestTargetRootFolder);
             _directoryUtilities.DirectoryExists(path).Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_nor_on_the_parent_directory_It_should_return_the_parent()
          {
             // HAPPY PATH TEST:
-            const String path = TestHardCodes.ExistingOuterDirectoryWithoutPermissionsChildDirectory;
-
+            var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissionsChildFolder;
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(@"x:\UnitTestTarget\Outer");
-
+            actual.Should().Be(TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions);
             _directoryUtilities.DirectoryExists(path).Should().BeFalse();
          }
 
@@ -120,13 +118,14 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_null()
          {
             // HAPPY PATH TEST:
             var actual = _target.GetParentPath(@"c:\");
             actual.Should().BeNull();
 
-            actual = _target.GetParentPath(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl);
+            actual = _target.GetParentPath(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
             actual.Should().BeNull();
          }
 
@@ -320,11 +319,11 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_root()
          {
             // HAPPY PATH TEST:
-            const String path = TestHardCodes.ExistingOuterDirectoryWithoutPermissions;
-
+            var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions;
             var actual = _target.GetRootPath(path);
             actual.Should().Be(@"x:");
 
@@ -333,11 +332,11 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_nor_on_the_parent_directory_It_should_return_the_root()
          {
             // HAPPY PATH TEST:
-            const String path = TestHardCodes.ExistingOuterDirectoryWithoutPermissionsChildDirectory;
-
+            var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissionsChildFolder;
             var actual = _target.GetRootPath(path);
             actual.Should().Be(@"x:");
 
@@ -417,14 +416,15 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_the_root()
          {
             // HAPPY PATH TEST:
             var actual = _target.GetRootPath(@"c:\");
             actual.Should().Be(@"c:");
 
-            actual = _target.GetRootPath(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl);
-            actual.Should().Be(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl);
+            actual = _target.GetRootPath(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
+            actual.Should().Be(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
          }
 
          [TestMethod]
@@ -667,11 +667,12 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_false()
          {
             // HAPPY PATH TEST:
             _target.HasExtension(@"c:\").Should().BeFalse();
-            _target.HasExtension(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl).Should().BeFalse();
+            _target.HasExtension(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeFalse();
          }
 
          [TestMethod]
@@ -849,11 +850,12 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_true()
          {
             // HAPPY PATH TEST:
             _target.IsPathRooted(@"c:\").Should().BeTrue();
-            _target.IsPathRooted(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl).Should().BeTrue();
+            _target.IsPathRooted(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeTrue();
          }
 
          [TestMethod]

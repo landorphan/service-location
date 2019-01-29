@@ -455,10 +455,11 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Need to arrange local paths")]
          public void And_the_sourceFileName_and_destFileName_do_not_share_a_common_root_It_should_move_the_file()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destFileName = _pathUtilities.Combine(TestHardCodes.ExistingOuterDirectoryEveryoneFullControl, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.LocalSharedFolderEveryoneFullControl, Guid.NewGuid() + ".tmp");
             try
             {
                _target.Move(sourceFileName, destFileName);

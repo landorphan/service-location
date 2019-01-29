@@ -271,7 +271,7 @@
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_write_the_file()
          {
             var expected = new[] {"zero", "one", "two", "three"}.ToImmutableList();
-            var path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -659,7 +659,7 @@
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_write_the_file()
          {
             const String expected = "contents";
-            var path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
             try
             {
                _target.FileExists(path).Should().BeFalse();

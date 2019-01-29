@@ -329,7 +329,7 @@
          public void And_the_sourceDirName_and_DestDirName_do_not_share_a_common_root_It_should_not_throw()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-            var destDirName = _pathUtilities.Combine(TestHardCodes.UnitTestTargetDirectory, Guid.NewGuid().ToString());
+            var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.LocalTestTargetRootFolder, Guid.NewGuid().ToString());
 
             _target.CreateDirectory(sourceDirName);
             try
@@ -722,8 +722,8 @@
             e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
 
             // network shares stop at 247 regardless of the path length on disk
-            TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl.Last().Should().NotBe('\\');
-            path = TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl + '\\' + new String('A', 247);
+            TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl.Last().Should().NotBe('\\');
+            path = TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl + '\\' + new String('A', 247);
 
             // ensure the implementation allows for a trailing \
             path = path.Substring(0, 247) + '\\';
@@ -772,9 +772,9 @@
          [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_extends_a_known_host_and_known_share_it_should_not_throw()
          {
-            var path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
 
-            _target.DirectoryExists(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl).Should().BeTrue();
+            _target.DirectoryExists(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeTrue();
             _target.CreateDirectory(path);
             _target.DirectoryExists(path).Should().BeTrue();
             _target.DeleteRecursively(path);
@@ -1008,7 +1008,7 @@
             }
 
             // unc
-            path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid() + "It_should_create_the_directory");
+            path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid() + "It_should_create_the_directory");
             try
             {
                _target.CreateDirectory(path);
@@ -1307,7 +1307,7 @@
             }
 
             // unc
-            path = _pathUtilities.Combine(TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid() + "It_should_delete_an_empty_directory");
+            path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid() + "It_should_delete_an_empty_directory");
             try
             {
                _target.CreateDirectory(path);

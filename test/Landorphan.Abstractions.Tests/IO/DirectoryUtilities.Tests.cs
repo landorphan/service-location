@@ -58,7 +58,7 @@
 
             // unc
             path = _pathUtilities.Combine(
-               TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
                Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory));
             try
             {
@@ -107,7 +107,7 @@
 
             // unc
             path = _pathUtilities.Combine(
-               TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
                Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory));
             try
             {
@@ -168,7 +168,7 @@
 
             // unc
             path = _pathUtilities.Combine(
-               TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
                Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories));
             try
             {
@@ -231,7 +231,7 @@
 
             // unc -- extant
             path = _pathUtilities.Combine(
-               TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
                Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories));
             try
             {
@@ -245,7 +245,7 @@
 
             // unc -- non-extant
             path = _pathUtilities.Combine(
-               TestHardCodes.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
                Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories));
             _target.DirectoryExists(path).Should().BeFalse();
          }
