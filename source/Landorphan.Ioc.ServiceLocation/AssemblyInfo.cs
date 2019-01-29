@@ -14,7 +14,6 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 [assembly: NeutralResourcesLanguage("en-US")]
 
-
 #if BuildServer
 [assembly: InternalsVisibleTo("Landorphan.Ioc.ServiceLocation.Testability, PublicKey=" + Landorphan.Ioc.Resources.StringResources.PublicKey)]
 [assembly: InternalsVisibleTo("Landorphan.Ioc.ServiceLocation.Tests, PublicKey=" + Landorphan.Ioc.Resources.StringResources.PublicKey)]

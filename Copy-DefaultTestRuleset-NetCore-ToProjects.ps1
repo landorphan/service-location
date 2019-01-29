@@ -34,6 +34,15 @@ if(Test-Path $sourceRulesetPath)
     Write-Error "Could not find directory $dirPath"
   }
 
+    $dirPath = ".\test\Landorphan.Abstractions.Tests"
+  if(Test-Path $dirPath)
+  {
+    Copy-Item -Path $sourceRulesetPath -Destination "$dirPath\Landorphan.Abstractions.Tests.NetCore.ruleset"
+  }
+  else
+  {
+    Write-Error "Could not find directory $dirPath"
+  }
 }
 else
 {

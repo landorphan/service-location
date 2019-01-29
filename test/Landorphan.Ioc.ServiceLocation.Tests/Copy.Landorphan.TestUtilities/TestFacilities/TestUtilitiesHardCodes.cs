@@ -6,7 +6,7 @@ namespace Landorphan.TestUtilities.TestFacilities
    /// <summary>
    /// Hard-coded values for use in multiple test projects.
    /// </summary>
-   public static class TestHardCodes
+   public static class TestUtilitiesHardCodes
    {
       /// <summary>
       /// Used by tests to avoid S2699: Tests should contain at least one assertion.
@@ -15,7 +15,7 @@ namespace Landorphan.TestUtilities.TestFacilities
       /// For use by tests that call methods with troublesome input (0, null, etc.) to verify no exception is thrown.
       /// <example>
       /// <code>
-      /// TestHardCodes.NoExceptionWasThrown.Should().BeTrue();
+      /// TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       /// </code>
       /// </example>
       /// </remarks>

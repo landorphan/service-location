@@ -29,6 +29,20 @@ if(Test-Path $sourceRulesetPath)
   {
     Copy-Item -Path $sourceRulesetPath -Destination "$dirPath\Landorphan.TestUtilities.MSTest.NetStd.ruleset"
   }
+  else
+  {
+    Write-Error "Could not find directory $dirPath"
+  }
+
+  $dirPath = ".\source\Landorphan.Abstractions"
+  if(Test-Path $dirPath)
+  {
+    Copy-Item -Path $sourceRulesetPath -Destination "$dirPath\Landorphan.Abstractions.NetStd.ruleset"
+  }
+  else
+  {
+    Write-Error "Could not find directory $dirPath"
+  }
 }
 else
 {
