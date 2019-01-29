@@ -78,6 +78,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             var path = @"A:\" + Guid.NewGuid();
@@ -315,6 +316,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
@@ -580,6 +582,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             var sourceFileName = @"A:\" + Guid.NewGuid();

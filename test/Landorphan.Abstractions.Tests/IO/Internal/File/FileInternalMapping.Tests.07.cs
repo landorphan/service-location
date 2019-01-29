@@ -348,6 +348,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destinationBackupFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
@@ -824,6 +825,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destinationFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -1330,6 +1332,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
