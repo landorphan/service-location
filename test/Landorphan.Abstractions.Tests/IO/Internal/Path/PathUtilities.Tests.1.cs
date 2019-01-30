@@ -128,7 +128,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_null()
          {
             if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
@@ -161,7 +160,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -510,7 +508,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -799,7 +796,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -982,7 +978,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_true()
          {
             if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
@@ -1010,7 +1005,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)

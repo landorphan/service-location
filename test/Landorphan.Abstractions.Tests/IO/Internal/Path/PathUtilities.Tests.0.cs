@@ -1259,7 +1259,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore(@"Fails on build server: device not ready, apparently, on the build server A:\ is a mapped drive in an unknown state")]
          public void It_should_get_the_full_path()
          {
             // TODO: need to change mapped drive to return a drive that is "ready" -- just putting out the fire, not digging into details atm.
