@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
    using System;
+   using System.Globalization;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO;
@@ -29,17 +30,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void When_I_call_IDirectoryWriterUtilities_Copy_It_should_copy_the_directory()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
                _directoryUtilities.CreateDirectory(sourceDirName);
-               var filePath = _pathUtilities.Combine(sourceDirName, Guid.NewGuid().ToString());
+               var filePath = _pathUtilities.Combine(sourceDirName, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
                _fileUtilities.CreateFile(filePath);
 
-               var childDirPath = _directoryUtilities.CreateDirectory(_pathUtilities.Combine(sourceDirName, Guid.NewGuid().ToString()));
-               filePath = _pathUtilities.Combine(childDirPath, Guid.NewGuid().ToString());
+               var childDirPath = _directoryUtilities.CreateDirectory(_pathUtilities.Combine(sourceDirName, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+               filePath = _pathUtilities.Combine(childDirPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
                _fileUtilities.CreateFile(filePath);
 
                _target.Copy(sourceDirName, destDirName);
@@ -58,8 +59,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void When_I_call_IDirectoryWriterUtilities_Move_It_should_move_the_directory()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {

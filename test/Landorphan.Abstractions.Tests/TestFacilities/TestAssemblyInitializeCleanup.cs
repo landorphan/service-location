@@ -45,16 +45,17 @@
 
             // TODO: set permissions
 
-            /* ***********************************************************************************************
-            C:\Landorphan.Abstractions.Test.UnitTestTarget
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\Inner
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\OuterExistingFile.txt
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\ReadExecuteListFolderContents
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\Inner\InnerExistingFile.txt
-            C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl\DeniedToAllButOwner.txt
-            *********************************************************************************************** */
+            /* *****************************************************************************************************
+            Create the following folder\file structure:
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\Inner
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\OuterExistingFile.txt
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\ReadExecuteListFolderContents
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\Inner\InnerExistingFile.txt
+                  C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl\DeniedToAllButOwner.txt
+            ***************************************************************************************************** */
 
             // usually C:\
             var rootSystem = pathUtils.GetRootPath(envUtils.GetSpecialFolderPath(Environment.SpecialFolder.System));

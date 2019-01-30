@@ -9,6 +9,7 @@
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -24,8 +25,8 @@
          public void And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file()
          {
             // HAPPY PATH TEST:
-            var firstDirCreatedUnderTemp = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString());
-            var dirName = _pathUtilities.Combine(firstDirCreatedUnderTemp, Guid.NewGuid().ToString());
+            var firstDirCreatedUnderTemp = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var dirName = _pathUtilities.Combine(firstDirCreatedUnderTemp, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var fileName = Guid.NewGuid() + "And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file.tmp";
             var fullPath = _pathUtilities.Combine(dirName, fileName);
             try
@@ -43,7 +44,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_directory_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -59,7 +60,7 @@
             // HAPPY PATH TEST:
             // on a local drive, the drive label and the intervening backslashes count in the length that must be less than 248 characters.
 
-            var dirPath = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString());
+            var dirPath = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             dirPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(dirPath);
             dirPath += new String('A', 247);
             dirPath = dirPath.Substring(0, 247);
@@ -123,7 +124,7 @@
                _target.DeleteFile(tempFilePath);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -149,7 +150,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_file_name_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid() + ".tmp";
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -162,7 +163,7 @@
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be('\\');
-            var path = _tempPath + Guid.NewGuid() + "|.tmp";
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|.tmp";
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -175,7 +176,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var path = _pathUtilities.Combine(_tempPath, Spaces + Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Spaces + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             _target.CreateFile(path);
             _target.FileExists(path).Should().BeTrue();
             _target.DeleteFile(path);
@@ -220,7 +221,7 @@
          [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_create_the_file()
          {
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -251,7 +252,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString(), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
             var expectedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.GetParentPath(path));
 
             Action throwingAction = () => _target.CreateFile(path);
@@ -266,8 +267,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -282,7 +289,7 @@
          {
             // directory path issue
             var dirNameTooLong = _tempPath + new String('A', 248);
-            var dirNameTooLongAndFileName = dirNameTooLong + @"\" + Guid.NewGuid() + ".TMP";
+            var dirNameTooLongAndFileName = dirNameTooLong + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".TMP";
 
             Action throwingAction = () => _target.CreateFile(dirNameTooLongAndFileName);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -384,7 +391,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.DeleteFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -396,7 +403,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.DeleteFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -408,16 +415,16 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteFile(path);
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateFile(path);
             _target.DeleteFile(Spaces + path);
@@ -428,7 +435,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateFile(path);
             _target.DeleteFile(path + Spaces);
@@ -463,8 +470,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.DeleteFile(path);
          }
@@ -529,16 +542,16 @@
          {
             var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
             _target.DeleteFile(path);
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteFile(path);
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -559,7 +572,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_return_false()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             _target.FileExists(path).Should().BeFalse();
          }
@@ -568,7 +581,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_return_false()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "<";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "<";
             _target.FileExists(path).Should().BeFalse();
          }
 
@@ -576,7 +589,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_return_false()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.FileExists(path).Should().BeFalse();
          }
@@ -638,8 +651,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_return_false()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.FileExists(path).Should().BeFalse();
          }
@@ -693,7 +712,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString(), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
             _target.FileExists(path).Should().BeFalse();
          }
 

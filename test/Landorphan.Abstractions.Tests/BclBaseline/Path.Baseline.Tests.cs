@@ -2,9 +2,11 @@
 {
    using System;
    using System.Collections.Generic;
+   using System.Globalization;
    using System.IO;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
+   using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Common.Exceptions;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -93,7 +95,7 @@
          public void Leading_spaces_before_the_drive_label_defeat_IsPathRooted_Fixed()
          {
             // Fixed by PathInternalMapping
-            var noLeadingSpaces = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            var noLeadingSpaces = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var leadingSpaces = Spaces + noLeadingSpaces;
 
             // Proof of fix:
@@ -150,12 +152,21 @@
          [TestCategory(TestTiming.CheckIn)]
          public void Path_Combine_Behavior()
          {
-            // method handles directory separator character insertion
-            Path.Combine(@"c:\temp", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
-            util.Combine(@"c:\temp", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
 
-            Path.Combine(@"c:\temp\", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
-            util.Combine(@"c:\temp\", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+
+            // method handles directory separator character insertion
+            Path.Combine(drive + @"temp", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
+            util.Combine(drive + @"temp", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
+
+            Path.Combine(drive + @"temp\", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
+            util.Combine(drive + @"temp\", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
 
             // string empty is ignored
             Path.Combine(String.Empty).Should().Be(String.Empty);

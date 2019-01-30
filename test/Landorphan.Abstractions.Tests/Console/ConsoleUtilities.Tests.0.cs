@@ -2,6 +2,7 @@
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
+   using System.Globalization;
    using FluentAssertions;
    using Landorphan.Abstractions.Console;
    using Landorphan.Abstractions.Console.Interfaces;
@@ -172,8 +173,6 @@
 
             [TestMethod]
             [TestCategory(TestTiming.CheckIn)]
-            // This test does not work in .Net 4.6
-            // [Ignore]
             public void And_I_get_the_value_it_is_a_String_Value()
             {
                using (var full = new ConsoleUtilities())
@@ -201,14 +200,12 @@
 
             [TestMethod]
             [TestCategory(TestTiming.CheckIn)]
-            // This test does not work in .Net 4.6
-            // [Ignore]
             public void And_I_set_the_value_to_a_valid_value_it_should_take()
             {
                using (var full = new ConsoleUtilities())
                {
                   IConsoleAppearance target = full;
-                  var expected = Guid.NewGuid().ToString();
+                  var expected = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
                   var original = target.Title;
                   try
