@@ -39,7 +39,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
 
             Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
@@ -52,7 +52,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
             const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
 
             Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
@@ -65,7 +65,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
 
             Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
@@ -140,8 +140,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var path = @"A:\" + Guid.NewGuid();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
 
             Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
@@ -180,7 +186,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_matches_an_existing_directory_It_should_throw_FileNotFoundException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _directoryInternalMapping.CreateDirectory(path);
             const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
             try
@@ -227,7 +233,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_FileNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
 
             Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
@@ -263,7 +269,6 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore]
          public void And_the_creationTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
          {
             // Test cannot be written/executed because the maximum is at DateTimeOffset.MaxValue
@@ -294,7 +299,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -306,7 +311,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -318,7 +323,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -388,8 +393,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var path = @"A:\" + Guid.NewGuid();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -425,7 +436,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_matches_an_existing_directory_It_should_throw_FileNotFoundException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _directoryInternalMapping.CreateDirectory(path);
             try
             {
@@ -469,7 +480,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_FileNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<FileNotFoundException>();

@@ -23,7 +23,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+               var destFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
@@ -43,7 +43,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+               var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
@@ -65,7 +65,7 @@
             String destFileName = null;
             try
             {
-               destFileName = _pathUtilities.Combine(_tempPath, Spaces + Guid.NewGuid() + ".tmp");
+               destFileName = _pathUtilities.Combine(_tempPath, Spaces + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                _target.CopyNoOverwrite(sourceFileName, destFileName);
                _target.FileExists(destFileName.Trim()).Should().BeTrue();
             }
@@ -146,11 +146,17 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = @"A:\" + Guid.NewGuid() + ".tmp";
-               _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+               var destFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+               _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -209,7 +215,7 @@
          public void And_the_destFileName_matches_an_existing_directory_It_should_throw_IOException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destFileName = existingDirName;
             try
             {
@@ -274,8 +280,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var sourceFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -289,7 +295,7 @@
          {
             _tempPath.Last().Should().Be('\\');
             var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid());
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -348,7 +354,7 @@
          public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
          {
             var sourceFileName = String.Empty;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid() + ".tmp";
+            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -361,7 +367,7 @@
          public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
          {
             const String sourceFileName = null;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid() + ".tmp";
+            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -373,8 +379,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            var sourceFileName = @"A:\" + Guid.NewGuid() + ".tmp";
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var sourceFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
@@ -414,7 +426,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_matches_an_existing_directory_It_should_throw_FileNotFoundException()
          {
-            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var sourceFileName = existingDirName;
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 
@@ -473,7 +485,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+               var destFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
@@ -493,7 +505,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+               var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
@@ -515,7 +527,7 @@
             String destFileName = null;
             try
             {
-               destFileName = _pathUtilities.Combine(_tempPath, Spaces + Guid.NewGuid() + ".tmp");
+               destFileName = _pathUtilities.Combine(_tempPath, Spaces + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                _target.CopyWithOverwrite(sourceFileName, destFileName);
                _target.FileExists(destFileName.Trim()).Should().BeTrue();
             }
@@ -596,11 +608,17 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = @"A:\" + Guid.NewGuid() + ".tmp";
-               _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+               var destFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+               _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -659,7 +677,7 @@
          public void And_the_destFileName_matches_an_existing_directory_It_should_throw_IOException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destFileName = existingDirName;
 
             try
@@ -723,8 +741,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var sourceFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -738,7 +756,7 @@
          {
             _tempPath.Last().Should().Be('\\');
             var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid());
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -797,7 +815,7 @@
          public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
          {
             var sourceFileName = String.Empty;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid() + ".tmp";
+            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -810,7 +828,7 @@
          public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
          {
             const String sourceFileName = null;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid() + ".tmp";
+            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -822,8 +840,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            var sourceFileName = @"A:\" + Guid.NewGuid() + ".tmp";
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var sourceFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
@@ -863,7 +887,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_matches_an_existing_directory_It_should_throw_FileNotFoundException()
          {
-            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var sourceFileName = existingDirName;
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 

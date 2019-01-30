@@ -120,10 +120,10 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_variable_is_not_recognized_It_should_return_null()
          {
-            var actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString());
+            var actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             actual.Should().BeNull();
 
-            actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString(), EnvironmentVariableTarget.User);
+            actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), EnvironmentVariableTarget.User);
             actual.Should().BeNull();
          }
 

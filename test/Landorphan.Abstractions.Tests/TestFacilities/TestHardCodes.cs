@@ -2,6 +2,9 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 {
    using System;
    using System.Collections.Generic;
+   using System.Collections.Immutable;
+   using System.Linq;
+   using System.Runtime.InteropServices;
 
    // ReSharper disable CommentTypo
 
@@ -41,6 +44,8 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
       {
          // TODO: local and remote UNC paths
          internal const String TodoRethinkNetworkShareEveryoneFullControl = @"\\localhost\SharedEveryoneFullControl";
+         private static readonly Lazy<String> t_unmappedDrive = new Lazy<String>(FindUnmappedDrive);
+         private static readonly Lazy<String> t_mappedDrive = new Lazy<String>(FindMappedDrive);
 
          internal static String LocalOuterFolderWithoutPermissions { get; private set; }
          internal static String LocalOuterFolderWithoutPermissionsChildFile { get; private set; }
@@ -50,6 +55,10 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
          internal static String LocalSharedEveryoneFolderDeniedToAllButOwnerFile { get; private set; }
          internal static String LocalSharedFolderEveryoneFullControl { get; private set; }
          internal static String LocalTestTargetRootFolder { get; private set; }
+         internal static String MappedDrive => t_mappedDrive.Value;
+         internal static String UnmappedDrive => t_unmappedDrive.Value;
+
+         // Setters are called by TestAssemblyInitializeCleanup
 
          internal static void SetFilePathLocalOuterFolderWithoutPermissionsChildFile(String value)
          {
@@ -76,8 +85,6 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             LocalOuterFolderWithoutPermissionsChildFolder = value;
          }
 
-         // Setters are called by TestAssemblyInitializeCleanup
-
          internal static void SetFolderPathLocalReadExecuteListFolderContentsFolder(String value)
          {
             LocalReadExecuteListFolderContentsFolder = value;
@@ -91,6 +98,61 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
          internal static void SetFolderPathLocalTestTargetRootFolder(String value)
          {
             LocalTestTargetRootFolder = value;
+         }
+
+         private static String FindMappedDrive()
+         {
+            // returns null if not on a windows platform
+            // returns null if no mapped letters exist between A and Z
+            // returns an mapped drive (e.g. "C:\")
+            String rv = null;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               var drives = Environment.GetLogicalDrives().ToList();
+               if (drives.Count > 0)
+               {
+                  var sorted = drives;
+                  sorted.Sort(StringComparer.InvariantCultureIgnoreCase);
+                  rv = sorted.First();
+               }
+            }
+
+            return rv;
+         }
+
+         private static String FindUnmappedDrive()
+         {
+            // returns null if not on a windows platform
+            // returns null if no unmapped letters exist between A and Z
+            // returns an unmapped drive (e.g. "A:\")
+            String rv = null;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               var builder = ImmutableHashSet<String>.Empty.ToBuilder();
+               builder.KeyComparer = StringComparer.InvariantCultureIgnoreCase;
+               for (var c = 'A'; c <= 'Z'; c++)
+               {
+                  builder.Add(c + @":\");
+               }
+
+               var possible = builder.ToImmutable();
+               var drives = Environment.GetLogicalDrives();
+               foreach (var d in drives)
+               {
+                  possible = possible.Remove(d);
+               }
+
+               if (possible.Count > 0)
+               {
+                  var sorted = possible.ToList();
+                  sorted.Sort(StringComparer.InvariantCultureIgnoreCase);
+                  rv = sorted.First();
+               }
+            }
+
+            return rv;
          }
       }
    }

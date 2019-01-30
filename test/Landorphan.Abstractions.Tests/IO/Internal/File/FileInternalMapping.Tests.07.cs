@@ -2,6 +2,7 @@
 {
    using System;
    using System.Collections.Generic;
+   using System.Globalization;
    using System.IO;
    using System.Linq;
    using System.Text;
@@ -24,7 +25,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var destinationBackupFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -51,7 +52,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _tempPath + Guid.NewGuid() + "|" + Guid.NewGuid();
+            var destinationBackupFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -165,7 +166,7 @@
                _target.AppendAllText(destinationFileName, "originally in destination", enc);
 
                // force the creation of a directory as well
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString(), Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
 
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
 
@@ -194,7 +195,7 @@
                destinationFileName = _target.CreateTemporaryFile();
                _target.AppendAllText(destinationFileName, "originally in destination", enc);
 
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString(), Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
 
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
 
@@ -351,10 +352,16 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destinationBackupFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(@"A:\" + Guid.NewGuid());
+            var destinationBackupFileName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -551,7 +558,7 @@
          public void And_the_destinationFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destinationFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var destinationFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
             try
             {
@@ -587,7 +594,7 @@
          public void And_the_destinationFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destinationFileName = _tempPath + Guid.NewGuid() + "|" + Guid.NewGuid();
+            var destinationFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
             try
             {
@@ -828,9 +835,15 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_destinationFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             var sourceFileName = _target.CreateTemporaryFile();
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var destinationFileName = _pathUtilities.Combine(@"A:\" + Guid.NewGuid());
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var destinationFileName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
             try
             {
@@ -1057,7 +1070,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var sourceFileName = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
             try
@@ -1093,7 +1106,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var sourceFileName = _tempPath + Guid.NewGuid() + "|" + Guid.NewGuid();
+            var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
             try
@@ -1335,8 +1348,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var sourceFileName = _pathUtilities.Combine(@"A:\" + Guid.NewGuid());
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var sourceFileName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
             try
@@ -1474,7 +1493,6 @@
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should();
                e.And.Message.Should().Contain("The file name is invalid.  The source file '");
                e.And.Message.Should().Contain(sourceFileName);
                e.And.Message.Should().Contain("' is a directory.");

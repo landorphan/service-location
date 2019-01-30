@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
    using System;
+   using System.Globalization;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO;
@@ -45,7 +46,7 @@
 
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory);
+            path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory);
             try
             {
                _target.CreateDirectory(path);
@@ -92,7 +93,7 @@
 
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory);
+            path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory);
             try
             {
                _target.CreateDirectory(path);
@@ -149,7 +150,9 @@
 
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories);
+            path = @".\" +
+                   Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
+                   nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories);
             try
             {
                _target.CreateDirectory(path);
@@ -214,7 +217,9 @@
 
             // relative -- extant
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories);
+            path = @".\" +
+                   Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
+                   nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories);
             try
             {
                _target.CreateDirectory(path);
@@ -226,7 +231,9 @@
             }
 
             // relative -- non-extant
-            path = @".\" + Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories);
+            path = @".\" +
+                   Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
+                   nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories);
             _target.DirectoryExists(path).Should().BeFalse();
 
             // unc -- extant

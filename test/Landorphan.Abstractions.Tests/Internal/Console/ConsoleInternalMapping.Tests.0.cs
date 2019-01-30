@@ -2,6 +2,7 @@
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
+   using System.Globalization;
    using System.IO;
    using System.Text;
    using FluentAssertions;
@@ -704,7 +705,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_I_set_the_value_to_a_valid_value_it_should_take()
          {
-            var expected = Guid.NewGuid().ToString();
+            var expected = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var original = _target.Title;
             try

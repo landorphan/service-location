@@ -48,8 +48,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var random0 = Guid.NewGuid().ToString();
-            var path = _tempPath + random0 + ":" + Guid.NewGuid();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _tempPath + random0 + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -61,7 +61,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -73,11 +73,21 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
             // HAPPY PATH TEST:
-            var path = _target.Combine(@"c:\", Guid.NewGuid().ToString());
+            var path = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(@"c:");
+            actual.Should().Be(driveNoSep);
          }
 
          [TestMethod]
@@ -121,8 +131,17 @@
          [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_null()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+
             // HAPPY PATH TEST:
-            var actual = _target.GetParentPath(@"c:\");
+            var actual = _target.GetParentPath(drive);
             actual.Should().BeNull();
 
             actual = _target.GetParentPath(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
@@ -145,12 +164,18 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryUtilities.DirectoryExists(@"A:\").Should().BeFalse();
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryUtilities.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(@"A:");
+            actual.Should().Be(TestHardCodes.WindowsTestPaths.UnmappedDrive.Substring(0, 2));
          }
 
          [TestMethod]
@@ -209,9 +234,9 @@
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var random1 = Guid.NewGuid().ToString();
-            var random2 = Guid.NewGuid().ToString();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
 
@@ -224,8 +249,8 @@
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString());
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             var actual = _target.GetParentPath(path);
             actual.Should().Be(String.Format(CultureInfo.InvariantCulture, @"\\localhost\{0}", random0));
@@ -235,18 +260,28 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_null_or_value_without_a_trailing_directory_separator_char()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
             // HAPPY PATH TEST:
 
             // Local File System (LFS) absolute roots
-            _target.GetParentPath(@"c:").Should().BeNull();
-            _target.GetParentPath(@"c:\").Should().BeNull();
-            _target.GetParentPath(@"c:/").Should().BeNull();
+            _target.GetParentPath(driveNoSep).Should().BeNull();
+            _target.GetParentPath(driveNoSep + _target.DirectorySeparatorCharacter).Should().BeNull();
+            _target.GetParentPath(driveNoSep + _target.AltDirectorySeparatorCharacter).Should().BeNull();
 
             // LFS absolute subdirectories
-            _target.GetParentPath(@"c:\temp").Should().Be(@"c:");
-            _target.GetParentPath(@"c:\temp\").Should().Be(@"c:");
-            _target.GetParentPath(@"c:/temp/").Should().Be(@"c:");
-            _target.GetParentPath(@"c:\temp/").Should().Be(@"c:");
+            _target.GetParentPath(drive + @"temp").Should().Be(driveNoSep);
+            _target.GetParentPath(drive + @"temp\").Should().Be(driveNoSep);
+            _target.GetParentPath(driveNoSep + _target.AltDirectorySeparatorCharacter + @"temp/").Should().Be(driveNoSep);
+            _target.GetParentPath(drive + @"temp/").Should().Be(driveNoSep);
 
             // LFS relative subdirectories (paths likely do not exist)
             _target.GetParentPath(@". \abc").Should().Be(@". "); // TODO: This is the behavior, is it correct? (trailing whitespace)
@@ -282,9 +317,9 @@
             _target.GetParentPath(@"abc\123/").Should().Be(@"abc");
 
             // LFS relative subdirectories (path exists)
-            var childDirectory = Guid.NewGuid().ToString();
+            var childDirectory = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             _target.IsPathRooted(childDirectory).Should().BeFalse();
-            var grandChildDirectory = _target.Combine(childDirectory, Guid.NewGuid().ToString());
+            var grandChildDirectory = _target.Combine(childDirectory, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.IsPathRooted(grandChildDirectory).Should().BeFalse();
             _directoryUtilities.SetCurrentDirectory(_environmentUtilities.GetTemporaryDirectoryPath());
 
@@ -326,7 +361,8 @@
             // HAPPY PATH TEST:
             var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions;
             var actual = _target.GetRootPath(path);
-            actual.Should().Be(@"x:");
+            var bclActual = Path.GetPathRoot(path);
+            actual.Should().Be(bclActual);
 
             _directoryUtilities.DirectoryExists(path).Should().BeTrue();
          }
@@ -339,7 +375,8 @@
             // HAPPY PATH TEST:
             var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissionsChildFolder;
             var actual = _target.GetRootPath(path);
-            actual.Should().Be(@"x:");
+            var bclActual = Path.GetPathRoot(path);
+            actual.Should().Be(bclActual);
 
             _directoryUtilities.DirectoryExists(path).Should().BeFalse();
          }
@@ -348,7 +385,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -360,7 +397,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -372,11 +409,21 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
             // HAPPY PATH TEST:
-            var path = _target.Combine(@"c:\", Guid.NewGuid().ToString());
+            var path = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             var actual = _target.GetRootPath(path);
-            actual.Should().Be(@"c:");
+            actual.Should().Be(driveNoSep);
          }
 
          [TestMethod]
@@ -420,9 +467,19 @@
          [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_the_root()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
             // HAPPY PATH TEST:
-            var actual = _target.GetRootPath(@"c:\");
-            actual.Should().Be(@"c:");
+            var actual = _target.GetRootPath(drive);
+            actual.Should().Be(driveNoSep);
 
             actual = _target.GetRootPath(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
             actual.Should().Be(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
@@ -444,12 +501,18 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryUtilities.DirectoryExists(@"A:\").Should().BeFalse();
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryUtilities.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(@"A:");
+            actual.Should().Be(TestHardCodes.WindowsTestPaths.UnmappedDrive.Substring(0, 2));
          }
 
          [TestMethod]
@@ -508,9 +571,9 @@
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var random1 = Guid.NewGuid().ToString();
-            var random2 = Guid.NewGuid().ToString();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}\", random0, random1, random2);
 
@@ -523,8 +586,8 @@
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString());
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             var actual = _target.GetRootPath(path);
             actual.Should().Be(String.Format(CultureInfo.InvariantCulture, @"\\localhost\{0}", random0));
@@ -534,20 +597,31 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_string_empty_or_a_value_without_a_trailing_directory_separator_char()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+            var driveAltSep = driveNoSep + _target.AltDirectorySeparatorCharacter;
+
             // HAPPY PATH TEST:
 
             // Local File System (LFS) absolute roots (case-in,case-out)
-            _target.GetRootPath(@"c:").Should().Be(@"c:");
-            _target.GetRootPath(@"c:\").Should().Be(@"c:");
-            _target.GetRootPath(@"c:/").Should().Be(@"c:");
-            _target.GetRootPath(@"C:").Should().Be(@"C:");
-            _target.GetRootPath(@"C:\").Should().Be(@"C:");
-            _target.GetRootPath(@"C:/").Should().Be(@"C:");
+            _target.GetRootPath(driveNoSep).Should().Be(driveNoSep);
+            _target.GetRootPath(drive).Should().Be(driveNoSep);
+            _target.GetRootPath(driveAltSep).Should().Be(driveNoSep);
+            _target.GetRootPath(driveNoSep).Should().Be(driveNoSep);
+            _target.GetRootPath(drive).Should().Be(driveNoSep);
+            _target.GetRootPath(driveAltSep).Should().Be(driveNoSep);
 
             // LFS absolute subdirectories
-            _target.GetRootPath(@"c:\temp").Should().Be(@"c:");
-            _target.GetRootPath(@"c:\temp\").Should().Be(@"c:");
-            _target.GetRootPath(@"c:/temp/").Should().Be(@"c:");
+            _target.GetRootPath(drive + @"temp").Should().Be(driveNoSep);
+            _target.GetRootPath(drive + @"temp\").Should().Be(driveNoSep);
+            _target.GetRootPath(driveAltSep + @"temp/").Should().Be(driveNoSep);
 
             // LFS relative subdirectories (paths likely do not exist)
             _target.GetRootPath(@".\abc").Should().Be(String.Empty);
@@ -576,9 +650,9 @@
             _target.GetRootPath(@"abc\123/").Should().Be(String.Empty);
 
             // LFS relative subdirectories (path exists)
-            var childDirectory = Guid.NewGuid().ToString();
+            var childDirectory = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             _target.IsPathRooted(childDirectory).Should().BeFalse();
-            var grandChildDirectory = _target.Combine(childDirectory, Guid.NewGuid().ToString());
+            var grandChildDirectory = _target.Combine(childDirectory, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.IsPathRooted(grandChildDirectory).Should().BeFalse();
             _directoryUtilities.SetCurrentDirectory(_environmentUtilities.GetTemporaryDirectoryPath());
 
@@ -610,8 +684,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var random0 = Guid.NewGuid().ToString();
-            var path = _tempPath + random0 + ":" + Guid.NewGuid();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _tempPath + random0 + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.HasExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -623,7 +697,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.HasExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -635,8 +709,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+
             // HAPPY PATH TEST:
-            var path = _target.Combine(@"c:\", Guid.NewGuid().ToString());
+            var path = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.HasExtension(path).Should().BeFalse();
          }
@@ -672,8 +755,17 @@
          [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_false()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+
             // HAPPY PATH TEST:
-            _target.HasExtension(@"c:\").Should().BeFalse();
+            _target.HasExtension(drive).Should().BeFalse();
             _target.HasExtension(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeFalse();
          }
 
@@ -698,9 +790,15 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryUtilities.DirectoryExists(@"A:\").Should().BeFalse();
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryUtilities.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.HasExtension(path).Should().BeFalse();
          }
@@ -734,9 +832,9 @@
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var random1 = Guid.NewGuid().ToString();
-            var random2 = Guid.NewGuid().ToString();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
 
@@ -748,8 +846,8 @@
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString());
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.HasExtension(path).Should().BeFalse();
          }
@@ -758,6 +856,16 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_determine_if_the_value_has_an_extension()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
             // expectation 
             // c:\ has no extension
             // c:\ has no extension
@@ -767,14 +875,14 @@
             // TODO: needs work
 
             // HAPPY PATH TEST:
-            _target.HasExtension(@"c:").Should().BeFalse();
-            _target.HasExtension(@"c:\").Should().BeFalse();
-            _target.HasExtension(@"c:\temp").Should().BeFalse();
-            _target.HasExtension(@"c:\temp\").Should().BeFalse();
-            _target.HasExtension(@"c:\1.tmp").Should().BeTrue();
-            _target.HasExtension(@"c:\1.tmp\").Should().BeTrue();
-            _target.HasExtension(@"c:\.tmp").Should().BeTrue();
-            _target.HasExtension(@"c:\.t").Should().BeTrue();
+            _target.HasExtension(driveNoSep).Should().BeFalse();
+            _target.HasExtension(drive).Should().BeFalse();
+            _target.HasExtension(drive + @"temp").Should().BeFalse();
+            _target.HasExtension(drive + @"temp\").Should().BeFalse();
+            _target.HasExtension(drive + @"1.tmp").Should().BeTrue();
+            _target.HasExtension(drive + @"1.tmp\").Should().BeTrue();
+            _target.HasExtension(drive + @".tmp").Should().BeTrue();
+            _target.HasExtension(drive + @".t").Should().BeTrue();
 
             _target.HasExtension(@".\abc\123").Should().BeFalse();
             _target.HasExtension(@".\abc\123\a.tmp").Should().BeTrue();
@@ -796,8 +904,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var random0 = Guid.NewGuid().ToString();
-            var path = _tempPath + random0 + ":" + Guid.NewGuid();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _tempPath + random0 + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.IsPathRooted(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -809,7 +917,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.IsPathRooted(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -821,8 +929,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+
             // HAPPY PATH TEST:
-            var path = _target.Combine(@"c:\", Guid.NewGuid().ToString());
+            var path = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.IsPathRooted(path).Should().BeTrue();
          }
@@ -856,8 +973,17 @@
          [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_true()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+
             // HAPPY PATH TEST:
-            _target.IsPathRooted(@"c:\").Should().BeTrue();
+            _target.IsPathRooted(drive).Should().BeTrue();
             _target.IsPathRooted(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeTrue();
          }
 
@@ -875,9 +1001,15 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
-            var path = @"A:\" + Guid.NewGuid();
-            _directoryUtilities.DirectoryExists(@"A:\").Should().BeFalse();
+            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryUtilities.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.IsPathRooted(path).Should().BeTrue();
          }
@@ -919,9 +1051,9 @@
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var random1 = Guid.NewGuid().ToString();
-            var random2 = Guid.NewGuid().ToString();
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
 
@@ -933,8 +1065,8 @@
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var random0 = Guid.NewGuid().ToString();
-            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString());
+            var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.IsPathRooted(path).Should().BeTrue();
          }
@@ -943,15 +1075,25 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_determine_if_the_path_is_rooted()
          {
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
             // HAPPY PATH TEST:
-            _target.IsPathRooted(@"c:").Should().BeTrue();
-            _target.IsPathRooted(@"c:\").Should().BeTrue();
-            _target.IsPathRooted(@"c:\temp").Should().BeTrue();
-            _target.IsPathRooted(@"c:\temp\").Should().BeTrue();
-            _target.IsPathRooted(@"c:\1.tmp").Should().BeTrue();
-            _target.IsPathRooted(@"c:\1.tmp\").Should().BeTrue();
-            _target.IsPathRooted(@"c:\.tmp").Should().BeTrue();
-            _target.IsPathRooted(@"c:\.t").Should().BeTrue();
+            _target.IsPathRooted(driveNoSep).Should().BeTrue();
+            _target.IsPathRooted(drive).Should().BeTrue();
+            _target.IsPathRooted(drive + @"temp").Should().BeTrue();
+            _target.IsPathRooted(drive + @"temp\").Should().BeTrue();
+            _target.IsPathRooted(drive + @"1.tmp").Should().BeTrue();
+            _target.IsPathRooted(drive + @"1.tmp\").Should().BeTrue();
+            _target.IsPathRooted(drive + @".tmp").Should().BeTrue();
+            _target.IsPathRooted(drive + @".t").Should().BeTrue();
 
             _target.IsPathRooted(@".\abc\123").Should().BeFalse();
             _target.IsPathRooted(@".\abc\123\a.tmp").Should().BeFalse();

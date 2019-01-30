@@ -3,6 +3,7 @@
    using System;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Internal;
+   using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -46,7 +47,15 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_mapped_drive_It_should_return_false()
          {
-            DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(@"c:\abc:defg\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // ReSharper disable once StringLiteralTypo
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.MappedDrive, @"abc:defg\");
+            DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(path).Should().BeFalse();
          }
 
          [TestMethod]
@@ -54,7 +63,15 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_return_true()
          {
-            DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(@"a:\abc:defg\").Should().BeTrue();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            // ReSharper disable once StringLiteralTypo
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive, @"abc:defg\");
+            DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(path).Should().BeTrue();
          }
       }
 

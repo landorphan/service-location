@@ -9,6 +9,7 @@
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -22,7 +23,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.ReadAllBytes(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -34,7 +35,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.ReadAllBytes(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -69,7 +70,7 @@
                _target.DeleteFile(filePath);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -86,7 +87,7 @@
                _target.DeleteFile(filePath);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -114,7 +115,7 @@
          public void And_the_path_is_on_a_known_host_and_known_share_it_read_the_file()
          {
             var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -144,8 +145,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            var fileFullPath = @"A:\" + Guid.NewGuid();
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var fileFullPath = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.ReadAllBytes(fileFullPath);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -249,7 +256,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.ReadAllLines(path, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -261,7 +268,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.ReadAllLines(path, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -296,7 +303,7 @@
                _target.DeleteFile(filePath);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -313,7 +320,7 @@
                _target.DeleteFile(filePath);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -342,7 +349,7 @@
          {
             var expected = new[] {"zero", "one", "two", "three"}.ToImmutableList();
 
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
                _target.WriteAllLines(path, expected, Encoding.UTF8);
@@ -372,8 +379,14 @@
          [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            var fileFullPath = @"A:\" + Guid.NewGuid();
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var fileFullPath = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.ReadAllLines(fileFullPath, Encoding.UTF8);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();

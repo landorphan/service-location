@@ -44,10 +44,10 @@
          public void It_should_distinguish_dissimilar_instances()
          {
             // ReSharper disable ExpressionIsAlwaysNull
-            var first = new EnvironmentVariable(Guid.NewGuid().ToString(), null);
-            var second = new EnvironmentVariable(Guid.NewGuid().ToString(), null);
+            var first = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
+            var second = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
             EnvironmentVariable third = null;
-            Object fourth = new EnvironmentVariable(Guid.NewGuid().ToString(), null);
+            Object fourth = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
             var obj = new Object();
 
             first.Equals(second).Should().BeFalse();
@@ -70,8 +70,8 @@
          [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Test Code (MWP)")]
          public void It_should_employ_value_semantics_without_case_sensitivity()
          {
-            var name = Guid.NewGuid().ToString();
-            var value = Guid.NewGuid().ToString();
+            var name = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var value = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var first = new EnvironmentVariable(name.ToUpperInvariant(), value.ToUpperInvariant());
             var second = new EnvironmentVariable(name.ToLowerInvariant(), value.ToLowerInvariant());
@@ -89,7 +89,7 @@
          [SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Justification = "Test Code (MWP)")]
          public void It_should_handle_null_values()
          {
-            var name = Guid.NewGuid().ToString();
+            var name = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var first = new EnvironmentVariable(name.ToUpperInvariant(), String.Empty);
             var second = new EnvironmentVariable(name.ToLowerInvariant(), String.Empty);
@@ -110,7 +110,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_null_values()
          {
-            var expectedName = Guid.NewGuid().ToString();
+            var expectedName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             String expectedValue = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
@@ -124,7 +124,7 @@
          public void It_should_coalesce_names_to_empty()
          {
             var expectedName = String.Empty;
-            var expectedValue = Guid.NewGuid().ToString();
+            var expectedValue = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var actual = new EnvironmentVariable(null, expectedValue);
             actual.Name.Should().Be(expectedName);
@@ -135,8 +135,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_faithfully_transpose_the_argument_values_to_properties()
          {
-            var expectedName = Guid.NewGuid().ToString();
-            var expectedValue = Guid.NewGuid().ToString();
+            var expectedName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var expectedValue = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var actual = new EnvironmentVariable(expectedName, expectedValue);
             actual.Name.Should().Be(expectedName);
@@ -147,8 +147,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_trim_names()
          {
-            var expectedName = Guid.NewGuid().ToString();
-            var expectedValue = Guid.NewGuid().ToString();
+            var expectedName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var expectedValue = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var actual = new EnvironmentVariable(Whitespace + expectedName + Whitespace, expectedValue);
             actual.Name.Should().Be(expectedName);
@@ -159,8 +159,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_trim_values()
          {
-            var expectedName = Guid.NewGuid().ToString();
-            var expectedValue = Guid.NewGuid().ToString();
+            var expectedName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var expectedValue = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             // ReSharper disable once ExpressionIsAlwaysNull
             var actual = new EnvironmentVariable(expectedName, Whitespace + expectedValue + Whitespace);

@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Abstractions.Tests.Internal.Console
 {
    using System;
+   using System.Globalization;
    using System.IO;
    using System.Threading;
    using FluentAssertions;
@@ -960,7 +961,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_throw()
          {
-            var value = Guid.NewGuid().ToString();
+            var value = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             _target.Write(value);
 
             value = null;
@@ -1315,7 +1316,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_throw()
          {
-            var value = Guid.NewGuid().ToString();
+            var value = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             _target.WriteLine(value);
 
             value = null;

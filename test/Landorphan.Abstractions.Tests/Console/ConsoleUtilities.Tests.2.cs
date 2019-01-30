@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Abstractions.Tests.Console
 {
    using System;
+   using System.Globalization;
    using FluentAssertions;
    using Landorphan.Abstractions.Console;
    using Landorphan.Abstractions.Console.Interfaces;
@@ -397,7 +398,7 @@
                using (var full = new ConsoleUtilities())
                {
                   IConsoleWriter target = full;
-                  var value = Guid.NewGuid().ToString();
+                  var value = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
                   target.Write(value);
 
                   value = null;
@@ -847,7 +848,7 @@
                using (var full = new ConsoleUtilities())
                {
                   IConsoleWriter target = full;
-                  var value = Guid.NewGuid().ToString();
+                  var value = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
                   target.WriteLine(value);
 
                   value = null;
