@@ -19,9 +19,10 @@
       public class When_I_call_ConsoleInternalMapping_Beep : ConsoleTestBase
       {
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void It_should_Beep()
          {
+            // takes 5 seconds on my box
             _target.Beep();
             Thread.Sleep(2 * 1000);
             _target.Beep(37, 3 * 1000);

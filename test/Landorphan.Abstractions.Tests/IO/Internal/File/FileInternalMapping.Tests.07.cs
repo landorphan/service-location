@@ -74,10 +74,11 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void
             And_the_destinationBackupFileName_does_exist_It_should_replace_the_contents_of_both_the_destinationFile_and_the_destinationBackupFile()
          {
+            // takes 3 seconds on my box
             var cleanupFileNames = new List<String>();
             var enc = new UTF8Encoding(false, true);
             try
@@ -150,10 +151,11 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void
             And_the_destinationBackupFileName_does_not_exist_It_should_replace_the_contents_of_destinationFile_and_create_the_destinationBackupFile()
          {
+            // takes 3 seconds on my box
             var cleanupFileNames = new List<String>();
             var enc = new UTF8Encoding(false, true);
             try
@@ -666,9 +668,11 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void And_the_destinationFileName_has_leading_spaces_It_should_not_throw()
          {
+            // takes 3 seconds on my box
+
             var cleanupFileNames = new List<String>();
             try
             {
@@ -713,9 +717,11 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void And_the_destinationFileName_has_trailing_spaces_It_should_not_throw()
          {
+            // takes 3 seconds on my box
+
             var cleanupFileNames = new List<String>();
             try
             {
@@ -1179,9 +1185,11 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void And_the_sourceFileName_has_leading_spaces_It_should_not_throw()
          {
+            // takes 3 seconds on my box
+
             var cleanupFileNames = new List<String>();
             try
             {
@@ -1226,9 +1234,10 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(TestTiming.Nightly)]
          public void And_the_sourceFileName_has_trailing_spaces_It_should_not_throw()
          {
+            // takes 3 seconds on my box
             var cleanupFileNames = new List<String>();
             try
             {

@@ -415,9 +415,10 @@
          public class When_I_call_ConsoleMisc_Beep : ConsoleTestBase
          {
             [TestMethod]
-            [TestCategory(TestTiming.CheckIn)]
+            [TestCategory(TestTiming.Nightly)]
             public void It_should_Beep()
             {
+               // takes 5 seconds on my box
                using (var full = new ConsoleUtilities())
                {
                   IConsoleMisc target = full;
