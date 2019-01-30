@@ -2,6 +2,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 {
    using System;
    using System.Collections.Generic;
+   using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
    using System.IO;
    using System.Linq;
@@ -101,38 +102,12 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             LocalTestTargetRootFolder = value;
          }
 
+         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
          private static String FindMappedDrive()
          {
             // returns null if not on a windows platform
-            // returns null if no mapped letters exist between A and Z
-            // returns an mapped drive (e.g. "C:\")
-
-            // on the Azure DevOps build server, this returns A:\
-            // A:\ is a mapped drive that when queiried throws and exception:
-            // System.IO.IOException: The device is not ready : 'A:\'
-
-            String rv = null;
-
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-               var drives = Environment.GetLogicalDrives().ToList();
-               if (drives.Count > 0)
-               {
-                  var sorted = drives;
-                  sorted.Sort(StringComparer.InvariantCultureIgnoreCase);
-                  rv = sorted.First();
-               }
-            }
-
-            return rv;
-         }
-
-         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-         private static String FindUnmappedDrive()
-         {
-            // returns null if not on a windows platform
-            // returns null if no unmapped letters exist between A and Z
-            // returns an unmapped drive (e.g. "C:\") that is a fixed (preferred) or network drive
+            // returns null if no mapped letters exist
+            // returns an mapped drive (e.g. "C:\") that is a fixed (preferred) or network drive
 
             // on the Azure DevOps server it was throwing: IOException: The device is not ready : 'A:\'
             // at System.Environment.set_CurrentDirectoryCore(String value)
@@ -175,6 +150,40 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
                else if (firstNetwork != null)
                {
                   rv = firstNetwork.Name;
+               }
+            }
+
+            return rv;
+         }
+
+         private static String FindUnmappedDrive()
+         {
+            // returns null if not on a windows platform
+            // returns null if no unmapped letters exist between A and Z
+            // returns an unmapped drive (e.g. "A:\")
+            String rv = null;
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               var builder = ImmutableHashSet<String>.Empty.ToBuilder();
+               builder.KeyComparer = StringComparer.InvariantCultureIgnoreCase;
+               for (var c = 'A'; c <= 'Z'; c++)
+               {
+                  builder.Add(c + @":\");
+               }
+
+               var possible = builder.ToImmutable();
+               var drives = Environment.GetLogicalDrives();
+               foreach (var d in drives)
+               {
+                  possible = possible.Remove(d);
+               }
+
+               if (possible.Count > 0)
+               {
+                  var sorted = possible.ToList();
+                  sorted.Sort(StringComparer.InvariantCultureIgnoreCase);
+                  rv = sorted.First();
                }
             }
 
