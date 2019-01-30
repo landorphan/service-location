@@ -2,7 +2,8 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 {
    using System;
    using System.Collections.Generic;
-   using System.Collections.Immutable;
+   using System.Diagnostics.CodeAnalysis;
+   using System.IO;
    using System.Linq;
    using System.Runtime.InteropServices;
 
@@ -43,7 +44,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
       internal static class WindowsTestPaths
       {
          // TODO: local and remote UNC paths
-         internal const String TodoRethinkNetworkShareEveryoneFullControl = @"\\localhost\SharedEveryoneFullControl";
+         internal const String TodoRethinkUncShareEveryoneFullControl = @"\\localhost\SharedEveryoneFullControl";
          private static readonly Lazy<String> t_unmappedDrive = new Lazy<String>(FindUnmappedDrive);
          private static readonly Lazy<String> t_mappedDrive = new Lazy<String>(FindMappedDrive);
 
@@ -105,6 +106,11 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             // returns null if not on a windows platform
             // returns null if no mapped letters exist between A and Z
             // returns an mapped drive (e.g. "C:\")
+
+            // on the Azure DevOps build server, this returns A:\
+            // A:\ is a mapped drive that when queiried throws and exception:
+            // System.IO.IOException: The device is not ready : 'A:\'
+
             String rv = null;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -121,34 +127,54 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             return rv;
          }
 
+         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
          private static String FindUnmappedDrive()
          {
             // returns null if not on a windows platform
             // returns null if no unmapped letters exist between A and Z
-            // returns an unmapped drive (e.g. "A:\")
-            String rv = null;
+            // returns an unmapped drive (e.g. "C:\") that is a fixed (preferred) or network drive
 
+            // on the Azure DevOps server it was throwing: IOException: The device is not ready : 'A:\'
+            // at System.Environment.set_CurrentDirectoryCore(String value)
+            // best guess:  somewhere in the implementation of System.IO.Path, the current directory is changed, and then changed back
+            // it would be best to avoid anything but a writable HD.
+
+            String rv = null;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-               var builder = ImmutableHashSet<String>.Empty.ToBuilder();
-               builder.KeyComparer = StringComparer.InvariantCultureIgnoreCase;
-               for (var c = 'A'; c <= 'Z'; c++)
-               {
-                  builder.Add(c + @":\");
-               }
-
-               var possible = builder.ToImmutable();
-               var drives = Environment.GetLogicalDrives();
+               // prefer fixed over network but accept both
+               DriveInfo driveInfo = null;
+               DriveInfo firstNetwork = null;
+               var drives = DriveInfo.GetDrives();
                foreach (var d in drives)
                {
-                  possible = possible.Remove(d);
+                  try
+                  {
+                     var x = d.DriveType;
+                     if (x == DriveType.Fixed)
+                     {
+                        driveInfo = d;
+                        break;
+                     }
+
+                     if (x == DriveType.Network && firstNetwork == null)
+                     {
+                        firstNetwork = d;
+                     }
+                  }
+                  catch (IOException)
+                  {
+                     // eat it DriveInfo is one of those ancient types that throws IOException on property accessors
+                  }
                }
 
-               if (possible.Count > 0)
+               if (driveInfo != null)
                {
-                  var sorted = possible.ToList();
-                  sorted.Sort(StringComparer.InvariantCultureIgnoreCase);
-                  rv = sorted.First();
+                  rv = driveInfo.Name;
+               }
+               else if (firstNetwork != null)
+               {
+                  rv = firstNetwork.Name;
                }
             }
 

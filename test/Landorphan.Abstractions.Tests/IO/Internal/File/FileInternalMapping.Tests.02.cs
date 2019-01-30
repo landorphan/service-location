@@ -221,7 +221,7 @@
          [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_create_the_file()
          {
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {

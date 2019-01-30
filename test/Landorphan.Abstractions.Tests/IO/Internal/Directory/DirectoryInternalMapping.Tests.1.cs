@@ -281,7 +281,7 @@
 
             // unc
             path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
                Guid.NewGuid() + "It_should_delete_a_directory_with_files_and_subdirectories");
             try
             {
@@ -488,7 +488,7 @@
 
             // unc -- extant
             path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
                Guid.NewGuid() + "It_should_distinguish_between_extant_and_non_extant_directories");
             try
             {
@@ -502,7 +502,7 @@
 
             // unc -- non-extant
             path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl,
+               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
                Guid.NewGuid() + "It_should_distinguish_between_extant_and_non_extant_directories");
             _target.DirectoryExists(path).Should().BeFalse();
          }

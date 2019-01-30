@@ -22,7 +22,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_parent()
          {
             // HAPPY PATH TEST:
@@ -34,7 +34,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_nor_on_the_parent_directory_It_should_return_the_parent()
          {
             // HAPPY PATH TEST:
@@ -128,7 +128,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         // [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_null()
          {
             if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
@@ -144,7 +144,7 @@
             var actual = _target.GetParentPath(drive);
             actual.Should().BeNull();
 
-            actual = _target.GetParentPath(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
+            actual = _target.GetParentPath(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl);
             actual.Should().BeNull();
          }
 
@@ -161,7 +161,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
+         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -355,9 +355,15 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_root()
          {
+            if (TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
             var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissions;
             var actual = _target.GetRootPath(path);
@@ -369,9 +375,15 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_nor_on_the_parent_directory_It_should_return_the_root()
          {
+            if (TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissionsChildFolder == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissionsChildFolder)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
             var path = TestHardCodes.WindowsTestPaths.LocalOuterFolderWithoutPermissionsChildFolder;
             var actual = _target.GetRootPath(path);
@@ -464,7 +476,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         [Ignore("Need to arrange local paths: UNC paths and permissions")]
          public void And_the_path_is_a_root_It_should_return_the_root()
          {
             if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
@@ -481,8 +493,8 @@
             var actual = _target.GetRootPath(drive);
             actual.Should().Be(driveNoSep);
 
-            actual = _target.GetRootPath(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
-            actual.Should().Be(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl);
+            actual = _target.GetRootPath(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl);
+            actual.Should().Be(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl);
          }
 
          [TestMethod]
@@ -498,7 +510,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
+         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -752,7 +764,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         [Ignore("Need to arrange local paths: UNC paths")]
          public void And_the_path_is_a_root_It_should_return_false()
          {
             if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
@@ -766,7 +778,7 @@
 
             // HAPPY PATH TEST:
             _target.HasExtension(drive).Should().BeFalse();
-            _target.HasExtension(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeFalse();
+            _target.HasExtension(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl).Should().BeFalse();
          }
 
          [TestMethod]
@@ -787,7 +799,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
+         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -970,7 +982,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths")]
+         // [Ignore("Need to arrange local paths")]
          public void And_the_path_is_a_root_It_should_return_true()
          {
             if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
@@ -984,7 +996,7 @@
 
             // HAPPY PATH TEST:
             _target.IsPathRooted(drive).Should().BeTrue();
-            _target.IsPathRooted(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl).Should().BeTrue();
+            _target.IsPathRooted(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl).Should().BeTrue();
          }
 
          [TestMethod]
@@ -998,7 +1010,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
+         // [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
