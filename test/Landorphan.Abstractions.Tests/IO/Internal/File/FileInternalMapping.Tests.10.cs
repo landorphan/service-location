@@ -323,7 +323,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
@@ -696,7 +695,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
             if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
