@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Continue'
 
 $started = [DateTime]::UtcNow
 
-& .\Build-Release.ps1
+ & .\Build-Release.ps1
 
 # assumes vstest.console.exe is in the path environment variable ($Env:Path)
 # On my machine, the path is: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe
@@ -24,12 +24,17 @@ if(!(Test-Path $LandorphanTestUtilitiesMSTestTests))
 {
   Write-Error "Could not find TestUtilities Tests at: $LandorphanIocTests"
 }
+$LandorphanAbstractionsTests = Join-Path $scriptDirectory \bin\release\Landorphan.Abstractions.Tests\netcoreapp2.2\Landorphan.Abstractions.Tests.dll
+if(!(Test-Path $LandorphanAbstractionsTests))
+{
+  Write-Error "Could not find TestUtilities Tests at: $LandorphanAbstractionsTests"
+}
 
 $results = Join-Path $scriptDirectory TestResults
 
 # TODO: switch to dotnet test implementation
 # TODO: figure out while the trx file is not being written
-vstest.console.exe $LandorphanIocTests, $LandorphanIocTestabilityTests, $LandorphanTestUtilitiesMSTestTests /logger:trx /ResultsDirectory:$results /Parallel /TestCaseFilter:"TestCategory!=Nightly&TestCategory!=Manual&TestCategory!=IDE-Only"
+vstest.console.exe $LandorphanIocTests, $LandorphanIocTestabilityTests, $LandorphanTestUtilitiesMSTestTests $LandorphanAbstractionsTests /logger:trx /ResultsDirectory:$results /Parallel /TestCaseFilter:"(TestCategory=Check-In|Check-In-Non-Ide)"
 
 $completed = [DateTime]::UtcNow
 $elapsed = $completed - $started

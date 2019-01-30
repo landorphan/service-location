@@ -7,6 +7,8 @@
    /// </summary>
    public static class TestTiming
    {
+      // NOTE: '(' and ')' are control characters in test filters, do not use them in category names
+
       /// <summary>
       /// Check-in test category.
       /// </summary>
@@ -21,7 +23,7 @@
       /// <remarks>
       /// Tests must pass before check-in, but are excluded from IDE test runs.
       /// </remarks>
-      public const String CheckInNonIde = "Check-In(Non-Ide)";
+      public const String CheckInNonIde = "Check-In-Non-Ide";
 
       /// <summary>
       /// IDE only test category.
