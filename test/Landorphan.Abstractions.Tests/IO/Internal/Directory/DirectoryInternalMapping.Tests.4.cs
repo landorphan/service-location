@@ -66,7 +66,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(@"\");
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             var actual = _target.GetLastWriteTime(path0);
@@ -81,7 +81,7 @@
          public void And_the_path_has_trailing_spaces_It_should__not_throw()
          {
             var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(@"\");
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             var actual = _target.GetLastWriteTime(path0);

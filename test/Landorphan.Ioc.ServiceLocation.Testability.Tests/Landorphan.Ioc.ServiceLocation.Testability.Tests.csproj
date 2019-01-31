@@ -8,6 +8,7 @@
       <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
    </PropertyGroup>
+
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
       <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>

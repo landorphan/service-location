@@ -57,7 +57,7 @@
                   C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl\DeniedToAllButOwner.txt
             ***************************************************************************************************** */
 
-            // usually C:\
+            // usually C:
             var rootSystem = pathUtils.GetRootPath(envUtils.GetSpecialFolderPath(Environment.SpecialFolder.System));
             var rootTestFolder = dirUtils.CreateDirectory(pathUtils.Combine(rootSystem, "Landorphan.Abstractions.Test.UnitTestTarget"));
             TestHardCodes.WindowsTestPaths.SetFolderPathLocalTestTargetRootFolder(rootTestFolder);

@@ -920,7 +920,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
+         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_searchPattern_is_malformed_It_should_throw_ArgumentException()
          {
             const String path = @".\";

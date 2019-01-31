@@ -10,6 +10,7 @@
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.Internal;
+   using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Common.Exceptions;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -20,6 +21,7 @@
 
    public static class EnvironmentInternalMapping_Tests
    {
+      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly EnvironmentInternalMapping _target = new EnvironmentInternalMapping();
 
       [TestClass]
@@ -280,7 +282,7 @@
          public void It_should_return_the_temporary_directory_path()
          {
             _target.GetTemporaryDirectoryPath().Should().Be(Path.GetTempPath());
-            _target.GetTemporaryDirectoryPath().Should().EndWith(@"\");
+            _target.GetTemporaryDirectoryPath().Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
          }
       }
 

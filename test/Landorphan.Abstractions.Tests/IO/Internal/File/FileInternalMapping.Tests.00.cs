@@ -93,7 +93,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
+         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_name_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -101,7 +101,7 @@
             try
             {
                var contents = new[] {"one", "two", "three"};
-               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + @"\" + _pathUtilities.GetFileName(unalteredPath);
+               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + _pathUtilities.DirectorySeparatorCharacter + _pathUtilities.GetFileName(unalteredPath);
 
                var enc = new UTF8Encoding(false, true);
                _target.AppendAllLines(path, contents, enc);
@@ -140,7 +140,7 @@
          {
             // HAPPY PATH TEST:
             var unalteredPath = _target.CreateTemporaryFile();
-            var path = _pathUtilities.GetParentPath(unalteredPath) + @"\" + Spaces + _pathUtilities.GetFileName(unalteredPath);
+            var path = _pathUtilities.GetParentPath(unalteredPath) + _pathUtilities.DirectorySeparatorCharacter + Spaces + _pathUtilities.GetFileName(unalteredPath);
             try
             {
                var contents = new[] {"one", "two", "three"};
@@ -543,14 +543,14 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
+         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_name_has_trailing_spaces_It_should_not_throw()
          {
             var unalteredPath = _target.CreateTemporaryFile();
             try
             {
                const String contents = "Abc123";
-               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + @"\" + _pathUtilities.GetFileName(unalteredPath);
+               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + _pathUtilities.DirectorySeparatorCharacter + _pathUtilities.GetFileName(unalteredPath);
 
                _target.AppendAllText(path, contents, Encoding.UTF8);
                var actual = _target.ReadAllText(path, Encoding.UTF8);
@@ -586,7 +586,7 @@
          public void And_the_file_name_has_leading_spaces_It_should_not_throw()
          {
             var unalteredPath = _target.CreateTemporaryFile();
-            var path = _pathUtilities.GetParentPath(unalteredPath) + @"\" + Spaces + _pathUtilities.GetFileName(unalteredPath);
+            var path = _pathUtilities.GetParentPath(unalteredPath) + _pathUtilities.DirectorySeparatorCharacter + Spaces + _pathUtilities.GetFileName(unalteredPath);
             try
             {
                const String contents = "Abc123";

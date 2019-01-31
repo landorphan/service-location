@@ -66,7 +66,7 @@
             dirPath = dirPath.Substring(0, 247);
 
             var fileName = new String('A', TestHardCodes.PathAlwaysTooLong);
-            var path = (dirPath + @"\" + fileName).Substring(0, 259);
+            var path = (dirPath + _pathUtilities.DirectorySeparatorCharacter + fileName).Substring(0, 259);
             _target.CreateFile(path);
             _target.FileExists(path).Should().BeTrue();
 
@@ -288,7 +288,7 @@
          {
             // directory path issue
             var dirNameTooLong = _tempPath + new String('A', 248);
-            var dirNameTooLongAndFileName = dirNameTooLong + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".TMP";
+            var dirNameTooLongAndFileName = dirNameTooLong + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".TMP";
 
             Action throwingAction = () => _target.CreateFile(dirNameTooLongAndFileName);
             var e = throwingAction.Should().Throw<PathTooLongException>();

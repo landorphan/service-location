@@ -353,7 +353,7 @@
          public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
          {
             var sourceFileName = String.Empty;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            var destFileName = _tempPath + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -366,7 +366,7 @@
          public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
          {
             const String sourceFileName = null;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            var destFileName = _tempPath + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -812,7 +812,7 @@
          public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
          {
             var sourceFileName = String.Empty;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            var destFileName = _tempPath + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -825,7 +825,7 @@
          public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
          {
             const String sourceFileName = null;
-            var destFileName = _tempPath + @"\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            var destFileName = _tempPath + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();

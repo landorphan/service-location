@@ -716,41 +716,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Maximum Directory length varies")]
-         public void And_the_directory_path_is_at_the_maximum_length_It_should_create_the_directory()
-         {
-            // on a local drive, the drive label and the intervening backslashes count in the length that must be less than 248 characters.
-            _tempPath.Last().Should().Be('\\');
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-
-            // ensure the implementation allows for a trailing \
-            path = path.Substring(0, TestHardCodes.PathAlwaysTooLong - 1) + '\\';
-
-            var directoryFullName = _target.CreateDirectory(path);
-            _target.DirectoryExists(directoryFullName).Should().BeTrue();
-            directoryFullName.Length.Should().Be(TestHardCodes.PathMaxDirLengthWithoutTrailingSepChar);
-            _target.DeleteRecursively(path);
-
-            // ReSharper disable once AccessToModifiedClosure
-            Action throwingAction = () => _target.CreateDirectory(IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(path) + 'B');
-            var e = throwingAction.Should().Throw<PathTooLongException>();
-            e.And.Message.Should().StartWith("The path");
-            e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
-
-            // network shares stop at 247 regardless of the path length on disk
-            TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl.Last().Should().NotBe('\\');
-            path = TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl + '\\' + new String('A', 247);
-
-            // ensure the implementation allows for a trailing \
-            path = path.Substring(0, 247) + '\\';
-            directoryFullName = _target.CreateDirectory(path);
-            _target.DirectoryExists(directoryFullName).Should().BeTrue();
-            directoryFullName.Length.Should().Be(TestHardCodes.PathMaxDirLengthWithoutTrailingSepChar);
-            _target.DeleteRecursively(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath +
@@ -1078,12 +1043,14 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
+         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_is_not_empty_It_should_throw_IOException()
          {
             var fileMapper = new FileInternalMapping();
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid() + ".tmp");
+            // .Net Standard removed the period in empty. and changed it to empty : (path)
+            var expectedMessageFragment = "The directory is not empty";
 
             // nested file
             _target.CreateDirectory(path);
@@ -1094,7 +1061,7 @@
 
                Action throwingAction = () => _target.DeleteEmpty(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain("The directory is not empty");
+               e.And.Message.Should().Contain(expectedMessageFragment);
                e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
 
                _target.DirectoryExists(path).Should().BeTrue();
@@ -1112,8 +1079,8 @@
 
                Action throwingAction = () => _target.DeleteEmpty(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain("The directory is not empty.");
-
+               e.And.Message.Should().Contain(expectedMessageFragment);
+               e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
                _target.DirectoryExists(path).Should().BeTrue();
             }
             finally

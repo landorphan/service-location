@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal
 {
    using System;
+   using System.Globalization;
    using System.IO;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -17,6 +18,7 @@
    public static class IOStringUtilities_Tests
    {
       private const String Spaces = "   ";
+      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
       [TestClass]
       public class When_I_call_IOStringUtilities_ConditionallyTrimSpaceFromPath : TestBase
@@ -63,7 +65,7 @@
             IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep).Should().Be(driveNoSep);
             IOStringUtilities.ConditionallyTrimSpaceFromPath(drive).Should().Be(drive);
             // NEIN: use alternate separator
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep + @"/").Should().Be(driveNoSep + @"/");
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep + _pathUtilities.AltDirectorySeparatorCharacter).Should().Be(driveNoSep + _pathUtilities.AltDirectorySeparatorCharacter);
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"\\someserver\someshare\resource").Should().Be(@"\\someserver\someshare\resource");
          }
 
@@ -215,10 +217,10 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_multiple_trailing_SepChars_it_should_remove_only_one()
          {
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\\").Should().Be(@"\");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/").Should().Be(@"\");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\").Should().Be(@"/");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"//").Should().Be(@"/");
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\\").Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/").Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\").Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"//").Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
          }
 
          [TestMethod]
@@ -369,8 +371,12 @@
             IOStringUtilities.ValidateCanonicalPath(driveNoSep, "arg").Should().Be(driveNoSep);
             IOStringUtilities.ValidateCanonicalPath(drive, "arg").Should().Be(drive);
             IOStringUtilities.ValidateCanonicalPath(driveAltSep, "arg").Should().Be(driveAltSep);
-            IOStringUtilities.ValidateCanonicalPath(@"\", "arg").Should().Be(@"\");
-            IOStringUtilities.ValidateCanonicalPath(@"/", "arg").Should().Be(@"/");
+            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
+               .Should()
+               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
+               .Should()
+               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
             IOStringUtilities.ValidateCanonicalPath(@".", "arg").Should().Be(@".");
             IOStringUtilities.ValidateCanonicalPath(@"\\", "arg").Should().Be(@"\\");
          }
