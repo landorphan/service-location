@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Landorphan.Common">
-      <Version>0.9.497</Version>
+      <Version>0.9.527</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CodeQuality.Analyzers">
       <Version>2.6.3</Version>
