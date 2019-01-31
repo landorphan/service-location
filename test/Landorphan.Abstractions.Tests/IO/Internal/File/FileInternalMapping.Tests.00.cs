@@ -93,7 +93,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_name_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -543,7 +542,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_name_has_trailing_spaces_It_should_not_throw()
          {
             var unalteredPath = _target.CreateTemporaryFile();

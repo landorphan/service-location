@@ -261,7 +261,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               _tempPath.Last().Should().Be('\\');
+               _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
                var destFileName = $@"{_tempPath}:{Guid.NewGuid() + ".tmp"}";
 
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
@@ -292,7 +292,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid());
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
@@ -439,7 +439,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}:{1}.tmp", _tempPath, Guid.NewGuid());
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 
@@ -720,7 +720,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               _tempPath.Last().Should().Be('\\');
+               _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
                var destFileName = $@"{_tempPath}:{Guid.NewGuid() + ".tmp"}";
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
@@ -751,7 +751,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid());
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
@@ -921,7 +921,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}:{1}.tmp", _tempPath, Guid.NewGuid());
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 

@@ -54,30 +54,9 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Maximum length varies, 248 does not apply")]
-         public void And_the_directory_path_is_at_the_maximum_length_It_should_create_the_file()
-         {
-            // HAPPY PATH TEST:
-            // on a local drive, the drive label and the intervening backslashes count in the length that must be less than 248 characters.
-
-            var dirPath = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            dirPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(dirPath);
-            dirPath += new String('A', 247);
-            dirPath = dirPath.Substring(0, 247);
-
-            var fileName = new String('A', TestHardCodes.PathAlwaysTooLong);
-            var path = (dirPath + _pathUtilities.DirectorySeparatorCharacter + fileName).Substring(0, 259);
-            _target.CreateFile(path);
-            _target.FileExists(path).Should().BeTrue();
-
-            _directoryInternalMapping.DeleteRecursively(dirPath);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_is_empty_or_spaces_It_should_create_a_file_without_an_extension()
          {
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             try
             {
                _target.CreateFile(_tempPath + "myfile");
@@ -162,7 +141,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|.tmp";
 
             Action throwingAction = () => _target.CreateFile(path);
@@ -283,11 +262,11 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Maximum length varies, 248 does not apply")]
+         // [Ignore("Maximum length varies, 248 does not apply")]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
             // directory path issue
-            var dirNameTooLong = _tempPath + new String('A', 248);
+            var dirNameTooLong = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
             var dirNameTooLongAndFileName = dirNameTooLong + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".TMP";
 
             Action throwingAction = () => _target.CreateFile(dirNameTooLongAndFileName);
@@ -296,7 +275,7 @@
             e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
 
             // combined directory path + file name issue
-            _tempPath.Last().Should().Be('\\');
+            _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
             var fileNameTooLong = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             throwingAction = () => _target.CreateFile(fileNameTooLong);

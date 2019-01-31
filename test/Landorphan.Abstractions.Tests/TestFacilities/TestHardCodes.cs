@@ -7,6 +7,8 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
    using System.IO;
    using System.Linq;
    using System.Runtime.InteropServices;
+   using Landorphan.Abstractions.IO.Interfaces;
+   using Landorphan.Ioc.ServiceLocation;
 
    // ReSharper disable CommentTypo
 
@@ -39,7 +41,8 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 
       internal static IEnumerable<Char> GetDirSepChars()
       {
-         return new[] {'\\', '/'};
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         return new[] {pathUtilities.DirectorySeparatorCharacter, pathUtilities.AltDirectorySeparatorCharacter};
       }
 
       internal static class WindowsTestPaths

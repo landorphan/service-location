@@ -138,6 +138,8 @@
          assembly.ArgumentNotNull(nameof(assembly));
          Trace.WriteLine($"Examining {assembly.GetName().Name} looking for ignored test methods...");
          var types = assembly.SafeGetTypes();
+
+         var builder = ImmutableHashSet<String>.Empty.WithComparer(StringComparer.InvariantCultureIgnoreCase).ToBuilder();
          foreach (var t in types)
          {
             var isMSTestClass = (
@@ -154,10 +156,18 @@
                   var ignoreAttribute = mi.GetCustomAttribute<IgnoreAttribute>();
                   if (ignoreAttribute != null)
                   {
-                     Trace.WriteLine($"{mi.DeclaringType}.{mi.Name} is ignored.");
+                     builder.Add($"{mi.DeclaringType}.{mi.Name} is ignored.");
                   }
                }
             }
+         }
+
+         var set = builder.ToImmutable();
+         var list = set.ToList();
+         list.Sort(StringComparer.InvariantCultureIgnoreCase);
+         foreach (var item in list)
+         {
+            Trace.WriteLine(item);
          }
       }
 

@@ -644,7 +644,7 @@
                _target.DeleteRecursively(firstDirCreatedUnderTemp);
             }
 
-            firstDirCreatedUnderTemp.Last().Should().NotBe('\\');
+            firstDirCreatedUnderTemp.Last().Should().NotBe(_pathUtilities.DirectorySeparatorCharacter);
             var pathWithSpaces = String.Format(
                CultureInfo.InvariantCulture,
                @"{0}\   {1}   \   {2}   \",
@@ -1043,7 +1043,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_is_not_empty_It_should_throw_IOException()
          {
             var fileMapper = new FileInternalMapping();

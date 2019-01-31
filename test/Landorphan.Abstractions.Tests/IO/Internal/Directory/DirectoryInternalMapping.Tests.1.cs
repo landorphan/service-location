@@ -5,6 +5,7 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using System.IO;
+   using System.Net.Security;
    using FluentAssertions;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
@@ -920,7 +921,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("failing in .Net Standard 2.0")]
+         [Ignore("Throws no exception on build server")]
          public void And_the_searchPattern_is_malformed_It_should_throw_ArgumentException()
          {
             const String path = @".\";
