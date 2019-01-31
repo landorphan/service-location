@@ -1,17 +1,17 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.EventArgs
 {
-   // ReSharper disable InconsistentNaming
    using System;
    using System.Collections.Generic;
    using System.Linq;
    using System.Reflection;
    using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.EventArguments;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+   // ReSharper disable InconsistentNaming
 
    public static class ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs_Tests
    {

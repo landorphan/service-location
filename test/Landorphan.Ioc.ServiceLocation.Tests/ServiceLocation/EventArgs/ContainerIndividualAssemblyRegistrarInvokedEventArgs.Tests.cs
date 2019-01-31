@@ -2,7 +2,6 @@
 {
    using System;
    using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.EventArguments;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
@@ -10,6 +9,7 @@
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
+
    public static class ContainerIndividualAssemblyRegistrarInvokedEventArgs_Tests
    {
       [TestClass]

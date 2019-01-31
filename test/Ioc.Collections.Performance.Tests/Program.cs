@@ -70,8 +70,6 @@
 
             Thread.Sleep(0);
 
-            
-
             var sb = new StringBuilder();
             sb.AppendLine($"AllowNamedImplementations:={target.AllowNamedImplementations}");
             sb.AppendLine($"AllowPreclusionOfTypes:={target.AllowPreclusionOfTypes}");
