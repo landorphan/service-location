@@ -39,8 +39,11 @@
          Trace.WriteLine($"PowerShell: arrange script has exited: {exitCode}");
          Trace.WriteLine(output);
          Trace.WriteLine(error);
-         InitializeTestHardCodesWindowsLocalTestPaths();
-         InitializeTestHardCodesWindowsUncTestPaths();
+         if (0 == exitCode)
+         {
+            InitializeTestHardCodesWindowsLocalTestPaths();
+            InitializeTestHardCodesWindowsUncTestPaths();
+         }
       }
 
       internal void Teardown()
