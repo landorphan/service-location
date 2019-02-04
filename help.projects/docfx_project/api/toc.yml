@@ -1,4 +1,111 @@
 ### YamlMime:TableOfContent
+- uid: Landorphan.Abstractions
+  name: Landorphan.Abstractions
+  items:
+  - uid: Landorphan.Abstractions.EnvironmentUtilitiesFactory
+    name: EnvironmentUtilitiesFactory
+- uid: Landorphan.Abstractions.AssemblySelfRegistration
+  name: Landorphan.Abstractions.AssemblySelfRegistration
+  items:
+  - uid: Landorphan.Abstractions.AssemblySelfRegistration.AbstractionsServiceLocationSelfRegistration
+    name: AbstractionsServiceLocationSelfRegistration
+- uid: Landorphan.Abstractions.Console
+  name: Landorphan.Abstractions.Console
+  items:
+  - uid: Landorphan.Abstractions.Console.ConsoleUtilities
+    name: ConsoleUtilities
+- uid: Landorphan.Abstractions.Console.Interfaces
+  name: Landorphan.Abstractions.Console.Interfaces
+  items:
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsole
+    name: IConsole
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+    name: IConsoleAppearance
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+    name: IConsoleBuffer
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+    name: IConsoleCursor
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleMisc
+    name: IConsoleMisc
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleReader
+    name: IConsoleReader
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleStreams
+    name: IConsoleStreams
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleWrite
+    name: IConsoleWrite
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleWriteLine
+    name: IConsoleWriteLine
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleWriter
+    name: IConsoleWriter
+- uid: Landorphan.Abstractions.Interfaces
+  name: Landorphan.Abstractions.Interfaces
+  items:
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+    name: IEnvironmentUtilities
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+    name: IEnvironmentUtilitiesFactory
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentVariable
+    name: IEnvironmentVariable
+- uid: Landorphan.Abstractions.IO
+  name: Landorphan.Abstractions.IO
+  items:
+  - uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+    name: DirectoryReaderUtilities
+  - uid: Landorphan.Abstractions.IO.DirectoryReaderUtilitiesFactory
+    name: DirectoryReaderUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.DirectoryUtilities
+    name: DirectoryUtilities
+  - uid: Landorphan.Abstractions.IO.DirectoryUtilitiesFactory
+    name: DirectoryUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.DirectoryWriterUtilities
+    name: DirectoryWriterUtilities
+  - uid: Landorphan.Abstractions.IO.DirectoryWriterUtilitiesFactory
+    name: DirectoryWriterUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.FileReaderUtilities
+    name: FileReaderUtilities
+  - uid: Landorphan.Abstractions.IO.FileReaderUtilitiesFactory
+    name: FileReaderUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.FileUtilities
+    name: FileUtilities
+  - uid: Landorphan.Abstractions.IO.FileUtilitiesFactory
+    name: FileUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.FileWriterUtilities
+    name: FileWriterUtilities
+  - uid: Landorphan.Abstractions.IO.FileWriterUtilitiesFactory
+    name: FileWriterUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.PathUtilitiesFactory
+    name: PathUtilitiesFactory
+- uid: Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  items:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+    name: IDirectoryReaderUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory
+    name: IDirectoryReaderUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+    name: IDirectoryUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilitiesFactory
+    name: IDirectoryUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+    name: IDirectoryWriterUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory
+    name: IDirectoryWriterUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities
+    name: IFileReaderUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory
+    name: IFileReaderUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+    name: IFileUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilitiesFactory
+    name: IFileUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities
+    name: IFileWriterUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory
+    name: IFileWriterUtilitiesFactory
+  - uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+    name: IPathUtilities
+  - uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilitiesFactory
+    name: IPathUtilitiesFactory
 - uid: Landorphan.Ioc.ServiceLocation
   name: Landorphan.Ioc.ServiceLocation
   items:
@@ -151,7 +258,7 @@
   items:
   - uid: Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
     name: TestAssemblyInitializeCleanup
-  - uid: Landorphan.TestUtilities.TestFacilities.TestHardCodes
-    name: TestHardCodes
+  - uid: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
+    name: TestUtilitiesHardCodes
   - uid: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
     name: WellKnownTestCategories

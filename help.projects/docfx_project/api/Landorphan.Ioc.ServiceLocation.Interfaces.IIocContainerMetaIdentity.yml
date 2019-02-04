@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaIdentity.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerMetaIdentity
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaIdentity.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaIdentity.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Name
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaIdentity.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaIdentity.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Uid
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaIdentity.cs

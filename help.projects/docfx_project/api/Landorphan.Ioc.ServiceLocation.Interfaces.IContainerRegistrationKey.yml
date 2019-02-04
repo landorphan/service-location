@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IContainerRegistrationKey
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
@@ -34,7 +34,6 @@ items:
     content: 'public interface IContainerRegistrationKey : ICloneable, IQueryReadOnly, IComparable, IComparable<IContainerRegistrationKey>, IEquatable<IContainerRegistrationKey>'
     content.vb: >-
       Public Interface IContainerRegistrationKey
-
           Inherits ICloneable, IQueryReadOnly, IComparable, IComparable(Of IContainerRegistrationKey), IEquatable(Of IContainerRegistrationKey)
   inheritedMembers:
   - System.ICloneable.Clone
@@ -62,7 +61,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Container
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
@@ -97,7 +96,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IsDefaultRegistration
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
@@ -132,7 +131,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IsEmpty
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
@@ -168,7 +167,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: RegisteredName
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
@@ -204,7 +203,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: RegisteredType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IContainerRegistrationKey.cs

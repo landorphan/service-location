@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory
+  id: IDirectoryReaderUtilitiesFactory
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create
+  langs:
+  - csharp
+  - vb
+  name: IDirectoryReaderUtilitiesFactory
+  nameWithType: IDirectoryReaderUtilitiesFactory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryReaderUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IDirectoryReaderUtilitiesFactory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryReaderUtilitiesFactory.cs
+    startLine: 5
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nFactory for instantiating <xref href=\"Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities\" data-throw-if-not-resolved=\"false\"></xref> instances.\n"
+  example: []
+  syntax:
+    content: public interface IDirectoryReaderUtilitiesFactory
+    content.vb: Public Interface IDirectoryReaderUtilitiesFactory
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create
+  id: Create
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: IDirectoryReaderUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryReaderUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Create
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryReaderUtilitiesFactory.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCreates a <xref href=\"Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: IDirectoryReaderUtilities Create()
+    return:
+      type: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+      description: "\nA non-null <xref href=\"Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+    content.vb: Function Create As IDirectoryReaderUtilities
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create*
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  name: IDirectoryReaderUtilities
+  nameWithType: IDirectoryReaderUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create
+  name: Create
+  nameWithType: IDirectoryReaderUtilitiesFactory.Create
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilitiesFactory.Create

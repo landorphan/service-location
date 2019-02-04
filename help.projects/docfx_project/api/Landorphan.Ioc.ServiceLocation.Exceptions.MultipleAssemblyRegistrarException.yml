@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: MultipleAssemblyRegistrarException
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -38,9 +38,7 @@ items:
     content: 'public sealed class MultipleAssemblyRegistrarException : LandorphanIocServiceLocationException, ISerializable'
     content.vb: >-
       Public NotInheritable Class MultipleAssemblyRegistrarException
-
           Inherits LandorphanIocServiceLocationException
-
           Implements ISerializable
   seealso:
   - linkId: Landorphan.Ioc.ServiceLocation.Exceptions.LandorphanIocServiceLocationException
@@ -74,7 +72,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -106,7 +104,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -142,7 +140,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -181,7 +179,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -220,7 +218,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -262,7 +260,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -304,7 +302,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -349,7 +347,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetObjectData
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
@@ -388,7 +386,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ImplementationTypes
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/MultipleAssemblyRegistrarException.cs

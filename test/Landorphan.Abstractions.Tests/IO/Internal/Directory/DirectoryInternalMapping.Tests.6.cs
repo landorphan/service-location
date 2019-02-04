@@ -47,14 +47,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_mapped_drive_It_should_return_false()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // ReSharper disable once StringLiteralTypo
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.MappedDrive, @"abc:defg\");
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.MappedDrive, @"abc:defg\");
             DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(path).Should().BeFalse();
          }
 
@@ -62,14 +62,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_return_true()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
             // ReSharper disable once StringLiteralTypo
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive, @"abc:defg\");
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive, @"abc:defg\");
             DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(path).Should().BeTrue();
          }
       }

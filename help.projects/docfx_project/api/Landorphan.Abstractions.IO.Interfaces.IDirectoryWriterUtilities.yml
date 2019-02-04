@@ -1,0 +1,200 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  id: IDirectoryWriterUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy(System.String,System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: IDirectoryWriterUtilities
+  nameWithType: IDirectoryWriterUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IDirectoryWriterUtilities
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilities.cs
+    startLine: 9
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nRepresents methods for writing to directories.\n"
+  example: []
+  syntax:
+    content: public interface IDirectoryWriterUtilities
+    content.vb: Public Interface IDirectoryWriterUtilities
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy(System.String,System.String)
+  id: Copy(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  langs:
+  - csharp
+  - vb
+  name: Copy(String, String)
+  nameWithType: IDirectoryWriterUtilities.Copy(String, String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Copy
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilities.cs
+    startLine: 43
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCopies a directory and its contents to a new location.\n"
+  example: []
+  syntax:
+    content: void Copy(string sourceDirName, string destDirName)
+    parameters:
+    - id: sourceDirName
+      type: System.String
+      description: "\nThe path of directory to copy.\n"
+    - id: destDirName
+      type: System.String
+      description: "\nThe path to the destination directory.\n"
+    content.vb: Sub Copy(sourceDirName As String, destDirName As String)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> already exists. \n-or-\nThe <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> parameters refer to the same file or directory.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permissions.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> \n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe path specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> is invalid (for example, it on an unmapped drive).\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move(System.String,System.String)
+  id: Move(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  langs:
+  - csharp
+  - vb
+  name: Move(String, String)
+  nameWithType: IDirectoryWriterUtilities.Move(String, String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Move
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilities.cs
+    startLine: 80
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nMoves a directory and its contents to a new location.\n"
+  example: []
+  syntax:
+    content: void Move(string sourceDirName, string destDirName)
+    parameters:
+    - id: sourceDirName
+      type: System.String
+      description: "\nThe path of the directory to move.\n"
+    - id: destDirName
+      type: System.String
+      description: "\nThe path to the new location for <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code>.\n"
+    content.vb: Sub Move(sourceDirName As String, destDirName As String)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn attempt was made to move a directory to a different volume. \n-or- \n<code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> already exists. \n-or- \nThe <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> parameters refer to the same directory.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permissions.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">destDirName</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe path specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceDirName</code> is invalid (for example, it\nis on an unmapped drive).\n"
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  isExternal: true
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.IO.PathTooLongException
+  commentId: T:System.IO.PathTooLongException
+  isExternal: true
+- uid: System.IO.DirectoryNotFoundException
+  commentId: T:System.IO.DirectoryNotFoundException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy
+  name: Copy
+  nameWithType: IDirectoryWriterUtilities.Copy
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Copy
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move
+  name: Move
+  nameWithType: IDirectoryWriterUtilities.Move
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities.Move

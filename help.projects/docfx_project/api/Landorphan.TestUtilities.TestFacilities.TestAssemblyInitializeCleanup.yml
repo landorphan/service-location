@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestAssemblyInitializeCleanup.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestAssemblyInitializeCleanup
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestAssemblyInitializeCleanup.cs
@@ -63,7 +63,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestAssemblyInitializeCleanup.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AssemblyInitialize
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestAssemblyInitializeCleanup.cs
@@ -111,7 +111,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestAssemblyInitializeCleanup.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AssemblyCleanup
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestAssemblyInitializeCleanup.cs

@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestHelp.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestHelp
     path: ../../source/Landorphan.TestUtilities.MSTest/TestHelp.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestHelp.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: DoNothing
     path: ../../source/Landorphan.TestUtilities.MSTest/TestHelp.cs

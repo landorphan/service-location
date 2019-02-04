@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: LandorphanIocServiceLocationException
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
@@ -33,9 +33,7 @@ items:
     content: 'public abstract class LandorphanIocServiceLocationException : LandorphanException, ISerializable'
     content.vb: >-
       Public MustInherit Class LandorphanIocServiceLocationException
-
           Inherits LandorphanException
-
           Implements ISerializable
   seealso:
   - linkId: Landorphan.Common.Exceptions.LandorphanArgumentException
@@ -76,7 +74,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
@@ -108,7 +106,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
@@ -144,7 +142,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
@@ -183,7 +181,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/LandorphanIocServiceLocationException.cs

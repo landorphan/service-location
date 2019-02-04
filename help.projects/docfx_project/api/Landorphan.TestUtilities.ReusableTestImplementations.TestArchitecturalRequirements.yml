@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestArchitecturalRequirements
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
@@ -69,7 +69,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: All_But_Excluded_Tests_Descend_From_TestBase_Implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Find_ignored_tests_in_assembly
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
@@ -170,11 +170,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetTestAssembly
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-    startLine: 169
+    startLine: 179
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities.ReusableTestImplementations
@@ -207,11 +207,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetTestTypesNotRequiredToDescendFromTestBase
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/TestArchitecturalRequirements.cs
-    startLine: 181
+    startLine: 191
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities.ReusableTestImplementations

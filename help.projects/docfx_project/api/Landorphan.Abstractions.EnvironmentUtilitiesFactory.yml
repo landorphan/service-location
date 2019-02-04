@@ -1,0 +1,151 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  id: EnvironmentUtilitiesFactory
+  parent: Landorphan.Abstractions
+  children:
+  - Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create
+  langs:
+  - csharp
+  - vb
+  name: EnvironmentUtilitiesFactory
+  nameWithType: EnvironmentUtilitiesFactory
+  fullName: Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/EnvironmentUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: EnvironmentUtilitiesFactory
+    path: ../../source/Landorphan.Abstractions/EnvironmentUtilitiesFactory.cs
+    startLine: 8
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions
+  summary: "\nFactory for instantiating <xref href=\"Landorphan.Abstractions.Interfaces.IEnvironmentUtilities\" data-throw-if-not-resolved=\"false\"></xref> instances.\n"
+  example: []
+  syntax:
+    content: 'public sealed class EnvironmentUtilitiesFactory : IEnvironmentUtilitiesFactory'
+    content.vb: >-
+      Public NotInheritable Class EnvironmentUtilitiesFactory
+          Implements IEnvironmentUtilitiesFactory
+  inheritance:
+  - System.Object
+  implements:
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create
+  id: Create
+  parent: Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: EnvironmentUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/EnvironmentUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Create
+    path: ../../source/Landorphan.Abstractions/EnvironmentUtilitiesFactory.cs
+    startLine: 11
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions
+  summary: "\nCreates a <xref href=\"Landorphan.Abstractions.Interfaces.IEnvironmentUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: public IEnvironmentUtilities Create()
+    return:
+      type: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+      description: "\nA non-null <xref href=\"Landorphan.Abstractions.Interfaces.IEnvironmentUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+    content.vb: Public Function Create As IEnvironmentUtilities
+  overload: Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create*
+  implements:
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  commentId: T:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  parent: Landorphan.Abstractions.Interfaces
+  name: IEnvironmentUtilities
+  nameWithType: IEnvironmentUtilities
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+- uid: Landorphan.Abstractions
+  commentId: N:Landorphan.Abstractions
+  name: Landorphan.Abstractions
+  nameWithType: Landorphan.Abstractions
+  fullName: Landorphan.Abstractions
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  parent: Landorphan.Abstractions.Interfaces
+  name: IEnvironmentUtilitiesFactory
+  nameWithType: IEnvironmentUtilitiesFactory
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+- uid: Landorphan.Abstractions.Interfaces
+  commentId: N:Landorphan.Abstractions.Interfaces
+  name: Landorphan.Abstractions.Interfaces
+  nameWithType: Landorphan.Abstractions.Interfaces
+  fullName: Landorphan.Abstractions.Interfaces
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create*
+  commentId: Overload:Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create
+  name: Create
+  nameWithType: EnvironmentUtilitiesFactory.Create
+  fullName: Landorphan.Abstractions.EnvironmentUtilitiesFactory.Create
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  name: Create()
+  nameWithType: IEnvironmentUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create()
+  spec.csharp:
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+    name: Create
+    nameWithType: IEnvironmentUtilitiesFactory.Create
+    fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+    name: Create
+    nameWithType: IEnvironmentUtilitiesFactory.Create
+    fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

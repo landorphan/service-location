@@ -34,57 +34,15 @@
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            // Design decision:  create a rooted directory (which has issues)
-            // rather than something in the temp folder bc some tests navigate out and attempt to manipulate files and folders
-            // something I do not want to happen to user files (e.g. C:\users\user\temp..\..)
-
-            var envUtils = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
-            var dirUtils = IocServiceLocator.Resolve<IDirectoryUtilities>();
-            var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
-
-            // TODO: set permissions
-
-            /* *****************************************************************************************************
-            Create the following folder\file structure:
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\Inner
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\OuterExistingFile.txt
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\ReadExecuteListFolderContents
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\Outer\Inner\InnerExistingFile.txt
-                  C:\Landorphan.Abstractions.Test.UnitTestTarget\SharedEveryoneFullControl\DeniedToAllButOwner.txt
-            ***************************************************************************************************** */
-
-            // usually C:
-            var rootSystem = pathUtils.GetRootPath(envUtils.GetSpecialFolderPath(Environment.SpecialFolder.System));
-            var rootTestFolder = dirUtils.CreateDirectory(pathUtils.Combine(rootSystem, "Landorphan.Abstractions.Test.UnitTestTarget"));
-            TestHardCodes.WindowsTestPaths.SetFolderPathLocalTestTargetRootFolder(rootTestFolder);
-            var sharedEveryoneFolder = dirUtils.CreateDirectory(pathUtils.Combine(rootTestFolder, "SharedEveryoneFullControl"));
-            TestHardCodes.WindowsTestPaths.SetFolderPathLocalSharedFolderEveryoneFullControl(sharedEveryoneFolder);
-            var sharedEveryoneFolderDeniedToAllButOwnerFile = fileUtils.CreateFile(pathUtils.Combine(sharedEveryoneFolder, "DeniedToAllButOwner.txt"));
-            TestHardCodes.WindowsTestPaths.SetFilePathLocalSharedEveryoneFolderDeniedToAllButOwnerFile(sharedEveryoneFolderDeniedToAllButOwnerFile);
-            var outerFolder = dirUtils.CreateDirectory(pathUtils.Combine(rootTestFolder, "Outer"));
-            TestHardCodes.WindowsTestPaths.SetFolderPathLocalOuterFolderWithoutPermissions(outerFolder);
-            var outerFile = fileUtils.CreateFile(pathUtils.Combine(outerFolder, "OuterExistingFile.txt"));
-            TestHardCodes.WindowsTestPaths.SetFilePathLocalOuterFolderWithoutPermissionsChildFile(outerFile);
-            var outerInnerFolder = dirUtils.CreateDirectory(pathUtils.Combine(outerFolder, "Inner"));
-            TestHardCodes.WindowsTestPaths.SetFolderPathLocalOuterFolderWithoutPermissionsChildFolder(outerInnerFolder);
-            var outerInnerFile = fileUtils.CreateFile(pathUtils.Combine(outerInnerFolder, "InnerExistingFile.txt"));
-            TestHardCodes.WindowsTestPaths.SetFilePathLocalOuterFolderWithoutPermissionsChildFolderChildFile(outerInnerFile);
-            var readExecuteFolder = dirUtils.CreateDirectory(pathUtils.Combine(outerFolder, "ReadExecuteListFolderContents"));
-            TestHardCodes.WindowsTestPaths.SetFolderPathLocalReadExecuteListFolderContentsFolder(readExecuteFolder);
-
-            // TODO: Arrange unc paths
-            // TODO: do we currently have a server that can host a test share?
+            // TestAssemblyInitializeCleanupWindowsHelper.Arrange() is now called upon demand in TestHardCodes.WindowsTestPaths
          }
          else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
          {
             // TODO: Arrange local paths
-            // TODO: Arrange unc paths
-            // TODO: do we currently have a server that can host a test share?
          }
+         // TODO: figure out how to share "secrets" so build server can use
+         // TODO: any other UNC paths needed besides TestHardCodes.UncTestPaths.AzureUncFolderEveryoneFullControl,
+         // if so, arrange them here
 
          // Configure the simulator as needed.
       }
@@ -100,14 +58,24 @@
       {
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            var dirUtils = IocServiceLocator.Resolve<IDirectoryUtilities>();
-            try
+            // if the windows test target root directory exists, tear it down (requires elevation) by calling PS script.
+            var envUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+            var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+            var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+            var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
+            var localFolderRootTest = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
+
+            if (dirUtilities.DirectoryExists(localFolderRootTest))
             {
-               dirUtils.DeleteRecursively(TestHardCodes.WindowsTestPaths.LocalTestTargetRootFolder);
-            }
-            catch (Exception e)
-            {
-               Trace.WriteLine(e);
+               var windowsArrange = new TestAssemblyInitializeCleanupWindowsHelper();
+               try
+               {
+                  windowsArrange.Teardown();
+               }
+               catch (Exception e)
+               {
+                  Trace.WriteLine("ERROR", e.ToString());
+               }
             }
          }
       }

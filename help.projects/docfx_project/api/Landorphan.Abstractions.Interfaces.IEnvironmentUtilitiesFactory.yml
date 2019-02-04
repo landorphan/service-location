@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  id: IEnvironmentUtilitiesFactory
+  parent: Landorphan.Abstractions.Interfaces
+  children:
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  langs:
+  - csharp
+  - vb
+  name: IEnvironmentUtilitiesFactory
+  nameWithType: IEnvironmentUtilitiesFactory
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IEnvironmentUtilitiesFactory
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
+    startLine: 5
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nFactory for instantiating <xref href=\"Landorphan.Abstractions.Interfaces.IEnvironmentUtilities\" data-throw-if-not-resolved=\"false\"></xref> instances.\n"
+  example: []
+  syntax:
+    content: public interface IEnvironmentUtilitiesFactory
+    content.vb: Public Interface IEnvironmentUtilitiesFactory
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  id: Create
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: IEnvironmentUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Create
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nCreates a <xref href=\"Landorphan.Abstractions.Interfaces.IEnvironmentUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: IEnvironmentUtilities Create()
+    return:
+      type: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+      description: "\nA non-null <xref href=\"Landorphan.Abstractions.Interfaces.IEnvironmentUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+    content.vb: Function Create As IEnvironmentUtilities
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create*
+references:
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  commentId: T:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  parent: Landorphan.Abstractions.Interfaces
+  name: IEnvironmentUtilities
+  nameWithType: IEnvironmentUtilities
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+- uid: Landorphan.Abstractions.Interfaces
+  commentId: N:Landorphan.Abstractions.Interfaces
+  name: Landorphan.Abstractions.Interfaces
+  nameWithType: Landorphan.Abstractions.Interfaces
+  fullName: Landorphan.Abstractions.Interfaces
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create
+  name: Create
+  nameWithType: IEnvironmentUtilitiesFactory.Create
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilitiesFactory.Create

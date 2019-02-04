@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetRegistrationChainExtensions
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
@@ -56,7 +56,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetRegistrationChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
@@ -69,7 +69,6 @@ items:
   syntax:
     content: >-
       public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container)
-
           where TFrom : class
     parameters:
     - id: container
@@ -110,7 +109,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetRegistrationChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
@@ -123,7 +122,6 @@ items:
   syntax:
     content: >-
       public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container, string name)
-
           where TFrom : class
     parameters:
     - id: container
@@ -167,7 +165,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetRegistrationChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
@@ -215,7 +213,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetRegistrationChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/GetRegistrationChainExtensions.cs

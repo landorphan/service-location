@@ -145,17 +145,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
-               _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+               var destFileName = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+               _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -377,14 +377,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var sourceFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
-            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var sourceFileName = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
@@ -605,17 +605,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               var destFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
-               _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+               var destFileName = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+               _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -836,14 +836,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var sourceFileName = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
-            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var sourceFileName = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);

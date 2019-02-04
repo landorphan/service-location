@@ -39,20 +39,6 @@
       Int32 CurrentManagedThreadId { get; }
 
       /// <summary>
-      /// Gets the number of milliseconds elapsed since the system started.
-      /// </summary>
-      /// <value>
-      /// A 32-bit signed integer containing the amount of time in milliseconds that has passed since the last time the computer was started.
-      /// </value>
-      /// <remarks>
-      /// The value of this property is derived from the system timer and is stored as a 32-bit signed integer.  Consequently, if the system runs
-      /// continuously, it will increment from zero to Int32.MaxValue for approximately 24.9 days, then jump to Int32.MinValue, which is a
-      /// negative number, then increment back to zero during the next 24.9 days.
-      /// </remarks>
-      // TODO: consider removing 
-      Int32 ElapsedMillisecondsSinceSystemStart { get; }
-
-      /// <summary>
       /// Gets or sets the exit code of the process.
       /// </summary>
       /// <value>

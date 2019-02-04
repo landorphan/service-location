@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory
+  id: IFileWriterUtilitiesFactory
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create
+  langs:
+  - csharp
+  - vb
+  name: IFileWriterUtilitiesFactory
+  nameWithType: IFileWriterUtilitiesFactory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IFileWriterUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IFileWriterUtilitiesFactory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileWriterUtilitiesFactory.cs
+    startLine: 5
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nFactory for instantiating <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities\" data-throw-if-not-resolved=\"false\"></xref> instances.\n"
+  example: []
+  syntax:
+    content: public interface IFileWriterUtilitiesFactory
+    content.vb: Public Interface IFileWriterUtilitiesFactory
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create
+  id: Create
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: IFileWriterUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IFileWriterUtilitiesFactory.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Create
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileWriterUtilitiesFactory.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCreates a <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: IFileWriterUtilities Create()
+    return:
+      type: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities
+      description: "\nA non-null <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+    content.vb: Function Create As IFileWriterUtilities
+  overload: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create*
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  name: IFileWriterUtilities
+  nameWithType: IFileWriterUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create
+  name: Create
+  nameWithType: IFileWriterUtilitiesFactory.Create
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilitiesFactory.Create

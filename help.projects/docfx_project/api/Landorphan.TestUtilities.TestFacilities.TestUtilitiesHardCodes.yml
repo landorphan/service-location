@@ -1,25 +1,25 @@
 ### YamlMime:ManagedReference
 items:
-- uid: Landorphan.TestUtilities.TestFacilities.TestHardCodes
-  commentId: T:Landorphan.TestUtilities.TestFacilities.TestHardCodes
-  id: TestHardCodes
+- uid: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
+  commentId: T:Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
+  id: TestUtilitiesHardCodes
   parent: Landorphan.TestUtilities.TestFacilities
   children:
-  - Landorphan.TestUtilities.TestFacilities.TestHardCodes.NoExceptionWasThrown
+  - Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown
   langs:
   - csharp
   - vb
-  name: TestHardCodes
-  nameWithType: TestHardCodes
-  fullName: Landorphan.TestUtilities.TestFacilities.TestHardCodes
+  name: TestUtilitiesHardCodes
+  nameWithType: TestUtilitiesHardCodes
+  fullName: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
   type: Class
   source:
     remote:
-      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestHardcodes.cs
-      branch: mprochaska.documentation.1
+      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
-    id: TestHardCodes
-    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestHardcodes.cs
+    id: TestUtilitiesHardCodes
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
     startLine: 7
   assemblies:
   - Landorphan.TestUtilities.MSTest
@@ -27,8 +27,8 @@ items:
   summary: "\nHard-coded values for use in multiple test projects.\n"
   example: []
   syntax:
-    content: public static class TestHardCodes
-    content.vb: Public Module TestHardCodes
+    content: public static class TestUtilitiesHardCodes
+    content.vb: Public Module TestUtilitiesHardCodes
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -38,30 +38,30 @@ items:
   modifiers.vb:
   - Public
   - Module
-- uid: Landorphan.TestUtilities.TestFacilities.TestHardCodes.NoExceptionWasThrown
-  commentId: F:Landorphan.TestUtilities.TestFacilities.TestHardCodes.NoExceptionWasThrown
+- uid: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown
+  commentId: F:Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown
   id: NoExceptionWasThrown
-  parent: Landorphan.TestUtilities.TestFacilities.TestHardCodes
+  parent: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
   langs:
   - csharp
   - vb
   name: NoExceptionWasThrown
-  nameWithType: TestHardCodes.NoExceptionWasThrown
-  fullName: Landorphan.TestUtilities.TestFacilities.TestHardCodes.NoExceptionWasThrown
+  nameWithType: TestUtilitiesHardCodes.NoExceptionWasThrown
+  fullName: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown
   type: Field
   source:
     remote:
-      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestHardcodes.cs
-      branch: mprochaska.documentation.1
+      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: NoExceptionWasThrown
-    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestHardcodes.cs
-    startLine: 20
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
+    startLine: 22
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities.TestFacilities
   summary: "\nUsed by tests to avoid S2699: Tests should contain at least one assertion.\n"
-  remarks: "\nFor use by tests that call methods with troublesome input (0, null, etc.) to verify no exception is thrown.\n<example>\n<pre><code>TestHardCodes.NoExceptionWasThrown.Should().BeTrue();</code></pre>\n</example>\n"
+  remarks: "\nFor use by tests that call methods with troublesome input (0, null, etc.) to verify no exception is thrown.\n<example>\n<pre><code>TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();</code></pre>\n</example>\nThe point is to self-document the intent, as wells as to avoid capricious warnings.\nTODO: consider disabling S2699:  It fires on no exception tests, manual tests, and test that merely document what is...\n"
   example: []
   syntax:
     content: public const bool NoExceptionWasThrown = true

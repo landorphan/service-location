@@ -163,15 +163,15 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            _target.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             try
             {
                _target.CreateDirectory(sourceDirName);
@@ -339,7 +339,7 @@
          public void And_the_sourceDirName_and_DestDirName_do_not_share_a_common_root_It_should_not_throw()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.LocalTestTargetRootFolder, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.LocalFolderRoot, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(sourceDirName);
             try
@@ -470,14 +470,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceDirName_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var sourceDirName = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.UnmappedDrive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            _target.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var sourceDirName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
@@ -718,10 +718,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath +
-                       Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                       ":" +
-                       Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -753,12 +750,17 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_extends_a_known_host_and_known_share_it_should_not_throw()
          {
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
 
-            _target.DirectoryExists(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl).Should().BeTrue();
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+
+            _target.DirectoryExists(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl).Should().BeTrue();
             _target.CreateDirectory(path);
             _target.DirectoryExists(path).Should().BeTrue();
             _target.DeleteRecursively(path);
@@ -857,14 +859,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            _target.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -969,8 +971,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
-         public void It_should_create_the_directory()
+         public void It_should_create_the_directory_absolute()
          {
             // absolute
             var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + "It_should_create_the_directory");
@@ -983,10 +984,15 @@
             {
                _target.DeleteRecursively(path);
             }
+         }
 
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_create_the_directory_relative()
+         {
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "It_should_create_the_directory";
+            var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -996,9 +1002,20 @@
             {
                _target.DeleteRecursively(path);
             }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_create_the_directory_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
 
             // unc
-            path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl, Guid.NewGuid() + "It_should_create_the_directory");
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid() + nameof(It_should_create_the_directory_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -1174,14 +1191,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            _target.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.DeleteEmpty(path);
          }
@@ -1274,11 +1291,10 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
-         public void It_should_delete_an_empty_directory()
+         public void It_should_delete_an_empty_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + "It_should_delete_an_empty_directory");
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + nameof(It_should_delete_an_empty_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -1290,10 +1306,15 @@
             {
                _target.DeleteRecursively(path);
             }
+         }
 
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_delete_an_empty_directory_relative()
+         {
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "It_should_delete_an_empty_directory";
+            var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -1304,10 +1325,21 @@
             finally
             {
                _target.DeleteRecursively(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_delete_an_empty_directory_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
             }
 
             // unc
-            path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl, Guid.NewGuid() + "It_should_delete_an_empty_directory");
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncShareRoot, Guid.NewGuid() + nameof(It_should_delete_an_empty_directory_unc));
             try
             {
                _target.CreateDirectory(path);

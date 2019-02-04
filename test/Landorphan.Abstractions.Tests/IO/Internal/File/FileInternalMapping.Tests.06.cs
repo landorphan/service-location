@@ -127,12 +127,17 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_read_the_file()
          {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
             const String expected = "zero\r\none\r\ntwo\r\nthree";
 
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -162,14 +167,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var fileFullPath = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var fileFullPath = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.ReadAllText(fileFullPath, Encoding.UTF8);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();

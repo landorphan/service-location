@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerRegistrationRepository
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs
@@ -31,7 +31,6 @@ items:
     content: 'public interface IIocContainerRegistrationRepository : IIocContainerMetaSharedCapacities, IIocContainerMetaIdentity'
     content.vb: >-
       Public Interface IIocContainerRegistrationRepository
-
           Inherits IIocContainerMetaSharedCapacities
   seealso:
   - linkId: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity
@@ -76,7 +75,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Registrations
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs

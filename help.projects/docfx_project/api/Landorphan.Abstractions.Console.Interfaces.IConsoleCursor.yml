@@ -1,0 +1,331 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  commentId: T:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  id: IConsoleCursor
+  parent: Landorphan.Abstractions.Console.Interfaces
+  children:
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition(System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: IConsoleCursor
+  nameWithType: IConsoleCursor
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IConsoleCursor
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+    startLine: 9
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nInterface for console mno.\n"
+  example: []
+  syntax:
+    content: public interface IConsoleCursor
+    content.vb: Public Interface IConsoleCursor
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft
+  id: CursorLeft
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  langs:
+  - csharp
+  - vb
+  name: CursorLeft
+  nameWithType: IConsoleCursor.CursorLeft
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: CursorLeft
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+    startLine: 28
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nGets or sets the column position of the cursor within the buffer area.\n"
+  example: []
+  syntax:
+    content: int CursorLeft { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe current position, in columns, of the cursor.\n"
+    content.vb: Property CursorLeft As Integer
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThe value in a set operation is less than zero.\n-or-\nThe value in a set operation is greater than or equal to <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize
+  id: CursorSize
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  langs:
+  - csharp
+  - vb
+  name: CursorSize
+  nameWithType: IConsoleCursor.CursorSize
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: CursorSize
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+    startLine: 45
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nGets or sets the height of the cursor within a character cell.\n"
+  example: []
+  syntax:
+    content: int CursorSize { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe size of the cursor expressed as a percentage of the height of a character cell.  The property value ranges from 1 to 100.\n"
+    content.vb: Property CursorSize As Integer
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThe value specified in a set operation is less than 1 or greater than 100.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop
+  id: CursorTop
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  langs:
+  - csharp
+  - vb
+  name: CursorTop
+  nameWithType: IConsoleCursor.CursorTop
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: CursorTop
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+    startLine: 64
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nGets or sets the row position of the cursor within the buffer area.\n"
+  example: []
+  syntax:
+    content: int CursorTop { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe current position, in rows, of the cursor.\n"
+    content.vb: Property CursorTop As Integer
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThe value in a set operation is less than zero.\n-or-\nThe value in a set operation is greater than or equal to <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible
+  id: CursorVisible
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  langs:
+  - csharp
+  - vb
+  name: CursorVisible
+  nameWithType: IConsoleCursor.CursorVisible
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: CursorVisible
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+    startLine: 78
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nGets or sets a value indicating whether the cursor is visible.\n"
+  example: []
+  syntax:
+    content: bool CursorVisible { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if the cursor is visible; otherwise, <code> false </code>.\n"
+    content.vb: Property CursorVisible As Boolean
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible*
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition(System.Int32,System.Int32)
+  commentId: M:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition(System.Int32,System.Int32)
+  id: SetCursorPosition(System.Int32,System.Int32)
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
+  langs:
+  - csharp
+  - vb
+  name: SetCursorPosition(Int32, Int32)
+  nameWithType: IConsoleCursor.SetCursorPosition(Int32, Int32)
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: SetCursorPosition
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleCursor.cs
+    startLine: 89
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nSets the position of the cursor.\n"
+  example: []
+  syntax:
+    content: void SetCursorPosition(int left, int top)
+    parameters:
+    - id: left
+      type: System.Int32
+      description: "\nThe column position of the cursor. Columns are numbered from left to right starting at 0.\n"
+    - id: top
+      type: System.Int32
+      description: "\nThe row position of the cursor. Rows are numbered from top to bottom starting at 0.\n"
+    content.vb: Sub SetCursorPosition(left As Integer, top As Integer)
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition*
+references:
+- uid: Landorphan.Abstractions.Console.Interfaces
+  commentId: N:Landorphan.Abstractions.Console.Interfaces
+  name: Landorphan.Abstractions.Console.Interfaces
+  nameWithType: Landorphan.Abstractions.Console.Interfaces
+  fullName: Landorphan.Abstractions.Console.Interfaces
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  name: BufferWidth
+  nameWithType: IConsoleBuffer.BufferWidth
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: System.Security.SecurityException
+  commentId: T:System.Security.SecurityException
+  isExternal: true
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft
+  name: CursorLeft
+  nameWithType: IConsoleCursor.CursorLeft
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorLeft
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  commentId: T:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  parent: Landorphan.Abstractions.Console.Interfaces
+  name: IConsoleBuffer
+  nameWithType: IConsoleBuffer
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize
+  name: CursorSize
+  nameWithType: IConsoleCursor.CursorSize
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorSize
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  name: BufferHeight
+  nameWithType: IConsoleBuffer.BufferHeight
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop
+  name: CursorTop
+  nameWithType: IConsoleCursor.CursorTop
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorTop
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible
+  name: CursorVisible
+  nameWithType: IConsoleCursor.CursorVisible
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.CursorVisible
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition
+  name: SetCursorPosition
+  nameWithType: IConsoleCursor.SetCursorPosition
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor.SetCursorPosition

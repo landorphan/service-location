@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerConfiguration
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
@@ -35,7 +35,6 @@ items:
     content: 'public interface IIocContainerConfiguration : ICloneable, IQueryReadOnly, IEquatable<IIocContainerConfiguration>'
     content.vb: >-
       Public Interface IIocContainerConfiguration
-
           Inherits ICloneable, IQueryReadOnly, IEquatable(Of IIocContainerConfiguration)
   inheritedMembers:
   - System.ICloneable.Clone
@@ -61,7 +60,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ConfigurationChanged
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
@@ -90,7 +89,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AllowNamedImplementations
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
@@ -126,7 +125,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AllowPreclusionOfTypes
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
@@ -162,7 +161,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Container
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
@@ -198,7 +197,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ThrowOnRegistrationCollision
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IIocContainerConfiguration.cs

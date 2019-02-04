@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IIocServiceLocatorMetaSharedCapacities
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
@@ -51,7 +51,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Manager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ServiceLocator
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorMetaSharedCapacities.cs

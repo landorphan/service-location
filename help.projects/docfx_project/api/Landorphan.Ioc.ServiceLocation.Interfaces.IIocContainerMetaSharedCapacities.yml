@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerMetaSharedCapacities
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
@@ -34,7 +34,6 @@ items:
     content: 'public interface IIocContainerMetaSharedCapacities : IIocContainerMetaIdentity'
     content.vb: >-
       Public Interface IIocContainerMetaSharedCapacities
-
           Inherits IIocContainerMetaIdentity
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainerMetaIdentity.Name
@@ -59,7 +58,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Container
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
@@ -95,7 +94,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Manager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
@@ -131,7 +130,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Registrar
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
@@ -167,7 +166,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Resolver
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerMetaSharedCapacities.cs

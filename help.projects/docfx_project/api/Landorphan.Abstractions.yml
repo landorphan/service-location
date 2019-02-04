@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions
+  commentId: N:Landorphan.Abstractions
+  id: Landorphan.Abstractions
+  children:
+  - Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Landorphan.Abstractions
+  nameWithType: Landorphan.Abstractions
+  fullName: Landorphan.Abstractions
+  type: Namespace
+  assemblies:
+  - Landorphan.Abstractions
+references:
+- uid: Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.EnvironmentUtilitiesFactory
+  name: EnvironmentUtilitiesFactory
+  nameWithType: EnvironmentUtilitiesFactory
+  fullName: Landorphan.Abstractions.EnvironmentUtilitiesFactory

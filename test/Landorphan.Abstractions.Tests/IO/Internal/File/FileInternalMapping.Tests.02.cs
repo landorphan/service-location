@@ -197,10 +197,15 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_create_the_file()
          {
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -245,14 +250,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -422,6 +427,24 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(WellKnownTestCategories.PreventRegressionBug)]
+         public void And_the_path_is_a_file_in_the_present_working_directory_with_no_path_information_save_the_file_name_It_should_delete_the_file()
+         {
+            // DeleteFile was failing to delete unadorned file names in the present working directory.
+            // DeleteFile .\SomeFile.text >> worked
+            // DeleteFile SomeFile.txt >> returned before deleting because the directory did not exist.
+
+            // change the pwd
+            Directory.SetCurrentDirectory(Path.GetTempPath());
+            var fileName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt";
+            _target.CreateFile(fileName);
+            _target.FileExists(fileName).Should().BeTrue();
+            _target.DeleteFile(fileName);
+            _target.FileExists(fileName).Should().BeFalse();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
             var path = String.Empty;
@@ -447,14 +470,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.DeleteFile(path);
          }
@@ -519,6 +542,7 @@
          {
             var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
             _target.DeleteFile(path);
+
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
@@ -528,6 +552,7 @@
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteFile(path);
+
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
@@ -627,14 +652,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unmapped_drive_It_should_return_false()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
-            var path = TestHardCodes.WindowsTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             _target.FileExists(path).Should().BeFalse();
          }

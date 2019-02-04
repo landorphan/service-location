@@ -195,6 +195,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [SuppressMessage("Microsoft.PlatformCompatibility", "DE0006: API is deprecated", Justification = "Referencing BCL(MWP)")]
          public void It_should_return_the_environment_variables()
          {
             var expected = new HashSet<IEnvironmentVariable>();
@@ -392,13 +393,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_the_ElapsedMillisecondsSinceSystemStart()
-         {
-            _target.ElapsedMillisecondsSinceSystemStart.Should().Be(Environment.TickCount);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_HasShutdownStarted()
          {
             _target.HasShutdownStarted.Should().Be(Environment.HasShutdownStarted);
@@ -434,6 +428,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [SuppressMessage("Microsoft.PlatformCompatibility", "DE0009: API is deprecated", Justification = "Referencing BCL(MWP)")]
          public void It_should_return_the_OSVersion()
          {
             _target.OSVersion.Should().Be(Environment.OSVersion);
