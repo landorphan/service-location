@@ -145,6 +145,7 @@ namespace Landorphan.Abstractions.IO.Internal
          try
          {
             var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+            // will return false on  @"\\localhost" and @"\\localhost\"
             return Directory.Exists(cleanedPath);
          }
          catch
@@ -637,8 +638,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return PathContainsUnmappedDrive(path);
       }
 
-      [SuppressMessage("SonarLint" ,"S100: Methods and properties should be named in PascalCase")]
-      [SuppressMessage("SonarLint" ,"S3400: Methods should not return constants")]
+      [SuppressMessage("SonarLint", "S100: Methods and properties should be named in PascalCase")]
+      [SuppressMessage("SonarLint", "S3400: Methods should not return constants")]
       internal Boolean TestHookGetIOPrechecksEnabled()
       {
          return true;

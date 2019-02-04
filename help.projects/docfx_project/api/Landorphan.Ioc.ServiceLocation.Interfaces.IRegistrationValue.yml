@@ -18,7 +18,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IRegistrationValue
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
@@ -33,7 +33,6 @@ items:
     content: 'public interface IRegistrationValue : ICloneable, IQueryReadOnly, IComparable, IComparable<IRegistrationValue>, IEquatable<IRegistrationValue>'
     content.vb: >-
       Public Interface IRegistrationValue
-
           Inherits ICloneable, IQueryReadOnly, IComparable, IComparable(Of IRegistrationValue), IEquatable(Of IRegistrationValue)
   inheritedMembers:
   - System.ICloneable.Clone
@@ -61,7 +60,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ImplementationInstance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
@@ -97,7 +96,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ImplementationType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
@@ -133,7 +132,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IsEmpty
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationValue.cs

@@ -122,12 +122,10 @@ namespace Landorphan.Abstractions.IO.Internal
             throw new IOException(msg);
          }
 #endif
-
-         var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-         var dir = pathUtilities.GetParentPath(cleanedPath);
-         if (!dirUtilities.DirectoryExists(dir))
+         var dir = pathUtilities.GetParentPath(cleanedPath).Trim();
+         if (!String.IsNullOrEmpty(dir) && !directoryUtilities.DirectoryExists(dir))
          {
-            dirUtilities.CreateDirectory(dir);
+            directoryUtilities.CreateDirectory(dir);
          }
 
          const Int32 fourK = 4096;
@@ -156,7 +154,9 @@ namespace Landorphan.Abstractions.IO.Internal
          var dir = pathUtilities.GetParentPath(cleanedPath);
 
          // the directory containing the file does not exist.
-         if (!dirUtilities.DirectoryExists(dir))
+         // Historical bug here.  No directory was returning when deleting a file in the present working directory.
+         // the revised condition fixes the bug.
+         if (!String.IsNullOrEmpty(dir) && !dirUtilities.DirectoryExists(dir))
          {
             return;
          }

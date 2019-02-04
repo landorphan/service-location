@@ -2,7 +2,6 @@
 {
    using System;
    using System.Collections.Generic;
-   using System.Globalization;
    using System.IO;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -31,6 +30,50 @@
       [TestClass]
       public class Path_BCL_Fixed_Issues : TestBase
       {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         public void GetParentPath_on_a_UNC_path_should_NOT_return_null_unless_it_is_a_root()
+         {
+            // ReSharper disable CommentTypo
+            //
+            // \\share                 >> null
+            // \\share\file.txt        >> null  *** this is a confusing design choice
+            // \\share\folder\file.txt >> \\share\folder
+            // C:\                     >> null
+            // C:\file.txt             >> C:\
+            // C:\folder\file.txt      >> C:\folder
+            //
+            // ReSharper restore CommentTypo
+            const String uncPathShareFile = @"\\share\file.txt";
+            const String uncPathShare = @"\\share";
+
+            // Proof of fix:
+            util.GetParentPath(uncPathShareFile).Should().Be(uncPathShare);
+
+            // Proof of workaround needed:
+            Path.GetDirectoryName(uncPathShareFile).Should().BeNull();
+
+            // no workaround needed:
+            Path.GetDirectoryName(uncPathShare).Should().BeNull();
+            util.GetParentPath(uncPathShare).Should().BeNull();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         public void GetRootPath_should_return_the_root_of_a_unc_path()
+         {
+            const String uncPathShareFile = @"\\share\file.txt";
+            const String uncPathShare = @"\\share";
+
+            // Proof of fix:
+            util.GetRootPath(uncPathShareFile).Should().Be(uncPathShare);
+
+            // Proof of workaround needed:
+            Path.GetPathRoot(uncPathShareFile).Should().Be(uncPathShareFile);
+         }
+
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
@@ -69,42 +112,6 @@
             // This threw an ArgumentException with different text and a null ParamName value in .Net 4.6.1
             var actual = Path.ChangeExtension(IllegalPath, legalExtension);
             actual.Should().Be("|.txt");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
-         public void Leading_spaces_before_a_UNC_path_defeat_IsPathRooted_Fixed()
-         {
-            // Fixed by PathInternalMapping
-            const String noLeadingSpaces = @"\\someserver\someshare\";
-            const String leadingSpaces = Spaces + noLeadingSpaces;
-
-            // Proof of fix:
-            util.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            util.IsPathRooted(leadingSpaces).Should().BeTrue();
-
-            // Proof of workaround needed
-            Path.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            Path.IsPathRooted(leadingSpaces).Should().BeFalse();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
-         public void Leading_spaces_before_the_drive_label_defeat_IsPathRooted_Fixed()
-         {
-            // Fixed by PathInternalMapping
-            var noLeadingSpaces = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var leadingSpaces = Spaces + noLeadingSpaces;
-
-            // Proof of fix:
-            util.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            util.IsPathRooted(leadingSpaces).Should().BeTrue();
-
-            // Proof of workaround needed
-            Path.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            Path.IsPathRooted(leadingSpaces).Should().BeFalse();
          }
       }
 
@@ -152,14 +159,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void Path_Combine_Behavior()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // method handles directory separator character insertion
             Path.Combine(drive + @"temp", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");

@@ -1,0 +1,1745 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  commentId: T:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  id: IEnvironmentUtilities
+  parent: Landorphan.Abstractions.Interfaces
+  children:
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit(System.Int32)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables(System.String)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String,System.Exception)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables(System.EnvironmentVariableTarget)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes
+  langs:
+  - csharp
+  - vb
+  name: IEnvironmentUtilities
+  nameWithType: IEnvironmentUtilities
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IEnvironmentUtilities
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nProvides information about, and means to manipulate, the current environment and platform.\n"
+  example: []
+  syntax:
+    content: public interface IEnvironmentUtilities
+    content.vb: Public Interface IEnvironmentUtilities
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
+  id: ClrVersion
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: ClrVersion
+  nameWithType: IEnvironmentUtilities.ClrVersion
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: ClrVersion
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 22
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets a <xref href=\"System.Version\" data-throw-if-not-resolved=\"false\"></xref> Object that describes the major, minor, build, and revision numbers of the common language\nruntime.\n"
+  example: []
+  syntax:
+    content: Version ClrVersion { get; }
+    parameters: []
+    return:
+      type: System.Version
+      description: "\nAn Object that displays the version of the common language runtime.\n"
+    content.vb: ReadOnly Property ClrVersion As Version
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
+  id: CommandLine
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: CommandLine
+  nameWithType: IEnvironmentUtilities.CommandLine
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: CommandLine
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 30
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the command line for this process.\n"
+  example: []
+  syntax:
+    content: string CommandLine { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nA String containing command-line arguments.\n"
+    content.vb: ReadOnly Property CommandLine As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+  id: CurrentManagedThreadId
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: CurrentManagedThreadId
+  nameWithType: IEnvironmentUtilities.CurrentManagedThreadId
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: CurrentManagedThreadId
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 38
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets a unique identifier for the current managed thread.\n"
+  example: []
+  syntax:
+    content: int CurrentManagedThreadId { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nAn integer that represents a unique identifier for this managed thread.\n"
+    content.vb: ReadOnly Property CurrentManagedThreadId As Integer
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
+  id: ExitCode
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: ExitCode
+  nameWithType: IEnvironmentUtilities.ExitCode
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: ExitCode
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 46
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets or sets the exit code of the process.\n"
+  example: []
+  syntax:
+    content: int ExitCode { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nA 32-bit signed integer containing the exit code. The default value is zero.\n"
+    content.vb: Property ExitCode As Integer
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode*
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
+  id: HasShutdownStarted
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: HasShutdownStarted
+  nameWithType: IEnvironmentUtilities.HasShutdownStarted
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: HasShutdownStarted
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 54
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets a value indicating whether the common language runtime (CLR) is shutting down.\n"
+  example: []
+  syntax:
+    content: bool HasShutdownStarted { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if the CLR is shutting down; otherwise, <code> false </code>.\n"
+    content.vb: ReadOnly Property HasShutdownStarted As Boolean
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
+  id: Is64BitOperatingSystem
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: Is64BitOperatingSystem
+  nameWithType: IEnvironmentUtilities.Is64BitOperatingSystem
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Is64BitOperatingSystem
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 65
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nDetermines whether the current operating system is a 64-bit operating system.\n"
+  example: []
+  syntax:
+    content: bool Is64BitOperatingSystem { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code><code> true </code>\n</code>\nif the operating system is 64-bit; otherwise, <code> false </code>.\n"
+    content.vb: ReadOnly Property Is64BitOperatingSystem As Boolean
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
+  id: Is64BitProcess
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: Is64BitProcess
+  nameWithType: IEnvironmentUtilities.Is64BitProcess
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Is64BitProcess
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 73
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nDetermines whether the current process is a 64-bit process.\n"
+  example: []
+  syntax:
+    content: bool Is64BitProcess { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if the process is 64-bit; otherwise, <code> false </code>.\n"
+    content.vb: ReadOnly Property Is64BitProcess As Boolean
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName
+  id: MachineName
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: MachineName
+  nameWithType: IEnvironmentUtilities.MachineName
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: MachineName
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 84
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the NetBIOS name of this local computer.\n"
+  example: []
+  syntax:
+    content: string MachineName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nA String containing the name of this computer.\n"
+    content.vb: ReadOnly Property MachineName As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: "\nThe name of this computer cannot be obtained.\n"
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine
+  id: NewLine
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: NewLine
+  nameWithType: IEnvironmentUtilities.NewLine
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: NewLine
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 92
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the newline String defined for this environment.\n"
+  example: []
+  syntax:
+    content: string NewLine { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nA String containing &quot;\\r\\n&quot; for non-Unix platforms, or a String containing &quot;\\n&quot; for Unix platforms.\n"
+    content.vb: ReadOnly Property NewLine As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion
+  id: OSVersion
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: OSVersion
+  nameWithType: IEnvironmentUtilities.OSVersion
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: OSVersion
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 105
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets an <xref href=\"System.OperatingSystem\" data-throw-if-not-resolved=\"false\"></xref> Object that contains the current platform identifier and version number.\n"
+  example: []
+  syntax:
+    content: OperatingSystem OSVersion { get; }
+    parameters: []
+    return:
+      type: System.OperatingSystem
+      description: "\nAn Object that contains the platform identifier and version number.\n"
+    content.vb: ReadOnly Property OSVersion As OperatingSystem
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: "\nThis property was unable to obtain the system version.\n-or-\nThe obtained platform identifier is not a member of <xref href=\"System.PlatformID\" data-throw-if-not-resolved=\"false\"></xref>\n"
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount
+  id: ProcessorCount
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: ProcessorCount
+  nameWithType: IEnvironmentUtilities.ProcessorCount
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: ProcessorCount
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 116
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the number of processors on the current machine.\n"
+  example: []
+  syntax:
+    content: int ProcessorCount { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe 32-bit signed integer that specifies the number of processors on the current machine. There is no default. If the current machine\ncontains multiple processor groups, this property returns the number of logical processors that are available for use by the common\nlanguage runtime (CLR).\n"
+    content.vb: ReadOnly Property ProcessorCount As Integer
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace
+  id: StackTrace
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: StackTrace
+  nameWithType: IEnvironmentUtilities.StackTrace
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: StackTrace
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 127
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets current stack trace information.\n"
+  example: []
+  syntax:
+    content: string StackTrace { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nA String containing stack trace information. This value can be <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: ReadOnly Property StackTrace As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThe requested stack trace information is out of range.\n"
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory
+  id: SystemDirectory
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: SystemDirectory
+  nameWithType: IEnvironmentUtilities.SystemDirectory
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: SystemDirectory
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 138
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the fully qualified path of the system directory.\n"
+  remarks: "\nUsually C:\\WINDOWS\\system32\n"
+  example: []
+  syntax:
+    content: string SystemDirectory { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nA String containing a directory path.\n"
+    content.vb: ReadOnly Property SystemDirectory As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes
+  id: SystemPageSizeBytes
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: SystemPageSizeBytes
+  nameWithType: IEnvironmentUtilities.SystemPageSizeBytes
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: SystemPageSizeBytes
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 146
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the amount of memory for an operating system&apos;s page file.\n"
+  example: []
+  syntax:
+    content: int SystemPageSizeBytes { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe number of bytes in a system page file.\n"
+    content.vb: ReadOnly Property SystemPageSizeBytes As Integer
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName
+  id: UserDomainName
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: UserDomainName
+  nameWithType: IEnvironmentUtilities.UserDomainName
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: UserDomainName
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 160
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the network domain name associated with the current user.\n"
+  example: []
+  syntax:
+    content: string UserDomainName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe network domain name associated with the current user.\n"
+    content.vb: ReadOnly Property UserDomainName As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName*
+  exceptions:
+  - type: System.PlatformNotSupportedException
+    commentId: T:System.PlatformNotSupportedException
+    description: "\nThe operating system does not support retrieving the network domain name.\n"
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: "\nThe network domain name cannot be retrieved.\n"
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive
+  id: UserInteractive
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: UserInteractive
+  nameWithType: IEnvironmentUtilities.UserInteractive
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: UserInteractive
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 168
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets a value indicating whether the current process is running in user interactive mode.\n"
+  example: []
+  syntax:
+    content: bool UserInteractive { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<code> true </code> if the current process is running in user interactive mode; otherwise, <code> false </code>.\n"
+    content.vb: ReadOnly Property UserInteractive As Boolean
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName
+  id: UserName
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: UserName
+  nameWithType: IEnvironmentUtilities.UserName
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: UserName
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 176
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the user name of the person who is currently logged on to the Windows operating system.\n"
+  example: []
+  syntax:
+    content: string UserName { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe user name of the person who is logged on to Windows.\n"
+    content.vb: ReadOnly Property UserName As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes
+  id: WorkingSetBytes
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: WorkingSetBytes
+  nameWithType: IEnvironmentUtilities.WorkingSetBytes
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: WorkingSetBytes
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 184
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the amount of physical memory mapped to the process context.\n"
+  example: []
+  syntax:
+    content: long WorkingSetBytes { get; }
+    parameters: []
+    return:
+      type: System.Int64
+      description: "\nA 64-bit signed integer containing the number of bytes of physical memory mapped to the process context.\n"
+    content.vb: ReadOnly Property WorkingSetBytes As Long
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit(System.Int32)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit(System.Int32)
+  id: Exit(System.Int32)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: Exit(Int32)
+  nameWithType: IEnvironmentUtilities.Exit(Int32)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: Exit
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 195
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nTerminates this process and gives the underlying operating system the specified exit code.\n"
+  example: []
+  syntax:
+    content: >-
+      [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+
+      void Exit(int exitCode)
+    parameters:
+    - id: exitCode
+      type: System.Int32
+      description: "\nExit code to be given to the operating system.\n"
+    content.vb: >-
+      <SecurityPermission(SecurityAction.Demand, Flags:=SecurityPermissionFlag.UnmanagedCode)>
+
+      Sub Exit(exitCode As Integer)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit*
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have sufficient security permission to perform this function.\n"
+  attributes:
+  - type: System.Security.Permissions.SecurityPermissionAttribute
+    ctor: System.Security.Permissions.SecurityPermissionAttribute.#ctor(System.Security.Permissions.SecurityAction)
+    arguments:
+    - type: System.Security.Permissions.SecurityAction
+      value: 2
+    namedArguments:
+    - name: Flags
+      type: System.Security.Permissions.SecurityPermissionFlag
+      value: 2
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables(System.String)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables(System.String)
+  id: ExpandEnvironmentVariables(System.String)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: ExpandEnvironmentVariables(String)
+  nameWithType: IEnvironmentUtilities.ExpandEnvironmentVariables(String)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: ExpandEnvironmentVariables
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 217
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nReplaces the name of each environment variable embedded in the specified String with the String equivalent of the value of the\nvariable, then returns the resulting String.\n"
+  example: []
+  syntax:
+    content: string ExpandEnvironmentVariables(string name)
+    parameters:
+    - id: name
+      type: System.String
+      description: "\nA String containing the names of zero or more environment variables. Each environment variable is quoted with the percent\nsign character (%).\n"
+    return:
+      type: System.String
+      description: "\nA String with each environment variable replaced by its value.\n"
+    content.vb: Function ExpandEnvironmentVariables(name As String) As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">name</code> is null.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String)
+  id: FailFast(System.String)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: FailFast(String)
+  nameWithType: IEnvironmentUtilities.FailFast(String)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: FailFast
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 226
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nImmediately terminates a process after writing a message to the Windows Application event log, and then includes the message in\nerror reporting to Microsoft.\n"
+  example: []
+  syntax:
+    content: void FailFast(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: "\nA message that explains why the process was terminated, or null if no explanation is provided.\n"
+    content.vb: Sub FailFast(message As String)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast*
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String,System.Exception)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String,System.Exception)
+  id: FailFast(System.String,System.Exception)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: FailFast(String, Exception)
+  nameWithType: IEnvironmentUtilities.FailFast(String, Exception)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast(System.String, System.Exception)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: FailFast
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 238
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nImmediately terminates a process after writing a message to the Windows Application event log, and then includes the message and\nexception information in error reporting to Microsoft.\n"
+  example: []
+  syntax:
+    content: void FailFast(string message, Exception exception)
+    parameters:
+    - id: message
+      type: System.String
+      description: "\nA message that explains why the process was terminated, or null if no explanation is provided.\n"
+    - id: exception
+      type: System.Exception
+      description: "\nAn exception that represents the error that caused the termination. This is typically the exception in a catch block.\n"
+    content.vb: Sub FailFast(message As String, exception As Exception)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast*
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs
+  id: GetCommandLineArgs
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetCommandLineArgs()
+  nameWithType: IEnvironmentUtilities.GetCommandLineArgs()
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetCommandLineArgs
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 250
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nReturns a String array containing the command-line arguments for the current process.\n"
+  example: []
+  syntax:
+    content: string[] GetCommandLineArgs()
+    return:
+      type: System.String[]
+      description: "\nAn array of String where each element contains a command-line argument. The first element is the executable file name, and the\nfollowing zero or more elements contain the remaining command-line arguments.\n"
+    content.vb: Function GetCommandLineArgs As String()
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\nThe system does not support command-line arguments.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String)
+  id: GetEnvironmentVariable(System.String)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetEnvironmentVariable(String)
+  nameWithType: IEnvironmentUtilities.GetEnvironmentVariable(String)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetEnvironmentVariable
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 267
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nRetrieves the value of an environment variable from the current process.\n"
+  example: []
+  syntax:
+    content: string GetEnvironmentVariable(string variable)
+    parameters:
+    - id: variable
+      type: System.String
+      description: "\nThe name of the environment variable.\n"
+    return:
+      type: System.String
+      description: "\nThe value of the environment variable specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code>, or null if the environment variable is not found.\n"
+    content.vb: Function GetEnvironmentVariable(variable As String) As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> is null.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to perform this operation.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget)
+  id: GetEnvironmentVariable(System.String,System.EnvironmentVariableTarget)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetEnvironmentVariable(String, EnvironmentVariableTarget)
+  nameWithType: IEnvironmentUtilities.GetEnvironmentVariable(String, EnvironmentVariableTarget)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable(System.String, System.EnvironmentVariableTarget)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetEnvironmentVariable
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 297
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nRetrieves the value of an environment variable from the current process or from the Windows operating system registry key for the\ncurrent user or local machine.\n"
+  example: []
+  syntax:
+    content: string GetEnvironmentVariable(string variable, EnvironmentVariableTarget target)
+    parameters:
+    - id: variable
+      type: System.String
+      description: "\nThe name of an environment variable.\n"
+    - id: target
+      type: System.EnvironmentVariableTarget
+      description: "\nOne of the <xref href=\"System.EnvironmentVariableTarget\" data-throw-if-not-resolved=\"false\"></xref> values.\n"
+    return:
+      type: System.String
+      description: "\nThe value of the environment variable specified by the <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> parameters, or null\nif the environment variable is not found.\n"
+    content.vb: Function GetEnvironmentVariable(variable As String, target As EnvironmentVariableTarget) As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> is null.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> is <xref href=\"System.EnvironmentVariableTarget.User\" data-throw-if-not-resolved=\"false\"></xref> or\n<xref href=\"System.EnvironmentVariableTarget.Machine\" data-throw-if-not-resolved=\"false\"></xref> and the current operating system is Windows\n95, Windows 98, or Windows Me.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> is not a valid <xref href=\"System.EnvironmentVariableTarget\" data-throw-if-not-resolved=\"false\"></xref> value.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to perform this operation.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables
+  id: GetEnvironmentVariables
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetEnvironmentVariables()
+  nameWithType: IEnvironmentUtilities.GetEnvironmentVariables()
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetEnvironmentVariables
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 312
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nRetrieves all environment variable names and their values from the current process.\n"
+  example: []
+  syntax:
+    content: IImmutableSet<IEnvironmentVariable> GetEnvironmentVariables()
+    return:
+      type: System.Collections.Immutable.IImmutableSet{Landorphan.Abstractions.Interfaces.IEnvironmentVariable}
+      description: "\nA dictionary that contains all environment variable names and their values; otherwise, an empty dictionary if no environment\nvariables are found.\n"
+    content.vb: Function GetEnvironmentVariables As IImmutableSet(Of IEnvironmentVariable)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables*
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to perform this operation.\n"
+  - type: System.OutOfMemoryException
+    commentId: T:System.OutOfMemoryException
+    description: "\nThe buffer is out of memory.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables(System.EnvironmentVariableTarget)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables(System.EnvironmentVariableTarget)
+  id: GetEnvironmentVariables(System.EnvironmentVariableTarget)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetEnvironmentVariables(EnvironmentVariableTarget)
+  nameWithType: IEnvironmentUtilities.GetEnvironmentVariables(EnvironmentVariableTarget)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables(System.EnvironmentVariableTarget)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetEnvironmentVariables
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 335
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nRetrieves all environment variable names and their values from the current process, or from the Windows operating system registry\nkey for the current user or local machine.\n"
+  example: []
+  syntax:
+    content: IImmutableSet<IEnvironmentVariable> GetEnvironmentVariables(EnvironmentVariableTarget target)
+    parameters:
+    - id: target
+      type: System.EnvironmentVariableTarget
+      description: "\nOne of the <xref href=\"System.EnvironmentVariableTarget\" data-throw-if-not-resolved=\"false\"></xref> values.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{Landorphan.Abstractions.Interfaces.IEnvironmentVariable}
+      description: "\nA dictionary that contains all environment variable names and their values from the source specified by the\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> parameter; otherwise, an empty dictionary if no environment variables are found.\n"
+    content.vb: Function GetEnvironmentVariables(target As EnvironmentVariableTarget) As IImmutableSet(Of IEnvironmentVariable)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables*
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to perform this operation for the specified value of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code>.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\nThis method cannot be used on Windows 95 or Windows 98 platforms.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> contains an illegal value.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives
+  id: GetLogicalDrives
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetLogicalDrives()
+  nameWithType: IEnvironmentUtilities.GetLogicalDrives()
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetLogicalDrives
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 350
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nReturns an array of String containing the names of the logical drives on the current computer.\n"
+  example: []
+  syntax:
+    content: string[] GetLogicalDrives()
+    return:
+      type: System.String[]
+      description: "\nAn array of strings where each element contains the name of a logical drive. For example, if the computer&apos;s hard drive is the first\nlogical drive, the first element returned is &quot;C:\\&quot;.\n"
+    content.vb: Function GetLogicalDrives As String()
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurs.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permissions.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder)
+  id: GetSpecialFolderPath(System.Environment.SpecialFolder)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetSpecialFolderPath(Environment.SpecialFolder)
+  nameWithType: IEnvironmentUtilities.GetSpecialFolderPath(Environment.SpecialFolder)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetSpecialFolderPath
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 369
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the path to the system special directory that is identified by the specified enumeration.\n"
+  example: []
+  syntax:
+    content: string GetSpecialFolderPath(Environment.SpecialFolder specialFolder)
+    parameters:
+    - id: specialFolder
+      type: System.Environment.SpecialFolder
+      description: "\nAn enumerated constant that identifies a system special directory.\n"
+    return:
+      type: System.String
+      description: "\nThe path to the specified system special directory, if that directory physically exists on your computer; otherwise, an empty String (&quot;&quot;).\nA directory will not physically exist if the operating system did not create it, the existing directory was deleted, or the directory is a\nvirtual directory, such as My Computer, which does not correspond to a physical path.\n"
+    content.vb: Function GetSpecialFolderPath(specialFolder As Environment.SpecialFolder) As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">specialFolder</code> is not a member of <xref href=\"System.Environment.SpecialFolder\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.PlatformNotSupportedException
+    commentId: T:System.PlatformNotSupportedException
+    description: "\nThe current platform is not supported.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption)
+  id: GetSpecialFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetSpecialFolderPath(Environment.SpecialFolder, Environment.SpecialFolderOption)
+  nameWithType: IEnvironmentUtilities.GetSpecialFolderPath(Environment.SpecialFolder, Environment.SpecialFolderOption)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder, System.Environment.SpecialFolderOption)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetSpecialFolderPath
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 393
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the path to the system special directory that is identified by the specified enumeration, and uses a specified option for\naccessing special folders.\n"
+  example: []
+  syntax:
+    content: string GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option)
+    parameters:
+    - id: specialFolder
+      type: System.Environment.SpecialFolder
+      description: "\nAn enumerated constant that identifies a system special directory.\n"
+    - id: option
+      type: System.Environment.SpecialFolderOption
+      description: "\nSpecifies options to use for accessing a special directory.\n"
+    return:
+      type: System.String
+      description: "\nThe path to the specified system special directory, if that directory physically exists on your computer; otherwise, an empty String (&quot;&quot;).\nA directory will not physically exist if the operating system did not create it, the existing directory was deleted, or the directory is a\nvirtual directory, such as My Computer, which does not correspond to a physical path.\n"
+    content.vb: Function GetSpecialFolderPath(specialFolder As Environment.SpecialFolder, option As Environment.SpecialFolderOption) As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath*
+  exceptions:
+  - type: System.PlatformNotSupportedException
+    commentId: T:System.PlatformNotSupportedException
+    description: "\n"
+  - type: Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
+    commentId: T:Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">specialFolder</code> is not a member of <xref href=\"System.Environment.SpecialFolder\" data-throw-if-not-resolved=\"false\"></xref>\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> is not a member of <xref href=\"System.Environment.SpecialFolderOption\" data-throw-if-not-resolved=\"false\"></xref>\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
+  id: GetTemporaryDirectoryPath
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetTemporaryDirectoryPath()
+  nameWithType: IEnvironmentUtilities.GetTemporaryDirectoryPath()
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: GetTemporaryDirectoryPath
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 409
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nReturns the path of the current user&apos;s temporary directory.\n"
+  example: []
+  syntax:
+    content: string GetTemporaryDirectoryPath()
+    return:
+      type: System.String
+      description: "\nThe path to the temporary directory, ending with a backslash.\n"
+    content.vb: Function GetTemporaryDirectoryPath As String
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath*
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permissions.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String)
+  id: SetEnvironmentVariable(System.String,System.String)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetEnvironmentVariable(String, String)
+  nameWithType: IEnvironmentUtilities.SetEnvironmentVariable(String, String)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: SetEnvironmentVariable
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 436
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nCreates, modifies, or deletes an environment variable stored in the current process.\n"
+  example: []
+  syntax:
+    content: void SetEnvironmentVariable(string variable, string value)
+    parameters:
+    - id: variable
+      type: System.String
+      description: "\nThe name of an environment variable.\n"
+    - id: value
+      type: System.String
+      description: "\nA value to assign to <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code>.\n"
+    content.vb: Sub SetEnvironmentVariable(variable As String, value As String)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> is null.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> contains a zero-length String, an initial hexadecimal zero character (0x00),\nor an equal sign (&quot;=&quot;).\n-or-\nThe length of <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> is greater than or equal to 32, 767\ncharacters.\n-or-\nAn error occurred during the execution of this operation.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to perform this operation.\n"
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)
+  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)
+  id: SetEnvironmentVariable(System.String,System.String,System.EnvironmentVariableTarget)
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetEnvironmentVariable(String, String, EnvironmentVariableTarget)
+  nameWithType: IEnvironmentUtilities.SetEnvironmentVariable(String, String, EnvironmentVariableTarget)
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String, System.String, System.EnvironmentVariableTarget)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: SetEnvironmentVariable
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 478
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nCreates, modifies, or deletes an environment variable stored in the current process or in the Windows operating system registry key\nreserved for the current user or local machine.\n"
+  example: []
+  syntax:
+    content: void SetEnvironmentVariable(string variable, string value, EnvironmentVariableTarget target)
+    parameters:
+    - id: variable
+      type: System.String
+      description: "\nThe name of an environment variable.\n"
+    - id: value
+      type: System.String
+      description: "\nA value to assign to <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code>.\n"
+    - id: target
+      type: System.EnvironmentVariableTarget
+      description: "\nOne of the <xref href=\"System.EnvironmentVariableTarget\" data-throw-if-not-resolved=\"false\"></xref> values.\n"
+    content.vb: Sub SetEnvironmentVariable(variable As String, value As String, target As EnvironmentVariableTarget)
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> is null.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> contains a zero-length String, an initial hexadecimal zero character (0x00),\nor an equal sign (&quot;=&quot;).\n-or-\nThe length of <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> is greater than or equal to 32,767 characters.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> is not a member of the <xref href=\"System.EnvironmentVariableTarget\" data-throw-if-not-resolved=\"false\"></xref>\nenumeration.\n-or-<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> is <xref href=\"System.EnvironmentVariableTarget.Machine\" data-throw-if-not-resolved=\"false\"></xref> or\n<xref href=\"System.EnvironmentVariableTarget.User\" data-throw-if-not-resolved=\"false\"></xref> and the length of <code data-dev-comment-type=\"paramref\" class=\"paramref\">variable</code> is\ngreater than or equal to 255.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> is <xref href=\"System.EnvironmentVariableTarget.Process\" data-throw-if-not-resolved=\"false\"></xref> and the length of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">value</code> is greater than or equal to 32,767 characters. -or-An error occurred during the\nexecution of this operation.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">target</code> is <xref href=\"System.EnvironmentVariableTarget.User\" data-throw-if-not-resolved=\"false\"></xref> or\n<xref href=\"System.EnvironmentVariableTarget.Machine\" data-throw-if-not-resolved=\"false\"></xref> and the current operating system is Windows\n95, Windows 98, or Windows Me.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to perform this operation.\n"
+references:
+- uid: Landorphan.Abstractions.Interfaces
+  commentId: N:Landorphan.Abstractions.Interfaces
+  name: Landorphan.Abstractions.Interfaces
+  nameWithType: Landorphan.Abstractions.Interfaces
+  fullName: Landorphan.Abstractions.Interfaces
+- uid: System.Version
+  commentId: T:System.Version
+  parent: System
+  isExternal: true
+  name: Version
+  nameWithType: Version
+  fullName: System.Version
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
+  name: ClrVersion
+  nameWithType: IEnvironmentUtilities.ClrVersion
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
+  name: CommandLine
+  nameWithType: IEnvironmentUtilities.CommandLine
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+  name: CurrentManagedThreadId
+  nameWithType: IEnvironmentUtilities.CurrentManagedThreadId
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
+  name: ExitCode
+  nameWithType: IEnvironmentUtilities.ExitCode
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
+  name: HasShutdownStarted
+  nameWithType: IEnvironmentUtilities.HasShutdownStarted
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
+  name: Is64BitOperatingSystem
+  nameWithType: IEnvironmentUtilities.Is64BitOperatingSystem
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
+  name: Is64BitProcess
+  nameWithType: IEnvironmentUtilities.Is64BitProcess
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName
+  name: MachineName
+  nameWithType: IEnvironmentUtilities.MachineName
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.MachineName
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine
+  name: NewLine
+  nameWithType: IEnvironmentUtilities.NewLine
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.NewLine
+- uid: System.OperatingSystem
+  commentId: T:System.OperatingSystem
+  parent: System
+  isExternal: true
+  name: OperatingSystem
+  nameWithType: OperatingSystem
+  fullName: System.OperatingSystem
+- uid: System.PlatformID
+  commentId: T:System.PlatformID
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion
+  name: OSVersion
+  nameWithType: IEnvironmentUtilities.OSVersion
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.OSVersion
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount
+  name: ProcessorCount
+  nameWithType: IEnvironmentUtilities.ProcessorCount
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ProcessorCount
+- uid: System.String.Empty
+  commentId: F:System.String.Empty
+  isExternal: true
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace
+  name: StackTrace
+  nameWithType: IEnvironmentUtilities.StackTrace
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.StackTrace
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory
+  name: SystemDirectory
+  nameWithType: IEnvironmentUtilities.SystemDirectory
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemDirectory
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes
+  name: SystemPageSizeBytes
+  nameWithType: IEnvironmentUtilities.SystemPageSizeBytes
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SystemPageSizeBytes
+- uid: System.PlatformNotSupportedException
+  commentId: T:System.PlatformNotSupportedException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName
+  name: UserDomainName
+  nameWithType: IEnvironmentUtilities.UserDomainName
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserDomainName
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive
+  name: UserInteractive
+  nameWithType: IEnvironmentUtilities.UserInteractive
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserInteractive
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName
+  name: UserName
+  nameWithType: IEnvironmentUtilities.UserName
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.UserName
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes
+  name: WorkingSetBytes
+  nameWithType: IEnvironmentUtilities.WorkingSetBytes
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.WorkingSetBytes
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: System.Security.SecurityException
+  commentId: T:System.Security.SecurityException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit
+  name: Exit
+  nameWithType: IEnvironmentUtilities.Exit
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables
+  name: ExpandEnvironmentVariables
+  nameWithType: IEnvironmentUtilities.ExpandEnvironmentVariables
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast
+  name: FailFast
+  nameWithType: IEnvironmentUtilities.FailFast
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.FailFast
+- uid: System.Exception
+  commentId: T:System.Exception
+  parent: System
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: System.Exception
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs
+  name: GetCommandLineArgs
+  nameWithType: IEnvironmentUtilities.GetCommandLineArgs
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetCommandLineArgs
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable
+  name: GetEnvironmentVariable
+  nameWithType: IEnvironmentUtilities.GetEnvironmentVariable
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariable
+- uid: System.EnvironmentVariableTarget.User
+  commentId: F:System.EnvironmentVariableTarget.User
+  isExternal: true
+- uid: System.EnvironmentVariableTarget.Machine
+  commentId: F:System.EnvironmentVariableTarget.Machine
+  isExternal: true
+- uid: System.EnvironmentVariableTarget
+  commentId: T:System.EnvironmentVariableTarget
+  parent: System
+  isExternal: true
+  name: EnvironmentVariableTarget
+  nameWithType: EnvironmentVariableTarget
+  fullName: System.EnvironmentVariableTarget
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.OutOfMemoryException
+  commentId: T:System.OutOfMemoryException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables
+  name: GetEnvironmentVariables
+  nameWithType: IEnvironmentUtilities.GetEnvironmentVariables
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetEnvironmentVariables
+- uid: System.Collections.Immutable.IImmutableSet{Landorphan.Abstractions.Interfaces.IEnvironmentVariable}
+  commentId: T:System.Collections.Immutable.IImmutableSet{Landorphan.Abstractions.Interfaces.IEnvironmentVariable}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.IImmutableSet`1
+  name: IImmutableSet<IEnvironmentVariable>
+  nameWithType: IImmutableSet<IEnvironmentVariable>
+  fullName: System.Collections.Immutable.IImmutableSet<Landorphan.Abstractions.Interfaces.IEnvironmentVariable>
+  nameWithType.vb: IImmutableSet(Of IEnvironmentVariable)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of Landorphan.Abstractions.Interfaces.IEnvironmentVariable)
+  name.vb: IImmutableSet(Of IEnvironmentVariable)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentVariable
+    name: IEnvironmentVariable
+    nameWithType: IEnvironmentVariable
+    fullName: Landorphan.Abstractions.Interfaces.IEnvironmentVariable
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Landorphan.Abstractions.Interfaces.IEnvironmentVariable
+    name: IEnvironmentVariable
+    nameWithType: IEnvironmentVariable
+    fullName: Landorphan.Abstractions.Interfaces.IEnvironmentVariable
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable.IImmutableSet`1
+  commentId: T:System.Collections.Immutable.IImmutableSet`1
+  isExternal: true
+  name: IImmutableSet<T>
+  nameWithType: IImmutableSet<T>
+  fullName: System.Collections.Immutable.IImmutableSet<T>
+  nameWithType.vb: IImmutableSet(Of T)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of T)
+  name.vb: IImmutableSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives
+  name: GetLogicalDrives
+  nameWithType: IEnvironmentUtilities.GetLogicalDrives
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives
+- uid: System.Environment.SpecialFolder
+  commentId: T:System.Environment.SpecialFolder
+  parent: System
+  isExternal: true
+  name: Environment.SpecialFolder
+  nameWithType: Environment.SpecialFolder
+  fullName: System.Environment.SpecialFolder
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath
+  name: GetSpecialFolderPath
+  nameWithType: IEnvironmentUtilities.GetSpecialFolderPath
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath
+- uid: System.Environment.SpecialFolderOption
+  commentId: T:System.Environment.SpecialFolderOption
+  parent: System
+  isExternal: true
+  name: Environment.SpecialFolderOption
+  nameWithType: Environment.SpecialFolderOption
+  fullName: System.Environment.SpecialFolderOption
+- uid: Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
+  commentId: T:Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
+  isExternal: true
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
+  name: GetTemporaryDirectoryPath
+  nameWithType: IEnvironmentUtilities.GetTemporaryDirectoryPath
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable
+  name: SetEnvironmentVariable
+  nameWithType: IEnvironmentUtilities.SetEnvironmentVariable
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable
+- uid: System.EnvironmentVariableTarget.Process
+  commentId: F:System.EnvironmentVariableTarget.Process
+  isExternal: true

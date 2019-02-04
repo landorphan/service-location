@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
@@ -33,7 +33,6 @@ items:
     content: 'public sealed class ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs : EventArgs'
     content.vb: >-
       Public NotInheritable Class ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs
-
           Inherits EventArgs
   seealso:
   - linkId: System.EventArgs
@@ -65,7 +64,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
@@ -97,7 +96,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
@@ -139,7 +138,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Assemblies
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
@@ -178,7 +177,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Container
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs.cs

@@ -204,18 +204,11 @@
                pathUtilities.VolumeSeparatorCharacter);
             throw new ArgumentException(msg, argumentName);
          }
-         
+
 #pragma warning disable S2737 // "catch" clauses should do more than rethrow
          // this call will throw a PathTooLongException as needed.
          // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-         try
-         {
-            Path.GetFullPath(cleanedPath);
-         }
-         catch (PathTooLongException)
-         {
-            throw;
-         }
+         Path.GetFullPath(cleanedPath);
 #pragma warning restore S2737 // "catch" clauses should do more than rethrow
 
          // Leading spaces allowed on resource names, but not trailing.  Whitespace only resource names not allowed.
@@ -233,7 +226,6 @@
          evaluator = ReplaceTrailingWhitespace;
          cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
 
-         // TODO: consideration, always remove one trailing directory separator character
          // preserve @"/", @"\", and @"\\" as results.
          if (String.Equals(cleanedPath, @"\\", StringComparison.Ordinal) || String.Equals(cleanedPath, @"\", StringComparison.Ordinal) || String.Equals(cleanedPath, @"/", StringComparison.Ordinal))
          {
@@ -254,8 +246,6 @@
          // Avoid mixed directory separator characters.
          cleanedPath = StandardizeDirectorySeparatorCharacters(cleanedPath);
 
-         // REFACTOR:  was using GetFullPath to remove invalid trailing whitespace and validate, but losing relative path
-         // now risking embedded trailing whitespace
          return cleanedPath;
       }
 

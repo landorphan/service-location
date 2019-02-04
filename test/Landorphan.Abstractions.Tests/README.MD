@@ -16,3 +16,5 @@ Additional components will be polished over time.
    Console
    FileInfo (contemplated)
    DirectoryInfo (contemplated)
+
+Added NuGet Microsoft.Windows.Compatibility (for ACLs) and Microsoft.DotNet.Analyzers.Compatibility

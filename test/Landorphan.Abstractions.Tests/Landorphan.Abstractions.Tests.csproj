@@ -25,7 +25,7 @@
       <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
    </PropertyGroup>
-   
+
    <PropertyGroup>
       <CodeAnalysisRuleSet>Landorphan.Abstractions.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
    </PropertyGroup>
@@ -62,12 +62,29 @@
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
+
+      <!-- This is an OMG cool library, I ended up shelling out to powershell to elevate as admin, but hot damn, I like this library and the analyzer that goes with it
+         <PackageReference Include="Microsoft.Windows.Compatibility" Version="2.0.1" />
+         <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+         </PackageReference>
+     -->
    </ItemGroup>
 
    <ItemGroup>
-     <ProjectReference Include="..\..\source\Landorphan.Abstractions\Landorphan.Abstractions.csproj" />
-     <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />
-     <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
-     <ProjectReference Include="..\..\source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
+      <ProjectReference Include="..\..\source\Landorphan.Abstractions\Landorphan.Abstractions.csproj" />
+      <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />
+      <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
+      <ProjectReference Include="..\..\source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
+   </ItemGroup>
+
+   <ItemGroup>
+      <None Update="Arrange-LocalFiles.ps1">
+         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Teardown-LocalFiles.ps1">
+         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
    </ItemGroup>
 </Project>

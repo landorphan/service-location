@@ -3,6 +3,7 @@ namespace Landorphan.Abstractions.IO.Internal
    using System;
    using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
+   using System.Globalization;
    using System.IO;
    using System.Linq;
    using System.Text;
@@ -19,9 +20,13 @@ namespace Landorphan.Abstractions.IO.Internal
    // Unlike File and Directory, the internal mapping presents the public interface.
    internal sealed class PathInternalMapping : IPathUtilities
    {
+      private const Int32 IndexNotFound = -1;
+
+      // skip leading // or \\
+      private const Int32 SkipPrefixCharacters = 2;
+
       private static readonly Lazy<IImmutableSet<Char>> t_invalidFileNameCharacters = new Lazy<IImmutableSet<Char>>(BuildInvalidFileNameCharacters);
       private static readonly Lazy<IImmutableSet<Char>> t_invalidPathCharacters = new Lazy<IImmutableSet<Char>>(BuildInvalidPathCharacters);
-      private static readonly Lazy<IImmutableSet<Char>> t_additionalWindowsInvalidPathAndFileNameChars = new Lazy<IImmutableSet<Char>>(BuildAdditionalWindowsInvalidPathAndFileNameCharacters);
 
       /// <inheritdoc/>
       public Char AltDirectorySeparatorCharacter => Path.AltDirectorySeparatorChar;
@@ -64,13 +69,8 @@ namespace Landorphan.Abstractions.IO.Internal
          else
          {
             const Int32 indexNotFound = -1;
-
-            // .Net Standard 2.0 on Windows: GetInvalidPathCharacters() excludes the following: '|'
-            // .Net Standard 2.0 on Windows: GetInvalidFileNameCharacters() excludes the following: ',' '<' '>' '|'
-            // TODO: But there are more characters disallowed on windows, and what about linux?
             if (indexNotFound != extension.IndexOfAny(GetInvalidPathCharacters().ToArray()) ||
-                indexNotFound != extension.IndexOfAny(GetInvalidFileNameCharacters().ToArray()) ||
-                indexNotFound != extension.IndexOfAny(GetAdditionalWindowsInvalidFileNameCharacters().ToArray()))
+                indexNotFound != extension.IndexOfAny(GetInvalidFileNameCharacters().ToArray()))
             {
                throw new ArgumentException(@"The extension is not well-formed (invalid characters).", nameof(extension));
             }
@@ -251,37 +251,159 @@ namespace Landorphan.Abstractions.IO.Internal
       /// <inheritdoc/>
       public String GetParentPath(String path)
       {
-         // BCL Implementation notes:
-         //    @"c:"          =>    null
-         //    @"c:\"         =>    null
-         //    @"c:\temp"     =>    @"c:\"
-         //    @"c:\temp\"    =>    @"c:\temp\"
-         //    @"c:\temp\\"   =>    @"c:\temp\"
+         // ReSharper disable CommentTypo
+
+         // want consistent treatment across rooted unc and relative paths (should aling with GetRootPath).
+
+         //    Input                           Path.GetDirectoryName       IPathUtilities.GetParentPath
+         // 
+         //    @"c:"                      =>   null                        null                 
+         //    @"c:\"                     =>   null                        null                 
+         //    @"c:\temp"                 =>   @"c:\"                      @"c:\"               
+         //    @"c:\temp\"                =>   @"c:\temp                   @"c:\"               
+         //    @"c:\temp\\"               =>   @"c:\temp                   @"c:\"               invalid, throw?
+         //    @"\\share"                 =>   null                        null                 
+         //    @"\\share\file.txt"        =>   null                        @"\\share"           
+         //    @"\\share\folder\file.txt" =>   @"\\share\folder            @"\\share\folder"    
+         //    @"\relative\path"          =>   @"\relative                 @"\relative"         
+
+         // ReSharper restore CommentTypo
 
          // adjust the behavior so that c:\temp\ yields c:\
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          cleanedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(cleanedPath);
 
          var rv = Path.GetDirectoryName(cleanedPath);
-         if (rv.IsNotNullNorEmpty())
+         if (rv == null && cleanedPath.Length > SkipPrefixCharacters)
          {
-            rv = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(rv);
+            // special handling for \\share\file.txt and \\share\folder
+            // Path.GetDirectoryName returns null in both of these cases by design
+            // return \\share instead
+            // cannot use Path.GetPathRoot because Path.GetPathRoot(@"\\share\file.txt") returns "\\share\file.txt"
+            var separators = new[] {DirectorySeparatorCharacter, AltDirectorySeparatorCharacter};
+            var length = cleanedPath.Length;
+            var lastCharacterIndex = length - 1;
+            var countSkippingPrefix = length - SkipPrefixCharacters;
+
+            // searches backwards
+            var idx = cleanedPath.LastIndexOfAny(separators, lastCharacterIndex, countSkippingPrefix);
+            if (idx != IndexNotFound)
+            {
+               rv = cleanedPath.Substring(0, idx);
+            }
+         }
+
+         if (rv != null)
+         {
+            const Int32 rootDrivePathLength = 3;
+            if (rv.Length == rootDrivePathLength && rv[1] == VolumeSeparatorCharacter)
+            {
+               // want to return c:\ instead of c:
+            }
+            else if (rv.Length == rootDrivePathLength - 1 && rv[1] == VolumeSeparatorCharacter)
+            {
+               // want to return c:\ instead of c:
+               rv += DirectorySeparatorCharacter;
+            }
+            else
+            {
+               // want to return c:\windows\system32 instead of c:\windows\system32\
+               IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(cleanedPath);
+            }
          }
 
          return rv;
       }
 
       /// <inheritdoc/>
+      [SuppressMessage("SonarLint.CodeSmell", "S1067: Expressions should not be too complex")]
+      [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
+      [SuppressMessage(
+         "SonarLint.CodeSmell",
+         "S1871: Two branches in a conditional structure should not have exactly the same implementation",
+         Justification = "The conditions are complex, combinging them would just make readability worse.")]
+      [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
       public String GetRootPath(String path)
       {
+         // ReSharper disable CommentTypo
+
+         // want consistent treatment across rooted unc and relative paths.
+
+         //    Input                           Path.GetPathRoot            IPathUtilities.GetRootPath
+         // 
+         //    @"c:"                      =>    @"c:"                      @"c:\"
+         //    @"c:\"                     =>    @"c:\"                     @"c:\"
+         //    @"c:\temp"                 =>    @"c:\"                     @"c:\"
+         //    @"c:\temp\"                =>    @"c:\"                     @"c:\"
+         //    @"c:\temp\\"               =>    @"c:\"                     @"c:\"                        invalid, throw?
+         //    @"\\share"                 =>    @"\\share"                 @"\\share"
+         //    @"\\share\file.txt"        =>    @"\\share\file.txt"        @"\\share"
+         //    @"\\share\folder\file.txt" =>    @"\\share\folder"          @"\\share"   
+         //    @"\relative\path"          =>    @"\"                       should be @"\"
+         //    @".\relative\path"         =>    String.Empty               should be @"\"  
+         //    @"/relative/path"          =>    @"\"                       should be @"\"  
+         //    @"./relative/path"         =>    String.Empty               should be @"\"
+         //    @"somefileorfolder"        =>    String.Empty               should be String.Empty
+
+         // ReSharper restore CommentTypo
+
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          cleanedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(cleanedPath);
 
          var rv = Path.GetPathRoot(cleanedPath);
-         if (rv.IsNotNullNorEmpty())
+         if (rv != null && rv.Length == 0 && cleanedPath.Length > @".\".Length && cleanedPath[0] == '.')
          {
-            rv = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(rv);
+            // occurs on relative paths
+            if (cleanedPath[1] == DirectorySeparatorCharacter)
+            {
+               rv = DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
+            }
+            else if (cleanedPath[1] == AltDirectorySeparatorCharacter)
+            {
+               rv = AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
+            }
          }
+
+         var separators = new[] {DirectorySeparatorCharacter, AltDirectorySeparatorCharacter};
+
+         if (cleanedPath.Length > SkipPrefixCharacters && String.Equals(rv, cleanedPath, StringComparison.Ordinal))
+         {
+            // special handling unc
+            // Path.GetPathRoot(@"\\share")          returns @"\\share"
+            // Path.GetPathRoot(@"\\share\folder")   returns @"\\share\folder"
+            // Path.GetPathRoot(@"\\share\file.txt") returns @"\\share\file.txt"
+            var idx = cleanedPath.IndexOfAny(separators, SkipPrefixCharacters);
+            if (idx != IndexNotFound)
+            {
+               rv = cleanedPath.Substring(0, idx);
+            }
+         }
+         else if (cleanedPath.Length > SkipPrefixCharacters &&
+                  (
+                     cleanedPath[0] == DirectorySeparatorCharacter && cleanedPath[1] == DirectorySeparatorCharacter ||
+                     cleanedPath[0] == AltDirectorySeparatorCharacter && cleanedPath[1] == AltDirectorySeparatorCharacter))
+         {
+            // more special handling for unc
+            // Path.GetPathRoot(@"\\share\folder\file.txt") returns @"\\share\folder"
+            var idx = cleanedPath.IndexOfAny(separators, SkipPrefixCharacters);
+            if (idx != IndexNotFound)
+            {
+               rv = cleanedPath.Substring(0, idx);
+            }
+         }
+
+         const Int32 rootDrivePathLength = 3;
+         if (rv != null && rv.Length == rootDrivePathLength && rv[1] == VolumeSeparatorCharacter)
+         {
+            // want to return c:\ instead of c:
+         }
+         else if (rv != null && rv.Length == rootDrivePathLength - 1 && rv[1] == VolumeSeparatorCharacter)
+         {
+            // want to return c:\ instead of c:
+            rv += DirectorySeparatorCharacter;
+         }
+
+         // rv = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(rv);
 
          return rv;
       }
@@ -309,32 +431,31 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
-      public Boolean IsPathRooted(String path)
+      public Boolean IsPathRelative(String path)
       {
          path.ArgumentNotNull(nameof(path));
 
          // allow for a string.Empty path and a spaces path.
-         var cleanedPath = path.Trim(' ');
+         var cleanedPath = path.Trim();
          if (cleanedPath.Length > 0)
          {
-            // invoke method throws on string.Empty paths
             cleanedPath = IOStringUtilities.ValidateCanonicalPath(cleanedPath, nameof(path));
          }
-         // KNOWN: path is string.Empty or canonically valid.
 
-         if (cleanedPath.Length == 0)
+         if (cleanedPath.IsNullOrEmpty())
          {
-            return false;
+            return true;
          }
 
-         return Path.IsPathRooted(cleanedPath);
-      }
+         // avoid Path.IsPathRooted altogether (look at the implementation if curious)
+         var root = GetRootPath(cleanedPath);
+         if (root != null && root.Length == 1 && (root[0] == DirectorySeparatorCharacter || root[0] == AltDirectorySeparatorCharacter))
+         {
+            // GetRootPath returns / and \ on relative paths
+            return true;
+         }
 
-      private static IImmutableSet<Char> BuildAdditionalWindowsInvalidPathAndFileNameCharacters()
-      {
-         // taken from Windows File Explorer
-         var rv = new[] {'\\', '/', ':', '*', '?', '<', '>', '|'}.ToImmutableHashSet();
-         return rv;
+         return root.IsNullOrEmpty();
       }
 
       private static IImmutableSet<Char> BuildInvalidFileNameCharacters()
@@ -357,11 +478,6 @@ namespace Landorphan.Abstractions.IO.Internal
          }
 
          return builder.ToImmutable();
-      }
-
-      private IImmutableSet<Char> GetAdditionalWindowsInvalidFileNameCharacters()
-      {
-         return t_additionalWindowsInvalidPathAndFileNameChars.Value;
       }
    }
 }

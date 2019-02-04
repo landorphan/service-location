@@ -48,10 +48,6 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <summary>
       /// Changes the extension of a path string.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> contains one or more of the invalid characters defined in
-      /// <see cref="GetInvalidPathCharacters"/>.
-      /// </exception>
       /// <param name="path">
       /// The path information to modify. The path cannot contain any of the characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
@@ -66,6 +62,10 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// If <paramref name="path"/> has no extension, and <paramref name="extension"/> is not <c>null</c>,
       /// the returned path string contains <paramref name="extension"/> appended to the end of <paramref name="path"/>.
       /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path"/> contains one or more of the invalid characters defined in
+      /// <see cref="GetInvalidPathCharacters"/>.
+      /// </exception>
       String ChangeExtension(String path, String extension);
 
       /// <summary>
@@ -89,10 +89,6 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <summary>
       /// Returns the extension of the specified path string.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> contains one or more of the invalid characters defined in
-      /// <see cref="GetInvalidPathCharacters"/>.
-      /// </exception>
       /// <param name="path">
       /// The path string from which to get the extension.
       /// </param>
@@ -102,15 +98,15 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// not have extension information,
       /// <see cref="IPathUtilities.GetExtension(String)"/> returns <see cref="String.Empty"/>.
       /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path"/> contains one or more of the invalid characters defined in
+      /// <see cref="GetInvalidPathCharacters"/>.
+      /// </exception>
       String GetExtension(String path);
 
       /// <summary>
       /// Returns the file name and extension of the specified path string.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> contains one or more of the invalid characters defined in
-      /// <see cref="GetInvalidPathCharacters"/>.
-      /// </exception>
       /// <param name="path">
       /// The path string from which to obtain the file name and extension.
       /// </param>
@@ -120,15 +116,15 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <see cref="String.Empty"/>.
       /// If <paramref name="path"/> is <c>null</c>, this method returns <c>null</c>.
       /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path"/> contains one or more of the invalid characters defined in
+      /// <see cref="GetInvalidPathCharacters"/>.
+      /// </exception>
       String GetFileName(String path);
 
       /// <summary>
       /// Returns the file name of the specified path string without the extension.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> contains one or more of the invalid characters defined in
-      /// <see cref="GetInvalidPathCharacters"/>.
-      /// </exception>
       /// <param name="path">
       /// The path of the file.
       /// </param>
@@ -136,6 +132,10 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// The string returned by <see cref="Path.GetFileName(String)"/>, minus the last period (.) and all characters
       /// following it.
       /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path"/> contains one or more of the invalid characters defined in
+      /// <see cref="GetInvalidPathCharacters"/>.
+      /// </exception>
       String GetFileNameWithoutExtension(String path);
 
       /// <summary>
@@ -188,51 +188,64 @@ namespace Landorphan.Abstractions.IO.Interfaces
       IImmutableSet<Char> GetInvalidPathCharacters();
 
       /// <summary>
-      /// Returns the parent directory path for the specified path string.
+      /// Returns the parent path for the specified path string.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// The <paramref name="path"/> parameter contains invalid characters, is empty, or contains only
-      /// white spaces.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The <paramref name="path"/> parameter is longer than the system-defined maximum length.
-      /// </exception>
       /// <param name="path">
-      /// The path of a file or directory.
+      /// The path of a file or directory or share.
       /// </param>
       /// <returns>
       /// The parent directory path for <paramref name="path"/>;
       /// or <c>null</c> when <paramref name="path"/> denotes a root directory, 
-      /// or <see cref="String.Empty"/> when <paramref name="path"/> is a relative root.
-      /// or <see cref="String.Empty"/> when <paramref name="path"/> does not contain directory information.
+      /// or <see cref="DirectorySeparatorCharacter"/> when <paramref name="path"/> is a relative root.
+      /// or <see cref="String.Empty"/> when <paramref name="path"/> does not contain path information.
       /// </returns>
+      /// <remarks>
+      /// |  Path                   |  Path.GetDirectoryName | IPathUtilities.GetParentPath |
+      /// | :---------------------- | :--------------------- | :--------------------------- |
+      /// | \\share                 | (null)                 | (null)                       |
+      /// | \\share\file.txt        | (null)                 | \\share          ***         |
+      /// | \\share\folder\file.txt | \\share\folder         | \\share\folder               |
+      /// | c:\                     | (null)                 | (null)                       |
+      /// | c:\file.txt             | c:\                    | c:\                          |
+      /// | c:\folder\file.txt      | c:\folder              | c:\folder                    |
+      /// | \folder                 | \                      | \                            |
+      /// | \folder\file.txt        | \folder                | \folder                      |
+      ///
+      /// </remarks>
+      /// <exception cref="ArgumentException">
+      /// The <paramref name="path"/> parameter contains invalid characters, is empty, or contains only white spaces.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The <paramref name="path"/> parameter is longer than the system-defined maximum length.
+      /// </exception>
       String GetParentPath(String path);
 
       /// <summary>
       /// Gets the root directory information of the specified path.
       /// </summary>
+      /// <param name="path">
+      /// The path from which to obtain root directory information.
+      /// </param>
+      /// <returns>
+      /// <para>
+      /// The root directory of <paramref name="path"/>, such as "C:\", or <c>null</c> if <paramref name="path"/> is <c>null</c>, or an empty string if <paramref name="path"/> does not contain
+      /// root directory information.
+      /// </para>
+      /// <para>
+      /// By design, return <see cref="DirectorySeparatorCharacter"/> or <see cref="AltDirectorySeparatorCharacter"/> if <paramref name="path"/> is a relative path.
+      /// </para>
+      /// </returns>
       /// <exception cref="ArgumentException">
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// -or-
       /// <see cref="String.Empty"/> was passed to <paramref name="path"/>.
       /// </exception>
-      /// <param name="path">
-      /// The path from which to obtain root directory information.
-      /// </param>
-      /// <returns>
-      /// The root directory of <paramref name="path"/>, such as "C:\", or <c>null</c> if <paramref name="path"/> is <c>null</c>, or an empty string if
-      /// <paramref name="path"/> does not contain root directory information.
-      /// </returns>
       String GetRootPath(String path);
 
       /// <summary>
       /// Determines whether a path includes a file name extension.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> contains one or more of the invalid characters defined in
-      /// <see cref="GetInvalidPathCharacters"/>.
-      /// </exception>
       /// <param name="path">
       /// The path to search for an extension.
       /// </param>
@@ -240,21 +253,25 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// true if the characters that follow the last directory separator (\\ or /) or volume separator (:) in the path include a period (.)
       /// followed by one or more characters; otherwise, false.
       /// </returns>
-      Boolean HasExtension(String path);
-
-      /// <summary>
-      /// Gets a value indicating whether the specified path string contains a root.
-      /// </summary>
       /// <exception cref="ArgumentException">
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
+      Boolean HasExtension(String path);
+
+      /// <summary>
+      /// Gets a value indicating whether the specified path string is a relative path.  
+      /// </summary>
       /// <param name="path">
       /// The path to test.
       /// </param>
       /// <returns>
-      /// true if <paramref name="path"/> contains a root; otherwise, false.
+      /// true if <paramref name="path"/> is a relative path; otherwise, false (UNC and rooted paths).
       /// </returns>
-      Boolean IsPathRooted(String path);
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path"/> contains one or more of the invalid characters defined in
+      /// <see cref="GetInvalidPathCharacters"/>.
+      /// </exception>
+      Boolean IsPathRelative(String path);
    }
 }

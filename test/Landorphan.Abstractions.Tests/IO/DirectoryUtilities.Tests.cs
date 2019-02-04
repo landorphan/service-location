@@ -29,38 +29,10 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
-         public void When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory()
+         public void When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory));
-            try
-            {
-               _target.CreateDirectory(path);
-               _target.DirectoryExists(path).Should().BeTrue();
-            }
-            finally
-            {
-               _target.DeleteRecursively(path);
-            }
-
-            // relative
-            _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory);
-            try
-            {
-               _target.CreateDirectory(path);
-               _target.DirectoryExists(path).Should().BeTrue();
-            }
-            finally
-            {
-               _target.DeleteRecursively(path);
-            }
-
-            // unc
-            path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory));
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -74,11 +46,35 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
-         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory()
+         public void When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
+            // unc
+            var path = _pathUtilities.Combine(
+               TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_unc));
+            try
+            {
+               _target.CreateDirectory(path);
+               _target.DirectoryExists(path).Should().BeTrue();
+            }
+            finally
+            {
+               _target.DeleteRecursively(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory));
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -90,26 +86,15 @@
             {
                _target.DeleteRecursively(path);
             }
+         }
 
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_relative()
+         {
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory);
-            try
-            {
-               _target.CreateDirectory(path);
-               _target.DirectoryExists(path).Should().BeTrue();
-               _target.DeleteRecursively(path);
-               _target.DirectoryExists(path).Should().BeFalse();
-            }
-            finally
-            {
-               _target.DeleteRecursively(path);
-            }
-
-            // unc
-            path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory));
+            var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -125,61 +110,46 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
-         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories()
+         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
+            // unc
+            var path = _pathUtilities.Combine(
+               TestHardCodes.WindowsUncTestPaths.UncShareRoot,
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_unc));
+            try
+            {
+               _target.CreateDirectory(path);
+               _target.DirectoryExists(path).Should().BeTrue();
+               _target.DeleteRecursively(path);
+               _target.DirectoryExists(path).Should().BeFalse();
+            }
+            finally
+            {
+               _target.DeleteRecursively(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute()
          {
             // absolute
             var path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories));
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute));
             try
             {
                _target.CreateDirectory(path);
                _target.CreateDirectory(
-                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories)));
+                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute)));
                _fileUtilities.CreateFile(
-                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories) + ".tmp"));
-               _target.DirectoryExists(path).Should().BeTrue();
-               _target.DeleteRecursively(path);
-               _target.DirectoryExists(path).Should().BeFalse();
-            }
-            finally
-            {
-               _target.DeleteRecursively(path);
-            }
-
-            // relative
-            _target.SetCurrentDirectory(_tempPath);
-            path = @".\" +
-                   Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                   nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories);
-            try
-            {
-               _target.CreateDirectory(path);
-               _target.CreateDirectory(
-                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories)));
-               _fileUtilities.CreateFile(
-                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories) + ".tmp"));
-               _target.DirectoryExists(path).Should().BeTrue();
-               _target.DeleteRecursively(path);
-               _target.DirectoryExists(path).Should().BeFalse();
-            }
-            finally
-            {
-               _target.DeleteRecursively(path);
-            }
-
-            // unc
-            path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories));
-            try
-            {
-               _target.CreateDirectory(path);
-               _target.CreateDirectory(
-                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories)));
-               _fileUtilities.CreateFile(
-                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories) + ".tmp"));
+                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute) + ".tmp"));
                _target.DirectoryExists(path).Should().BeTrue();
                _target.DeleteRecursively(path);
                _target.DirectoryExists(path).Should().BeFalse();
@@ -192,13 +162,69 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
-         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories()
+         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative()
+         {
+            // relative
+            _target.SetCurrentDirectory(_tempPath);
+            var path = @".\" +
+                       Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
+                       nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative);
+            try
+            {
+               _target.CreateDirectory(path);
+               _target.CreateDirectory(
+                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative)));
+               _fileUtilities.CreateFile(
+                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative) + ".tmp"));
+               _target.DirectoryExists(path).Should().BeTrue();
+               _target.DeleteRecursively(path);
+               _target.DirectoryExists(path).Should().BeFalse();
+            }
+            finally
+            {
+               _target.DeleteRecursively(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
+            // unc
+            var path = _pathUtilities.Combine(
+               TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc));
+            try
+            {
+               _target.CreateDirectory(path);
+               _target.CreateDirectory(
+                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc)));
+               _fileUtilities.CreateFile(
+                  _pathUtilities.Combine(path, Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc) + ".tmp"));
+               _target.DirectoryExists(path).Should().BeTrue();
+               _target.DeleteRecursively(path);
+               _target.DirectoryExists(path).Should().BeFalse();
+            }
+            finally
+            {
+               _target.DeleteRecursively(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_absolute()
          {
             // absolute -- extant
             var path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories));
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -212,14 +238,19 @@
             // absolute -- non-extant
             path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories));
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_absolute));
             _target.DirectoryExists(path).Should().BeFalse();
+         }
 
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_relative()
+         {
             // relative -- extant
             _target.SetCurrentDirectory(_tempPath);
-            path = @".\" +
-                   Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                   nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories);
+            var path = @".\" +
+                       Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
+                       nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -233,13 +264,24 @@
             // relative -- non-extant
             path = @".\" +
                    Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                   nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories);
+                   nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_relative);
             _target.DirectoryExists(path).Should().BeFalse();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
 
             // unc -- extant
-            path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories));
+            var path = _pathUtilities.Combine(
+               TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -252,8 +294,8 @@
 
             // unc -- non-extant
             path = _pathUtilities.Combine(
-               TestHardCodes.WindowsTestPaths.TodoRethinkUncShareEveryoneFullControl,
-               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories));
+               TestHardCodes.WindowsUncTestPaths.UncShareRoot,
+               Guid.NewGuid() + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_unc));
             _target.DirectoryExists(path).Should().BeFalse();
          }
 
@@ -329,7 +371,7 @@
          {
             var actual = _target.GetRandomDirectoryName();
             _target.DirectoryExists(actual).Should().BeFalse();
-            _pathUtilities.IsPathRooted(actual).Should().BeFalse();
+            _pathUtilities.IsPathRelative(actual).Should().BeTrue();
          }
 
          [TestMethod]

@@ -28,9 +28,6 @@
       public Int32 CurrentManagedThreadId => Environment.CurrentManagedThreadId;
 
       /// <inheritdoc/>
-      public Int32 ElapsedMillisecondsSinceSystemStart => Environment.TickCount;
-
-      /// <inheritdoc/>
       public Int32 ExitCode
       {
          get => Environment.ExitCode;

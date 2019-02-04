@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ContainerTypeRegistrationEventArgs
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -36,7 +36,6 @@ items:
     content: 'public class ContainerTypeRegistrationEventArgs : EventArgs'
     content.vb: >-
       Public Class ContainerTypeRegistrationEventArgs
-
           Inherits EventArgs
   seealso:
   - linkId: System.EventArgs
@@ -66,7 +65,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -98,7 +97,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -146,7 +145,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Container
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -183,7 +182,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: FromType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -220,7 +219,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Instance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -258,7 +257,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Name
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
@@ -296,7 +295,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ToType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeRegistrationEventArgs.cs

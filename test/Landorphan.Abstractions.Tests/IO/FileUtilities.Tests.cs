@@ -156,7 +156,7 @@
          {
             var actual = _target.GetRandomFileName();
             _target.FileExists(actual).Should().BeFalse();
-            _pathUtilities.IsPathRooted(actual).Should().BeFalse();
+            _pathUtilities.IsPathRelative(actual).Should().BeTrue();
          }
 
          [TestMethod]

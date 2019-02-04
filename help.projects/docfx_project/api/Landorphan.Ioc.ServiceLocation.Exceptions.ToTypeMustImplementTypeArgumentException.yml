@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ToTypeMustImplementTypeArgumentException
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -37,9 +37,7 @@ items:
     content: 'public sealed class ToTypeMustImplementTypeArgumentException : LandorphanIocServiceLocationArgumentException, ISerializable'
     content.vb: >-
       Public NotInheritable Class ToTypeMustImplementTypeArgumentException
-
           Inherits LandorphanIocServiceLocationArgumentException
-
           Implements ISerializable
   inheritance:
   - System.Object
@@ -72,7 +70,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -104,7 +102,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -140,7 +138,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -179,7 +177,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -221,7 +219,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -269,7 +267,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: GetObjectData
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -308,7 +306,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: FromType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
@@ -345,7 +343,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ToType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/ToTypeMustImplementTypeArgumentException.cs

@@ -35,14 +35,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_contains_a_colon_character_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var ValidPathThatMayNotExist = _target.Combine(drive, @"temp\tools.txt");
 
             Action throwingAction = () => _target.ChangeExtension(ValidPathThatMayNotExist, "r:f");
@@ -55,14 +55,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var ValidPathThatMayNotExist = _target.Combine(drive, @"temp\tools.txt");
             Action throwingAction = () => _target.ChangeExtension(ValidPathThatMayNotExist, "<");
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -79,14 +79,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_has_leading_spaces_It_should_not_trim_them()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var ValidPathThatMayNotExist = _target.Combine(drive, @"temp\tools.txt");
             var validPathWithoutExtension = ValidPathThatMayNotExist.Substring(0, ValidPathThatMayNotExist.Length - 3);
             _target.ChangeExtension(ValidPathThatMayNotExist, " abc").Should().Be(validPathWithoutExtension + " abc");
@@ -98,14 +98,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_is_empty_It_should_remove_any_extensions()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             _target.ChangeExtension(drive + @"temp\temp.tmp", null).Should().Be(drive + @"temp\temp");
             _target.ChangeExtension(drive + @"temp\temp.xyz.tmp", null).Should().Be(drive + @"temp\temp.xyz");
          }
@@ -114,14 +114,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_is_empty_or_spaces_It_removes_the_current_extension()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var ValidPathThatMayNotExist = _target.Combine(drive, @"temp\tools.txt");
             var validPathWithoutExtension = ValidPathThatMayNotExist.Substring(0, ValidPathThatMayNotExist.Length - 4);
 
@@ -140,14 +140,14 @@
          [SuppressMessage("SonarLint.CodeSmell", "S4144: Methods should not have identical implementations")]
          public void And_the_extension_is_null_It_should_remove_any_extensions()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             _target.ChangeExtension(drive + @"temp\temp.tmp", null).Should().Be(drive + @"temp\temp");
             _target.ChangeExtension(drive + @"temp\temp.xyz.tmp", null).Should().Be(drive + @"temp\temp.xyz");
@@ -157,14 +157,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_is_spaces_It_should_remove_the_extension()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             _target.ChangeExtension(drive + @"temp\temp.tmp", Spaces).Should().Be(drive + @"temp\temp");
             _target.ChangeExtension(drive + @"temp\temp.xyz.tmp", "." + Spaces).Should().Be(drive + @"temp\temp.xyz");
          }
@@ -186,14 +186,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var pathWithoutExtension = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -206,14 +206,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var InvalidPath = drive + @"|temp\tools.txt";
             Action throwingAction = () => _target.ChangeExtension(InvalidPath, null);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -225,14 +225,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw_but_should_trim_them()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var pathWithoutExtension = Spaces + _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -245,14 +245,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw_but_should_trim_them()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             // HAPPY PATH TEST:
             var pathWithoutExtension = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var path = pathWithoutExtension + ".txt" + Spaces;
@@ -308,14 +308,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_change_the_extension()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             var path = drive + @"temp\my.txt";
@@ -352,14 +352,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_a_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             Action throwingAction = () => _target.Combine(drive, @"|");
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -371,14 +371,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_paths_does_have_leading_or_trailing_spaces_it_should_trim_appropriately()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             //
@@ -413,14 +413,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_result_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             _target.Combine(drive, @":");
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
@@ -429,14 +429,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_for_drive_current_directory_syntax()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
             _target.Combine(driveNoSep, @"door").Should().Be(driveNoSep + @"door");
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
@@ -446,14 +446,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_for_search_combinations()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             _target.Combine(drive, @"door", @"*.*").Should().Be(drive + @"door\*.*");
             _target.Combine(drive, @"door", @"a?c.tmp").Should().Be(drive + @"door\a?c.tmp");
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
@@ -463,14 +463,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_combine_values_inserting_directory_separator_characters_as_needed()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             // HAPPY PATH TESTS:
@@ -483,14 +483,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_handle_roots_alone()
          {
-            if (TestHardCodes.WindowsTestPaths.UnmappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.UnmappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
                return;
             }
 
             // usually a:\
-            var unmappedDrive = TestHardCodes.WindowsTestPaths.UnmappedDrive;
+            var unmappedDrive = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive;
             var unmappedDriveNoSep = unmappedDrive.Substring(0, 2);
 
             _target.Combine(unmappedDriveNoSep).Should().Be(unmappedDriveNoSep);
@@ -524,14 +524,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_insert_directory_separator_characters_when_needed()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             _target.Combine(drive + @"temp", @"a", @"b", @"c", @"d", @"e").Should().Be(drive + @"temp\a\b\c\d\e");
@@ -724,14 +724,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_contains_a_colon_character_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             Action throwingAction = () => _target.GetExtension(drive + @"temp\tools.a:b");
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -748,14 +748,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_does_not_exist_It_should_return_empty()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             _target.GetExtension(drive + @"temp\temp").Should().Be(String.Empty);
          }
 
@@ -763,14 +763,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             Action throwingAction = () => _target.GetExtension(drive + @"temp\tools.a|b");
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
@@ -786,14 +786,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_is_empty_or_spaces_It_should_return_string_empty()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             _target.GetExtension(drive + @"temp\temp").Should().Be(String.Empty);
             _target.GetExtension(drive + @"temp\temp.").Should().Be(String.Empty);
             _target.GetExtension(drive + @"temp\temp.   ").Should().Be(String.Empty);
@@ -803,14 +803,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             Action throwingAction = () => _target.GetExtension(drive + @"temp:directory\tempfile.tmp");
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
@@ -821,14 +821,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var pathWithoutExtension = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -841,14 +841,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             var InvalidPath = drive + @"|temp\tools.txt";
             Action throwingAction = () => _target.GetExtension(InvalidPath);
@@ -861,14 +861,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var pathWithoutExtension = Spaces + _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -881,14 +881,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw_but_should_trim_them()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var pathWithoutExtension = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -930,14 +930,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_extension()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             var path = drive + @"temp\my.txt";
@@ -961,14 +961,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var random = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -980,14 +980,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var InvalidPath = drive + @"|temp\tools.txt";
             Action throwingAction = () => _target.GetFileName(InvalidPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -999,14 +999,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var random = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1018,14 +1018,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var random = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1066,14 +1066,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_file_name_with_extension()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             _target.GetFileName(drive + @"temp\my.txt").Should().Be(@"my.txt");
             _target.GetFileName(drive + @"temp\my").Should().Be(@"my");
@@ -1087,14 +1087,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var random = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1106,14 +1106,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var InvalidPath = drive + @"|temp\tools.txt";
             Action throwingAction = () => _target.GetFileNameWithoutExtension(InvalidPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1125,14 +1125,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var random = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1144,14 +1144,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var random = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1192,14 +1192,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_file_name_without_extension()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             _target.GetFileNameWithoutExtension(drive + @"temp\my.txt").Should().Be(@"my");
             _target.GetFileNameWithoutExtension(drive + @"temp\my").Should().Be(@"my");
@@ -1213,14 +1213,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             Action throwingAction = () => _target.GetFullPath(drive + @"temp:directory\tempfile.tmp");
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1232,14 +1232,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
 
@@ -1258,14 +1258,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_illegal_characters_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var InvalidPath = drive + @"|temp\tools.txt";
             Action throwingAction = () => _target.GetFullPath(InvalidPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1277,14 +1277,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var path = _target.Combine(drive, Guid.NewGuid() + ".txt");
@@ -1295,14 +1295,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw_but_should_trim_them()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
             var path = _target.Combine(drive, Guid.NewGuid() + ".txt");
@@ -1344,14 +1344,14 @@
          {
             // TODO: need to change mapped drive to return a drive that is "ready" -- just putting out the fire, not digging into details atm.
 
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             var path = drive + @"temp\my.txt";

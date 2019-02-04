@@ -6,6 +6,7 @@ items:
   parent: Landorphan.TestUtilities.TestFacilities
   children:
   - Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.PreventRegressionBug
+  - Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.ProofOfWorkaroundNeeded
   langs:
   - csharp
   - vb
@@ -16,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: WellKnownTestCategories
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
@@ -52,7 +53,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: PreventRegressionBug
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
@@ -67,6 +68,42 @@ items:
     return:
       type: System.String
     content.vb: Public Const PreventRegressionBug As String = "Prevent Regression Bug"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.ProofOfWorkaroundNeeded
+  commentId: F:Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.ProofOfWorkaroundNeeded
+  id: ProofOfWorkaroundNeeded
+  parent: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
+  langs:
+  - csharp
+  - vb
+  name: ProofOfWorkaroundNeeded
+  nameWithType: WellKnownTestCategories.ProofOfWorkaroundNeeded
+  fullName: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories.ProofOfWorkaroundNeeded
+  type: Field
+  source:
+    remote:
+      path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: ProofOfWorkaroundNeeded
+    path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
+    startLine: 20
+  assemblies:
+  - Landorphan.TestUtilities.MSTest
+  namespace: Landorphan.TestUtilities.TestFacilities
+  summary: "\nA test used to establish the need for a workaround; not a validation of quality.\n"
+  remarks: "\nTests are expected to fail.\n"
+  example: []
+  syntax:
+    content: public const string ProofOfWorkaroundNeeded = "ProofOfWorkaroundNeeded"
+    return:
+      type: System.String
+    content.vb: Public Const ProofOfWorkaroundNeeded As String = "ProofOfWorkaroundNeeded"
   modifiers.csharp:
   - public
   - const

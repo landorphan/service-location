@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestBase
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -78,7 +78,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -110,7 +110,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestContext
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -149,7 +149,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: MonitoredEvents
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -187,7 +187,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestClassInitialize
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestInitialize
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -277,7 +277,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: InitializeTestMethod
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -311,7 +311,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TeardownTestMethod
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -345,7 +345,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestCleanup
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs
@@ -387,7 +387,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestBase.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: TestClassCleanup
     path: ../../source/Landorphan.TestUtilities.MSTest/TestBase.cs

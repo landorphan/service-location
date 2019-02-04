@@ -27,14 +27,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_has_leading_or_trailing_spaces_it_should_trim_appropriately()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"   " + driveNoSep).Should().Be(driveNoSep);
@@ -52,19 +52,18 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_not_have_leading_or_trailing_spaces_it_should_return_the_path()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
 
             IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep).Should().Be(driveNoSep);
             IOStringUtilities.ConditionallyTrimSpaceFromPath(drive).Should().Be(drive);
-            // NEIN: use alternate separator
             IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep + _pathUtilities.AltDirectorySeparatorCharacter).Should().Be(driveNoSep + _pathUtilities.AltDirectorySeparatorCharacter);
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"\\someserver\someshare\resource").Should().Be(@"\\someserver\someshare\resource");
          }
@@ -91,14 +90,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_a_colon_after_the_drive_label_colon_It_should_return_true()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(drive + @"abc:defg\").Should().BeTrue();
          }
@@ -121,14 +120,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_a_colon_at_the_drive_label_only_It_should_return_false()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
             var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
             var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
@@ -180,14 +179,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_a_SepChar_It_should_remove_it()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
             var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
             var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
@@ -256,14 +255,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_not_have_mixed_separator_characters_it_should_return_path()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
             var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
             var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
@@ -277,14 +276,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_mixed_separator_characters_it_should_standardize_them()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             IOStringUtilities.StandardizeDirectorySeparatorCharacters(drive + @"myfolder/myfile.txt").Should().Be(drive + @"myfolder\myfile.txt");
             IOStringUtilities.StandardizeDirectorySeparatorCharacters(@"\\server\share/file.txt").Should().Be(@"\\server\share\file.txt");
@@ -314,14 +313,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_a_colon_character_which_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             const String argName = "testArg";
             var directoryPath = drive + "Any : Folder";
@@ -335,14 +334,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             const String argName = "testArg";
             var directoryPath = drive + "|";
@@ -356,14 +355,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_a_root_it_should_return_the_root()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var driveNoSep = drive.Substring(0, 2);
             var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
             var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
@@ -430,14 +429,14 @@
             //    "   abc"
             //    "   abc.tmp"
 
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
             // usually c:\
-            var drive = TestHardCodes.WindowsTestPaths.MappedDrive;
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             const String argName = "testArg";
             var directoryPath = @"   " + drive + "windows   ";

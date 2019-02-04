@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IIocServiceLocatorManager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -37,7 +37,6 @@ items:
     content: 'public interface IIocServiceLocatorManager : IIocServiceLocatorMetaSharedCapacities'
     content.vb: >-
       Public Interface IIocServiceLocatorManager
-
           Inherits IIocServiceLocatorMetaSharedCapacities
   inheritedMembers:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorMetaSharedCapacities.Manager
@@ -62,7 +61,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AfterContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -92,7 +91,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AfterContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -122,7 +121,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AmbientContainerChanged
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -152,7 +151,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: BeforeContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -182,7 +181,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: BeforeContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -212,7 +211,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: AmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -248,7 +247,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
@@ -284,7 +283,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: SetAmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocatorManager.cs

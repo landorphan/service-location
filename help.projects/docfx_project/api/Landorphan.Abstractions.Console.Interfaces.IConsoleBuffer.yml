@@ -1,0 +1,702 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  commentId: T:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  id: IConsoleBuffer
+  parent: Landorphan.Abstractions.Console.Interfaces
+  children:
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  - Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize(System.Int32,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: IConsoleBuffer
+  nameWithType: IConsoleBuffer
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: IConsoleBuffer
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+    startLine: 10
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nInterface for console buffer.\n"
+  example: []
+  syntax:
+    content: public interface IConsoleBuffer
+    content.vb: Public Interface IConsoleBuffer
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  id: BufferHeight
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  langs:
+  - csharp
+  - vb
+  name: BufferHeight
+  nameWithType: IConsoleBuffer.BufferHeight
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: BufferHeight
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+    startLine: 40
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nGets or sets the height of the buffer area.\n"
+  remarks: "\nThis property defines the number of rows (or lines) stored in the buffer that is accessed by a console mode window.  Input contrast, the\n<xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight\" data-throw-if-not-resolved=\"false\"></xref> property defines the number of rows that are actually displayed in the console window at any\nparticular time. If the number of rows actually written to the buffer exceeds the number of rows defined by the\n<xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight\" data-throw-if-not-resolved=\"false\"></xref> property, the window can be scrolled vertically so that it displays a contiguous number of  rows that\nare equal to the <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight\" data-throw-if-not-resolved=\"false\"></xref> property and are located anywhere in the buffer. If a set operation decreases the\nvalue of the <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight\" data-throw-if-not-resolved=\"false\"></xref> property, the uppermost lines are removed.  For example, if the number of lines is reduced from 300 to 250,\nlines 0 through 49 are removed, and the existing lines 50 through 299 become lines 0 through 249.\n"
+  example: []
+  syntax:
+    content: int BufferHeight { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe current height, in rows, of the buffer area.\n"
+    content.vb: Property BufferHeight As Integer
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThe value in a set operation is less than or equal to zero.\n-or-\nThe value in a set operation is greater than or equal to <xref href=\"System.Int16.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>.\n-or-\nThe value in a set operation is less than <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowTop\" data-throw-if-not-resolved=\"false\"></xref> + <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  id: BufferWidth
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  langs:
+  - csharp
+  - vb
+  name: BufferWidth
+  nameWithType: IConsoleBuffer.BufferWidth
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: BufferWidth
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+    startLine: 65
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nGets or sets the width of the buffer area.\n"
+  remarks: "\nIf a set operation decreases the value of the <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth\" data-throw-if-not-resolved=\"false\"></xref> property, the rightmost columns are removed.  For example, if the number of\ncolumns is reduced from 80 to 60, columns 60 through 79 of each row are removed.\n"
+  example: []
+  syntax:
+    content: int BufferWidth { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe current width, in columns, of the buffer area.\n"
+    content.vb: Property BufferWidth As Integer
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nThe value in a set operation is less than or equal to zero.\n-or-\nThe value in a set operation is greater than or equal to <xref href=\"System.Int16.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>.\n-or-\nThe value in a set operation is less than <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowLeft\" data-throw-if-not-resolved=\"false\"></xref> + <xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowWidth\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  modifiers.csharp:
+  - get
+  - set
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  langs:
+  - csharp
+  - vb
+  name: MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32)
+  nameWithType: IConsoleBuffer.MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32)
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: MoveBufferArea
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+    startLine: 113
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nCopies a specified source area of the screen buffer to a specified destination area.\n"
+  remarks: "\nIf the destination and source parameters specify a position located outside the boundaries of the current screen buffer, only the portion of the\nsource area that fits within the destination area is copied.  That is, the source area is clipped to fit the current screen buffer. The\n<xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method copies the source area to the destination area.  If the destination area\ndoes not\nintersect the source area, the source area is filled with blanks using the current foreground and background colors.  Otherwise, the intersected\nportion of the source area is not filled.\n"
+  example: []
+  syntax:
+    content: void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop)
+    parameters:
+    - id: sourceLeft
+      type: System.Int32
+      description: "\nThe leftmost column of the source area.\n"
+    - id: sourceTop
+      type: System.Int32
+      description: "\nThe topmost row of the source area.\n"
+    - id: sourceWidth
+      type: System.Int32
+      description: "\nThe number of columns in the source area.\n"
+    - id: sourceHeight
+      type: System.Int32
+      description: "\nThe number of rows in the source area.\n"
+    - id: targetLeft
+      type: System.Int32
+      description: "\nThe leftmost column of the destination area.\n"
+    - id: targetTop
+      type: System.Int32
+      description: "\nThe topmost row of the destination area.\n"
+    content.vb: Sub MoveBufferArea(sourceLeft As Integer, sourceTop As Integer, sourceWidth As Integer, sourceHeight As Integer, targetLeft As Integer, targetTop As Integer)
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nOne or more of the parameters is less than zero.\n-or-\nsourceLeft or targetLeft is greater than or equal to BufferWidth.\n-or-\nsourceTop or targetTop is greater than or equal to BufferHeight.\n-or-\nsourceTop + sourceHeight is greater than or equal to BufferHeight.\n-or-\nsourceLeft + sourceWidth is greater than or equal to BufferWidth.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  commentId: M:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  id: MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  langs:
+  - csharp
+  - vb
+  name: MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32, Char, ConsoleColor, ConsoleColor)
+  nameWithType: IConsoleBuffer.MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32, Char, ConsoleColor, ConsoleColor)
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Char, System.ConsoleColor, System.ConsoleColor)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: MoveBufferArea
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+    startLine: 176
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nCopies a specified source area of the screen buffer to a specified destination area.\n"
+  remarks: "\nIf the destination and source parameters specify a position located beyond the boundaries of the current screen buffer, only the portion of the\nsource area that fits within the destination area is copied.  That is, the source area is clipped to fit the current screen buffer.  The\n<xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Char%2cSystem.ConsoleColor%2cSystem.ConsoleColor)\" data-throw-if-not-resolved=\"false\"></xref> method copies the source area to the\ndestination\narea.  If the destination area does not intersect the source area, the source area is filled with the character specified by\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceChar</code>, using the colors specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceForeColor</code> and <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceBackColor</code>.   Otherwise,\nthe intersected portion of the source area is not filled.  The\n<xref href=\"Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Int32%2cSystem.Char%2cSystem.ConsoleColor%2cSystem.ConsoleColor)\" data-throw-if-not-resolved=\"false\"></xref> method performs no operation if\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceWidth</code> or <code data-dev-comment-type=\"paramref\" class=\"paramref\">sourceHeight</code> is zero.\n"
+  example: []
+  syntax:
+    content: void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop, char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor)
+    parameters:
+    - id: sourceLeft
+      type: System.Int32
+      description: "\nThe leftmost column of the source area.\n"
+    - id: sourceTop
+      type: System.Int32
+      description: "\nThe topmost row of the source area.\n"
+    - id: sourceWidth
+      type: System.Int32
+      description: "\nThe number of columns in the source area.\n"
+    - id: sourceHeight
+      type: System.Int32
+      description: "\nThe number of rows in the source area.\n"
+    - id: targetLeft
+      type: System.Int32
+      description: "\nThe leftmost column of the destination area.\n"
+    - id: targetTop
+      type: System.Int32
+      description: "\nThe topmost row of the destination area.\n"
+    - id: sourceChar
+      type: System.Char
+      description: "\nThe character used to fill the source area.\n"
+    - id: sourceForeColor
+      type: System.ConsoleColor
+      description: "\nThe foreground color used to fill the source area.\n"
+    - id: sourceBackColor
+      type: System.ConsoleColor
+      description: "\nThe background color used to fill the source area.\n"
+    content.vb: Sub MoveBufferArea(sourceLeft As Integer, sourceTop As Integer, sourceWidth As Integer, sourceHeight As Integer, targetLeft As Integer, targetTop As Integer, sourceChar As Char, sourceForeColor As ConsoleColor, sourceBackColor As ConsoleColor)
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea*
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\nOne or more of the parameters is less than zero.\n-or-\nsourceLeft or targetLeft is greater than or equal to BufferWidth.\n-or-\nsourceTop or targetTop is greater than or equal to BufferHeight.\n-or-\nsourceTop + sourceHeight is greater than or equal to BufferHeight.\n-or-\nsourceLeft + sourceWidth is greater than or equal to BufferWidth.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nOne or both of the color parameters is not a member of the <xref href=\"System.ConsoleColor\" data-throw-if-not-resolved=\"false\"></xref> enumeration.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe user does not have permission to perform this action.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize(System.Int32,System.Int32)
+  commentId: M:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize(System.Int32,System.Int32)
+  id: SetBufferSize(System.Int32,System.Int32)
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  langs:
+  - csharp
+  - vb
+  name: SetBufferSize(Int32, Int32)
+  nameWithType: IConsoleBuffer.SetBufferSize(Int32, Int32)
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+      branch: mprochaska.restore.abstraction.tests
+      repo: https://github.com/landorphan/service-location.git
+    id: SetBufferSize
+    path: ../../source/Landorphan.Abstractions/Console/Interfaces/IConsoleBuffer.cs
+    startLine: 198
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Console.Interfaces
+  summary: "\nSets the height and width of the screen buffer area to the specified values.\n"
+  example: []
+  syntax:
+    content: void SetBufferSize(int width, int height)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: "\nThe width of the buffer area measured in columns.\n"
+    - id: height
+      type: System.Int32
+      description: "\nThe height of the buffer area measured in rows.\n"
+    content.vb: Sub SetBufferSize(width As Integer, height As Integer)
+  overload: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize*
+references:
+- uid: Landorphan.Abstractions.Console.Interfaces
+  commentId: N:Landorphan.Abstractions.Console.Interfaces
+  name: Landorphan.Abstractions.Console.Interfaces
+  nameWithType: Landorphan.Abstractions.Console.Interfaces
+  fullName: Landorphan.Abstractions.Console.Interfaces
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+  name: WindowHeight
+  nameWithType: IConsoleAppearance.WindowHeight
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowHeight
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  name: BufferHeight
+  nameWithType: IConsoleBuffer.BufferHeight
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+- uid: System.Int16.MaxValue
+  commentId: F:System.Int16.MaxValue
+  isExternal: true
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowTop
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowTop
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+  name: WindowTop
+  nameWithType: IConsoleAppearance.WindowTop
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowTop
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: System.Security.SecurityException
+  commentId: T:System.Security.SecurityException
+  isExternal: true
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+  name: BufferHeight
+  nameWithType: IConsoleBuffer.BufferHeight
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferHeight
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+  commentId: T:Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+  parent: Landorphan.Abstractions.Console.Interfaces
+  name: IConsoleAppearance
+  nameWithType: IConsoleAppearance
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  commentId: T:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  parent: Landorphan.Abstractions.Console.Interfaces
+  name: IConsoleBuffer
+  nameWithType: IConsoleBuffer
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  name: BufferWidth
+  nameWithType: IConsoleBuffer.BufferWidth
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowLeft
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowLeft
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+  name: WindowLeft
+  nameWithType: IConsoleAppearance.WindowLeft
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowLeft
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowWidth
+  commentId: P:Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowWidth
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
+  name: WindowWidth
+  nameWithType: IConsoleAppearance.WindowWidth
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance.WindowWidth
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+  name: BufferWidth
+  nameWithType: IConsoleBuffer.BufferWidth
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.BufferWidth
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  commentId: M:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  isExternal: true
+  name: MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32)
+  nameWithType: IConsoleBuffer.MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32)
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+    name: MoveBufferArea
+    nameWithType: IConsoleBuffer.MoveBufferArea
+    fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+    name: MoveBufferArea
+    nameWithType: IConsoleBuffer.MoveBufferArea
+    fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea
+  name: MoveBufferArea
+  nameWithType: IConsoleBuffer.MoveBufferArea
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  commentId: M:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  parent: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
+  isExternal: true
+  name: MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32, Char, ConsoleColor, ConsoleColor)
+  nameWithType: IConsoleBuffer.MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32, Char, ConsoleColor, ConsoleColor)
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Char, System.ConsoleColor, System.ConsoleColor)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+    name: MoveBufferArea
+    nameWithType: IConsoleBuffer.MoveBufferArea
+    fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ConsoleColor
+    name: ConsoleColor
+    nameWithType: ConsoleColor
+    fullName: System.ConsoleColor
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ConsoleColor
+    name: ConsoleColor
+    nameWithType: ConsoleColor
+    fullName: System.ConsoleColor
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+    name: MoveBufferArea
+    nameWithType: IConsoleBuffer.MoveBufferArea
+    fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.MoveBufferArea
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ConsoleColor
+    name: ConsoleColor
+    nameWithType: ConsoleColor
+    fullName: System.ConsoleColor
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.ConsoleColor
+    name: ConsoleColor
+    nameWithType: ConsoleColor
+    fullName: System.ConsoleColor
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ConsoleColor
+  commentId: T:System.ConsoleColor
+  parent: System
+  isExternal: true
+  name: ConsoleColor
+  nameWithType: ConsoleColor
+  fullName: System.ConsoleColor
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize*
+  commentId: Overload:Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize
+  name: SetBufferSize
+  nameWithType: IConsoleBuffer.SetBufferSize
+  fullName: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer.SetBufferSize

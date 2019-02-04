@@ -25,7 +25,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: DisposableArrangeActAssert
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -92,7 +92,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Dispose
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -125,7 +125,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Dispose
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -163,7 +163,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ReleaseManagedResources
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -197,7 +197,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ReleaseUnmanagedResources
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -231,7 +231,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Finalize
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -263,7 +263,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: Disposing
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -297,7 +297,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IsDisposed
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -335,7 +335,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: IsDisposing
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -373,7 +373,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: OnDisposing
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
@@ -407,7 +407,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: mprochaska.restore.abstraction.tests
       repo: https://github.com/landorphan/service-location.git
     id: ThrowIfDisposed
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs

@@ -29,9 +29,9 @@
          [Ignore("documents behavior, does not test code")]
          public void It_does_not_normalize_trailing_directory_separator_chars()
          {
-            if (TestHardCodes.WindowsTestPaths.MappedDrive == null)
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
-               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsTestPaths.MappedDrive)}");
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
                return;
             }
 
@@ -42,7 +42,7 @@
 
             var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
-            var driveColon = TestHardCodes.WindowsTestPaths.MappedDrive.Substring(0, 2);
+            var driveColon = TestHardCodes.WindowsLocalTestPaths.MappedDrive.Substring(0, 2);
 
             var a = new DirectoryInfo(driveColon + @"\temp");
             var b = new DirectoryInfo(driveColon + @"\temp\");
