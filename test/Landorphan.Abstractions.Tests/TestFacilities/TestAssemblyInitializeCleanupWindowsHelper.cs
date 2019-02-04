@@ -116,7 +116,9 @@
          // trying to redirect powershell output to a file
 
          const Int32 oneSecondInMilliseconds = 1000;
-         var fifteenSeconds = new TimeSpan(0, 0, 15);
+
+         // 15 seconds timing out on the build server var fifteenSeconds = new TimeSpan(0, 0, 15);
+         var twoMinutes = new TimeSpan(0, 2, 0);
 
          // ReSharper disable once StringLiteralTypo
          const String stdErrLogFileName = @"PSLogStdErr.txt";
@@ -147,7 +149,7 @@
             ps.StartInfo = startInfo;
             ps.Start();
             // allow 15 seconds for execution (do this after UAC prompts with dialog on UAC enabled machines)
-            var expiry = DateTime.UtcNow + fifteenSeconds;
+            var expiry = DateTime.UtcNow + twoMinutes;
             do
             {
                if (!ps.Responding)
