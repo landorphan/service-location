@@ -169,8 +169,19 @@ namespace Landorphan.Abstractions.IO.Internal
       /// <inheritdoc/>
       public IImmutableSet<String> EnumerateDirectories(String path, String searchPattern, SearchOption searchOption)
       {
+         path.ArgumentNotNull(nameof(path));
+         searchPattern.ArgumentNotNull(nameof(searchPattern));
+         searchOption.ArgumentMustBeValidEnumValue(nameof(searchOption));
+
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
+         // BCL Directory.EnumerateDirectories no longer throws ArgumentException on invalid searchOption
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         const Int32 indexNotFound = -1;
+         if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
+         {
+            throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
+         }
 #if (IO_PRECHECKS)
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
@@ -187,6 +198,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
          catch (ArgumentException ae)
          {
+            // TODO: check .Net Standard 2.0 implementation, this is from .Net Fx 4.6.1
             if (ae.Message.StartsWith("Search pattern cannot contain", StringComparison.Ordinal) && ae.ParamName == null)
             {
                // add the parameter name.
@@ -212,8 +224,21 @@ namespace Landorphan.Abstractions.IO.Internal
       /// <inheritdoc/>
       public IImmutableSet<String> EnumerateFiles(String path, String searchPattern, SearchOption searchOption)
       {
+         path.ArgumentNotNull(nameof(path));
+         searchPattern.ArgumentNotNull(nameof(searchPattern));
+         searchOption.ArgumentMustBeValidEnumValue(nameof(searchOption));
+
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
+         // BCL Directory.EnumerateFiles no longer throws ArgumentException on invalid searchOption
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         const Int32 indexNotFound = -1;
+         
+         // must not use GetInvalidFileNameCharacters, because that excludes valid search characters such as " * / : < > ? \
+         if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
+         {
+            throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
+         }
 #if (IO_PRECHECKS)
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
@@ -255,8 +280,19 @@ namespace Landorphan.Abstractions.IO.Internal
       /// <inheritdoc/>
       public IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern, SearchOption searchOption)
       {
+         path.ArgumentNotNull(nameof(path));
+         searchPattern.ArgumentNotNull(nameof(searchPattern));
+         searchOption.ArgumentMustBeValidEnumValue(nameof(searchOption));
+
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
+         // BCL Directory.EnumerateFileSystemEntries no longer throws ArgumentException on invalid searchOption
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         const Int32 indexNotFound = -1;
+         if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
+         {
+            throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
+         }
 #if (IO_PRECHECKS)
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 

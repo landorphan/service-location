@@ -79,8 +79,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
 	ProjectSection(SolutionItems) = preProject
-		help.projects\Build-Serve.ps1 = help.projects\Build-Serve.ps1
-		help.projects\readme.md = help.projects\readme.md
+		help.projects\BuildServe-HelpDocumentation.ps1 = help.projects\BuildServe-HelpDocumentation.ps1
+		help.projects\HELP.READMEr.md = help.projects\HELP.READMEr.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelpInstall", "HelpInstall", "{80489C8E-0C1C-4A88-B69C-ED23C29BF86F}"

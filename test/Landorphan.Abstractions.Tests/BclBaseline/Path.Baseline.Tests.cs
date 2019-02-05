@@ -2,6 +2,8 @@
 {
    using System;
    using System.Collections.Generic;
+   using System.Collections.Immutable;
+   using System.Diagnostics;
    using System.IO;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -118,6 +120,51 @@
       [TestClass]
       public class Path_BCL_Non_Issues : TestBase
       {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void Document_Path_GetInvalidPathChars_and_Path_GetInvalidFileNameChars()
+         {
+            var path = Path.GetInvalidPathChars().ToImmutableHashSet();
+            Trace.WriteLine($"Path.GetInvalidPathChars count ={path.Count}");
+            foreach (var c in path)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            Trace.WriteLine(String.Empty);
+
+            var file = Path.GetInvalidFileNameChars().ToImmutableHashSet();
+            Trace.WriteLine($"Path.GetInvalidFileNameChars count ={file.Count}");
+            foreach (var c in file)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            Trace.WriteLine(String.Empty);
+
+            var pathExceptFile = path.Except(file);
+            Trace.WriteLine($"pathExceptFile count ={pathExceptFile.Count}");
+            foreach (var c in pathExceptFile)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            Trace.WriteLine(String.Empty);
+
+            var fileExceptPath = file.Except(path);
+            Trace.WriteLine($"fileExceptPath count ={fileExceptPath.Count}");
+            foreach (var c in fileExceptPath)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         }
+
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void Path_ChangeExtension_Behavior()

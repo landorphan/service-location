@@ -28,11 +28,11 @@ if (Test-Path $rootTestFolder)
   Remove-Item -Recurse -Force $rootTestFolder
 }
 
-$rootShareName = Split-Path $rootTestFolder -NoQualifier
-$rootShareName = $rootShareName.Substring(1, $rootShareName.Length -1)
-$fullShareName = "\\localHost\" + $rootShareName
+$rootShareName = "Landorphan.Abstractions.Test.UnitTestTarget"
 
-if(Test-Path $fullShareName)
+# Get-SmbShare throws if not found, redirect stderr to null
+$share = Get-SmbShare -Name $rootShareName 2>$null
+if ($null -ne $share)
 {
   Remove-SmbShare -Name $rootShareName -Force
 }

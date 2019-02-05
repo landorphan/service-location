@@ -63,15 +63,16 @@
       [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
       private ProcessStartInfo BuildPSElevatedStartInfo()
       {
-         var envUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         // returns null when the PowerShell executable path cannot be found.
+
          var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
          var pwd = dirUtilities.GetCurrentDirectory();
 
-         // NEIN:  can this be improved for 32-bit machines?
-         var psExeFullPath = pathUtilities.Combine(
-            envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.Windows),
-            @"SysWOW64\WindowsPowerShell\v1.0\powershell.exe");
+         var psExeFullPath = GetPowerShellPath();
+         if (psExeFullPath == null)
+         {
+            return null;
+         }
 
          var startInfo = new ProcessStartInfo
          {
@@ -106,24 +107,35 @@
 
          // Execute an Administrator-Only script to create local files and folders for tests.
          var startInfo = BuildPSElevatedStartInfo();
+         if (startInfo == null)
+         {
+            const String err = "failed to create PowerShell start info";
+            Trace.WriteLine($"WARNING: {err}.");
+            output = String.Empty;
+            error = err;
+            return -1;
+         }
+
          var exitCode = ExecutePowerShellScript(startInfo, scriptPath, out output, out error);
          return exitCode;
       }
 
       private Int32 ExecutePowerShellScript(ProcessStartInfo startInfo, String scriptPath, out String output, out String error)
       {
-         // TODO: This causes a UAC confirmation dialog box to be displayed on UAC enabled machines, fine on a dev box, what about the build server?
-         //
          // in order to elevate, must use ShellExecute = true
          // when ShellExecute, redirection of StandardOutput and StandardError is not allowed.
-         // trying to redirect powershell output to a file
-
-         const Int32 oneSecondInMilliseconds = 1000;
-
+         // redirecting via powershell to 2 files to capture stderr and stdout and sucking those files into the instance.
+         //
+         // Queried the AzureDevOps build server:
+         //    EnableLUA                  : 1
+         //    ConsentPromptBehaviorAdmin : 0
+         // >> No change other than timeout explains the avoidance of timeout error on build server
          // TODO: find a happy medium between 15 seconds and 120 seconds for PowerShell timeout
          // 15 seconds was timing out on the build server
          // 2 minutes works
          var twoMinutes = new TimeSpan(0, 2, 0);
+
+         const Int32 oneSecondInMilliseconds = 1000;
 
          // ReSharper disable once StringLiteralTypo
          const String stdErrLogFileName = @"PSLogStdErr.txt";
@@ -218,81 +230,84 @@
 
          // Execute an Administrator-Only script to delete local files and folders for tests.
          var startInfo = BuildPSElevatedStartInfo();
+         if (startInfo == null)
+         {
+            const String err = "failed to create PowerShell start info";
+            Trace.WriteLine($"WARNING: {err}.");
+            output = String.Empty;
+            error = err;
+            return -1;
+         }
+
          var exitCode = ExecutePowerShellScript(startInfo, scriptPath, out output, out error);
          return exitCode;
+      }
+
+      private String GetPowerShellPath()
+      {
+         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            return null;
+         }
+
+         var environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+
+         String rv;
+         if (environmentUtilities.Is64BitOperatingSystem)
+         {
+            // 32-bit powershell exe on 64-bit Windows %SystemRoot%\SysWOW64\WindowsPowerShell\v1.0\powershell.exe
+            // 64-bit powershell exe on 64-bit Windows %SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe
+            rv = pathUtilities.Combine(environmentUtilities.GetSpecialFolderPath(Environment.SpecialFolder.Windows), @"SysWOW64\WindowsPowerShell\v1.0\powershell.exe");
+         }
+         else
+         {
+            // 32-bit powershell on 32-bit Windows %SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe
+            rv = pathUtilities.Combine(environmentUtilities.GetSpecialFolderPath(Environment.SpecialFolder.Windows), @"system32\WindowsPowerShell\v1.0\powershell.exe");
+         }
+
+         return rv;
       }
 
       private void InitializeTestHardCodesWindowsLocalTestPaths()
       {
          var envUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-         var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
 
          // parallel knowledge/maintenance here
          var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
          var localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
-         if (dirUtilities.DirectoryExists(localFolderRoot))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFolderRoot(localFolderRoot);
-         }
+
+         // NOTE:  cannot check for the existence of a file(s)/folder(s) in this block because the current user does not have access to many of the extant paths by design.
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFolderRoot(localFolderRoot);
 
          var localFolderEveryoneFullControl = pathUtilities.Combine(localFolderRoot, @"EveryoneFullControl");
-         if (dirUtilities.DirectoryExists(localFolderEveryoneFullControl))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFolderEveryoneFullControl(localFolderEveryoneFullControl);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFolderEveryoneFullControl(localFolderEveryoneFullControl);
 
          var localFileFullControlFolderOwnerOnlyFile = pathUtilities.Combine(localFolderEveryoneFullControl, @"OwnerOnly.txt");
-         if (fileUtilities.FileExists(localFileFullControlFolderOwnerOnlyFile))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFileFullControlFolderOwnerOnlyFile(localFileFullControlFolderOwnerOnlyFile);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFileFullControlFolderOwnerOnlyFile(localFileFullControlFolderOwnerOnlyFile);
 
          var localFolderOuterFolderNoPermissions = pathUtilities.Combine(localFolderRoot, @"OuterNoPermissions");
-         if (dirUtilities.DirectoryExists(localFolderOuterFolderNoPermissions))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFolderOuterFolderNoPermissions(localFolderOuterFolderNoPermissions);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFolderOuterFolderNoPermissions(localFolderOuterFolderNoPermissions);
 
          var localFileOuterFolderNoPermissionsChildFile = pathUtilities.Combine(localFolderOuterFolderNoPermissions, @"OuterExtantFile.txt");
-         if (fileUtilities.FileExists(localFileOuterFolderNoPermissionsChildFile))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFileOuterFolderNoPermissionsChildFile(localFileOuterFolderNoPermissionsChildFile);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFileOuterFolderNoPermissionsChildFile(localFileOuterFolderNoPermissionsChildFile);
 
          var localFolderOuterFolderNoPermissionsInnerFolderNoPermissions = pathUtilities.Combine(localFolderOuterFolderNoPermissions, "InnerNoPermissions");
-         if (dirUtilities.DirectoryExists(localFolderOuterFolderNoPermissionsInnerFolderNoPermissions))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions(localFolderOuterFolderNoPermissionsInnerFolderNoPermissions);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions(localFolderOuterFolderNoPermissionsInnerFolderNoPermissions);
 
          var localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile = pathUtilities.Combine(localFolderOuterFolderNoPermissionsInnerFolderNoPermissions, @"InnerExtantFile.txt");
-         if (fileUtilities.FileExists(localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile(localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile(localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile);
 
          var localFolderOuterFolderNoPermissionsReadExecuteListFolderContents = pathUtilities.Combine(localFolderOuterFolderNoPermissions, @"\ReadExecuteListFolderContents");
-         if (dirUtilities.DirectoryExists(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFolderReadExecuteListFolderContents(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents);
-         }
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFolderReadExecuteListFolderContents(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents);
 
-         var localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder =
-            pathUtilities.Combine(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents, @"\ExtantFolder");
-         if (dirUtilities.DirectoryExists(localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder(
-               localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder);
-         }
+         var localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder = pathUtilities.Combine(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents, @"\ExtantFolder");
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder(
+            localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder);
 
-         var localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile =
-            pathUtilities.Combine(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents, @"\ExtantFile.txt");
-         if (fileUtilities.FileExists(localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile))
-         {
-            TestHardCodes.WindowsLocalTestPaths.SetLocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile(localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile);
-         }
+         var localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile = pathUtilities.Combine(localFolderOuterFolderNoPermissionsReadExecuteListFolderContents, @"\ExtantFile.txt");
+         TestHardCodes.WindowsLocalTestPaths.SetLocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile(localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile);
       }
 
       private void InitializeTestHardCodesWindowsUncTestPaths()
