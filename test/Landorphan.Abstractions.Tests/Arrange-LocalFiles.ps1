@@ -60,9 +60,9 @@ function Build-Root
 
 function Build-RootShare
 {
-  param([string]$name, [string]$path)
+  param([string]$name,[string]$path)
   # New-SMBShare –Name $name –Path $path –ContinuouslyAvailable –FullAccess 'Everyone' -ChangeAccess domain\deptusers -ReadAccess “domain\authenticated users”
-  New-SMBShare –Name $name –Path $path –FullAccess 'Everyone' > $null
+  New-SmbShare –Name $name –Path $path –FullAccess 'Everyone' > $null
 }
 
 function Build-Root-EveryoneFullControl
@@ -292,7 +292,7 @@ New-Variable -Name RULES_SID_RESULT -Value ([System.Type]::GetType('System.Secur
 Build-Root $rootTestFolder
 #  remove c:\ from the folder name and make that the share name.
 $rootShareName = Split-Path $rootTestFolder -NoQualifier
-$rootShareName = $rootShareName.Substring(1, $rootShareName.Length -1)
+$rootShareName = $rootShareName.Substring(1,$rootShareName.Length - 1)
 Build-RootShare $rootShareName $rootTestFolder
 
 # C:\Landorphan.Abstractions.Test.UnitTestTarget\EveryoneFullControl

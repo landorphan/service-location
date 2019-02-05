@@ -163,6 +163,7 @@
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
       [SuppressMessage("SonarLint.CodeSmell", "S1067: Expressions should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
+      [SuppressMessage("SonarLint.CodeSmell", "S2737: Catch clauses should do more than rethrow")]
       internal static String ValidateCanonicalPath(String path, String argumentName)
       {
          // returns a cleaned string if it does not throw.
@@ -205,11 +206,9 @@
             throw new ArgumentException(msg, argumentName);
          }
 
-#pragma warning disable S2737 // "catch" clauses should do more than rethrow
          // this call will throw a PathTooLongException as needed.
          // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
          Path.GetFullPath(cleanedPath);
-#pragma warning restore S2737 // "catch" clauses should do more than rethrow
 
          // Leading spaces allowed on resource names, but not trailing.  Whitespace only resource names not allowed.
          // (I do not know how to recognize a directory name versus a resource names canonically)

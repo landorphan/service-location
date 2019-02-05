@@ -267,7 +267,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Maximum length varies, 248 does not apply")]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
             // directory path issue

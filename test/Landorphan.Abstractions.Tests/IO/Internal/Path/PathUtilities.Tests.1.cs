@@ -23,7 +23,6 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_parent()
          {
             if (TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissions == null)
@@ -41,9 +40,14 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_nor_on_the_parent_directory_It_should_return_the_parent()
          {
+            if (TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions)}");
+               return;
+            }
+
             // HAPPY PATH TEST:
             var path = TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions;
             var actual = _target.GetParentPath(path);
@@ -134,6 +138,14 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_a_resource_name_It_should_return_null_unc()
+         {
+            var actual = _target.GetParentPath(@"\\localhost");
+            actual.Should().BeNull();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_a_root_It_should_return_null_local()
          {
             if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
@@ -145,14 +157,6 @@
             // usually c:\
             var root = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
             var actual = _target.GetParentPath(root);
-            actual.Should().BeNull();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_a_resource_name_It_should_return_null_unc()
-         {
-            var actual = _target.GetParentPath(@"\\localhost");
             actual.Should().BeNull();
          }
 
@@ -362,7 +366,6 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_root()
          {
             if (TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissions == null)
@@ -382,7 +385,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths: permissions")]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_nor_on_the_parent_directory_It_should_return_the_root()
          {
             if (TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions == null)
@@ -482,8 +484,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths: UNC paths and permissions")]
-         public void And_the_path_is_a_root_It_should_return_the_root()
+         public void And_the_path_is_a_root_It_should_return_the_root_mappedDrive()
          {
             if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
@@ -493,14 +494,24 @@
 
             // usually c:\
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
-            var driveNoSep = drive.Substring(0, 2);
 
             // HAPPY PATH TEST:
             var actual = _target.GetRootPath(drive);
-            actual.Should().Be(driveNoSep);
+            actual.Should().Be(drive);
+         }
 
-            actual = _target.GetRootPath(TestHardCodes.WindowsUncTestPaths.UncShareRoot);
-            actual.Should().Be(TestHardCodes.WindowsUncTestPaths.UncShareRoot);
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_a_root_It_should_return_the_root_unc()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
+            var actual = _target.GetRootPath(TestHardCodes.WindowsUncTestPaths.UncShareRoot);
+            actual.Should().Be(@"\\localhost");
          }
 
          [TestMethod]
@@ -767,8 +778,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Need to arrange local paths: UNC paths")]
-         public void And_the_path_is_a_root_It_should_return_false()
+         public void And_the_path_is_a_root_It_should_return_false_mapped_drive()
          {
             if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
             {
@@ -776,13 +786,19 @@
                return;
             }
 
-            // usually c:\
-            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
-
             // HAPPY PATH TEST:
-            _target.HasExtension(drive).Should().BeFalse();
-            _target.HasExtension(TestHardCodes.WindowsUncTestPaths.UncShareRoot).Should().BeFalse();
+            _target.HasExtension(TestHardCodes.WindowsLocalTestPaths.MappedDrive).Should().BeFalse();
          }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_a_root_It_should_return_false_mapped_unc_resource_name()
+         {
+            // HAPPY PATH TEST:
+            _target.HasExtension(@"\\localhost").Should().BeFalse();
+         }
+
+
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

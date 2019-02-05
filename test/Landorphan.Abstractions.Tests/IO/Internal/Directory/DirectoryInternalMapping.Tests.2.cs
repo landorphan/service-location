@@ -5,8 +5,12 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using System.IO;
+   using System.Linq;
    using FluentAssertions;
+   using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Tests.TestFacilities;
+   using Landorphan.Common.Exceptions;
+   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -411,35 +415,15 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_searchOption_is_unrecognized_It_should_throw_ArgumentOutOfRangeException()
+         public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
             const String path = @".\";
-            const String SearchPattern = "*..";
+            const String SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.EnumerateFiles(path, SearchPattern, searchOption);
-            var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
+            var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("searchOption");
-            e.And.Message.Should().Be("Enum value was out of legal range.\r\nParameter name: searchOption");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Throws no exception on build server")]
-         public void And_the_searchPattern_is_malformed_It_should_throw_ArgumentException()
-         {
-            const String path = @".\";
-            const String SearchPattern = "*..";
-
-            Action throwingAction = () => _target.EnumerateFiles(path, SearchPattern);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
-
-            throwingAction = () => _target.EnumerateFiles(path, SearchPattern, SearchOption.AllDirectories);
-            e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
          }
 
          [TestMethod]
@@ -886,37 +870,37 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_searchOption_is_unrecognized_It_should_throw_ArgumentOutOfRangeException()
+         public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
             const String path = @".\";
-            const String SearchPattern = "*..";
+            const String SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern, searchOption);
-            var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
+            var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("searchOption");
-            e.And.Message.Should().Be("Enum value was out of legal range.\r\nParameter name: searchOption");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Throws no exception on build server")]
-         public void And_the_searchPattern_is_malformed_It_should_throw_ArgumentException()
+         public void And_the_searchPattern_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             const String path = @".\";
-            const String SearchPattern = "*..";
+
+            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
+            var SearchPattern = "*." + pathUtils.GetInvalidFileNameCharacters().First();
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
+            e.And.Message.Should().Contain("The search pattern is not well-formed (contains invalid characters).");
 
             throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern, SearchOption.AllDirectories);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
+            e.And.Message.Should().Contain("The search pattern is not well-formed (contains invalid characters).");
          }
-
+         
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_is_null_It_should_throw_ArgumentNullException()
