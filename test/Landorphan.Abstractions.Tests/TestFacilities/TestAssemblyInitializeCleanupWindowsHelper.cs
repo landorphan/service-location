@@ -39,8 +39,11 @@
          Trace.WriteLine($"PowerShell: arrange script has exited: {exitCode}");
          Trace.WriteLine(output);
          Trace.WriteLine(error);
-         InitializeTestHardCodesWindowsLocalTestPaths();
-         InitializeTestHardCodesWindowsUncTestPaths();
+         if (0 == exitCode)
+         {
+            InitializeTestHardCodesWindowsLocalTestPaths();
+            InitializeTestHardCodesWindowsUncTestPaths();
+         }
       }
 
       internal void Teardown()
@@ -117,7 +120,9 @@
 
          const Int32 oneSecondInMilliseconds = 1000;
 
-         // 15 seconds timing out on the build server var fifteenSeconds = new TimeSpan(0, 0, 15);
+         // TODO: find a happy medium between 15 seconds and 120 seconds for PowerShell timeout
+         // 15 seconds was timing out on the build server
+         // 2 minutes works
          var twoMinutes = new TimeSpan(0, 2, 0);
 
          // ReSharper disable once StringLiteralTypo
