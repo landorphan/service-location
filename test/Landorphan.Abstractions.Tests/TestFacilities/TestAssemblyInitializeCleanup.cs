@@ -38,11 +38,8 @@
          }
          else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
          {
-            // TODO: Arrange local paths
+            // TODO: Arrange local and UNC paths
          }
-         // TODO: figure out how to share "secrets" so build server can use
-         // TODO: any other UNC paths needed besides TestHardCodes.UncTestPaths.AzureUncFolderEveryoneFullControl,
-         // if so, arrange them here
 
          // Configure the simulator as needed.
       }

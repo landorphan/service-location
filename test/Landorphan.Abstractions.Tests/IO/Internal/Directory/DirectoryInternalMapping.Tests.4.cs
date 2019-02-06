@@ -256,8 +256,7 @@
          [Ignore("Fails on build server:  expected is a 8.3 dir name, actual is full dir name")]
          public void It_should_return_the_temporary_directory_path_for_the_current_user()
          {
-            var expected =
-               IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_environmentUtilities.ExpandEnvironmentVariables("%temp%"));
+            var expected = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_environmentUtilities.ExpandEnvironmentVariables("%temp%"));
             var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_target.GetTemporaryDirectoryPath());
             actual.Should().Be(expected);
          }

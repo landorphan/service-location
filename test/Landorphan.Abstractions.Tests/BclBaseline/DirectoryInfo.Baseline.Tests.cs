@@ -37,7 +37,6 @@
 
             // Windows behavior shown here:
 
-            // NOTE: failed with MSTestRunner 2015.03.29
             // TODO: consider an abstraction around DirectoryInfo
 
             var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();

@@ -367,7 +367,6 @@
    </TypePattern>
 
    <TypePattern Priority="90" DisplayName="MSTest (BDD)" RemoveRegions="All">
-      <!-- Note: Currently evaluating with Resharper 2018.3.1-->
       <TypePattern.Match>
          <Or>
             <And>

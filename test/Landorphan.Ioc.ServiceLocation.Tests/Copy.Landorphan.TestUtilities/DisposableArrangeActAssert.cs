@@ -8,6 +8,7 @@ namespace Landorphan.TestUtilities
    using System.Linq;
    using System.Reflection;
    using System.Runtime.CompilerServices;
+   using System.Threading;
    using Landorphan.Common;
    using Landorphan.Common.Interfaces;
    using Landorphan.Common.Threading;
@@ -19,17 +20,41 @@ namespace Landorphan.TestUtilities
    /// </summary>
    /// <remarks>
    /// <para>
-   /// This class uses reflection to dispose of all fields and Auto-Properties in descendant classes provided those fields or auto-properties match the following requirements:
+   /// This class disposes of all fields and Auto-Properties in descendant classes provided those fields or auto-properties match the following requirements:
    ///   NOT decorated with [DoNotDispose]
-   ///   Implements IDisposable or implements IEnumerable{IDisposable}
-   /// Note:  This class does not handle IDictionary{TKey,TValue}.  When a descendant class has an "owned" IDictionary{TKey,TValue} or any other
-   /// nested structure containing IDisposable resources, override the <see cref="DisposableObject.ReleaseManagedResources"/> method, calling the base implementation at the end of the override.
+   /// <list type="table">  
+   ///   <listheader>  
+   ///      <term>field</term>  
+   ///      <description>requirement</description>  
+   /// </listheader>  
+   /// <item>  
+   ///   <term>field</term>  
+   ///   <description>Implements <see cref="IDisposable"/></description>  
+   /// </item>
+   /// <item>  
+   ///   <term>field</term>  
+   ///   <description>Implements <see cref="IEnumerable{T}"/>  where T implements <see cref="IDisposable"/></description>  
+   /// </item>
+   /// <item>  
+   ///   <term>field</term>  
+   ///   <description>Implements <see cref="IDictionary{TKey, TValue}"/> where TKey and/or TValue are themselves implement <see cref="IDisposable"/> or
+   /// implement <see cref="IEnumerable{T}"/>  where T implements <see cref="IDisposable"/></description>  
+   /// </item>
+   /// </list>  
    /// </para>
    /// <para>
-   /// Call <see cref="DisposableObject.ThrowIfDisposed"/> on member access as appropriate.
+   /// When defining a class that owns <see cref="IDisposable"/> resources that do not match the above requirements, override the <see cref="ReleaseManagedResources"/>
+   /// method, and dispose those resource in the usual manner, calling the base implementation at the end of the override implementation.
+   /// </para>
+   /// <remarks>
+   /// Only the declared types are evaluated.  (Run-time type information is not considered).  A field of type <see cref="Mutex"/> will be disposed.  However, a field of type <see cref="Object"/>
+   /// referencing a <see cref="Mutex"/> will not be disposed.
+   /// </remarks>
+   /// <para>
+   /// Call <see cref="DisposableObject.ThrowIfDisposed"/> on member access, as appropriate.
    /// </para>
    /// <para>
-   /// The implementation of <see cref="IDisposable.Dispose"/> has been altered from the recommended pattern to make it thread-safe to call.
+   /// The implementation of <see cref="IDisposable.Dispose"/> has been altered from the recommended pattern to make it thread-safe to call; and handle re-entrant calls to <see cref="Dispose()"/>.
    /// </para>
    /// </remarks>
    [TestClass]
