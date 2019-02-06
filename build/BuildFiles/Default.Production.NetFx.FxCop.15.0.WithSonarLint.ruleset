@@ -959,10 +959,10 @@
       <!--Duplicates Microsoft.NetCore.Analyzers
       <Rule Id="CA1813" Action="Warning" />
       -->
-      <!--Duplictes Microsoft.CodeQuality.Analyzers
+      <!--Duplicates Microsoft.CodeQuality.Analyzers
       <Rule Id="CA1814" Action="Warning" />
       -->
-      <!--Duplictes Microsoft.CodeQuality.Analyzers
+      <!--Duplicates Microsoft.CodeQuality.Analyzers
       <Rule Id="CA1815" Action="Warning" />
       -->
       <!--Duplicates Microsoft.NetCore.Analyzers
@@ -1069,7 +1069,7 @@
       <!--Duplicates Microsoft.CodeQuality.Analyzers
       <Rule Id="CA2211" Action="Warning" />
       -->
-      <!--Duplictes Microsoft.NetFramework.CSharp.Analyzers
+      <!--Duplicates Microsoft.NetFramework.CSharp.Analyzers
       <Rule Id="CA2212" Action="Warning" />
       -->
       <Rule Id="CA2213" Action="Warning" />

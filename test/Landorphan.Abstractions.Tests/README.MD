@@ -18,3 +18,8 @@ Additional components will be polished over time.
    DirectoryInfo (contemplated)
 
 Added NuGet Microsoft.Windows.Compatibility (for ACLs) and Microsoft.DotNet.Analyzers.Compatibility
+
+Local and UNC test paths arranged on demand for Windows platforms
+   The first test to touch read a TestHardCodes.WindowsLocalTestPaths value or TestHardCodes.WindowsUncTestPaths value causes a shell out to powershell to occur, on UAC enabled systems, 
+   this pops a UAC confirmation dialog box.  Both of these affect the execution timing of the first test that touches the arranged on demand properties.  
+   (you can expect the first test to take 6+ seconds).

@@ -27,13 +27,13 @@
    </PropertyGroup>
 
    <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Abstractions.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
+      <CodeAnalysisRuleSet>Landorphan.Abstractions.NetCore.ruleset</CodeAnalysisRuleSet>
    </PropertyGroup>
    <ItemGroup>
-      <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
    </ItemGroup>
    <ItemGroup>
-      <AdditionalFiles Include="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <AdditionalFiles Include="Landorphan.Abstractions.Tests.NetCore.ruleset" />
    </ItemGroup>
 
    <ItemGroup>

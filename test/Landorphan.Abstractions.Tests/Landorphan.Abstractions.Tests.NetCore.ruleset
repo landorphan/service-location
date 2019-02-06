@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <RuleSet Name="Default Test Code Analysis Rules for .Net Core projects including SonarLint rules"
          Description="Rules for Landorphan .Net Core test"
          ToolsVersion="15.0">
    <IncludeAll Action="Warning" />
-   <!-- Updated 2019.01.20:  
+  <!-- Updated 2019.01.20:  
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3"/>
       <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3"/>
       <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="2.6.3"/>
@@ -303,7 +302,7 @@
       <!-- Remaining Rules-->
       <Rule Id="S100" Action="Warning" />
       <Rule Id="S103" Action="Warning" />
-
+      
       <Rule Id="S105" Action="Warning" />
       <Rule Id="S106" Action="Warning" />
       <Rule Id="S107" Action="Warning" />

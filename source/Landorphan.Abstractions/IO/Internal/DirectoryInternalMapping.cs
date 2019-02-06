@@ -673,12 +673,5 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          return PathContainsUnmappedDrive(path);
       }
-
-      [SuppressMessage("SonarLint", "S100: Methods and properties should be named in PascalCase")]
-      [SuppressMessage("SonarLint", "S3400: Methods should not return constants")]
-      internal Boolean TestHookGetIOPrechecksEnabled()
-      {
-         return true;
-      }
    }
 }
