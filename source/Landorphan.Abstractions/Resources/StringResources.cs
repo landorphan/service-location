@@ -25,6 +25,9 @@
       internal const String CannotMoveToDestinationDirectorySubfolderOfSourceFmt =
          "Cannot move to the destination directory '{0}' because it is a subdirectory of the source directory '{1}'.";
 
+      internal const String CannotOpenFileDirectoryAlreadyExistsFmt =
+         "Cannot open the file '{0}' because a directory with the same name already exists.";
+
       internal const String CouldNotFindAllOrPartDirectoryPathParamNameFmt =
          "Could not find a part of the directory path '{0}'.\r\nParameter name: {1}";
 
