@@ -369,7 +369,7 @@
       /// characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
       /// - or -
-      /// <paramref name="searchPattern"/> does not contain a valid pattern. // TODO: check if .Net Standard 2.0 throws or like enumerate directories silently fails.
+      /// <paramref name="searchPattern"/> does not contain a valid pattern.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
@@ -411,7 +411,7 @@
       /// <exception cref="ArgumentException">
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
-      /// - or -<paramref name="searchPattern"/> does not contain a valid pattern. // TODO: check if .Net Standard 2.0 throws or like enumerate directories silently fails.
+      /// - or -<paramref name="searchPattern"/> does not contain a valid pattern.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
@@ -489,7 +489,7 @@
       /// characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
       /// - or -
-      /// <paramref name="searchPattern"/> does not contain a valid pattern. // TODO: check if .Net Standard 2.0 throws or like enumerate directories silently fails.
+      /// <paramref name="searchPattern"/> does not contain a valid pattern.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
@@ -534,7 +534,7 @@
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
       /// characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
-      /// - or -<paramref name="searchPattern"/> does not contain a valid pattern. // TODO: check if .Net Standard 2.0 throws or like enumerate directories silently fails.
+      /// - or -<paramref name="searchPattern"/> does not contain a valid pattern.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.

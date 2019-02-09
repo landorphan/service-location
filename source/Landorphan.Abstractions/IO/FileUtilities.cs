@@ -46,6 +46,13 @@ namespace Landorphan.Abstractions.IO
       }
 
       /// <inheritdoc/>
+      public String CreateText(String path)
+      {
+         var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
+         return fileInternalMapping.CreateText(path);
+      }
+
+      /// <inheritdoc/>
       public void DeleteFile(String path)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();

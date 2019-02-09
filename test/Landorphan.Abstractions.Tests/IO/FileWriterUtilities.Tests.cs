@@ -129,6 +129,24 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_FileWriterUtilities_OpenWrite_It_should_open_the_file()
+         {
+            var path = _fileUtilities.CreateTemporaryFile();
+            try
+            {
+               using (var stream = _target.OpenWrite(path))
+               {
+                  stream.Should().NotBeNull();
+               }
+            }
+            finally
+            {
+               _fileUtilities.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
          public void When_I_call_FileWriterUtilities_ReplaceContentsNoBackup_It_should_replace_the_contents()
          {
             var encoding = Encoding.UTF8;

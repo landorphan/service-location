@@ -14,11 +14,12 @@
 
    public static class FileUtilities_Tests
    {
+      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+
       [TestClass]
       public class Given_I_have_a_FileUtilities : TestBase
       {
-         // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
-
+         private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
          private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
          private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          private static readonly IFileUtilities _target = IocServiceLocator.Resolve<IFileUtilities>();
@@ -52,6 +53,24 @@
             {
                _target.FileExists(path).Should().BeTrue();
                _pathUtilities.GetParentPath(path).ToUpperInvariant().Should().Be(_pathUtilities.GetFullPath(_tempPath).ToUpperInvariant());
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void When_I_call_FileUtilities_CreateText_It_should_create_a_text_file()
+         {
+            var tempFolder = _directoryUtilities.GetTemporaryDirectoryPath();
+            var fileName = nameof(When_I_call_FileUtilities_CreateText_It_should_create_a_text_file) + ".tmp";
+
+            var path = _target.CreateText(_pathUtilities.Combine(tempFolder, fileName));
+            try
+            {
+               _target.FileExists(path).Should().BeTrue();
             }
             finally
             {
