@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DirectoryWriterUtilities
     path: ../../source/Landorphan.Abstractions/IO/DirectoryWriterUtilities.cs
@@ -58,7 +58,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Copy
     path: ../../source/Landorphan.Abstractions/IO/DirectoryWriterUtilities.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Move
     path: ../../source/Landorphan.Abstractions/IO/DirectoryWriterUtilities.cs

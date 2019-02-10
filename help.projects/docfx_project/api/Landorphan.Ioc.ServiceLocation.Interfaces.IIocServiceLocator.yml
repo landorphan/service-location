@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IIocServiceLocator
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -65,7 +65,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -108,7 +108,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -236,7 +236,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -279,7 +279,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -325,7 +325,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
@@ -366,7 +366,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/ServiceLocator/IIocServiceLocator.cs

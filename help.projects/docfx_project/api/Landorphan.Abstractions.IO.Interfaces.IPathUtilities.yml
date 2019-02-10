@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IPathUtilities
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AltDirectorySeparatorCharacter
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -100,7 +100,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DirectorySeparatorCharacter
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: PathSeparatorCharacter
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -172,7 +172,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: VolumeSeparatorCharacter
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -208,7 +208,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ChangeExtension
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -250,7 +250,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Combine
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -295,7 +295,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetExtension
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -334,7 +334,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetFileName
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -373,7 +373,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetFileNameWithoutExtension
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -412,7 +412,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetFullPath
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -464,7 +464,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetInvalidFileNameCharacters
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -495,7 +495,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetInvalidPathCharacters
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -526,7 +526,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetParentPath
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -569,7 +569,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetRootPath
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -608,7 +608,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: HasExtension
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
@@ -647,7 +647,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsPathRelative
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs

@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WellKnownTestCategories
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
@@ -53,7 +53,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: PreventRegressionBug
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ProofOfWorkaroundNeeded
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/WellKnownTestCategories.cs

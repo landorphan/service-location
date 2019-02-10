@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestUtilitiesHardCodes
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: NoExceptionWasThrown
     path: ../../source/Landorphan.TestUtilities.MSTest/TestFacilities/TestUtilitiesHardCodes.cs

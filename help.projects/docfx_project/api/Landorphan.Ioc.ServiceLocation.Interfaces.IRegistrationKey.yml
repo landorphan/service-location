@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IRegistrationKey
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsDefaultRegistration
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
@@ -95,7 +95,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsEmpty
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
@@ -131,7 +131,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: RegisteredName
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
@@ -167,7 +167,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: RegisteredType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/IRegistrationKey.cs

@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredExtensions
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -114,7 +114,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -169,7 +169,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -218,7 +218,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -270,7 +270,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -323,7 +323,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -379,7 +379,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -427,7 +427,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs

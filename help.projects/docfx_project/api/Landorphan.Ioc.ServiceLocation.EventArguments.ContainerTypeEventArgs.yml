@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ContainerTypeEventArgs
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
@@ -62,7 +62,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
@@ -94,7 +94,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
@@ -133,7 +133,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Container
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
@@ -170,7 +170,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Type
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/EventArguments/ContainerTypeEventArgs.cs

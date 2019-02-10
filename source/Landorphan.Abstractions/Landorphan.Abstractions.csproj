@@ -39,12 +39,14 @@
 
    <ItemGroup>
       <PackageReference Include="Landorphan.Common" Version="0.9.546" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+      <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
+      <!--Analyzers-->
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
-      <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
       <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -57,7 +59,6 @@
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-      <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
       <PackageReference Include="Text.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

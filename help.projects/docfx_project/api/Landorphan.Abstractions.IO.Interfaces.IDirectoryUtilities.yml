@@ -31,7 +31,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IDirectoryUtilities
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -64,7 +64,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: MaximumFileTimeAsDateTimeOffset
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -100,7 +100,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: MinimumFileTimeAsDateTimeOffset
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -136,7 +136,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CreateDirectory
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -193,7 +193,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DeleteEmpty
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -244,7 +244,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DeleteRecursively
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -295,7 +295,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DirectoryExists
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -330,7 +330,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetCreationTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -378,7 +378,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetCurrentDirectory
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -416,7 +416,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetLastAccessTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -467,7 +467,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetLastWriteTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -515,7 +515,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetRandomDirectoryName
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -547,7 +547,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetTemporaryDirectoryPath
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -582,7 +582,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetCreationTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -639,7 +639,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetCurrentDirectory
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -693,7 +693,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetLastAccessTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
@@ -750,7 +750,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetLastWriteTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs

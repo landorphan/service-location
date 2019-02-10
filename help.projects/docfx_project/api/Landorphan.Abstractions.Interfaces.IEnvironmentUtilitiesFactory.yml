@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IEnvironmentUtilitiesFactory
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
@@ -49,7 +49,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Create
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilitiesFactory.cs

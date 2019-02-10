@@ -16,11 +16,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/AssemblySelfRegistration/AbstractionsServiceLocationSelfRegistration.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AbstractionsServiceLocationSelfRegistration
     path: ../../source/Landorphan.Abstractions/AssemblySelfRegistration/AbstractionsServiceLocationSelfRegistration.cs
-    startLine: 18
+    startLine: 15
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.AssemblySelfRegistration
@@ -57,11 +57,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/AssemblySelfRegistration/AbstractionsServiceLocationSelfRegistration.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: RegisterServiceInstances
     path: ../../source/Landorphan.Abstractions/AssemblySelfRegistration/AbstractionsServiceLocationSelfRegistration.cs
-    startLine: 23
+    startLine: 20
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.AssemblySelfRegistration

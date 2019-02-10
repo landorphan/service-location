@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilitiesFactory.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IDirectoryUtilitiesFactory
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilitiesFactory.cs
@@ -49,7 +49,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilitiesFactory.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Create
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilitiesFactory.cs

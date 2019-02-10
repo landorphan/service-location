@@ -24,7 +24,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestMockingService
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -83,7 +83,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -123,7 +123,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestInstanceOnRootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -163,7 +163,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestInstanceOnTestRunOnRootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -203,7 +203,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestRunContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -243,7 +243,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ApplyNoMocking
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -277,7 +277,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestInstanceMockingOnly
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -311,7 +311,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestInstanceMockingOnTopOfTestRunMocking
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -345,7 +345,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ApplyTestRunMockingOnly
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
@@ -379,7 +379,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ResetIndividualTestContainers
     path: ../../source/Landorphan.Ioc.ServiceLocation.Testability/TestMockingService.cs

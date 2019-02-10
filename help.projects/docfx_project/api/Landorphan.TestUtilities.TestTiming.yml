@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestTiming
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
@@ -56,7 +56,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CheckIn
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
@@ -92,7 +92,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CheckInNonIde
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
@@ -128,7 +128,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IdeOnly
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
@@ -164,7 +164,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Manual
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
@@ -200,7 +200,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Nightly
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs

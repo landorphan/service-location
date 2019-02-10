@@ -124,4 +124,7 @@
 
 
 * TODO: consider collapsing into one wrapper each:
-   * IDirectoryReaderUtilities.EnumerateDirectories           AND   IDirectoryReaderUtilities.GetDirectories   * IDirectoryReaderUtilities.EnumerateFiles                 AND   IDirectoryReaderUtilities.GetFiles   * IDirectoryReaderUtilities.EnumerateFileSystemEntries     AND   IDirectoryReaderUtilities.GetFileSystemEntries
+   * IDirectoryReaderUtilities.EnumerateDirectories           AND   IDirectoryReaderUtilities.GetDirectories
+   * IDirectoryReaderUtilities.EnumerateFiles                 AND   IDirectoryReaderUtilities.GetFiles
+   * IDirectoryReaderUtilities.EnumerateFileSystemEntries     AND   IDirectoryReaderUtilities.GetFileSystemEntries
+

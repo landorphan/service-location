@@ -21,7 +21,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: RulesetRequirements
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
@@ -68,7 +68,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Default_Production_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
@@ -100,7 +100,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Default_Production_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
@@ -132,7 +132,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Default_Production_Ruleset_NetStd_should_not_have_duplicate_rule_ids_implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
@@ -164,7 +164,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Default_Test_Ruleset_NetCore_should_not_have_duplicate_rule_ids_implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
@@ -196,7 +196,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Default_Test_Ruleset_NetFx_should_not_have_duplicate_rule_ids_implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
@@ -228,7 +228,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Rulesets_should_not_have_duplicate_rule_ids_implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/Architecture/RuleSetRequirements.cs
