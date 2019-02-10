@@ -120,7 +120,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <CodeAnalysisDictionary Include="Landorphan.CustomDictionary.xml" />
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
