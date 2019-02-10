@@ -45,9 +45,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="Ioc.Collections.Performance.Tests.NetFx.ruleset" />
-    <CodeAnalysisDictionary Include="..\..\build\BuildFiles\CustomDictionary.xml">
-      <Link>CustomDictionary.xml</Link>
-    </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -121,6 +118,9 @@
       <Project>{eddd5388-8b57-4f5c-b394-2c48a27cb736}</Project>
       <Name>Landorphan.Ioc.ServiceLocation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
