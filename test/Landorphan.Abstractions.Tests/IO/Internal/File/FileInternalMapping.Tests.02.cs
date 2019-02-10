@@ -27,7 +27,7 @@
             // HAPPY PATH TEST:
             var firstDirCreatedUnderTemp = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var dirName = _pathUtilities.Combine(firstDirCreatedUnderTemp, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var fileName = Guid.NewGuid() + "And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file.tmp";
+            var fileName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file.tmp";
             var fullPath = _pathUtilities.Combine(dirName, fileName);
             try
             {
@@ -111,7 +111,7 @@
          public void And_the_file_does_not_exist_It_should_create_the_file()
          {
             // HAPPY PATH TEST:
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             _target.FileExists(path).Should().BeFalse();
             try
@@ -166,7 +166,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp" + Spaces);
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp" + Spaces);
             _target.CreateFile(path);
             _target.FileExists(path).Should().BeTrue();
             _target.DeleteFile(path);
@@ -222,7 +222,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             var expectedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.GetParentPath(path));
 
             Action throwingAction = () => _target.CreateFile(path);
@@ -236,7 +241,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             var expectedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.GetParentPath(path));
 
             Action throwingAction = () => _target.CreateFile(path);
@@ -330,7 +335,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_the_file()
          {
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + "It_should_create_the_file.tmp");
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_file));
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -376,7 +381,7 @@
             // HAPPY PATH TEST:
             var firstDirCreatedUnderTemp = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var dirName = _pathUtilities.Combine(firstDirCreatedUnderTemp, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var fileName = Guid.NewGuid() + "And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file.tmp";
+            var fileName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file.tmp";
             var fullPath = _pathUtilities.Combine(dirName, fileName);
             try
             {
@@ -460,7 +465,7 @@
          public void And_the_file_does_not_exist_It_should_create_the_file()
          {
             // HAPPY PATH TEST:
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             _target.FileExists(path).Should().BeFalse();
             try
@@ -515,7 +520,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp" + Spaces);
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp" + Spaces);
             _target.CreateText(path);
             _target.FileExists(path).Should().BeTrue();
             _target.DeleteFile(path);
@@ -571,7 +576,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             var expectedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.GetParentPath(path));
 
             Action throwingAction = () => _target.CreateText(path);
@@ -585,7 +595,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             var expectedPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.GetParentPath(path));
 
             Action throwingAction = () => _target.CreateText(path);
@@ -679,7 +689,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_the_file()
          {
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + "It_should_create_the_file.tmp");
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_file));
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -868,7 +878,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteFile(path);
 
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();

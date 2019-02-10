@@ -168,7 +168,10 @@
                _target.AppendAllText(destinationFileName, "originally in destination", enc);
 
                // force the creation of a directory as well
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(
+                  _tempPath,
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
 
@@ -197,7 +200,10 @@
                destinationFileName = _target.CreateTemporaryFile();
                _target.AppendAllText(destinationFileName, "originally in destination", enc);
 
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(
+                  _tempPath,
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
 
@@ -235,7 +241,7 @@
             {
                var sourceFileName = _target.CreateTemporaryFile();
                var destinationFileName = _target.CreateTemporaryFile();
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, Spaces + destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -244,7 +250,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, Spaces + destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -269,7 +275,7 @@
             {
                var sourceFileName = _target.CreateTemporaryFile();
                var destinationFileName = _target.CreateTemporaryFile();
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName + Spaces);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -278,7 +284,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName + Spaces);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -560,7 +566,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -596,7 +602,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -631,8 +637,8 @@
          public void And_the_destinationFileName_does_not_exist_It_should_throw_FileNotFoundException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destinationFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -690,7 +696,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackup(sourceFileName, Spaces + destinationFileName, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -699,7 +705,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, Spaces + destinationFileName, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -739,7 +745,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName + Spaces, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -748,7 +754,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName + Spaces, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -770,7 +776,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = String.Empty;
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -807,7 +813,7 @@
             // ReSharper disable ExpressionIsAlwaysNull
             var sourceFileName = _target.CreateTemporaryFile();
             String destinationFileName = null;
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -848,7 +854,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             var destinationFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -888,7 +894,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = sourceFileName;
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -928,7 +934,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -964,7 +970,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             const String destinationFileName = " \t ";
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1000,7 +1006,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1040,7 +1046,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = ":" + _tempPath;
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1076,7 +1082,7 @@
          {
             var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1112,7 +1118,7 @@
          {
             var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1146,9 +1152,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var sourceFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var sourceFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1206,7 +1212,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackup(Spaces + sourceFileName, destinationFileName, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -1215,7 +1221,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackupIgnoringMetadataErrors(Spaces + sourceFileName, destinationFileName, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -1254,7 +1260,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackup(sourceFileName + Spaces, destinationFileName, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -1263,7 +1269,7 @@
 
                sourceFileName = _target.CreateTemporaryFile();
                destinationFileName = _target.CreateTemporaryFile();
-               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
                _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName + Spaces, destinationFileName, destinationBackupFileName);
                _target.FileExists(sourceFileName).Should().BeFalse();
@@ -1285,7 +1291,7 @@
          {
             var sourceFileName = String.Empty;
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1322,7 +1328,7 @@
             // ReSharper disable ExpressionIsAlwaysNull
             String sourceFileName = null;
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1363,7 +1369,7 @@
             _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             var sourceFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1403,7 +1409,7 @@
          {
             var sourceFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1439,7 +1445,7 @@
          {
             const String sourceFileName = " \t ";
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1475,7 +1481,7 @@
          {
             var sourceFileName = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
@@ -1515,7 +1521,7 @@
          {
             var sourceFileName = ":" + _tempPath;
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);

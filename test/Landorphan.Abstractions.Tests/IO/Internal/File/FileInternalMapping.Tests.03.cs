@@ -150,7 +150,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.FileExists(path).Should().BeFalse();
          }
@@ -159,7 +164,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             _target.FileExists(path).Should().BeFalse();
          }
 
@@ -168,7 +173,7 @@
          public void It_should_distinguish_between_extant_and_non_extant_files()
          {
             var extant = _target.CreateTemporaryFile();
-            var nonExtant = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var nonExtant = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(extant).Should().BeTrue();
@@ -352,7 +357,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_FileNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.GetAttributes(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -364,7 +374,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_FileNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", "localhost", Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               "localhost",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.GetAttributes(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -533,7 +548,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.GetCreationTime(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -546,7 +566,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.GetCreationTime(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -716,7 +736,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -729,7 +754,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();

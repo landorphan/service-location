@@ -19,6 +19,36 @@
 
    public static class Path_Baseline_Tests
    {
+      // MAPPING:
+      // Path:                            IPathUtilities:
+      // ----------------------------------------------------------------------------------------------------------------------
+      // AltDirectorySeparatorChar        AltDirectorySeparatorCharacter
+      // ChangeExtension                  ChangeExtension
+      // Combine                          Combine
+      // DirectorySeparatorChar           DirectorySeparatorCharacter
+      // GetDirectoryName                 GetParentPath        
+      // GetExtension                     GetExtension
+      // GetFileName                      GetFileName
+      // GetFileNameWithoutExtension      GetFileNameWithoutExtension
+      // GetFullPath                      GetFullPath
+      // GetInvalidFileNameChars          GetInvalidFileNameCharacters
+      // GetInvalidPathChars              GetInvalidPathCharacters
+      // GetPathRoot                      GetRootPath
+      // GetRandomFileName                (implemented IFileUtilities and IDirectoryUtilities)
+      // GetTempFileName                  (see IFileUtilities.CreateTemporaryFile)
+      // GetTempPath                      (see IDirectoryUtilities.GetTemporaryDirectoryPath)   
+      // HasExtension                     HasExtension
+      // InvalidPathChars                 GetInvalidFileNameCharacters
+      // IsPathRooted                     IsPathRelative
+      // PathSeparator                    PathSeparatorCharacter
+      // VolumeSeparatorChar              VolumeSeparatorCharacter
+
+      // Not in .Net Standard 2.0
+      // GetRelativePath         
+      // IsPathFullyQualified
+      // Join
+      // TryJoin
+
       // These tests document what is:  test failures means an implementation detail has changed
       // change the assertion to document "what is"
       // if you believe the behavior to be incorrect, modify the behavior of the abstraction, fix the abstraction tests, and update these documentation tests

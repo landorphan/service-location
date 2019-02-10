@@ -106,9 +106,9 @@
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt"))
             };
 
             try
@@ -156,9 +156,9 @@
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt"))
             };
 
             try
@@ -373,7 +373,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -446,12 +450,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_files()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid() + "It_should_return_the_known_files"));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_files" + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_files" + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_files" + ".txt"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt"))
             };
 
             try
@@ -828,7 +832,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -900,7 +908,7 @@
             e.And.ParamName.Should().Be("searchPattern");
             e.And.Message.Should().Contain("The search pattern is not well-formed (contains invalid characters).");
          }
-         
+
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_is_null_It_should_throw_ArgumentNullException()
@@ -922,12 +930,12 @@
          public void It_should_return_the_known_FileSystemEntries()
          {
             var outerFullPath =
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries"));
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)))
             };
 
             try

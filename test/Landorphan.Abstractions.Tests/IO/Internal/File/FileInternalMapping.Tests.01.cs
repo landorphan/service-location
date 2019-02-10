@@ -88,7 +88,7 @@
             String destFileName = null;
             try
             {
-               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp" + Spaces);
+               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp" + Spaces);
                _target.CopyNoOverwrite(sourceFileName, destFileName);
                _target.FileExists(destFileName.Trim()).Should().BeTrue();
             }
@@ -262,7 +262,7 @@
             try
             {
                _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-               var destFileName = $@"{_tempPath}:{Guid.NewGuid() + ".tmp"}";
+               var destFileName = $@"{_tempPath}:{Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp"}";
 
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
@@ -293,7 +293,7 @@
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid());
+            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
@@ -309,7 +309,7 @@
             // HAPPY PATH TEST:
             var sourceFileName = _target.CreateTemporaryFile();
             sourceFileName = Spaces + sourceFileName;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.CopyNoOverwrite(sourceFileName, destFileName);
@@ -332,7 +332,7 @@
             // HAPPY PATH TEST:
             var sourceFileName = _target.CreateTemporaryFile();
             sourceFileName = sourceFileName + Spaces;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.CopyNoOverwrite(sourceFileName, destFileName);
@@ -385,7 +385,7 @@
 
             var sourceFileName = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
             _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -399,7 +399,7 @@
          public void And_the_sourceFileName_is_too_long_It_should_throw_PathTooLongException()
          {
             var sourceFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -412,7 +412,7 @@
          public void And_the_sourceFileName_is_white_space_It_should_throw_ArgumentException()
          {
             const String sourceFileName = " \t ";
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -426,7 +426,7 @@
          {
             var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var sourceFileName = existingDirName;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -440,8 +440,8 @@
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}:{1}.tmp", _tempPath, Guid.NewGuid());
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}:{1}.tmp", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -458,7 +458,7 @@
             String destFileName = null;
             try
             {
-               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                _target.CopyNoOverwrite(sourceFileName, destFileName);
                _target.FileExists(destFileName).Should().BeTrue();
             }
@@ -548,7 +548,7 @@
             String destFileName = null;
             try
             {
-               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp" + Spaces);
+               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp" + Spaces);
                _target.CopyWithOverwrite(sourceFileName, destFileName);
                _target.FileExists(destFileName.Trim()).Should().BeTrue();
             }
@@ -721,7 +721,7 @@
             try
             {
                _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-               var destFileName = $@"{_tempPath}:{Guid.NewGuid() + ".tmp"}";
+               var destFileName = $@"{_tempPath}:{Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp"}";
 
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
@@ -752,7 +752,7 @@
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid());
+            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}{1}|", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
@@ -768,7 +768,7 @@
             // HAPPY PATH TEST:
             var sourceFileName = _target.CreateTemporaryFile();
             sourceFileName = Spaces + sourceFileName;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.CopyWithOverwrite(sourceFileName, destFileName);
@@ -791,7 +791,7 @@
             // HAPPY PATH TEST:
             var sourceFileName = _target.CreateTemporaryFile();
             sourceFileName = sourceFileName + Spaces;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.CopyWithOverwrite(sourceFileName, destFileName);
@@ -844,7 +844,7 @@
 
             var sourceFileName = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp";
             _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -858,7 +858,7 @@
          public void And_the_sourceFileName_is_too_long_It_should_throw_PathTooLongException()
          {
             var sourceFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -871,7 +871,7 @@
          public void And_the_sourceFileName_is_white_space_It_should_throw_ArgumentException()
          {
             const String sourceFileName = " \t ";
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -885,7 +885,7 @@
          {
             var existingDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var sourceFileName = existingDirName;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -903,7 +903,7 @@
             String destFileName = null;
             try
             {
-               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+               destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
                _target.CopyWithOverwrite(sourceFileName, destFileName);
                _target.FileExists(destFileName).Should().BeTrue();
             }
@@ -922,8 +922,8 @@
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}:{1}.tmp", _tempPath, Guid.NewGuid());
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"{0}:{1}.tmp", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();

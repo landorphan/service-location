@@ -157,7 +157,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -170,7 +175,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -484,7 +489,7 @@
             }
 
             var sourceFileName = _target.CreateTemporaryFile();
-            var destFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.LocalFolderEveryoneFullControl, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.LocalFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.Move(sourceFileName, destFileName);
@@ -542,7 +547,7 @@
          public void And_the_sourceFileName_has_leading_spaces_It_should_not_throw()
          {
             var sourceFileName = Spaces + _target.CreateTemporaryFile();
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.Move(sourceFileName, destFileName);
@@ -562,7 +567,7 @@
          public void And_the_sourceFileName_has_trailing_spaces_It_should_not_throw()
          {
             var sourceFileName = _target.CreateTemporaryFile() + Spaces;
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.Move(sourceFileName, destFileName);
@@ -685,8 +690,8 @@
             var host = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var share = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid());
-            var destFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid());
+            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -701,8 +706,8 @@
             const String Host = "localhost";
             var share = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid());
-            var destFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid());
+            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -715,7 +720,7 @@
          public void It_should_move_the_file()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + "It_should_move_the_file.txt");
+            var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_move_the_file) + ".txt");
             try
             {
                _target.Move(sourceFileName, destFileName);

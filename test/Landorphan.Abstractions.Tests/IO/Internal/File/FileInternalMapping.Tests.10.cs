@@ -44,7 +44,7 @@
                _target.DeleteFile(path);
             }
 
-            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -127,7 +127,7 @@
          {
             IImmutableList<Byte> expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
 
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -142,7 +142,7 @@
                _target.DeleteFile(path);
             }
 
-            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -256,7 +256,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -463,7 +468,7 @@
                _target.DeleteFile(path);
             }
 
-            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -584,7 +589,7 @@
          {
             var expected = new[] {"zero", "one", "two", "three"}.ToImmutableList();
 
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -722,7 +727,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -1013,7 +1023,7 @@
          {
             const String expected = "contents";
 
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -1111,7 +1121,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.WriteAllText(path, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();

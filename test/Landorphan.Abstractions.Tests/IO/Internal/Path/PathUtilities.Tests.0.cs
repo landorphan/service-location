@@ -5,7 +5,6 @@
    using System.Globalization;
    using System.IO;
    using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Abstractions.Tests.TestFacilities;
@@ -23,10 +22,9 @@
    {
       private const String Spaces = "   ";
       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-      private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly PathInternalMapping _target = new PathInternalMapping();
-      private static readonly String _tempPath = _environmentUtilities.GetTemporaryDirectoryPath();
+      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
       public class When_I_call_PathMapper_ChangeExtension : TestBase
@@ -1245,7 +1243,7 @@
 
             // absolute path
             var randomDir = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            var randomFile = Guid.NewGuid() + ".txt";
+            var randomFile = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt";
             var path = _target.Combine(drive, randomDir, randomFile);
             _target.GetFullPath(path).Should().Be(path);
 
@@ -1287,7 +1285,7 @@
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
-            var path = _target.Combine(drive, Guid.NewGuid() + ".txt");
+            var path = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
             _target.GetFullPath(Spaces + path).Should().Be(path);
          }
 
@@ -1305,7 +1303,7 @@
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
             // HAPPY PATH TEST:
-            var path = _target.Combine(drive, Guid.NewGuid() + ".txt");
+            var path = _target.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
             _target.GetFullPath(path + Spaces).Should().Be(path);
          }
 

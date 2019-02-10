@@ -16,25 +16,25 @@
 
    public static class DirectoryUtilities_Tests
    {
+      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+
+      private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+      private static readonly IDirectoryUtilities _target = IocServiceLocator.Resolve<IDirectoryUtilities>();
+      private static readonly String _tempPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_target.GetTemporaryDirectoryPath());
+
       [TestClass]
-      public class Given_I_have_a_DirectoryUtilities : TestBase
+      public class When_I_call_DirectoryUtilities_CreateDirectory : TestBase
       {
-         // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
-
-         private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-         private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-         private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         private static readonly IDirectoryUtilities _target = IocServiceLocator.Resolve<IDirectoryUtilities>();
-         private static readonly String _tempPath = _environmentUtilities.GetTemporaryDirectoryPath();
-
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_absolute()
+         public void It_should_create_the_directory_absolute()
          {
             // absolute
             var path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_absolute));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -48,7 +48,27 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_unc()
+         public void It_should_create_the_directory_relative()
+         {
+            // relative
+            _target.SetCurrentDirectory(_target.GetTemporaryDirectoryPath());
+            var path = _pathUtilities.Combine(_pathUtilities.Combine(
+               _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative)));
+            try
+            {
+               _target.CreateDirectory(path);
+               _target.DirectoryExists(path).Should().BeTrue();
+            }
+            finally
+            {
+               _target.DeleteRecursively(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_create_the_directory_unc()
          {
             if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
             {
@@ -59,7 +79,7 @@
             // unc
             var path = _pathUtilities.Combine(
                TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_CreateDirectory_It_should_create_the_directory_unc));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -70,15 +90,19 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_DeleteEmpty : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_absolute()
+         public void It_should_delete_an_empty_directory_absolute()
          {
             // absolute
             var path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_absolute));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -94,11 +118,11 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_relative()
+         public void It_should_delete_an_empty_directory_relative()
          {
             // relative
             _target.SetCurrentDirectory(_tempPath);
-            var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_relative);
+            var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -114,7 +138,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_unc()
+         public void It_should_delete_an_empty_directory_unc()
          {
             if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
             {
@@ -125,7 +149,7 @@
             // unc
             var path = _pathUtilities.Combine(
                TestHardCodes.WindowsUncTestPaths.UncShareRoot,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteEmpty_It_should_delete_an_empty_directory_unc));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -138,16 +162,20 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_DeleteRecursively : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute()
+         public void It_should_delete_a_directory_with_files_and_subdirectories_absolute()
          {
             // absolute
             var path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-               nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute));
+               nameof(It_should_delete_a_directory_with_files_and_subdirectories_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -155,12 +183,12 @@
                   _pathUtilities.Combine(
                      path,
                      Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                     nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute)));
+                     nameof(It_should_delete_a_directory_with_files_and_subdirectories_absolute)));
                _fileUtilities.CreateFile(
                   _pathUtilities.Combine(
                      path,
                      Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                     nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_absolute) +
+                     nameof(It_should_delete_a_directory_with_files_and_subdirectories_absolute) +
                      ".tmp"));
                _target.DirectoryExists(path).Should().BeTrue();
                _target.DeleteRecursively(path);
@@ -174,13 +202,13 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative()
+         public void It_should_delete_a_directory_with_files_and_subdirectories_relative()
          {
             // relative
             _target.SetCurrentDirectory(_tempPath);
             var path = @".\" +
                        Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                       nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative);
+                       nameof(It_should_delete_a_directory_with_files_and_subdirectories_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -188,12 +216,12 @@
                   _pathUtilities.Combine(
                      path,
                      Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                     nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative)));
+                     nameof(It_should_delete_a_directory_with_files_and_subdirectories_relative)));
                _fileUtilities.CreateFile(
                   _pathUtilities.Combine(
                      path,
                      Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                     nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_relative) +
+                     nameof(It_should_delete_a_directory_with_files_and_subdirectories_relative) +
                      ".tmp"));
                _target.DirectoryExists(path).Should().BeTrue();
                _target.DeleteRecursively(path);
@@ -207,7 +235,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc()
+         public void It_should_delete_a_directory_with_files_and_subdirectories_unc()
          {
             if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
             {
@@ -218,7 +246,7 @@
             // unc
             var path = _pathUtilities.Combine(
                TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_a_directory_with_files_and_subdirectories_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -226,12 +254,12 @@
                   _pathUtilities.Combine(
                      path,
                      Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                     nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc)));
+                     nameof(It_should_delete_a_directory_with_files_and_subdirectories_unc)));
                _fileUtilities.CreateFile(
                   _pathUtilities.Combine(
                      path,
                      Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                     nameof(When_I_call_DirectoryUtilities_DeleteRecursively_It_should_delete_a_directory_with_files_and_subdirectories_unc) +
+                     nameof(It_should_delete_a_directory_with_files_and_subdirectories_unc) +
                      ".tmp"));
                _target.DirectoryExists(path).Should().BeTrue();
                _target.DeleteRecursively(path);
@@ -242,16 +270,20 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_DirectoryExists : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_absolute()
+         public void It_should_distinguish_between_extant_and_non_extant_directories_absolute()
          {
             // absolute -- extant
             var path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-               nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_absolute));
+               nameof(It_should_distinguish_between_extant_and_non_extant_directories_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -266,19 +298,19 @@
             path = _pathUtilities.Combine(
                _pathUtilities.GetFullPath(_tempPath),
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-               nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_absolute));
+               nameof(It_should_distinguish_between_extant_and_non_extant_directories_absolute));
             _target.DirectoryExists(path).Should().BeFalse();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_relative()
+         public void It_should_distinguish_between_extant_and_non_extant_directories_relative()
          {
             // relative -- extant
             _target.SetCurrentDirectory(_tempPath);
             var path = @".\" +
                        Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                       nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_relative);
+                       nameof(It_should_distinguish_between_extant_and_non_extant_directories_relative);
             try
             {
                _target.CreateDirectory(path);
@@ -292,13 +324,13 @@
             // relative -- non-extant
             path = @".\" +
                    Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
-                   nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_relative);
+                   nameof(It_should_distinguish_between_extant_and_non_extant_directories_relative);
             _target.DirectoryExists(path).Should().BeFalse();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_unc()
+         public void It_should_distinguish_between_extant_and_non_extant_directories_unc()
          {
             if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
             {
@@ -309,7 +341,7 @@
             // unc -- extant
             var path = _pathUtilities.Combine(
                TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_unc));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_distinguish_between_extant_and_non_extant_directories_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -323,17 +355,21 @@
             // unc -- non-extant
             path = _pathUtilities.Combine(
                TestHardCodes.WindowsUncTestPaths.UncShareRoot,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_DirectoryExists_It_should_distinguish_between_extant_and_non_extant_directories_unc));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_distinguish_between_extant_and_non_extant_directories_unc));
             _target.DirectoryExists(path).Should().BeFalse();
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_GetCreationTime : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_GetCreationTime_It_should_get_the_creation_time()
+         public void It_should_get_the_creation_time()
          {
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_GetCreationTime_It_should_get_the_creation_time));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_creation_time));
             _target.CreateDirectory(path);
             try
             {
@@ -346,23 +382,30 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_GetCurrentDirectory : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_GetCurrentDirectory_It_should_get_the_current_directory()
+         public void It_should_get_the_current_directory()
          {
-            var path = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
-            _target.SetCurrentDirectory(path);
-            _target.GetCurrentDirectory().Should().Be(path);
+            _target.SetCurrentDirectory(_tempPath);
+            _target.GetCurrentDirectory().Should().Be(_tempPath);
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_GetLastAccessTime : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_GetLastAccessTime_It_should_get_the_last_access_time()
+         public void It_should_get_the_last_access_time()
          {
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_GetLastAccessTime_It_should_get_the_last_access_time));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_last_access_time));
             _target.CreateDirectory(path);
             try
             {
@@ -375,14 +418,18 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_GetLastWriteTime : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_GetLastWriteTime_It_should_get_the_last_write_time()
+         public void It_should_get_the_last_write_time()
          {
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_GetLastWriteTime_It_should_get_the_last_write_time));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_last_write_time));
             _target.CreateDirectory(path);
             try
             {
@@ -395,35 +442,46 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_GetRandomDirectoryName : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_GetRandomDirectoryName_It_should_get_a_random_directory_name_that_is_not_rooted_and_does_not_exist
+         public void It_should_get_a_random_directory_name_that_is_not_rooted_and_does_not_exist
             ()
          {
             var actual = _target.GetRandomDirectoryName();
             _target.DirectoryExists(actual).Should().BeFalse();
             _pathUtilities.IsPathRelative(actual).Should().BeTrue();
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_GetTemporaryDirectoryPath : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Fails on build server:  expected is a 8.3 dir name, actual is full dir name")]
-         public void When_I_call_DirectoryUtilities_GetTemporaryDirectoryPath_It_should_get_the_temporary_directory()
+         public void It_should_get_the_temporary_directory()
          {
-            var expected =
-               IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_environmentUtilities.ExpandEnvironmentVariables("%temp%"));
-            var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_target.GetTemporaryDirectoryPath());
+            var expected = _environmentUtilities.ExpandEnvironmentVariables("%temp%");
+            var actual = _target.GetTemporaryDirectoryPath();
             actual.Should().Be(expected);
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_SetCreationTime : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_SetCreationTime_It_should_set_the_creation_time()
+         public void It_should_set_the_creation_time()
          {
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + " " + nameof(When_I_call_DirectoryUtilities_SetCreationTime_It_should_set_the_creation_time));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + " " + nameof(It_should_set_the_creation_time));
             _target.CreateDirectory(path);
             try
             {
@@ -442,27 +500,35 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_SetCurrentDirectory : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_SetCurrentDirectory_It_should_set_the_current_directory()
+         public void It_should_set_the_current_directory()
          {
             var was = _target.GetCurrentDirectory();
-            var expected = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
+            var expected = _tempPath;
             _target.SetCurrentDirectory(expected);
             var actual = _target.GetCurrentDirectory();
 
             actual.Should().NotBe(was);
             actual.Should().Be(expected);
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_SetLastAccessTime : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_SetLastAccessTime_It_should_set_the_last_access_time()
+         public void It_should_set_the_last_access_time()
          {
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_SetLastAccessTime_It_should_set_the_last_access_time));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_last_access_time));
             _target.CreateDirectory(path);
             try
             {
@@ -481,14 +547,18 @@
                _target.DeleteRecursively(path);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_DirectoryUtilities_SetLastWriteTime : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_DirectoryUtilities_SetLastWriteTime_It_should_set_the_last_write_time()
+         public void It_should_set_the_last_write_time()
          {
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(When_I_call_DirectoryUtilities_SetLastWriteTime_It_should_set_the_last_write_time));
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_last_write_time));
             _target.CreateDirectory(path);
             try
             {

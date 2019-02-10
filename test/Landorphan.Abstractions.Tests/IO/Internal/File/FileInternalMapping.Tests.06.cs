@@ -47,7 +47,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_create_the_file()
          {
-            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             using (_target.OpenWrite(fileFullPath))
             {
@@ -121,7 +121,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.OpenWrite(path);
             var e = throwingAction.Should().Throw<IOException>();
@@ -216,6 +221,8 @@
             {
                _target.DeleteFile(path);
             }
+
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -279,7 +286,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadAllBytes(fileFullPath);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -370,7 +377,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadAllBytes(path);
             var e = throwingAction.Should().Throw<IOException>();
@@ -516,7 +528,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadAllLines(fileFullPath, Encoding.UTF8);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -608,7 +620,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadAllLines(path, Encoding.UTF8);
             var e = throwingAction.Should().Throw<IOException>();
@@ -754,7 +771,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadAllText(fileFullPath, Encoding.UTF8);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -847,7 +864,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadAllText(path, Encoding.UTF8);
             var e = throwingAction.Should().Throw<IOException>();

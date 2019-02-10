@@ -1,7 +1,6 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
    using System;
-   using System.Collections.Generic;
    using System.Collections.Immutable;
    using System.Diagnostics;
    using System.Globalization;
@@ -49,7 +48,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
          {
-            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var fileFullPath = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadLines(fileFullPath);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -114,7 +113,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.ReadLines(path);
             var e = throwingAction.Should().Throw<IOException>();
@@ -199,7 +203,7 @@
             var path = _target.CreateTemporaryFile();
             try
             {
-               var expected = new[] { "Line 0", "Line 1", "Line2", "Line 3" }.ToImmutableList();
+               var expected = new[] {"Line 0", "Line 1", "Line2", "Line 3"}.ToImmutableList();
                _target.WriteAllLines(path, expected, Encoding.UTF8);
                _target.FileExists(path).Should().BeTrue();
 
@@ -226,7 +230,7 @@
 
             try
             {
-               var expected = new[] { "Line 0", "Line 1", "Line2", "Line 3" }.ToImmutableList();
+               var expected = new[] {"Line 0", "Line 1", "Line2", "Line 3"}.ToImmutableList();
                _target.WriteAllLines(path, expected, Encoding.UTF8);
                _target.FileExists(path).Should().BeTrue();
 

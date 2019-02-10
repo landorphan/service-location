@@ -22,7 +22,7 @@ namespace Landorphan.Abstractions.IO.Internal
    {
       private const Int32 IndexNotFound = -1;
 
-      // skip leading // or \\
+      // skip leading @"/" or @"\"
       private const Int32 SkipPrefixCharacters = 2;
 
       private static readonly Lazy<IImmutableSet<Char>> t_invalidFileNameCharacters = new Lazy<IImmutableSet<Char>>(BuildInvalidFileNameCharacters);

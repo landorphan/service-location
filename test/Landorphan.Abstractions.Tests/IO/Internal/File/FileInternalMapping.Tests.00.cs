@@ -25,7 +25,7 @@
       private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly FileInternalMapping _target = new FileInternalMapping();
-      private static readonly String _tempPath = _environmentUtilities.GetTemporaryDirectoryPath();
+      private static readonly String _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
 
       [TestClass]
       public class When_I_call_FileInternalMapping_AppendAllLines : TestBase
@@ -183,8 +183,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid() + "|",
-               Guid.NewGuid() + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
 
             var enc = new UTF8Encoding(false, true);
             Action throwingAction = () => _target.AppendAllLines(invalidFilePathDirectoryPath, contents, enc);
@@ -197,8 +197,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid(),
-               Guid.NewGuid() + "|" + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + ".txt");
 
             throwingAction = () => _target.AppendAllLines(invalidFilePathFileName, contents, enc);
             e = throwingAction.Should().Throw<ArgumentException>();
@@ -236,7 +236,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_in_the_parent_directory_It_should_create_the_directory_and_the_file_and_append_the_lines()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid() + ".txt");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
             var contents = new[] {"one", "two", "three"};
 
             try
@@ -462,7 +462,7 @@
          public void And_the_path_matches_an_existing_file_It_should_append_the_lines()
          {
             var contents = new[] {"one", "two", "three"};
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".txt");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
             _target.CreateFile(path);
             try
             {
@@ -624,8 +624,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid() + "|",
-               Guid.NewGuid() + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
 
             Action throwingAction = () => _target.AppendAllText(invalidFilePathDirectoryPath, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -637,8 +637,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid(),
-               Guid.NewGuid() + "|" + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + ".txt");
 
             throwingAction = () => _target.AppendAllText(invalidFilePathFileName, contents, Encoding.ASCII);
             e = throwingAction.Should().Throw<ArgumentException>();

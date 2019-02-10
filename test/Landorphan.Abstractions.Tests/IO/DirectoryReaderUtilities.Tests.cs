@@ -2,9 +2,9 @@
 {
    using System;
    using System.Collections.Generic;
+   using System.Globalization;
    using System.IO;
    using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Ioc.ServiceLocation;
@@ -17,6 +17,11 @@
    {
       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
       private const String Spaces = "   ";
+      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+      private static readonly IDirectoryReaderUtilities _target = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
+      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_EnumerateDirectories : TestBase
@@ -25,44 +30,38 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_subdirectories()
          {
-            var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-            var environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-            var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-            var target = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
-            var tempPath = environmentUtilities.GetTemporaryDirectoryPath();
-
-            var outerFullPath = pathUtilities.GetFullPath(pathUtilities.Combine(tempPath, Guid.NewGuid() + "When_I_call_EnumerateDirectories"));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateDirectories"));
             var expected = new List<String>
             {
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() + "When_I_call_EnumerateDirectories")),
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateDirectories")),
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() + "When_I_call_EnumerateDirectories")),
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateDirectories")),
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() + "When_I_call_EnumerateDirectories"))
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateDirectories"))
             };
 
             try
             {
-               directoryUtilities.CreateDirectory(outerFullPath);
+               _directoryUtilities.CreateDirectory(outerFullPath);
                foreach (var sd in expected)
                {
-                  directoryUtilities.CreateDirectory(sd);
+                  _directoryUtilities.CreateDirectory(sd);
                }
 
-               target.EnumerateDirectories(outerFullPath).Should().Contain(expected);
-               target.EnumerateDirectories(Spaces + outerFullPath, "*").Should().Contain(expected);
-               target.EnumerateDirectories(Spaces + outerFullPath, "*", SearchOption.AllDirectories).Should().Contain(expected);
+               _target.EnumerateDirectories(outerFullPath).Should().Contain(expected);
+               _target.EnumerateDirectories(Spaces + outerFullPath, "*").Should().Contain(expected);
+               _target.EnumerateDirectories(Spaces + outerFullPath, "*", SearchOption.AllDirectories).Should().Contain(expected);
             }
             finally
             {
-               directoryUtilities.DeleteRecursively(outerFullPath);
+               _directoryUtilities.DeleteRecursively(outerFullPath);
             }
          }
       }
@@ -74,45 +73,38 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_files()
          {
-            var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-            var environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-            var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-            var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-            var target = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
-            var tempPath = environmentUtilities.GetTemporaryDirectoryPath();
-
-            var outerFullPath = pathUtilities.GetFullPath(pathUtilities.Combine(tempPath, Guid.NewGuid() + "When_I_call_EnumerateFiles"));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFiles"));
             var expected = new List<String>
             {
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() + "When_I_call_EnumerateFiles" + ".txt")),
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFiles" + ".txt")),
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() + "When_I_call_EnumerateFiles" + ".txt")),
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFiles" + ".txt")),
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() + "When_I_call_EnumerateFiles" + ".txt"))
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFiles" + ".txt"))
             };
 
             try
             {
-               directoryUtilities.CreateDirectory(outerFullPath);
+               _directoryUtilities.CreateDirectory(outerFullPath);
                foreach (var filePath in expected)
                {
-                  fileUtilities.CreateFile(filePath);
+                  _fileUtilities.CreateFile(filePath);
                }
 
-               target.EnumerateFiles(outerFullPath + Spaces).Should().Contain(expected);
-               target.EnumerateFiles(outerFullPath + Spaces, "*").Should().Contain(expected);
-               target.EnumerateFiles(outerFullPath + Spaces, "*", SearchOption.AllDirectories).Should().Contain(expected);
+               _target.EnumerateFiles(outerFullPath + Spaces).Should().Contain(expected);
+               _target.EnumerateFiles(outerFullPath + Spaces, "*").Should().Contain(expected);
+               _target.EnumerateFiles(outerFullPath + Spaces, "*", SearchOption.AllDirectories).Should().Contain(expected);
             }
             finally
             {
-               directoryUtilities.DeleteRecursively(outerFullPath);
+               _directoryUtilities.DeleteRecursively(outerFullPath);
             }
          }
       }
@@ -124,47 +116,145 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_FileSystemEntries()
          {
-            var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-            var environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-            var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-            var target = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
-            var tempPath = environmentUtilities.GetTemporaryDirectoryPath();
-
-            var outerFullPath = pathUtilities.GetFullPath(pathUtilities.Combine(tempPath, Guid.NewGuid() + "When_I_call_EnumerateFileSystemEntries"));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFileSystemEntries"));
             var expected = new List<String>
             {
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() +
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
                      "When_I_call_EnumerateFileSystemEntries")),
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() +
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
                      "When_I_call_EnumerateFileSystemEntries")),
-               pathUtilities.GetFullPath(
-                  pathUtilities.Combine(
+               _pathUtilities.GetFullPath(
+                  _pathUtilities.Combine(
                      outerFullPath,
-                     Guid.NewGuid() +
+                     Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
                      "When_I_call_EnumerateFileSystemEntries"))
             };
 
             try
             {
-               directoryUtilities.CreateDirectory(outerFullPath);
+               _directoryUtilities.CreateDirectory(outerFullPath);
                foreach (var sd in expected)
                {
-                  directoryUtilities.CreateDirectory(sd);
+                  _directoryUtilities.CreateDirectory(sd);
                }
 
-               target.EnumerateFileSystemEntries(outerFullPath).Should().Contain(expected);
-               target.EnumerateFileSystemEntries(outerFullPath, "*").Should().Contain(expected);
-               target.EnumerateFileSystemEntries(outerFullPath, "*", SearchOption.AllDirectories).Should().Contain(expected);
+               _target.EnumerateFileSystemEntries(outerFullPath).Should().Contain(expected);
+               _target.EnumerateFileSystemEntries(outerFullPath, "*").Should().Contain(expected);
+               _target.EnumerateFileSystemEntries(outerFullPath, "*", SearchOption.AllDirectories).Should().Contain(expected);
             }
             finally
             {
-               directoryUtilities.DeleteRecursively(outerFullPath);
+               _directoryUtilities.DeleteRecursively(outerFullPath);
+            }
+         }
+      }
+
+      [TestClass]
+      public class When_I_call_DirectoryReaderUtilities_GetDirectories : TestBase
+      {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_a_non_null_collection()
+         {
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var expected = new List<String>
+            {
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)))
+            };
+
+            try
+            {
+               _directoryUtilities.CreateDirectory(outerFullPath);
+               foreach (var sd in expected)
+               {
+                  _directoryUtilities.CreateDirectory(sd);
+               }
+
+               _target.GetDirectories(outerFullPath).Should().Contain(expected);
+               _target.GetDirectories(Spaces + outerFullPath, "*").Should().Contain(expected);
+               _target.GetDirectories(Spaces + outerFullPath, "*", SearchOption.AllDirectories).Should().Contain(expected);
+            }
+            finally
+            {
+               _directoryUtilities.DeleteRecursively(outerFullPath);
+            }
+         }
+      }
+
+      [TestClass]
+      public class When_I_call_DirectoryReaderUtilities_GetFiles : TestBase
+      {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_a_non_null_collection()
+         {
+            var outerFullPath = _pathUtilities.GetFullPath(
+               _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection)));
+            var expected = new List<String>
+            {
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection) + ".txt"))
+            };
+
+            try
+            {
+               _directoryUtilities.CreateDirectory(outerFullPath);
+               foreach (var filePath in expected)
+               {
+                  _fileUtilities.CreateFile(filePath);
+               }
+
+               _target.GetFiles(outerFullPath + Spaces).Should().Contain(expected);
+               _target.GetFiles(outerFullPath + Spaces, "*").Should().Contain(expected);
+               _target.GetFiles(outerFullPath + Spaces, "*", SearchOption.AllDirectories).Should().Contain(expected);
+            }
+            finally
+            {
+               _directoryUtilities.DeleteRecursively(outerFullPath);
+            }
+         }
+      }
+
+      [TestClass]
+      public class When_I_call_DirectoryReaderUtilities_GetFileSystemEntries : TestBase
+      {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_return_a_non_null_collection()
+         {
+            var outerFullPath =
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection)));
+            var expected = new List<String>
+            {
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection)))
+            };
+
+            try
+            {
+               _directoryUtilities.CreateDirectory(outerFullPath);
+               foreach (var sd in expected)
+               {
+                  _directoryUtilities.CreateDirectory(sd);
+               }
+
+               _target.GetFileSystemEntries(outerFullPath).Should().Contain(expected);
+               _target.GetFileSystemEntries(outerFullPath, "*").Should().Contain(expected);
+               _target.GetFileSystemEntries(outerFullPath, "*", SearchOption.AllDirectories).Should().Contain(expected);
+            }
+            finally
+            {
+               _directoryUtilities.DeleteRecursively(outerFullPath);
             }
          }
       }
