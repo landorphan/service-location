@@ -13,6 +13,9 @@ Get-ChildItem -inc bin,obj -rec | Remove-Item -rec -force
 # Attempt to delete each and every packages directory
 Get-ChildItem -inc packages -rec | Remove-Item -rec -force
 
+# Attempt to delete each and every _site directory
+Get-ChildItem -inc _site -rec | Remove-Item -rec -force
+
 $completed = [DateTime]::UtcNow
 $elapsed = $completed - $started
 "Build-Clean:"
