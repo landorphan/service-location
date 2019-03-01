@@ -116,6 +116,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions.Tes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.ObjectStore.CosmosDb", "source\Landorphan.ObjectStore.CosmosDb\Landorphan.ObjectStore.CosmosDb.csproj", "{290768D8-A155-4148-96CA-BEAE88241430}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.Collections.Performance.Tests", "test\Landorphan.Ioc.Collections.Performance.Tests\Landorphan.Ioc.Collections.Performance.Tests.csproj", "{0140E521-E5A9-441B-A9C9-40153B43F462}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -162,6 +164,10 @@ Global
 		{290768D8-A155-4148-96CA-BEAE88241430}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{290768D8-A155-4148-96CA-BEAE88241430}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{290768D8-A155-4148-96CA-BEAE88241430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0140E521-E5A9-441B-A9C9-40153B43F462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0140E521-E5A9-441B-A9C9-40153B43F462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0140E521-E5A9-441B-A9C9-40153B43F462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0140E521-E5A9-441B-A9C9-40153B43F462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -185,6 +191,7 @@ Global
 		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 		{976B1FED-3B23-40C0-85DC-2C089DF2060E} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{290768D8-A155-4148-96CA-BEAE88241430} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{0140E521-E5A9-441B-A9C9-40153B43F462} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}
