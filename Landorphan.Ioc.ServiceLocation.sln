@@ -114,6 +114,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions.Tests", "test\Landorphan.Abstractions.Tests\Landorphan.Abstractions.Tests.csproj", "{976B1FED-3B23-40C0-85DC-2C089DF2060E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.ObjectStore.CosmosDb", "source\Landorphan.ObjectStore.CosmosDb\Landorphan.ObjectStore.CosmosDb.csproj", "{290768D8-A155-4148-96CA-BEAE88241430}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -156,6 +158,10 @@ Global
 		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,6 +184,7 @@ Global
 		{CF16DA58-823A-46B1-89D7-83183BB98926} = {4EF5277F-5624-477A-9142-B2892EB32B15}
 		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 		{976B1FED-3B23-40C0-85DC-2C089DF2060E} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{290768D8-A155-4148-96CA-BEAE88241430} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}
