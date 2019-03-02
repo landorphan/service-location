@@ -1,0 +1,1707 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.FileUtilities
+  commentId: T:Landorphan.Abstractions.IO.FileUtilities
+  id: FileUtilities
+  parent: Landorphan.Abstractions.IO
+  children:
+  - Landorphan.Abstractions.IO.FileUtilities.CreateFile(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile
+  - Landorphan.Abstractions.IO.FileUtilities.CreateText(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.DeleteFile(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.FileExists(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.GetAttributes(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.GetCreationTime(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime(System.String)
+  - Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName
+  - Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset
+  - Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset
+  - Landorphan.Abstractions.IO.FileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+  - Landorphan.Abstractions.IO.FileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  - Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  - Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  langs:
+  - csharp
+  - vb
+  name: FileUtilities
+  nameWithType: FileUtilities
+  fullName: Landorphan.Abstractions.IO.FileUtilities
+  type: Class
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: FileUtilities
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 11
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nDefault implementation of <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileUtilities\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public sealed class FileUtilities : IFileUtilities'
+    content.vb: >-
+      Public NotInheritable Class FileUtilities
+          Implements IFileUtilities
+  inheritance:
+  - System.Object
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+- uid: Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset
+  commentId: P:Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset
+  id: MaximumFileTimeAsDateTimeOffset
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: MaximumFileTimeAsDateTimeOffset
+  nameWithType: FileUtilities.MaximumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: MaximumFileTimeAsDateTimeOffset
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 14
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nGets the maximum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+      description: "\nThe maximum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: Public ReadOnly Property MaximumFileTimeAsDateTimeOffset As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset*
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MaximumFileTimeAsDateTimeOffset
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset
+  commentId: P:Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset
+  id: MinimumFileTimeAsDateTimeOffset
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: MinimumFileTimeAsDateTimeOffset
+  nameWithType: FileUtilities.MinimumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: MinimumFileTimeAsDateTimeOffset
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 24
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nGets the minimum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+      description: "\nThe minimum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: Public ReadOnly Property MinimumFileTimeAsDateTimeOffset As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset*
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MinimumFileTimeAsDateTimeOffset
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.FileUtilities.CreateFile(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.CreateFile(System.String)
+  id: CreateFile(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateFile(String)
+  nameWithType: FileUtilities.CreateFile(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.CreateFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: CreateFile
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 34
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nCreates or overwrites a file in the specified path as a zero-byte file, and then closes the file.  If the specified path root exists, \nthis method will create intermediate directories, as well as the file itself as needed.\n"
+  example: []
+  syntax:
+    content: public string CreateFile(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path and name of the file to create.\n"
+    return:
+      type: System.String
+      description: "\nThe full path of the temporary file.\n"
+    content.vb: Public Function CreateFile(path As String) As String
+  overload: Landorphan.Abstractions.IO.FileUtilities.CreateFile*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a file that is read-only.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred while creating the file.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile
+  id: CreateTemporaryFile
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateTemporaryFile()
+  nameWithType: FileUtilities.CreateTemporaryFile()
+  fullName: Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: CreateTemporaryFile
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 41
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nCreates a uniquely named, zero-byte temporary file on disk and returns the full path of that file.\n"
+  example: []
+  syntax:
+    content: public string CreateTemporaryFile()
+    return:
+      type: System.String
+      description: "\nThe full path of the temporary file.\n"
+    content.vb: Public Function CreateTemporaryFile As String
+  overload: Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurs, such as no unique temporary file name is available.\n- or -\nThis method was unable to create a temporary file.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.CreateText(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.CreateText(System.String)
+  id: CreateText(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateText(String)
+  nameWithType: FileUtilities.CreateText(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.CreateText(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: CreateText
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 48
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nCreates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.  If the specified path root exists, this method will create intermediate\ndirectories, as well as the file itself as needed.\n"
+  example: []
+  syntax:
+    content: public string CreateText(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path and name of the file to create.\n"
+    return:
+      type: System.String
+      description: "\nThe full path of the file.\n"
+    content.vb: Public Function CreateText(path As String) As String
+  overload: Landorphan.Abstractions.IO.FileUtilities.CreateText*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a file that is read-only.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred while creating the file.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.DeleteFile(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.DeleteFile(System.String)
+  id: DeleteFile(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: DeleteFile(String)
+  nameWithType: FileUtilities.DeleteFile(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.DeleteFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: DeleteFile
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 55
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nDeletes the specified file.\n"
+  example: []
+  syntax:
+    content: public void DeleteFile(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe name of the file to be deleted. Wild-card characters are not supported.\n"
+    content.vb: Public Sub DeleteFile(path As String)
+  overload: Landorphan.Abstractions.IO.FileUtilities.DeleteFile*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nThe specified file is in use. -or-There is an open handle on the file, and the operating system is\nWindows XP or earlier. This open handle can result from enumerating directories and files. For more\ninformation, see How to: Enumerate Directories and Files.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.-or- <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a\ndirectory.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a read-only file.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.FileExists(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.FileExists(System.String)
+  id: FileExists(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: FileExists(String)
+  nameWithType: FileUtilities.FileExists(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.FileExists(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: FileExists
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 62
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nAttempts to determine whether the specified file exists.\n"
+  example: []
+  syntax:
+    content: public bool FileExists(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file to check.\n"
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if the caller has the required permissions and <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains the name of an existing file; otherwise,\n<code>false</code>.  \n<p>This method also returns <code>false</code> when <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null, an invalid path, or a zero-length string.</p>\n<p>This method will also return <code>false</code> when the caller does not have sufficient permissions to read the specified file.</p>\n"
+    content.vb: Public Function FileExists(path As String) As Boolean
+  overload: Landorphan.Abstractions.IO.FileUtilities.FileExists*
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetAttributes(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.GetAttributes(System.String)
+  id: GetAttributes(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetAttributes(String)
+  nameWithType: FileUtilities.GetAttributes(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetAttributes(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetAttributes
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 69
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nGets the <xref href=\"System.IO.FileAttributes\" data-throw-if-not-resolved=\"false\"></xref> of the file on the path.\n"
+  example: []
+  syntax:
+    content: public FileAttributes GetAttributes(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path to the file.\n"
+    return:
+      type: System.IO.FileAttributes
+      description: "\nThe <xref href=\"System.IO.FileAttributes\" data-throw-if-not-resolved=\"false\"></xref> of the file on the path.\n"
+    content.vb: Public Function GetAttributes(path As String) As FileAttributes
+  overload: Landorphan.Abstractions.IO.FileUtilities.GetAttributes*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is empty, contains only white spaces, or contains invalid characters.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> represents a file and is invalid, such as being on an unmapped\ndrive, or the file cannot be found.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> represents a directory and is invalid, such as being on an\nunmapped drive, or the directory cannot be found.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nThis file is being used by another process.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetCreationTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.GetCreationTime(System.String)
+  id: GetCreationTime(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetCreationTime(String)
+  nameWithType: FileUtilities.GetCreationTime(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetCreationTime(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetCreationTime
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 76
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the creation date and time of the specified file or directory.\n"
+  example: []
+  syntax:
+    content: public DateTimeOffset GetCreationTime(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to obtain creation date and time information.\n"
+    return:
+      type: System.DateTimeOffset
+      description: "\nA <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> structure set to the creation date and time for the specified file or directory.\n"
+    content.vb: Public Function GetCreationTime(path As String) As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.FileUtilities.GetCreationTime*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime(System.String)
+  id: GetLastAccessTime(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetLastAccessTime(String)
+  nameWithType: FileUtilities.GetLastAccessTime(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetLastAccessTime
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 83
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the date and time the specified file or directory was last accessed.\n"
+  example: []
+  syntax:
+    content: public DateTimeOffset GetLastAccessTime(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to obtain access date and time information.\n"
+    return:
+      type: System.DateTimeOffset
+      description: "\nA <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> structure set to the date and time that the specified file or directory was last accessed.\n"
+    content.vb: Public Function GetLastAccessTime(path As String) As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime(System.String)
+  id: GetLastWriteTime(System.String)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetLastWriteTime(String)
+  nameWithType: FileUtilities.GetLastWriteTime(String)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetLastWriteTime
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 90
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the date and time the specified file or directory was last written to.\n"
+  example: []
+  syntax:
+    content: public DateTimeOffset GetLastWriteTime(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to obtain write date and time information.\n"
+    return:
+      type: System.DateTimeOffset
+      description: "\nA <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> structure set to the date and time that the specified file or directory was last written to.\n"
+    content.vb: Public Function GetLastWriteTime(path As String) As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName
+  id: GetRandomFileName
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetRandomFileName()
+  nameWithType: FileUtilities.GetRandomFileName()
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetRandomFileName
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 97
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nGenerates a a cryptographically strong, random string that can be used as a file name.\n"
+  remarks: "\nDoes not create a file.\n"
+  example: []
+  syntax:
+    content: public string GetRandomFileName()
+    return:
+      type: System.String
+      description: "\nA random file name.\n"
+    content.vb: Public Function GetRandomFileName As String
+  overload: Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName*
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+  id: SetAttributes(System.String,System.IO.FileAttributes)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetAttributes(String, FileAttributes)
+  nameWithType: FileUtilities.SetAttributes(String, FileAttributes)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetAttributes(System.String, System.IO.FileAttributes)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetAttributes
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 104
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nSets the specified <xref href=\"System.IO.FileAttributes\" data-throw-if-not-resolved=\"false\"></xref> of the file on the specified path.\n"
+  example: []
+  syntax:
+    content: public void SetAttributes(string path, FileAttributes fileAttributes)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path to the file.\n"
+    - id: fileAttributes
+      type: System.IO.FileAttributes
+      description: "\nA bitwise combination of the enumeration values.\n"
+    content.vb: Public Sub SetAttributes(path As String, fileAttributes As FileAttributes)
+  overload: Landorphan.Abstractions.IO.FileUtilities.SetAttributes*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is empty, contains only white spaces, contains invalid characters, or\nthe file attribute is invalid.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified path is invalid, (for example, it is on an unmapped drive).\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe file cannot be found.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a file that is read-only.-or- This operation is not\nsupported on the current platform.-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a directory.-or- The caller does not have the\nrequired permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  id: SetCreationTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetCreationTime(String, DateTimeOffset)
+  nameWithType: FileUtilities.SetCreationTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetCreationTime(System.String, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetCreationTime
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 111
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nSets the date and time the file was created.\n"
+  example: []
+  syntax:
+    content: public void SetCreationTime(string path, DateTimeOffset creationTime)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file for which to set the creation date and time information.\n"
+    - id: creationTime
+      type: System.DateTimeOffset
+      description: "\nA <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> containing the value to set for the creation date and time of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.\n"
+    content.vb: Public Sub SetCreationTime(path As String, creationTime As DateTimeOffset)
+  overload: Landorphan.Abstractions.IO.FileUtilities.SetCreationTime*
+  exceptions:
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred while performing the operation.\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">creationTime</code> specifies a value outside the range of dates, times,\nor both permitted for this operation.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  id: SetLastAccessTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetLastAccessTime(String, DateTimeOffset)
+  nameWithType: FileUtilities.SetLastAccessTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime(System.String, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetLastAccessTime
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 118
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nSets the date and time the specified file was last accessed.\n"
+  example: []
+  syntax:
+    content: public void SetLastAccessTime(string path, DateTimeOffset lastAccessTime)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file for which to set the access date and time information.\n"
+    - id: lastAccessTime
+      type: System.DateTimeOffset
+      description: "\nA <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> containing the value to set for the last access date and time of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>. \n"
+    content.vb: Public Sub SetLastAccessTime(path As String, lastAccessTime As DateTimeOffset)
+  overload: Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">lastAccessTime</code> specifies a value outside the range of dates or\ntimes permitted for this operation.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  id: SetLastWriteTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.FileUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetLastWriteTime(String, DateTimeOffset)
+  nameWithType: FileUtilities.SetLastWriteTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime(System.String, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetLastWriteTime
+    path: ../../source/Landorphan.Abstractions/IO/FileUtilities.cs
+    startLine: 125
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nSets the date and time that the specified file was last written to.\n"
+  example: []
+  syntax:
+    content: public void SetLastWriteTime(string path, DateTimeOffset lastWriteTime)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file for which to set the date and time information.\n"
+    - id: lastWriteTime
+      type: System.DateTimeOffset
+      description: "\nA <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> containing the value to set for the last write date and time of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>. \n"
+    content.vb: Public Sub SetLastWriteTime(path As String, lastWriteTime As DateTimeOffset)
+  overload: Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">lastWriteTime</code> specifies a value outside the range of dates or times\npermitted for this operation.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  name: IFileUtilities
+  nameWithType: IFileUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+- uid: Landorphan.Abstractions.IO
+  commentId: N:Landorphan.Abstractions.IO
+  name: Landorphan.Abstractions.IO
+  nameWithType: Landorphan.Abstractions.IO
+  fullName: Landorphan.Abstractions.IO
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset
+  name: MaximumFileTimeAsDateTimeOffset
+  nameWithType: FileUtilities.MaximumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.FileUtilities.MaximumFileTimeAsDateTimeOffset
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MaximumFileTimeAsDateTimeOffset
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MaximumFileTimeAsDateTimeOffset
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  name: MaximumFileTimeAsDateTimeOffset
+  nameWithType: IFileUtilities.MaximumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MaximumFileTimeAsDateTimeOffset
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset
+  name: MinimumFileTimeAsDateTimeOffset
+  nameWithType: FileUtilities.MinimumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.FileUtilities.MinimumFileTimeAsDateTimeOffset
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MinimumFileTimeAsDateTimeOffset
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MinimumFileTimeAsDateTimeOffset
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  name: MinimumFileTimeAsDateTimeOffset
+  nameWithType: IFileUtilities.MinimumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.MinimumFileTimeAsDateTimeOffset
+- uid: Landorphan.Abstractions.IO.FileUtilities.CreateFile*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.CreateFile
+  name: CreateFile
+  nameWithType: FileUtilities.CreateFile
+  fullName: Landorphan.Abstractions.IO.FileUtilities.CreateFile
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: CreateFile(String)
+  nameWithType: IFileUtilities.CreateFile(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
+    name: CreateFile
+    nameWithType: IFileUtilities.CreateFile
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
+    name: CreateFile
+    nameWithType: IFileUtilities.CreateFile
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.IO.PathTooLongException
+  commentId: T:System.IO.PathTooLongException
+  isExternal: true
+- uid: System.IO.DirectoryNotFoundException
+  commentId: T:System.IO.DirectoryNotFoundException
+  isExternal: true
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile
+  name: CreateTemporaryFile
+  nameWithType: FileUtilities.CreateTemporaryFile
+  fullName: Landorphan.Abstractions.IO.FileUtilities.CreateTemporaryFile
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  name: CreateTemporaryFile()
+  nameWithType: IFileUtilities.CreateTemporaryFile()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile()
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+    name: CreateTemporaryFile
+    nameWithType: IFileUtilities.CreateTemporaryFile
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+    name: CreateTemporaryFile
+    nameWithType: IFileUtilities.CreateTemporaryFile
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.CreateText*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.CreateText
+  name: CreateText
+  nameWithType: FileUtilities.CreateText
+  fullName: Landorphan.Abstractions.IO.FileUtilities.CreateText
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: CreateText(String)
+  nameWithType: IFileUtilities.CreateText(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+    name: CreateText
+    nameWithType: IFileUtilities.CreateText
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+    name: CreateText
+    nameWithType: IFileUtilities.CreateText
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.DeleteFile*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.DeleteFile
+  name: DeleteFile
+  nameWithType: FileUtilities.DeleteFile
+  fullName: Landorphan.Abstractions.IO.FileUtilities.DeleteFile
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: DeleteFile(String)
+  nameWithType: IFileUtilities.DeleteFile(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
+    name: DeleteFile
+    nameWithType: IFileUtilities.DeleteFile
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
+    name: DeleteFile
+    nameWithType: IFileUtilities.DeleteFile
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.FileExists*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.FileExists
+  name: FileExists
+  nameWithType: FileUtilities.FileExists
+  fullName: Landorphan.Abstractions.IO.FileUtilities.FileExists
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: FileExists(String)
+  nameWithType: IFileUtilities.FileExists(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
+    name: FileExists
+    nameWithType: IFileUtilities.FileExists
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
+    name: FileExists
+    nameWithType: IFileUtilities.FileExists
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetAttributes*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.GetAttributes
+  name: GetAttributes
+  nameWithType: FileUtilities.GetAttributes
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetAttributes
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: GetAttributes(String)
+  nameWithType: IFileUtilities.GetAttributes(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
+    name: GetAttributes
+    nameWithType: IFileUtilities.GetAttributes
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
+    name: GetAttributes
+    nameWithType: IFileUtilities.GetAttributes
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IO.FileNotFoundException
+  commentId: T:System.IO.FileNotFoundException
+  isExternal: true
+- uid: System.IO.FileAttributes
+  commentId: T:System.IO.FileAttributes
+  parent: System.IO
+  isExternal: true
+  name: FileAttributes
+  nameWithType: FileAttributes
+  fullName: System.IO.FileAttributes
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetCreationTime*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.GetCreationTime
+  name: GetCreationTime
+  nameWithType: FileUtilities.GetCreationTime
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetCreationTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: GetCreationTime(String)
+  nameWithType: IFileUtilities.GetCreationTime(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime(System.String)
+    name: GetCreationTime
+    nameWithType: IFileUtilities.GetCreationTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime(System.String)
+    name: GetCreationTime
+    nameWithType: IFileUtilities.GetCreationTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetCreationTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime
+  name: GetLastAccessTime
+  nameWithType: FileUtilities.GetLastAccessTime
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetLastAccessTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: GetLastAccessTime(String)
+  nameWithType: IFileUtilities.GetLastAccessTime(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime(System.String)
+    name: GetLastAccessTime
+    nameWithType: IFileUtilities.GetLastAccessTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime(System.String)
+    name: GetLastAccessTime
+    nameWithType: IFileUtilities.GetLastAccessTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastAccessTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime
+  name: GetLastWriteTime
+  nameWithType: FileUtilities.GetLastWriteTime
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetLastWriteTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: GetLastWriteTime(String)
+  nameWithType: IFileUtilities.GetLastWriteTime(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime(System.String)
+    name: GetLastWriteTime
+    nameWithType: IFileUtilities.GetLastWriteTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime(System.String)
+    name: GetLastWriteTime
+    nameWithType: IFileUtilities.GetLastWriteTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetLastWriteTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName
+  name: GetRandomFileName
+  nameWithType: FileUtilities.GetRandomFileName
+  fullName: Landorphan.Abstractions.IO.FileUtilities.GetRandomFileName
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  name: GetRandomFileName()
+  nameWithType: IFileUtilities.GetRandomFileName()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName()
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+    name: GetRandomFileName
+    nameWithType: IFileUtilities.GetRandomFileName
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+    name: GetRandomFileName
+    nameWithType: IFileUtilities.GetRandomFileName
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetRandomFileName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetAttributes*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.SetAttributes
+  name: SetAttributes
+  nameWithType: FileUtilities.SetAttributes
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetAttributes
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: SetAttributes(String, FileAttributes)
+  nameWithType: IFileUtilities.SetAttributes(String, FileAttributes)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes(System.String, System.IO.FileAttributes)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+    name: SetAttributes
+    nameWithType: IFileUtilities.SetAttributes
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.FileAttributes
+    name: FileAttributes
+    nameWithType: FileAttributes
+    fullName: System.IO.FileAttributes
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes(System.String,System.IO.FileAttributes)
+    name: SetAttributes
+    nameWithType: IFileUtilities.SetAttributes
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.FileAttributes
+    name: FileAttributes
+    nameWithType: FileAttributes
+    fullName: System.IO.FileAttributes
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetCreationTime*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.SetCreationTime
+  name: SetCreationTime
+  nameWithType: FileUtilities.SetCreationTime
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetCreationTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: SetCreationTime(String, DateTimeOffset)
+  nameWithType: IFileUtilities.SetCreationTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime(System.String, System.DateTimeOffset)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+    name: SetCreationTime
+    nameWithType: IFileUtilities.SetCreationTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+    name: SetCreationTime
+    nameWithType: IFileUtilities.SetCreationTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetCreationTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime
+  name: SetLastAccessTime
+  nameWithType: FileUtilities.SetLastAccessTime
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetLastAccessTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: SetLastAccessTime(String, DateTimeOffset)
+  nameWithType: IFileUtilities.SetLastAccessTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime(System.String, System.DateTimeOffset)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+    name: SetLastAccessTime
+    nameWithType: IFileUtilities.SetLastAccessTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+    name: SetLastAccessTime
+    nameWithType: IFileUtilities.SetLastAccessTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastAccessTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime*
+  commentId: Overload:Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime
+  name: SetLastWriteTime
+  nameWithType: FileUtilities.SetLastWriteTime
+  fullName: Landorphan.Abstractions.IO.FileUtilities.SetLastWriteTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  isExternal: true
+  name: SetLastWriteTime(String, DateTimeOffset)
+  nameWithType: IFileUtilities.SetLastWriteTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime(System.String, System.DateTimeOffset)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+    name: SetLastWriteTime
+    nameWithType: IFileUtilities.SetLastWriteTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+    name: SetLastWriteTime
+    nameWithType: IFileUtilities.SetLastWriteTime
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.SetLastWriteTime
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

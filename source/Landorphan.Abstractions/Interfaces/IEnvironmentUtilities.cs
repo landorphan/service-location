@@ -42,15 +42,10 @@
       /// Gets the number of milliseconds elapsed since the system started.
       /// </summary>
       /// <value>
-      /// A 32-bit signed integer containing the amount of time in milliseconds that has passed since the last time the computer was started.
+      /// The number of milliseconds elapsed since the system started.
       /// </value>
-      /// <remarks>
-      /// The value of this property is derived from the system timer and is stored as a 32-bit signed integer.  Consequently, if the system runs
-      /// continuously, it will increment from zero to Int32.MaxValue for approximately 24.9 days, then jump to Int32.MinValue, which is a
-      /// negative number, then increment back to zero during the next 24.9 days.
-      /// </remarks>
-      // TODO: consider removing 
-      Int32 ElapsedMillisecondsSinceSystemStart { get; }
+      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "Sonar does not recognize abbreviations")]
+      Int32 ElapsedSinceSystemStartupMS { get; }
 
       /// <summary>
       /// Gets or sets the exit code of the process.
@@ -411,18 +406,6 @@
          MessageId = "Option",
          Justification = "Matching underlying implementation(MWP)")]
       String GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option);
-
-      /// <summary>
-      /// Returns the path of the current user's temporary directory.
-      /// </summary>
-      /// <exception cref="SecurityException">
-      /// The caller does not have the required permissions.
-      /// </exception>
-      /// <returns>
-      /// The path to the temporary directory, ending with a backslash.
-      /// </returns>
-      [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetTemporaryDirectoryPath();
 
       /// <summary>
       /// Creates, modifies, or deletes an environment variable stored in the current process.

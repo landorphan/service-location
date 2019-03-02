@@ -45,7 +45,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IocServiceLocator
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -60,7 +60,6 @@ items:
     content: 'public sealed class IocServiceLocator : IIocServiceLocator, IServiceProvider, IIocServiceLocatorManager, IIocServiceLocatorMetaSharedCapacities'
     content.vb: >-
       Public NotInheritable Class IocServiceLocator
-
           Implements IIocServiceLocator, IServiceProvider, IIocServiceLocatorManager, IIocServiceLocatorMetaSharedCapacities
   inheritance:
   - System.Object
@@ -92,7 +91,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: System.IServiceProvider.GetService
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -129,7 +128,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -137,18 +136,24 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nResolves the default instance of the requested type.\n"
   example: []
   syntax:
     content: >-
       TFrom IIocServiceLocator.Resolve<TFrom>()
-
           where TFrom : class
     typeParameters:
     - id: TFrom
+      description: "\nThe requested service interface type\n"
     return:
       type: '{TFrom}'
+      description: "\nThe default implementation instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom As Class) As TFrom Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TFrom</code> service default instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve``1
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom)()
@@ -169,7 +174,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -177,21 +182,28 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nResolves a named instance of the requested type.\n"
   example: []
   syntax:
     content: >-
       TFrom IIocServiceLocator.Resolve<TFrom>(string name)
-
           where TFrom : class
     parameters:
     - id: name
       type: System.String
+      description: "\nThe name of the instance to retrieve, null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> for the default instance.\n"
     typeParameters:
     - id: TFrom
+      description: "\nThe requested service interface type.\n"
     return:
       type: '{TFrom}'
+      description: "\nThe retrieved instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom As Class)(name As String) As TFrom Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"typeparamref\" class=\"typeparamref\">TFrom</code> service instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve``1(System.String)
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Of TFrom)(String)
@@ -212,7 +224,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -220,16 +232,23 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nResolves the default instance of the requested type.\n"
   example: []
   syntax:
     content: object IIocServiceLocator.Resolve(Type fromType)
     parameters:
     - id: fromType
       type: System.Type
+      description: "\nThe requested type.\n"
     return:
       type: System.Object
+      description: "\nThe retrieved instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(fromType As Type) As Object Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromType</code> service instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(System.Type)
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Type)
@@ -249,7 +268,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -257,18 +276,26 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nResolves a named instance of the requested type.\n"
   example: []
   syntax:
     content: object IIocServiceLocator.Resolve(Type fromType, string name)
     parameters:
     - id: fromType
       type: System.Type
+      description: "\nThe requested service interface type.\n"
     - id: name
       type: System.String
+      description: "\nThe name of the instance to retrieve, specify null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the default instance.\n"
     return:
       type: System.Object
+      description: "\nThe retrieved instance.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(fromType As Type, name As String) As Object Implements IIocServiceLocator.Resolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#Resolve*
+  exceptions:
+  - type: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+    description: "\nThrown when an error occurs resolving the named <code data-dev-comment-type=\"paramref\" class=\"paramref\">fromType</code> service instance.\n"
   implements:
   - Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(System.Type,System.String)
   nameWithType.vb: IocServiceLocator.Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.Resolve(Type, String)
@@ -288,7 +315,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -300,7 +327,6 @@ items:
   syntax:
     content: >-
       bool IIocServiceLocator.TryResolve<TFrom>(out TFrom instance)
-
           where TFrom : class
     parameters:
     - id: instance
@@ -331,7 +357,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -343,7 +369,6 @@ items:
   syntax:
     content: >-
       bool IIocServiceLocator.TryResolve<TFrom>(string name, out TFrom instance)
-
           where TFrom : class
     parameters:
     - id: name
@@ -376,7 +401,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -384,16 +409,20 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nAttempts to resolve the default instance of the requested type.\n"
   example: []
   syntax:
     content: bool IIocServiceLocator.TryResolve(Type fromType, out object instance)
     parameters:
     - id: fromType
       type: System.Type
+      description: "\nThe requested service interface type.\n"
     - id: instance
       type: System.Object
+      description: "\nThe default registered instance when found; otherwise a null reference.\n"
     return:
       type: System.Boolean
+      description: "\n<code>true</code> when a default registered instance was found; otherwise <code>false</code>.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve(fromType As Type, ByRef instance As Object) As Boolean Implements IIocServiceLocator.TryResolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#TryResolve*
   implements:
@@ -416,7 +445,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocator.cs
@@ -424,18 +453,23 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nResolves a named instance of the requested type.\n"
   example: []
   syntax:
     content: bool IIocServiceLocator.TryResolve(Type fromType, string name, out object instance)
     parameters:
     - id: fromType
       type: System.Type
+      description: "\nThe requested service interface type.\n"
     - id: name
       type: System.String
+      description: "\nThe name of the instance to retrieve, specify null or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the default instance.\n"
     - id: instance
       type: System.Object
+      description: "\nThe named registered instance when found; otherwise a null reference.\n"
     return:
       type: System.Boolean
+      description: "\n<code>true</code> when the named registered instance was found; otherwise <code>false</code>.\n"
     content.vb: Function Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator.TryResolve(fromType As Type, name As String, ByRef instance As Object) As Boolean Implements IIocServiceLocator.TryResolve
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocator#TryResolve*
   implements:
@@ -458,7 +492,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -466,6 +500,8 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nEvent queue for all listeners interested the completion of a collection of assemblies having their <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invoked.\n"
+  remarks: "\nOccurs just after the completion of a collection of assemblies <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances  are invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
@@ -491,7 +527,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -499,6 +535,8 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nEvent queue for all listeners interested in the completion of an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invocation.\n"
+  remarks: "\nOccurs just after an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instance is invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
@@ -524,7 +562,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainerChanged
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -532,6 +570,8 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nEvent queue for all listeners interested in changes to the ambient container.\n"
+  remarks: "\nOccurs when ambient dependency injection container changes.\n"
   example: []
   syntax:
     content: event EventHandler<EventArgs> IIocServiceLocatorManager.AmbientContainerChanged
@@ -557,7 +597,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -565,6 +605,8 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nEvent queue for all listeners interested the initiation of a collection of assemblies having their <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invoked.\n"
+  remarks: "\nOccurs just before the a collection of assemblies <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances are invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
@@ -590,7 +632,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -598,6 +640,8 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nEvent queue for all listeners interested in the initiation of an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instances invocation.\n"
+  remarks: "\nOccurs just before an individual <xref href=\"Landorphan.Ioc.ServiceLocation.Interfaces.IAssemblySelfRegistration\" data-throw-if-not-resolved=\"false\"></xref> instance is invoked.\n"
   example: []
   syntax:
     content: event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
@@ -623,7 +667,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -631,12 +675,14 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the ambient container.\n"
   example: []
   syntax:
     content: IIocContainer IIocServiceLocatorManager.AmbientContainer { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+      description: "\nThe ambient container.\n"
     content.vb: ReadOnly WriteOnly Property Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.AmbientContainer As IIocContainer Implements IIocServiceLocatorManager.AmbientContainer
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocatorManager#AmbientContainer*
   implements:
@@ -662,7 +708,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -670,12 +716,14 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the root container.\n"
   example: []
   syntax:
     content: IIocContainer IIocServiceLocatorManager.RootContainer { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+      description: "\nThe root container.\n"
     content.vb: ReadOnly WriteOnly Property Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.RootContainer As IIocContainer Implements IIocServiceLocatorManager.RootContainer
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocatorManager#RootContainer*
   implements:
@@ -701,7 +749,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.SetAmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.IIocServiceLocatorManager.cs
@@ -709,12 +757,14 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nSets the ambient container.\n"
   example: []
   syntax:
     content: void IIocServiceLocatorManager.SetAmbientContainer(IIocContainer container)
     parameters:
     - id: container
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocContainer
+      description: "\nThe container.\n"
     content.vb: Sub Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager.SetAmbientContainer(container As IIocContainer) Implements IIocServiceLocatorManager.SetAmbientContainer
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Landorphan#Ioc#ServiceLocation#Interfaces#IIocServiceLocatorManager#SetAmbientContainer*
   implements:
@@ -735,7 +785,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Shared.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Manager
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Shared.cs
@@ -743,12 +793,15 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the manager of the service locator.\n"
+  remarks: "\nUsed to monitor and manipulate the behavior of <xref href=\"Landorphan.Ioc.ServiceLocation.IocServiceLocator\" data-throw-if-not-resolved=\"false\"></xref>.\n"
   example: []
   syntax:
     content: public IIocServiceLocatorManager Manager { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocatorManager
+      description: "\nThe manager of the service locator.\n"
     content.vb: Public ReadOnly Property Manager As IIocServiceLocatorManager
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Manager*
   implements:
@@ -773,7 +826,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Shared.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ServiceLocator
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Shared.cs
@@ -781,12 +834,15 @@ items:
   assemblies:
   - Landorphan.Ioc.ServiceLocation
   namespace: Landorphan.Ioc.ServiceLocation
+  summary: "\nGets the service locator.\n"
+  remarks: "\nUsed to resolve interfaces to implementations.\n"
   example: []
   syntax:
     content: public IIocServiceLocator ServiceLocator { get; }
     parameters: []
     return:
       type: Landorphan.Ioc.ServiceLocation.Interfaces.IIocServiceLocator
+      description: "\nThe service locator client interface.\n"
     content.vb: Public ReadOnly Property ServiceLocator As IIocServiceLocator
   overload: Landorphan.Ioc.ServiceLocation.IocServiceLocator.ServiceLocator*
   implements:
@@ -811,7 +867,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AmbientContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -851,7 +907,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Instance
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -890,7 +946,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: RootContainer
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -930,7 +986,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -944,7 +1000,6 @@ items:
   syntax:
     content: >-
       public static TFrom Resolve<TFrom>()
-
           where TFrom : class
     typeParameters:
     - id: TFrom
@@ -981,7 +1036,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -995,7 +1050,6 @@ items:
   syntax:
     content: >-
       public static TFrom Resolve<TFrom>(string name)
-
           where TFrom : class
     parameters:
     - id: name
@@ -1036,7 +1090,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -1082,7 +1136,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Resolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -1131,7 +1185,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -1144,7 +1198,6 @@ items:
   syntax:
     content: >-
       public static bool TryResolve<TFrom>(out TFrom instance)
-
           where TFrom : class
     parameters:
     - id: instance
@@ -1181,7 +1234,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -1194,7 +1247,6 @@ items:
   syntax:
     content: >-
       public static bool TryResolve<TFrom>(string name, out TFrom instance)
-
           where TFrom : class
     parameters:
     - id: name
@@ -1234,7 +1286,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -1281,7 +1333,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TryResolve
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/IocServiceLocator.Static.cs
@@ -1465,6 +1517,11 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
+  name: ResolutionException
+  nameWithType: ResolutionException
+  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
 - uid: '{TFrom}'
   commentId: '!:TFrom'
   definition: TFrom
@@ -2248,11 +2305,6 @@ references:
   name: RootContainer
   nameWithType: IocServiceLocator.RootContainer
   fullName: Landorphan.Ioc.ServiceLocation.IocServiceLocator.RootContainer
-- uid: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-  commentId: T:Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
-  name: ResolutionException
-  nameWithType: ResolutionException
-  fullName: Landorphan.Ioc.ServiceLocation.Exceptions.ResolutionException
 - uid: Landorphan.Ioc.ServiceLocation.IocServiceLocator.Resolve*
   commentId: Overload:Landorphan.Ioc.ServiceLocation.IocServiceLocator.Resolve
   name: Resolve

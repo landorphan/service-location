@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory
+  id: IDirectoryWriterUtilitiesFactory
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create
+  langs:
+  - csharp
+  - vb
+  name: IDirectoryWriterUtilitiesFactory
+  nameWithType: IDirectoryWriterUtilitiesFactory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilitiesFactory.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: IDirectoryWriterUtilitiesFactory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilitiesFactory.cs
+    startLine: 5
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nFactory for instantiating <xref href=\"Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities\" data-throw-if-not-resolved=\"false\"></xref> instances.\n"
+  example: []
+  syntax:
+    content: public interface IDirectoryWriterUtilitiesFactory
+    content.vb: Public Interface IDirectoryWriterUtilitiesFactory
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create
+  id: Create
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: IDirectoryWriterUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilitiesFactory.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: Create
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryWriterUtilitiesFactory.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCreates a <xref href=\"Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: IDirectoryWriterUtilities Create()
+    return:
+      type: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+      description: "\nA non-null <xref href=\"Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+    content.vb: Function Create As IDirectoryWriterUtilities
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create*
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  name: IDirectoryWriterUtilities
+  nameWithType: IDirectoryWriterUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilities
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create
+  name: Create
+  nameWithType: IDirectoryWriterUtilitiesFactory.Create
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryWriterUtilitiesFactory.Create

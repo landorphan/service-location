@@ -1,13 +1,15 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
    using System;
+   using System.Collections.Generic;
    using System.Globalization;
    using System.IO;
+   using System.Linq;
+   using System.Text;
    using FluentAssertions;
+   using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Common.Exceptions;
    using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -15,488 +17,1537 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_SetAttributes : TestBase
+      public class When_I_call_FileInternalMapping_ReplaceContents : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_fileAttributes_is_invalid_It_should_throw_ExtendedInvalidEnumArgumentException()
+         public void And_the_destinationBackupFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            const FileAttributes fileAttributes = (FileAttributes)Int32.MaxValue;
-            var path = _target.CreateTemporaryFile();
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             try
             {
-               Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-               var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
-               e.And.ParamName.Should().Be("fileAttributes");
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationBackupFileName");
             }
             finally
             {
-               _target.DeleteFile(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
+         public void And_the_destinationBackupFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
-         {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
-         {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_has_leading_spaces_It_should_not_throw()
-         {
-            var path = _target.CreateTemporaryFile();
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             try
             {
-               _target.SetAttributes(Spaces + path, fileAttributes);
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: destinationBackupFileName");
             }
             finally
             {
-               _target.DeleteFile(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
-
-            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_has_trailing_spaces_It_should_not_throw()
+         [TestCategory(TestTiming.Nightly)]
+         public void
+            And_the_destinationBackupFileName_does_exist_It_should_replace_the_contents_of_both_the_destinationFile_and_the_destinationBackupFile()
          {
-            var path = _target.CreateTemporaryFile();
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
+            // takes 3 seconds on my box
+            var cleanupFileNames = new List<String>();
+            var enc = new UTF8Encoding(false, true);
             try
             {
-               _target.SetAttributes(path + Spaces, fileAttributes);
+               // ArrangeMethod
+               var sourceFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(sourceFileName, "originally in source", enc);
+
+               var destinationFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(destinationFileName, "originally in destination", enc);
+
+               var destinationBackupFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(destinationBackupFileName, "originally in backup", enc);
+
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+
+               // ActMethod
+               _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+
+               // Assert
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               var dfContent = _target.ReadAllLines(destinationFileName, enc).ToArray();
+               dfContent.Length.Should().Be(1);
+               dfContent[0].Should().Be("originally in source");
+
+               var dfbContent = _target.ReadAllLines(destinationBackupFileName, enc).ToArray();
+               dfbContent.Length.Should().Be(1);
+               dfbContent[0].Should().Be("originally in destination");
+
+               //---
+
+               // ArrangeMethod
+               sourceFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(sourceFileName, "originally in source", enc);
+
+               destinationFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(destinationFileName, "originally in destination", enc);
+
+               destinationBackupFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(destinationBackupFileName, "originally in backup", enc);
+
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+
+               // ActMethod
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+
+               // Assert
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               dfContent = _target.ReadAllLines(destinationFileName, enc).ToArray();
+               dfContent.Length.Should().Be(1);
+               dfContent[0].Should().Be("originally in source");
+
+               dfbContent = _target.ReadAllLines(destinationBackupFileName, enc).ToArray();
+               dfbContent.Length.Should().Be(1);
+               dfbContent[0].Should().Be("originally in destination");
             }
             finally
             {
-               _target.DeleteFile(path);
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
             }
-
-            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_empty_It_should_throw_ArgumentException()
+         [TestCategory(TestTiming.Nightly)]
+         public void
+            And_the_destinationBackupFileName_does_not_exist_It_should_replace_the_contents_of_destinationFile_and_create_the_destinationBackupFile()
          {
-            var path = String.Empty;
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_null_It_should_throw_ArgumentNullException()
-         {
-            const String path = null;
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<ArgumentNullException>();
-            e.And.ParamName.Should().Be("path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
-         public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
-         {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var path = @"A:\" + Guid.NewGuid();
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
-         {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<PathTooLongException>();
-            e.And.Message.Should().StartWith("The path");
-            e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_white_space_It_should_throw_ArgumentException()
-         {
-            const String path = " \t ";
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_matches_an_existing_directory_It_should_throw_FileNotFoundException()
-         {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-            _directoryInternalMapping.CreateDirectory(path);
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
+            // takes 3 seconds on my box
+            var cleanupFileNames = new List<String>();
+            var enc = new UTF8Encoding(false, true);
             try
             {
-               Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
+               // ArrangeMethod
+               var sourceFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(sourceFileName, "originally in source", enc);
+
+               var destinationFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(destinationFileName, "originally in destination", enc);
+
+               // force the creation of a directory as well
+               var destinationBackupFileName = _pathUtilities.Combine(
+                  _tempPath,
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+
+               // ActMethod
+               _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+
+               // Assert
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               var dfContent = _target.ReadAllLines(destinationFileName, enc).ToArray();
+               dfContent.Length.Should().Be(1);
+               dfContent[0].Should().Be("originally in source");
+
+               var dfbContent = _target.ReadAllLines(destinationBackupFileName, enc).ToArray();
+               dfbContent.Length.Should().Be(1);
+               dfbContent[0].Should().Be("originally in destination");
+
+               //---
+
+               // ArrangeMethod
+               sourceFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(sourceFileName, "originally in source", enc);
+
+               destinationFileName = _target.CreateTemporaryFile();
+               _target.AppendAllText(destinationFileName, "originally in destination", enc);
+
+               destinationBackupFileName = _pathUtilities.Combine(
+                  _tempPath,
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+
+               // ActMethod
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+
+               // Assert
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               dfContent = _target.ReadAllLines(destinationFileName, enc).ToArray();
+               dfContent.Length.Should().Be(1);
+               dfContent[0].Should().Be("originally in source");
+
+               dfbContent = _target.ReadAllLines(destinationBackupFileName, enc).ToArray();
+               dfbContent.Length.Should().Be(1);
+               dfbContent[0].Should().Be("originally in destination");
+            }
+            finally
+            {
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationBackupFileName_has_leading_spaces_It_should_not_throw()
+         {
+            var cleanupFileNames = new List<String>();
+            try
+            {
+               var sourceFileName = _target.CreateTemporaryFile();
+               var destinationFileName = _target.CreateTemporaryFile();
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, Spaces + destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, Spaces + destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+            }
+            finally
+            {
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationBackupFileName_has_trailing_spaces_It_should_not_throw()
+         {
+            var cleanupFileNames = new List<String>();
+            try
+            {
+               var sourceFileName = _target.CreateTemporaryFile();
+               var destinationFileName = _target.CreateTemporaryFile();
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName + Spaces);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName + Spaces);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+            }
+            finally
+            {
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationBackupFileName_is_empty_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = String.Empty;
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationBackupFileName_is_null_It_should_throw_ArgumentNullException()
+         {
+            // ReSharper disable ExpressionIsAlwaysNull
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            String destinationBackupFileName = null;
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
+            }
+
+            // ReSharper restore ExpressionIsAlwaysNull
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationBackupFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
+         {
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                var e = throwingAction.Should().Throw<FileNotFoundException>();
                e.And.Message.Should().Contain("Could not find a part of the file path '");
-               e.And.Message.Should().Contain(path);
-               e.And.Message.Should().Contain("'.\r\nParameter name: path");
+               e.And.Message.Should().Contain(destinationBackupFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationBackupFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationBackupFileName");
             }
             finally
             {
-               _directoryInternalMapping.DeleteRecursively(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
+         public void And_the_destinationBackupFileName_is_the_destinationFileName_It_should_throw_IOException()
          {
-            const String path = ":";
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_FileNotFoundException()
-         {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_FileNotFoundException()
-         {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
-            const FileAttributes fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-
-            Action throwingAction = () => _target.SetAttributes(path, fileAttributes);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_set_the_attributes()
-         {
-            var path = _target.CreateTemporaryFile();
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = destinationFileName;
             try
             {
-               var fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-               _target.SetAttributes(path, fileAttributes);
-               _target.GetAttributes(path).Should().Be(fileAttributes);
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationBackupFileName);
+               e.And.Message.Should().Contain("' because the destination file and destination backup file are the same.");
 
-               fileAttributes = FileAttributes.Normal;
-               _target.SetAttributes(path, fileAttributes);
-               _target.GetAttributes(path).Should().Be(fileAttributes);
+               throwingAction = () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' because the destination file and destination backup file are the same.");
             }
             finally
             {
-               _target.DeleteFile(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
          }
-      }
-
-      [TestClass]
-      public class When_I_call_FileInternalMapping_SetCreationTime : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         // [Ignore]
-         public void And_the_creationTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
-         {
-            // Test cannot be written/executed because the maximum is at DateTimeOffset.MaxValue
-            // (cannot add even one tick to the value).
-            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
-         }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_creationTime_is_less_than_minimum_It_should_throw_ArgumentOutOfRangeException()
+         public void And_the_destinationBackupFileName_is_the_sourceFileName_It_should_throw_IOException()
          {
-            var creationTime = _target.MinimumFileTimeAsDateTimeOffset.Add(TimeSpan.FromTicks(-1));
-            var path = _target.CreateTemporaryFile();
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = sourceFileName;
             try
             {
-               Action throwingAction = () => _target.SetCreationTime(path, creationTime);
-               var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
-               e.And.ParamName.Should().Be("creationTime");
-               e.And.Message.Should().Be("The value must be greater than or equal to (504,911,232,000,000,001 ticks).\r\nParameter name: creationTime");
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationBackupFileName);
+               e.And.Message.Should().Contain("' because the source file and destination backup file are the same ('");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("').");
+
+               throwingAction = () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' because the source file and destination backup file are the same ('");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("').");
             }
             finally
             {
-               _target.DeleteFile(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
+         public void And_the_destinationBackupFileName_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
-         {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_does_not_exist_It_should_throw_FileNotFoundException()
-         {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_has_leading_spaces_It_should_not_throw()
-         {
-            var path = _target.CreateTemporaryFile();
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
             try
             {
-               _target.SetCreationTime(Spaces + path, DateTimeOffset.UtcNow);
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
             }
             finally
             {
-               _target.DeleteFile(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
-
-            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_has_trailing_spaces_It_should_not_throw()
+         public void And_the_destinationBackupFileName_is_white_space_It_should_throw_ArgumentException()
          {
-            var path = _target.CreateTemporaryFile();
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            const String destinationBackupFileName = " \t ";
             try
             {
-               _target.SetCreationTime(path + Spaces, DateTimeOffset.UtcNow);
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
             }
             finally
             {
-               _target.DeleteFile(path);
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
             }
-
-            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_empty_It_should_throw_ArgumentException()
+         public void And_the_destinationBackupFileName_matches_an_existing_directory_It_should_throw_IOException()
          {
-            var path = String.Empty;
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_null_It_should_throw_ArgumentNullException()
-         {
-            const String path = null;
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<ArgumentNullException>();
-            e.And.ParamName.Should().Be("path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
-         public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
-         {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var path = @"A:\" + Guid.NewGuid();
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
-         {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<PathTooLongException>();
-            e.And.Message.Should().StartWith("The path");
-            e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_is_white_space_It_should_throw_ArgumentException()
-         {
-            const String path = " \t ";
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_matches_an_existing_directory_It_should_throw_FileNotFoundException()
-         {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
-            _directoryInternalMapping.CreateDirectory(path);
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
             try
             {
-               Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The destination backup file name '");
+               e.And.Message.Should().Contain(destinationBackupFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The destination backup file name '");
+               e.And.Message.Should().Contain(destinationBackupFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationBackupFileName_starts_with_a_colon_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = ":" + _tempPath;
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationBackupFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationBackupFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationBackupFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_does_not_exist_It_should_throw_FileNotFoundException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
                var e = throwingAction.Should().Throw<FileNotFoundException>();
                e.And.Message.Should().Contain("Could not find a part of the file path '");
-               e.And.Message.Should().Contain(path);
-               e.And.Message.Should().Contain("'.\r\nParameter name: path");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
             }
             finally
             {
-               _directoryInternalMapping.DeleteRecursively(path);
+               _target.DeleteFile(sourceFileName);
             }
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
+         [TestCategory(TestTiming.Nightly)]
+         public void And_the_destinationFileName_has_leading_spaces_It_should_not_throw()
          {
-            const String path = ":";
+            // takes 3 seconds on my box
 
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_FileNotFoundException()
-         {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_FileNotFoundException()
-         {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
-
-            Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
-            var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().Contain("Could not find a part of the file path");
-            e.And.Message.Should().Contain(path);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_set_the_creation_time()
-         {
-            var path = _target.CreateTemporaryFile();
+            var cleanupFileNames = new List<String>();
             try
             {
-               _target.SetCreationTime(path, _target.MinimumFileTimeAsDateTimeOffset);
-               _target.GetCreationTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
+               var sourceFileName = _target.CreateTemporaryFile();
+               var destinationFileName = _target.CreateTemporaryFile();
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName});
+               _target.ReplaceContentsNoBackup(sourceFileName, Spaces + destinationFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
 
-               var expected = DateTimeOffset.UtcNow;
-               _target.SetCreationTime(path, expected);
-               _target.GetCreationTime(path).Should().Be(expected);
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, Spaces + destinationFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
 
-               _target.SetCreationTime(path, _target.MaximumFileTimeAsDateTimeOffset);
-               _target.GetCreationTime(path).Should().Be(_target.MaximumFileTimeAsDateTimeOffset);
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackup(sourceFileName, Spaces + destinationFileName, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, Spaces + destinationFileName, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
             }
             finally
             {
-               _target.DeleteFile(path);
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.Nightly)]
+         public void And_the_destinationFileName_has_trailing_spaces_It_should_not_throw()
+         {
+            // takes 3 seconds on my box
+
+            var cleanupFileNames = new List<String>();
+            try
+            {
+               var sourceFileName = _target.CreateTemporaryFile();
+               var destinationFileName = _target.CreateTemporaryFile();
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName});
+               _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName + Spaces);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName + Spaces);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName + Spaces, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName + Spaces, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+            }
+            finally
+            {
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_is_empty_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = String.Empty;
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_is_null_It_should_throw_ArgumentNullException()
+         {
+            // ReSharper disable ExpressionIsAlwaysNull
+            var sourceFileName = _target.CreateTemporaryFile();
+            String destinationFileName = null;
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+
+            // ReSharper restore ExpressionIsAlwaysNull
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
+         {
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var sourceFileName = _target.CreateTemporaryFile();
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
+            var destinationFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_is_the_sourceFileName_It_should_throw_IOException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = sourceFileName;
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' because the source file and destination file are the same.");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' because the source file and destination file are the same.");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' because the source file and destination file are the same.");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("Cannot replace the contents of destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' because the source file and destination file are the same.");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_is_too_long_It_should_throw_PathTooLongException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_is_white_space_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            const String destinationFileName = " \t ";
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_matches_an_existing_directory_It_should_throw_IOException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The destination file '");
+               e.And.Message.Should().Contain(destinationFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_destinationFileName_starts_with_a_colon_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _target.CreateTemporaryFile();
+            var destinationFileName = ":" + _tempPath;
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("destinationFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: destinationFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(sourceFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_does_not_exist_It_should_throw_FileNotFoundException()
+         {
+            var sourceFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.Nightly)]
+         public void And_the_sourceFileName_has_leading_spaces_It_should_not_throw()
+         {
+            // takes 3 seconds on my box
+
+            var cleanupFileNames = new List<String>();
+            try
+            {
+               var sourceFileName = _target.CreateTemporaryFile();
+               var destinationFileName = _target.CreateTemporaryFile();
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName});
+               _target.ReplaceContentsNoBackup(Spaces + sourceFileName, destinationFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               _target.ReplaceContentsNoBackupIgnoringMetadataErrors(Spaces + sourceFileName, destinationFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackup(Spaces + sourceFileName, destinationFileName, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(Spaces + sourceFileName, destinationFileName, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+            }
+            finally
+            {
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.Nightly)]
+         public void And_the_sourceFileName_has_trailing_spaces_It_should_not_throw()
+         {
+            // takes 3 seconds on my box
+            var cleanupFileNames = new List<String>();
+            try
+            {
+               var sourceFileName = _target.CreateTemporaryFile();
+               var destinationFileName = _target.CreateTemporaryFile();
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName});
+               _target.ReplaceContentsNoBackup(sourceFileName + Spaces, destinationFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName + Spaces, destinationFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackup(sourceFileName + Spaces, destinationFileName, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+
+               sourceFileName = _target.CreateTemporaryFile();
+               destinationFileName = _target.CreateTemporaryFile();
+               destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+               cleanupFileNames.AddRange(new[] {sourceFileName, destinationFileName, destinationBackupFileName});
+               _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName + Spaces, destinationFileName, destinationBackupFileName);
+               _target.FileExists(sourceFileName).Should().BeFalse();
+               _target.FileExists(destinationFileName).Should().BeTrue();
+               _target.FileExists(destinationBackupFileName).Should().BeTrue();
+            }
+            finally
+            {
+               foreach (var path in cleanupFileNames)
+               {
+                  _target.DeleteFile(path);
+               }
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = String.Empty;
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
+         {
+            // ReSharper disable ExpressionIsAlwaysNull
+            String sourceFileName = null;
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+
+            // ReSharper restore ExpressionIsAlwaysNull
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
+         {
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
+            var sourceFileName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<FileNotFoundException>();
+               e.And.Message.Should().Contain("Could not find a part of the file path '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("'.\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_is_too_long_It_should_throw_PathTooLongException()
+         {
+            var sourceFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<PathTooLongException>();
+               e.And.Message.Should().StartWith("The path");
+               e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_is_white_space_It_should_throw_ArgumentException()
+         {
+            const String sourceFileName = " \t ";
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_matches_an_existing_directory_It_should_throw_IOException()
+         {
+            var sourceFileName = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The source file '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The source file '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The source file '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<IOException>();
+               e.And.Message.Should().Contain("The file name is invalid.  The source file '");
+               e.And.Message.Should().Contain(sourceFileName);
+               e.And.Message.Should().Contain("' is a directory.");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
+         {
+            var sourceFileName = ":" + _tempPath;
+            var destinationFileName = _target.CreateTemporaryFile();
+            var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
+               var e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+
+               throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+
+               throwingAction =
+                  () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
+               e = throwingAction.Should().Throw<ArgumentException>();
+               e.And.ParamName.Should().Be("sourceFileName");
+               e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: sourceFileName");
+            }
+            finally
+            {
+               _target.DeleteFile(destinationFileName);
             }
          }
       }

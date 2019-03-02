@@ -1,10 +1,13 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal
 {
    using System;
+   using System.Globalization;
    using System.IO;
    using FluentAssertions;
+   using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Abstractions.Tests.TestFacilities;
+   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -15,6 +18,7 @@
    public static class IOStringUtilities_Tests
    {
       private const String Spaces = "   ";
+      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
       [TestClass]
       public class When_I_call_IOStringUtilities_ConditionallyTrimSpaceFromPath : TestBase
@@ -23,8 +27,18 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_has_leading_or_trailing_spaces_it_should_trim_appropriately()
          {
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(@"   c:").Should().Be(@"c:");
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(@"c:\   ").Should().Be(@"c:\");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(@"   " + driveNoSep).Should().Be(driveNoSep);
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(drive + @"   ").Should().Be(drive);
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"   /myfile.txt").Should().Be(@"/myfile.txt");
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"   .\myfile.txt").Should().Be(@".\myfile.txt");
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"   \\someserver\someshare\resource ").Should().Be(@"\\someserver\someshare\resource");
@@ -38,9 +52,19 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_not_have_leading_or_trailing_spaces_it_should_return_the_path()
          {
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(@"c:").Should().Be(@"c:");
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(@"c:\").Should().Be(@"c:\");
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(@"c:/").Should().Be(@"c:/");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep).Should().Be(driveNoSep);
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(drive).Should().Be(drive);
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(driveNoSep + _pathUtilities.AltDirectorySeparatorCharacter).Should().Be(driveNoSep + _pathUtilities.AltDirectorySeparatorCharacter);
             IOStringUtilities.ConditionallyTrimSpaceFromPath(@"\\someserver\someshare\resource").Should().Be(@"\\someserver\someshare\resource");
          }
 
@@ -66,7 +90,16 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_a_colon_after_the_drive_label_colon_It_should_return_true()
          {
-            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(@"c:\abc:defg\").Should().BeTrue();
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+
+            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(drive + @"abc:defg\").Should().BeTrue();
          }
 
          [TestMethod]
@@ -87,9 +120,21 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_a_colon_at_the_drive_label_only_It_should_return_false()
          {
-            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(@"c:").Should().BeFalse();
-            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(@"c:\").Should().BeFalse();
-            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(@"c:/").Should().BeFalse();
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
+            var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
+
+            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(driveNoSep).Should().BeFalse();
+            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(drive).Should().BeFalse();
+            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(driveAltSep).Should().BeFalse();
          }
 
          [TestMethod]
@@ -134,17 +179,29 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_a_SepChar_It_should_remove_it()
          {
-            var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"c:\");
-            actual.Should().Be("c:");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
 
-            actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"c:/");
-            actual.Should().Be("c:");
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
+            var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
 
-            actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"c:\Program Files (x86)\");
-            actual.Should().Be(@"c:\Program Files (x86)");
+            var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(drive);
+            actual.Should().Be(driveNoSep);
 
-            actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"c:/Program Files (x86)/");
-            actual.Should().Be(@"c:/Program Files (x86)");
+            actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(driveAltSep);
+            actual.Should().Be(driveNoSep);
+
+            actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(drive + @"Program Files (x86)\");
+            actual.Should().Be(drive + @"Program Files (x86)");
+
+            actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(driveAltSep + @"Program Files (x86)/");
+            actual.Should().Be(driveAltSep + @"Program Files (x86)");
          }
 
          [TestMethod]
@@ -159,10 +216,10 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_multiple_trailing_SepChars_it_should_remove_only_one()
          {
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\\").Should().Be(@"\");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/").Should().Be(@"\");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\").Should().Be(@"/");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"//").Should().Be(@"/");
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\\").Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/").Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\").Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"//").Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
          }
 
          [TestMethod]
@@ -198,8 +255,20 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_not_have_mixed_separator_characters_it_should_return_path()
          {
-            IOStringUtilities.StandardizeDirectorySeparatorCharacters(@"c:/myfolder/myfile.txt").Should().Be(@"c:/myfolder/myfile.txt");
-            IOStringUtilities.StandardizeDirectorySeparatorCharacters(@"c:\myfolder\myfile.txt").Should().Be(@"c:\myfolder\myfile.txt");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
+            var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
+
+            IOStringUtilities.StandardizeDirectorySeparatorCharacters(driveAltSep + @"myfolder/myfile.txt").Should().Be(driveAltSep + @"myfolder/myfile.txt");
+            IOStringUtilities.StandardizeDirectorySeparatorCharacters(drive + @"myfolder\myfile.txt").Should().Be(drive + @"myfolder\myfile.txt");
             IOStringUtilities.StandardizeDirectorySeparatorCharacters(@"\\server\share\file.txt").Should().Be(@"\\server\share\file.txt");
          }
 
@@ -207,7 +276,16 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_mixed_separator_characters_it_should_standardize_them()
          {
-            IOStringUtilities.StandardizeDirectorySeparatorCharacters(@"c:\myfolder/myfile.txt").Should().Be(@"c:\myfolder\myfile.txt");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+
+            IOStringUtilities.StandardizeDirectorySeparatorCharacters(drive + @"myfolder/myfile.txt").Should().Be(drive + @"myfolder\myfile.txt");
             IOStringUtilities.StandardizeDirectorySeparatorCharacters(@"\\server\share/file.txt").Should().Be(@"\\server\share\file.txt");
          }
 
@@ -235,8 +313,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_a_colon_character_which_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+
             const String argName = "testArg";
-            const String directoryPath = @"c:\Windows:System32";
+            var directoryPath = drive + "Any : Folder";
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be(argName);
@@ -247,8 +334,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+
             const String argName = "testArg";
-            const String directoryPath = @"c:\|";
+            var directoryPath = drive + "|";
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be(argName);
@@ -259,11 +355,27 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_a_root_it_should_return_the_root()
          {
-            IOStringUtilities.ValidateCanonicalPath(@"c:", "arg").Should().Be(@"c:");
-            IOStringUtilities.ValidateCanonicalPath(@"c:\", "arg").Should().Be(@"c:\");
-            IOStringUtilities.ValidateCanonicalPath(@"c:/", "arg").Should().Be(@"c:/");
-            IOStringUtilities.ValidateCanonicalPath(@"\", "arg").Should().Be(@"\");
-            IOStringUtilities.ValidateCanonicalPath(@"/", "arg").Should().Be(@"/");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var driveNoSep = drive.Substring(0, 2);
+            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
+            var driveAltSep = driveNoSep + pathUtils.AltDirectorySeparatorCharacter;
+
+            IOStringUtilities.ValidateCanonicalPath(driveNoSep, "arg").Should().Be(driveNoSep);
+            IOStringUtilities.ValidateCanonicalPath(drive, "arg").Should().Be(drive);
+            IOStringUtilities.ValidateCanonicalPath(driveAltSep, "arg").Should().Be(driveAltSep);
+            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
+               .Should()
+               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
+               .Should()
+               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
             IOStringUtilities.ValidateCanonicalPath(@".", "arg").Should().Be(@".");
             IOStringUtilities.ValidateCanonicalPath(@"\\", "arg").Should().Be(@"\\");
          }
@@ -317,8 +429,17 @@
             //    "   abc"
             //    "   abc.tmp"
 
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+
             const String argName = "testArg";
-            const String directoryPath = @"   c:\windows   ";
+            var directoryPath = @"   " + drive + "windows   ";
             var actual = IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             actual.Should().Be(directoryPath.Trim());
          }
@@ -353,7 +474,7 @@
          public void And_path_starts_with_a_colon_character_It_should_throw_ArgumentException()
          {
             const String argName = "testArg";
-            const String directoryPath = @":c:\";
+            const String directoryPath = @":abcdef";
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be(argName);

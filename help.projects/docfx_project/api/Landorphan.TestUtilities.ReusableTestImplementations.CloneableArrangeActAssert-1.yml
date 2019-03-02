@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/CloneableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CloneableArrangeActAssert
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/CloneableArrangeActAssert.cs
@@ -75,7 +75,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/CloneableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: It_Should_Clone_Correctly_Implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/CloneableArrangeActAssert.cs
@@ -109,7 +109,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/CloneableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Target
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/CloneableArrangeActAssert.cs

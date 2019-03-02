@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IRecordedEvent
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -55,7 +55,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ActualEventSource
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -91,7 +91,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AdditionalData
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -127,7 +127,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EventName
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -163,7 +163,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ExpectedEventSource
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -199,7 +199,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ManagedThreadId
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -235,7 +235,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SequenceNumber
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
@@ -271,7 +271,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Timestamp
     path: ../../source/Landorphan.TestUtilities.MSTest/Interfaces/IRecordedEvent.cs

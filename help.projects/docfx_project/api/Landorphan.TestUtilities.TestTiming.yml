@@ -20,7 +20,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestTiming
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
@@ -56,11 +56,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CheckIn
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-    startLine: 15
+    startLine: 17
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -92,11 +92,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CheckInNonIde
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-    startLine: 23
+    startLine: 25
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -104,10 +104,10 @@ items:
   remarks: "\nTests must pass before check-in, but are excluded from IDE test runs.\n"
   example: []
   syntax:
-    content: public const string CheckInNonIde = "Check-In(Non-Ide)"
+    content: public const string CheckInNonIde = "Check-In-Non-Ide"
     return:
       type: System.String
-    content.vb: Public Const CheckInNonIde As String = "Check-In(Non-Ide)"
+    content.vb: Public Const CheckInNonIde As String = "Check-In-Non-Ide"
   modifiers.csharp:
   - public
   - const
@@ -128,11 +128,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IdeOnly
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-    startLine: 31
+    startLine: 33
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -164,11 +164,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Manual
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-    startLine: 39
+    startLine: 41
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -200,11 +200,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Nightly
     path: ../../source/Landorphan.TestUtilities.MSTest/TestTiming.cs
-    startLine: 47
+    startLine: 49
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities

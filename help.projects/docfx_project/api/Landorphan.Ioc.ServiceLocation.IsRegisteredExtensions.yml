@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredExtensions
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -60,7 +60,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -74,7 +74,6 @@ items:
   syntax:
     content: >-
       public static bool IsRegistered<TFrom>(this IIocContainerRegistrationRepository container)
-
           where TFrom : class
     parameters:
     - id: container
@@ -115,7 +114,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -170,7 +169,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -219,7 +218,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegistered
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -271,7 +270,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -284,7 +283,6 @@ items:
   syntax:
     content: >-
       public static bool IsRegisteredChain<TFrom>(this IIocContainerRegistrationRepository container)
-
           where TFrom : class
     parameters:
     - id: container
@@ -325,7 +323,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -338,7 +336,6 @@ items:
   syntax:
     content: >-
       public static bool IsRegisteredChain<TFrom>(this IIocContainerRegistrationRepository container, string name)
-
           where TFrom : class
     parameters:
     - id: container
@@ -382,7 +379,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
@@ -430,7 +427,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsRegisteredChain
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsRegisteredExtensions.cs

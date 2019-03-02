@@ -25,16 +25,16 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DisposableArrangeActAssert
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 33
+    startLine: 58
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
   summary: "\nProvides common services for BDD-style (context/specification) unit tests.  Serves as an adapter between the MSTest and  BDD-style tests when\nfields and auto-properties of the test class are owned and implement <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref>.\n"
-  remarks: "\n<p>\nThis class uses reflection to dispose of all fields and Auto-Properties in descendant classes provided those fields or auto-properties match the following requirements:\n  NOT decorated with [DoNotDispose]\n  Implements IDisposable or implements IEnumerable{IDisposable}\nNote:  This class does not handle IDictionary{TKey,TValue}.  When a descendant class has an &quot;owned&quot; IDictionary{TKey,TValue} or any other\nnested structure containing IDisposable resources, override the <xref href=\"Landorphan.Common.DisposableObject.ReleaseManagedResources\" data-throw-if-not-resolved=\"false\"></xref> method, calling the base implementation at the end of the override.\n</p>\n<p>\nCall <xref href=\"Landorphan.Common.DisposableObject.ThrowIfDisposed\" data-throw-if-not-resolved=\"false\"></xref> on member access as appropriate.\n</p>\n<p>\nThe implementation of <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> has been altered from the recommended pattern to make it thread-safe to call.\n</p>\n"
+  remarks: "\n<p>\nThis class disposes of all fields and Auto-Properties in descendant classes provided those fields or auto-properties match the following requirements:\n  NOT decorated with [DoNotDispose]\n<table><thead><tr><th>field</th><th>requirement</th></tr></thead><tbody><tr><td>field</td><td>Implements <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>field</td><td>Implements <xref href=\"System.Collections.Generic.IEnumerable%601\" data-throw-if-not-resolved=\"false\"></xref>  where T implements <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref></td></tr><tr><td>field</td><td>Implements <xref href=\"System.Collections.Generic.IDictionary%602\" data-throw-if-not-resolved=\"false\"></xref> where TKey and/or TValue are themselves implement <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> or\nimplement <xref href=\"System.Collections.Generic.IEnumerable%601\" data-throw-if-not-resolved=\"false\"></xref>  where T implements <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref></td></tr></tbody></table>  \n</p>\n<p>\nWhen defining a class that owns <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> resources that do not match the above requirements, override the <xref href=\"Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources\" data-throw-if-not-resolved=\"false\"></xref>\nmethod, and dispose those resource in the usual manner, calling the base implementation at the end of the override implementation.\n</p>\n<remarks>\nOnly the declared types are evaluated.  (Run-time type information is not considered).  A field of type <xref href=\"System.Threading.Mutex\" data-throw-if-not-resolved=\"false\"></xref> will be disposed.  However, a field of type <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>\nreferencing a <xref href=\"System.Threading.Mutex\" data-throw-if-not-resolved=\"false\"></xref> will not be disposed.\n</remarks>\n<p>\nCall <xref href=\"Landorphan.Common.DisposableObject.ThrowIfDisposed\" data-throw-if-not-resolved=\"false\"></xref> on member access, as appropriate.\n</p>\n<p>\nThe implementation of <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> has been altered from the recommended pattern to make it thread-safe to call; and handle re-entrant calls to <xref href=\"Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
   example: []
   syntax:
     content: >-
@@ -92,11 +92,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Dispose
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 49
+    startLine: 74
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -125,11 +125,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Dispose
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 76
+    startLine: 101
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -163,11 +163,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ReleaseManagedResources
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 94
+    startLine: 119
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -197,11 +197,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ReleaseUnmanagedResources
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 192
+    startLine: 217
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -231,11 +231,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Finalize
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 200
+    startLine: 225
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -263,11 +263,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Disposing
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 206
+    startLine: 231
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -297,11 +297,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsDisposed
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 213
+    startLine: 238
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -335,11 +335,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsDisposing
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 216
+    startLine: 241
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -373,11 +373,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: OnDisposing
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 221
+    startLine: 246
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -407,11 +407,11 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ThrowIfDisposed
     path: ../../source/Landorphan.TestUtilities.MSTest/DisposableArrangeActAssert.cs
-    startLine: 229
+    startLine: 254
   assemblies:
   - Landorphan.TestUtilities.MSTest
   namespace: Landorphan.TestUtilities
@@ -433,37 +433,61 @@ references:
   name: IDisposable
   nameWithType: IDisposable
   fullName: System.IDisposable
-- uid: Landorphan.Common.DisposableObject.ReleaseManagedResources
-  commentId: M:Landorphan.Common.DisposableObject.ReleaseManagedResources
-  parent: Landorphan.Common.DisposableObject
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
   isExternal: true
-  name: ReleaseManagedResources()
-  nameWithType: DisposableObject.ReleaseManagedResources()
-  fullName: Landorphan.Common.DisposableObject.ReleaseManagedResources()
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
   spec.csharp:
-  - uid: Landorphan.Common.DisposableObject.ReleaseManagedResources
-    name: ReleaseManagedResources
-    nameWithType: DisposableObject.ReleaseManagedResources
-    fullName: Landorphan.Common.DisposableObject.ReleaseManagedResources
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
   spec.vb:
-  - uid: Landorphan.Common.DisposableObject.ReleaseManagedResources
-    name: ReleaseManagedResources
-    nameWithType: DisposableObject.ReleaseManagedResources
-    fullName: Landorphan.Common.DisposableObject.ReleaseManagedResources
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
     isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.ReleaseManagedResources
+  isExternal: true
+- uid: System.Threading.Mutex
+  commentId: T:System.Threading.Mutex
+  isExternal: true
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
 - uid: Landorphan.Common.DisposableObject.ThrowIfDisposed
   commentId: M:Landorphan.Common.DisposableObject.ThrowIfDisposed
   parent: Landorphan.Common.DisposableObject
@@ -526,18 +550,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+  commentId: M:Landorphan.TestUtilities.DisposableArrangeActAssert.Dispose
+  isExternal: true
 - uid: Landorphan.TestUtilities
   commentId: N:Landorphan.TestUtilities
   name: Landorphan.TestUtilities
   nameWithType: Landorphan.TestUtilities
   fullName: Landorphan.TestUtilities
-- uid: System.Object
-  commentId: T:System.Object
-  parent: System
-  isExternal: true
-  name: Object
-  nameWithType: Object
-  fullName: System.Object
 - uid: Landorphan.TestUtilities.TestBase
   commentId: T:Landorphan.TestUtilities.TestBase
   parent: Landorphan.TestUtilities

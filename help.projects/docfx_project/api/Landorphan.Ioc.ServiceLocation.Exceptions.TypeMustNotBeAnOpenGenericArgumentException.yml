@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TypeMustNotBeAnOpenGenericArgumentException
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -36,9 +36,7 @@ items:
     content: 'public sealed class TypeMustNotBeAnOpenGenericArgumentException : LandorphanIocServiceLocationArgumentException, ISerializable'
     content.vb: >-
       Public NotInheritable Class TypeMustNotBeAnOpenGenericArgumentException
-
           Inherits LandorphanIocServiceLocationArgumentException
-
           Implements ISerializable
   inheritance:
   - System.Object
@@ -71,7 +69,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -103,7 +101,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -139,7 +137,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -178,7 +176,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -217,7 +215,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -262,7 +260,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetObjectData
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
@@ -301,7 +299,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ActualType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceArgumentExceptions/TypeMustNotBeAnOpenGenericArgumentException.cs

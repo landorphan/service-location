@@ -13,6 +13,7 @@
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -24,7 +25,7 @@
       private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly FileInternalMapping _target = new FileInternalMapping();
-      private static readonly String _tempPath = _environmentUtilities.GetTemporaryDirectoryPath();
+      private static readonly String _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
 
       [TestClass]
       public class When_I_call_FileInternalMapping_AppendAllLines : TestBase
@@ -46,7 +47,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -92,7 +93,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_name_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -100,7 +100,7 @@
             try
             {
                var contents = new[] {"one", "two", "three"};
-               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + @"\" + _pathUtilities.GetFileName(unalteredPath);
+               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + _pathUtilities.DirectorySeparatorCharacter + _pathUtilities.GetFileName(unalteredPath);
 
                var enc = new UTF8Encoding(false, true);
                _target.AppendAllLines(path, contents, enc);
@@ -139,7 +139,7 @@
          {
             // HAPPY PATH TEST:
             var unalteredPath = _target.CreateTemporaryFile();
-            var path = _pathUtilities.GetParentPath(unalteredPath) + @"\" + Spaces + _pathUtilities.GetFileName(unalteredPath);
+            var path = _pathUtilities.GetParentPath(unalteredPath) + _pathUtilities.DirectorySeparatorCharacter + Spaces + _pathUtilities.GetFileName(unalteredPath);
             try
             {
                var contents = new[] {"one", "two", "three"};
@@ -162,7 +162,7 @@
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             // TODO: change the exception to an ArgumentException
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var contents = new[] {"one", "two", "three"};
 
             var enc = new UTF8Encoding(false, true);
@@ -183,8 +183,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid() + "|",
-               Guid.NewGuid() + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
 
             var enc = new UTF8Encoding(false, true);
             Action throwingAction = () => _target.AppendAllLines(invalidFilePathDirectoryPath, contents, enc);
@@ -197,8 +197,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid(),
-               Guid.NewGuid() + "|" + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + ".txt");
 
             throwingAction = () => _target.AppendAllLines(invalidFilePathFileName, contents, enc);
             e = throwingAction.Should().Throw<ArgumentException>();
@@ -236,7 +236,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_in_the_parent_directory_It_should_create_the_directory_and_the_file_and_append_the_lines()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString(), Guid.NewGuid() + ".txt");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
             var contents = new[] {"one", "two", "three"};
 
             try
@@ -354,11 +354,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _target.FileExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _target.FileExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             var dirName = _pathUtilities.GetParentPath(path);
 
@@ -409,7 +414,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_matches_an_existing_directory_it_should_throw_IOException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _directoryInternalMapping.CreateDirectory(path);
             var contents = new[] {"one", "two", "three"};
 
@@ -457,7 +462,7 @@
          public void And_the_path_matches_an_existing_file_It_should_append_the_lines()
          {
             var contents = new[] {"one", "two", "three"};
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".txt");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
             _target.CreateFile(path);
             try
             {
@@ -513,7 +518,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -537,14 +542,13 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
          public void And_the_directory_name_has_trailing_spaces_It_should_not_throw()
          {
             var unalteredPath = _target.CreateTemporaryFile();
             try
             {
                const String contents = "Abc123";
-               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + @"\" + _pathUtilities.GetFileName(unalteredPath);
+               var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + _pathUtilities.DirectorySeparatorCharacter + _pathUtilities.GetFileName(unalteredPath);
 
                _target.AppendAllText(path, contents, Encoding.UTF8);
                var actual = _target.ReadAllText(path, Encoding.UTF8);
@@ -580,7 +584,7 @@
          public void And_the_file_name_has_leading_spaces_It_should_not_throw()
          {
             var unalteredPath = _target.CreateTemporaryFile();
-            var path = _pathUtilities.GetParentPath(unalteredPath) + @"\" + Spaces + _pathUtilities.GetFileName(unalteredPath);
+            var path = _pathUtilities.GetParentPath(unalteredPath) + _pathUtilities.DirectorySeparatorCharacter + Spaces + _pathUtilities.GetFileName(unalteredPath);
             try
             {
                const String contents = "Abc123";
@@ -600,7 +604,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             const String contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(path, contents, Encoding.ASCII);
@@ -620,8 +624,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid() + "|",
-               Guid.NewGuid() + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
 
             Action throwingAction = () => _target.AppendAllText(invalidFilePathDirectoryPath, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -633,8 +637,8 @@
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
-               Guid.NewGuid(),
-               Guid.NewGuid() + "|" + ".txt");
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + ".txt");
 
             throwingAction = () => _target.AppendAllText(invalidFilePathFileName, contents, Encoding.ASCII);
             e = throwingAction.Should().Throw<ArgumentException>();
@@ -649,7 +653,7 @@
             const String contents = "one\r\ntwo\r\nthree";
             var path = _pathUtilities.Combine(
                _tempPath,
-               Guid.NewGuid().ToString(),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
                "And_the_path_does_not_exist_in_the_parent_directory_It_should_create_the_directory_and_the_file_and_append_the_text.txt");
 
             try
@@ -758,11 +762,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _target.FileExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _target.FileExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             var dirName = _pathUtilities.GetParentPath(path);
 
@@ -805,7 +814,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_matches_an_existing_directory_it_should_throw_IOException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _directoryInternalMapping.CreateDirectory(path);
             const String contents = "Abc123";
 

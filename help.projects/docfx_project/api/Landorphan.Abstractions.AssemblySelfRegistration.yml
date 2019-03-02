@@ -1,0 +1,22 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.AssemblySelfRegistration
+  commentId: N:Landorphan.Abstractions.AssemblySelfRegistration
+  id: Landorphan.Abstractions.AssemblySelfRegistration
+  children:
+  - Landorphan.Abstractions.AssemblySelfRegistration.AbstractionsServiceLocationSelfRegistration
+  langs:
+  - csharp
+  - vb
+  name: Landorphan.Abstractions.AssemblySelfRegistration
+  nameWithType: Landorphan.Abstractions.AssemblySelfRegistration
+  fullName: Landorphan.Abstractions.AssemblySelfRegistration
+  type: Namespace
+  assemblies:
+  - Landorphan.Abstractions
+references:
+- uid: Landorphan.Abstractions.AssemblySelfRegistration.AbstractionsServiceLocationSelfRegistration
+  commentId: T:Landorphan.Abstractions.AssemblySelfRegistration.AbstractionsServiceLocationSelfRegistration
+  name: AbstractionsServiceLocationSelfRegistration
+  nameWithType: AbstractionsServiceLocationSelfRegistration
+  fullName: Landorphan.Abstractions.AssemblySelfRegistration.AbstractionsServiceLocationSelfRegistration

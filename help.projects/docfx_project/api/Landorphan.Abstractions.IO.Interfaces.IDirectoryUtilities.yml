@@ -1,0 +1,948 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  id: IDirectoryUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  langs:
+  - csharp
+  - vb
+  name: IDirectoryUtilities
+  nameWithType: IDirectoryUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: IDirectoryUtilities
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 10
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nExposes methods for creating, moving, and enumerating through directories and subdirectories.\n"
+  example: []
+  syntax:
+    content: public interface IDirectoryUtilities
+    content.vb: Public Interface IDirectoryUtilities
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  id: MaximumFileTimeAsDateTimeOffset
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: MaximumFileTimeAsDateTimeOffset
+  nameWithType: IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: MaximumFileTimeAsDateTimeOffset
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 18
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets the maximum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+      description: "\nThe maximum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: ReadOnly Property MaximumFileTimeAsDateTimeOffset As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  id: MinimumFileTimeAsDateTimeOffset
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: MinimumFileTimeAsDateTimeOffset
+  nameWithType: IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: MinimumFileTimeAsDateTimeOffset
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 26
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets the minimum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+      description: "\nThe minimum file time as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: ReadOnly Property MinimumFileTimeAsDateTimeOffset As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory(System.String)
+  id: CreateDirectory(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateDirectory(String)
+  nameWithType: IDirectoryUtilities.CreateDirectory(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: CreateDirectory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 64
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCreates all directories and subdirectories in the specified path.\n"
+  example: []
+  syntax:
+    content: string CreateDirectory(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe directory path to create.\n"
+    return:
+      type: System.String
+      description: "\nAn object that represents the directory for the specified path.\n"
+    content.vb: Function CreateDirectory(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nThe directory specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file.\n-or-\nThe network name is not known.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is prefixed with, or contains only a colon character (:).\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains a colon character (:) that is not part of a drive label (e.g., &quot;C:\\&quot;).\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty(System.String)
+  id: DeleteEmpty(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: DeleteEmpty(String)
+  nameWithType: IDirectoryUtilities.DeleteEmpty(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: DeleteEmpty
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 108
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nDeletes an empty directory from a specified path.\n"
+  example: []
+  syntax:
+    content: void DeleteEmpty(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe name of the empty directory to remove. This directory must be writable or empty.\n"
+    content.vb: Sub DeleteEmpty(path As String)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nA file with the same name and location specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> exists.\n-or-\nThe directory is the application&apos;s current working directory.\n-or-\nThe directory specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is not empty.\n-or-\nThe directory is read-only or contains a read-only file.\n-or-\nThe directory is being used by another process.\n-or-\nThere is an open handle on the directory, and\nthe operating system is Windows XP or earlier. This open handle can result from directories. For\nmore information, see How to: Enumerate Directories and Files.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> does not exist or could not be found.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> refers to a file instead of a directory.\n-or-\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively(System.String)
+  id: DeleteRecursively(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: DeleteRecursively(String)
+  nameWithType: IDirectoryUtilities.DeleteRecursively(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: DeleteRecursively
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 150
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nDeletes the specified directory and any subdirectories and files in the directory.\n"
+  example: []
+  syntax:
+    content: void DeleteRecursively(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe name of the directory to remove.\n"
+    content.vb: Sub DeleteRecursively(path As String)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nA file with the same name and location specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> exists.\n-or-\nThe directory specified by <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is read-only.\n-or-\nThe directory is the application&apos;s current working directory. \n-or-\nThe directory contains a read-only file.\n-or-\nThe directory is being used by another process.There is an open handle on the directory or on one of its files, and the operating\nsystem is Windows XP or earlier. This open handle can result from enumerating directories and\nfiles. For more information, see How to: Enumerate Directories and Files.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> does not exist or could not be found.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> refers to a file instead of a directory.\n-or-\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists(System.String)
+  id: DirectoryExists(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: DirectoryExists(String)
+  nameWithType: IDirectoryUtilities.DirectoryExists(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: DirectoryExists
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 161
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nDetermines whether the given path refers to an existing directory on disk.\n"
+  example: []
+  syntax:
+    content: bool DirectoryExists(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path to test.\n"
+    return:
+      type: System.Boolean
+      description: "\ntrue if <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> refers to an existing directory; otherwise, false.\n"
+    content.vb: Function DirectoryExists(path As String) As Boolean
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists*
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime(System.String)
+  id: GetCreationTime(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetCreationTime(String)
+  nameWithType: IDirectoryUtilities.GetCreationTime(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetCreationTime
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 185
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets the creation date and time of a directory.\n"
+  example: []
+  syntax:
+    content: DateTimeOffset GetCreationTime(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path of the directory.\n"
+    return:
+      type: System.DateTimeOffset
+      description: "\nA structure that is set to the creation date and time for the specified directory.\n"
+    content.vb: Function GetCreationTime(path As String) As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory
+  id: GetCurrentDirectory
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetCurrentDirectory()
+  nameWithType: IDirectoryUtilities.GetCurrentDirectory()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetCurrentDirectory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 200
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets the current working directory of the application.\n"
+  example: []
+  syntax:
+    content: string GetCurrentDirectory()
+    return:
+      type: System.String
+      description: "\nA string that contains the path of the current working directory, and does not end with a backslash (\\).\n"
+    content.vb: Function GetCurrentDirectory As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\nThe operating system is Windows CE, which does not have current directory functionality. This\nmethod is available in the .NET Compact Framework, but is not currently supported.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime(System.String)
+  id: GetLastAccessTime(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetLastAccessTime(String)
+  nameWithType: IDirectoryUtilities.GetLastAccessTime(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetLastAccessTime
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 230
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the date and time the specified file or directory was last accessed.\n"
+  example: []
+  syntax:
+    content: DateTimeOffset GetLastAccessTime(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to obtain access date and time information.\n"
+    return:
+      type: System.DateTimeOffset
+      description: "\nA structure that is set to the date and time the specified file or directory was last accessed.\ntime.\n"
+    content.vb: Function GetLastAccessTime(path As String) As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\nThe <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> parameter is in an invalid format.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime(System.String)
+  id: GetLastWriteTime(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetLastWriteTime(String)
+  nameWithType: IDirectoryUtilities.GetLastWriteTime(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetLastWriteTime
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 256
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the date and time the specified file or directory was last written to.\n"
+  example: []
+  syntax:
+    content: DateTimeOffset GetLastWriteTime(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to obtain modification date and time information.\n"
+    return:
+      type: System.DateTimeOffset
+      description: "\nA structure that is set to the date and time the specified file or directory was last written to.\ntime.\n"
+    content.vb: Function GetLastWriteTime(path As String) As DateTimeOffset
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName
+  id: GetRandomDirectoryName
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetRandomDirectoryName()
+  nameWithType: IDirectoryUtilities.GetRandomDirectoryName()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetRandomDirectoryName
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 267
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGenerates a a cryptographically strong, random string that can be used as a directory name.\n"
+  remarks: "\nDoes not create a directory.\n"
+  example: []
+  syntax:
+    content: string GetRandomDirectoryName()
+    return:
+      type: System.String
+      description: "\nA random directory name.\n"
+    content.vb: Function GetRandomDirectoryName As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName*
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath
+  id: GetTemporaryDirectoryPath
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetTemporaryDirectoryPath()
+  nameWithType: IDirectoryUtilities.GetTemporaryDirectoryPath()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetTemporaryDirectoryPath
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 279
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the path of the current user&apos;s temporary folder.\n"
+  example: []
+  syntax:
+    content: string GetTemporaryDirectoryPath()
+    return:
+      type: System.String
+      description: "\nThe path to the temporary folder, ending with a backslash.\n"
+    content.vb: Function GetTemporaryDirectoryPath As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath*
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permissions.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime(System.String,System.DateTimeOffset)
+  id: SetCreationTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetCreationTime(String, DateTimeOffset)
+  nameWithType: IDirectoryUtilities.SetCreationTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime(System.String, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetCreationTime
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 315
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nSets the creation date and time for the specified file or directory.\n"
+  example: []
+  syntax:
+    content: void SetCreationTime(string path, DateTimeOffset creationTime)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to set the creation date and time information.\n"
+    - id: creationTime
+      type: System.DateTimeOffset
+      description: "\nAn object that contains the value to set for the creation date and time of <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.\n"
+    content.vb: Sub SetCreationTime(path As String, creationTime As DateTimeOffset)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime*
+  exceptions:
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">creationTime</code> specifies a value outside the range of dates or times\npermitted for this operation.\n"
+  - type: System.PlatformNotSupportedException
+    commentId: T:System.PlatformNotSupportedException
+    description: "\nThe current operating system is not Windows NT or later.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory(System.String)
+  id: SetCurrentDirectory(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetCurrentDirectory(String)
+  nameWithType: IDirectoryUtilities.SetCurrentDirectory(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetCurrentDirectory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 346
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nSets the application&apos;s current working directory to the specified directory.\n"
+  example: []
+  syntax:
+    content: void SetCurrentDirectory(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path to which the current working directory is set.\n"
+    content.vb: Sub SetCurrentDirectory(path As String)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory*
+  exceptions:
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission to access unmanaged code.\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified directory was not found.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime(System.String,System.DateTimeOffset)
+  id: SetLastAccessTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetLastAccessTime(String, DateTimeOffset)
+  nameWithType: IDirectoryUtilities.SetLastAccessTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime(System.String, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetLastAccessTime
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 381
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nSets the date and time the specified file or directory was last accessed.\n"
+  example: []
+  syntax:
+    content: void SetLastAccessTime(string path, DateTimeOffset lastAccessTime)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to set the access date and time information.\n"
+    - id: lastAccessTime
+      type: System.DateTimeOffset
+      description: "\nAn object that contains the value to set for the access date and time of <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.\n"
+    content.vb: Sub SetLastAccessTime(path As String, lastAccessTime As DateTimeOffset)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime*
+  exceptions:
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.PlatformNotSupportedException
+    commentId: T:System.PlatformNotSupportedException
+    description: "\nThe current operating system is not Windows NT or later.\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">lastAccessTime</code> specifies a value outside the range of dates or times\npermitted for this operation.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime(System.String,System.DateTimeOffset)
+  id: SetLastWriteTime(System.String,System.DateTimeOffset)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities
+  langs:
+  - csharp
+  - vb
+  name: SetLastWriteTime(String, DateTimeOffset)
+  nameWithType: IDirectoryUtilities.SetLastWriteTime(String, DateTimeOffset)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime(System.String, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: SetLastWriteTime
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IDirectoryUtilities.cs
+    startLine: 416
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nSets the date and time a directory was last written to.\n"
+  example: []
+  syntax:
+    content: void SetLastWriteTime(string path, DateTimeOffset lastWriteTime)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path of the directory.\n"
+    - id: lastWriteTime
+      type: System.DateTimeOffset
+      description: "\nThe date and time the directory was last written to.\n"
+    content.vb: Sub SetLastWriteTime(path As String, lastWriteTime As DateTimeOffset)
+  overload: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime*
+  exceptions:
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe specified path was not found.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.PlatformNotSupportedException
+    commentId: T:System.PlatformNotSupportedException
+    description: "\nThe current operating system is not Windows NT or later.\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">lastWriteTime</code> specifies a value outside the range of dates or times\npermitted for this operation.\n"
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  name: MaximumFileTimeAsDateTimeOffset
+  nameWithType: IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MaximumFileTimeAsDateTimeOffset
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  name: MinimumFileTimeAsDateTimeOffset
+  nameWithType: IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.MinimumFileTimeAsDateTimeOffset
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  isExternal: true
+- uid: System.IO.IOException
+  commentId: T:System.IO.IOException
+  isExternal: true
+- uid: System.UnauthorizedAccessException
+  commentId: T:System.UnauthorizedAccessException
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: System.IO.PathTooLongException
+  commentId: T:System.IO.PathTooLongException
+  isExternal: true
+- uid: System.IO.DirectoryNotFoundException
+  commentId: T:System.IO.DirectoryNotFoundException
+  isExternal: true
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory
+  name: CreateDirectory
+  nameWithType: IDirectoryUtilities.CreateDirectory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.CreateDirectory
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty
+  name: DeleteEmpty
+  nameWithType: IDirectoryUtilities.DeleteEmpty
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteEmpty
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively
+  name: DeleteRecursively
+  nameWithType: IDirectoryUtilities.DeleteRecursively
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DeleteRecursively
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists
+  name: DirectoryExists
+  nameWithType: IDirectoryUtilities.DirectoryExists
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.DirectoryExists
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime
+  name: GetCreationTime
+  nameWithType: IDirectoryUtilities.GetCreationTime
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCreationTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory
+  name: GetCurrentDirectory
+  nameWithType: IDirectoryUtilities.GetCurrentDirectory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetCurrentDirectory
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime
+  name: GetLastAccessTime
+  nameWithType: IDirectoryUtilities.GetLastAccessTime
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastAccessTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime
+  name: GetLastWriteTime
+  nameWithType: IDirectoryUtilities.GetLastWriteTime
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetLastWriteTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName
+  name: GetRandomDirectoryName
+  nameWithType: IDirectoryUtilities.GetRandomDirectoryName
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetRandomDirectoryName
+- uid: System.Security.SecurityException
+  commentId: T:System.Security.SecurityException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath
+  name: GetTemporaryDirectoryPath
+  nameWithType: IDirectoryUtilities.GetTemporaryDirectoryPath
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.GetTemporaryDirectoryPath
+- uid: System.IO.FileNotFoundException
+  commentId: T:System.IO.FileNotFoundException
+  isExternal: true
+- uid: System.ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException
+  isExternal: true
+- uid: System.PlatformNotSupportedException
+  commentId: T:System.PlatformNotSupportedException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime
+  name: SetCreationTime
+  nameWithType: IDirectoryUtilities.SetCreationTime
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCreationTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory
+  name: SetCurrentDirectory
+  nameWithType: IDirectoryUtilities.SetCurrentDirectory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetCurrentDirectory
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime
+  name: SetLastAccessTime
+  nameWithType: IDirectoryUtilities.SetLastAccessTime
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastAccessTime
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime
+  name: SetLastWriteTime
+  nameWithType: IDirectoryUtilities.SetLastWriteTime
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryUtilities.SetLastWriteTime

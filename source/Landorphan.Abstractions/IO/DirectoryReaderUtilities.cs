@@ -74,5 +74,68 @@ namespace Landorphan.Abstractions.IO
          var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
          return directoryInternalMapping.EnumerateFileSystemEntries(path, searchPattern, searchOption);
       }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetDirectories(String path)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetDirectories(path);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetDirectories(String path, String searchPattern)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetDirectories(path, searchPattern);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetDirectories(String path, String searchPattern, SearchOption searchOption)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetDirectories(path, searchPattern, searchOption);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFiles(String path)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetFiles(path);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFiles(String path, String searchPattern)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetFiles(path, searchPattern);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFiles(String path, String searchPattern, SearchOption searchOption)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetFiles(path, searchPattern, searchOption);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFileSystemEntries(String path)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetFileSystemEntries(path);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetFileSystemEntries(path, searchPattern);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern, SearchOption searchOption)
+      {
+         var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+         return directoryInternalMapping.GetFileSystemEntries(path, searchPattern, searchOption);
+      }
    }
 }

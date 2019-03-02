@@ -1,10 +1,7 @@
 ﻿namespace Landorphan.Abstractions.AssemblySelfRegistration
 {
    using System.Diagnostics.CodeAnalysis;
-   using Landorphan.Abstractions.Console;
-   using Landorphan.Abstractions.Console.Interfaces;
    using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.Internal;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
@@ -33,24 +30,6 @@
 
          IEnvironmentUtilities environmentUtilities = environmentUtilitiesFactory.Create();
          registrar.RegisterInstance(environmentUtilities);
-
-         //
-         // Landorphan.Abstractions.Console
-         //
-         var consoleMapping = new ConsoleInternalMapping();
-         registrar.RegisterInstance<IConsoleInternalMapping>(consoleMapping);
-
-         var consoleUtilities = new ConsoleUtilities(consoleMapping);
-         registrar.RegisterInstance<IConsole>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleAppearance>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleBuffer>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleCursor>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleMisc>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleReader>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleStreams>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleWrite>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleWriteLine>(consoleUtilities);
-         registrar.RegisterInstance<IConsoleWriter>(consoleUtilities);
 
          //
          // Landorphan.Abstractions.IO

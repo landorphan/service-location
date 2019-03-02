@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory
+  id: IFileReaderUtilitiesFactory
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create
+  langs:
+  - csharp
+  - vb
+  name: IFileReaderUtilitiesFactory
+  nameWithType: IFileReaderUtilitiesFactory
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IFileReaderUtilitiesFactory.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: IFileReaderUtilitiesFactory
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileReaderUtilitiesFactory.cs
+    startLine: 5
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nFactory for instantiating <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities\" data-throw-if-not-resolved=\"false\"></xref> instances.\n"
+  example: []
+  syntax:
+    content: public interface IFileReaderUtilitiesFactory
+    content.vb: Public Interface IFileReaderUtilitiesFactory
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create
+  id: Create
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  nameWithType: IFileReaderUtilitiesFactory.Create()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IFileReaderUtilitiesFactory.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: Create
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileReaderUtilitiesFactory.cs
+    startLine: 13
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCreates a <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+  example: []
+  syntax:
+    content: IFileReaderUtilities Create()
+    return:
+      type: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities
+      description: "\nA non-null <xref href=\"Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities\" data-throw-if-not-resolved=\"false\"></xref> instance.\n"
+    content.vb: Function Create As IFileReaderUtilities
+  overload: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create*
+references:
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  name: IFileReaderUtilities
+  nameWithType: IFileReaderUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilities
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create
+  name: Create
+  nameWithType: IFileReaderUtilitiesFactory.Create
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileReaderUtilitiesFactory.Create

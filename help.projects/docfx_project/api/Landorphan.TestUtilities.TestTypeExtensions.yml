@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: TestTypeExtensions
     path: ../../source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
@@ -56,7 +56,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetPublicAndPrivateConstantsDeclaredOnly
     path: ../../source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
@@ -101,7 +101,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetPublicAndPrivateConstantsIncludingInherited
     path: ../../source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
@@ -146,7 +146,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsNullableOfT
     path: ../../source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
@@ -191,7 +191,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsOrdinalType
     path: ../../source/Landorphan.TestUtilities.MSTest/Extensions/TestTypeExtensions.cs

@@ -5,8 +5,12 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using System.IO;
+   using System.Linq;
    using FluentAssertions;
+   using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Tests.TestFacilities;
+   using Landorphan.Common.Exceptions;
+   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -25,7 +29,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -47,7 +51,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -69,7 +73,15 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"c:\", Guid.NewGuid().ToString());
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var path = _pathUtilities.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -91,12 +103,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt"))
             };
 
             try
@@ -141,12 +153,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + ".txt"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt"))
             };
 
             try
@@ -230,11 +242,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _target.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -356,7 +373,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -378,7 +399,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -398,35 +419,15 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_searchOption_is_unrecognized_It_should_throw_ArgumentOutOfRangeException()
+         public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
             const String path = @".\";
-            const String SearchPattern = "*..";
+            const String SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.EnumerateFiles(path, SearchPattern, searchOption);
-            var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
+            var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("searchOption");
-            e.And.Message.Should().Be("Enum value was out of legal range.\r\nParameter name: searchOption");
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
-         public void And_the_searchPattern_is_malformed_It_should_throw_ArgumentException()
-         {
-            const String path = @".\";
-            const String SearchPattern = "*..";
-
-            Action throwingAction = () => _target.EnumerateFiles(path, SearchPattern);
-            var e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
-
-            throwingAction = () => _target.EnumerateFiles(path, SearchPattern, SearchOption.AllDirectories);
-            e = throwingAction.Should().Throw<ArgumentException>();
-            e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
          }
 
          [TestMethod]
@@ -449,12 +450,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_files()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid() + "It_should_return_the_known_files"));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_files" + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_files" + ".txt")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_files" + ".txt"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt"))
             };
 
             try
@@ -486,7 +487,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -508,7 +509,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -530,7 +531,15 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"c:\", Guid.NewGuid().ToString());
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+            var path = _pathUtilities.Combine(drive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -552,12 +561,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString())),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString())),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString()))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)))
             };
 
             try
@@ -602,12 +611,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString())),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString())),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString()))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)))
             };
 
             try
@@ -692,11 +701,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_DirectoryNotFoundException()
          {
-            var path = @"A:\" + Guid.NewGuid();
-            _target.DirectoryExists(@"A:\").Should().BeFalse();
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -818,7 +832,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -840,7 +858,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
-            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -860,35 +878,35 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void And_the_searchOption_is_unrecognized_It_should_throw_ArgumentOutOfRangeException()
+         public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
             const String path = @".\";
-            const String SearchPattern = "*..";
+            const String SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern, searchOption);
-            var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
+            var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("searchOption");
-            e.And.Message.Should().Be("Enum value was out of legal range.\r\nParameter name: searchOption");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0")]
-         public void And_the_searchPattern_is_malformed_It_should_throw_ArgumentException()
+         public void And_the_searchPattern_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             const String path = @".\";
-            const String SearchPattern = "*..";
+
+            var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
+            var SearchPattern = "*." + pathUtils.GetInvalidFileNameCharacters().First();
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
+            e.And.Message.Should().Contain("The search pattern is not well-formed (contains invalid characters).");
 
             throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern, SearchOption.AllDirectories);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("searchPattern");
-            e.And.Message.Should().Contain("Search pattern cannot contain");
+            e.And.Message.Should().Contain("The search pattern is not well-formed (contains invalid characters).");
          }
 
          [TestMethod]
@@ -912,12 +930,12 @@
          public void It_should_return_the_known_FileSystemEntries()
          {
             var outerFullPath =
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries"));
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
             var expected = new List<String>
             {
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries")),
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid() + "It_should_return_the_known_FileSystemEntries"))
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)))
             };
 
             try

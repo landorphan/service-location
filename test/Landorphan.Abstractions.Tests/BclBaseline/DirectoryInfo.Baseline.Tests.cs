@@ -3,6 +3,9 @@
    using System.Diagnostics;
    using System.IO;
    using FluentAssertions;
+   using Landorphan.Abstractions.IO.Interfaces;
+   using Landorphan.Abstractions.Tests.TestFacilities;
+   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,26 +29,36 @@
          [Ignore("documents behavior, does not test code")]
          public void It_does_not_normalize_trailing_directory_separator_chars()
          {
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
+
             // Windows behavior shown here:
 
-            // NOTE: failed with MSTestRunner 2015.03.29
             // TODO: consider an abstraction around DirectoryInfo
-            var a = new DirectoryInfo(@"c:\temp");
-            var b = new DirectoryInfo(@"c:\temp\");
-            var c = new DirectoryInfo(@"c:/temp");
-            var d = new DirectoryInfo(@"c:/temp/");
+
+            var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+
+            var driveColon = TestHardCodes.WindowsLocalTestPaths.MappedDrive.Substring(0, 2);
+
+            var a = new DirectoryInfo(driveColon + @"\temp");
+            var b = new DirectoryInfo(driveColon + @"\temp\");
+            var c = new DirectoryInfo(driveColon + @"/temp");
+            var d = new DirectoryInfo(driveColon + @"/temp/");
 
             Trace.WriteLine(a.FullName); // c:\temp 
             Trace.WriteLine(b.FullName); // c:\temp\
             Trace.WriteLine(c.FullName); // c:\temp
             Trace.WriteLine(d.FullName); // c:\temp\
-            
+
             // Reference equality, not equivalence.
-            b.FullName.Should().Be(a.FullName + @"\");
+            b.FullName.Should().Be(a.FullName + pathUtilities.DirectorySeparatorCharacter);
             b.Should().NotBe(a);
 
-            d.FullName.Should().NotBe(c.FullName + @"/");
-            d.FullName.Should().Be(c.FullName + @"\");
+            d.FullName.Should().NotBe(c.FullName + pathUtilities.AltDirectorySeparatorCharacter);
+            d.FullName.Should().Be(c.FullName + pathUtilities.DirectorySeparatorCharacter);
             d.Should().NotBe(c);
 
             // DirectoryInfo does not support value semantics

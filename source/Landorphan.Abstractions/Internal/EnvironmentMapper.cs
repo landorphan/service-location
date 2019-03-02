@@ -4,7 +4,6 @@
    using System.Collections;
    using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
-   using System.IO;
    using System.Linq;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Common;
@@ -28,7 +27,7 @@
       public Int32 CurrentManagedThreadId => Environment.CurrentManagedThreadId;
 
       /// <inheritdoc/>
-      public Int32 ElapsedMillisecondsSinceSystemStart => Environment.TickCount;
+      public Int32 ElapsedSinceSystemStartupMS => Environment.TickCount;
 
       /// <inheritdoc/>
       public Int32 ExitCode
@@ -190,12 +189,6 @@
          }
 
          return Environment.GetFolderPath(specialFolder, option);
-      }
-
-      /// <inheritdoc/>
-      public String GetTemporaryDirectoryPath()
-      {
-         return Path.GetTempPath();
       }
 
       /// <inheritdoc/>

@@ -1,4 +1,9 @@
 <Patterns xmlns="urn:schemas-jetbrains-com:member-reordering-patterns">
+    <!--
+		R# does not recursively apply ordering to nested types, at least not always, it only applies the ordering specified at the outer-most level in some cases.
+		One more reason to avoid nested constructs.
+	-->
+
    <TypePattern Priority="200" DisplayName="Non-reorderable types" RemoveRegions="All">
       <TypePattern.Match>
          <Or>
@@ -18,7 +23,6 @@
    </TypePattern>
 
    <TypePattern Priority="95" DisplayName="Spec Flow Bindings" RemoveRegions="All">
-      <!-- TODO: Test with Resharper 2018.2.3 or later-->
       <TypePattern.Match>
          <Or>
             <And>
@@ -363,7 +367,6 @@
    </TypePattern>
 
    <TypePattern Priority="90" DisplayName="MSTest (BDD)" RemoveRegions="All">
-      <!-- Note: Currently evaluating with Resharper 2018.2.3-->
       <TypePattern.Match>
          <Or>
             <And>

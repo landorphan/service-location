@@ -5,7 +5,6 @@
    using System.Collections.Generic;
    using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
-   using System.IO;
    using System.Linq;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
@@ -120,10 +119,10 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_variable_is_not_recognized_It_should_return_null()
          {
-            var actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString());
+            var actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             actual.Should().BeNull();
 
-            actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString(), EnvironmentVariableTarget.User);
+            actual = _target.GetEnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), EnvironmentVariableTarget.User);
             actual.Should().BeNull();
          }
 
@@ -193,6 +192,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [SuppressMessage("Microsoft.PlatformCompatibility", "DE0006: API is deprecated", Justification = "Referencing BCL(MWP)")]
          public void It_should_return_the_environment_variables()
          {
             var expected = new HashSet<IEnvironmentVariable>();
@@ -269,18 +269,6 @@
             _target.GetSpecialFolderPath(Environment.SpecialFolder.AdminTools, Environment.SpecialFolderOption.None)
                .Should()
                .Be(Environment.GetFolderPath(Environment.SpecialFolder.AdminTools, Environment.SpecialFolderOption.None));
-         }
-      }
-
-      [TestClass]
-      public class When_I_call_EnvironmentMapper_GetTemporaryDirectoryPath : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_the_temporary_directory_path()
-         {
-            _target.GetTemporaryDirectoryPath().Should().Be(Path.GetTempPath());
-            _target.GetTemporaryDirectoryPath().Should().EndWith(@"\");
          }
       }
 
@@ -390,13 +378,6 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_the_ElapsedMillisecondsSinceSystemStart()
-         {
-            _target.ElapsedMillisecondsSinceSystemStart.Should().Be(Environment.TickCount);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_HasShutdownStarted()
          {
             _target.HasShutdownStarted.Should().Be(Environment.HasShutdownStarted);
@@ -432,6 +413,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [SuppressMessage("Microsoft.PlatformCompatibility", "DE0009: API is deprecated", Justification = "Referencing BCL(MWP)")]
          public void It_should_return_the_OSVersion()
          {
             _target.OSVersion.Should().Be(Environment.OSVersion);

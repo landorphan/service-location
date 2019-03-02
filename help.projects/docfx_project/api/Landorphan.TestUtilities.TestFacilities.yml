@@ -5,7 +5,7 @@ items:
   id: Landorphan.TestUtilities.TestFacilities
   children:
   - Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
-  - Landorphan.TestUtilities.TestFacilities.TestHardCodes
+  - Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
   - Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
   langs:
   - csharp
@@ -22,11 +22,11 @@ references:
   name: TestAssemblyInitializeCleanup
   nameWithType: TestAssemblyInitializeCleanup
   fullName: Landorphan.TestUtilities.TestFacilities.TestAssemblyInitializeCleanup
-- uid: Landorphan.TestUtilities.TestFacilities.TestHardCodes
-  commentId: T:Landorphan.TestUtilities.TestFacilities.TestHardCodes
-  name: TestHardCodes
-  nameWithType: TestHardCodes
-  fullName: Landorphan.TestUtilities.TestFacilities.TestHardCodes
+- uid: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
+  commentId: T:Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
+  name: TestUtilitiesHardCodes
+  nameWithType: TestUtilitiesHardCodes
+  fullName: Landorphan.TestUtilities.TestFacilities.TestUtilitiesHardCodes
 - uid: Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
   commentId: T:Landorphan.TestUtilities.TestFacilities.WellKnownTestCategories
   name: WellKnownTestCategories

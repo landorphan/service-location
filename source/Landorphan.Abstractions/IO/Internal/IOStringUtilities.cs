@@ -6,6 +6,7 @@
    using System.IO;
    using System.Linq;
    using System.Text;
+   using System.Text.RegularExpressions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Common;
    using Landorphan.Ioc.ServiceLocation;
@@ -162,6 +163,7 @@
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
       [SuppressMessage("SonarLint.CodeSmell", "S1067: Expressions should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
+      [SuppressMessage("SonarLint.CodeSmell", "S2737: Catch clauses should do more than rethrow")]
       internal static String ValidateCanonicalPath(String path, String argumentName)
       {
          // returns a cleaned string if it does not throw.
@@ -188,8 +190,7 @@
 
          const Int32 indexNotFound = -1;
 
-         // GetInvalidPathCharacters() excludes the following: '|'
-         // REFACTOR:  now allowing: '\\', '/', ':', '*', '?', '<', '>' which are not allowed by Windows File Explorer
+         // GetInvalidPathCharacters() excludes the following: '|' and 30'ish more unprintable characters
          if (indexNotFound != cleanedPath.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
             throw new ArgumentException(@"The path is not well-formed (invalid characters).", argumentName);
@@ -205,12 +206,24 @@
             throw new ArgumentException(msg, argumentName);
          }
 
-         // TODO: Need to remove embedded leading whitespace on resource names here.
+         // this call will throw a PathTooLongException as needed.
+         // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
+         Path.GetFullPath(cleanedPath);
 
-         // TODO: invalid multiple-toothpicks  AltDirectorySeparatorCharacter and AltDirectorySeparatorCharacter
          // Leading spaces allowed on resource names, but not trailing.  Whitespace only resource names not allowed.
+         // (I do not know how to recognize a directory name versus a resource names canonically)
+         // Leading spaces on directory names not allowed, embedded spaces allowed.
 
-         // Adjustment under consideration, always remove one trailing directory separator character
+         // a directory separator character, followed by one or more whitespace characters followed by word character;
+         var pattern = @"[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+\s+\w";
+         MatchEvaluator evaluator = ReplaceLeadingWhitespace;
+         cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
+
+         // .Net Standard 2.0 throws IOExceptions path not found on directory names with trailing spaces.
+         // word character(s) followed by space(s) followed by directory separator character
+         pattern = @"\w+\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
+         evaluator = ReplaceTrailingWhitespace;
+         cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
 
          // preserve @"/", @"\", and @"\\" as results.
          if (String.Equals(cleanedPath, @"\\", StringComparison.Ordinal) || String.Equals(cleanedPath, @"\", StringComparison.Ordinal) || String.Equals(cleanedPath, @"/", StringComparison.Ordinal))
@@ -229,17 +242,9 @@
 
          cleanedPath = RemoveOneTrailingDirectorySeparatorCharacter(cleanedPath);
 
-#pragma warning disable S2737 // "catch" clauses should do more than rethrow
-         // this call will throw a PathTooLongException as needed.
-         // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-         Path.GetFullPath(cleanedPath);
-#pragma warning restore S2737 // "catch" clauses should do more than rethrow
-
          // Avoid mixed directory separator characters.
          cleanedPath = StandardizeDirectorySeparatorCharacters(cleanedPath);
 
-         // REFACTOR:  was using GetFullPath to remove invalid trailing whitespace and validate, but losing relative path
-         // now risking embedded trailing whitespace
          return cleanedPath;
       }
 
@@ -260,6 +265,65 @@
          while (sb.Length > 0 && sb[0] == ' ')
          {
             sb.Remove(0, 1);
+         }
+
+         return sb.ToString();
+      }
+
+      [SuppressMessage("SonarLint.CodeSmell", "S3242: Method parameters should be declared with base types")]
+      private static String ReplaceLeadingWhitespace(Match m)
+      {
+         // match will have a value unescaped like the following "\   x" or "/    x"
+         var sb = new StringBuilder(m.Value);
+         for (var i = sb.Length - 1; i >= 0; i--)
+         {
+            if (String.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
+            {
+               sb.Replace(sb[i].ToString(CultureInfo.InvariantCulture), String.Empty, i, 1);
+            }
+         }
+
+         return sb.ToString();
+      }
+
+      [SuppressMessage("SonarLint.CodeSmell", "S3242: Method parameters should be declared with base types")]
+      [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+      private static String ReplaceTrailingWhitespace(Match m)
+      {
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         var primary = pathUtilities.DirectorySeparatorCharacter;
+         var alternate = pathUtilities.AltDirectorySeparatorCharacter;
+         // match will have a value unescaped like the following "temp   \" or "temp    /"
+         var sb = new StringBuilder(m.Value);
+         var whiteSpaceStarted = false;
+         for (var i = sb.Length - 1; i >= 0; i--)
+         {
+            if (!whiteSpaceStarted)
+            {
+               if (sb[0] == primary || sb[i] == alternate)
+               {
+                  // technically not needed, but I think it shows intent so I am leaving it
+                  continue;
+               }
+
+               if (String.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
+               {
+                  whiteSpaceStarted = true;
+               }
+            }
+
+            if (whiteSpaceStarted)
+            {
+               if (String.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
+               {
+                  sb.Replace(sb[i].ToString(CultureInfo.InvariantCulture), String.Empty, i, 1);
+               }
+               else
+               {
+                  // whitespace stopped, stop replacing
+                  break;
+               }
+            }
          }
 
          return sb.ToString();

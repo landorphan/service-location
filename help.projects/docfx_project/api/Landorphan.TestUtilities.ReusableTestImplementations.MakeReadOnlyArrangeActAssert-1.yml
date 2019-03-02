@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: MakeReadOnlyArrangeActAssert
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
@@ -76,7 +76,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Target
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
@@ -118,7 +118,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ActMethod
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
@@ -155,7 +155,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: It_Should_Inform_That_It_Is_A_Read_Only_Implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
@@ -189,7 +189,7 @@ items:
   source:
     remote:
       path: source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs
-      branch: mprochaska.documentation.1
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: It_Should_Throw_On_All_Property_Setters_Implementation
     path: ../../source/Landorphan.TestUtilities.MSTest/ReusableTestImplementations/MakeReadOnlyArrangeActAssert.cs

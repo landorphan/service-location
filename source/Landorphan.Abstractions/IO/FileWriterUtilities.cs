@@ -3,6 +3,7 @@ namespace Landorphan.Abstractions.IO
    using System;
    using System.Collections.Generic;
    using System.Collections.Immutable;
+   using System.IO;
    using System.Text;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
@@ -46,6 +47,13 @@ namespace Landorphan.Abstractions.IO
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.Move(sourceFileName, destFileName);
+      }
+
+      /// <inheritdoc/>
+      public FileStream OpenWrite(String path)
+      {
+         var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
+         return fileInternalMapping.OpenWrite(path);
       }
 
       /// <inheritdoc/>

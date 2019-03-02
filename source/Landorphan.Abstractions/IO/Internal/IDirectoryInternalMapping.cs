@@ -67,6 +67,12 @@
       /// <summary>
       /// Creates all directories and subdirectories in the specified path.
       /// </summary>
+      /// <param name="path">
+      /// The directory path to create.
+      /// </param>
+      /// <returns>
+      /// An object that represents the directory for the specified path.
+      /// </returns>
       /// <exception cref="IOException">
       /// The directory specified by <paramref name="path"/> is a file.
       /// -or-
@@ -76,8 +82,7 @@
       /// The caller does not have the required permission.
       /// </exception>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
-      /// more invalid characters as defined by
+      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by
       /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
       /// -or-
       /// <paramref name="path"/> is prefixed with, or contains only a colon character (:).
@@ -94,17 +99,14 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> contains a colon character (:) that is not part of a drive label (e.g., "C:\").
       /// </exception>
-      /// <param name="path">
-      /// The directory path to create.
-      /// </param>
-      /// <returns>
-      /// An object that represents the directory for the specified path.
-      /// </returns>
       String CreateDirectory(String path);
 
       /// <summary>
       /// Deletes an empty directory from a specified path.
       /// </summary>
+      /// <param name="path">
+      /// The name of the empty directory to remove. This directory must be writable or empty.
+      /// </param>
       /// <exception cref="IOException">
       /// A file with the same name and location specified by <paramref name="path"/> exists.
       /// -or-
@@ -116,16 +118,14 @@
       /// -or-
       /// The directory is being used by another process.
       /// -or-
-      /// There is an open handle on the directory, and
-      /// the operating system is Windows XP or earlier. This open handle can result from directories. For
-      /// more information, see How to: Enumerate Directories and Files.
+      /// There is an open handle on the directory, and the operating system is Windows XP or earlier.  This open handle can result from directories. For more information,
+      /// see How to: Enumerate Directories and Files.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
-      /// more invalid characters as defined by
+      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by
       /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
@@ -141,14 +141,14 @@
       /// -or-
       /// The specified path is invalid (for example, it is on an unmapped drive).
       /// </exception>
-      /// <param name="path">
-      /// The name of the empty directory to remove. This directory must be writable or empty.
-      /// </param>
       void DeleteEmpty(String path);
 
       /// <summary>
       /// Deletes the specified directory and any subdirectories and files in the directory.
       /// </summary>
+      /// <param name="path">
+      /// The name of the directory to remove.
+      /// </param>
       /// <exception cref="IOException">
       /// A file with the same name and location specified by <paramref name="path"/> exists.
       /// -or-
@@ -158,17 +158,15 @@
       /// -or-
       /// The directory contains a read-only file.
       /// -or-
-      /// The directory is being used by another process.There is an open handle on the directory or on one of its files, and the operating
-      /// system is Windows XP or earlier. This open handle can result from enumerating directories and
+      /// The directory is being used by another process.
+      /// There is an open handle on the directory or on one of its files, and the operating system is Windows XP or earlier. This open handle can result from enumerating directories and
       /// files. For more information, see How to: Enumerate Directories and Files.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
-      /// more invalid characters as defined by
-      /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
+      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
@@ -183,9 +181,6 @@
       /// -or-
       /// The specified path is invalid (for example, it is on an unmapped drive).
       /// </exception>
-      /// <param name="path">
-      /// The name of the directory to remove.
-      /// </param>
       void DeleteRecursively(String path);
 
       /// <summary>
@@ -202,9 +197,15 @@
       /// <summary>
       /// Returns an enumerable collection of directory names in a specified path.
       /// </summary>
+      /// <param name="path">
+      /// The directory to search.
+      /// </param>
+      /// <returns>
+      /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
+      /// <paramref name="path"/>.
+      /// </returns>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
-      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by <see cref="Path.GetInvalidPathChars"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
@@ -224,23 +225,26 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      /// <param name="path">
-      /// The directory to search.
-      /// </param>
-      /// <returns>
-      /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
-      /// <paramref name="path"/>.
-      /// </returns>
       IImmutableSet<String> EnumerateDirectories(String path);
 
       /// <summary>
       /// Returns an enumerable collection of directory names that match a search pattern in a specified path.
       /// </summary>
+      /// <param name="path">
+      /// The directory to search.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of directories in <paramref name="path"/>.
+      /// </param>
+      /// <returns>
+      /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
+      /// <paramref name="path"/> and that match the specified search pattern.
+      /// </returns>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
-      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by <see cref="Path.GetInvalidPathChars"/>.  
       /// - or -
       /// <paramref name="searchPattern"/> does not contain a valid pattern.
+      /// (.Net Standard 2.0 does not throw <see cref="ArgumentException"/> on invalid patterns, it simply returns no results.  This wrapper still throws <see cref="ArgumentException"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
@@ -262,27 +266,31 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
+      IImmutableSet<String> EnumerateDirectories(String path, String searchPattern);
+
+      /// <summary>
+      /// Returns an enumerable collection of directory names that match a search pattern in a specified path, and optionally searches subdirectories.
+      /// </summary>
       /// <param name="path">
       /// The directory to search.
       /// </param>
       /// <param name="searchPattern">
       /// The search string to match against the names of directories in <paramref name="path"/>.
       /// </param>
+      /// <param name="searchOption">
+      /// One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.The default value is
+      /// <see cref="SearchOption.TopDirectoryOnly"/>.
+      /// </param>
       /// <returns>
-      /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
-      /// <paramref name="path"/> and that match the specified search pattern.
+      /// An enumerable collection of the full names (including paths) for the directories in the directory specified by <paramref name="path"/> and that match the specified
+      /// search pattern and option.
       /// </returns>
-      IImmutableSet<String> EnumerateDirectories(String path, String searchPattern);
-
-      /// <summary>
-      /// Returns an enumerable collection of directory names that match a search pattern in a specified path, and optionally searches
-      /// subdirectories.
-      /// </summary>
       /// <exception cref="ArgumentException">
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
       /// - or -
       /// <paramref name="searchPattern"/> does not contain a valid pattern.
+      /// (.Net Standard 2.0 does not throw <see cref="ArgumentException"/> on invalid patterns, it simply returns no results.  This wrapper still throws <see cref="ArgumentException"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
@@ -306,26 +314,18 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      /// <param name="path">
-      /// The directory to search.
-      /// </param>
-      /// <param name="searchPattern">
-      /// The search string to match against the names of directories in <paramref name="path"/>.
-      /// </param>
-      /// <param name="searchOption">
-      /// One of the enumeration values  that specifies whether the search operation should include only the current
-      /// directory or should include all subdirectories.The default value is
-      /// <see cref="SearchOption.TopDirectoryOnly"/>.
-      /// </param>
-      /// <returns>
-      /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
-      /// <paramref name="path"/> and that match the specified search pattern and option.
-      /// </returns>
       IImmutableSet<String> EnumerateDirectories(String path, String searchPattern, SearchOption searchOption);
 
       /// <summary>
       /// Returns an enumerable collection of file names in a specified path.
       /// </summary>
+      /// <param name="path">
+      /// The directory to search.
+      /// </param>
+      /// <returns>
+      /// An enumerable collection of the full names (including paths) for the files in the directory specified by
+      /// <paramref name="path"/>.
+      /// </returns>
       /// <exception cref="ArgumentException">
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
       /// characters as defined by
@@ -349,18 +349,21 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      /// <param name="path">
-      /// The directory to search.
-      /// </param>
-      /// <returns>
-      /// An enumerable collection of the full names (including paths) for the files in the directory specified by
-      /// <paramref name="path"/>.
-      /// </returns>
       IImmutableSet<String> EnumerateFiles(String path);
 
       /// <summary>
       /// Returns an enumerable collection of file names that match a search pattern in a specified path.
       /// </summary>
+      /// <param name="path">
+      /// The directory to search.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of directories in <paramref name="path"/>.
+      /// </param>
+      /// <returns>
+      /// An enumerable collection of the full names (including paths) for the files in the directory specified by
+      /// <paramref name="path"/> and that match the specified search pattern.
+      /// </returns>
       /// <exception cref="ArgumentException">
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
       /// characters as defined by
@@ -386,25 +389,27 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      /// <param name="path">
-      /// The directory to search.
-      /// </param>
-      /// <param name="searchPattern">
-      /// The search string to match against the names of directories in <paramref name="path"/>.
-      /// </param>
-      /// <returns>
-      /// An enumerable collection of the full names (including paths) for the files in the directory specified by
-      /// <paramref name="path"/> and that match the specified search pattern.
-      /// </returns>
       IImmutableSet<String> EnumerateFiles(String path, String searchPattern);
 
       /// <summary>
       /// Returns an enumerable collection of file names that match a search pattern in a specified path, and optionally searches
       /// subdirectories.
       /// </summary>
+      /// <param name="path">
+      /// The directory to search.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of directories in <paramref name="path"/>.
+      /// </param>
+      /// <param name="searchOption">
+      /// One of the enumeration values that specifies whether the search operation should include only the current directory or should include all subdirectories.  The default value is
+      /// <see cref="SearchOption.TopDirectoryOnly"/>.
+      /// </param>
+      /// <returns>
+      /// An enumerable collection of the full names (including paths) for the files in the directory specified by <paramref  name="path"/> and that match the specified search pattern and option.
+      /// </returns>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
-      /// characters as defined by
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
       /// - or -<paramref name="searchPattern"/> does not contain a valid pattern.
       /// </exception>
@@ -430,26 +435,17 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      /// <param name="path">
-      /// The directory to search.
-      /// </param>
-      /// <param name="searchPattern">
-      /// The search string to match against the names of directories in <paramref name="path"/>.
-      /// </param>
-      /// <param name="searchOption">
-      /// One of the enumeration values that specifies whether the search operation should include only the current
-      /// directory or should include all subdirectories.The default value is
-      /// <see cref="SearchOption.TopDirectoryOnly"/>.
-      /// </param>
-      /// <returns>
-      /// An enumerable collection of the full names (including paths) for the files in the directory specified by
-      /// <paramref  name="path"/> and that match the specified search pattern and option.
-      /// </returns>
       IImmutableSet<String> EnumerateFiles(String path, String searchPattern, SearchOption searchOption);
 
       /// <summary>
       /// Returns an enumerable collection of file-system entries in a specified path.
       /// </summary>
+      /// <param name="path">
+      /// The directory to search.
+      /// </param>
+      /// <returns>
+      /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/>.
+      /// </returns>
       /// <exception cref="ArgumentException">
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
       /// characters as defined by
@@ -473,42 +469,11 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      /// <param name="path">
-      /// The directory to search.
-      /// </param>
-      /// <returns>
-      /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/>.
-      /// </returns>
       IImmutableSet<String> EnumerateFileSystemEntries(String path);
 
       /// <summary>
       /// Returns an enumerable collection of file-system entries that match a search pattern in a specified path.
       /// </summary>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
-      /// characters as defined by
-      /// <see cref="Path.GetInvalidPathChars"/>.
-      /// - or -
-      /// <paramref name="searchPattern"/> does not contain a valid pattern.
-      /// </exception>
-      /// <exception cref="ArgumentNullException">
-      /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
-      /// </exception>
-      /// <exception cref="DirectoryNotFoundException">
-      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
-      /// </exception>
-      /// <exception cref="IOException">
-      /// <paramref name="path"/> is a file name.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or combined exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="SecurityException">
-      /// The caller does not have the required permission.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// The caller does not have the required permission.
-      /// </exception>
       /// <param name="path">
       /// The directory to search.
       /// </param>
@@ -519,24 +484,15 @@
       /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/> and that match the specified
       /// search pattern.
       /// </returns>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern);
-
-      /// <summary>
-      /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally
-      /// searches subdirectories.
-      /// </summary>
       /// <exception cref="ArgumentException">
       /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
       /// characters as defined by
       /// <see cref="Path.GetInvalidPathChars"/>.
-      /// - or -<paramref name="searchPattern"/> does not contain a valid pattern.
+      /// - or -
+      /// <paramref name="searchPattern"/> does not contain a valid pattern.
       /// </exception>
       /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
-      /// </exception>
-      /// <exception cref="ArgumentOutOfRangeException">
-      /// <paramref name="searchOption"/> is not a valid <see cref="SearchOption"/>
-      /// value.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
       /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
@@ -553,6 +509,12 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
+      IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern);
+
+      /// <summary>
+      /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally
+      /// searches subdirectories.
+      /// </summary>
       /// <param name="path">
       /// The directory to search.
       /// </param>
@@ -568,11 +530,45 @@
       /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/> and that match the specified
       /// search pattern and option.
       /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by
+      /// <see cref="Path.GetInvalidPathChars"/>.
+      /// - or -<paramref name="searchPattern"/> does not contain a valid pattern.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.-or-<paramref name="searchPattern"/> is null.
+      /// </exception>
+      /// <exception cref="ArgumentOutOfRangeException">
+      /// <paramref name="searchOption"/> is not a valid <see cref="SearchOption"/>
+      /// value.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
       IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern, SearchOption searchOption);
 
       /// <summary>
       /// Gets the creation date and time of a directory.
       /// </summary>
+      /// <param name="path">
+      /// The path of the directory.
+      /// </param>
+      /// <returns>
+      /// A structure that is set to the creation date and time for the specified directory.
+      /// </returns>
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
@@ -586,17 +582,14 @@
       /// <exception cref="PathTooLongException">
       /// The specified path, file name, or both exceed the system-defined maximum length.
       /// </exception>
-      /// <param name="path">
-      /// The path of the directory.
-      /// </param>
-      /// <returns>
-      /// A structure that is set to the creation date and time for the specified directory.
-      /// </returns>
       DateTimeOffset GetCreationTime(String path);
 
       /// <summary>
       /// Gets the current working directory of the application.
       /// </summary>
+      /// <returns>
+      /// A string that contains the path of the current working directory, and does not end with a backslash (\).
+      /// </returns>
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
@@ -604,15 +597,349 @@
       /// The operating system is Windows CE, which does not have current directory functionality. This
       /// method is available in the .NET Compact Framework, but is not currently supported.
       /// </exception>
-      /// <returns>
-      /// A string that contains the path of the current working directory, and does not end with a backslash (\).
-      /// </returns>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       String GetCurrentDirectory();
 
       /// <summary>
+      /// Returns the names of subdirectories (including their paths) in the specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetDirectories(String path);
+
+      /// <summary>
+      /// Returns the names of subdirectories (including their paths) in the specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of subdirectories in <paramref name="path"/>.  This parameter can contain a combination of valid literal and wildcard characters, but it
+      /// does not support regular expressions.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetDirectories(String path, String searchPattern);
+
+      /// <summary>
+      /// Returns the names of subdirectories (including their paths) in the specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of subdirectories in <paramref name="path"/>.  This parameter can contain a combination of valid literal and wildcard characters, but it
+      /// does not support regular expressions.
+      /// </param>
+      /// <param name="searchOption">
+      /// One of the enumeration values that specifies whether the search operation should include all subdirectories or only the current directory.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetDirectories(String path, String searchPattern, SearchOption searchOption);
+
+      /// <summary>
+      /// Returns the names of files (including their paths) in the specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetFiles(String path);
+
+      /// <summary>
+      /// Returns the names of files (including their paths) in the specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of subdirectories in <paramref name="path"/>.  This parameter can contain a combination of valid literal and wildcard characters, but it
+      /// does not support regular expressions.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetFiles(String path, String searchPattern);
+
+      /// <summary>
+      /// Returns the names of files (including their paths) in the specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of subdirectories in <paramref name="path"/>.  This parameter can contain a combination of valid literal and wildcard characters, but it
+      /// does not support regular expressions.
+      /// </param>
+      /// <param name="searchOption">
+      /// One of the enumeration values that specifies whether the search operation should include all subdirectories or only the current directory.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetFiles(String path, String searchPattern, SearchOption searchOption);
+
+      /// <summary>
+      /// Returns the names of all files and subdirectories in a specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetFileSystemEntries(String path);
+
+      /// <summary>
+      /// Returns the names of all files and subdirectories in a specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of subdirectories in <paramref name="path"/>.  This parameter can contain a combination of valid literal and wildcard characters, but it
+      /// does not support regular expressions.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern);
+
+      /// <summary>
+      /// Returns the names of all files and subdirectories in a specified directory.
+      /// </summary>
+      /// <param name="path">
+      /// The relative or absolute path to the directory to search. This string is not case-sensitive.
+      /// </param>
+      /// <param name="searchPattern">
+      /// The search string to match against the names of subdirectories in <paramref name="path"/>.  This parameter can contain a combination of valid literal and wildcard characters, but it
+      /// does not support regular expressions.
+      /// </param>
+      /// <param name="searchOption">
+      /// One of the enumeration values that specifies whether the search operation should include all subdirectories or only the current directory.
+      /// </param>
+      /// <returns>
+      /// A non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.
+      /// </returns>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid
+      /// characters as defined by <see cref="Path.GetInvalidPathChars"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// <paramref name="path"/> is invalid, such as referring to an unmapped drive.
+      /// </exception>
+      /// <exception cref="IOException">
+      /// <paramref name="path"/> is a file name.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or combined exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// </exception>
+      IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern, SearchOption searchOption);
+
+      /// <summary>
       /// Returns the date and time the specified file or directory was last accessed.
       /// </summary>
+      /// <param name="path">
+      /// The file or directory for which to obtain access date and time information.
+      /// </param>
+      /// <returns>
+      /// A structure that is set to the date and time the specified file or directory was last accessed.
+      /// time.
+      /// </returns>
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
@@ -630,18 +957,18 @@
       /// <exception cref="NotSupportedException">
       /// The <paramref name="path"/> parameter is in an invalid format.
       /// </exception>
-      /// <param name="path">
-      /// The file or directory for which to obtain access date and time information.
-      /// </param>
-      /// <returns>
-      /// A structure that is set to the date and time the specified file or directory was last accessed.
-      /// time.
-      /// </returns>
       DateTimeOffset GetLastAccessTime(String path);
 
       /// <summary>
       /// Returns the date and time the specified file or directory was last written to.
       /// </summary>
+      /// <param name="path">
+      /// The file or directory for which to obtain modification date and time information.
+      /// </param>
+      /// <returns>
+      /// A structure that is set to the date and time the specified file or directory was last written to.
+      /// time.
+      /// </returns>
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
@@ -656,13 +983,6 @@
       /// <exception cref="PathTooLongException">
       /// The specified path, file name, or both exceed the system-defined maximum length.
       /// </exception>
-      /// <param name="path">
-      /// The file or directory for which to obtain modification date and time information.
-      /// </param>
-      /// <returns>
-      /// A structure that is set to the date and time the specified file or directory was last written to.
-      /// time.
-      /// </returns>
       DateTimeOffset GetLastWriteTime(String path);
 
       /// <summary>
@@ -680,12 +1000,12 @@
       /// <summary>
       /// Returns the path of the current user's temporary folder.
       /// </summary>
-      /// <exception cref="SecurityException">
-      /// The caller does not have the required permissions.
-      /// </exception>
       /// <returns>
       /// The path to the temporary folder, ending with a backslash.
       /// </returns>
+      /// <exception cref="SecurityException">
+      /// The caller does not have the required permissions.
+      /// </exception>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       String GetTemporaryDirectoryPath();
 
@@ -729,6 +1049,12 @@
       /// <summary>
       /// Sets the creation date and time for the specified file or directory.
       /// </summary>
+      /// <param name="path">
+      /// The file or directory for which to set the creation date and time information.
+      /// </param>
+      /// <param name="creationTime">
+      /// An object that contains the value to set for the creation date and time of <paramref name="path"/>.
+      /// </param>
       /// <exception cref="FileNotFoundException">
       /// The specified path was not found.
       /// </exception>
@@ -753,17 +1079,14 @@
       /// <exception cref="PlatformNotSupportedException">
       /// The current operating system is not Windows NT or later.
       /// </exception>
-      /// <param name="path">
-      /// The file or directory for which to set the creation date and time information.
-      /// </param>
-      /// <param name="creationTime">
-      /// An object that contains the value to set for the creation date and time of <paramref name="path"/>.
-      /// </param>
       void SetCreationTime(String path, DateTimeOffset creationTime);
 
       /// <summary>
       /// Sets the application's current working directory to the specified directory.
       /// </summary>
+      /// <param name="path">
+      /// The path to which the current working directory is set.
+      /// </param>
       /// <exception cref="IOException">
       /// An I/O error occurred.
       /// </exception>
@@ -787,14 +1110,17 @@
       /// <exception cref="DirectoryNotFoundException">
       /// The specified directory was not found.
       /// </exception>
-      /// <param name="path">
-      /// The path to which the current working directory is set.
-      /// </param>
       void SetCurrentDirectory(String path);
 
       /// <summary>
       /// Sets the date and time the specified file or directory was last accessed.
       /// </summary>
+      /// <param name="path">
+      /// The file or directory for which to set the access date and time information.
+      /// </param>
+      /// <param name="lastAccessTime">
+      /// An object that contains the value to set for the access date and time of <paramref name="path"/>.
+      /// </param>
       /// <exception cref="FileNotFoundException">
       /// The specified path was not found.
       /// </exception>
@@ -819,17 +1145,17 @@
       /// <paramref name="lastAccessTime"/> specifies a value outside the range of dates or times
       /// permitted for this operation.
       /// </exception>
-      /// <param name="path">
-      /// The file or directory for which to set the access date and time information.
-      /// </param>
-      /// <param name="lastAccessTime">
-      /// An object that contains the value to set for the access date and time of <paramref name="path"/>.
-      /// </param>
       void SetLastAccessTime(String path, DateTimeOffset lastAccessTime);
 
       /// <summary>
       /// Sets the date and time a directory was last written to.
       /// </summary>
+      /// <param name="path">
+      /// The path of the directory.
+      /// </param>
+      /// <param name="lastWriteTime">
+      /// The date and time the directory was last written to.
+      /// </param>
       /// <exception cref="FileNotFoundException">
       /// The specified path was not found.
       /// </exception>
@@ -854,12 +1180,6 @@
       /// <paramref name="lastWriteTime"/> specifies a value outside the range of dates or times
       /// permitted for this operation.
       /// </exception>
-      /// <param name="path">
-      /// The path of the directory.
-      /// </param>
-      /// <param name="lastWriteTime">
-      /// The date and time the directory was last written to.
-      /// </param>
       void SetLastWriteTime(String path, DateTimeOffset lastWriteTime);
    }
 }

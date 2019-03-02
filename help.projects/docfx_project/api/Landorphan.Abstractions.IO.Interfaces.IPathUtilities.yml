@@ -1,0 +1,939 @@
+### YamlMime:ManagedReference
+items:
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  commentId: T:Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  id: IPathUtilities
+  parent: Landorphan.Abstractions.IO.Interfaces
+  children:
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension(System.String,System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine(System.String[])
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative(System.String)
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter
+  - Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter
+  langs:
+  - csharp
+  - vb
+  name: IPathUtilities
+  nameWithType: IPathUtilities
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  type: Interface
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: IPathUtilities
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 11
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nPerforms operations on <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> instances that contain file or directory path information. These operations\nare performed in a cross-platform manner.\n"
+  example: []
+  syntax:
+    content: public interface IPathUtilities
+    content.vb: Public Interface IPathUtilities
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  id: AltDirectorySeparatorCharacter
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: AltDirectorySeparatorCharacter
+  nameWithType: IPathUtilities.AltDirectorySeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: AltDirectorySeparatorCharacter
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 20
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nProvides a platform-specific alternate character used to separate directory levels in a path string that reflects a hierarchical\nfile system organization.\n"
+  example: []
+  syntax:
+    content: char AltDirectorySeparatorCharacter { get; }
+    parameters: []
+    return:
+      type: System.Char
+      description: "\nThe alternate directory separator character.\n"
+    content.vb: ReadOnly Property AltDirectorySeparatorCharacter As Char
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  id: DirectorySeparatorCharacter
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: DirectorySeparatorCharacter
+  nameWithType: IPathUtilities.DirectorySeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: DirectorySeparatorCharacter
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 29
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nProvides a platform-specific character used to separate directory levels in a path string that reflects a hierarchical file system\norganization.\n"
+  example: []
+  syntax:
+    content: char DirectorySeparatorCharacter { get; }
+    parameters: []
+    return:
+      type: System.Char
+      description: "\nThe directory separator character.\n"
+    content.vb: ReadOnly Property DirectorySeparatorCharacter As Char
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter
+  id: PathSeparatorCharacter
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: PathSeparatorCharacter
+  nameWithType: IPathUtilities.PathSeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: PathSeparatorCharacter
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 37
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nA platform-specific separator character used to separate path strings in environment variables.\n"
+  example: []
+  syntax:
+    content: char PathSeparatorCharacter { get; }
+    parameters: []
+    return:
+      type: System.Char
+      description: "\nThe path separator.\n"
+    content.vb: ReadOnly Property PathSeparatorCharacter As Char
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter
+  id: VolumeSeparatorCharacter
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: VolumeSeparatorCharacter
+  nameWithType: IPathUtilities.VolumeSeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: VolumeSeparatorCharacter
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 45
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nProvides a platform-specific volume separator character.\n"
+  example: []
+  syntax:
+    content: char VolumeSeparatorCharacter { get; }
+    parameters: []
+    return:
+      type: System.Char
+      description: "\nThe volume separator character.\n"
+    content.vb: ReadOnly Property VolumeSeparatorCharacter As Char
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension(System.String,System.String)
+  id: ChangeExtension(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: ChangeExtension(String, String)
+  nameWithType: IPathUtilities.ChangeExtension(String, String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: ChangeExtension
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 68
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nChanges the extension of a path string.\n"
+  example: []
+  syntax:
+    content: string ChangeExtension(string path, string extension)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path information to modify. The path cannot contain any of the characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    - id: extension
+      type: System.String
+      description: "\nThe new extension (with or without a leading period). Specify <code>null</code> to remove an existing extension from <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.\n"
+    return:
+      type: System.String
+      description: "\nThe modified path information.\nOn Windows-based desktop platforms, if <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is <code>null</code> or an empty string (&quot;&quot;), the path information is returned unmodified.\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">extension</code> is <code>null</code>, the returned string contains the specified path with its extension removed.\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> has no extension, and <code data-dev-comment-type=\"paramref\" class=\"paramref\">extension</code> is not <code>null</code>,\nthe returned path string contains <code data-dev-comment-type=\"paramref\" class=\"paramref\">extension</code> appended to the end of <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.\n"
+    content.vb: Function ChangeExtension(path As String, extension As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine(System.String[])
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine(System.String[])
+  id: Combine(System.String[])
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: Combine(String[])
+  nameWithType: IPathUtilities.Combine(String[])
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine(System.String[])
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: Combine
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 86
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCombines an array of strings into a path.\n"
+  example: []
+  syntax:
+    content: string Combine(params string[] paths)
+    parameters:
+    - id: paths
+      type: System.String[]
+      description: "\nAn array of parts of the path.\n"
+    return:
+      type: System.String
+      description: "\nThe combined paths as an minimally validated string.\n"
+    content.vb: Function Combine(ParamArray paths As String()) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\nOne of the strings in the array is <code>null</code>.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nOne of the strings in the array contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  nameWithType.vb: IPathUtilities.Combine(String())
+  fullName.vb: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine(System.String())
+  name.vb: Combine(String())
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)
+  id: GetExtension(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetExtension(String)
+  nameWithType: IPathUtilities.GetExtension(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetExtension
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 104
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the extension of the specified path string.\n"
+  example: []
+  syntax:
+    content: string GetExtension(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path string from which to get the extension.\n"
+    return:
+      type: System.String
+      description: "\nThe extension of the specified path (including the period &quot;.&quot;), or <code>null</code>, or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. If\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is <code>null</code>, <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)\" data-throw-if-not-resolved=\"false\"></xref> returns <code>null</code>. If <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> does\nnot have extension information,\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)\" data-throw-if-not-resolved=\"false\"></xref> returns <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+    content.vb: Function GetExtension(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName(System.String)
+  id: GetFileName(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFileName(String)
+  nameWithType: IPathUtilities.GetFileName(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFileName
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 122
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the file name and extension of the specified path string.\n"
+  example: []
+  syntax:
+    content: string GetFileName(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path string from which to obtain the file name and extension.\n"
+    return:
+      type: System.String
+      description: "\nThe characters after the last directory character in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>. If the last character of\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a directory or volume separator character, this method returns\n<xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>.\nIf <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is <code>null</code>, this method returns <code>null</code>.\n"
+    content.vb: Function GetFileName(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension(System.String)
+  id: GetFileNameWithoutExtension(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFileNameWithoutExtension(String)
+  nameWithType: IPathUtilities.GetFileNameWithoutExtension(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFileNameWithoutExtension
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 138
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the file name of the specified path string without the extension.\n"
+  example: []
+  syntax:
+    content: string GetFileNameWithoutExtension(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path of the file.\n"
+    return:
+      type: System.String
+      description: "\nThe string returned by <xref href=\"System.IO.Path.GetFileName(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, minus the last period (.) and all characters\nfollowing it.\n"
+    content.vb: Function GetFileNameWithoutExtension(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath(System.String)
+  id: GetFullPath(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFullPath(String)
+  nameWithType: IPathUtilities.GetFullPath(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFullPath
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 171
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the absolute path for the specified path string.\n"
+  remarks: "\nAlways returns a value using <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter\" data-throw-if-not-resolved=\"false\"></xref> and never <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: string GetFullPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file or directory for which to obtain absolute path information.\n"
+    return:
+      type: System.String
+      description: "\nThe fully qualified location of <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>, such as &quot;C:\\MyFile.txt&quot;.\n"
+    content.vb: Function GetFullPath(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath*
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is <code>null</code>.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore of the invalid characters defined in <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n-or-\nThe system could not retrieve the absolute path.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permissions.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters
+  id: GetInvalidFileNameCharacters
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetInvalidFileNameCharacters()
+  nameWithType: IPathUtilities.GetInvalidFileNameCharacters()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetInvalidFileNameCharacters
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 179
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets an array containing the characters that are not allowed in file names.\n"
+  example: []
+  syntax:
+    content: IImmutableSet<char> GetInvalidFileNameCharacters()
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.Char}
+      description: "\nA set of characters that are not allowed in file names.\n"
+    content.vb: Function GetInvalidFileNameCharacters As IImmutableSet(Of Char)
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters*
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  id: GetInvalidPathCharacters
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetInvalidPathCharacters()
+  nameWithType: IPathUtilities.GetInvalidPathCharacters()
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters()
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetInvalidPathCharacters
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 187
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets an array containing the characters that are not allowed in path names.\n"
+  example: []
+  syntax:
+    content: IImmutableSet<char> GetInvalidPathCharacters()
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.Char}
+      description: "\nA set of characters that are not allowed in path names.\n"
+    content.vb: Function GetInvalidPathCharacters As IImmutableSet(Of Char)
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters*
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath(System.String)
+  id: GetParentPath(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetParentPath(String)
+  nameWithType: IPathUtilities.GetParentPath(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetParentPath
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 220
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nReturns the parent path for the specified path string.\n"
+  remarks: "\n|  Path                   |  Path.GetDirectoryName | IPathUtilities.GetParentPath |\n| :---------------------- | :--------------------- | :--------------------------- |\n| \\\\share                 | (null)                 | (null)                       |\n| \\\\share\\file.txt        | (null)                 | \\\\share          ***         |\n| \\\\share\\folder\\file.txt | \\\\share\\folder         | \\\\share\\folder               |\n| c:\\                     | (null)                 | (null)                       |\n| c:\\file.txt             | c:\\                    | c:\\                          |\n| c:\\folder\\file.txt      | c:\\folder              | c:\\folder                    |\n| \\folder                 | \\                      | \\                            |\n| \\folder\\file.txt        | \\folder                | \\folder                      |\n\n"
+  example: []
+  syntax:
+    content: string GetParentPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path of a file or directory or share.\n"
+    return:
+      type: System.String
+      description: "\nThe parent directory path for <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>;\nor <code>null</code> when <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> denotes a root directory, \nor <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter\" data-throw-if-not-resolved=\"false\"></xref> when <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a relative root.\nor <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> when <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> does not contain path information.\n"
+    content.vb: Function GetParentPath(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\nThe <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> parameter contains invalid characters, is empty, or contains only white spaces.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> parameter is longer than the system-defined maximum length.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath(System.String)
+  id: GetRootPath(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetRootPath(String)
+  nameWithType: IPathUtilities.GetRootPath(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetRootPath
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 243
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets the root directory information of the specified path.\n"
+  example: []
+  syntax:
+    content: string GetRootPath(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path from which to obtain root directory information.\n"
+    return:
+      type: System.String
+      description: "\n<p>\nThe root directory of <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>, such as &quot;C:\\&quot;, or <code>null</code> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is <code>null</code>, or an empty string if <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> does not contain\nroot directory information.\n</p>\n<p>\nBy design, return <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter\" data-throw-if-not-resolved=\"false\"></xref> if <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a relative path.\n</p>\n"
+    content.vb: Function GetRootPath(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n-or-\n<xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref> was passed to <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension(System.String)
+  id: HasExtension(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: HasExtension(String)
+  nameWithType: IPathUtilities.HasExtension(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: HasExtension
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 259
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nDetermines whether a path includes a file name extension.\n"
+  example: []
+  syntax:
+    content: bool HasExtension(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path to search for an extension.\n"
+    return:
+      type: System.Boolean
+      description: "\ntrue if the characters that follow the last directory separator (\\\\ or /) or volume separator (:) in the path include a period (.)\nfollowed by one or more characters; otherwise, false.\n"
+    content.vb: Function HasExtension(path As String) As Boolean
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative(System.String)
+  id: IsPathRelative(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IPathUtilities
+  langs:
+  - csharp
+  - vb
+  name: IsPathRelative(String)
+  nameWithType: IPathUtilities.IsPathRelative(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: IsPathRelative
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IPathUtilities.cs
+    startLine: 274
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nGets a value indicating whether the specified path string is a relative path.  \n"
+  example: []
+  syntax:
+    content: bool IsPathRelative(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path to test.\n"
+    return:
+      type: System.Boolean
+      description: "\ntrue if <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a relative path; otherwise, false (UNC and rooted paths).\n"
+    content.vb: Function IsPathRelative(path As String) As Boolean
+  overload: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> contains one or more of the invalid characters defined in\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+references:
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Landorphan.Abstractions.IO.Interfaces
+  commentId: N:Landorphan.Abstractions.IO.Interfaces
+  name: Landorphan.Abstractions.IO.Interfaces
+  nameWithType: Landorphan.Abstractions.IO.Interfaces
+  fullName: Landorphan.Abstractions.IO.Interfaces
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  name: AltDirectorySeparatorCharacter
+  nameWithType: IPathUtilities.AltDirectorySeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+- uid: System.Char
+  commentId: T:System.Char
+  parent: System
+  isExternal: true
+  name: Char
+  nameWithType: Char
+  fullName: System.Char
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  name: DirectorySeparatorCharacter
+  nameWithType: IPathUtilities.DirectorySeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter
+  name: PathSeparatorCharacter
+  nameWithType: IPathUtilities.PathSeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.PathSeparatorCharacter
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter
+  name: VolumeSeparatorCharacter
+  nameWithType: IPathUtilities.VolumeSeparatorCharacter
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.VolumeSeparatorCharacter
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  isExternal: true
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  parent: System
+  isExternal: true
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension
+  name: ChangeExtension
+  nameWithType: IPathUtilities.ChangeExtension
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.ChangeExtension
+- uid: System.ArgumentNullException
+  commentId: T:System.ArgumentNullException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine
+  name: Combine
+  nameWithType: IPathUtilities.Combine
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.Combine
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.String.Empty
+  commentId: F:System.String.Empty
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension(System.String)
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension
+  name: GetExtension
+  nameWithType: IPathUtilities.GetExtension
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetExtension
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName
+  name: GetFileName
+  nameWithType: IPathUtilities.GetFileName
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileName
+- uid: System.IO.Path.GetFileName(System.String)
+  commentId: M:System.IO.Path.GetFileName(System.String)
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension
+  name: GetFileNameWithoutExtension
+  nameWithType: IPathUtilities.GetFileNameWithoutExtension
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFileNameWithoutExtension
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.DirectorySeparatorCharacter
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  commentId: P:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.AltDirectorySeparatorCharacter
+  isExternal: true
+- uid: System.IO.PathTooLongException
+  commentId: T:System.IO.PathTooLongException
+  isExternal: true
+- uid: System.Security.SecurityException
+  commentId: T:System.Security.SecurityException
+  isExternal: true
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath
+  name: GetFullPath
+  nameWithType: IPathUtilities.GetFullPath
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetFullPath
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters
+  name: GetInvalidFileNameCharacters
+  nameWithType: IPathUtilities.GetInvalidFileNameCharacters
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidFileNameCharacters
+- uid: System.Collections.Immutable.IImmutableSet{System.Char}
+  commentId: T:System.Collections.Immutable.IImmutableSet{System.Char}
+  parent: System.Collections.Immutable
+  definition: System.Collections.Immutable.IImmutableSet`1
+  name: IImmutableSet<Char>
+  nameWithType: IImmutableSet<Char>
+  fullName: System.Collections.Immutable.IImmutableSet<System.Char>
+  nameWithType.vb: IImmutableSet(Of Char)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of System.Char)
+  name.vb: IImmutableSet(Of Char)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Char
+    name: Char
+    nameWithType: Char
+    fullName: System.Char
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable.IImmutableSet`1
+  commentId: T:System.Collections.Immutable.IImmutableSet`1
+  isExternal: true
+  name: IImmutableSet<T>
+  nameWithType: IImmutableSet<T>
+  fullName: System.Collections.Immutable.IImmutableSet<T>
+  nameWithType.vb: IImmutableSet(Of T)
+  fullName.vb: System.Collections.Immutable.IImmutableSet(Of T)
+  name.vb: IImmutableSet(Of T)
+  spec.csharp:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Immutable.IImmutableSet`1
+    name: IImmutableSet
+    nameWithType: IImmutableSet
+    fullName: System.Collections.Immutable.IImmutableSet
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Immutable
+  commentId: N:System.Collections.Immutable
+  isExternal: true
+  name: System.Collections.Immutable
+  nameWithType: System.Collections.Immutable
+  fullName: System.Collections.Immutable
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+  name: GetInvalidPathCharacters
+  nameWithType: IPathUtilities.GetInvalidPathCharacters
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath
+  name: GetParentPath
+  nameWithType: IPathUtilities.GetParentPath
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetParentPath
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath
+  name: GetRootPath
+  nameWithType: IPathUtilities.GetRootPath
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetRootPath
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension
+  name: HasExtension
+  nameWithType: IPathUtilities.HasExtension
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.HasExtension
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative
+  name: IsPathRelative
+  nameWithType: IPathUtilities.IsPathRelative
+  fullName: Landorphan.Abstractions.IO.Interfaces.IPathUtilities.IsPathRelative

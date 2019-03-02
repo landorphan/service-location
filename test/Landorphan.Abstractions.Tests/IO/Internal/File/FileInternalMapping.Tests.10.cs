@@ -12,12 +12,435 @@
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
+      [TestClass]
+      public class When_I_call_FileInternalMapping_WriteAllBytes : TestBase
+      {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_bytes_are_empty_It_should_create_an_empty_file_or_clear_an_existing_file()
+         {
+            var path = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+
+               _target.WriteAllBytes(path, Array.Empty<Byte>());
+               _target.ReadAllBytes(path).Should().BeEmpty();
+
+               _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+
+               _target.WriteAllBytes(path, Array.Empty<Byte>().ToImmutableList());
+               _target.ReadAllBytes(path).Should().BeEmpty();
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+
+            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               _target.FileExists(path).Should().BeFalse();
+               _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+
+               _target.WriteAllBytes(path, Array.Empty<Byte>());
+               _target.ReadAllBytes(path).Should().BeEmpty();
+               _target.DeleteFile(path);
+
+               _target.FileExists(path).Should().BeFalse();
+               _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+
+               _target.WriteAllBytes(path, Array.Empty<Byte>().ToImmutableList());
+               _target.ReadAllBytes(path).Should().BeEmpty();
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_bytes_are_null_It_should_throw_ArgumentNullException()
+         {
+            var path = _target.CreateTemporaryFile();
+            try
+            {
+               Action throwingAction = () => _target.WriteAllBytes(path, (Byte[])null);
+               var e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("bytes");
+
+               throwingAction = () => _target.WriteAllBytes(path, (IImmutableList<Byte>)null);
+               e = throwingAction.Should().Throw<ArgumentNullException>();
+               e.And.ParamName.Should().Be("bytes");
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
+         {
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+
+            Action throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
+
+            throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
+         {
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+
+            Action throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
+
+            throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_does_not_exist_It_should_create_the_file_and_write_the_bytes()
+         {
+            IImmutableList<Byte> expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               _target.FileExists(path).Should().BeFalse();
+
+               _target.WriteAllBytes(path, expected.ToArray());
+
+               _target.FileExists(path).Should().BeTrue();
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(expected);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+
+            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+            try
+            {
+               _target.FileExists(path).Should().BeFalse();
+
+               _target.WriteAllBytes(path, expected);
+
+               _target.FileExists(path).Should().BeTrue();
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(expected);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_has_leading_spaces_It_should_not_throw()
+         {
+            var filePath = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(Spaces + filePath, new Byte[] {0x00, 0x01, 0x02, 0x03});
+               _target.WriteAllBytes(Spaces + filePath, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            }
+            finally
+            {
+               _target.DeleteFile(filePath);
+            }
+
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_has_trailing_spaces_It_should_not_throw()
+         {
+            var filePath = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(filePath + Spaces, new Byte[] {0x00, 0x01, 0x02, 0x03});
+               _target.WriteAllBytes(filePath + Spaces, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            }
+            finally
+            {
+               _target.DeleteFile(filePath);
+            }
+
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_empty_It_should_throw_ArgumentException()
+         {
+            Action throwingAction = () => _target.WriteAllBytes(String.Empty, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+
+            throwingAction = () => _target.WriteAllBytes(String.Empty, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_null_It_should_throw_ArgumentNullException()
+         {
+            Action throwingAction = () => _target.WriteAllBytes(null, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<ArgumentNullException>();
+            e.And.ParamName.Should().Be("path");
+
+            throwingAction = () => _target.WriteAllBytes(null, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<ArgumentNullException>();
+            e.And.ParamName.Should().Be("path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_on_a_known_host_and_known_share_it_should_write_the_file()
+         {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
+            var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            try
+            {
+               _target.FileExists(path).Should().BeFalse();
+               _target.WriteAllBytes(path, expected.ToArray());
+               _target.FileExists(path).Should().BeTrue();
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(expected);
+
+               _target.DeleteFile(path);
+               _target.WriteAllBytes(path, expected);
+               _target.FileExists(path).Should().BeTrue();
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(expected);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
+         {
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
+
+            Action throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
+            e.And.Message.Should().Contain("Could not find a part of the path '");
+            e.And.Message.Should().Contain(_pathUtilities.GetParentPath(path));
+            e.And.Message.Should().Contain("'.");
+
+            throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<DirectoryNotFoundException>();
+            e.And.Message.Should().Contain("Could not find a part of the path '");
+            e.And.Message.Should().Contain(_pathUtilities.GetParentPath(path));
+            e.And.Message.Should().Contain("'.");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
+         {
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            var fileFullPath = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
+
+            Action throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<FileNotFoundException>();
+            e.And.Message.Should().Contain("Could not find a part of the file path '");
+            e.And.Message.Should().Contain(fileFullPath);
+            e.And.Message.Should().Contain("'.\r\nParameter name: path");
+
+            throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<FileNotFoundException>();
+            e.And.Message.Should().Contain("Could not find a part of the file path '");
+            e.And.Message.Should().Contain(fileFullPath);
+            e.And.Message.Should().Contain("'.\r\nParameter name: path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
+         {
+            var fileFullPath = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+
+            Action throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<PathTooLongException>();
+            e.And.Message.Should().StartWith("The path");
+            e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+
+            throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<PathTooLongException>();
+            e.And.Message.Should().StartWith("The path");
+            e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_is_white_space_It_should_throw_ArgumentException()
+         {
+            const String fileFullPath = " \t ";
+
+            Action throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+
+            throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_matches_an_existing_directory_It_should_throw_IOException()
+         {
+            var path = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
+            _directoryInternalMapping.DirectoryExists(path).Should().BeTrue();
+            _target.FileExists(path).Should().BeFalse();
+
+            Action throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<IOException>();
+            e.And.Message.Should().Contain("Cannot create the file '");
+            e.And.Message.Should().Contain(path);
+            e.And.Message.Should().Contain("' because a directory with the same name already exists.");
+
+            throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<IOException>();
+            e.And.Message.Should().Contain("Cannot create the file '");
+            e.And.Message.Should().Contain(path);
+            e.And.Message.Should().Contain("' because a directory with the same name already exists.");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_matches_an_existing_file_It_should_replace_the_contents_of_the_file()
+         {
+            IImmutableList<Byte> first = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+            IImmutableList<Byte> second = new Byte[] {0x04, 0x05, 0x06, 0x07}.ToImmutableList();
+
+            var path = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(path, first.ToArray());
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(first);
+
+               _target.WriteAllBytes(path, second.ToArray());
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(second);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+
+            path = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(path, first);
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(first);
+
+               _target.WriteAllBytes(path, second);
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(second);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
+         {
+            // ReSharper disable once StringLiteralTypo
+            const String path = ":abcd";
+
+            Action throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03});
+            var e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
+
+            throwingAction = () => _target.WriteAllBytes(path, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
+            e = throwingAction.Should().Throw<ArgumentException>();
+            e.And.ParamName.Should().Be("path");
+            e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void It_should_write_the_bytes()
+         {
+            var expected = new Byte[] {0x01, 0x01, 0x02, 0x03}.ToImmutableList();
+
+            var path = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(path, expected);
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(expected);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+
+            path = _target.CreateTemporaryFile();
+            try
+            {
+               _target.WriteAllBytes(path, expected.ToArray());
+               _target.ReadAllBytes(path).Should().BeEquivalentTo(expected);
+            }
+            finally
+            {
+               _target.DeleteFile(path);
+            }
+         }
+      }
+
       [TestClass]
       public class When_I_call_FileInternalMapping_WriteAllLines : TestBase
       {
@@ -45,7 +468,7 @@
                _target.DeleteFile(path);
             }
 
-            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -120,7 +543,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -142,7 +565,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -166,7 +589,7 @@
          {
             var expected = new[] {"zero", "one", "two", "three"}.ToImmutableList();
 
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -206,7 +629,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -225,7 +648,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -267,11 +690,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_write_the_file()
          {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
             var expected = new[] {"zero", "one", "two", "three"}.ToImmutableList();
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -299,7 +727,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -322,11 +755,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var path = @"A:\" + Guid.NewGuid();
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -559,7 +997,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid() + ":" + Guid.NewGuid();
+            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.WriteAllText(path, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -571,7 +1009,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString()) + "|";
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.WriteAllText(path, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -585,7 +1023,7 @@
          {
             const String expected = "contents";
 
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid() + ".tmp");
+            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -598,7 +1036,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -615,7 +1053,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -632,7 +1070,7 @@
                _target.DeleteFile(path);
             }
 
-            TestUtilities.TestFacilities.TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
          [TestMethod]
@@ -656,11 +1094,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing in .Net Standard 2.0, Need a known UNC file share")]
          public void And_the_path_is_on_a_known_host_and_known_share_it_should_write_the_file()
          {
+            if (TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl)}");
+               return;
+            }
+
             const String expected = "contents";
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsTestPaths.TodoRethinkNetworkShareEveryoneFullControl, Guid.NewGuid().ToString());
+            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
                _target.FileExists(path).Should().BeFalse();
@@ -678,7 +1121,12 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() + ".tmp");
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}\{2}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             Action throwingAction = () => _target.WriteAllText(path, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -689,11 +1137,16 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Unmapped drive tests fail on build server")]
          public void And_the_path_is_on_an_unmapped_drive_It_should_throw_FileNotFoundException()
          {
-            _directoryInternalMapping.DirectoryExists(@"A:\").Should().BeFalse();
-            var path = @"A:\" + Guid.NewGuid();
+            if (TestHardCodes.WindowsLocalTestPaths.UnmappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive)}");
+               return;
+            }
+
+            _directoryInternalMapping.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
+            var path = TestHardCodes.WindowsLocalTestPaths.UnmappedDrive + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.WriteAllText(path, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<FileNotFoundException>();

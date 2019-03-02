@@ -257,6 +257,9 @@
       unfortunately, I have yet to find a way to get generate categories, descriptions, these are done by hand, 
       one at a time....-->
 
+      <!--Upgraded from 7.10.0.7896 to 7.11.0.8083:  No new rules detected -->
+      <!--TODO: figure out a better way to examine rules -->
+
       <!-- ********************** -->
       <!-- Disabled in Production -->
       <!-- ********************** -->
@@ -959,10 +962,10 @@
       <!--Duplicates Microsoft.NetCore.Analyzers
       <Rule Id="CA1813" Action="Warning" />
       -->
-      <!--Duplictes Microsoft.CodeQuality.Analyzers
+      <!--Duplicates Microsoft.CodeQuality.Analyzers
       <Rule Id="CA1814" Action="Warning" />
       -->
-      <!--Duplictes Microsoft.CodeQuality.Analyzers
+      <!--Duplicates Microsoft.CodeQuality.Analyzers
       <Rule Id="CA1815" Action="Warning" />
       -->
       <!--Duplicates Microsoft.NetCore.Analyzers
@@ -1069,7 +1072,7 @@
       <!--Duplicates Microsoft.CodeQuality.Analyzers
       <Rule Id="CA2211" Action="Warning" />
       -->
-      <!--Duplictes Microsoft.NetFramework.CSharp.Analyzers
+      <!--Duplicates Microsoft.NetFramework.CSharp.Analyzers
       <Rule Id="CA2212" Action="Warning" />
       -->
       <Rule Id="CA2213" Action="Warning" />
@@ -1350,6 +1353,9 @@
       <!--IDE0032: Use auto properties -->
       <Rule Id="IDE0032" Action="None" />
       <Rule Id="IDE0032WithoutSuggestion" Action="None" />
+      <!--IDE0039: Use local function.  Over-inclusive, suggests breaking code changes-->
+      <Rule Id="IDE0039" Action="None" />
+      <Rule Id="IDE0039WithoutSuggestion" Action="None" />
       <!--IDE0041: Null check can be simplified, Justification = False positives, pedantic (MWP) -->
       <Rule Id="IDE0041" Action="None" />
       <Rule Id="IDE0041WithoutSuggestion" Action="None" />
@@ -1409,8 +1415,6 @@
       <Rule Id="IDE0036WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE0037" Action="Warning" />
       <Rule Id="IDE0037WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0039" Action="Warning" />
-      <Rule Id="IDE0039WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE0040" Action="Warning" />
       <Rule Id="IDE0040WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE0042" Action="Warning" />

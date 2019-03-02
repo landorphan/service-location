@@ -2,9 +2,12 @@
 {
    using System;
    using System.Collections.Generic;
+   using System.Collections.Immutable;
+   using System.Diagnostics;
    using System.IO;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
+   using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Common.Exceptions;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -16,6 +19,36 @@
 
    public static class Path_Baseline_Tests
    {
+      // MAPPING:
+      // Path:                            IPathUtilities:
+      // ----------------------------------------------------------------------------------------------------------------------
+      // AltDirectorySeparatorChar        AltDirectorySeparatorCharacter
+      // ChangeExtension                  ChangeExtension
+      // Combine                          Combine
+      // DirectorySeparatorChar           DirectorySeparatorCharacter
+      // GetDirectoryName                 GetParentPath        
+      // GetExtension                     GetExtension
+      // GetFileName                      GetFileName
+      // GetFileNameWithoutExtension      GetFileNameWithoutExtension
+      // GetFullPath                      GetFullPath
+      // GetInvalidFileNameChars          GetInvalidFileNameCharacters
+      // GetInvalidPathChars              GetInvalidPathCharacters
+      // GetPathRoot                      GetRootPath
+      // GetRandomFileName                (implemented IFileUtilities and IDirectoryUtilities)
+      // GetTempFileName                  (see IFileUtilities.CreateTemporaryFile)
+      // GetTempPath                      (see IDirectoryUtilities.GetTemporaryDirectoryPath)   
+      // HasExtension                     HasExtension
+      // InvalidPathChars                 GetInvalidFileNameCharacters
+      // IsPathRooted                     IsPathRelative
+      // PathSeparator                    PathSeparatorCharacter
+      // VolumeSeparatorChar              VolumeSeparatorCharacter
+
+      // Not in .Net Standard 2.0
+      // GetRelativePath         
+      // IsPathFullyQualified
+      // Join
+      // TryJoin
+
       // These tests document what is:  test failures means an implementation detail has changed
       // change the assertion to document "what is"
       // if you believe the behavior to be incorrect, modify the behavior of the abstraction, fix the abstraction tests, and update these documentation tests
@@ -29,6 +62,50 @@
       [TestClass]
       public class Path_BCL_Fixed_Issues : TestBase
       {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         public void GetParentPath_on_a_UNC_path_should_NOT_return_null_unless_it_is_a_root()
+         {
+            // ReSharper disable CommentTypo
+            //
+            // \\share                 >> null
+            // \\share\file.txt        >> null  *** this is a confusing design choice
+            // \\share\folder\file.txt >> \\share\folder
+            // C:\                     >> null
+            // C:\file.txt             >> C:\
+            // C:\folder\file.txt      >> C:\folder
+            //
+            // ReSharper restore CommentTypo
+            const String uncPathShareFile = @"\\share\file.txt";
+            const String uncPathShare = @"\\share";
+
+            // Proof of fix:
+            util.GetParentPath(uncPathShareFile).Should().Be(uncPathShare);
+
+            // Proof of workaround needed:
+            Path.GetDirectoryName(uncPathShareFile).Should().BeNull();
+
+            // no workaround needed:
+            Path.GetDirectoryName(uncPathShare).Should().BeNull();
+            util.GetParentPath(uncPathShare).Should().BeNull();
+         }
+
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         public void GetRootPath_should_return_the_root_of_a_unc_path()
+         {
+            const String uncPathShareFile = @"\\share\file.txt";
+            const String uncPathShare = @"\\share";
+
+            // Proof of fix:
+            util.GetRootPath(uncPathShareFile).Should().Be(uncPathShare);
+
+            // Proof of workaround needed:
+            Path.GetPathRoot(uncPathShareFile).Should().Be(uncPathShareFile);
+         }
+
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
@@ -68,47 +145,56 @@
             var actual = Path.ChangeExtension(IllegalPath, legalExtension);
             actual.Should().Be("|.txt");
          }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
-         public void Leading_spaces_before_a_UNC_path_defeat_IsPathRooted_Fixed()
-         {
-            // Fixed by PathInternalMapping
-            const String noLeadingSpaces = @"\\someserver\someshare\";
-            const String leadingSpaces = Spaces + noLeadingSpaces;
-
-            // Proof of fix:
-            util.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            util.IsPathRooted(leadingSpaces).Should().BeTrue();
-
-            // Proof of workaround needed
-            Path.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            Path.IsPathRooted(leadingSpaces).Should().BeFalse();
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
-         public void Leading_spaces_before_the_drive_label_defeat_IsPathRooted_Fixed()
-         {
-            // Fixed by PathInternalMapping
-            var noLeadingSpaces = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            var leadingSpaces = Spaces + noLeadingSpaces;
-
-            // Proof of fix:
-            util.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            util.IsPathRooted(leadingSpaces).Should().BeTrue();
-
-            // Proof of workaround needed
-            Path.IsPathRooted(noLeadingSpaces).Should().BeTrue();
-            Path.IsPathRooted(leadingSpaces).Should().BeFalse();
-         }
       }
 
       [TestClass]
       public class Path_BCL_Non_Issues : TestBase
       {
+         [TestMethod]
+         [TestCategory(TestTiming.CheckIn)]
+         public void Document_Path_GetInvalidPathChars_and_Path_GetInvalidFileNameChars()
+         {
+            var path = Path.GetInvalidPathChars().ToImmutableHashSet();
+            Trace.WriteLine($"Path.GetInvalidPathChars count ={path.Count}");
+            foreach (var c in path)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            Trace.WriteLine(String.Empty);
+
+            var file = Path.GetInvalidFileNameChars().ToImmutableHashSet();
+            Trace.WriteLine($"Path.GetInvalidFileNameChars count ={file.Count}");
+            foreach (var c in file)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            Trace.WriteLine(String.Empty);
+
+            var pathExceptFile = path.Except(file);
+            Trace.WriteLine($"pathExceptFile count ={pathExceptFile.Count}");
+            foreach (var c in pathExceptFile)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            Trace.WriteLine(String.Empty);
+
+            var fileExceptPath = file.Except(path);
+            Trace.WriteLine($"fileExceptPath count ={fileExceptPath.Count}");
+            foreach (var c in fileExceptPath)
+            {
+               var hex = @"\x" + ((Int32)c).ToString("X4");
+               Trace.WriteLine($"{hex} \t {c}");
+            }
+
+            TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         }
+
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void Path_ChangeExtension_Behavior()
@@ -150,12 +236,21 @@
          [TestCategory(TestTiming.CheckIn)]
          public void Path_Combine_Behavior()
          {
-            // method handles directory separator character insertion
-            Path.Combine(@"c:\temp", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
-            util.Combine(@"c:\temp", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
+            if (TestHardCodes.WindowsLocalTestPaths.MappedDrive == null)
+            {
+               Assert.Inconclusive($"Null path returned from {nameof(TestHardCodes.WindowsLocalTestPaths.MappedDrive)}");
+               return;
+            }
 
-            Path.Combine(@"c:\temp\", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
-            util.Combine(@"c:\temp\", "temp.tmp").Should().Be(@"c:\temp\temp.tmp");
+            // usually c:\
+            var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
+
+            // method handles directory separator character insertion
+            Path.Combine(drive + @"temp", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
+            util.Combine(drive + @"temp", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
+
+            Path.Combine(drive + @"temp\", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
+            util.Combine(drive + @"temp\", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
 
             // string empty is ignored
             Path.Combine(String.Empty).Should().Be(String.Empty);
