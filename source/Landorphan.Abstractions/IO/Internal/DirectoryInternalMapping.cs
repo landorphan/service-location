@@ -8,7 +8,6 @@ namespace Landorphan.Abstractions.IO.Internal
    using System.Globalization;
    using System.IO;
    using System.Linq;
-   using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Resources;
    using Landorphan.Common;
@@ -24,8 +23,8 @@ namespace Landorphan.Abstractions.IO.Internal
    internal sealed class DirectoryInternalMapping : IDirectoryInternalMapping
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(3155378975999999999, DateTimeKind.Utc));
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(504911232000000001, DateTimeKind.Utc));
+      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(3_155_378_975_999_999_999, DateTimeKind.Utc));
+      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
 
       /// <inheritdoc/>
       public DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;
@@ -180,7 +179,7 @@ namespace Landorphan.Abstractions.IO.Internal
          const Int32 indexNotFound = -1;
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
-            throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
+            throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
          }
 #if (IO_PRECHECKS)
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
@@ -199,7 +198,7 @@ namespace Landorphan.Abstractions.IO.Internal
          catch (ArgumentException ae)
          {
             // TODO: check .Net Standard 2.0 implementation, this is from .Net Fx 4.6.1
-            if (ae.Message.StartsWith("Search pattern cannot contain", StringComparison.Ordinal) && ae.ParamName == null)
+            if (ae.Message.StartsWith(StringResources.SearchPatternCannotContain, StringComparison.Ordinal) && ae.ParamName == null)
             {
                // add the parameter name.
                throw new ArgumentException(ae.Message, nameof(searchPattern), ae);
@@ -233,7 +232,7 @@ namespace Landorphan.Abstractions.IO.Internal
          // BCL Directory.EnumerateFiles no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          const Int32 indexNotFound = -1;
-         
+
          // must not use GetInvalidFileNameCharacters, because that excludes valid search characters such as " * / : < > ? \
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
@@ -255,7 +254,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
          catch (ArgumentException ae)
          {
-            if (ae.Message.StartsWith("Search pattern cannot contain", StringComparison.Ordinal) && ae.ParamName == null)
+            if (ae.Message.StartsWith(StringResources.SearchPatternCannotContain, StringComparison.Ordinal) && ae.ParamName == null)
             {
                // add the parameter name.
                throw new ArgumentException(ae.Message, nameof(searchPattern), ae);
@@ -309,7 +308,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
          catch (ArgumentException ae)
          {
-            if (ae.Message.StartsWith("Search pattern cannot contain", StringComparison.Ordinal) && ae.ParamName == null)
+            if (ae.Message.StartsWith(StringResources.SearchPatternCannotContain, StringComparison.Ordinal) && ae.ParamName == null)
             {
                // add the parameter name.
                throw new ArgumentException(ae.Message, nameof(searchPattern), ae);
@@ -341,6 +340,171 @@ namespace Landorphan.Abstractions.IO.Internal
       public String GetCurrentDirectory()
       {
          return Directory.GetCurrentDirectory();
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetDirectories(String path)
+      {
+         return GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetDirectories(String path, String searchPattern)
+      {
+         return GetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetDirectories(String path, String searchPattern, SearchOption searchOption)
+      {
+         path.ArgumentNotNull(nameof(path));
+         searchPattern.ArgumentNotNull(nameof(searchPattern));
+         searchOption.ArgumentMustBeValidEnumValue(nameof(searchOption));
+
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+
+         // BCL no longer throws ArgumentException on invalid searchOption
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         const Int32 indexNotFound = -1;
+         if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
+         {
+            throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
+         }
+#if (IO_PRECHECKS)
+         ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
+
+         if (!DirectoryExists(cleanedPath))
+         {
+            ThrowDirectoryNotFoundException(cleanedPath, nameof(path));
+         }
+#endif
+
+         try
+         {
+            var rv = Directory.GetDirectories(cleanedPath, searchPattern, searchOption);
+            return rv.ToImmutableHashSet();
+         }
+         catch (ArgumentException ae)
+         {
+            // TODO: check .Net Standard 2.0 implementation, this is from .Net Fx 4.6.1
+            if (ae.Message.StartsWith(StringResources.SearchPatternCannotContain, StringComparison.Ordinal) && ae.ParamName == null)
+            {
+               // add the parameter name.
+               throw new ArgumentException(ae.Message, nameof(searchPattern), ae);
+            }
+
+            throw;
+         }
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFiles(String path)
+      {
+         return GetFiles(path, "*", SearchOption.TopDirectoryOnly);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFiles(String path, String searchPattern)
+      {
+         return GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFiles(String path, String searchPattern, SearchOption searchOption)
+      {
+         path.ArgumentNotNull(nameof(path));
+         searchPattern.ArgumentNotNull(nameof(searchPattern));
+         searchOption.ArgumentMustBeValidEnumValue(nameof(searchOption));
+
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+
+         // BCL no longer throws ArgumentException on invalid searchOption
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         const Int32 indexNotFound = -1;
+         if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
+         {
+            throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
+         }
+#if (IO_PRECHECKS)
+         ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
+
+         if (!DirectoryExists(cleanedPath))
+         {
+            ThrowDirectoryNotFoundException(cleanedPath, nameof(path));
+         }
+#endif
+
+         try
+         {
+            var rv = Directory.GetFiles(cleanedPath, searchPattern, searchOption);
+            return rv.ToImmutableHashSet();
+         }
+         catch (ArgumentException ae)
+         {
+            // TODO: check .Net Standard 2.0 implementation, this is from .Net Fx 4.6.1
+            if (ae.Message.StartsWith(StringResources.SearchPatternCannotContain, StringComparison.Ordinal) && ae.ParamName == null)
+            {
+               // add the parameter name.
+               throw new ArgumentException(ae.Message, nameof(searchPattern), ae);
+            }
+
+            throw;
+         }
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFileSystemEntries(String path)
+      {
+         return GetFileSystemEntries(path, "*", SearchOption.TopDirectoryOnly);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern)
+      {
+         return GetFileSystemEntries(path, searchPattern, SearchOption.TopDirectoryOnly);
+      }
+
+      /// <inheritdoc/>
+      public IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern, SearchOption searchOption)
+      {
+         path.ArgumentNotNull(nameof(path));
+         searchPattern.ArgumentNotNull(nameof(searchPattern));
+         searchOption.ArgumentMustBeValidEnumValue(nameof(searchOption));
+
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+
+         // BCL no longer throws ArgumentException on invalid searchOption
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         const Int32 indexNotFound = -1;
+         if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
+         {
+            throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
+         }
+#if (IO_PRECHECKS)
+         ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
+
+         if (!DirectoryExists(cleanedPath))
+         {
+            ThrowDirectoryNotFoundException(cleanedPath, nameof(path));
+         }
+#endif
+
+         try
+         {
+            var rv = Directory.GetFileSystemEntries(cleanedPath, searchPattern, searchOption);
+            return rv.ToImmutableHashSet();
+         }
+         catch (ArgumentException ae)
+         {
+            // TODO: check .Net Standard 2.0 implementation, this is from .Net Fx 4.6.1
+            if (ae.Message.StartsWith(StringResources.SearchPatternCannotContain, StringComparison.Ordinal) && ae.ParamName == null)
+            {
+               // add the parameter name.
+               throw new ArgumentException(ae.Message, nameof(searchPattern), ae);
+            }
+
+            throw;
+         }
       }
 
       /// <inheritdoc/>
@@ -389,8 +553,7 @@ namespace Landorphan.Abstractions.IO.Internal
       /// <inheritdoc/>
       public String GetTemporaryDirectoryPath()
       {
-         var environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-         return environmentUtilities.GetTemporaryDirectoryPath();
+         return Path.GetTempPath();
       }
 
       /// <inheritdoc/>

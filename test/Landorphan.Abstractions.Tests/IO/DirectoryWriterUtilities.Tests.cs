@@ -3,7 +3,6 @@
    using System;
    using System.Globalization;
    using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Ioc.ServiceLocation;
@@ -14,21 +13,20 @@
 
    public static class DirectoryWriterUtilities_Tests
    {
+      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+
+      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+      private static readonly IDirectoryWriterUtilities _target = IocServiceLocator.Resolve<IDirectoryWriterUtilities>();
+      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+
       [TestClass]
-      public class Given_I_have_an_IDirectoryWriterUtilities : TestBase
+      public class When_I_call_IDirectoryWriterUtilities_Copy : TestBase
       {
-         // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
-
-         private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-         private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-         private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-         private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         private static readonly IDirectoryWriterUtilities _target = IocServiceLocator.Resolve<IDirectoryWriterUtilities>();
-         private static readonly String _tempPath = _environmentUtilities.GetTemporaryDirectoryPath();
-
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_IDirectoryWriterUtilities_Copy_It_should_copy_the_directory()
+         public void It_should_copy_the_directory()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -54,10 +52,14 @@
                _directoryUtilities.DeleteRecursively(destDirName);
             }
          }
+      }
 
+      [TestClass]
+      public class When_I_call_IDirectoryWriterUtilities_Move : TestBase
+      {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void When_I_call_IDirectoryWriterUtilities_Move_It_should_move_the_directory()
+         public void It_should_move_the_directory()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));

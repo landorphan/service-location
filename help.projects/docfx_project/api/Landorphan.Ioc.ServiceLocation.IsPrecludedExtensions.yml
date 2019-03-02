@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsPrecludedExtensions
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
@@ -54,7 +54,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsPrecluded
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
@@ -106,7 +106,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IsPrecluded
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Extensions/IsPrecludedExtensions.cs

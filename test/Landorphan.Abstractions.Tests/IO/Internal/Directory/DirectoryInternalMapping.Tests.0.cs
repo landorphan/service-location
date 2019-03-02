@@ -19,11 +19,12 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       private const String Spaces = "   ";
+      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
       private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
       private static readonly IFileInternalMapping _fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly DirectoryInternalMapping _target = new DirectoryInternalMapping();
-      private static readonly String _tempPath = _environmentUtilities.GetTemporaryDirectoryPath();
+      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_Copy : TestBase
@@ -771,7 +772,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             // when tested, the existence of a trailing backslash made no difference
-            var path = String.Format(CultureInfo.InvariantCulture, @"   {0}\{1}\", _tempPath, Guid.NewGuid());
+            var path = String.Format(CultureInfo.InvariantCulture, @"   {0}\{1}\", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DirectoryExists(path.Trim()).Should().BeTrue();
@@ -787,7 +788,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             // when tested, the existence of a trailing backslash made no difference
-            var path = String.Format(CultureInfo.InvariantCulture, @"{0}\{1}\   ", _tempPath, Guid.NewGuid());
+            var path = String.Format(CultureInfo.InvariantCulture, @"{0}\{1}\   ", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DirectoryExists(path.Trim()).Should().BeTrue();
@@ -834,7 +835,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -974,7 +979,7 @@
          public void It_should_create_the_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + "It_should_create_the_directory");
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -1015,7 +1020,9 @@
             }
 
             // unc
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid() + nameof(It_should_create_the_directory_unc));
+            var path = _pathUtilities.Combine(
+               TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl,
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_unc));
             try
             {
                _target.CreateDirectory(path);
@@ -1064,7 +1071,7 @@
          {
             var fileMapper = new FileInternalMapping();
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var filePath = _pathUtilities.Combine(path, Guid.NewGuid() + ".tmp");
+            var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             // .Net Standard removed the period in empty. and changed it to empty : (path)
             var expectedMessageFragment = "The directory is not empty";
 
@@ -1232,7 +1239,7 @@
          public void And_the_path_matches_an_existing_file_It_should_throw_IOException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var filePath = _pathUtilities.Combine(path, Guid.NewGuid() + ".tmp");
+            var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             _target.CreateDirectory(path);
             _fileInternalMapping.CreateFile(filePath);
@@ -1273,7 +1280,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", Guid.NewGuid(), Guid.NewGuid());
+            var path = String.Format(
+               CultureInfo.InvariantCulture,
+               @"\\{0}\{1}",
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteEmpty(path);
 
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
@@ -1294,7 +1305,7 @@
          public void It_should_delete_an_empty_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid() + nameof(It_should_delete_an_empty_directory_absolute));
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -1339,7 +1350,9 @@
             }
 
             // unc
-            var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncShareRoot, Guid.NewGuid() + nameof(It_should_delete_an_empty_directory_unc));
+            var path = _pathUtilities.Combine(
+               TestHardCodes.WindowsUncTestPaths.UncShareRoot,
+               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_unc));
             try
             {
                _target.CreateDirectory(path);

@@ -338,7 +338,7 @@
             _target.IsPathRelative(childDirectory).Should().BeTrue();
             var grandChildDirectory = _target.Combine(childDirectory, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.IsPathRelative(grandChildDirectory).Should().BeTrue();
-            _directoryUtilities.SetCurrentDirectory(_environmentUtilities.GetTemporaryDirectoryPath());
+            _directoryUtilities.SetCurrentDirectory(_directoryUtilities.GetTemporaryDirectoryPath());
 
             _directoryUtilities.CreateDirectory(_target.GetFullPath(grandChildDirectory));
             try
@@ -691,7 +691,7 @@
             _target.IsPathRelative(childDirectory).Should().BeTrue();
             var grandChildDirectory = _target.Combine(childDirectory, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.IsPathRelative(grandChildDirectory).Should().BeTrue();
-            _directoryUtilities.SetCurrentDirectory(_environmentUtilities.GetTemporaryDirectoryPath());
+            _directoryUtilities.SetCurrentDirectory(_directoryUtilities.GetTemporaryDirectoryPath());
 
             _directoryUtilities.CreateDirectory(_target.GetFullPath(grandChildDirectory));
             try
@@ -808,8 +808,6 @@
             // HAPPY PATH TEST:
             _target.HasExtension(@"\\localhost").Should().BeFalse();
          }
-
-
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

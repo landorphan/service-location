@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentVariable.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IEnvironmentVariable
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentVariable.cs
@@ -54,7 +54,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentVariable.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Name
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentVariable.cs
@@ -90,7 +90,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentVariable.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Value
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentVariable.cs

@@ -7,6 +7,7 @@ items:
   children:
   - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateFile(System.String)
   - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+  - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
   - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
   - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.FileExists(System.String)
   - Landorphan.Abstractions.IO.Interfaces.IFileUtilities.GetAttributes(System.String)
@@ -30,7 +31,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IFileUtilities
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
@@ -63,7 +64,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: MaximumFileTimeAsDateTimeOffset
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
@@ -99,7 +100,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: MinimumFileTimeAsDateTimeOffset
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
@@ -135,7 +136,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CreateFile
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
@@ -192,7 +193,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CreateTemporaryFile
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
@@ -213,6 +214,63 @@ items:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
     description: "\nAn I/O error occurs, such as no unique temporary file name is available.\n- or -\nThis method was unable to create a temporary file.\n"
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  id: CreateText(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileUtilities
+  langs:
+  - csharp
+  - vb
+  name: CreateText(String)
+  nameWithType: IFileUtilities.CreateText(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: CreateText
+    path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
+    startLine: 112
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO.Interfaces
+  summary: "\nCreates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.  If the specified path root exists, this method will create intermediate\ndirectories, as well as the file itself as needed.\n"
+  example: []
+  syntax:
+    content: string CreateText(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe path and name of the file to create.\n"
+    return:
+      type: System.String
+      description: "\nThe full path of the file.\n"
+    content.vb: Function CreateText(path As String) As String
+  overload: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText*
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a file that is read-only.\n"
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or\nmore invalid characters as defined by\n<xref href=\"Landorphan.Abstractions.IO.Interfaces.IPathUtilities.GetInvalidPathCharacters\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified path is invalid (for example, it is on an unmapped drive).\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred while creating the file.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
 - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
   commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile(System.String)
   id: DeleteFile(System.String)
@@ -227,11 +285,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DeleteFile
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 111
+    startLine: 148
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -281,11 +339,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: FileExists
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 125
+    startLine: 162
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -316,11 +374,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetAttributes
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 159
+    startLine: 196
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -373,11 +431,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetCreationTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 187
+    startLine: 224
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -424,11 +482,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetLastAccessTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 215
+    startLine: 252
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -475,11 +533,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetLastWriteTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 243
+    startLine: 280
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -526,11 +584,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetRandomFileName
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 254
+    startLine: 291
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -558,11 +616,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetAttributes
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 288
+    startLine: 325
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -612,11 +670,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetCreationTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 327
+    startLine: 364
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -672,11 +730,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetLastAccessTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 363
+    startLine: 400
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -729,11 +787,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetLastWriteTime
     path: ../../source/Landorphan.Abstractions/IO/Interfaces/IFileUtilities.cs
-    startLine: 399
+    startLine: 436
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO.Interfaces
@@ -846,6 +904,11 @@ references:
   name: CreateTemporaryFile
   nameWithType: IFileUtilities.CreateTemporaryFile
   fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateTemporaryFile
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText*
+  commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText
+  name: CreateText
+  nameWithType: IFileUtilities.CreateText
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.CreateText
 - uid: Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile*
   commentId: Overload:Landorphan.Abstractions.IO.Interfaces.IFileUtilities.DeleteFile
   name: DeleteFile

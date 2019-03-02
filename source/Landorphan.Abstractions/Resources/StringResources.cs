@@ -4,6 +4,8 @@
 
    internal static class StringResources
    {
+      internal const String SearchPatternCannotContain = "Search pattern cannot contain";
+
       // interim replacement for a string resource file until I understand why incremental builds are defeated by the presence of a resource file.
       internal const String AccessToThePathIsDeniedFmt = "Access to the path '{0}' is denied.";
 
@@ -25,6 +27,9 @@
       internal const String CannotMoveToDestinationDirectorySubfolderOfSourceFmt =
          "Cannot move to the destination directory '{0}' because it is a subdirectory of the source directory '{1}'.";
 
+      internal const String CannotOpenFileDirectoryAlreadyExistsFmt =
+         "Cannot open the file '{0}' because a directory with the same name already exists.";
+
       internal const String CouldNotFindAllOrPartDirectoryPathParamNameFmt =
          "Could not find a part of the directory path '{0}'.\r\nParameter name: {1}";
 
@@ -34,6 +39,8 @@
                                         "ff790b6688513b19edf991760ef7ad02740a296c3ce5d098586b236b6abaa75038eb03af7d643d9a84b47bca0ed1cabbf4de9605c76007aab2e3abe7633d90860648ab1e38035fda5943971c64" +
                                         "71249a0bd80f2ab04686c2110ebb10f909fb773e3d87f67fb1e2f33ee791e4d8284fe9c6848ea81b3cf6a081df100716a10c68e0dd5219ff1657995777bf03961afdc3c09b040edb5a36baab50" +
                                         "75410507f3ba1d9f59c6bd67401819abbbe7712b5f473e052b96efe98c39210bb485c1ba0489ed396983beb914a3b2443f6aa2be4f49a88bb0";
+
+      internal const String SearchPatternContainsInvalidCharacters = @"The search pattern is not well-formed (contains invalid characters).";
 
       internal const String TheDirectoryNameIsInvalidFileAlreadyExistsFmt =
          "The directory name '{0}' is invalid because a file with the same name already exists.";

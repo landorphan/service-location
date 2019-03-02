@@ -16,7 +16,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IIocContainerRegistrationRepository
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs
@@ -75,7 +75,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Registrations
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Interfaces/Container/IIocContainerRegistrationRepository.cs

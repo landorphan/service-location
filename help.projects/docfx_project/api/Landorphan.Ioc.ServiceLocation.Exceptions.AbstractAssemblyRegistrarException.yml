@@ -23,7 +23,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AbstractAssemblyRegistrarException
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -71,7 +71,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -103,7 +103,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -139,7 +139,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -178,7 +178,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -214,7 +214,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -253,7 +253,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: .ctor
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -295,7 +295,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetObjectData
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
@@ -334,7 +334,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AbstractType
     path: ../../source/Landorphan.Ioc.ServiceLocation/ServiceLocation/Exceptions/LandorphanIocServiceExcepions/AbstractAssemblyRegistrarException.cs

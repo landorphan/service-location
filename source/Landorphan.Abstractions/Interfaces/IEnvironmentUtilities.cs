@@ -39,6 +39,15 @@
       Int32 CurrentManagedThreadId { get; }
 
       /// <summary>
+      /// Gets the number of milliseconds elapsed since the system started.
+      /// </summary>
+      /// <value>
+      /// The number of milliseconds elapsed since the system started.
+      /// </value>
+      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "Sonar does not recognize abbreviations")]
+      Int32 ElapsedSinceSystemStartupMS { get; }
+
+      /// <summary>
       /// Gets or sets the exit code of the process.
       /// </summary>
       /// <value>
@@ -397,18 +406,6 @@
          MessageId = "Option",
          Justification = "Matching underlying implementation(MWP)")]
       String GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option);
-
-      /// <summary>
-      /// Returns the path of the current user's temporary directory.
-      /// </summary>
-      /// <exception cref="SecurityException">
-      /// The caller does not have the required permissions.
-      /// </exception>
-      /// <returns>
-      /// The path to the temporary directory, ending with a backslash.
-      /// </returns>
-      [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetTemporaryDirectoryPath();
 
       /// <summary>
       /// Creates, modifies, or deletes an environment variable stored in the current process.

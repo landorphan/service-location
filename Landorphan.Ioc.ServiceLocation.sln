@@ -72,6 +72,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690-4432-4990-A9A0-BBB16EB45438}"
 	ProjectSection(SolutionItems) = preProject
+		landorphan.abstractions.nuspec = landorphan.abstractions.nuspec
 		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
 		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
 		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
@@ -80,7 +81,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
 	ProjectSection(SolutionItems) = preProject
 		help.projects\BuildServe-HelpDocumentation.ps1 = help.projects\BuildServe-HelpDocumentation.ps1
-		help.projects\HELP.READMEr.md = help.projects\HELP.READMEr.md
+		help.projects\HELP.README.md = help.projects\HELP.README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelpInstall", "HelpInstall", "{80489C8E-0C1C-4A88-B69C-ED23C29BF86F}"

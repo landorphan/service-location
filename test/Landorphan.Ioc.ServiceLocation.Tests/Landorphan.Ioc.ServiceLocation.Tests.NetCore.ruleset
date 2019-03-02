@@ -678,7 +678,6 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <Rule Id="IDE0007" Action="Warning" />
       <Rule Id="IDE0007WithoutSuggestion" Action="None" />
 
-
       <!-- Remaining Rules-->
       <Rule Id="IDE0003" Action="Warning" />
       <Rule Id="IDE0003WithoutSuggestion" Action="Warning" />

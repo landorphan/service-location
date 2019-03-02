@@ -10,6 +10,7 @@ items:
   - Landorphan.Abstractions.IO.FileWriterUtilities.CopyNoOverwrite(System.String,System.String)
   - Landorphan.Abstractions.IO.FileWriterUtilities.CopyWithOverwrite(System.String,System.String)
   - Landorphan.Abstractions.IO.FileWriterUtilities.Move(System.String,System.String)
+  - Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite(System.String)
   - Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsNoBackup(System.String,System.String)
   - Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsNoBackupIgnoringMetadataErrors(System.String,System.String)
   - Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsWithBackup(System.String,System.String,System.String)
@@ -30,11 +31,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: FileWriterUtilities
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 13
+    startLine: 14
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -71,11 +72,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AppendAllLines
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -143,11 +144,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: AppendAllText
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -215,11 +216,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CopyNoOverwrite
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -281,11 +282,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CopyWithOverwrite
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 37
+    startLine: 38
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -347,11 +348,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Move
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -396,6 +397,72 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite(System.String)
+  commentId: M:Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite(System.String)
+  id: OpenWrite(System.String)
+  parent: Landorphan.Abstractions.IO.FileWriterUtilities
+  langs:
+  - csharp
+  - vb
+  name: OpenWrite(String)
+  nameWithType: FileWriterUtilities.OpenWrite(String)
+  fullName: Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: OpenWrite
+    path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
+    startLine: 52
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nOpens an existing file or creates a new file for writing.\n"
+  example: []
+  syntax:
+    content: public FileStream OpenWrite(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe file to be opened for writing.\n"
+    return:
+      type: System.IO.FileStream
+      description: "\nAn unshared <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object on the specified path with <xref href=\"System.IO.FileAccess.Write\" data-throw-if-not-resolved=\"false\"></xref> access.\n"
+    content.vb: Public Function OpenWrite(path As String) As FileStream
+  overload: Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>, file name, or both exceed the system-defined maximum length.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\nThe specified <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, (for example, it is on an unmapped drive). \n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\nAn I/O error occurred while opening the file. \n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a file that is read-only.\n-or-\nThis operation is not supported on the current platform.\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> specified a directory.\n-or-\nThe caller does not have the required permission.\n-or-\nmode is <xref href=\"System.IO.FileMode.Create\" data-throw-if-not-resolved=\"false\"></xref> and the specified file is a hidden file.\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\nThe file specified in path was not found.\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is in an invalid format.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsNoBackup(System.String,System.String)
   commentId: M:Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsNoBackup(System.String,System.String)
   id: ReplaceContentsNoBackup(System.String,System.String)
@@ -410,11 +477,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ReplaceContentsNoBackup
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 51
+    startLine: 59
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -473,11 +540,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ReplaceContentsNoBackupIgnoringMetadataErrors
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 58
+    startLine: 66
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -536,11 +603,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ReplaceContentsWithBackup
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 65
+    startLine: 73
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -602,11 +669,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ReplaceContentsWithBackupIgnoringMetadataErrors
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 72
+    startLine: 80
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -668,11 +735,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WriteAllBytes
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 79
+    startLine: 87
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -737,11 +804,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WriteAllBytes
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 86
+    startLine: 94
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -806,11 +873,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WriteAllLines
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 93
+    startLine: 101
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -878,11 +945,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WriteAllLines
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 100
+    startLine: 108
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -950,11 +1017,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WriteAllLines
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 107
+    startLine: 115
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -1022,11 +1089,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WriteAllText
     path: ../../source/Landorphan.Abstractions/IO/FileWriterUtilities.cs
-    startLine: 114
+    startLine: 122
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.IO
@@ -1604,6 +1671,63 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite*
+  commentId: Overload:Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite
+  name: OpenWrite
+  nameWithType: FileWriterUtilities.OpenWrite
+  fullName: Landorphan.Abstractions.IO.FileWriterUtilities.OpenWrite
+- uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities
+  isExternal: true
+  name: OpenWrite(String)
+  nameWithType: IFileWriterUtilities.OpenWrite(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite(System.String)
+    name: OpenWrite
+    nameWithType: IFileWriterUtilities.OpenWrite
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite(System.String)
+    name: OpenWrite
+    nameWithType: IFileWriterUtilities.OpenWrite
+    fullName: Landorphan.Abstractions.IO.Interfaces.IFileWriterUtilities.OpenWrite
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.IO.FileStream
+  commentId: T:System.IO.FileStream
+  parent: System.IO
+  isExternal: true
+  name: FileStream
+  nameWithType: FileStream
+  fullName: System.IO.FileStream
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
 - uid: Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsNoBackup*
   commentId: Overload:Landorphan.Abstractions.IO.FileWriterUtilities.ReplaceContentsNoBackup
   name: ReplaceContentsNoBackup

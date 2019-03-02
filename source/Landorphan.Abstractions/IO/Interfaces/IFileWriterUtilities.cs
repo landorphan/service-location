@@ -241,6 +241,49 @@
       void Move(String sourceFileName, String destFileName);
 
       /// <summary>
+      /// Opens an existing file or creates a new file for writing.
+      /// </summary>
+      /// <param name="path">
+      /// The file to be opened for writing.
+      /// </param>
+      /// <returns>
+      /// An unshared <see cref="FileStream"/> object on the specified path with <see cref="FileAccess.Write"/> access.
+      /// </returns>
+      /// <exception cref="ArgumentException">      
+      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">      
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// </exception>
+      /// <exception cref="IOException">
+      /// An I/O error occurred while opening the file. 
+      /// </exception>
+      /// <exception cref="UnauthorizedAccessException">
+      /// <paramref name="path"/> specified a file that is read-only.
+      /// -or-
+      /// This operation is not supported on the current platform.
+      /// -or-
+      /// <paramref name="path"/> specified a directory.
+      /// -or-
+      /// The caller does not have the required permission.
+      /// -or-
+      /// mode is <see cref="FileMode.Create"/> and the specified file is a hidden file.
+      /// </exception>
+      /// <exception cref="FileNotFoundException">
+      /// The file specified in path was not found.
+      /// </exception>   
+      /// <exception cref="NotSupportedException">
+      /// <paramref name="path"/> is in an invalid format.
+      /// </exception>  
+      FileStream OpenWrite(String path);
+
+      /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file.
       /// </summary>
       /// <param name="sourceFileName">

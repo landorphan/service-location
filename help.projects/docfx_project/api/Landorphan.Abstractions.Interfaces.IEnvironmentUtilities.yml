@@ -8,6 +8,7 @@ items:
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ClrVersion
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CommandLine
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.CurrentManagedThreadId
+  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Exit(System.Int32)
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExpandEnvironmentVariables(System.String)
@@ -21,7 +22,6 @@ items:
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetLogicalDrives
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder)
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetSpecialFolderPath(System.Environment.SpecialFolder,System.Environment.SpecialFolderOption)
-  - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.HasShutdownStarted
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitOperatingSystem
   - Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.Is64BitProcess
@@ -48,7 +48,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: IEnvironmentUtilities
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
@@ -81,7 +81,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ClrVersion
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
@@ -117,7 +117,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CommandLine
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
@@ -153,7 +153,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: CurrentManagedThreadId
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
@@ -175,6 +175,42 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS
+  commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS
+  id: ElapsedSinceSystemStartupMS
+  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
+  langs:
+  - csharp
+  - vb
+  name: ElapsedSinceSystemStartupMS
+  nameWithType: IEnvironmentUtilities.ElapsedSinceSystemStartupMS
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS
+  type: Property
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: ElapsedSinceSystemStartupMS
+    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
+    startLine: 46
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.Interfaces
+  summary: "\nGets the number of milliseconds elapsed since the system started.\n"
+  example: []
+  syntax:
+    content: int ElapsedSinceSystemStartupMS { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nThe number of milliseconds elapsed since the system started.\n"
+    content.vb: ReadOnly Property ElapsedSinceSystemStartupMS As Integer
+  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
 - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
   commentId: P:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
   id: ExitCode
@@ -189,11 +225,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ExitCode
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 46
+    startLine: 55
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -224,11 +260,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: HasShutdownStarted
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 54
+    startLine: 63
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -260,11 +296,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Is64BitOperatingSystem
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 65
+    startLine: 74
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -296,11 +332,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Is64BitProcess
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 73
+    startLine: 82
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -332,11 +368,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: MachineName
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 84
+    startLine: 93
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -372,11 +408,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: NewLine
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 92
+    startLine: 101
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -408,11 +444,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: OSVersion
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 105
+    startLine: 114
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -448,11 +484,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ProcessorCount
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 116
+    startLine: 125
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -484,11 +520,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: StackTrace
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 127
+    startLine: 136
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -524,11 +560,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SystemDirectory
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 138
+    startLine: 147
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -561,11 +597,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SystemPageSizeBytes
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 146
+    startLine: 155
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -597,11 +633,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: UserDomainName
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 160
+    startLine: 169
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -640,11 +676,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: UserInteractive
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 168
+    startLine: 177
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -676,11 +712,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: UserName
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 176
+    startLine: 185
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -712,11 +748,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: WorkingSetBytes
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 184
+    startLine: 193
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -748,11 +784,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: Exit
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 195
+    startLine: 204
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -800,11 +836,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: ExpandEnvironmentVariables
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 217
+    startLine: 226
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -839,11 +875,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: FailFast
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 226
+    startLine: 235
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -871,11 +907,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: FailFast
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 238
+    startLine: 247
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -906,11 +942,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetCommandLineArgs
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 250
+    startLine: 259
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -941,11 +977,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetEnvironmentVariable
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 267
+    startLine: 276
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -983,11 +1019,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetEnvironmentVariable
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 297
+    startLine: 306
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1034,11 +1070,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetEnvironmentVariables
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 312
+    startLine: 321
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1072,11 +1108,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetEnvironmentVariables
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 335
+    startLine: 344
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1117,11 +1153,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetLogicalDrives
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 350
+    startLine: 359
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1155,11 +1191,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetSpecialFolderPath
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 369
+    startLine: 378
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1197,11 +1233,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: GetSpecialFolderPath
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 393
+    startLine: 402
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1228,41 +1264,6 @@ items:
   - type: Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
     commentId: T:Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
     description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">specialFolder</code> is not a member of <xref href=\"System.Environment.SpecialFolder\" data-throw-if-not-resolved=\"false\"></xref>\n-or-\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">option</code> is not a member of <xref href=\"System.Environment.SpecialFolderOption\" data-throw-if-not-resolved=\"false\"></xref>\n"
-- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
-  commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
-  id: GetTemporaryDirectoryPath
-  parent: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities
-  langs:
-  - csharp
-  - vb
-  name: GetTemporaryDirectoryPath()
-  nameWithType: IEnvironmentUtilities.GetTemporaryDirectoryPath()
-  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath()
-  type: Method
-  source:
-    remote:
-      path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
-      repo: https://github.com/landorphan/service-location.git
-    id: GetTemporaryDirectoryPath
-    path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 409
-  assemblies:
-  - Landorphan.Abstractions
-  namespace: Landorphan.Abstractions.Interfaces
-  summary: "\nReturns the path of the current user&apos;s temporary directory.\n"
-  example: []
-  syntax:
-    content: string GetTemporaryDirectoryPath()
-    return:
-      type: System.String
-      description: "\nThe path to the temporary directory, ending with a backslash.\n"
-    content.vb: Function GetTemporaryDirectoryPath As String
-  overload: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath*
-  exceptions:
-  - type: System.Security.SecurityException
-    commentId: T:System.Security.SecurityException
-    description: "\nThe caller does not have the required permissions.\n"
 - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String)
   commentId: M:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable(System.String,System.String)
   id: SetEnvironmentVariable(System.String,System.String)
@@ -1277,11 +1278,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetEnvironmentVariable
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 436
+    startLine: 433
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1322,11 +1323,11 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: SetEnvironmentVariable
     path: ../../source/Landorphan.Abstractions/Interfaces/IEnvironmentUtilities.cs
-    startLine: 478
+    startLine: 475
   assemblies:
   - Landorphan.Abstractions
   namespace: Landorphan.Abstractions.Interfaces
@@ -1407,6 +1408,11 @@ references:
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
+- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS*
+  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS
+  name: ElapsedSinceSystemStartupMS
+  nameWithType: IEnvironmentUtilities.ElapsedSinceSystemStartupMS
+  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ElapsedSinceSystemStartupMS
 - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode*
   commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.ExitCode
   name: ExitCode
@@ -1730,11 +1736,6 @@ references:
 - uid: Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
   commentId: T:Landorphan.Common.Exceptions.ExtendedInvalidEnumArgumentException
   isExternal: true
-- uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath*
-  commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
-  name: GetTemporaryDirectoryPath
-  nameWithType: IEnvironmentUtilities.GetTemporaryDirectoryPath
-  fullName: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.GetTemporaryDirectoryPath
 - uid: Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable*
   commentId: Overload:Landorphan.Abstractions.Interfaces.IEnvironmentUtilities.SetEnvironmentVariable
   name: SetEnvironmentVariable

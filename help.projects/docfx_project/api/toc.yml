@@ -9,34 +9,6 @@
   items:
   - uid: Landorphan.Abstractions.AssemblySelfRegistration.AbstractionsServiceLocationSelfRegistration
     name: AbstractionsServiceLocationSelfRegistration
-- uid: Landorphan.Abstractions.Console
-  name: Landorphan.Abstractions.Console
-  items:
-  - uid: Landorphan.Abstractions.Console.ConsoleUtilities
-    name: ConsoleUtilities
-- uid: Landorphan.Abstractions.Console.Interfaces
-  name: Landorphan.Abstractions.Console.Interfaces
-  items:
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsole
-    name: IConsole
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleAppearance
-    name: IConsoleAppearance
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleBuffer
-    name: IConsoleBuffer
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleCursor
-    name: IConsoleCursor
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleMisc
-    name: IConsoleMisc
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleReader
-    name: IConsoleReader
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleStreams
-    name: IConsoleStreams
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleWrite
-    name: IConsoleWrite
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleWriteLine
-    name: IConsoleWriteLine
-  - uid: Landorphan.Abstractions.Console.Interfaces.IConsoleWriter
-    name: IConsoleWriter
 - uid: Landorphan.Abstractions.Interfaces
   name: Landorphan.Abstractions.Interfaces
   items:

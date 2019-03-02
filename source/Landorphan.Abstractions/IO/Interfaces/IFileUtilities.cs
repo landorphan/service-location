@@ -76,6 +76,43 @@
       String CreateTemporaryFile();
 
       /// <summary>
+      /// Creates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.  If the specified path root exists, this method will create intermediate
+      /// directories, as well as the file itself as needed.
+      /// </summary>
+      /// <param name="path">
+      /// The path and name of the file to create.
+      /// </param>
+      /// <returns>
+      /// The full path of the file.
+      /// </returns>
+      /// <exception cref="UnauthorizedAccessException">
+      /// The caller does not have the required permission.
+      /// -or-
+      /// <paramref name="path"/> specified a file that is read-only.
+      /// </exception>
+      /// <exception cref="ArgumentException">
+      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
+      /// more invalid characters as defined by
+      /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
+      /// </exception>
+      /// <exception cref="ArgumentNullException">
+      /// <paramref name="path"/> is null.
+      /// </exception>
+      /// <exception cref="PathTooLongException">
+      /// The specified path, file name, or both exceed the system-defined maximum length.
+      /// </exception>
+      /// <exception cref="DirectoryNotFoundException">
+      /// The specified path is invalid (for example, it is on an unmapped drive).
+      /// </exception>
+      /// <exception cref="IOException">
+      /// An I/O error occurred while creating the file.
+      /// </exception>
+      /// <exception cref="NotSupportedException">
+      /// <paramref name="path"/> is in an invalid format.
+      /// </exception>
+      String CreateText(String path);
+
+      /// <summary>
       /// Deletes the specified file.
       /// </summary>
       /// <exception cref="ArgumentException">

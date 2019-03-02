@@ -39,7 +39,7 @@
          public void And_the_directory_is_not_empty_It_should_delete_the_directory()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var filePath = _pathUtilities.Combine(path, Guid.NewGuid() + ".tmp");
+            var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             // nested file
             _target.CreateDirectory(path);
@@ -182,7 +182,7 @@
          public void And_the_path_matches_an_existing_file_It_should_throw_IOException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var filePath = _pathUtilities.Combine(path, Guid.NewGuid() + ".tmp");
+            var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             _target.CreateDirectory(path);
             _fileInternalMapping.CreateFile(filePath);

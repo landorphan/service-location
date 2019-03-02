@@ -4,9 +4,9 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyCompany("Landorphan.Common")]
-[assembly: AssemblyProduct("Landorphan.Common")]
-[assembly: AssemblyTitle("Landorphan.Common")]
+[assembly: AssemblyCompany("Landorphan.Abstractions")]
+[assembly: AssemblyProduct("Landorphan.Abstractions")]
+[assembly: AssemblyTitle("Landorphan.Abstractions")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 [assembly: CLSCompliant(true)]

@@ -23,13 +23,14 @@ namespace Landorphan.Abstractions.IO.Internal
    /// <remarks>
    /// Provides a near one-to-one mapping to <see cref="File"/> but in an object instance (as opposed to static) to support testability.
    /// </remarks>
-   [SuppressMessage("SonarLint.CodeSmell", "S2148: Underscores should be used to make large numbers readable")]
+   // [SuppressMessage("SonarLint.CodeSmell", "S2148: Underscores should be used to make large numbers readable")]
    internal sealed class FileInternalMapping : IFileInternalMapping
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(3155378975999999999, DateTimeKind.Utc));
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(504911232000000001, DateTimeKind.Utc));
+      // SonarLint demands underscores, I am uncertain the value in these cases.
+      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(3_155_378_975_999_999_999, DateTimeKind.Utc));
+      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
 
       /// <inheritdoc/>
       public DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;
@@ -141,6 +142,41 @@ namespace Landorphan.Abstractions.IO.Internal
       public String CreateTemporaryFile()
       {
          return Path.GetTempFileName();
+      }
+
+      /// <inheritdoc/>
+      public String CreateText(String path)
+      {
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         var rv = pathUtilities.GetFullPath(cleanedPath);
+
+#if (IO_PRECHECKS)
+         ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
+
+         var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+         if (directoryUtilities.DirectoryExists(cleanedPath))
+         {
+            var msg = String.Format(
+               CultureInfo.InvariantCulture,
+               "Cannot create the file '{0}' because a directory with the same name already exists.",
+               cleanedPath);
+            throw new IOException(msg);
+         }
+#endif
+         var dir = pathUtilities.GetParentPath(cleanedPath).Trim();
+         if (!String.IsNullOrEmpty(dir) && !directoryUtilities.DirectoryExists(dir))
+         {
+            directoryUtilities.CreateDirectory(dir);
+         }
+
+         using (File.CreateText(cleanedPath))
+         {
+            // file created.
+         }
+
+         return rv;
       }
 
       /// <inheritdoc/>
@@ -344,6 +380,97 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
+      public FileStream Open(String path, FileMode mode)
+      {
+         return Open(path, mode, mode == FileMode.Append ? FileAccess.Write : FileAccess.ReadWrite, FileShare.None);
+      }
+
+      /// <inheritdoc/>
+      public FileStream Open(String path, FileMode mode, FileAccess access)
+      {
+         return Open(path, mode, access, FileShare.None);
+      }
+
+      /// <inheritdoc/>
+      public FileStream Open(String path, FileMode mode, FileAccess access, FileShare share)
+      {
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+         mode.ArgumentMustBeValidEnumValue(nameof(mode));
+         access.ArgumentMustBeValidFlagsEnumValue(nameof(access));
+         share.ArgumentMustBeValidFlagsEnumValue(nameof(share));
+
+#if (IO_PRECHECKS)
+         var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
+         if (dirUtilities.DirectoryExists(cleanedPath))
+         {
+            if (mode == FileMode.Create)
+            {
+               var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotCreateFileDirectoryAlreadyExistsFmt, cleanedPath);
+               throw new IOException(msg);
+            }
+            else
+            {
+               var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+               throw new IOException(msg);
+            }
+         }
+#endif
+         var rv = File.Open(cleanedPath, mode, access, share);
+         return rv;
+      }
+
+      /// <inheritdoc/>
+      public FileStream OpenRead(String path)
+      {
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+
+#if (IO_PRECHECKS)
+         var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
+         if (dirUtilities.DirectoryExists(cleanedPath))
+         {
+            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+            throw new IOException(msg);
+         }
+#endif
+
+         var rv = File.OpenRead(cleanedPath);
+         return rv;
+      }
+
+      /// <inheritdoc/>
+      public StreamReader OpenText(String path)
+      {
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+
+#if (IO_PRECHECKS)
+         var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
+         if (dirUtilities.DirectoryExists(cleanedPath))
+         {
+            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+            throw new IOException(msg);
+         }
+#endif
+         var rv = File.OpenText(cleanedPath);
+         return rv;
+      }
+
+      /// <inheritdoc/>
+      public FileStream OpenWrite(String path)
+      {
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+#if (IO_PRECHECKS)
+         var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
+         if (dirUtilities.DirectoryExists(cleanedPath))
+         {
+            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+            throw new IOException(msg);
+         }
+#endif
+         var rv = File.OpenWrite(cleanedPath);
+         return rv;
+      }
+
+      /// <inheritdoc/>
       public IImmutableList<Byte> ReadAllBytes(String path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
@@ -412,6 +539,60 @@ namespace Landorphan.Abstractions.IO.Internal
 #endif
 
          return File.ReadAllText(cleanedPath, encoding);
+      }
+
+      /// <inheritdoc/>
+      public IEnumerable<String> ReadLines(String path)
+      {
+         return ReadLines(path, Encoding.UTF8);
+      }
+
+      /// <inheritdoc/>
+      public IEnumerable<String> ReadLines(String path, Encoding encoding)
+      {
+         // .Net Standard 2.0  File.ReadLines has at least 2 bugs
+         // It leaks a file handle
+         // It does not support multiple enumerations of the results
+         //
+         // This is a rewrite
+
+         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
+         encoding.ArgumentNotNull(nameof(encoding));
+#if IO_PRECHECKS
+         var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+         var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+         var dir = pathUtilities.GetParentPath(cleanedPath);
+
+         // the directory containing the file does not exist.
+         if (!String.IsNullOrEmpty(dir) && !dirUtilities.DirectoryExists(dir))
+         {
+            ThrowDirectoryNotFoundException(dir, nameof(path));
+         }
+
+         // the path is a directory, not a file
+         if (dirUtilities.DirectoryExists(cleanedPath))
+         {
+            throw new IOException(
+               String.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
+         }
+
+         if (!FileExists(cleanedPath))
+         {
+            throw new FileNotFoundException(null, cleanedPath);
+         }
+#endif
+         var builder = ImmutableList<String>.Empty.ToBuilder();
+         using (var sr = new StreamReader(cleanedPath, encoding))
+         {
+            var line = sr.ReadLine();
+            while (line != null)
+            {
+               builder.Add(line);
+               line = sr.ReadLine();
+            }
+         }
+
+         return builder.ToImmutable();
       }
 
       /// <inheritdoc/>
@@ -708,6 +889,16 @@ namespace Landorphan.Abstractions.IO.Internal
          }
 
          return rv;
+      }
+
+      private static void ThrowDirectoryNotFoundException(String directoryPath, String argumentName)
+      {
+         throw new DirectoryNotFoundException(
+            String.Format(
+               CultureInfo.InvariantCulture,
+               StringResources.CouldNotFindAllOrPartDirectoryPathParamNameFmt,
+               directoryPath ?? String.Empty,
+               argumentName ?? String.Empty));
       }
 
       private static void ThrowFileNotFoundException(String filePath, String argumentName)

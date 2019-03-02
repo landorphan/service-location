@@ -14,6 +14,15 @@ items:
   - Landorphan.Abstractions.IO.DirectoryReaderUtilities.EnumerateFileSystemEntries(System.String)
   - Landorphan.Abstractions.IO.DirectoryReaderUtilities.EnumerateFileSystemEntries(System.String,System.String)
   - Landorphan.Abstractions.IO.DirectoryReaderUtilities.EnumerateFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String,System.String)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String,System.String)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+  - Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
   langs:
   - csharp
   - vb
@@ -24,7 +33,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: DirectoryReaderUtilities
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -65,7 +74,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateDirectories
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -128,7 +137,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateDirectories
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -194,7 +203,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateDirectories
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -266,7 +275,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateFiles
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -329,7 +338,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateFiles
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -395,7 +404,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateFiles
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -467,7 +476,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateFileSystemEntries
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -530,7 +539,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateFileSystemEntries
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -596,7 +605,7 @@ items:
   source:
     remote:
       path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
-      branch: mprochaska.restore.abstraction.tests
+      branch: develop
       repo: https://github.com/landorphan/service-location.git
     id: EnumerateFileSystemEntries
     path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
@@ -650,6 +659,600 @@ items:
     description: "\nThe caller does not have the required permission.\n"
   implements:
   - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.EnumerateFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String)
+  id: GetDirectories(System.String)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetDirectories(String)
+  nameWithType: DirectoryReaderUtilities.GetDirectories(String)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetDirectories
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 78
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of subdirectories (including their paths) in the specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetDirectories(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetDirectories(path As String) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String,System.String)
+  id: GetDirectories(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetDirectories(String, String)
+  nameWithType: DirectoryReaderUtilities.GetDirectories(String, String)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetDirectories
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 85
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of subdirectories (including their paths) in the specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetDirectories(string path, string searchPattern)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    - id: searchPattern
+      type: System.String
+      description: "\nThe search string to match against the names of subdirectories in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.  This parameter can contain a combination of valid literal and wildcard characters, but it\ndoes not support regular expressions.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetDirectories(path As String, searchPattern As String) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+  id: GetDirectories(System.String,System.String,System.IO.SearchOption)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetDirectories(String, String, SearchOption)
+  nameWithType: DirectoryReaderUtilities.GetDirectories(String, String, SearchOption)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories(System.String, System.String, System.IO.SearchOption)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetDirectories
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 92
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of subdirectories (including their paths) in the specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetDirectories(string path, string searchPattern, SearchOption searchOption)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    - id: searchPattern
+      type: System.String
+      description: "\nThe search string to match against the names of subdirectories in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.  This parameter can contain a combination of valid literal and wildcard characters, but it\ndoes not support regular expressions.\n"
+    - id: searchOption
+      type: System.IO.SearchOption
+      description: "\nOne of the enumeration values that specifies whether the search operation should include all subdirectories or only the current directory.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetDirectories(path As String, searchPattern As String, searchOption As SearchOption) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String)
+  id: GetFiles(System.String)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFiles(String)
+  nameWithType: DirectoryReaderUtilities.GetFiles(String)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFiles
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 99
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of files (including their paths) in the specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetFiles(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetFiles(path As String) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String,System.String)
+  id: GetFiles(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFiles(String, String)
+  nameWithType: DirectoryReaderUtilities.GetFiles(String, String)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFiles
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 106
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of files (including their paths) in the specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetFiles(string path, string searchPattern)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    - id: searchPattern
+      type: System.String
+      description: "\nThe search string to match against the names of subdirectories in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.  This parameter can contain a combination of valid literal and wildcard characters, but it\ndoes not support regular expressions.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetFiles(path As String, searchPattern As String) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+  id: GetFiles(System.String,System.String,System.IO.SearchOption)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFiles(String, String, SearchOption)
+  nameWithType: DirectoryReaderUtilities.GetFiles(String, String, SearchOption)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles(System.String, System.String, System.IO.SearchOption)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFiles
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 113
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of files (including their paths) in the specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetFiles(string path, string searchPattern, SearchOption searchOption)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    - id: searchPattern
+      type: System.String
+      description: "\nThe search string to match against the names of subdirectories in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.  This parameter can contain a combination of valid literal and wildcard characters, but it\ndoes not support regular expressions.\n"
+    - id: searchOption
+      type: System.IO.SearchOption
+      description: "\nOne of the enumeration values that specifies whether the search operation should include all subdirectories or only the current directory.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetFiles(path As String, searchPattern As String, searchOption As SearchOption) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  id: GetFileSystemEntries(System.String)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFileSystemEntries(String)
+  nameWithType: DirectoryReaderUtilities.GetFileSystemEntries(String)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFileSystemEntries
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 120
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of all files and subdirectories in a specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetFileSystemEntries(string path)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetFileSystemEntries(path As String) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+  id: GetFileSystemEntries(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFileSystemEntries(String, String)
+  nameWithType: DirectoryReaderUtilities.GetFileSystemEntries(String, String)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFileSystemEntries
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 127
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of all files and subdirectories in a specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    - id: searchPattern
+      type: System.String
+      description: "\nThe search string to match against the names of subdirectories in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.  This parameter can contain a combination of valid literal and wildcard characters, but it\ndoes not support regular expressions.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetFileSystemEntries(path As String, searchPattern As String) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  id: GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  parent: Landorphan.Abstractions.IO.DirectoryReaderUtilities
+  langs:
+  - csharp
+  - vb
+  name: GetFileSystemEntries(String, String, SearchOption)
+  nameWithType: DirectoryReaderUtilities.GetFileSystemEntries(String, String, SearchOption)
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries(System.String, System.String, System.IO.SearchOption)
+  type: Method
+  source:
+    remote:
+      path: source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+      branch: develop
+      repo: https://github.com/landorphan/service-location.git
+    id: GetFileSystemEntries
+    path: ../../source/Landorphan.Abstractions/IO/DirectoryReaderUtilities.cs
+    startLine: 134
+  assemblies:
+  - Landorphan.Abstractions
+  namespace: Landorphan.Abstractions.IO
+  summary: "\nReturns the names of all files and subdirectories in a specified directory.\n"
+  example: []
+  syntax:
+    content: public IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
+    parameters:
+    - id: path
+      type: System.String
+      description: "\nThe relative or absolute path to the directory to search. This string is not case-sensitive.\n"
+    - id: searchPattern
+      type: System.String
+      description: "\nThe search string to match against the names of subdirectories in <code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code>.  This parameter can contain a combination of valid literal and wildcard characters, but it\ndoes not support regular expressions.\n"
+    - id: searchOption
+      type: System.IO.SearchOption
+      description: "\nOne of the enumeration values that specifies whether the search operation should include all subdirectories or only the current directory.\n"
+    return:
+      type: System.Collections.Immutable.IImmutableSet{System.String}
+      description: "\nA non-null collection of unique subdirectories in the specified path, or an empty set if no directories are found.\n"
+    content.vb: Public Function GetFileSystemEntries(path As String, searchPattern As String, searchOption As SearchOption) As IImmutableSet(Of String)
+  overload: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path </code>is a zero-length string, contains only white space, or contains invalid\ncharacters as defined by <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is null.\n"
+  - type: System.IO.DirectoryNotFoundException
+    commentId: T:System.IO.DirectoryNotFoundException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is invalid, such as referring to an unmapped drive.\n"
+  - type: System.IO.IOException
+    commentId: T:System.IO.IOException
+    description: "\n<code data-dev-comment-type=\"paramref\" class=\"paramref\">path</code> is a file name.\n"
+  - type: System.IO.PathTooLongException
+    commentId: T:System.IO.PathTooLongException
+    description: "\nThe specified path, file name, or combined exceed the system-defined maximum length.\n"
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\nThe caller does not have the required permission.\n"
+  - type: System.UnauthorizedAccessException
+    commentId: T:System.UnauthorizedAccessException
+    description: "\nThe caller does not have the required permission.\n"
+  implements:
+  - Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1304,6 +1907,516 @@ references:
     name: EnumerateFileSystemEntries
     nameWithType: IDirectoryReaderUtilities.EnumerateFileSystemEntries
     fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.EnumerateFileSystemEntries
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.SearchOption
+    name: SearchOption
+    nameWithType: SearchOption
+    fullName: System.IO.SearchOption
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories*
+  commentId: Overload:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories
+  name: GetDirectories
+  nameWithType: DirectoryReaderUtilities.GetDirectories
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetDirectories
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetDirectories(String)
+  nameWithType: IDirectoryReaderUtilities.GetDirectories(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String)
+    name: GetDirectories
+    nameWithType: IDirectoryReaderUtilities.GetDirectories
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String)
+    name: GetDirectories
+    nameWithType: IDirectoryReaderUtilities.GetDirectories
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetDirectories(String, String)
+  nameWithType: IDirectoryReaderUtilities.GetDirectories(String, String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String, System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String)
+    name: GetDirectories
+    nameWithType: IDirectoryReaderUtilities.GetDirectories
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String)
+    name: GetDirectories
+    nameWithType: IDirectoryReaderUtilities.GetDirectories
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetDirectories(String, String, SearchOption)
+  nameWithType: IDirectoryReaderUtilities.GetDirectories(String, String, SearchOption)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String, System.String, System.IO.SearchOption)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+    name: GetDirectories
+    nameWithType: IDirectoryReaderUtilities.GetDirectories
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.SearchOption
+    name: SearchOption
+    nameWithType: SearchOption
+    fullName: System.IO.SearchOption
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories(System.String,System.String,System.IO.SearchOption)
+    name: GetDirectories
+    nameWithType: IDirectoryReaderUtilities.GetDirectories
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetDirectories
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.SearchOption
+    name: SearchOption
+    nameWithType: SearchOption
+    fullName: System.IO.SearchOption
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles*
+  commentId: Overload:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles
+  name: GetFiles
+  nameWithType: DirectoryReaderUtilities.GetFiles
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFiles
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetFiles(String)
+  nameWithType: IDirectoryReaderUtilities.GetFiles(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String)
+    name: GetFiles
+    nameWithType: IDirectoryReaderUtilities.GetFiles
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String)
+    name: GetFiles
+    nameWithType: IDirectoryReaderUtilities.GetFiles
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetFiles(String, String)
+  nameWithType: IDirectoryReaderUtilities.GetFiles(String, String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String, System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String)
+    name: GetFiles
+    nameWithType: IDirectoryReaderUtilities.GetFiles
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String)
+    name: GetFiles
+    nameWithType: IDirectoryReaderUtilities.GetFiles
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetFiles(String, String, SearchOption)
+  nameWithType: IDirectoryReaderUtilities.GetFiles(String, String, SearchOption)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String, System.String, System.IO.SearchOption)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+    name: GetFiles
+    nameWithType: IDirectoryReaderUtilities.GetFiles
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.SearchOption
+    name: SearchOption
+    nameWithType: SearchOption
+    fullName: System.IO.SearchOption
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles(System.String,System.String,System.IO.SearchOption)
+    name: GetFiles
+    nameWithType: IDirectoryReaderUtilities.GetFiles
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFiles
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.SearchOption
+    name: SearchOption
+    nameWithType: SearchOption
+    fullName: System.IO.SearchOption
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries*
+  commentId: Overload:Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries
+  name: GetFileSystemEntries
+  nameWithType: DirectoryReaderUtilities.GetFileSystemEntries
+  fullName: Landorphan.Abstractions.IO.DirectoryReaderUtilities.GetFileSystemEntries
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetFileSystemEntries(String)
+  nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries(String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String)
+    name: GetFileSystemEntries
+    nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String)
+    name: GetFileSystemEntries
+    nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetFileSystemEntries(String, String)
+  nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries(String, String)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String, System.String)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+    name: GetFileSystemEntries
+    nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String)
+    name: GetFileSystemEntries
+    nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  commentId: M:Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+  parent: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities
+  isExternal: true
+  name: GetFileSystemEntries(String, String, SearchOption)
+  nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries(String, String, SearchOption)
+  fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String, System.String, System.IO.SearchOption)
+  spec.csharp:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+    name: GetFileSystemEntries
+    nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IO.SearchOption
+    name: SearchOption
+    nameWithType: SearchOption
+    fullName: System.IO.SearchOption
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)
+    name: GetFileSystemEntries
+    nameWithType: IDirectoryReaderUtilities.GetFileSystemEntries
+    fullName: Landorphan.Abstractions.IO.Interfaces.IDirectoryReaderUtilities.GetFileSystemEntries
   - name: (
     nameWithType: (
     fullName: (
