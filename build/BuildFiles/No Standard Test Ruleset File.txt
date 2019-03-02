@@ -1,3 +1,0 @@
-At present, Test project are core or full framework.
-
-No standard test projects, no standard test ruleset.
