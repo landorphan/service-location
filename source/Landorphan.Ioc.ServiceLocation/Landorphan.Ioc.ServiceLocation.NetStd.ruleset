@@ -263,6 +263,9 @@
       unfortunately, I have yet to find a way to get generate categories, descriptions, these are done by hand, 
       one at a time....-->
 
+      <!--Upgraded from 7.10.0.7896 to 7.11.0.8083:  No new rules detected -->
+      <!--TODO: figure out a better way to examine rules -->
+
       <!-- ********************** -->
       <!-- Disabled in Production -->
       <!-- ********************** -->
@@ -302,6 +305,8 @@
       <Rule Id="S2328" Action="None" />
       <!--s2339: Public constant members should not be used.   This rule is well-intentioned but fails to recognize the limitations (cannot use in Attributes, cannot use in switch statements, ...)-->
       <Rule Id="S2339" Action="None" />
+      <!--S2955: Generic parameters not constrained to reference types should not be compared to "null".  Suggests breaking changes -->
+      <Rule Id="S2955" Action="None" />
       <!--S3215: interface instances should not be cast to concrete types.  This rule fires on as, not just unsafe casts. -->
       <Rule Id="S3215" Action="None" />
       <!--S3240: The simplest possible condition syntax should be used.  Justification, leads to truly complicated ternary expressions -->
@@ -482,7 +487,6 @@
       <Rule Id="S2934" Action="Warning" />
       <Rule Id="S2952" Action="Warning" />
       <Rule Id="S2953" Action="Warning" />
-      <Rule Id="S2955" Action="Warning" />
       <Rule Id="S2971" Action="Warning" />
       <Rule Id="S2995" Action="Warning" />
       <Rule Id="S2996" Action="Warning" />
@@ -655,5 +659,111 @@
       <Rule Id="S4564" Action="Warning" />
       <Rule Id="S4581" Action="Warning" />
       <Rule Id="S4586" Action="Warning" />
+   </Rules>
+
+   <!-- *********************************************** -->
+   <!-- .Net Core Project Injected analyzers/rules      -->
+   <!-- *********************************************** -->
+   <!-- Showed up after upgrading to Microsoft Visual Studio 2017 Community Edition 15.9.6 -->
+   <!-- Not yet seen in .Net Standard projects -->
+
+   <!--Microsoft.CodeAnalysis.CSharp.Features-->
+   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
+      <!-- *************************** -->
+      <!-- Disabled In Source Projects -->
+      <!-- *************************** -->
+      <!--IDE0001: Simplify Names-->
+      <Rule Id="IDE0001" Action="None" />
+      <!--IDE002: Collection initialization can be simplified -->
+      <Rule Id="IDE0002" Action="None" />
+      <!--IDE0005: Using directive is not needed. -->
+      <Rule Id="IDE0005" Action="None" />
+      <!--IDE0008: Use explicit type, do not use var-->
+      <Rule Id="IDE0008" Action="None" />
+      <Rule Id="IDE0008WithoutSuggestion" Action="None" />
+      <!-- IDE0028: Collection initializer can be simplified -->
+      <Rule Id="IDE0028" Action="None" />
+      <Rule Id="IDE0028WithoutSuggestion" Action="None" />
+      <!--IDE0032: Use auto properties -->
+      <Rule Id="IDE0032" Action="None" />
+      <Rule Id="IDE0032WithoutSuggestion" Action="None" />
+      <!--IDE0039: Use local function.  Over-inclusive, suggests breaking code changes-->
+      <Rule Id="IDE0039" Action="None" />
+      <Rule Id="IDE0039WithoutSuggestion" Action="None" />
+      <!--IDE0041: Null check can be simplified, Justification = False positives, pedantic (MWP) -->
+      <Rule Id="IDE0041" Action="None" />
+      <Rule Id="IDE0041WithoutSuggestion" Action="None" />
+      <!--IDE0045: Statement can be simplified. -->
+      <Rule Id="IDE0045" Action="None" />
+      <Rule Id="IDE0045WithoutSuggestion" Action="None" />
+      <!--IDE0046: Statement can be simplified. -->
+      <Rule Id="IDE0046" Action="None" />
+      <Rule Id="IDE0046WithoutSuggestion" Action="None" />
+      <!--IDE0048 C# Parentheses should be added for clarity-->
+      <Rule Id="IDE0048" Action="None" />
+      <Rule Id="IDE0048WithoutSuggestion" Action="None" />
+      <!--IDE0049: C# Name can be simplified.-->
+      <Rule Id="IDE0049" Action="None" />
+      <Rule Id="IDE0049WithoutSuggestion" Action="None" />
+
+      <!-- ************************* -->
+      <!-- Disabled In Test Projects -->
+      <!-- ************************* -->
+      <!-- (Change "Warning" to "None" in Test projects) -->
+      <Rule Id="IDE0004" Action="Warning" />
+      <Rule Id="IDE0004WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0007" Action="Warning" />
+      <Rule Id="IDE0007WithoutSuggestion" Action="Warning" />
+
+
+      <!-- Remaining Rules-->
+      <Rule Id="IDE0003" Action="Warning" />
+      <Rule Id="IDE0003WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0009" Action="Warning" />
+      <Rule Id="IDE0009WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0011" Action="Warning" />
+      <Rule Id="IDE0011WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0016" Action="Warning" />
+      <Rule Id="IDE0016WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0017" Action="Warning" />
+      <Rule Id="IDE0017WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0018" Action="Warning" />
+      <Rule Id="IDE0018WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0019" Action="Warning" />
+      <Rule Id="IDE0019WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0020" Action="Warning" />
+      <Rule Id="IDE0020WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0021" Action="Warning" />
+      <Rule Id="IDE0022" Action="Warning" />
+      <Rule Id="IDE0023" Action="Warning" />
+      <Rule Id="IDE0024" Action="Warning" />
+      <Rule Id="IDE0025" Action="Warning" />
+      <Rule Id="IDE0026" Action="Warning" />
+      <Rule Id="IDE0027" Action="Warning" />
+      <Rule Id="IDE0029" Action="Warning" />
+      <Rule Id="IDE0029WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0030" Action="Warning" />
+      <Rule Id="IDE0030WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0031" Action="Warning" />
+      <Rule Id="IDE0031WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0034" Action="Warning" />
+      <Rule Id="IDE0034WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0036" Action="Warning" />
+      <Rule Id="IDE0036WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0037" Action="Warning" />
+      <Rule Id="IDE0037WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0040" Action="Warning" />
+      <Rule Id="IDE0040WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0042" Action="Warning" />
+      <Rule Id="IDE0042WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0043" Action="Warning" />
+      <Rule Id="IDE0044" Action="Warning" />
+      <Rule Id="IDE0044WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE0047" Action="Warning" />
+      <Rule Id="IDE0047WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE1005" Action="Warning" />
+      <Rule Id="IDE1005WithoutSuggestion" Action="Warning" />
+      <Rule Id="IDE1006" Action="Warning" />
+      <Rule Id="IDE1006WithoutSuggestion" Action="Warning" />
    </Rules>
 </RuleSet>

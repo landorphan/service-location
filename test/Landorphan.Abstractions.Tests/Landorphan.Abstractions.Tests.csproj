@@ -27,7 +27,7 @@
    </PropertyGroup>
 
    <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Abstractions.NetCore.ruleset</CodeAnalysisRuleSet>
+      <CodeAnalysisRuleSet>Landorphan.Abstractions.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
    </PropertyGroup>
    <ItemGroup>
      <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />

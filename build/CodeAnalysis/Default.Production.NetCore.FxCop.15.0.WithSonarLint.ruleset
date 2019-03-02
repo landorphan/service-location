@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Default Test Code Analysis Rules for .Net Core projects including SonarLint rules"
-         Description="Rules for Landorphan .Net Core test"
+<RuleSet Name="Default Production Code Analysis Rules for .Net Core projects including SonarLint rules"
+         Description="Rules for Landorphan .Net Core source"
          ToolsVersion="15.0">
    <IncludeAll Action="Warning" />
+
    <!-- Updated 2019.01.20:  
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3"/>
       <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3"/>
@@ -32,31 +33,31 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1014: Mark assemblies with CLSCompliantAttribute -->
-      <Rule Id="CA1014" Action="None" />
+      <Rule Id="CA1014" Action="Warning" />
       <!--CA1034: Nested types should not be visible -->
-      <Rule Id="CA1034" Action="None" />
+      <Rule Id="CA1034" Action="Warning" />
       <!--CA1051: Do not declare visible instance fields -->
-      <Rule Id="CA1051" Action="None" />
+      <Rule Id="CA1051" Action="Warning" />
       <!--CA1501: Avoid excessive inheritance -->
-      <Rule Id="CA1501" Action="None" />
+      <Rule Id="CA1501" Action="Warning" />
       <!--CA1506: Avoid excessive class coupling -->
-      <Rule Id="CA1506" Action="None" />
+      <Rule Id="CA1506" Action="Warning" />
       <!--CA1707: Identifiers should not contain underscores -->
-      <Rule Id="CA1707" Action="None" />
+      <Rule Id="CA1707" Action="Warning" />
       <!--CA1711: Identifiers should not have incorrect suffix -->
-      <Rule Id="CA1711" Action="None" />
+      <Rule Id="CA1711" Action="Warning" />
       <!--CA1720: Identifiers should not contain type names -->
-      <Rule Id="CA1720" Action="None" />
+      <Rule Id="CA1720" Action="Warning" />
       <!--CA1801: Review unused parameters -->
-      <Rule Id="CA1801" Action="None" />
+      <Rule Id="CA1801" Action="Warning" />
       <!--CA1806: Do not ignore method results -->
-      <Rule Id="CA1806" Action="None" />
+      <Rule Id="CA1806" Action="Warning" />
       <!--CA1812: Avoid uninstantiated internal classes -->
-      <Rule Id="CA1812" Action="None" />
+      <Rule Id="CA1812" Action="Warning" />
       <!--CA1823: Avoid unused private fields -->
-      <Rule Id="CA1823" Action="None" />
+      <Rule Id="CA1823" Action="Warning" />
       <!--CA2211: Non-constant fields should not be visible -->
-      <Rule Id="CA2211" Action="None" />
+      <Rule Id="CA2211" Action="Warning" />
 
       <!-- Remaining Rules-->
       <Rule Id="CA1000" Action="Warning" />
@@ -159,9 +160,9 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1305: Specify IFormat provider -->
-      <Rule Id="CA1305" Action="None" />
+      <Rule Id="CA1305" Action="Warning" />
       <!--CA1307: Specify StringComparison -->
-      <Rule Id="CA1307" Action="None" />
+      <Rule Id="CA1307" Action="Warning" />
 
 
       <!-- Remaining Rules-->
@@ -211,7 +212,7 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1704: Identifiers should be spelled correctly-->
-      <Rule Id="CA1704" Action="None" />
+      <Rule Id="CA1704" Action="Warning" />
    </Rules>
 
    <!--SonarAnalyzer.CSharp-->
@@ -221,9 +222,6 @@
       then disabling all rules and grabbing rule ids (defaults are not written to ruleset files)
       unfortunately, I have yet to find a way to get generate categories, descriptions, these are done by hand, 
       one at a time....-->
-
-      <!--Upgraded from 7.10.0.7896 to 7.11.0.8083:  No new rules detected -->
-      <!--TODO: figure out a better way to examine rules -->
 
       <!-- ********************** -->
       <!-- Disabled in Production -->
@@ -254,13 +252,13 @@
       <!--S1451: Add or update the header of this file, Justification: disabled until clarification made (MWP)-->
       <Rule Id="S1451" Action="None" />
       <!--S1694: An abstract class should have both abstract and concrete methods, 
-Justification:  when using the programming to interface style of programming, abstract class represent default implementation of capacities defined by interfaces (MWP). -->
+          Justification:  when using the programming to interface style of programming, abstract class represent default implementation of capacities defined by interfaces (MWP). -->
       <Rule Id="S1694" Action="None" />
       <!--S2325 Methods and properties that don't access instance data should be static-->
       <Rule Id="S2325" Action="None" />
       <!--S2328:'GetHashCode' should not reference mutable fields xmlns:S2328, Justification: well-intentioned by poorly implemented:
-The burden should be on the designer that uses the collection, not on the value type itself.
-The implementer of the collection should guard against unknown mutations (MWP) -->
+         The burden should be on the designer that uses the collection, not on the value type itself.
+         The implementer of the collection should guard against unknown mutations (MWP) -->
       <Rule Id="S2328" Action="None" />
       <!--s2339: Public constant members should not be used.   This rule is well-intentioned but fails to recognize the limitations (cannot use in Attributes, cannot use in switch statements, ...)-->
       <Rule Id="S2339" Action="None" />
@@ -287,7 +285,7 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <!--S4055: Literals should not be passed as localized parameters -->
       <Rule Id="S4055" Action="None" />
       <!--S4069: Implement alternative named method for operator overloads:  As of v4.7.0.3891 this rule expects "Compare" instead of 
-"CompareTo", disabling until the issue is resolved.-->
+      "CompareTo", disabling until the issue is resolved.-->
       <Rule Id="S4069" Action="None" />
 
       <!-- ************************* -->
@@ -295,19 +293,15 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--S101: Types should be named in PascalCase -->
-      <Rule Id="S101" Action="None" />
-      <!--S104: Files should not have too many lines of code.  This rule cannot be disabled in source -->
-      <Rule Id="S104" Action="None" />
-      <!--S4040: Strings should be normalized to uppercase-->
-      <Rule Id="S4040" Action="None" />
+      <Rule Id="S101" Action="Warning" />
       <!--S4056: Overloads with a "CultureInfo" or an "IFormatProvider" parameter should be used-->
-      <Rule Id="S4056" Action="None" />
+      <Rule Id="S4056" Action="Warning" />
 
 
       <!-- Remaining Rules-->
       <Rule Id="S100" Action="Warning" />
       <Rule Id="S103" Action="Warning" />
-
+      <Rule Id="S104" Action="Warning" />
       <Rule Id="S105" Action="Warning" />
       <Rule Id="S106" Action="Warning" />
       <Rule Id="S107" Action="Warning" />
@@ -584,6 +578,7 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <Rule Id="S4027" Action="Warning" />
       <Rule Id="S4035" Action="Warning" />
       <Rule Id="S4039" Action="Warning" />
+      <Rule Id="S4040" Action="Warning" />
       <Rule Id="S4041" Action="Warning" />
       <Rule Id="S4047" Action="Warning" />
       <Rule Id="S4050" Action="Warning" />
@@ -623,111 +618,4 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <Rule Id="S4581" Action="Warning" />
       <Rule Id="S4586" Action="Warning" />
    </Rules>
-
-   <!-- *********************************************** -->
-   <!-- .Net Core Project Injected analyzers/rules      -->
-   <!-- *********************************************** -->
-   <!-- Showed up after upgrading to Microsoft Visual Studio 2017 Community Edition 15.9.6 -->
-   <!-- Not yet seen in .Net Standard projects -->
-
-   <!--Microsoft.CodeAnalysis.CSharp.Features-->
-   <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
-      <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
-      <!-- *************************** -->
-      <!--IDE0001: Simplify Names-->
-      <Rule Id="IDE0001" Action="None" />
-      <!--IDE002: Collection initialization can be simplified -->
-      <Rule Id="IDE0002" Action="None" />
-      <!--IDE0005: Using directive is not needed. -->
-      <Rule Id="IDE0005" Action="None" />
-      <!--IDE0008: Use explicit type, do not use var-->
-      <Rule Id="IDE0008" Action="None" />
-      <Rule Id="IDE0008WithoutSuggestion" Action="None" />
-      <!-- IDE0028: Collection initializer can be simplified -->
-      <Rule Id="IDE0028" Action="None" />
-      <Rule Id="IDE0028WithoutSuggestion" Action="None" />
-      <!--IDE0032: Use auto properties -->
-      <Rule Id="IDE0032" Action="None" />
-      <Rule Id="IDE0032WithoutSuggestion" Action="None" />
-      <!--IDE0039: Use local function.  Over-inclusive, suggests breaking code changes-->
-      <Rule Id="IDE0039" Action="None" />
-      <Rule Id="IDE0039WithoutSuggestion" Action="None" />
-      <!--IDE0041: Null check can be simplified, Justification = False positives, pedantic (MWP) -->
-      <Rule Id="IDE0041" Action="None" />
-      <Rule Id="IDE0041WithoutSuggestion" Action="None" />
-      <!--IDE0045: Statement can be simplified. -->
-      <Rule Id="IDE0045" Action="None" />
-      <Rule Id="IDE0045WithoutSuggestion" Action="None" />
-      <!--IDE0046: Statement can be simplified. -->
-      <Rule Id="IDE0046" Action="None" />
-      <Rule Id="IDE0046WithoutSuggestion" Action="None" />
-      <!--IDE0048 C# Parentheses should be added for clarity-->
-      <Rule Id="IDE0048" Action="None" />
-      <Rule Id="IDE0048WithoutSuggestion" Action="None" />
-      <!--IDE0049: C# Name can be simplified.-->
-      <Rule Id="IDE0049" Action="None" />
-      <Rule Id="IDE0049WithoutSuggestion" Action="None" />
-
-      <!-- ************************* -->
-      <!-- Disabled In Test Projects -->
-      <!-- ************************* -->
-      <!-- (Change "Warning" to "None" in Test projects) -->
-      <Rule Id="IDE0004" Action="Warning" />
-      <Rule Id="IDE0004WithoutSuggestion" Action="None" />
-      <Rule Id="IDE0007" Action="Warning" />
-      <Rule Id="IDE0007WithoutSuggestion" Action="None" />
-
-
-      <!-- Remaining Rules-->
-      <Rule Id="IDE0003" Action="Warning" />
-      <Rule Id="IDE0003WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0009" Action="Warning" />
-      <Rule Id="IDE0009WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0011" Action="Warning" />
-      <Rule Id="IDE0011WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0016" Action="Warning" />
-      <Rule Id="IDE0016WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0017" Action="Warning" />
-      <Rule Id="IDE0017WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0018" Action="Warning" />
-      <Rule Id="IDE0018WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0019" Action="Warning" />
-      <Rule Id="IDE0019WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0020" Action="Warning" />
-      <Rule Id="IDE0020WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0021" Action="Warning" />
-      <Rule Id="IDE0022" Action="Warning" />
-      <Rule Id="IDE0023" Action="Warning" />
-      <Rule Id="IDE0024" Action="Warning" />
-      <Rule Id="IDE0025" Action="Warning" />
-      <Rule Id="IDE0026" Action="Warning" />
-      <Rule Id="IDE0027" Action="Warning" />
-      <Rule Id="IDE0029" Action="Warning" />
-      <Rule Id="IDE0029WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0030" Action="Warning" />
-      <Rule Id="IDE0030WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0031" Action="Warning" />
-      <Rule Id="IDE0031WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0034" Action="Warning" />
-      <Rule Id="IDE0034WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0036" Action="Warning" />
-      <Rule Id="IDE0036WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0037" Action="Warning" />
-      <Rule Id="IDE0037WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0040" Action="Warning" />
-      <Rule Id="IDE0040WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0042" Action="Warning" />
-      <Rule Id="IDE0042WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0043" Action="Warning" />
-      <Rule Id="IDE0044" Action="Warning" />
-      <Rule Id="IDE0044WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0047" Action="Warning" />
-      <Rule Id="IDE0047WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE1005" Action="Warning" />
-      <Rule Id="IDE1005WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE1006" Action="Warning" />
-      <Rule Id="IDE1006WithoutSuggestion" Action="Warning" />
-   </Rules>
-
 </RuleSet>

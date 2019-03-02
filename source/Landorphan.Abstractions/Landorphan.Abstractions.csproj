@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
    <PropertyGroup>
       <TargetFramework>netstandard2.0</TargetFramework>
       <LangVersion>7.2</LangVersion>
       <NoWarn>1701;1702;</NoWarn>
+
       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
       <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
