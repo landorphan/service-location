@@ -264,6 +264,8 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <Rule Id="S2328" Action="None" />
       <!--s2339: Public constant members should not be used.   This rule is well-intentioned but fails to recognize the limitations (cannot use in Attributes, cannot use in switch statements, ...)-->
       <Rule Id="S2339" Action="None" />
+      <!--S2955: Generic parameters not constrained to reference types should not be compared to "null".  Suggests breaking changes -->
+      <Rule Id="S2955" Action="None" />
       <!--S3215: interface instances should not be cast to concrete types.  This rule fires on as, not just unsafe casts. -->
       <Rule Id="S3215" Action="None" />
       <!--S3240: The simplest possible condition syntax should be used.  Justification, leads to truly complicated ternary expressions -->
@@ -449,7 +451,6 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <Rule Id="S2934" Action="Warning" />
       <Rule Id="S2952" Action="Warning" />
       <Rule Id="S2953" Action="Warning" />
-      <Rule Id="S2955" Action="Warning" />
       <Rule Id="S2971" Action="Warning" />
       <Rule Id="S2995" Action="Warning" />
       <Rule Id="S2996" Action="Warning" />
@@ -661,6 +662,9 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <!--IDE0046: Statement can be simplified. -->
       <Rule Id="IDE0046" Action="None" />
       <Rule Id="IDE0046WithoutSuggestion" Action="None" />
+      <!--IDE0048 C# Parentheses should be added for clarity-->
+      <Rule Id="IDE0048" Action="None" />
+      <Rule Id="IDE0048WithoutSuggestion" Action="None" />
       <!--IDE0049: C# Name can be simplified.-->
       <Rule Id="IDE0049" Action="None" />
       <Rule Id="IDE0049WithoutSuggestion" Action="None" />
@@ -720,8 +724,6 @@ The implementer of the collection should guard against unknown mutations (MWP) -
       <Rule Id="IDE0044WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE0047" Action="Warning" />
       <Rule Id="IDE0047WithoutSuggestion" Action="Warning" />
-      <Rule Id="IDE0048" Action="Warning" />
-      <Rule Id="IDE0048WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE1005" Action="Warning" />
       <Rule Id="IDE1005WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE1006" Action="Warning" />
