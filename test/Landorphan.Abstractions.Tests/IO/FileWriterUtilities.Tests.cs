@@ -151,8 +151,6 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("failing intermittently")]
-         public void When_I_call_FileWriterUtilities_ReplaceContentsNoBackup_It_should_replace_the_contents()
          public void It_should_open_the_file()
          {
             var path = _fileUtilities.CreateTemporaryFile();
@@ -175,6 +173,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Failing intermittently")]
          public void It_should_replace_the_contents()
          {
             var encoding = Encoding.UTF8;
