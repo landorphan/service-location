@@ -12,6 +12,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Common.Threading;
    using Landorphan.Ioc.ServiceLocation;
+   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable CommentTypo
 
@@ -62,8 +63,12 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             var windowsArrange = new TestAssemblyInitializeCleanupWindowsHelper();
             try
             {
-               windowsArrange.Arrange();
-               t_windowsPathsInitialized.SetValue(true);
+               var arragned = windowsArrange.Arrange();
+               t_windowsPathsInitialized.SetValue(arragned);
+            }
+            catch (AssertInconclusiveException inconclusive)
+            {
+               throw;
             }
             catch (Exception e)
             {

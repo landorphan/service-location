@@ -328,3 +328,4 @@ Build-Root-OuterNoPermissions-ReadExecute-ExtantFile $outerNoPermissionsReadExec
 
 [string]$outerNoPermissionsReadExecuteFolderExtantFolder = New-Item -Path (Join-Path -Path $outerNoPermissionsReadExecuteFolder -ChildPath "ExtantFolder") -ItemType Directory -Force
 Build-Root-OuterNoPermissions-ReadExecute-ExtantFolder $outerNoPermissionsReadExecuteFolderExtantFolder
+

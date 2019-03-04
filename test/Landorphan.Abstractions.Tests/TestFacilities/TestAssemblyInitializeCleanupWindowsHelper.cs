@@ -3,11 +3,16 @@
    using System;
    using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
+   using System.IO;
+   using System.Net;
    using System.Runtime.InteropServices;
    using System.Text;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Ioc.ServiceLocation;
+   using Microsoft.Extensions.Primitives;
+   using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
+   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    [SuppressMessage("Platform.Compat", "PC001: API not supported on all platforms")]
    internal class TestAssemblyInitializeCleanupWindowsHelper
@@ -15,7 +20,7 @@
       // this class is called by TestAssemblyInitializeCleanup to arrange or teardown Windows-Specific resources.
       // it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
 
-      internal void Arrange()
+      internal bool Arrange()
       {
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
@@ -35,6 +40,12 @@
             C:\Landorphan.Abstractions.Test.UnitTestTarget\OuterNoPermissions\ReadExecuteListFolderContents\ExtantFolder
             C:\Landorphan.Abstractions.Test.UnitTestTarget\OuterNoPermissions\ReadExecuteListFolderContents\ExtantFile.txt
          ************************************************************************************************************** */
+         var execution = Get_ExecutionPolicy();
+         if (execution.Equals("Restricted", StringComparison.InvariantCultureIgnoreCase))
+         {
+            Assert.Inconclusive($"PowerShell Execution Policy Set to Restricted, Can't run tests.");
+            return false;
+         }
          var exitCode = ExecuteArrangeScript(out var output, out var error);
          Trace.WriteLine($"PowerShell: arrange script has exited: {exitCode}");
          Trace.WriteLine(output);
@@ -44,6 +55,8 @@
             InitializeTestHardCodesWindowsLocalTestPaths();
             InitializeTestHardCodesWindowsUncTestPaths();
          }
+
+         return true;
       }
 
       internal void Teardown()
@@ -60,8 +73,7 @@
          Trace.WriteLine(error);
       }
 
-      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
-      private ProcessStartInfo BuildPSElevatedStartInfo()
+      private ProcessStartInfo BuildPSStartInfo(bool elevated = true)
       {
          // returns null when the PowerShell executable path cannot be found.
 
@@ -84,15 +96,42 @@
             // Set UseShellExecute to true if you want Verb to be honored
             // >> you cannot redirect output and elevate
             // >> if you do not redirect output, you can create a deadlock by accessing both streams
-            UseShellExecute = true,
+            UseShellExecute = elevated,
             // this verb elevates the execution context for the script
-            Verb = "runas",
             WorkingDirectory = pwd
          };
+
+         if (elevated)
+         {
+            startInfo.Verb = "runas";
+         }
 
          startInfo.RedirectStandardOutput = !startInfo.UseShellExecute;
          startInfo.RedirectStandardError = !startInfo.UseShellExecute;
          return startInfo;
+      }
+
+      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
+      private ProcessStartInfo BuildPSElevatedStartInfo()
+      {
+         return BuildPSStartInfo(true);
+      }
+
+      private string Get_ExecutionPolicy()
+      {
+         string retval = null;
+         var startInfo = BuildPSStartInfo(false);
+
+         startInfo.Arguments = "Get-ExecutionPolicy";
+         var twoMinutes = new TimeSpan(0, 2, 0);
+
+         const Int32 oneSecondInMilliseconds = 1000;
+
+         string error = null;
+         string output = null;
+         int exitCode = ExecuteProcess(startInfo, "Get-ExecutionPolicy", twoMinutes, oneSecondInMilliseconds, ref error, ref output);
+
+         return retval = output.Trim();
       }
 
       private Int32 ExecuteArrangeScript(out String output, out String error)
@@ -122,6 +161,9 @@
 
       private Int32 ExecutePowerShellScript(ProcessStartInfo startInfo, String scriptPath, out String output, out String error)
       {
+         error = string.Empty;
+         output = string.Empty;
+
          // in order to elevate, must use ShellExecute = true
          // when ShellExecute, redirection of StandardOutput and StandardError is not allowed.
          // redirecting via powershell to 2 files to capture stderr and stdout and sucking those files into the instance.
@@ -138,8 +180,8 @@
          const Int32 oneSecondInMilliseconds = 1000;
 
          // ReSharper disable once StringLiteralTypo
-         const String stdErrLogFileName = @"PSLogStdErr.txt";
-         const String stdOutLogFileName = @"PSLogStdOut.txt";
+         String stdErrLogFileName = Path.GetTempFileName();
+         String stdOutLogFileName = Path.GetTempFileName();
 
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
@@ -160,9 +202,39 @@
             return -1;
          }
 
+         var exitCode = ExecuteProcess(startInfo, scriptPath, twoMinutes, oneSecondInMilliseconds, ref error, ref output);
+
+         dirUtilities.SetCurrentDirectory(pwd);
+         if (fileUtilities.FileExists(stdErrLogFileName))
+         {
+            error = fileReaderUtilities.ReadAllText(stdErrLogFileName, Encoding.UTF8);
+            fileUtilities.DeleteFile(stdErrLogFileName);
+         }
+         else
+         {
+            error = String.Empty;
+         }
+
+         if (fileUtilities.FileExists(stdOutLogFileName))
+         {
+            output = fileReaderUtilities.ReadAllText(stdOutLogFileName, Encoding.UTF8);
+            fileUtilities.DeleteFile(stdOutLogFileName);
+         }
+         else
+         {
+            output = String.Empty;
+         }
+
+         return exitCode;
+      }
+
+      private static Int32 ExecuteProcess(ProcessStartInfo startInfo, String scriptPath, TimeSpan twoMinutes, Int32 oneSecondInMilliseconds, ref string error, ref string output)
+      {
          Int32 exitCode;
          using (var ps = new Process())
          {
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardError = true;
             ps.StartInfo = startInfo;
             ps.Start();
             // allow 15 seconds for execution (do this after UAC prompts with dialog on UAC enabled machines)
@@ -190,29 +262,21 @@
                }
             }
             while (!ps.WaitForExit(oneSecondInMilliseconds));
-
+            if (startInfo.RedirectStandardError && !startInfo.UseShellExecute)
+            {
+               using (var reader = ps.StandardError)
+               {
+                  error = reader.ReadToEnd();
+               }
+            }
+            if (startInfo.RedirectStandardOutput && !startInfo.UseShellExecute)
+            {
+               using (var reader = ps.StandardOutput)
+               {
+                  output = reader.ReadToEnd();
+               }
+            }
             exitCode = ps.ExitCode;
-         }
-
-         dirUtilities.SetCurrentDirectory(pwd);
-         if (fileUtilities.FileExists(stdErrLogFileName))
-         {
-            error = fileReaderUtilities.ReadAllText(stdErrLogFileName, Encoding.UTF8);
-            fileUtilities.DeleteFile(stdErrLogFileName);
-         }
-         else
-         {
-            error = String.Empty;
-         }
-
-         if (fileUtilities.FileExists(stdOutLogFileName))
-         {
-            output = fileReaderUtilities.ReadAllText(stdOutLogFileName, Encoding.UTF8);
-            fileUtilities.DeleteFile(stdOutLogFileName);
-         }
-         else
-         {
-            output = String.Empty;
          }
 
          return exitCode;
