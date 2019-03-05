@@ -1,0 +1,195 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{65807C31-348B-4BC0-95E0-7D7F8938A547}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F10433A2-DCDF-476B-98D2-F3D9939EB5A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2B05C482-3783-4E78-B382-561792F5197B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildFiles", "BuildFiles", "{F4EC09B2-5F75-407D-AD71-4527BE778A49}"
+	ProjectSection(SolutionItems) = preProject
+		build\BuildFiles\All.NetFx.15.0.WithSonarLint.ruleset = build\BuildFiles\All.NetFx.15.0.WithSonarLint.ruleset
+		build\BuildFiles\CustomDictionary.xml = build\BuildFiles\CustomDictionary.xml
+		build\BuildFiles\Default.Production.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\BuildFiles\Default.Production.NetCore.FxCop.15.0.WithSonarLint.ruleset
+		build\BuildFiles\Default.Production.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\BuildFiles\Default.Production.NetFx.FxCop.15.0.WithSonarLint.ruleset
+		build\BuildFiles\Default.Production.NetStd.FxCop.15.0.WithSonarLint.ruleset = build\BuildFiles\Default.Production.NetStd.FxCop.15.0.WithSonarLint.ruleset
+		build\BuildFiles\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\BuildFiles\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset
+		build\BuildFiles\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\BuildFiles\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset
+		build\BuildFiles\No Standard Test Ruleset File.txt = build\BuildFiles\No Standard Test Ruleset File.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ResharperLayout", "ResharperLayout", "{982D60AF-AA0E-4BAF-A541-0BB9F80D385D}"
+	ProjectSection(SolutionItems) = preProject
+		build\ResharperLayout\ResharperLayout.Current.xml = build\ResharperLayout\ResharperLayout.Current.xml
+		build\ResharperLayout\ResharperLayout.Editing.xml = build\ResharperLayout\ResharperLayout.Editing.xml
+		build\ResharperLayout\ResharperLayout_1_NonReorderableTypes.xml = build\ResharperLayout\ResharperLayout_1_NonReorderableTypes.xml
+		build\ResharperLayout\ResharperLayout_2_SpecFlow.xml = build\ResharperLayout\ResharperLayout_2_SpecFlow.xml
+		build\ResharperLayout\ResharperLayout_3_MSTestBDD.xml = build\ResharperLayout\ResharperLayout_3_MSTestBDD.xml
+		build\ResharperLayout\ResharperLayout_9999_Default.xml = build\ResharperLayout\ResharperLayout_9999_Default.xml
+		build\ResharperLayout\ResharperLayoutCSharp.xml = build\ResharperLayout\ResharperLayoutCSharp.xml
+		build\ResharperLayout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml = build\ResharperLayout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml
+		build\ResharperLayout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml = build\ResharperLayout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF33A87D-5CD8-4335-A032-3D4638C23FE2}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		Build-Clean.ps1 = Build-Clean.ps1
+		Build-Debug.ps1 = Build-Debug.ps1
+		Build-Release.ps1 = Build-Release.ps1
+		Copy-DefaultProductionRuleset-NetCore-ToProjects.ps1 = Copy-DefaultProductionRuleset-NetCore-ToProjects.ps1
+		Copy-DefaultProductionRuleset-NetFx-ToProjects.ps1 = Copy-DefaultProductionRuleset-NetFx-ToProjects.ps1
+		Copy-DefaultProductionRuleset-NetStd-ToProjects.ps1 = Copy-DefaultProductionRuleset-NetStd-ToProjects.ps1
+		Copy-DefaultTestRuleset-NetCore-ToProjects.ps1 = Copy-DefaultTestRuleset-NetCore-ToProjects.ps1
+		Copy-DefaultTestRuleset-NetFx-ToProjects.ps1 = Copy-DefaultTestRuleset-NetFx-ToProjects.ps1
+		Copy-FxCop-Rulesets.ps1 = Copy-FxCop-Rulesets.ps1
+		Get-Save-Landorphan-DevResources-StorageCredentials.ps1 = Get-Save-Landorphan-DevResources-StorageCredentials.ps1
+		LICENSE = LICENSE
+		PowerShell.ReadMe.md = PowerShell.ReadMe.md
+		README.md = README.md
+		Resharper.Todo.Explorer.md = Resharper.Todo.Explorer.md
+		Test-Debug.ps1 = Test-Debug.ps1
+		Test-Release.ps1 = Test-Release.ps1
+		TODO.md = TODO.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation", "source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj", "{EDDD5388-8B57-4F5C-B394-2C48A27CB736}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Testability", "source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj", "{0C8A1698-545B-4844-B472-7CA45B46A75A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.MSTest", "source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj", "{548501BA-075C-4788-8C52-1FF93672FD1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Tests", "test\Landorphan.Ioc.ServiceLocation.Tests\Landorphan.Ioc.ServiceLocation.Tests.csproj", "{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.MSTest.Tests", "test\Landorphan.TestUtilities.MSTest.Tests\Landorphan.TestUtilities.MSTest.Tests.csproj", "{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Testability.Tests", "test\Landorphan.Ioc.ServiceLocation.Testability.Tests\Landorphan.Ioc.ServiceLocation.Testability.Tests.csproj", "{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690-4432-4990-A9A0-BBB16EB45438}"
+	ProjectSection(SolutionItems) = preProject
+		landorphan.abstractions.nuspec = landorphan.abstractions.nuspec
+		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
+		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
+		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
+	ProjectSection(SolutionItems) = preProject
+		help.projects\BuildServe-HelpDocumentation.ps1 = help.projects\BuildServe-HelpDocumentation.ps1
+		help.projects\HELP.README.md = help.projects\HELP.README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelpInstall", "HelpInstall", "{80489C8E-0C1C-4A88-B69C-ED23C29BF86F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docfx", "docfx", "{CBEF2132-EC0E-43E7-B292-093F93206824}"
+	ProjectSection(SolutionItems) = preProject
+		build\HelpInstall\docfx\docfx.Install.md = build\HelpInstall\docfx\docfx.Install.md
+		build\HelpInstall\docfx\docfx.zip = build\HelpInstall\docfx\docfx.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doxygen", "doxygen", "{27FFA91A-3BE1-4B0D-BD50-3A77E877227A}"
+	ProjectSection(SolutionItems) = preProject
+		build\HelpInstall\doxygen\doxygen-1.8.15-setup.exe = build\HelpInstall\doxygen\doxygen-1.8.15-setup.exe
+		build\HelpInstall\doxygen\Doxygen.Install.md = build\HelpInstall\doxygen\Doxygen.Install.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shfb", "shfb", "{1F6B1E0C-DBD2-4CE0-8AD5-637C44BF02BA}"
+	ProjectSection(SolutionItems) = preProject
+		build\HelpInstall\shfb\shfb.install.MD = build\HelpInstall\shfb\shfb.install.MD
+		build\HelpInstall\shfb\SHFBInstaller_v2018.12.10.0.zip = build\HelpInstall\shfb\SHFBInstaller_v2018.12.10.0.zip
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docfx_project", "docfx_project", "{CF16DA58-823A-46B1-89D7-83183BB98926}"
+	ProjectSection(SolutionItems) = preProject
+		help.projects\docfx_project\.gitignore = help.projects\docfx_project\.gitignore
+		help.projects\docfx_project\docfx.json = help.projects\docfx_project\docfx.json
+		help.projects\docfx_project\filterConfig.yml = help.projects\docfx_project\filterConfig.yml
+		help.projects\docfx_project\index.md = help.projects\docfx_project\index.md
+		help.projects\docfx_project\toc.yml = help.projects\docfx_project\toc.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions", "source\Landorphan.Abstractions\Landorphan.Abstractions.csproj", "{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions.Tests", "test\Landorphan.Abstractions.Tests\Landorphan.Abstractions.Tests.csproj", "{976B1FED-3B23-40C0-85DC-2C089DF2060E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.ObjectStore.CosmosDb", "source\Landorphan.ObjectStore.CosmosDb\Landorphan.ObjectStore.CosmosDb.csproj", "{290768D8-A155-4148-96CA-BEAE88241430}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.Performance.Tests", "test\Landorphan.Ioc.Collections.Performance.Tests\Landorphan.Ioc.Collections.Performance.Tests.csproj", "{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDDD5388-8B57-4F5C-B394-2C48A27CB736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDD5388-8B57-4F5C-B394-2C48A27CB736}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDD5388-8B57-4F5C-B394-2C48A27CB736}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDD5388-8B57-4F5C-B394-2C48A27CB736}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C8A1698-545B-4844-B472-7CA45B46A75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C8A1698-545B-4844-B472-7CA45B46A75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C8A1698-545B-4844-B472-7CA45B46A75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C8A1698-545B-4844-B472-7CA45B46A75A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{548501BA-075C-4788-8C52-1FF93672FD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548501BA-075C-4788-8C52-1FF93672FD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548501BA-075C-4788-8C52-1FF93672FD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548501BA-075C-4788-8C52-1FF93672FD1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976B1FED-3B23-40C0-85DC-2C089DF2060E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290768D8-A155-4148-96CA-BEAE88241430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4EC09B2-5F75-407D-AD71-4527BE778A49} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{982D60AF-AA0E-4BAF-A541-0BB9F80D385D} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{EDDD5388-8B57-4F5C-B394-2C48A27CB736} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{0C8A1698-545B-4844-B472-7CA45B46A75A} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{548501BA-075C-4788-8C52-1FF93672FD1A} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{89CDD180-5EF3-4A9F-AE8C-71FEB3BAFC8B} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{B8E1F609-1741-47D5-A8A8-20BE3A0D6AEF} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{40821690-4432-4990-A9A0-BBB16EB45438} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{80489C8E-0C1C-4A88-B69C-ED23C29BF86F} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{CBEF2132-EC0E-43E7-B292-093F93206824} = {80489C8E-0C1C-4A88-B69C-ED23C29BF86F}
+		{27FFA91A-3BE1-4B0D-BD50-3A77E877227A} = {80489C8E-0C1C-4A88-B69C-ED23C29BF86F}
+		{1F6B1E0C-DBD2-4CE0-8AD5-637C44BF02BA} = {80489C8E-0C1C-4A88-B69C-ED23C29BF86F}
+		{CF16DA58-823A-46B1-89D7-83183BB98926} = {4EF5277F-5624-477A-9142-B2892EB32B15}
+		{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{976B1FED-3B23-40C0-85DC-2C089DF2060E} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{290768D8-A155-4148-96CA-BEAE88241430} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}
+	EndGlobalSection
+EndGlobal
