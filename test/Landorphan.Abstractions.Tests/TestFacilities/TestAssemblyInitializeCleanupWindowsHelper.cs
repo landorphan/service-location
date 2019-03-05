@@ -41,7 +41,7 @@
             C:\Landorphan.Abstractions.Test.UnitTestTarget\OuterNoPermissions\ReadExecuteListFolderContents\ExtantFile.txt
          ************************************************************************************************************** */
          var execution = Get_ExecutionPolicy();
-         if (execution.Equals("Restricted", StringComparison.InvariantCultureIgnoreCase))
+         if (execution.Equals("Restricted", StringComparison.OrdinalIgnoreCase))
          {
             Assert.Inconclusive($"PowerShell Execution Policy Set to Restricted, Can't run tests.");
             return false;
@@ -73,7 +73,7 @@
          Trace.WriteLine(error);
       }
 
-      private ProcessStartInfo BuildPSStartInfo(bool elevated = true)
+      private ProcessStartInfo BuildPsStartInfo(bool elevated = true)
       {
          // returns null when the PowerShell executable path cannot be found.
 
@@ -114,13 +114,12 @@
       [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
       private ProcessStartInfo BuildPSElevatedStartInfo()
       {
-         return BuildPSStartInfo(true);
+         return BuildPsStartInfo(true);
       }
 
       private string Get_ExecutionPolicy()
       {
-         string retval = null;
-         var startInfo = BuildPSStartInfo(false);
+         var startInfo = BuildPsStartInfo(false);
 
          startInfo.Arguments = "Get-ExecutionPolicy";
          var twoMinutes = new TimeSpan(0, 2, 0);
@@ -129,9 +128,9 @@
 
          string error = null;
          string output = null;
-         int exitCode = ExecuteProcess(startInfo, "Get-ExecutionPolicy", twoMinutes, oneSecondInMilliseconds, ref error, ref output);
+         ExecuteProcess(startInfo, "Get-ExecutionPolicy", twoMinutes, oneSecondInMilliseconds, ref error, ref output);
 
-         return retval = output.Trim();
+         return output.Trim();
       }
 
       private Int32 ExecuteArrangeScript(out String output, out String error)

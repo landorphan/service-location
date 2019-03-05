@@ -66,7 +66,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
                var arragned = windowsArrange.Arrange();
                t_windowsPathsInitialized.SetValue(arragned);
             }
-            catch (AssertInconclusiveException inconclusive)
+            catch (AssertInconclusiveException)
             {
                throw;
             }
