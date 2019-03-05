@@ -19,7 +19,7 @@
          var currentAppDomain = AppDomain.CurrentDomain;
          var randomName = BuildRandomIdentifierName();
          var asmName = new AssemblyName("DynamicAssemblyForPerformanceTests" + randomName);
-         var asmBuilder = currentAppDomain.DefineDynamicAssembly(asmName, AssemblyBuilderAccess.Run);
+         var asmBuilder = AssemblyBuilder.DefineDynamicAssembly(asmName, AssemblyBuilderAccess.Run);
          var moduleBuilder = asmBuilder.DefineDynamicModule(asmName.Name);
 
          var rv = new List<KeyValuePair<Type, Type>>();

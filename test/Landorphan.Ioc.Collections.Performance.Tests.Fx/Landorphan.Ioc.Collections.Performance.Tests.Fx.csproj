@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2BE5337F-5730-4881-9163-C187E951C613}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Ioc.Collections.Performance.Tests</RootNamespace>
+    <RootNamespace>Landorphan.Ioc.Collections.Performance.Tests</RootNamespace>
     <AssemblyName>IocPerf</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <!-- .Net Framework Console Project -->
@@ -44,9 +44,6 @@
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="Ioc.Collections.Performance.Tests.NetFx.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,7 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Ioc.Collections.Performance.Tests.csproj.DotSettings" />
+    <None Include="Landorphan.Ioc.Collections.Performance.Tests.Fx.DotSettings" />
+    <None Include="Landorphan.Ioc.Collections.Performance.Tests.Fx.ruleset" />
     <None Include="README.md" />
     <None Include="SampleResults\ImmutableDictionary.Sequential.Resuls.SB2.txt" />
   </ItemGroup>
