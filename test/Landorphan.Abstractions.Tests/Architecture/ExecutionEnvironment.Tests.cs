@@ -18,6 +18,7 @@
       public class When_executing_tests_in_windows
       {
          [TestMethod]
+         [TestCategory(WellKnownTestCategories.PreventRegressionBug)]
          [TestCategory(TestTiming.CheckIn)]
          public void The_32_bit_PowerShell_environment_should_support_scripting()
          {
