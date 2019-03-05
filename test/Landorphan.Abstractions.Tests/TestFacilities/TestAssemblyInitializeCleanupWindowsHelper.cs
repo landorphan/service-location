@@ -4,21 +4,45 @@
    using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using System.IO;
-   using System.Net;
    using System.Runtime.InteropServices;
    using System.Text;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Ioc.ServiceLocation;
-   using Microsoft.Extensions.Primitives;
-   using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
+   using Microsoft.Win32;
 
    [SuppressMessage("Platform.Compat", "PC001: API not supported on all platforms")]
    internal class TestAssemblyInitializeCleanupWindowsHelper
    {
+      /// <summary>
+      /// Gets the PowerShell 32-bit execution policy.
+      /// </summary>
+      /// <remarks>
+      /// Expected values are RemoteSigned, Unrestricted, Bypass, Restricted, AllSigned, Undefined
+      /// </remarks>
+      /// <returns>
+      /// The execution policy as a string.
+      /// "PowerShell 32-bit ExecutionPolicy not found." when the registry value was not found.
+      /// "Not on Windows" when executed in a non-Windows environment.
+      /// </returns>
+      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "Sonar lint does not handle abbreviations and acronyms (MWP)")]
+      public static String GetPSExecutionPolicyUser()
+      {
+         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            const String defaultValue = "PowerShell 32-bit ExecutionPolicy not found.";
+
+            // for machine, use @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell"
+            var rv = (String)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell", "ExecutionPolicy", defaultValue);
+            return rv;
+         }
+
+         return "Not on Windows";
+      }
+
       // this class is called by TestAssemblyInitializeCleanup to arrange or teardown Windows-Specific resources.
-      // it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
+      // Except for GetPSExecutionPolicyUser() it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
 
       internal bool Arrange()
       {
