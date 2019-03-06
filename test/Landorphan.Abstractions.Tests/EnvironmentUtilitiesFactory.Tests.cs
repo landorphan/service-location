@@ -45,12 +45,12 @@
          var lastGoodDt = DateTime.UtcNow;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            lastGoodDt = new DateTime(1602, 1, 0, 0, 0, 1);
+            lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
          }
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
          {
-            lastGoodDt = new DateTime(1970, 1, 1, 0, 0, 1, 0);
+            lastGoodDt = new DateTime(621_355_968_020_000_000);
          }
 
          try
@@ -70,6 +70,9 @@
                      // linux file precision is to the second
                      adjustedDt = lastGoodDt.AddTicks(-1 * TimeSpan.TicksPerSecond);
                   }
+
+                  Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
+                  Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
 
                   Directory.SetCreationTimeUtc(tempFile, adjustedDt);
                   var getDt = Directory.GetCreationTimeUtc(tempFile);
@@ -107,12 +110,15 @@
          var lastGoodDt = DateTime.UtcNow;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            lastGoodDt = new DateTime(2019, 1, 1, 0, 0, 0, 1);
+            lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
          }
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
          {
-            lastGoodDt = new DateTime(2019, 1, 1, 0, 0, 1, 0);
+            var epoch_ticks = 504_911_232_000_000_001;
+            var max_32bit_seconds_to_ticks = (Int64)(Math.Pow(2, 32) - 1) * TimeSpan.TicksPerSecond;
+            var giveRoomTicks = epoch_ticks + max_32bit_seconds_to_ticks - TimeSpan.TicksPerSecond;
+            lastGoodDt = new DateTime(giveRoomTicks, DateTimeKind.Utc);
          }
 
          try
@@ -124,24 +130,22 @@
                   var adjustedDt = DateTime.UtcNow;
                   if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                   {
+                     // this does throw ArgumentOutOfRangeException
                      adjustedDt = lastGoodDt.AddTicks(1);
-                     Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
-                     Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
                   }
 
                   if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                   {
                      // linux file precision is to the second
-                     adjustedDt = lastGoodDt.AddTicks(TimeSpan.TicksPerSecond);
-                     Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
-                     Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
                   }
+
+                  Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
+                  Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
 
                   Directory.SetCreationTimeUtc(tempFile, adjustedDt);
                   var getDt = Directory.GetCreationTimeUtc(tempFile);
                   if (adjustedDt != getDt)
                   {
-                     // supposed to throw but does not on Windows
                      break;
                   }
 

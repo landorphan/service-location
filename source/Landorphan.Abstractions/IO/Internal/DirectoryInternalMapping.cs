@@ -33,8 +33,10 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // Windows:
                //    precision is too the 100 ns
-               //
-               //                                     3_155_378_975_999_999_999
+               //    precision in ticks is 1
+               //    
+               //                                     12/31/9999 23:59:59   
+               //                                     3_155_378_975_999_999_999 confirmed on Window10x64 2019.03.06
                return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
             }
 
@@ -42,8 +44,8 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // linux:
                //    precision is to the 1s
-               //
-               //                                     3_155_378_975_999_999_999
+               //    precision in ticks is Timespan.TicksPerSecond or 10_000_000
+               //    
                return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
             }
 
@@ -59,8 +61,7 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // Windows:
                //    precision is too the 100 ns
-               //    TimeSpan.TicksPerSecond = 10_000_000
-               //    Epoch Midnight, January 1st, 1601, AKA Windows Epoch
+               //    precision in ticks is 1
                //
                //                                     504_911_232_000_000_001 confirmed on Window10x64 2019.03.06
                //                                     Midnight, January 1st, 1601, AKA Windows Epoch
@@ -70,9 +71,8 @@ namespace Landorphan.Abstractions.IO.Internal
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                // linux:
-               //    precision is to the 1000ms
-               //    TimeSpan.TicksPerSecond = 10_000_000
-               //
+               //    precision is to the 1s
+               //    precision in ticks is Timespan.TicksPerSecond or 10_000_000
                //                                     621_355_968_010_000_000 confirmed on Ubuntu 18.04x64 2019.03.06
                //                                     00:00:01, January 1, 1970
                return new DateTimeOffset(new DateTime(621_355_968_010_000_000, DateTimeKind.Utc));
@@ -158,7 +158,7 @@ namespace Landorphan.Abstractions.IO.Internal
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 #endif
 
-         // BCL behavior.
+         // BCL behavior.  
          //    Trailing spaces are trimmed, leading spaces are not on each folder
          //    @"c:\temp\ abc \ def \" creates @"c:\temp\ abc\ def\"
          //    Maximum length is governed by the string length of full path, which results in
@@ -689,7 +689,7 @@ namespace Landorphan.Abstractions.IO.Internal
                if (haveAccessToSourceDirName)
                {
                   // have access to sourceDirName so correct the message.
-                  // (changes HResult from 0x80070005 to 0x80131620)
+                  // (changes HResult from 0x80070005 to 0x80131620) 
                   throw new UnauthorizedAccessException(
                      String.Format(CultureInfo.InvariantCulture, StringResources.AccessToThePathIsDeniedFmt, cleanedDestDirName),
                      ioe);
