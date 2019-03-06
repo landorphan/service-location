@@ -20,7 +20,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_ReadLines : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_ReadLines : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

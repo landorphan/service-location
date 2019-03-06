@@ -19,7 +19,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_Open : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_Open : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -467,7 +467,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_OpenRead : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_OpenRead : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -714,7 +714,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_OpenText : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_OpenText : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

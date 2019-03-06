@@ -16,7 +16,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_GetLastWriteTime : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_GetLastWriteTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -221,7 +221,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_Move : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_Move : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

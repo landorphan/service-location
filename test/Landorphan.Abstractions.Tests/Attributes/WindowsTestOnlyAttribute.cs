@@ -2,7 +2,8 @@ namespace Landorphan.Abstractions.Tests.Attributes
 {
     using System;
 
-    public class WindowsTestOnlyAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+    public sealed class WindowsTestOnlyAttribute : Attribute
     {
     }
 }

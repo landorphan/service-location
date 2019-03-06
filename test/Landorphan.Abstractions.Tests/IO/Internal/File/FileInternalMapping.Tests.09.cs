@@ -17,7 +17,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_SetAttributes : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_SetAttributes : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -274,7 +274,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_SetCreationTime : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_SetCreationTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -529,7 +529,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_SetLastAccessTime : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_SetLastAccessTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -784,7 +784,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_SetLastWriteTime : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_SetLastWriteTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

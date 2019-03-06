@@ -1,6 +1,7 @@
 namespace Landorphan.TestUtilities
 {
    using System;
+   using System.Diagnostics.CodeAnalysis;
    using System.IO;
    using System.Runtime.InteropServices;
    using Landorphan.Ioc.ServiceLocation;
@@ -22,21 +23,37 @@ namespace Landorphan.TestUtilities
       private readonly String _originalCurrentDirectory;
       private Lazy<EventMonitor> _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
 
-      public static Action OnTestInitialize;
-      public static Action OnTestCleanup;
+      /// <summary>
+      /// Allows for a static OnTestInitialize method to be supplied that will be
+      /// called before every test instance execution.
+      /// </summary>
+      public static Action<TestBase> OnTestInitialize { get; set; }
+
+      /// <summary>
+      /// Allows for a static OnTestCleanup method to be supplied that will be called
+      /// after every test instance execution.
+      /// </summary>
+      public static Action<TestBase> OnTestCleanup { get; set; }
 
       /// <summary>
       /// Initializes a new instance of the <see cref="TestBase" /> class.
       /// </summary>
+//      [SuppressMessage("SonarLint.CodeSmell", "S4005: Call the overload that takes a 'System.Uri' as an argument instead.",
+//         Justification = "Needed to work around Unix/Linux base parsing and source is consitered to be safe.")]
       protected TestBase()
       {
          // ReSharper disable once AssignNullToNotNullAttribute
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            var codeBase = Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase);
-            var builder = new UriBuilder(codeBase);
+            var codebase = GetType().Assembly.GetName().CodeBase;
+            var builder = new UriBuilder
+            {
+               Scheme = Uri.UriSchemeFile,
+               Host = string.Empty,
+               Path = codebase.Replace("file://", string.Empty)
+            };
             var path = Uri.UnescapeDataString(builder.Path);
-            _originalCurrentDirectory = path;
+            _originalCurrentDirectory = Path.GetDirectoryName(path);
          }
          else
          {
@@ -96,7 +113,7 @@ namespace Landorphan.TestUtilities
          {
             Directory.SetCurrentDirectory(_originalCurrentDirectory);
          }
-         OnTestInitialize?.Invoke();
+         OnTestInitialize?.Invoke(this);
       }
 
       /// <summary>
@@ -108,7 +125,7 @@ namespace Landorphan.TestUtilities
          {
             _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
          }
-         OnTestCleanup?.Invoke();
+         OnTestCleanup?.Invoke(this);
       }
 
       /// <summary>

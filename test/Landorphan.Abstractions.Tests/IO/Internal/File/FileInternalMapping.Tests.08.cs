@@ -19,7 +19,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_ReplaceContents : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_ReplaceContents : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

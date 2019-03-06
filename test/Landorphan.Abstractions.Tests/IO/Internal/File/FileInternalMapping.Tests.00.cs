@@ -30,7 +30,7 @@
       private static readonly String _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_AppendAllLines : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_AppendAllLines : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -504,7 +504,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_AppendAllText : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_AppendAllText : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

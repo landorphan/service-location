@@ -15,7 +15,7 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_Move : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_Move : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -576,7 +576,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_SetCreationTime : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_SetCreationTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

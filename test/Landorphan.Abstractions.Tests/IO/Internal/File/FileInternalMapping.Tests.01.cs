@@ -16,7 +16,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_CopyNoOverwrite : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_CopyNoOverwrite : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -482,7 +482,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_CopyWithOverwrite : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_CopyWithOverwrite : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

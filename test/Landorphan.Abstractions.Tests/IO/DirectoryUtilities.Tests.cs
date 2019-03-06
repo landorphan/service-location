@@ -398,7 +398,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryUtilities_GetLastAccessTime : AbstractionTestBase
+      public class When_I_call_DirectoryUtilities_GetLastAccessTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

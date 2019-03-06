@@ -17,7 +17,7 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_SetLastAccessTime : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_SetLastAccessTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -261,7 +261,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_SetLastWriteTime : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_SetLastWriteTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -501,7 +501,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_TestHookPathContainsUnmappedDrive : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_TestHookPathContainsUnmappedDrive : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

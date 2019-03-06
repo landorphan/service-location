@@ -21,7 +21,7 @@
    public static partial class PathUtilities_Tests
    {
       [TestClass]
-      public class When_I_call_PathMapper_GetParentPath : AbstractionTestBase
+      public class When_I_call_PathMapper_GetParentPath : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -375,7 +375,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetRootPath : AbstractionTestBase
+      public class When_I_call_PathMapper_GetRootPath : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -727,7 +727,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_HasExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_HasExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -952,7 +952,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_IsPathRelative : AbstractionTestBase
+      public class When_I_call_PathMapper_IsPathRelative : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

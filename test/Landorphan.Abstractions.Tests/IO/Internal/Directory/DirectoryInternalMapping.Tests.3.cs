@@ -20,7 +20,7 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetCreationTime : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetCreationTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -219,7 +219,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetCurrentDirectory : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetCurrentDirectory : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -240,7 +240,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetDirectories : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetDirectories : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -726,7 +726,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetFiles : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetFiles : TestBase
       {
          // An empty search pattern does not throw, does it change behavior?
          // An white-space search pattern does not throw, does it change behavior?

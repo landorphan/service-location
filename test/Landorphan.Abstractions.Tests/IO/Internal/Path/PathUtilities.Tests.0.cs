@@ -29,7 +29,7 @@
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_PathMapper_ChangeExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_ChangeExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -348,7 +348,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_Combine : AbstractionTestBase
+      public class When_I_call_PathMapper_Combine : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -720,7 +720,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_GetExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -957,7 +957,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFileName : AbstractionTestBase
+      public class When_I_call_PathMapper_GetFileName : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1083,7 +1083,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFileNameWithoutExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_GetFileNameWithoutExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1209,7 +1209,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFullPath : AbstractionTestBase
+      public class When_I_call_PathMapper_GetFullPath : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1387,7 +1387,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetInvalidFileNameCharacters : AbstractionTestBase
+      public class When_I_call_PathMapper_GetInvalidFileNameCharacters : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1398,7 +1398,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetInvalidPathCharacters : AbstractionTestBase
+      public class When_I_call_PathMapper_GetInvalidPathCharacters : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

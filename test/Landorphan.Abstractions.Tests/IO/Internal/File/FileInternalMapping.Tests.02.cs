@@ -20,7 +20,7 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_CreateFile : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_CreateFile : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -380,7 +380,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_CreateText : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_CreateText : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -720,7 +720,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_DeleteFile : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_DeleteFile : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

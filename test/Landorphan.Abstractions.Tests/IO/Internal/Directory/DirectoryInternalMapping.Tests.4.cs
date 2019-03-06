@@ -20,7 +20,7 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetFileSystemEntries : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetFileSystemEntries : TestBase
       {
          // An empty search pattern does not throw, does it change behavior?
          // An white-space search pattern does not throw, does it change behavior?
@@ -504,7 +504,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetLastAccessTime : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetLastAccessTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -733,7 +733,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_GetLastWriteTime : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_GetLastWriteTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

@@ -28,7 +28,7 @@
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_Copy : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_Copy : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -619,7 +619,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_CreateDirectory : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_CreateDirectory : TestBase
       {
          // TODO: add tests for directorySecurity
 
@@ -1064,7 +1064,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_DeleteEmpty : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_DeleteEmpty : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

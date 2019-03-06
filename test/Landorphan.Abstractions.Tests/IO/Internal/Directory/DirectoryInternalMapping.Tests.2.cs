@@ -21,7 +21,7 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_EnumerateFiles : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_EnumerateFiles : TestBase
       {
          // An empty search pattern does not throw, does it change behavior?
          // An white-space search pattern does not throw, does it change behavior?
@@ -483,7 +483,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_EnumerateFileSystemEntries : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_EnumerateFileSystemEntries : TestBase
       {
          // An empty search pattern does not throw, does it change behavior?
          // An white-space search pattern does not throw, does it change behavior?

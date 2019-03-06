@@ -86,7 +86,7 @@
       }
 
       [TestClass]
-      public class When_I_call_IOStringUtilities_DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel : AbstractionTestBase
+      public class When_I_call_IOStringUtilities_DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -164,7 +164,7 @@
       }
 
       [TestClass]
-      public class When_I_call_IOStringUtilities_RemoveOneTrailingDirectorySeparatorCharacter : AbstractionTestBase
+      public class When_I_call_IOStringUtilities_RemoveOneTrailingDirectorySeparatorCharacter : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -311,7 +311,7 @@
       }
 
       [TestClass]
-      public class When_I_call_IOStringUtilities_ValidateCanonicalPath : AbstractionTestBase
+      public class When_I_call_IOStringUtilities_ValidateCanonicalPath : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

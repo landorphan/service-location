@@ -22,7 +22,7 @@
    public static partial class DirectoryInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_DeleteRecursively : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_DeleteRecursively : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -332,7 +332,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_DirectoryExists : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_DirectoryExists : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -559,7 +559,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_EnumerateDirectories : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_EnumerateDirectories : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
