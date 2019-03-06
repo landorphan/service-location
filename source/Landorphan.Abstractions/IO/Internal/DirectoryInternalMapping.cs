@@ -8,6 +8,7 @@ namespace Landorphan.Abstractions.IO.Internal
    using System.Globalization;
    using System.IO;
    using System.Linq;
+   using System.Runtime.InteropServices;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Resources;
    using Landorphan.Common;
@@ -23,8 +24,58 @@ namespace Landorphan.Abstractions.IO.Internal
    internal sealed class DirectoryInternalMapping : IDirectoryInternalMapping
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(3_155_378_975_999_999_999, DateTimeKind.Utc));
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
+
+      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
+         () =>
+         {
+            var TicksPerSecond = TimeSpan.TicksPerSecond;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               // Windows:
+               //    precision is too the 100 ns
+               //    
+               //                                     3_155_378_975_999_999_999
+               return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+               // linux:
+               //    precision is to the 1s
+               //    
+               return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
+            }
+
+            // OSX
+            throw new InvalidOperationException("DirectoryInternalMapping needs some OSX love, it does not know what to do.");
+            // return new DateTimeOffset(new DateTime(0, DateTimeKind.Utc));
+         })();
+
+      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
+         () =>
+         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               // Windows:
+               //    precision is too the 100 ns
+               //
+               //                                     504_911_232_000_000_001
+               //                                     Midnight, January 1st, 1601, AKA Windows Epoch
+               return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+               // linux:
+               //    precision is to the 1s
+               //    
+               return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
+            }
+
+            // OSX
+            throw new InvalidOperationException("DirectoryInternalMapping needs some OSX love, it does not know what to do.");
+            // return new DateTimeOffset(new DateTime(0, DateTimeKind.Utc));
+         })();
 
       /// <inheritdoc/>
       public DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;

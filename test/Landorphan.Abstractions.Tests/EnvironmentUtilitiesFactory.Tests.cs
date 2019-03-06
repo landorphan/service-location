@@ -1,6 +1,8 @@
 ﻿namespace Landorphan.Abstractions.Tests
 {
+   using System;
    using System.Collections.Generic;
+   using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
@@ -20,6 +22,19 @@
       protected override void ActMethod()
       {
          actual = target.Create();
+      }
+
+      [TestMethod]
+      [TestCategory(TestTiming.CheckIn)]
+      public void TODO_REMOVE()
+      {
+         Trace.WriteLine($"TimeSpan.TicksPerSecond = {TimeSpan.TicksPerSecond}");
+         Trace.WriteLine($"DateTimeOffset.MinValue.Ticks = {DateTimeOffset.MinValue.Ticks}");
+         Trace.WriteLine($"DateTimeOffset.MaxValue.Ticks = {DateTimeOffset.MaxValue.Ticks}");
+         Trace.WriteLine($"Windows Epoch = {new DateTime(504_911_232_000_000_001, DateTimeKind.Utc)}");
+         Trace.WriteLine($"Windows Epoch Ticks = {new DateTime(504_911_232_000_000_001, DateTimeKind.Utc).Ticks}");
+         Trace.WriteLine($"Guessed Linux Epoch = {new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)}");
+         Trace.WriteLine($"Guessed Linux Epoch Ticks = {new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).Ticks}");
       }
 
       [TestMethod]
