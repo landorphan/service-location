@@ -3,9 +3,12 @@ namespace Landorphan.TestUtilities
    using System;
    using System.Diagnostics.CodeAnalysis;
    using System.IO;
+   using System.Linq;
+   using System.Reflection;
    using System.Runtime.InteropServices;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Testability;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    /// <summary>
@@ -113,7 +116,27 @@ namespace Landorphan.TestUtilities
          {
             Directory.SetCurrentDirectory(_originalCurrentDirectory);
          }
+
+         ApplyTestFilters();
          OnTestInitialize?.Invoke(this);
+      }
+
+      private void ApplyTestFilters()
+      {
+         MethodInfo methodInfo = this.GetType().GetMethod(this.TestContext.TestName);
+         if (methodInfo != null)
+         {
+            var testFilters = (from a in methodInfo.GetCustomAttributes()
+                                let tf = a as TestFilterAttribute
+                              where tf != null
+                             select tf);
+
+            bool suppress = testFilters.Any(tf => tf.ReturnInconclusiveTestResult());
+            if (suppress)
+            {
+               Assert.Inconclusive("This test has been suppressed by test filters evaluated against the runtime environment.");
+            }
+         }
       }
 
       /// <summary>
