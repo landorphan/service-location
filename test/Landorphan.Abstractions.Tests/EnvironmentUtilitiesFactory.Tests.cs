@@ -37,7 +37,7 @@
 
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
-      public void TODO_REMOVE()
+      public void TODO_REMOVE_MIN()
       {
          // get min file date/time per platform
          var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
@@ -51,7 +51,7 @@
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
          {
-            lastGoodDt = new DateTime(621_355_968_020_000_000);
+            lastGoodDt = new DateTime(268_810_000_000);
          }
 
          try
@@ -72,11 +72,12 @@
                      adjustedDt = lastGoodDt.AddTicks(-1 * TimeSpan.TicksPerSecond);
                   }
 
-                  File.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetCreationTimeUtc(tempFile);
+                  File.SetLastAccessTimeUtc(tempFile, adjustedDt);
+                  var getDt = File.GetLastAccessTimeUtc(tempFile);
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
+                     Trace.WriteLine($"getDt.Ticks = {getDt.Ticks}");
                      break;
                   }
 
@@ -99,7 +100,7 @@
 
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
-      public void TODO_REMOVE_TOO()
+      public void TODO_REMOVE_TOO_MAX()
       {
          // get max file date/time per platform
          var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
@@ -114,7 +115,7 @@
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
          {
             var epoch_ticks = 504_911_232_000_000_001;
-            var max_32bit_seconds_to_ticks = (Int64)(Math.Pow(2, 32) - 1) * TimeSpan.TicksPerSecond;
+            var max_32bit_seconds_to_ticks = (Int64)(Math.Pow(2, 16) - 1) * TimeSpan.TicksPerSecond;
             var giveRoomTicks = epoch_ticks + max_32bit_seconds_to_ticks - TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(giveRoomTicks, DateTimeKind.Utc);
          }
@@ -137,10 +138,11 @@
                      // linux file precision is to the second
                   }
 
-                  File.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetCreationTimeUtc(tempFile);
+                  File.SetLastAccessTimeUtc(tempFile, adjustedDt);
+                  var getDt = File.GetLastAccessTimeUtc(tempFile);
                   if (adjustedDt != getDt)
                   {
+                     Trace.WriteLine($"getDt.Ticks = {getDt.Ticks}");
                      break;
                   }
 
