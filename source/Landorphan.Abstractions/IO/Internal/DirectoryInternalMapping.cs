@@ -59,7 +59,7 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // Windows:
                //    precision is too the 100 ns
-               //    TimeSpan.TicksPerSecond = 10000000
+               //    TimeSpan.TicksPerSecond = 10_000_000
                //    Epoch Midnight, January 1st, 1601, AKA Windows Epoch
                //
                //                                     504_911_232_000_000_001 confirmed on Window10x64 2019.03.06
@@ -70,10 +70,12 @@ namespace Landorphan.Abstractions.IO.Internal
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                // linux:
-               //    precision is to the 1s (TODO: Will need more work, Tickcount != FileTime Precision)
+               //    precision is to the 1000ms
+               //    TimeSpan.TicksPerSecond = 10_000_000
                //
-               //                                    Midnight, January 1, 1970 educated guess
-               return new DateTimeOffset(new DateTime(621_355_968_000_000_000, DateTimeKind.Utc));
+               //                                     621_355_968_010_000_000 confirmed on Ubuntu 18.04x64 2019.03.06
+               //                                     00:00:01, January 1, 1970
+               return new DateTimeOffset(new DateTime(621_355_968_010_000_000, DateTimeKind.Utc));
             }
 
             // OSX
