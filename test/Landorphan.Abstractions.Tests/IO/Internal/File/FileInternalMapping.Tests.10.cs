@@ -205,12 +205,12 @@
             Action throwingAction = () => _target.WriteAllBytes(String.Empty, new Byte[] {0x00, 0x01, 0x02, 0x03});
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.WriteAllBytes(String.Empty, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -333,12 +333,12 @@
             Action throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03});
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.WriteAllBytes(fileFullPath, new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList());
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -666,17 +666,17 @@
             Action throwingAction = () => _target.WriteAllLines(String.Empty, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.WriteAllLines(String.Empty, (IEnumerable<String>)new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.WriteAllLines(String.Empty, new[] {"zero", "one", "two", "three"}.ToImmutableList(), Encoding.UTF8);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -825,17 +825,17 @@
             Action throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.WriteAllLines(path, (IEnumerable<String>)new[] {"zero", "one", "two", "three"}, Encoding.UTF8);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.WriteAllLines(path, new[] {"zero", "one", "two", "three"}.ToImmutableList(), Encoding.UTF8);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -1092,7 +1092,7 @@
             Action throwingAction = () => _target.WriteAllText(String.Empty, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -1189,7 +1189,7 @@
             Action throwingAction = () => _target.WriteAllText(path, "contents", Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]

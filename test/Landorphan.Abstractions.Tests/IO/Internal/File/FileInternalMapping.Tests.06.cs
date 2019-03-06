@@ -109,7 +109,7 @@
             Action throwingAction = () => _target.OpenWrite(String.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -179,7 +179,7 @@
             Action throwingAction = () => _target.OpenWrite(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -344,7 +344,7 @@
             Action throwingAction = () => _target.ReadAllBytes(String.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -438,7 +438,7 @@
             Action throwingAction = () => _target.ReadAllBytes(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -590,7 +590,7 @@
             Action throwingAction = () => _target.ReadAllLines(String.Empty, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -685,7 +685,7 @@
             Action throwingAction = () => _target.ReadAllLines(fileFullPath, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -837,7 +837,7 @@
             Action throwingAction = () => _target.ReadAllText(String.Empty, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -933,7 +933,7 @@
             Action throwingAction = () => _target.ReadAllText(fileFullPath, Encoding.UTF8);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]

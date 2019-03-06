@@ -202,17 +202,17 @@
             Action throwingAction = () => _target.Open(String.Empty, FileMode.Open);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.Open(String.Empty, FileMode.Open, FileAccess.ReadWrite);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.Open(String.Empty, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -320,17 +320,17 @@
             Action throwingAction = () => _target.Open(fileFullPath, FileMode.Open);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.Open(fileFullPath, FileMode.Open, FileAccess.ReadWrite);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.Open(fileFullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -555,7 +555,7 @@
             Action throwingAction = () => _target.OpenRead(String.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -625,7 +625,7 @@
             Action throwingAction = () => _target.OpenRead(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -802,7 +802,7 @@
             Action throwingAction = () => _target.OpenText(String.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -872,7 +872,7 @@
             Action throwingAction = () => _target.OpenText(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]

@@ -134,7 +134,7 @@
                Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destDirName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destDirName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destDirName");
             }
             finally
             {
@@ -222,7 +222,7 @@
             Action throwingAction = () => _target.Copy(sourceDirName, DestDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("destDirName");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destDirName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destDirName");
          }
 
          [TestMethod]
@@ -457,7 +457,7 @@
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("sourceDirName");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceDirName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceDirName");
          }
 
          [TestMethod]
@@ -516,7 +516,7 @@
             Action throwingAction = () => _target.Copy(SourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("sourceDirName");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceDirName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceDirName");
          }
 
          [TestMethod]
@@ -817,12 +817,12 @@
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.CreateDirectory(path);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -921,12 +921,12 @@
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.CreateDirectory(path);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -1194,7 +1194,7 @@
             Action throwingAction = () => _target.DeleteEmpty(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -1245,7 +1245,7 @@
             Action throwingAction = () => _target.DeleteEmpty(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
