@@ -59,7 +59,7 @@ namespace Landorphan.Abstractions.IO.Internal
                // Windows:
                //    precision is too the 100 ns
                //
-               //                                     504_911_232_000_000_001
+               //                                     504_911_232_000_000_001 confirmed on Window10x64 2019.03.06
                //                                     Midnight, January 1st, 1601, AKA Windows Epoch
                return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
             }
