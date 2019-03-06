@@ -246,7 +246,7 @@
                _target.SetLastAccessTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastAccessTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastAccessTime(path, expected);
                _target.GetLastAccessTime(path).Should().Be(expected);
 
@@ -486,7 +486,7 @@
                _target.SetLastWriteTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastWriteTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastWriteTime(path, expected);
                _target.GetLastWriteTime(path).Should().Be(expected);
 

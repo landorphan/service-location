@@ -6,6 +6,7 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
+   using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -251,7 +252,7 @@
                _target.SetCreationTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetCreationTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
 
@@ -278,7 +279,7 @@
                _target.SetLastAccessTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastAccessTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastAccessTime(path, expected);
                _target.GetLastAccessTime(path).Should().Be(expected);
 
@@ -305,7 +306,7 @@
                _target.SetLastWriteTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastWriteTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastWriteTime(path, expected);
                _target.GetLastWriteTime(path).Should().Be(expected);
 

@@ -28,7 +28,6 @@ namespace Landorphan.Abstractions.IO.Internal
       private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
          () =>
          {
-            var TicksPerSecond = TimeSpan.TicksPerSecond;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                // Windows:
@@ -38,7 +37,8 @@ namespace Landorphan.Abstractions.IO.Internal
                return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
             }
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                // linux:
                //    precision is to the 1s
@@ -67,7 +67,8 @@ namespace Landorphan.Abstractions.IO.Internal
                return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
             }
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
+                RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                // linux:
                //    precision is to the 1s (TODO: Will need more work, Tickcount != FileTime Precision)
@@ -76,8 +77,8 @@ namespace Landorphan.Abstractions.IO.Internal
                return new DateTimeOffset(new DateTime(621_355_968_000_000_000, DateTimeKind.Utc));
             }
 
-            // OSX
-            throw new InvalidOperationException("DirectoryInternalMapping needs some OSX love, it does not know what to do.");
+            // Unknown OS Platform
+            throw new InvalidOperationException("DirectoryInternalMapping does not recognize this OS platform.");
             // return new DateTimeOffset(new DateTime(0, DateTimeKind.Utc));
          })();
 

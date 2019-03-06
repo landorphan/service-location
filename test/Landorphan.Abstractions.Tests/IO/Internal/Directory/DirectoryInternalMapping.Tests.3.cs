@@ -207,7 +207,7 @@
             _target.CreateDirectory(path);
             try
             {
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
             }
