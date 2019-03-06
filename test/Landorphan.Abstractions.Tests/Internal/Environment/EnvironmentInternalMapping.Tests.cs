@@ -6,6 +6,7 @@
    using System.Diagnostics.CodeAnalysis;
    using System.Globalization;
    using System.Linq;
+   using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.Internal;
@@ -83,26 +84,38 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_variable_has_leading_whitespace_It_should_be_recognized_and_returned()
          {
-            const String variableName = "   windir";
+            // windir changed to PATH so the environment variable would be x-plat
+            const String variableName = "   PATH";
 
             var actual = _target.GetEnvironmentVariable(variableName);
             actual.Should().NotBeNull();
 
-            actual = _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.Machine);
-            actual.Should().NotBeNull();
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               // PER: https://docs.microsoft.com/en-us/dotnet/api/system.environment.getenvironmentvariable?view=netframework-4.7.2
+               // .NET Core on macOS and Linux does not support per-machine or per-user environment variables.
+               actual = _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.Machine);
+               actual.Should().NotBeNull();
+            }
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_variable_has_trailing_whitespace_It_should_be_recognized_and_returned()
          {
-            const String variableName = "windir   ";
+            // windir changed to PATH so the environment variable would be x-plat
+            const String variableName = "PATH   ";
 
             var actual = _target.GetEnvironmentVariable(variableName);
             actual.Should().NotBeNull();
 
-            actual = _target.GetEnvironmentVariable("windir   ", EnvironmentVariableTarget.Machine);
-            actual.Should().NotBeNull();
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               // PER: https://docs.microsoft.com/en-us/dotnet/api/system.environment.getenvironmentvariable?view=netframework-4.7.2
+               // .NET Core on macOS and Linux does not support per-machine or per-user environment variables.
+               actual = _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.Machine);
+               actual.Should().NotBeNull();
+            }
          }
 
          [TestMethod]

@@ -1,6 +1,7 @@
 ﻿namespace Landorphan.Abstractions.Tests.Architecture
 {
    using System.Collections.Immutable;
+   using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using Landorphan.Abstractions.Tests.TestFacilities;
@@ -13,6 +14,18 @@
    [TestClass]
    public class Architecture_Tests : ArchitecturalRequirements
    {
+      protected override void InitializeTestMethod()
+      {
+         base.InitializeTestMethod();
+//         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+//         {
+//            Assert.Inconclusive("This test was designed for Windows systems only.  It has no meaning on other OS variants.");
+//         }
+         var properties = this.TestContext.Properties;
+
+         Debug.WriteLine("Setting up test");
+      }
+
       [SuppressMessage("SonarLint.CodeSmell", "S2699: Tests should include assertions", Justification = "Base implementation has assertion (MWP)")]
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]

@@ -5,6 +5,7 @@
    using System.Globalization;
    using System.IO;
    using System.Linq;
+   using System.Runtime.InteropServices;
    using System.Text;
    using System.Text.RegularExpressions;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -55,6 +56,12 @@
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
       internal static Boolean DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(String path)
       {
+         // Not a concept that applies to non Windows OS variants
+         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            return false;
+         }
+
          if (path == null)
          {
             return false;
@@ -78,7 +85,7 @@
             case -1:
                // not found
                rv = false;
-               break;
+               break;            
 
             case 1:
                // drive label
@@ -221,7 +228,8 @@
 
          // .Net Standard 2.0 throws IOExceptions path not found on directory names with trailing spaces.
          // word character(s) followed by space(s) followed by directory separator character
-         pattern = @"\w+\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
+         // Original pattern was @"\w+ ... " replaced with @"\w" as for this case will yeild same resuilt
+         pattern = @"\w\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
          evaluator = ReplaceTrailingWhitespace;
          cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
 

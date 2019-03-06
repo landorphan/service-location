@@ -3,6 +3,7 @@ namespace Landorphan.TestUtilities
 {
    using System;
    using System.IO;
+   using System.Runtime.InteropServices;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    /// <summary>
@@ -25,8 +26,18 @@ namespace Landorphan.TestUtilities
       protected TestBase()
       {
          // ReSharper disable once AssignNullToNotNullAttribute
-         var uri = new Uri(Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase));
-         _originalCurrentDirectory = uri.LocalPath;
+         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            var codeBase = Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase);
+            var builder = new UriBuilder(codeBase);
+            var path = Uri.UnescapeDataString(builder.Path);
+            _originalCurrentDirectory = path;
+         }
+         else
+         {
+            var uri = new Uri(Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase));
+            _originalCurrentDirectory = uri.LocalPath;
+         }
       }
 
       /// <summary>

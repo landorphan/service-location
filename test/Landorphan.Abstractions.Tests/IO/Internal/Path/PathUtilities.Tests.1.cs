@@ -7,6 +7,8 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
+   using Landorphan.Abstractions.Tests.Attributes;
+   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -19,7 +21,7 @@
    public static partial class PathUtilities_Tests
    {
       [TestClass]
-      public class When_I_call_PathMapper_GetParentPath : TestBase
+      public class When_I_call_PathMapper_GetParentPath : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -63,6 +65,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -76,6 +79,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -236,6 +240,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -248,6 +253,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -263,6 +269,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -368,7 +375,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetRootPath : TestBase
+      public class When_I_call_PathMapper_GetRootPath : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -415,6 +422,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -427,6 +435,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -595,6 +604,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -607,6 +617,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -622,6 +633,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -715,10 +727,11 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_HasExtension : TestBase
+      public class When_I_call_PathMapper_HasExtension : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -732,6 +745,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -856,6 +870,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -937,10 +952,11 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_IsPathRelative : TestBase
+      public class When_I_call_PathMapper_IsPathRelative : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -954,6 +970,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -1079,6 +1096,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1091,6 +1109,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -1105,6 +1124,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:

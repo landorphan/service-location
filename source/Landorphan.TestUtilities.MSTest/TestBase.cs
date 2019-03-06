@@ -2,6 +2,7 @@ namespace Landorphan.TestUtilities
 {
    using System;
    using System.IO;
+   using System.Runtime.InteropServices;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Testability;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,14 +22,27 @@ namespace Landorphan.TestUtilities
       private readonly String _originalCurrentDirectory;
       private Lazy<EventMonitor> _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
 
+      public static Action OnTestInitialize;
+      public static Action OnTestCleanup;
+
       /// <summary>
       /// Initializes a new instance of the <see cref="TestBase" /> class.
       /// </summary>
       protected TestBase()
       {
          // ReSharper disable once AssignNullToNotNullAttribute
-         var uri = new Uri(Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase));
-         _originalCurrentDirectory = uri.LocalPath;
+         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            var codeBase = Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase);
+            var builder = new UriBuilder(codeBase);
+            var path = Uri.UnescapeDataString(builder.Path);
+            _originalCurrentDirectory = path;
+         }
+         else
+         {
+            var uri = new Uri(Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase));
+            _originalCurrentDirectory = uri.LocalPath;
+         }
 
          // Set the default mocking strategy.
          var tms = IocServiceLocator.Resolve<ITestMockingService>();
@@ -59,7 +73,6 @@ namespace Landorphan.TestUtilities
       {
          // Quieting intermittent code analysis warning
          TestHelp.DoNothing(context);
-
          // currently empty
       }
 
@@ -83,6 +96,7 @@ namespace Landorphan.TestUtilities
          {
             Directory.SetCurrentDirectory(_originalCurrentDirectory);
          }
+         OnTestInitialize?.Invoke();
       }
 
       /// <summary>
@@ -94,6 +108,7 @@ namespace Landorphan.TestUtilities
          {
             _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
          }
+         OnTestCleanup?.Invoke();
       }
 
       /// <summary>

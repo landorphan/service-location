@@ -7,6 +7,7 @@
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
+   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -397,7 +398,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryUtilities_GetLastAccessTime : TestBase
+      public class When_I_call_DirectoryUtilities_GetLastAccessTime : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

@@ -7,6 +7,8 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
+   using Landorphan.Abstractions.Tests.Attributes;
+   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Common.Exceptions;
    using Landorphan.Ioc.ServiceLocation;
@@ -27,7 +29,7 @@
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_PathMapper_ChangeExtension : TestBase
+      public class When_I_call_PathMapper_ChangeExtension : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -169,6 +171,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -292,6 +295,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -344,7 +348,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_Combine : TestBase
+      public class When_I_call_PathMapper_Combine : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -716,7 +720,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetExtension : TestBase
+      public class When_I_call_PathMapper_GetExtension : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -953,7 +957,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFileName : TestBase
+      public class When_I_call_PathMapper_GetFileName : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1079,7 +1083,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFileNameWithoutExtension : TestBase
+      public class When_I_call_PathMapper_GetFileNameWithoutExtension : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1205,7 +1209,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFullPath : TestBase
+      public class When_I_call_PathMapper_GetFullPath : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1383,7 +1387,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetInvalidFileNameCharacters : TestBase
+      public class When_I_call_PathMapper_GetInvalidFileNameCharacters : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1394,7 +1398,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetInvalidPathCharacters : TestBase
+      public class When_I_call_PathMapper_GetInvalidPathCharacters : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

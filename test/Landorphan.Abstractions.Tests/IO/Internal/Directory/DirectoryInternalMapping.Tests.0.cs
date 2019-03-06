@@ -8,6 +8,7 @@
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
+   using Landorphan.Abstractions.Tests.Attributes;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -16,7 +17,7 @@
 
    // ReSharper disable InconsistentNaming
 
-   public static partial class DirectoryInternalMapping_Tests
+   public static partial class DirectoryInternalMapping_Tests 
    {
       private const String Spaces = "   ";
       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
@@ -27,10 +28,11 @@
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_Copy : TestBase
+      public class When_I_call_DirectoryInternalMapping_Copy : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destDirName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -56,6 +58,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destDirName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -316,6 +319,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destDirName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -358,6 +362,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceDirName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceDirName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -371,6 +376,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceDirName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -538,6 +544,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceDirName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String SourceDirName = ":";
@@ -612,7 +619,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_CreateDirectory : TestBase
+      public class When_I_call_DirectoryInternalMapping_CreateDirectory : AbstractionTestBase
       {
          // TODO: add tests for directorySecurity
 
@@ -717,6 +724,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -734,6 +742,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -833,6 +842,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
             var path = String.Format(
@@ -850,6 +860,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_is_on_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -959,6 +970,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1052,7 +1064,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_DeleteEmpty : TestBase
+      public class When_I_call_DirectoryInternalMapping_DeleteEmpty : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1114,6 +1126,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath +
@@ -1129,6 +1142,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -1266,6 +1280,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1292,6 +1307,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));

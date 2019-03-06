@@ -7,6 +7,8 @@
    using System.Linq;
    using System.Text;
    using FluentAssertions;
+   using Landorphan.Abstractions.Tests.Attributes;
+   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
@@ -17,10 +19,11 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_Open : TestBase
+      public class When_I_call_FileInternalMapping_Open : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -43,6 +46,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -230,6 +234,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
             var path = String.Format(
@@ -355,6 +360,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo
@@ -461,10 +467,11 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_OpenRead : TestBase
+      public class When_I_call_FileInternalMapping_OpenRead : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -477,6 +484,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -561,6 +569,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
             var path = String.Format(
@@ -636,6 +645,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo
@@ -704,10 +714,11 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_OpenText : TestBase
+      public class When_I_call_FileInternalMapping_OpenText : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -720,6 +731,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -804,6 +816,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
             var path = String.Format(
@@ -879,6 +892,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo

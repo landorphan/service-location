@@ -10,6 +10,8 @@
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
+   using Landorphan.Abstractions.Tests.Attributes;
+   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -28,7 +30,7 @@
       private static readonly String _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_AppendAllLines : TestBase
+      public class When_I_call_FileInternalMapping_AppendAllLines : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -159,6 +161,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             // TODO: change the exception to an ArgumentException
@@ -174,6 +177,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var contents = new[] {"one", "two", "three"};
@@ -500,7 +504,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_AppendAllText : TestBase
+      public class When_I_call_FileInternalMapping_AppendAllText : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -602,6 +606,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);

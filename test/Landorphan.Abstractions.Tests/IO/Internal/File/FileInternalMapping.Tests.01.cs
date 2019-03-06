@@ -5,6 +5,8 @@
    using System.IO;
    using System.Linq;
    using FluentAssertions;
+   using Landorphan.Abstractions.Tests.Attributes;
+   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,10 +16,11 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_CopyNoOverwrite : TestBase
+      public class When_I_call_FileInternalMapping_CopyNoOverwrite : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -38,6 +41,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -256,6 +260,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -277,6 +282,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -290,6 +296,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
@@ -437,6 +444,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
@@ -474,10 +482,11 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_CopyWithOverwrite : TestBase
+      public class When_I_call_FileInternalMapping_CopyWithOverwrite : AbstractionTestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -498,6 +507,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -715,6 +725,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_destFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -736,6 +747,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -749,6 +761,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
@@ -919,6 +932,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [WindowsTestOnly]
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
