@@ -77,7 +77,7 @@
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
-                     Trace.WriteLine($"getDt.Ticks = {getDt.Ticks}");
+                     Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
@@ -95,7 +95,7 @@
          }
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
-         Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks}");
+         Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
       }
 
       [TestMethod]
@@ -142,7 +142,7 @@
                   var getDt = File.GetLastAccessTimeUtc(tempFile);
                   if (adjustedDt != getDt)
                   {
-                     Trace.WriteLine($"getDt.Ticks = {getDt.Ticks}");
+                     Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
@@ -160,7 +160,7 @@
          }
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
-         Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks}");
+         Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
       }
    }
 
