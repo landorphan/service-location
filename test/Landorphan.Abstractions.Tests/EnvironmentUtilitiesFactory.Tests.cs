@@ -4,6 +4,7 @@
    using System.Collections.Generic;
    using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
+   using System.Globalization;
    using System.IO;
    using System.Runtime.InteropServices;
    using FluentAssertions;
@@ -71,11 +72,8 @@
                      adjustedDt = lastGoodDt.AddTicks(-1 * TimeSpan.TicksPerSecond);
                   }
 
-                  Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
-                  Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
-
-                  Directory.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = Directory.GetCreationTimeUtc(tempFile);
+                  File.SetCreationTimeUtc(tempFile, adjustedDt);
+                  var getDt = File.GetCreationTimeUtc(tempFile);
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
@@ -95,7 +93,7 @@
             fileUtils.DeleteFile(tempFile);
          }
 
-         Trace.WriteLine($"lastGoodDt = {lastGoodDt}");
+         Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks}");
       }
 
@@ -139,11 +137,8 @@
                      // linux file precision is to the second
                   }
 
-                  Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
-                  Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
-
-                  Directory.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = Directory.GetCreationTimeUtc(tempFile);
+                  File.SetCreationTimeUtc(tempFile, adjustedDt);
+                  var getDt = File.GetCreationTimeUtc(tempFile);
                   if (adjustedDt != getDt)
                   {
                      break;
@@ -162,7 +157,7 @@
             fileUtils.DeleteFile(tempFile);
          }
 
-         Trace.WriteLine($"lastGoodDt = {lastGoodDt}");
+         Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks}");
       }
    }
