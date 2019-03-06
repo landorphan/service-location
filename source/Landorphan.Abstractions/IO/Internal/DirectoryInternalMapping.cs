@@ -33,7 +33,7 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // Windows:
                //    precision is too the 100 ns
-               //    
+               //
                //                                     3_155_378_975_999_999_999
                return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
             }
@@ -42,7 +42,8 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // linux:
                //    precision is to the 1s
-               //    
+               //
+               //                                     3_155_378_975_999_999_999
                return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
             }
 
@@ -58,18 +59,20 @@ namespace Landorphan.Abstractions.IO.Internal
             {
                // Windows:
                //    precision is too the 100 ns
+               //    TimeSpan.TicksPerSecond = 10000000
+               //    Epoch Midnight, January 1st, 1601, AKA Windows Epoch
                //
                //                                     504_911_232_000_000_001
-               //                                     Midnight, January 1st, 1601, AKA Windows Epoch
                return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
             }
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                // linux:
-               //    precision is to the 1s
-               //    
-               return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
+               //    precision is to the 1s (TODO: Will need more work, Tickcount != FileTime Precision)
+               //
+               //                                    Midnight, January 1, 1970 educated guess
+               return new DateTimeOffset(new DateTime(621_355_968_000_000_000, DateTimeKind.Utc));
             }
 
             // OSX
@@ -152,7 +155,7 @@ namespace Landorphan.Abstractions.IO.Internal
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 #endif
 
-         // BCL behavior.  
+         // BCL behavior.
          //    Trailing spaces are trimmed, leading spaces are not on each folder
          //    @"c:\temp\ abc \ def \" creates @"c:\temp\ abc\ def\"
          //    Maximum length is governed by the string length of full path, which results in
@@ -683,7 +686,7 @@ namespace Landorphan.Abstractions.IO.Internal
                if (haveAccessToSourceDirName)
                {
                   // have access to sourceDirName so correct the message.
-                  // (changes HResult from 0x80070005 to 0x80131620) 
+                  // (changes HResult from 0x80070005 to 0x80131620)
                   throw new UnauthorizedAccessException(
                      String.Format(CultureInfo.InvariantCulture, StringResources.AccessToThePathIsDeniedFmt, cleanedDestDirName),
                      ioe);
