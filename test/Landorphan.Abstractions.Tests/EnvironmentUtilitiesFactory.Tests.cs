@@ -80,8 +80,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(-1);
                   }
 
-                  File.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetCreationTimeUtc(tempFile);
+                  Directory.SetCreationTimeUtc(Path.GetDirectoryName(tempFile), adjustedDt);
+                  var getDt = Directory.GetCreationTimeUtc(Path.GetDirectoryName(tempFile));
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
@@ -152,8 +152,10 @@
                      adjustedDt = lastGoodDt.AddSeconds(1);
                   }
 
-                  File.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetCreationTimeUtc(tempFile);
+
+
+                  Directory.SetCreationTimeUtc(Path.GetDirectoryName(tempFile), adjustedDt);
+                  var getDt = Directory.GetCreationTimeUtc(Path.GetDirectoryName(tempFile));
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
