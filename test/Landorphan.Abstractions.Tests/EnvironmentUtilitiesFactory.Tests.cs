@@ -51,13 +51,20 @@
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
          {
-            lastGoodDt = new DateTime(268_810_000_000);
+            var start = new DateTime(1,1,1,7,28,1, DateTimeKind.Utc);
+            var ticks = start.Ticks - (start.Ticks % TimeSpan.TicksPerSecond);
+            lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
+            Trace.WriteLine($"Initial a ticks = {ticks}");
+            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+
          }
 
          try
          {
-            while (true)
+            var counter = 12000;
+            while (counter > 0)
             {
+               counter--;
                try
                {
                   var adjustedDt = DateTime.UtcNow;
@@ -69,7 +76,7 @@
                   if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                   {
                      // linux file precision is to the second
-                     adjustedDt = lastGoodDt.AddTicks(-1 * TimeSpan.TicksPerSecond);
+                     adjustedDt = lastGoodDt.AddSeconds(-1);
                   }
 
                   File.SetLastAccessTimeUtc(tempFile, adjustedDt);
@@ -82,6 +89,7 @@
                   }
 
                   lastGoodDt = adjustedDt;
+                 // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
                catch (ArgumentOutOfRangeException)
                {
@@ -114,10 +122,9 @@
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
          {
-            var epoch_ticks = 504_911_232_000_000_001;
-            var max_32bit_seconds_to_ticks = (Int64)(Math.Pow(2, 16) - 1) * TimeSpan.TicksPerSecond;
-            var giveRoomTicks = epoch_ticks + max_32bit_seconds_to_ticks - TimeSpan.TicksPerSecond;
-            lastGoodDt = new DateTime(giveRoomTicks, DateTimeKind.Utc);
+            var utcNow = DateTime.UtcNow;
+            var ticks = utcNow.Ticks - (utcNow.Ticks % TimeSpan.TicksPerSecond);
+            lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
          }
 
          try
@@ -136,6 +143,7 @@
                   if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                   {
                      // linux file precision is to the second
+                     adjustedDt = lastGoodDt.AddTicks(TimeSpan.TicksPerSecond);
                   }
 
                   File.SetLastAccessTimeUtc(tempFile, adjustedDt);
@@ -147,6 +155,7 @@
                   }
 
                   lastGoodDt = adjustedDt;
+                  Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
                catch (ArgumentOutOfRangeException)
                {
