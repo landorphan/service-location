@@ -359,40 +359,6 @@
       Boolean FileExists(String path);
 
       /// <summary>
-      /// Gets the <see cref="FileAttributes"/> of the file on the path.
-      /// </summary>
-      /// <param name="path">
-      /// The path to the file.
-      /// </param>
-      /// <returns>
-      /// The <see cref="FileAttributes"/> of the file on the path.
-      /// </returns>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is empty, contains only white spaces, or contains invalid characters.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or both exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="NotSupportedException">
-      /// <paramref name="path"/> is in an invalid format.
-      /// </exception>
-      /// <exception cref="FileNotFoundException">
-      /// <paramref name="path"/> represents a file and is invalid, such as being on an unmapped
-      /// drive, or the file cannot be found.
-      /// </exception>
-      /// <exception cref="DirectoryNotFoundException">
-      /// <paramref name="path"/> represents a directory and is invalid, such as being on an
-      /// unmapped drive, or the directory cannot be found.
-      /// </exception>
-      /// <exception cref="IOException">
-      /// This file is being used by another process.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// The caller does not have the required permission.
-      /// </exception>
-      FileAttributes GetAttributes(String path);
-
-      /// <summary>
       /// Returns the creation date and time of the specified file or directory.
       /// </summary>
       /// <param name="path">
@@ -1294,39 +1260,6 @@
       /// The caller does not have the required permission.
       /// </exception>
       void ReplaceContentsWithBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName, String destinationBackupFileName);
-
-      /// <summary>
-      /// Sets the specified <see cref="FileAttributes"/> of the file on the specified path.
-      /// </summary>
-      /// <param name="path">
-      /// The path to the file.
-      /// </param>
-      /// <param name="fileAttributes">
-      /// A bitwise combination of the enumeration values.
-      /// </param>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is empty, contains only white spaces, contains invalid characters, or
-      /// the file attribute is invalid.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or both exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="NotSupportedException">
-      /// <paramref name="path"/> is in an invalid format.
-      /// </exception>
-      /// <exception cref="DirectoryNotFoundException">
-      /// The specified path is invalid, (for example, it is on an unmapped drive).
-      /// </exception>
-      /// <exception cref="FileNotFoundException">
-      /// The file cannot be found.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// <paramref name="path"/> specified a file that is read-only.-or- This operation is not
-      /// supported on the current platform.-or-
-      /// <paramref name="path"/> specified a directory.-or- The caller does not have the
-      /// required permission.
-      /// </exception>
-      void SetAttributes(String path, FileAttributes fileAttributes);
 
       /// <summary>
       /// Sets the date and time the file was created.

@@ -93,6 +93,11 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks}");
+         
+         // We want to keep this test in strictly as a temporary method 
+         // while evaluating the platform rules.  This avoids warnings that 
+         // no assertions exist.
+         Assert.IsNotNull(tempFile);
       }
    }
 

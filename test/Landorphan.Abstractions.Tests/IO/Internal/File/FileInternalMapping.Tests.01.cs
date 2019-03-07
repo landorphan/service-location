@@ -118,7 +118,7 @@
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destFileName");
-               e.And.Message.Should().Contain("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destFileName");
             }
             finally
             {
@@ -205,7 +205,7 @@
                Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destFileName");
-               e.And.Message.Should().Contain("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destFileName");
             }
             finally
             {
@@ -424,7 +424,7 @@
             Action throwingAction = () => _target.CopyNoOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("sourceFileName");
-            e.And.Message.Should().Contain("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
          }
 
          [TestMethod]
@@ -584,7 +584,7 @@
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destFileName");
-               e.And.Message.Should().Contain("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destFileName");
             }
             finally
             {
@@ -671,7 +671,7 @@
                Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destFileName");
-               e.And.Message.Should().Contain("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destFileName");
             }
             finally
             {
@@ -889,7 +889,7 @@
             Action throwingAction = () => _target.CopyWithOverwrite(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("sourceFileName");
-            e.And.Message.Should().Contain("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
          }
 
          [TestMethod]

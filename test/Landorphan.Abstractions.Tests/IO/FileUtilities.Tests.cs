@@ -122,26 +122,6 @@
       }
 
       [TestClass]
-      public class When_I_call_FileUtilities_GetAttributes : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_get_the_attributes()
-         {
-            var path = _target.CreateTemporaryFile();
-            try
-            {
-               var actual = _target.GetAttributes(path);
-               actual.Should().NotBeNull();
-            }
-            finally
-            {
-               _target.DeleteFile(path);
-            }
-         }
-      }
-
-      [TestClass]
       public class When_I_call_FileUtilities_GetCreationTime : TestBase
       {
          [TestMethod]
@@ -211,31 +191,6 @@
             var actual = _target.GetRandomFileName();
             _target.FileExists(actual).Should().BeFalse();
             _pathUtilities.IsPathRelative(actual).Should().BeTrue();
-         }
-      }
-
-      [TestClass]
-      public class When_I_call_FileUtilities_SetAttributes : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_set_the_attributes()
-         {
-            var path = _target.CreateTemporaryFile();
-            try
-            {
-               var fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-               _target.SetAttributes(path, fileAttributes);
-               _target.GetAttributes(path).Should().Be(fileAttributes);
-
-               fileAttributes = FileAttributes.Normal;
-               _target.SetAttributes(path, fileAttributes);
-               _target.GetAttributes(path).Should().Be(fileAttributes);
-            }
-            finally
-            {
-               _target.DeleteFile(path);
-            }
          }
       }
 

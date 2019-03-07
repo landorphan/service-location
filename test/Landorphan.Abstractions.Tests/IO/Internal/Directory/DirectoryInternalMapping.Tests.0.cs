@@ -4,6 +4,7 @@
    using System.Globalization;
    using System.IO;
    using System.Linq;
+   using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -952,14 +953,12 @@
 
                Action throwingAction = () => _target.CreateDirectory(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain("Cannot create");
-               e.And.Message.Should().Contain("because a file or directory with the same name already exists.");
+               e.And.Message.Should().Contain("already exists.");
                e.And.Message.Should().Contain(path);
 
                throwingAction = () => _target.CreateDirectory(path);
                e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain("Cannot create");
-               e.And.Message.Should().Contain("because a file or directory with the same name already exists.");
+               e.And.Message.Should().Contain("already exists.");
                e.And.Message.Should().Contain(path);
             }
             finally
@@ -1085,7 +1084,7 @@
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             // .Net Standard removed the period in empty. and changed it to empty : (path)
-            var expectedMessageFragment = "The directory is not empty";
+            var matchRegEx = ".*[Dd]irectory (is )?not empty.*";
 
             // nested file
             _target.CreateDirectory(path);
@@ -1096,8 +1095,19 @@
 
                Action throwingAction = () => _target.DeleteEmpty(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain(expectedMessageFragment);
-               e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               e.And.Message.Should().MatchRegex(matchRegEx);
+               if (RuntimePlatform.IsWindows())
+               {
+                  e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               }
+               else if (RuntimePlatform.IsOSPlatform(OSPlatform.OSX, OSPlatform.Linux))
+               {
+                  e.And.HResult.Should().Be(66);
+               }
+               else
+               {
+                  throw new NotSupportedException(TestHardCodes.UnrecognizedPlatform);
+               }
 
                _target.DirectoryExists(path).Should().BeTrue();
             }
@@ -1114,8 +1124,19 @@
 
                Action throwingAction = () => _target.DeleteEmpty(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain(expectedMessageFragment);
-               e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               e.And.Message.Should().MatchRegex(matchRegEx);
+               if (RuntimePlatform.IsWindows())
+               {
+                  e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               }
+               else if (RuntimePlatform.IsOSPlatform(OSPlatform.OSX, OSPlatform.Linux))
+               {
+                  e.And.HResult.Should().Be(66);
+               }
+               else
+               {
+                  throw new NotSupportedException(TestHardCodes.UnrecognizedPlatform);
+               }
                _target.DirectoryExists(path).Should().BeTrue();
             }
             finally

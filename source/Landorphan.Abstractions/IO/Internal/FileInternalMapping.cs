@@ -253,23 +253,6 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
-      public FileAttributes GetAttributes(String path)
-      {
-         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
-
-#if (IO_PRECHECKS)
-         ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
-
-         if (!FileExists(path))
-         {
-            ThrowFileNotFoundException(cleanedPath, nameof(path));
-         }
-#endif
-
-         return File.GetAttributes(cleanedPath);
-      }
-
-      /// <inheritdoc/>
       public DateTimeOffset GetCreationTime(String path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
@@ -619,24 +602,6 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          destinationBackupFileName.ArgumentNotNull(nameof(destinationBackupFileName));
          ReplaceContentsImplementation(sourceFileName, destinationFileName, destinationBackupFileName, true);
-      }
-
-      /// <inheritdoc/>
-      public void SetAttributes(String path, FileAttributes fileAttributes)
-      {
-         var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
-         fileAttributes.ArgumentMustBeValidFlagsEnumValue("fileAttributes");
-
-#if (IO_PRECHECKS)
-         ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
-
-         if (!FileExists(cleanedPath))
-         {
-            ThrowFileNotFoundException(cleanedPath, nameof(path));
-         }
-#endif
-
-         File.SetAttributes(cleanedPath, fileAttributes);
       }
 
       /// <inheritdoc/>
