@@ -8,10 +8,10 @@
    using System.Text;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.Attributes;
    using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -19,11 +19,11 @@
    public static partial class FileInternalMapping_Tests
    {
       [TestClass]
-      public class When_I_call_FileInternalMapping_ReplaceContents : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_ReplaceContents : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destinationBackupFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -51,7 +51,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destinationBackupFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -316,13 +316,13 @@
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationBackupFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationBackupFileName");
 
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationBackupFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationBackupFileName");
             }
             finally
             {
@@ -494,13 +494,13 @@
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationBackupFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationBackupFileName");
 
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationBackupFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationBackupFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationBackupFileName");
             }
             finally
             {
@@ -540,7 +540,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destinationBackupFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -567,7 +567,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destinationFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -604,7 +604,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destinationFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -789,23 +789,23 @@
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
 
                throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
 
                throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
 
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
             }
             finally
             {
@@ -983,23 +983,23 @@
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
 
                throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
 
                throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
 
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destinationFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destinationFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destinationFileName");
             }
             finally
             {
@@ -1049,7 +1049,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destinationFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
@@ -1086,7 +1086,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_sourceFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1123,7 +1123,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_sourceFileName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceFileName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "|" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1307,23 +1307,23 @@
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
 
                throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
 
                throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
 
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
             }
             finally
             {
@@ -1461,23 +1461,23 @@
                Action throwingAction = () => _target.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
 
                throwingAction = () => _target.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
 
                throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
 
                throwingAction =
                   () => _target.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
                e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("sourceFileName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceFileName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceFileName");
             }
             finally
             {
@@ -1527,7 +1527,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceFileName = ":" + _tempPath;

@@ -7,13 +7,13 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.Attributes;
    using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Common.Exceptions;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -29,7 +29,7 @@
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_PathMapper_ChangeExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_ChangeExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -171,7 +171,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -295,7 +295,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -348,7 +348,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_Combine : AbstractionTestBase
+      public class When_I_call_PathMapper_Combine : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -720,7 +720,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_GetExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -918,6 +918,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -957,7 +958,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFileName : AbstractionTestBase
+      public class When_I_call_PathMapper_GetFileName : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1054,6 +1055,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1083,7 +1085,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFileNameWithoutExtension : AbstractionTestBase
+      public class When_I_call_PathMapper_GetFileNameWithoutExtension : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1180,6 +1182,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1209,7 +1212,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetFullPath : AbstractionTestBase
+      public class When_I_call_PathMapper_GetFullPath : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1330,6 +1333,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1387,7 +1391,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetInvalidFileNameCharacters : AbstractionTestBase
+      public class When_I_call_PathMapper_GetInvalidFileNameCharacters : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1398,7 +1402,7 @@
       }
 
       [TestClass]
-      public class When_I_call_PathMapper_GetInvalidPathCharacters : AbstractionTestBase
+      public class When_I_call_PathMapper_GetInvalidPathCharacters : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]

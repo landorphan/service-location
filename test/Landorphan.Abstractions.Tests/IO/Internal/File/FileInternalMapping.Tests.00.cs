@@ -10,12 +10,12 @@
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.Attributes;
    using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -30,7 +30,7 @@
       private static readonly String _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_AppendAllLines : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_AppendAllLines : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -161,7 +161,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             // TODO: change the exception to an ArgumentException
@@ -177,7 +177,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var contents = new[] {"one", "two", "three"};
@@ -341,7 +341,7 @@
             Action throwingAction = () => _target.AppendAllLines(path, contents, enc);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -404,14 +404,14 @@
             Action throwingAction = () => _target.AppendAllLines(path0, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             // without tab
             const String path1 = Spaces;
             throwingAction = () => _target.AppendAllLines(path1, contents, Encoding.ASCII);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -504,7 +504,7 @@
       }
 
       [TestClass]
-      public class When_I_call_FileInternalMapping_AppendAllText : AbstractionTestBase
+      public class When_I_call_FileInternalMapping_AppendAllText : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -606,7 +606,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -620,6 +620,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             const String contents = "Abc123";
@@ -751,7 +752,7 @@
             Action throwingAction = () => _target.AppendAllText(path, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -812,7 +813,7 @@
             Action throwingAction = () => _target.AppendAllText(path0, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]

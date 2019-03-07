@@ -12,6 +12,7 @@
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -65,6 +66,7 @@
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         [RunTestOnlyOnWindows]
          public void GetParentPath_on_a_UNC_path_should_NOT_return_null_unless_it_is_a_root()
          {
             // ReSharper disable CommentTypo
@@ -94,6 +96,7 @@
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         [RunTestOnlyOnWindows]
          public void GetRootPath_should_return_the_root_of_a_unc_path()
          {
             const String uncPathShareFile = @"\\share\file.txt";
@@ -109,6 +112,7 @@
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         [RunTestOnlyOnWindows]
          public void InvalidFileNameChars_in_extension_argument_to_ChangeExtension_Fixed()
          {
             const String legalPath = @"temp.txt";
@@ -129,6 +133,7 @@
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
+         [RunTestOnlyOnWindows]
          public void InvalidPathChars_in_path_argument_to_ChangeExtension_Fixed()
          {
             const String IllegalPath = @"|";

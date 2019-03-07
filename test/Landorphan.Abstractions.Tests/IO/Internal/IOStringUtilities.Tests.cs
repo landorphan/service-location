@@ -6,11 +6,11 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.Attributes;
    using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -86,7 +86,7 @@
       }
 
       [TestClass]
-      public class When_I_call_IOStringUtilities_DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel : AbstractionTestBase
+      public class When_I_call_IOStringUtilities_DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -106,7 +106,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_path_contains_a_colon_that_is_not_part_of_the_drive_label_It_should_return_true()
          {
             IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(@".\abc:defg\").Should().BeTrue();
@@ -156,7 +156,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_path_starts_with_colon_It_should_return_true()
          {
             IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(":Abc").Should().BeTrue();
@@ -164,7 +164,7 @@
       }
 
       [TestClass]
-      public class When_I_call_IOStringUtilities_RemoveOneTrailingDirectorySeparatorCharacter : AbstractionTestBase
+      public class When_I_call_IOStringUtilities_RemoveOneTrailingDirectorySeparatorCharacter : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -311,7 +311,7 @@
       }
 
       [TestClass]
-      public class When_I_call_IOStringUtilities_ValidateCanonicalPath : AbstractionTestBase
+      public class When_I_call_IOStringUtilities_ValidateCanonicalPath : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -475,7 +475,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_path_starts_with_a_colon_character_It_should_throw_ArgumentException()
          {
             const String argName = "testArg";

@@ -6,6 +6,7 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
+   using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -121,26 +122,6 @@
       }
 
       [TestClass]
-      public class When_I_call_FileUtilities_GetAttributes : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_get_the_attributes()
-         {
-            var path = _target.CreateTemporaryFile();
-            try
-            {
-               var actual = _target.GetAttributes(path);
-               actual.Should().NotBeNull();
-            }
-            finally
-            {
-               _target.DeleteFile(path);
-            }
-         }
-      }
-
-      [TestClass]
       public class When_I_call_FileUtilities_GetCreationTime : TestBase
       {
          [TestMethod]
@@ -214,31 +195,6 @@
       }
 
       [TestClass]
-      public class When_I_call_FileUtilities_SetAttributes : TestBase
-      {
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_set_the_attributes()
-         {
-            var path = _target.CreateTemporaryFile();
-            try
-            {
-               var fileAttributes = FileAttributes.Archive | FileAttributes.Hidden;
-               _target.SetAttributes(path, fileAttributes);
-               _target.GetAttributes(path).Should().Be(fileAttributes);
-
-               fileAttributes = FileAttributes.Normal;
-               _target.SetAttributes(path, fileAttributes);
-               _target.GetAttributes(path).Should().Be(fileAttributes);
-            }
-            finally
-            {
-               _target.DeleteFile(path);
-            }
-         }
-      }
-
-      [TestClass]
       public class When_I_call_FileUtilities_SetCreationTime : TestBase
       {
          [TestMethod]
@@ -251,7 +207,7 @@
                _target.SetCreationTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetCreationTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
 
@@ -278,7 +234,7 @@
                _target.SetLastAccessTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastAccessTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastAccessTime(path, expected);
                _target.GetLastAccessTime(path).Should().Be(expected);
 
@@ -305,7 +261,7 @@
                _target.SetLastWriteTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastWriteTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastWriteTime(path, expected);
                _target.GetLastWriteTime(path).Should().Be(expected);
 

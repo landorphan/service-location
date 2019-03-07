@@ -28,10 +28,15 @@ namespace Landorphan.TestUtilities
          // ReSharper disable once AssignNullToNotNullAttribute
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            var codeBase = Path.GetDirectoryName(GetType().Assembly.GetName().CodeBase);
-            var builder = new UriBuilder(codeBase);
+            var codebase = GetType().Assembly.GetName().CodeBase;
+            var builder = new UriBuilder
+            {
+               Scheme = Uri.UriSchemeFile,
+               Host = string.Empty,
+               Path = codebase.Replace("file://", string.Empty, StringComparison.Ordinal)
+            };
             var path = Uri.UnescapeDataString(builder.Path);
-            _originalCurrentDirectory = path;
+            _originalCurrentDirectory = Path.GetDirectoryName(path);
          }
          else
          {

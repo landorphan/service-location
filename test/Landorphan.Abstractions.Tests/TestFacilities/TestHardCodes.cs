@@ -34,6 +34,11 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
          >> 32767 or something smaller
 
       **************************************************************************************************************************************************************** */
+
+      // Used to signal that the OSPlatform was neither OSX, Windows or Linux
+      // should only ocure if a new OSPlatform is added to dotnet core support.
+      internal const string UnrecognizedPlatform = "The test was unable to recognize the OS Platform, the test result can not be validated.";
+      
       internal const Int32 PathAlwaysTooLong = 32768;
       // it could be something smaller based on the operating system.
       internal const Int32 PathMaxDirLengthWithoutTrailingSepChar = PathMaxDirLengthWithTrailingSepChar - 1;

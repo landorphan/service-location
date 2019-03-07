@@ -77,13 +77,6 @@ namespace Landorphan.Abstractions.IO
       }
 
       /// <inheritdoc/>
-      public FileAttributes GetAttributes(String path)
-      {
-         var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
-         return fileInternalMapping.GetAttributes(path);
-      }
-
-      /// <inheritdoc/>
       public DateTimeOffset GetCreationTime(String path)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
@@ -109,13 +102,6 @@ namespace Landorphan.Abstractions.IO
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          return fileInternalMapping.GetRandomFileName();
-      }
-
-      /// <inheritdoc/>
-      public void SetAttributes(String path, FileAttributes fileAttributes)
-      {
-         var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
-         fileInternalMapping.SetAttributes(path, fileAttributes);
       }
 
       /// <inheritdoc/>

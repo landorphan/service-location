@@ -4,15 +4,16 @@
    using System.Globalization;
    using System.IO;
    using System.Linq;
+   using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.Attributes;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -28,11 +29,11 @@
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_Copy : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_Copy : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destDirName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -58,7 +59,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destDirName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -134,7 +135,7 @@
                Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destDirName");
-               e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destDirName");
+               e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destDirName");
             }
             finally
             {
@@ -222,7 +223,7 @@
             Action throwingAction = () => _target.Copy(sourceDirName, DestDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("destDirName");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: destDirName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destDirName");
          }
 
          [TestMethod]
@@ -319,7 +320,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_destDirName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -362,7 +363,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_sourceDirName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var sourceDirName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -376,7 +377,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_sourceDirName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -457,7 +458,7 @@
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("sourceDirName");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceDirName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceDirName");
          }
 
          [TestMethod]
@@ -516,7 +517,7 @@
             Action throwingAction = () => _target.Copy(SourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("sourceDirName");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: sourceDirName");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: sourceDirName");
          }
 
          [TestMethod]
@@ -544,7 +545,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_sourceDirName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String SourceDirName = ":";
@@ -619,7 +620,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_CreateDirectory : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_CreateDirectory : TestBase
       {
          // TODO: add tests for directorySecurity
 
@@ -724,7 +725,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -742,7 +743,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -817,12 +818,12 @@
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.CreateDirectory(path);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -842,7 +843,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
             var path = String.Format(
@@ -860,7 +861,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -921,12 +922,12 @@
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.CreateDirectory(path);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -952,14 +953,12 @@
 
                Action throwingAction = () => _target.CreateDirectory(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain("Cannot create");
-               e.And.Message.Should().Contain("because a file or directory with the same name already exists.");
+               e.And.Message.Should().Contain("already exists.");
                e.And.Message.Should().Contain(path);
 
                throwingAction = () => _target.CreateDirectory(path);
                e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain("Cannot create");
-               e.And.Message.Should().Contain("because a file or directory with the same name already exists.");
+               e.And.Message.Should().Contain("already exists.");
                e.And.Message.Should().Contain(path);
             }
             finally
@@ -970,7 +969,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1064,7 +1063,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryInternalMapping_DeleteEmpty : AbstractionTestBase
+      public class When_I_call_DirectoryInternalMapping_DeleteEmpty : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -1085,7 +1084,7 @@
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             // .Net Standard removed the period in empty. and changed it to empty : (path)
-            var expectedMessageFragment = "The directory is not empty";
+            var matchRegEx = ".*[Dd]irectory (is )?not empty.*";
 
             // nested file
             _target.CreateDirectory(path);
@@ -1096,8 +1095,19 @@
 
                Action throwingAction = () => _target.DeleteEmpty(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain(expectedMessageFragment);
-               e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               e.And.Message.Should().MatchRegex(matchRegEx);
+               if (RuntimePlatform.IsWindows())
+               {
+                  e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               }
+               else if (RuntimePlatform.IsOSPlatform(OSPlatform.OSX, OSPlatform.Linux))
+               {
+                  e.And.HResult.Should().Be(66);
+               }
+               else
+               {
+                  throw new NotSupportedException(TestHardCodes.UnrecognizedPlatform);
+               }
 
                _target.DirectoryExists(path).Should().BeTrue();
             }
@@ -1114,8 +1124,19 @@
 
                Action throwingAction = () => _target.DeleteEmpty(path);
                var e = throwingAction.Should().Throw<IOException>();
-               e.And.Message.Should().Contain(expectedMessageFragment);
-               e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               e.And.Message.Should().MatchRegex(matchRegEx);
+               if (RuntimePlatform.IsWindows())
+               {
+                  e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
+               }
+               else if (RuntimePlatform.IsOSPlatform(OSPlatform.OSX, OSPlatform.Linux))
+               {
+                  e.And.HResult.Should().Be(66);
+               }
+               else
+               {
+                  throw new NotSupportedException(TestHardCodes.UnrecognizedPlatform);
+               }
                _target.DirectoryExists(path).Should().BeTrue();
             }
             finally
@@ -1126,7 +1147,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath +
@@ -1142,7 +1163,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -1194,7 +1215,7 @@
             Action throwingAction = () => _target.DeleteEmpty(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -1245,7 +1266,7 @@
             Action throwingAction = () => _target.DeleteEmpty(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -1280,7 +1301,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1307,7 +1328,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [WindowsTestOnly]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));

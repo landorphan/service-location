@@ -375,27 +375,7 @@
             _target.CreateDirectory(path);
             try
             {
-               DateTimeOffset expected;
-               if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-               {
-                  // On Windows, Date Time Offset precision matches file time precision
-                  expected = DateTimeOffset.UtcNow;
-               }
-               else if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-               {
-                  // On Linux, Date Time OffSet precision is to 100ns, but file time precision is to 1s.
-                  var utcTicks = DateTimeOffset.UtcNow.Ticks;
-                  // trim off all values below 1 second.
-                  var ticks = (utcTicks - (utcTicks % TimeSpan.TicksPerSecond));
-                  expected = new DateTimeOffset(new DateTime(ticks,DateTimeKind.Utc));
-               }
-               else
-               {
-                  // OSX
-                  throw new InvalidOperationException("OSX Test needs some OSX love, it does not know what to do.");
-                  expected = DateTimeOffset.UtcNow;
-               }
-
+               DateTimeOffset expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
             }
@@ -419,7 +399,7 @@
       }
 
       [TestClass]
-      public class When_I_call_DirectoryUtilities_GetLastAccessTime : AbstractionTestBase
+      public class When_I_call_DirectoryUtilities_GetLastAccessTime : TestBase
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
@@ -431,7 +411,7 @@
             _target.CreateDirectory(path);
             try
             {
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastAccessTime(path, expected);
                _target.GetLastAccessTime(path).Should().Be(expected);
             }
@@ -455,7 +435,7 @@
             _target.CreateDirectory(path);
             try
             {
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastWriteTime(path, expected);
                _target.GetLastWriteTime(path).Should().Be(expected);
             }
@@ -510,7 +490,7 @@
                _target.SetCreationTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetCreationTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
 
@@ -557,7 +537,7 @@
                _target.SetLastAccessTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastAccessTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastAccessTime(path, expected);
                _target.GetLastAccessTime(path).Should().Be(expected);
 
@@ -587,7 +567,7 @@
                _target.SetLastWriteTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastWriteTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = DateTimeOffset.UtcNow;
+               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
                _target.SetLastWriteTime(path, expected);
                _target.GetLastWriteTime(path).Should().Be(expected);
 
