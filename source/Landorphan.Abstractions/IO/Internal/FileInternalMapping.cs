@@ -28,61 +28,14 @@ namespace Landorphan.Abstractions.IO.Internal
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      // SonarLint demands underscores, I am uncertain the value in these cases.
-      private static DateTimeOffset t_maximumEffectiveDateTimeOffset = DateTimeOffset.MinValue;
-      private static Int64 t_maximumPrecisionFileSystemTicks = Int64.MinValue;
-      private static DateTimeOffset t_minimumEffectiveDateTimeOffset = DateTimeOffset.MinValue;
+      ///<inheritdoc/>
+      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
 
-      /// <inheritdoc/>
-      [SuppressMessage("SonarLint.CodeSmell", "S2696: Instance members should not write to static fields", Justification = "one-time initialization (MWP)")]
-      public DateTimeOffset MaximumFileTimeAsDateTimeOffset
-      {
-         get
-         {
-            if (t_maximumEffectiveDateTimeOffset == DateTimeOffset.MinValue)
-            {
-               // not property initialized yet...
-               var dirMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
-               t_maximumEffectiveDateTimeOffset = dirMapping.MaximumFileTimeAsDateTimeOffset;
-            }
+      ///<inheritdoc/>
+      public Int64 MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
 
-            return t_maximumEffectiveDateTimeOffset;
-         }
-      }
-
-      /// <inheritdoc/>
-      [SuppressMessage("SonarLint.CodeSmell", "S2696: Instance members should not write to static fields", Justification = "one-time initialization (MWP)")]
-      public Int64 MaximumPrecisionFileSystemTicks
-      {
-         get
-         {
-            if (t_maximumPrecisionFileSystemTicks == Int64.MinValue)
-            {
-               // not property initialized yet...
-               var dirMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
-               t_maximumPrecisionFileSystemTicks = dirMapping.MaximumPrecisionFileSystemTicks;
-            }
-
-            return t_maximumPrecisionFileSystemTicks;
-         }
-      }
-
-      /// <inheritdoc/>
-      [SuppressMessage("SonarLint.CodeSmell", "S2696: Instance members should not write to static fields", Justification = "one-time initialization (MWP)")]
-      public DateTimeOffset MinimumFileTimeAsDateTimeOffset
-      {
-         get
-         {
-            if (t_minimumEffectiveDateTimeOffset == DateTimeOffset.MinValue)
-            {
-               // not property initialized yet...
-               var dirMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
-               t_minimumEffectiveDateTimeOffset = dirMapping.MinimumFileTimeAsDateTimeOffset;
-            }
-
-            return t_minimumEffectiveDateTimeOffset;
-         }
-      }
+      ///<inheritdoc/>
+      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
 
       /// <inheritdoc/>
       public void AppendAllLines(String path, IEnumerable<String> contents, Encoding encoding)
@@ -133,7 +86,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          contents.ArgumentNotNull(nameof(contents));
 
-         AppendAllLines(path, new[] { contents }, encoding);
+         AppendAllLines(path, new[] {contents}, encoding);
       }
 
       /// <inheritdoc/>
@@ -690,16 +643,16 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         creationTime = TruncateTicksToFileSystemPrecision(creationTime);
+         creationTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(creationTime);
 
-         if (creationTime < t_minimumEffectiveDateTimeOffset)
+         if (creationTime < MinimumFileTimeAsDateTimeOffset)
          {
             throw new ArgumentOutOfRangeException(
                nameof(creationTime),
                String.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
-                  t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
+                  MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
          }
 
 #if IO_PRECHECKS
@@ -719,16 +672,16 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         lastAccessTime = TruncateTicksToFileSystemPrecision(lastAccessTime);
+         lastAccessTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastAccessTime);
 
-         if (lastAccessTime < t_minimumEffectiveDateTimeOffset)
+         if (lastAccessTime < MinimumFileTimeAsDateTimeOffset)
          {
             throw new ArgumentOutOfRangeException(
                nameof(lastAccessTime),
                String.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
-                  t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
+                  MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
          }
 
 #if IO_PRECHECKS
@@ -748,16 +701,16 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         lastWriteTime = TruncateTicksToFileSystemPrecision(lastWriteTime);
+         lastWriteTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastWriteTime);
 
-         if (lastWriteTime < t_minimumEffectiveDateTimeOffset)
+         if (lastWriteTime < MinimumFileTimeAsDateTimeOffset)
          {
             throw new ArgumentOutOfRangeException(
                nameof(lastWriteTime),
                String.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
-                  t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
+                  MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
          }
 
 #if IO_PRECHECKS
@@ -1147,15 +1100,6 @@ namespace Landorphan.Abstractions.IO.Internal
                DeleteFile(cleanedDestinationBackupFileName);
             }
          }
-      }
-
-      private DateTimeOffset TruncateTicksToFileSystemPrecision(DateTimeOffset creationTime)
-      {
-         var ticks = creationTime.UtcDateTime.Ticks;
-         ticks = ticks - ticks % MaximumPrecisionFileSystemTicks;
-         var utc = new DateTime(ticks, DateTimeKind.Utc);
-         var rv = new DateTimeOffset(utc);
-         return rv;
       }
 
       [SuppressMessage("SonarLint.CodeSmell", "S100: Methods and properties should be named in PascalCase")]

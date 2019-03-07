@@ -8,7 +8,6 @@ namespace Landorphan.Abstractions.IO.Internal
    using System.Globalization;
    using System.IO;
    using System.Linq;
-   using System.Runtime.InteropServices;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Resources;
    using Landorphan.Common;
@@ -25,67 +24,14 @@ namespace Landorphan.Abstractions.IO.Internal
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
-         () =>
-         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-               // Windows:
-               //    precision is too the 100 ns
-               //    precision in ticks is 1
-               //    
-               //                                     12/31/9999 23:59:59   
-               //                                     3_155_378_975_999_999_999 confirmed on Window10x64 2019.03.06
-               return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
-            }
+      ///<inheritdoc/>
+      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
 
-            // TODO: need confirmation on OSX
-            // linux:
-            //    precision is to the 1s
-            //    precision in ticks is Timespan.TicksPerSecond or 10_000_000
-            return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
-         })();
+      ///<inheritdoc/>
+      public Int64 MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
 
-      private static readonly Int64 t_maximumPrecisionFileSystemTicks = new Func<Int64>(
-         () =>
-         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-               return 1;
-            }
-
-            return TimeSpan.TicksPerSecond;
-         })();
-
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
-         () =>
-         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-               // Windows:
-               //    precision is too the 100 ns
-               //    precision in ticks is 1
-               //
-               //                                     504_911_232_000_000_001 confirmed on Window10x64 2019.03.06
-               //                                     Midnight, January 1st, 1601, AKA Windows Epoch
-               return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
-            }
-
-            // TODO: need confirmation on OSX
-            // linux:
-            //    precision is to the 1s
-            //    precision in ticks is Timespan.TicksPerSecond or 10_000_000
-            return new DateTimeOffset(new DateTime(1, 1, 1, 7, 28, 0, DateTimeKind.Utc));
-         })();
-
-      /// <inheritdoc/>
-      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;
-
-      /// <inheritdoc/>
-      public Int64 MaximumPrecisionFileSystemTicks => t_maximumPrecisionFileSystemTicks;
-
-      /// <inheritdoc/>
-      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => t_minimumEffectiveDateTimeOffset;
+      ///<inheritdoc/>
+      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
 
       /// <inheritdoc/>
       public void Copy(String sourceDirName, String destDirName)
@@ -705,7 +651,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         creationTime = TruncateTicksToFileSystemPrecision(creationTime);
+         creationTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(creationTime);
 
          if (creationTime < MinimumFileTimeAsDateTimeOffset)
          {
@@ -750,7 +696,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         lastAccessTime = TruncateTicksToFileSystemPrecision(lastAccessTime);
+         lastAccessTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastAccessTime);
 
          if (lastAccessTime < MinimumFileTimeAsDateTimeOffset)
          {
@@ -778,7 +724,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         lastWriteTime = TruncateTicksToFileSystemPrecision(lastWriteTime);
+         lastWriteTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastWriteTime);
 
          if (lastWriteTime < MinimumFileTimeAsDateTimeOffset)
          {
@@ -891,15 +837,6 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             ThrowDirectoryNotFoundException(cleanedPath, argumentName);
          }
-      }
-
-      private DateTimeOffset TruncateTicksToFileSystemPrecision(DateTimeOffset creationTime)
-      {
-         var ticks = creationTime.UtcDateTime.Ticks;
-         ticks = ticks - ticks % MaximumPrecisionFileSystemTicks;
-         var utc = new DateTime(ticks, DateTimeKind.Utc);
-         var rv = new DateTimeOffset(utc);
-         return rv;
       }
 
       internal static Boolean TestHookPathContainsUnmappedDrive(String path)
