@@ -21,6 +21,16 @@ namespace Landorphan.Abstractions.IO
       }
 
       /// <inheritdoc/>
+      public Int64 MaximumPrecisionFileSystemTicks
+      {
+         get
+         {
+            var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+            return directoryInternalMapping.MaximumPrecisionFileSystemTicks;
+         }
+      }
+
+      /// <inheritdoc/>
       public DateTimeOffset MinimumFileTimeAsDateTimeOffset
       {
          get
