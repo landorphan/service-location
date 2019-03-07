@@ -12,7 +12,6 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Common.Threading;
    using Landorphan.Ioc.ServiceLocation;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable CommentTypo
 
@@ -50,7 +49,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
       internal static IEnumerable<Char> GetDirSepChars()
       {
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         return new[] {pathUtilities.DirectorySeparatorCharacter, pathUtilities.AltDirectorySeparatorCharacter};
+         return new[] { pathUtilities.DirectorySeparatorCharacter, pathUtilities.AltDirectorySeparatorCharacter };
       }
 
       private static void InitializeWindowsTestPaths()
@@ -63,12 +62,8 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             var windowsArrange = new TestAssemblyInitializeCleanupWindowsHelper();
             try
             {
-               var arragned = windowsArrange.Arrange();
-               t_windowsPathsInitialized.SetValue(arragned);
-            }
-            catch (AssertInconclusiveException)
-            {
-               throw;
+               var arranged = windowsArrange.Arrange();
+               t_windowsPathsInitialized.SetValue(arranged);
             }
             catch (Exception e)
             {
