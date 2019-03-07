@@ -148,6 +148,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_is_a_resource_name_It_should_return_null_unc()
          {
             var actual = _target.GetParentPath(@"\\localhost");
