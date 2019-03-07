@@ -5,10 +5,12 @@
    using System.Globalization;
    using System.IO;
    using System.Runtime.InteropServices;
+   using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    [TestClass]
@@ -85,6 +87,8 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
 
       [TestMethod]
@@ -156,6 +160,8 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
 
       [TestMethod]
@@ -227,6 +233,8 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
 
       [TestMethod]
@@ -298,6 +306,8 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
 
       [TestMethod]
@@ -369,6 +379,8 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
 
       [TestMethod]
@@ -440,6 +452,8 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
    }
 }
