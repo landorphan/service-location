@@ -38,13 +38,14 @@
       [TestCategory(TestTiming.CheckIn)]
       public void TODO_REMOVE()
       {
+         // get min file date/time per platform
          var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
          var tempFile = fileUtils.CreateTemporaryFile();
          var lastGoodDt = DateTime.UtcNow;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            lastGoodDt = new DateTime(1601, 1, 1, 0, 0, 0, 1);
+            lastGoodDt = new DateTime(1602, 1, 0, 0, 0, 1);
          }
 
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
@@ -98,6 +99,72 @@
          // while evaluating the platform rules.  This avoids warnings that 
          // no assertions exist.
          Assert.IsNotNull(tempFile);
+      }
+
+      [TestMethod]
+      [TestCategory(TestTiming.CheckIn)]
+      public void TODO_REMOVE_TOO()
+      {
+         // get max file date/time per platform
+         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
+
+         var tempFile = fileUtils.CreateTemporaryFile();
+         var lastGoodDt = DateTime.UtcNow;
+         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            lastGoodDt = new DateTime(2019, 1, 1, 0, 0, 0, 1);
+         }
+
+         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         {
+            lastGoodDt = new DateTime(2019, 1, 1, 0, 0, 1, 0);
+         }
+
+         try
+         {
+            while (true)
+            {
+               try
+               {
+                  var adjustedDt = DateTime.UtcNow;
+                  if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                  {
+                     adjustedDt = lastGoodDt.AddTicks(1);
+                     Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
+                     Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
+                  }
+
+                  if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                  {
+                     // linux file precision is to the second
+                     adjustedDt = lastGoodDt.AddTicks(TimeSpan.TicksPerSecond);
+                     Trace.WriteLine($"lastGoodDt.Ticks ={lastGoodDt.Ticks}");
+                     Trace.WriteLine($"adjustedDt.Ticks ={adjustedDt.Ticks}");
+                  }
+
+                  Directory.SetCreationTimeUtc(tempFile, adjustedDt);
+                  var getDt = Directory.GetCreationTimeUtc(tempFile);
+                  if (adjustedDt != getDt)
+                  {
+                     // supposed to throw but does not on Windows
+                     break;
+                  }
+
+                  lastGoodDt = adjustedDt;
+               }
+               catch (ArgumentOutOfRangeException)
+               {
+                  break;
+               }
+            }
+         }
+         finally
+         {
+            fileUtils.DeleteFile(tempFile);
+         }
+
+         Trace.WriteLine($"lastGoodDt = {lastGoodDt}");
+         Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks}");
       }
    }
 
