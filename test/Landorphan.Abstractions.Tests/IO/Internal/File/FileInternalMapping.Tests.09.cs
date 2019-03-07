@@ -1,5 +1,6 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
+	
    using System;
    using System.Globalization;
    using System.IO;
