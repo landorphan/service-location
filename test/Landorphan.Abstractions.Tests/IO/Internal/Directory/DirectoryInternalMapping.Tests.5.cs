@@ -796,6 +796,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("SetCreationTime removed from public interface")]
          public void It_should_set_the_creation_time_maximum()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_creation_time_maximum));
@@ -817,6 +818,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("SetCreationTime removed from public interface")]
          public void It_should_set_the_creation_time_minimum()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_creation_time_minimum));
@@ -838,7 +840,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Failing on linux")]
+         [Ignore("SetCreationTime removed from interface")]
          public void It_should_set_the_creation_time_one_year_ago()
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_creation_time_one_year_ago));
