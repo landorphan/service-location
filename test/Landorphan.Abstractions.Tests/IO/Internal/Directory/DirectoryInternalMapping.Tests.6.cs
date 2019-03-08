@@ -12,7 +12,7 @@
    using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming   
+   // ReSharper disable InconsistentNaming
 
    public static partial class DirectoryInternalMapping_Tests
    {
@@ -38,9 +38,7 @@
             try
             {
                Action throwingAction = () => _target.SetLastAccessTime(path, lastAccessTime);
-               var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
-               e.And.ParamName.Should().Be("lastAccessTime");
-               e.And.Message.Should().Be("The value must be greater than or equal to (504,911,232,000,000,001 ticks).\r\nParameter name: lastAccessTime");
+               throwingAction.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*Parameter name: lastAccessTime*");
             }
             finally
             {
@@ -246,7 +244,7 @@
                _target.SetLastAccessTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastAccessTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
+               var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
                _target.SetLastAccessTime(path, expected);
                _target.GetLastAccessTime(path).Should().Be(expected);
 
@@ -282,9 +280,7 @@
             try
             {
                Action throwingAction = () => _target.SetLastWriteTime(path, lastWriteTime);
-               var e = throwingAction.Should().Throw<ArgumentOutOfRangeException>();
-               e.And.ParamName.Should().Be("lastWriteTime");
-               e.And.Message.Should().Be("The value must be greater than or equal to (504,911,232,000,000,001 ticks).\r\nParameter name: lastWriteTime");
+               throwingAction.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*Parameter name: lastWriteTime*");
             }
             finally
             {
@@ -489,7 +485,7 @@
                _target.SetLastWriteTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetLastWriteTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
-               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
+               var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
                _target.SetLastWriteTime(path, expected);
                _target.GetLastWriteTime(path).Should().Be(expected);
 
