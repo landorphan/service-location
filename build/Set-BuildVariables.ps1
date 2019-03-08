@@ -99,7 +99,7 @@ process
 
   if ($null -eq (Get-Variable -Name buildSolution -Scope Global -ErrorAction SilentlyContinue))
   {
-    if(!$SolutionFileName)
+    if (!$SolutionFileName)
     {
       # Solution File Name NOT specified; do a search
       $searchPath = [System.IO.Path]::Combine($buildSolutionDirectory,"*.sln")
@@ -113,26 +113,26 @@ process
         Write-Warning "More than one Visual Studio Solutions were found in [$buildSolutionDirectory]"
       }
     }
-    else 
+    else
     {
       # Solution File Name specified
       Write-Debug "`$SolutionFileName = $SolutionFileName"
-      if(![System.IO.Path]::IsPathRooted($SolutionFileName))
+      if (![System.IO.Path]::IsPathRooted($SolutionFileName))
       {
         Write-Debug "The path $SolutionFileName is NOT rooted"
         $SolutionFileName = Join-Path -Path $buildSolutionDirectory -ChildPath $SolutionFileName
       }
-      else 
+      else
       {
-        Write-Debug "The path $SolutionFileName is rooted"  
+        Write-Debug "The path $SolutionFileName is rooted"
       }
 
-      if(![System.IO.File]::Exists($SolutionFileName))
+      if (![System.IO.File]::Exists($SolutionFileName))
       {
-          $msg = "Could not load file {0}. The system cannot find the file specified." -f $SolutionFileName
-          throw [System.IO.FileNotFoundException]::new($msg,$SolutionFileName)
+        $msg = "Could not load file {0}. The system cannot find the file specified." -f $SolutionFileName
+        throw [System.IO.FileNotFoundException]::new($msg,$SolutionFileName)
       }
-      
+
       New-Variable -Name buildSolution -Scope Global -Value (Resolve-Path -Path $SolutionFileName)
     }
   }
