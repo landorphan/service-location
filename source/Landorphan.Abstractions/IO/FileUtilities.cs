@@ -1,7 +1,6 @@
 namespace Landorphan.Abstractions.IO
 {
    using System;
-   using System.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Ioc.ServiceLocation;
@@ -104,12 +103,14 @@ namespace Landorphan.Abstractions.IO
          return fileInternalMapping.GetRandomFileName();
       }
 
+      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
       /// <inheritdoc/>
       public void SetCreationTime(String path, DateTimeOffset creationTime)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.SetCreationTime(path, creationTime);
       }
+      */
 
       /// <inheritdoc/>
       public void SetLastAccessTime(String path, DateTimeOffset lastAccessTime)

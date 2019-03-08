@@ -200,13 +200,14 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Removed SetCreationTime from interface")]
          public void It_should_set_the_creation_time_maximum()
          {
             var path = _target.CreateTemporaryFile();
             try
             {
                var expected = _target.MaximumFileTimeAsDateTimeOffset;
-               _target.SetCreationTime(path, expected.UtcDateTime);
+               // _target.SetCreationTime(path, expected.UtcDateTime);
                var actual = _target.GetCreationTime(path);
                Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
                Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");
@@ -220,13 +221,14 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Removed SetCreationTime from interface")]
          public void It_should_set_the_creation_time_minimum()
          {
             var path = _target.CreateTemporaryFile();
             try
             {
                var expected = _target.MinimumFileTimeAsDateTimeOffset;
-               _target.SetCreationTime(path, expected);
+               // _target.SetCreationTime(path, expected);
                var actual = _target.GetCreationTime(path);
                Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
                Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");
@@ -240,7 +242,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Failing on Linux")]
+         [Ignore("Removed SetCreationTime from interface")]
          public void It_should_set_the_creation_time_one_year_ago()
          {
             Trace.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
@@ -248,7 +250,7 @@
             try
             {
                var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow.AddYears(-1));
-               _target.SetCreationTime(path, expected);
+               // _target.SetCreationTime(path, expected);
                var actual = _target.GetCreationTime(path);
                Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
                Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");

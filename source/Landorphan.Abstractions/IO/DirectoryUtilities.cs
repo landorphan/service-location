@@ -110,12 +110,14 @@ namespace Landorphan.Abstractions.IO
          return directoryInternalMapping.GetTemporaryDirectoryPath();
       }
 
+      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
       /// <inheritdoc/>
       public void SetCreationTime(String path, DateTimeOffset creationTime)
       {
          var directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
          directoryInternalMapping.SetCreationTime(path, creationTime);
       }
+      */
 
       /// <inheritdoc/>
       public void SetCurrentDirectory(String path)

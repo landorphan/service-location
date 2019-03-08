@@ -365,6 +365,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [Ignore("Remove SetCreationTime from interface.  See readme.md")]
          public void It_should_get_the_creation_time()
          {
             var path = _pathUtilities.Combine(
@@ -374,7 +375,7 @@
             try
             {
                var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
-               _target.SetCreationTime(path, expected);
+               // _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
             }
             finally
@@ -477,7 +478,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         // [Ignore("Failing on Linux")]
+         [Ignore("Removed SetCreationTime from interface")]
          public void It_should_set_the_creation_time()
          {
             var path = _pathUtilities.Combine(
@@ -486,14 +487,14 @@
             _target.CreateDirectory(path);
             try
             {
-               _target.SetCreationTime(path, _target.MinimumFileTimeAsDateTimeOffset);
+               // _target.SetCreationTime(path, _target.MinimumFileTimeAsDateTimeOffset);
                _target.GetCreationTime(path).Should().Be(_target.MinimumFileTimeAsDateTimeOffset);
 
                var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
-               _target.SetCreationTime(path, expected);
+               // _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
 
-               _target.SetCreationTime(path, _target.MaximumFileTimeAsDateTimeOffset);
+               // _target.SetCreationTime(path, _target.MaximumFileTimeAsDateTimeOffset);
                _target.GetCreationTime(path).Should().Be(_target.MaximumFileTimeAsDateTimeOffset);
             }
             finally
