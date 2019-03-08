@@ -62,15 +62,11 @@ process
 
     $results = Join-Path -Path $buildSolutionDirectory -ChildPath 'TestResults'
 
-    # assumes vstest.console.exe is in the path environment variable ($Env:Path)
-    # On my machine, the path is: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Extensions\TestPlatform\vstest.console.exe
-
-    # TODO: switch to dotnet test implementation, if possible
-    # TODO: figure out while the trx file is not being written
+    
     Write-Output ''
-    Write-Output "Executing tests: vstest.console.exe $testBinaries /logger:trx /ResultsDirectory:$results /Parallel /TestCaseFilter:""(TestCategory=Check-In|Check-In-Non-Ide)"""
+    Write-Output "Executing tests: dotnet test  $testBinaries --logger trx --results-directory $results --filter ""(TestCategory=Check-In|Check-In-Non-Ide)"""
     Write-Output ''
-    vstest.console.exe $testBinaries /logger:trx /ResultsDirectory:$results /Parallel /TestCaseFilter:"(TestCategory=Check-In|Check-In-Non-Ide)"
+    dotnet test  $testBinaries --logger trx --results-directory $results --filter "(TestCategory=Check-In|Check-In-Non-Ide)"
   }
   finally
   {
