@@ -10,11 +10,10 @@
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    [TestClass]
-   public class FileTimeTests
+   public class FileTimeTests : TestBase
    {
       // ReSharper disable InconsistentNaming
 
@@ -31,15 +30,14 @@
          {
             lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
          }
-
-         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         else
          {
             var start = FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(1);
             Trace.WriteLine($"Initial ticks = {ticks}");
-            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+            Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
          try
@@ -87,8 +85,9 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+         Trace.WriteLine($"FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
 
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         lastGoodDt.Ticks.Should().Be(FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks);
       }
 
       [TestMethod]
@@ -104,15 +103,14 @@
          {
             lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
          }
-
-         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         else
          {
             var start = FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(-1);
             Trace.WriteLine($"Initial ticks = {ticks}");
-            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+            Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
          try
@@ -160,8 +158,9 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+         Trace.WriteLine($"FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
 
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         lastGoodDt.Ticks.Should().Be(FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks);
       }
 
       [TestMethod]
@@ -177,15 +176,14 @@
          {
             lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
          }
-
-         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         else
          {
             var start = FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(1);
             Trace.WriteLine($"Initial ticks = {ticks}");
-            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+            Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
          try
@@ -233,8 +231,9 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+         Trace.WriteLine($"FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks = {FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
 
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         lastGoodDt.Ticks.Should().Be(FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks);
       }
 
       [TestMethod]
@@ -250,15 +249,14 @@
          {
             lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
          }
-
-         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         else
          {
             var start = FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(-1);
             Trace.WriteLine($"Initial ticks = {ticks}");
-            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+            Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
          try
@@ -306,8 +304,9 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+         Trace.WriteLine($"FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks = {FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
 
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         lastGoodDt.Ticks.Should().Be(FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks);
       }
 
       [TestMethod]
@@ -323,15 +322,14 @@
          {
             lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
          }
-
-         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         else
          {
             var start = FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(1);
             Trace.WriteLine($"Initial ticks = {ticks}");
-            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+            Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
          try
@@ -379,8 +377,9 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+         Trace.WriteLine($"FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks = {FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
 
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         lastGoodDt.Ticks.Should().Be(FileTimeHelper.MinimumFileTimeAsDateTimeOffset.Ticks);
       }
 
       [TestMethod]
@@ -396,15 +395,14 @@
          {
             lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
          }
-
-         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+         else
          {
             var start = FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(-1);
             Trace.WriteLine($"Initial ticks = {ticks}");
-            Trace.WriteLine($"Initial lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
+            Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
          try
@@ -452,8 +450,9 @@
 
          Trace.WriteLine($"lastGoodDt = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          Trace.WriteLine($"lastGoodDt.Ticks = {lastGoodDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+         Trace.WriteLine($"FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks = {FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
 
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
+         lastGoodDt.Ticks.Should().Be(FileTimeHelper.MaximumFileTimeAsDateTimeOffset.Ticks);
       }
    }
 }

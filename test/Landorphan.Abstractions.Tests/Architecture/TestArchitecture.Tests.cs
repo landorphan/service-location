@@ -58,7 +58,7 @@
             TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions.Should().NotBeNull();
             TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder.Should().NotBeNull();
             TestHardCodes.WindowsLocalTestPaths.LocalFolderReadExecuteListFolderContents.Should().NotBeNull();
-            
+
             TestHardCodes.WindowsLocalTestPaths.MappedDrive .Should().NotBeNull();
             TestHardCodes.WindowsLocalTestPaths.UnmappedDrive .Should().NotBeNull();
 
