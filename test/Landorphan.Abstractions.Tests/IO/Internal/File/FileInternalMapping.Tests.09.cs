@@ -246,7 +246,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Creation Time failing on minimum in Linux")]
+         // [Ignore("Creation Time failing on minimum in Linux")]
          public void It_should_set_the_creation_time()
          {
             var path = _target.CreateTemporaryFile();

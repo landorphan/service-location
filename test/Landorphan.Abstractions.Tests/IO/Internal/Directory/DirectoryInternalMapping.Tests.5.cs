@@ -807,7 +807,7 @@
                var actual = _target.GetCreationTime(path);
                Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
                Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");
-//               actual.Should().Be(expected);
+               actual.Should().Be(expected);
             }
             finally
             {

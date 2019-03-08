@@ -2,13 +2,11 @@
 {
    using System;
    using System.Globalization;
-   using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -375,7 +373,7 @@
             _target.CreateDirectory(path);
             try
             {
-               DateTimeOffset expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
+               var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
             }
@@ -479,7 +477,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore("Failing on Linux")]
+         // [Ignore("Failing on Linux")]
          public void It_should_set_the_creation_time()
          {
             var path = _pathUtilities.Combine(
