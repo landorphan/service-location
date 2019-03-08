@@ -3,7 +3,6 @@
    using System;
    using System.Diagnostics;
    using System.Globalization;
-   using System.IO;
    using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -16,16 +15,15 @@
    public class FileTimeTests : TestBase
    {
       // ReSharper disable InconsistentNaming
+      private readonly IFileUtilities fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void TODO_REMOVE_MIN_CREATION()
       {
          // get min file date/time per platform
-         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
-
          var tempFile = fileUtils.CreateTemporaryFile();
-         var lastGoodDt = DateTime.UtcNow;
+         DateTime lastGoodDt;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
@@ -60,8 +58,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(-1);
                   }
 
-                  File.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetCreationTimeUtc(tempFile);
+                  fileUtils.SetCreationTime(tempFile, adjustedDt);
+                  var getDt = fileUtils.GetCreationTime(tempFile);
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
@@ -95,10 +93,9 @@
       public void TODO_REMOVE_TOO_MAX_CREATION()
       {
          // get max file date/time per platform
-         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
          var tempFile = fileUtils.CreateTemporaryFile();
-         var lastGoodDt = DateTime.UtcNow;
+         DateTime lastGoodDt;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
@@ -134,8 +131,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(1);
                   }
 
-                  File.SetCreationTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetCreationTimeUtc(tempFile);
+                  fileUtils.SetCreationTime(tempFile, adjustedDt);
+                  var getDt = fileUtils.GetCreationTime(tempFile);
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
@@ -168,10 +165,9 @@
       public void TODO_REMOVE_MIN_ACCESS()
       {
          // get min file date/time per platform
-         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
          var tempFile = fileUtils.CreateTemporaryFile();
-         var lastGoodDt = DateTime.UtcNow;
+         DateTime lastGoodDt;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
@@ -206,8 +202,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(-1);
                   }
 
-                  File.SetLastAccessTime(tempFile, adjustedDt);
-                  var getDt = File.GetLastAccessTime(tempFile);
+                  fileUtils.SetLastAccessTime(tempFile, adjustedDt);
+                  var getDt = fileUtils.GetLastAccessTime(tempFile);
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
@@ -241,10 +237,9 @@
       public void TODO_REMOVE_TOO_MAX_ACCESS()
       {
          // get max file date/time per platform
-         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
          var tempFile = fileUtils.CreateTemporaryFile();
-         var lastGoodDt = DateTime.UtcNow;
+         DateTime lastGoodDt;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
@@ -280,8 +275,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(1);
                   }
 
-                  File.SetLastAccessTime(tempFile, adjustedDt);
-                  var getDt = File.GetLastAccessTime(tempFile);
+                  fileUtils.SetLastAccessTime(tempFile, adjustedDt);
+                  var getDt = fileUtils.GetLastAccessTime(tempFile);
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
@@ -314,10 +309,9 @@
       public void TODO_REMOVE_MIN_WRITE()
       {
          // get min file date/time per platform
-         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
          var tempFile = fileUtils.CreateTemporaryFile();
-         var lastGoodDt = DateTime.UtcNow;
+         DateTime lastGoodDt;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             lastGoodDt = new DateTime(504_911_232_000_000_002, DateTimeKind.Utc);
@@ -352,8 +346,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(-1);
                   }
 
-                  File.SetLastWriteTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetLastWriteTimeUtc(tempFile);
+                  fileUtils.SetLastWriteTime(tempFile, adjustedDt);
+                  var getDt = fileUtils.GetLastWriteTime(tempFile);
                   if (adjustedDt != getDt)
                   {
                      // supposed to throw but does not on Windows
@@ -387,10 +381,9 @@
       public void TODO_REMOVE_TOO_MAX_WRITE()
       {
          // get max file date/time per platform
-         var fileUtils = IocServiceLocator.Resolve<IFileUtilities>();
 
          var tempFile = fileUtils.CreateTemporaryFile();
-         var lastGoodDt = DateTime.UtcNow;
+         DateTime lastGoodDt;
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             lastGoodDt = new DateTime(3_155_378_975_999_999_998, DateTimeKind.Utc);
@@ -426,8 +419,8 @@
                      adjustedDt = lastGoodDt.AddSeconds(1);
                   }
 
-                  File.SetLastWriteTimeUtc(tempFile, adjustedDt);
-                  var getDt = File.GetLastWriteTimeUtc(tempFile);
+                  fileUtils.SetLastWriteTime(tempFile, adjustedDt);
+                  var getDt = fileUtils.GetLastWriteTime(tempFile);
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");

@@ -3,10 +3,7 @@
    using System;
    using System.Diagnostics;
    using System.Globalization;
-   using System.IO;
-   using System.Threading;
    using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
@@ -18,9 +15,9 @@
 
    public static class FileUtilities_Tests
    {
-      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
-      private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly IFileUtilities _target = IocServiceLocator.Resolve<IFileUtilities>();
       private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
