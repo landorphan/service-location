@@ -1,6 +1,5 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-	
    using System;
    using System.Globalization;
    using System.Runtime.InteropServices;
@@ -399,18 +398,16 @@
             // On the Mac, the temp directory could be rerouted via a symlink
             // to a subdirectory (var) under the /private directory.
             // Here we attempt to determine if this is the case.
-            if (RuntimePlatform.IsOSX())
+            //
+            // FURTHER:
+            // As Mac (either APFS or HFS) can be either case sensitive or case 
+            // insensitive, a case insensitive comparision is performed here.
+            if (RuntimePlatform.IsOSX() &&
+                _tempPath.StartsWith("/var", StringComparison.OrdinalIgnoreCase) &&
+                actual.StartsWith("/private/var", StringComparison.OrdinalIgnoreCase))
             {
-               // As Mac (either APFS or HFS) can be either case sensitive or case 
-               // insensitive, a case insensitive comparision is performed here.
-               if (_tempPath.StartsWith("/var", StringComparison.OrdinalIgnoreCase))
-               {
-                  if (actual.StartsWith("/private/var", StringComparison.OrdinalIgnoreCase))
-                  {
-                     var prefixLength = "/private".Length;
-                     actual = actual.Substring(prefixLength);
-                  }
-               }
+               var prefixLength = "/private".Length;
+               actual = actual.Substring(prefixLength);
             }
 
             actual.Should().Be(_tempPath);

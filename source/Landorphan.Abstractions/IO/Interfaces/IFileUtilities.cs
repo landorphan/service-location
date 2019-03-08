@@ -1,6 +1,5 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-	
    using System;
    using System.Diagnostics.CodeAnalysis;
    using System.IO;

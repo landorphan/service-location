@@ -1,6 +1,6 @@
 namespace Landorphan.Abstractions.IO
 {
-	
+
    using System;
    using System.IO;
    using Landorphan.Abstractions.IO.Interfaces;
