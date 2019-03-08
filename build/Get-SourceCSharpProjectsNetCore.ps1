@@ -11,7 +11,11 @@
     [System.String[]]
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -35,7 +39,7 @@ begin
 }
 process
 {
-  $sources = & $getSourceScript
+  $sources = & $getSourceScript -SolutionFileName $SolutionFileName
   foreach ($source in $sources)
   {
     if ($source.ContainsKey('TargetFramework'))

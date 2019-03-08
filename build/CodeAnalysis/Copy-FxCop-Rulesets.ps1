@@ -9,7 +9,11 @@
     (NONE)
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -36,14 +40,14 @@ process
 {
   try
   {
-    & $setVarScript
+    & $setVarScript -SolutionFileName $SolutionFileName
 
-    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultProductionRuleset-NetCore-ToProjects.ps1')
-    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultProductionRuleset-NetFx-ToProjects.ps1')
-    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultProductionRuleset-NetStd-ToProjects.ps1')
+    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultProductionRuleset-NetCore-ToProjects.ps1') -SolutionFileName $SolutionFileName
+    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultProductionRuleset-NetFx-ToProjects.ps1') -SolutionFileName $SolutionFileName
+    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultProductionRuleset-NetStd-ToProjects.ps1') -SolutionFileName $SolutionFileName
 
-    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultTestRuleset-NetCore-ToProjects.ps1')
-    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultTestRuleset-NetFx-ToProjects.ps1')
+    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultTestRuleset-NetCore-ToProjects.ps1') -SolutionFileName $SolutionFileName
+    & (Join-Path -Path $thisScriptDirectory -ChildPath 'Copy-DefaultTestRuleset-NetFx-ToProjects.ps1') -SolutionFileName $SolutionFileName
     # there is no such thing as a .Net Standard test project at this time (v2.2)
   }
   finally

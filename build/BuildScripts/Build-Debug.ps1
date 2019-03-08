@@ -11,7 +11,11 @@
     (None)
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -41,8 +45,8 @@ process
 {
   try
   {
-    & $buildCleanScript
-    & $setVarScript
+    & $buildCleanScript -SolutionFileName $SolutionFileName
+    & $setVarScript -SolutionFileName $SolutionFileName
 
     if ($null -eq $buildSolution)
     {

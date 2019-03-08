@@ -11,7 +11,11 @@
     [System.String[]]
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -42,8 +46,8 @@ process
 {
   try
   {
-    & $buildReleaseScript
-    & $setVarScript
+    & $buildReleaseScript -SolutionFileName $SolutionFileName
+    & $setVarScript -SolutionFileName $SolutionFileName
     $testBinaries = & $getTestBinaryReleaseScript | ForEach-Object { $_.FullName }
     foreach ($testBinary in $testBinaries)
     {

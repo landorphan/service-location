@@ -14,7 +14,11 @@
       Project=(FullPath);TargetFrameworkVersion=(.Net Framework version)
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -41,7 +45,7 @@ process
 {
   try
   {
-    & $setVarScript
+    & $setVarScript -SolutionFileName $SolutionFileName
 
     $testProjectDirectories = $null
     Get-ChildItem -Path $buildTestDirectory -Directory -OutVariable testProjectDirectories | Out-Null
