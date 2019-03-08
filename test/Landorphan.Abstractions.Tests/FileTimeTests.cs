@@ -34,7 +34,7 @@
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(1);
-            Trace.WriteLine($"Initial ticks = {ticks}");
+            Trace.WriteLine($"Initial ticks = {ticks.ToString("N0", CultureInfo.InvariantCulture)}");
             Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
@@ -64,14 +64,16 @@
                   {
                      // supposed to throw but does not on Windows
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+                     Trace.WriteLine($"getDt = {getDt.ToString("o", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
                   lastGoodDt = adjustedDt;
                   // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
-               catch (ArgumentOutOfRangeException)
+               catch (ArgumentOutOfRangeException e)
                {
+                  Trace.WriteLine("ArgumentOutOfRangeException:" + Environment.NewLine + e);
                   break;
                }
             }
@@ -90,7 +92,7 @@
 
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
-      public void TODO_REMOVE_TOO_MAX_CREATION()
+      public void TODO_REMOVE_MAX_CREATION()
       {
          // get max file date/time per platform
 
@@ -106,7 +108,7 @@
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(-1);
-            Trace.WriteLine($"Initial ticks = {ticks}");
+            Trace.WriteLine($"Initial ticks = {ticks.ToString("N0", CultureInfo.InvariantCulture)}");
             Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
@@ -136,14 +138,16 @@
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+                     Trace.WriteLine($"getDt = {getDt.ToString("o", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
                   lastGoodDt = adjustedDt;
                   // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
-               catch (ArgumentOutOfRangeException)
+               catch (ArgumentOutOfRangeException e)
                {
+                  Trace.WriteLine("ArgumentOutOfRangeException:" + Environment.NewLine + e);
                   break;
                }
             }
@@ -178,7 +182,7 @@
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(1);
-            Trace.WriteLine($"Initial ticks = {ticks}");
+            Trace.WriteLine($"Initial ticks = {ticks.ToString("N0", CultureInfo.InvariantCulture)}");
             Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
@@ -208,14 +212,16 @@
                   {
                      // supposed to throw but does not on Windows
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+                     Trace.WriteLine($"getDt = {getDt.ToString("o", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
                   lastGoodDt = adjustedDt;
                   // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
-               catch (ArgumentOutOfRangeException)
+               catch (ArgumentOutOfRangeException e)
                {
+                  Trace.WriteLine("ArgumentOutOfRangeException:" + Environment.NewLine + e);
                   break;
                }
             }
@@ -234,7 +240,7 @@
 
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
-      public void TODO_REMOVE_TOO_MAX_ACCESS()
+      public void TODO_REMOVE_MAX_ACCESS()
       {
          // get max file date/time per platform
 
@@ -250,7 +256,7 @@
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(-1);
-            Trace.WriteLine($"Initial ticks = {ticks}");
+            Trace.WriteLine($"Initial ticks = {ticks.ToString("N0", CultureInfo.InvariantCulture)}");
             Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
@@ -280,14 +286,16 @@
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+                     Trace.WriteLine($"getDt = {getDt.ToString("o", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
                   lastGoodDt = adjustedDt;
                   // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
-               catch (ArgumentOutOfRangeException)
+               catch (ArgumentOutOfRangeException e)
                {
+                  Trace.WriteLine("ArgumentOutOfRangeException:" + Environment.NewLine + e);
                   break;
                }
             }
@@ -322,7 +330,7 @@
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(1);
-            Trace.WriteLine($"Initial ticks = {ticks}");
+            Trace.WriteLine($"Initial ticks = {ticks.ToString("N0", CultureInfo.InvariantCulture)}");
             Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
@@ -352,14 +360,16 @@
                   {
                      // supposed to throw but does not on Windows
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+                     Trace.WriteLine($"getDt = {getDt.ToString("o", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
                   lastGoodDt = adjustedDt;
                   // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
-               catch (ArgumentOutOfRangeException)
+               catch (ArgumentOutOfRangeException e)
                {
+                  Trace.WriteLine("ArgumentOutOfRangeException:" + Environment.NewLine + e);
                   break;
                }
             }
@@ -378,7 +388,7 @@
 
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
-      public void TODO_REMOVE_TOO_MAX_WRITE()
+      public void TODO_REMOVE_MAX_WRITE()
       {
          // get max file date/time per platform
 
@@ -394,7 +404,7 @@
             var ticks = start.Ticks - start.Ticks % TimeSpan.TicksPerSecond;
             lastGoodDt = new DateTime(ticks, DateTimeKind.Utc);
             lastGoodDt = lastGoodDt.AddSeconds(-1);
-            Trace.WriteLine($"Initial ticks = {ticks}");
+            Trace.WriteLine($"Initial ticks = {ticks.ToString("N0", CultureInfo.InvariantCulture)}");
             Trace.WriteLine($"Initial DateTime = {lastGoodDt.ToString("o", CultureInfo.InvariantCulture)}");
          }
 
@@ -424,14 +434,16 @@
                   if (adjustedDt != getDt)
                   {
                      Trace.WriteLine($"getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
+                     Trace.WriteLine($"getDt = {getDt.ToString("o", CultureInfo.InvariantCulture)}");
                      break;
                   }
 
                   lastGoodDt = adjustedDt;
                   // Trace.WriteLine($"interim getDt.Ticks = {getDt.Ticks.ToString("N0", CultureInfo.InvariantCulture)}");
                }
-               catch (ArgumentOutOfRangeException)
+               catch (ArgumentOutOfRangeException e)
                {
+                  Trace.WriteLine("ArgumentOutOfRangeException:" + Environment.NewLine + e);
                   break;
                }
             }
