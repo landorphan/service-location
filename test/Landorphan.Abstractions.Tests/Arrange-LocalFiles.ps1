@@ -1,4 +1,9 @@
-﻿Set-StrictMode -Version Latest
+﻿#Requires -Version 5.1
+#Requires -RunAsAdministrator
+
+#TODO: consider renaming Build- verbs to Set- verbs, makes the PS Lint tools happy, Build is an unrecognized verb.
+
+Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Continue'
 
 # Test for elevated status:
@@ -29,12 +34,12 @@ Create the following folder\file structure: (C:\ is not hard-coded, but typical)
 # [Enum]::GetNames([System.Security.AccessControl.FileSystemRights])
 # AppendData                    ListDirectory           Synchronize
 # ChangePermissions             Modify                  TakeOwnership
-# CreateDirectories             Read                    Traverse               
-# CreateFiles                   ReadAndExecute          Write                  
-# Delete                        ReadAttributes          WriteAttributes        
-# DeleteSubdirectoriesAndFiles  ReadData                WriteData              
+# CreateDirectories             Read                    Traverse
+# CreateFiles                   ReadAndExecute          Write
+# Delete                        ReadAttributes          WriteAttributes
+# DeleteSubdirectoriesAndFiles  ReadData                WriteData
 # ExecuteFile                   ReadExtendedAttributes  WriteExtendedAttributes
-# FullControl                   ReadPermissions       
+# FullControl                   ReadPermissions
 
 # ╔═════════════╦═════════════╦═══════════════════════════════╦════════════════════════╦══════════════════╦═══════════════════════╦═════════════╦═════════════╗
 # ║             ║ folder only ║ folder, sub-folders and files ║ folder and sub-folders ║ folder and files ║ sub-folders and files ║ sub-folders ║    files    ║
@@ -328,4 +333,3 @@ Build-Root-OuterNoPermissions-ReadExecute-ExtantFile $outerNoPermissionsReadExec
 
 [string]$outerNoPermissionsReadExecuteFolderExtantFolder = New-Item -Path (Join-Path -Path $outerNoPermissionsReadExecuteFolder -ChildPath "ExtantFolder") -ItemType Directory -Force
 Build-Root-OuterNoPermissions-ReadExecute-ExtantFolder $outerNoPermissionsReadExecuteFolderExtantFolder
-

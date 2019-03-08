@@ -19,7 +19,11 @@
     (None)
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -93,17 +97,43 @@ process
     }
   }
 
-  $searchPath = [System.IO.Path]::Combine($buildSolutionDirectory,"*.sln")
   if ($null -eq (Get-Variable -Name buildSolution -Scope Global -ErrorAction SilentlyContinue))
   {
-    New-Variable -Name buildSolution -Scope Global -Value (Get-ChildItem -Path $searchPath -File)
-    if ($null -eq $buildSolution)
+    if(!$SolutionFileName)
     {
-      Write-Warning "No Visual Studio Solutions found in [$buildSolutionDirectory]"
+      # Solution File Name NOT specified; do a search
+      $searchPath = [System.IO.Path]::Combine($buildSolutionDirectory,"*.sln")
+      New-Variable -Name buildSolution -Scope Global -Value (Get-ChildItem -Path $searchPath -File)
+      if ($null -eq $buildSolution)
+      {
+        Write-Warning "No Visual Studio Solutions found in [$buildSolutionDirectory]"
+      }
+      elseif ($buildSolution -is [System.Array])
+      {
+        Write-Warning "More than one Visual Studio Solutions were found in [$buildSolutionDirectory]"
+      }
     }
-    elseif ($buildSolution -is [System.Array])
+    else 
     {
-      Write-Warning "More than one Visual Studio Solutions were found in [$buildSolutionDirectory]"
+      # Solution File Name specified
+      Write-Debug "`$SolutionFileName = $SolutionFileName"
+      if(![System.IO.Path]::IsPathRooted($SolutionFileName))
+      {
+        Write-Debug "The path $SolutionFileName is NOT rooted"
+        $SolutionFileName = Join-Path -Path $buildSolutionDirectory -ChildPath $SolutionFileName
+      }
+      else 
+      {
+        Write-Debug "The path $SolutionFileName is rooted"  
+      }
+
+      if(![System.IO.File]::Exists($SolutionFileName))
+      {
+          $msg = "Could not load file {0}. The system cannot find the file specified." -f $SolutionFileName
+          throw [System.IO.FileNotFoundException]::new($msg,$SolutionFileName)
+      }
+      
+      New-Variable -Name buildSolution -Scope Global -Value (Resolve-Path -Path $SolutionFileName)
     }
   }
 

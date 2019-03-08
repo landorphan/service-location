@@ -40,7 +40,7 @@
     <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
-    <CodeAnalysisRuleSet>Ioc.Collections.Performance.Tests.NetFx.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Landorphan.Ioc.Collections.Performance.Tests.Fx.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>

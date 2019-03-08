@@ -9,7 +9,11 @@
     (NONE)
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -36,13 +40,13 @@ process
 {
   try
   {
-    & $setVarScript
+    & $setVarScript -SolutionFileName $SolutionFileName
 
     $testRulesetPath = Join-Path -Path $buildCodeAnalysisDirectory -ChildPath 'Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset'
     if (Test-Path $testRulesetPath)
     {
       $getTestProjectScript = Join-Path -Path $buildDirectory -ChildPath 'Get-TestCSharpProjectsNetCore.ps1'
-      $testProjects = & $getTestProjectScript
+      $testProjects = & $getTestProjectScript -SolutionFileName $SolutionFileName
       foreach ($testProjectFile in $testProjects)
       {
         if (Test-Path $testProjectFile)

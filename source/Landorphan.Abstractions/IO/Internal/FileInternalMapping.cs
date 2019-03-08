@@ -29,15 +29,14 @@ namespace Landorphan.Abstractions.IO.Internal
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      // SonarLint demands underscores, I am uncertain the value in these cases.
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(3_155_378_975_999_999_999, DateTimeKind.Utc));
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
+      ///<inheritdoc/>
+      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
 
-      /// <inheritdoc/>
-      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;
+      ///<inheritdoc/>
+      public Int64 MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
 
-      /// <inheritdoc/>
-      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => t_minimumEffectiveDateTimeOffset;
+      ///<inheritdoc/>
+      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
 
       /// <inheritdoc/>
       public void AppendAllLines(String path, IEnumerable<String> contents, Encoding encoding)
@@ -48,7 +47,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
             var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotCreateFileDirectoryAlreadyExistsFmt, cleanedPath);
@@ -111,7 +110,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var rv = pathUtilities.GetFullPath(cleanedPath);
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
@@ -153,7 +152,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var rv = pathUtilities.GetFullPath(cleanedPath);
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
@@ -258,7 +257,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(path))
@@ -276,7 +275,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -294,7 +293,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -319,7 +318,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var cleanedSourceFileName = IOStringUtilities.ValidateCanonicalPath(sourceFileName, "sourceFileName");
          var cleanedDestFileName = IOStringUtilities.ValidateCanonicalPath(destFileName, "destFileName");
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedSourceFileName, "sourceFileName");
          ThrowIfOnUnmappedDrive(cleanedDestFileName, "destFileName");
 
@@ -383,7 +382,7 @@ namespace Landorphan.Abstractions.IO.Internal
          access.ArgumentMustBeValidFlagsEnumValue(nameof(access));
          share.ArgumentMustBeValidFlagsEnumValue(nameof(share));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
@@ -408,7 +407,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
@@ -426,7 +425,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
@@ -442,7 +441,7 @@ namespace Landorphan.Abstractions.IO.Internal
       public FileStream OpenWrite(String path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
@@ -610,17 +609,19 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         if (creationTime < t_minimumEffectiveDateTimeOffset)
+         creationTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(creationTime);
+
+         if (creationTime < MinimumFileTimeAsDateTimeOffset)
          {
             throw new ArgumentOutOfRangeException(
                nameof(creationTime),
                String.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
-                  t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
+                  MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
          }
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -637,17 +638,19 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         if (lastAccessTime < t_minimumEffectiveDateTimeOffset)
+         lastAccessTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastAccessTime);
+
+         if (lastAccessTime < MinimumFileTimeAsDateTimeOffset)
          {
             throw new ArgumentOutOfRangeException(
                nameof(lastAccessTime),
                String.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
-                  t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
+                  MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
          }
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -664,17 +667,19 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         if (lastWriteTime < t_minimumEffectiveDateTimeOffset)
+         lastWriteTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastWriteTime);
+
+         if (lastWriteTime < MinimumFileTimeAsDateTimeOffset)
          {
             throw new ArgumentOutOfRangeException(
                nameof(lastWriteTime),
                String.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
-                  t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
+                  MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
          }
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -701,7 +706,7 @@ namespace Landorphan.Abstractions.IO.Internal
          bytes.ArgumentNotNull(nameof(bytes));
 
          var createdFile = false;
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -755,7 +760,7 @@ namespace Landorphan.Abstractions.IO.Internal
          encoding.ArgumentNotNull(nameof(encoding));
 
          var createdFile = false;
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -791,7 +796,7 @@ namespace Landorphan.Abstractions.IO.Internal
          contents.ArgumentNotNull(nameof(contents));
          encoding.ArgumentNotNull(nameof(encoding));
          var createdFile = false;
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!FileExists(cleanedPath))
@@ -891,7 +896,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var cleanedSourceFileName = IOStringUtilities.ValidateCanonicalPath(sourceFileName, nameof(sourceFileName));
          var cleanedDestFileName = IOStringUtilities.ValidateCanonicalPath(destFileName, nameof(destFileName));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedSourceFileName, nameof(sourceFileName));
          ThrowIfOnUnmappedDrive(cleanedDestFileName, nameof(destFileName));
 
@@ -939,7 +944,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          var createdDestinationBackupFile = false;
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
 
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();

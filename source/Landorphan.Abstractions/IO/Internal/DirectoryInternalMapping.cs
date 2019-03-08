@@ -9,7 +9,6 @@ namespace Landorphan.Abstractions.IO.Internal
    using System.Globalization;
    using System.IO;
    using System.Linq;
-   using System.Runtime.InteropServices;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Resources;
    using Landorphan.Common;
@@ -26,70 +25,14 @@ namespace Landorphan.Abstractions.IO.Internal
    {
       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
-         () =>
-         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-               // Windows:
-               //    precision is too the 100 ns
-               //
-               //                                     3_155_378_975_999_999_999
-               return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
-            }
+      ///<inheritdoc/>
+      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
-                RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-               // linux:
-               //    precision is to the 1s
-               //
-               //                                     3_155_378_975_999_999_999
-               return new DateTimeOffset(new DateTime(DateTimeOffset.MaxValue.Ticks, DateTimeKind.Utc));
-            }
+      ///<inheritdoc/>
+      public Int64 MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
 
-            // OSX
-            throw new InvalidOperationException("DirectoryInternalMapping needs some OSX love, it does not know what to do.");
-            // return new DateTimeOffset(new DateTime(0, DateTimeKind.Utc));
-         })();
-
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
-         () =>
-         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-               // Windows:
-               //    precision is too the 100 ns
-               //    TimeSpan.TicksPerSecond = 10_000_000
-               //    Epoch Midnight, January 1st, 1601, AKA Windows Epoch
-               //
-               //                                     504_911_232_000_000_001 confirmed on Window10x64 2019.03.06
-               //                                     Midnight, January 1st, 1601, AKA Windows Epoch
-               return new DateTimeOffset(new DateTime(504_911_232_000_000_001, DateTimeKind.Utc));
-            }
-
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ||
-                RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-               // linux:
-               //    precision is to the 1000ms
-               //    TimeSpan.TicksPerSecond = 10_000_000
-               //
-               //                                     621_355_968_010_000_000 confirmed on Ubuntu 18.04x64 2019.03.06
-               //                                     00:00:01, January 1, 1970
-               return new DateTimeOffset(new DateTime(621_355_968_010_000_000, DateTimeKind.Utc));
-            }
-
-            // Unknown OS Platform
-            throw new InvalidOperationException("DirectoryInternalMapping does not recognize this OS platform.");
-            // return new DateTimeOffset(new DateTime(0, DateTimeKind.Utc));
-         })();
-
-      /// <inheritdoc/>
-      public DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;
-
-      /// <inheritdoc/>
-      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => t_minimumEffectiveDateTimeOffset;
+      ///<inheritdoc/>
+      public DateTimeOffset MinimumFileTimeAsDateTimeOffset => FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
 
       /// <inheritdoc/>
       public void Copy(String sourceDirName, String destDirName)
@@ -100,7 +43,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedSourceDirName, "sourceDirName");
          ThrowIfOnUnmappedDrive(cleanedDestDirName, "destDirName");
 
@@ -156,11 +99,11 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 #endif
 
-         // BCL behavior.
+         // BCL behavior.  
          //    Trailing spaces are trimmed, leading spaces are not on each folder
          //    @"c:\temp\ abc \ def \" creates @"c:\temp\ abc\ def\"
          //    Maximum length is governed by the string length of full path, which results in
@@ -240,7 +183,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
          }
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -297,7 +240,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
          }
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -351,7 +294,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
          }
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -382,7 +325,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -429,7 +372,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
          }
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -484,7 +427,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
          }
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -539,7 +482,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
          }
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -570,7 +513,7 @@ namespace Landorphan.Abstractions.IO.Internal
       public DateTimeOffset GetLastAccessTime(String path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -590,7 +533,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -623,7 +566,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var cleanedSourceDirName = IOStringUtilities.ValidateCanonicalPath(sourceDirName, "sourceDirName");
          var cleanedDestDirName = IOStringUtilities.ValidateCanonicalPath(destDirName, "destDirName");
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedSourceDirName, "sourceDirName");
          ThrowIfOnUnmappedDrive(cleanedDestDirName, "destDirName");
 
@@ -691,7 +634,7 @@ namespace Landorphan.Abstractions.IO.Internal
                if (haveAccessToSourceDirName)
                {
                   // have access to sourceDirName so correct the message.
-                  // (changes HResult from 0x80070005 to 0x80131620)
+                  // (changes HResult from 0x80070005 to 0x80131620) 
                   throw new UnauthorizedAccessException(
                      String.Format(CultureInfo.InvariantCulture, StringResources.AccessToThePathIsDeniedFmt, cleanedDestDirName),
                      ioe);
@@ -709,16 +652,18 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         if (creationTime < t_minimumEffectiveDateTimeOffset)
+         creationTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(creationTime);
+
+         if (creationTime < MinimumFileTimeAsDateTimeOffset)
          {
             var msg = String.Format(
                CultureInfo.InvariantCulture,
                StringResources.ValueMustBeGreaterThanOrEqualToTicksFmt,
-               t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
+               MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
             throw new ArgumentOutOfRangeException(nameof(creationTime), msg);
          }
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -736,7 +681,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -752,16 +697,18 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         if (lastAccessTime < t_minimumEffectiveDateTimeOffset)
+         lastAccessTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastAccessTime);
+
+         if (lastAccessTime < MinimumFileTimeAsDateTimeOffset)
          {
             var msg = String.Format(
                CultureInfo.InvariantCulture,
                StringResources.ValueMustBeGreaterThanOrEqualToTicksFmt,
-               t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
+               MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
             throw new ArgumentOutOfRangeException(nameof(lastAccessTime), msg);
          }
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -778,16 +725,18 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
-         if (lastWriteTime < t_minimumEffectiveDateTimeOffset)
+         lastWriteTime = FileTimeHelper.TruncateTicksToFileSystemPrecision(lastWriteTime);
+
+         if (lastWriteTime < MinimumFileTimeAsDateTimeOffset)
          {
             var msg = String.Format(
                CultureInfo.InvariantCulture,
                StringResources.ValueMustBeGreaterThanOrEqualToTicksFmt,
-               t_minimumEffectiveDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
+               MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
             throw new ArgumentOutOfRangeException(nameof(lastWriteTime), msg);
          }
 
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          ThrowIfOnUnmappedDrive(cleanedPath, nameof(path));
 
          if (!DirectoryExists(cleanedPath))
@@ -805,7 +754,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
          // choice:  whether or not to throw when path is on an unmapped drive, currently not throwing.
-#if (IO_PRECHECKS)
+#if IO_PRECHECKS
          var fileUtilities = IocServiceLocator.Instance.Resolve<IFileUtilities>();
          if (fileUtilities.FileExists(cleanedPath))
          {

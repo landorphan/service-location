@@ -4,14 +4,20 @@
   .SYNOPSIS
     Cleans, builds debug, executes all tests.
   .EXAMPLE
-    & Get-TestBinaryDebug.ps1
+    & Test-Debug.ps1
+  .EXAMPLE
+    & Test-Debug.ps1 -SolutionFileName 'foo.sln'    
   .INPUTS
     (None)
   .OUTPUTS
     [System.String[]]
 #>
 [CmdletBinding()]
-param()
+param
+(
+  [Parameter(Position = 0,HelpMessage = 'The solution file to use (needed when more than one solution file exists).')]
+  [System.String]$SolutionFileName
+)
 begin
 {
   Set-StrictMode -Version Latest
@@ -42,8 +48,8 @@ process
 {
   try
   {
-    & $buildDebugScript
-    & $setVarScript
+    & $buildDebugScript -SolutionFileName $SolutionFileName
+    & $setVarScript -SolutionFileName $SolutionFileName
 
     $testBinaries = & $getTestBinaryDebugScript | ForEach-Object { $_.FullName }
     foreach ($testBinary in $testBinaries)

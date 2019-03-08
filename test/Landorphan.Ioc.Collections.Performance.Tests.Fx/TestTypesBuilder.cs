@@ -16,7 +16,6 @@
    {
       public void BuildTypePairs(Int32 count, out AssemblyName assemblyName, out IList<KeyValuePair<Type, Type>> list)
       {
-         var currentAppDomain = AppDomain.CurrentDomain;
          var randomName = BuildRandomIdentifierName();
          var asmName = new AssemblyName("DynamicAssemblyForPerformanceTests" + randomName);
          var asmBuilder = AssemblyBuilder.DefineDynamicAssembly(asmName, AssemblyBuilderAccess.Run);
@@ -43,7 +42,7 @@
          sb.Append(Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture));
          // remove the leading and trailing brace characters
          sb.Remove(0, 1);
-         sb.Remove(sb.Length - 1 -1, 1);
+         sb.Remove(sb.Length - 1 - 1, 1);
          // remove the embedded dashes
          sb.Replace("-", null);
          // prepend a T in case the GUID started with a numeric character

@@ -47,6 +47,7 @@ process
   else
   {
     $buildSetVarInvocationCount -= 1
+    Write-Debug "`$buildSetVarInvocationCount=$buildSetVarInvocationCount"
     $remove = (0 -ge $buildSetVarInvocationCount)
   }
 

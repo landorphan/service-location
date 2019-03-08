@@ -15,7 +15,7 @@
    using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming   
+   // ReSharper disable InconsistentNaming
 
    public static partial class DirectoryInternalMapping_Tests
    {
@@ -201,13 +201,13 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_creation_time()
          {
-            // NOTE: when using %temp%, SetCreationTime was running afoul of the following IOException: 
+            // NOTE: when using %temp%, SetCreationTime was running afoul of the following IOException:
             // The process cannot access the file 'c:\temp' because it is being used by another process.
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_creation_time));
             _target.CreateDirectory(path);
             try
             {
-               var expected = AbstractionsTestHelper.GetUtcNowForFileTest();
+               var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow);
                _target.SetCreationTime(path, expected);
                _target.GetCreationTime(path).Should().Be(expected);
             }

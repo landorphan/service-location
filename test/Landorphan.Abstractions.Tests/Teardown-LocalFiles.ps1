@@ -1,4 +1,7 @@
-﻿Set-StrictMode -Version Latest
+﻿#Requires -Version 5.1
+#Requires -RunAsAdministrator
+
+Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Continue'
 
 # Test for elevated status:
@@ -14,7 +17,7 @@ if (!$principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 <# *************************************************************************************************************************
 Delete the following folder recursively (C:\ is not hard-coded, but typical)
   C:\Landorphan.Abstractions.Test.UnitTestTarget
-Remove the share: 
+Remove the share:
   \\localhost\Landorphan.Abstractions.Test.UnitTestTarget
 ************************************************************************************************************************* #>
 # usually C:\

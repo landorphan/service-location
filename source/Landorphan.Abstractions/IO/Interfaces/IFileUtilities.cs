@@ -19,6 +19,17 @@
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
       /// <summary>
+      /// Gets the maximum precision file system ticks supported by the host operating system.
+      /// </summary>
+      /// <value>
+      /// The maximum precision file system ticks.
+      /// </value>
+      /// <remarks>
+      /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
+      /// </remarks>
+      Int64 MaximumPrecisionFileSystemTicks { get; }
+
+      /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
