@@ -18,6 +18,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_SetCreationTime : TestBase
       {
+#pragma warning disable CS0618 // Type or member is obsolete
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_creationTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
@@ -36,6 +37,7 @@
             try
             {
                Action throwingAction = () => _target.SetCreationTime(path, creationTime);
+
                throwingAction.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*Parameter name: creationTime*");
             }
             finally
@@ -267,6 +269,8 @@
                _target.DeleteFile(path);
             }
          }
+
+#pragma warning restore CS0618 // Type or member is obsolete
       }
 
       [TestClass]

@@ -86,7 +86,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          contents.ArgumentNotNull(nameof(contents));
 
-         AppendAllLines(path, new[] {contents}, encoding);
+         AppendAllLines(path, new[] { contents }, encoding);
       }
 
       /// <inheritdoc/>
@@ -264,7 +264,7 @@ namespace Landorphan.Abstractions.IO.Internal
             ThrowFileNotFoundException(cleanedPath, nameof(path));
          }
 #endif
-// force a refresh of cached information regarding the file, needed on linux
+         // force a refresh of cached information regarding the file, needed on linux
          var fileInfo = new FileInfo(cleanedPath);
          fileInfo.Refresh();
          var rv = fileInfo.CreationTimeUtc;
@@ -613,6 +613,7 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
+      [Obsolete("Currently not reliable")]
       public void SetCreationTime(String path, DateTimeOffset creationTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));

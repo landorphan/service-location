@@ -580,6 +580,8 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_SetCreationTime : TestBase
       {
+#pragma warning disable CS0618 // Type or member is obsolete
+
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_creationTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
@@ -599,6 +601,7 @@
             try
             {
                Action throwingAction = () => _target.SetCreationTime(path, creationTime);
+
                throwingAction.Should().Throw<ArgumentOutOfRangeException>().WithMessage("*Parameter name: creationTime*");
             }
             finally
@@ -616,6 +619,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
@@ -630,6 +634,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
@@ -651,6 +656,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
             e.And.Message.Should().Contain("Could not find a part of the directory path");
             e.And.Message.Should().Contain(path);
@@ -664,6 +670,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -695,6 +702,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
             e.And.Message.Should().Contain("Could not find a part of the directory path");
             e.And.Message.Should().Contain(path);
@@ -708,6 +716,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<PathTooLongException>();
             e.And.Message.Should().StartWith("The path");
             e.And.Message.Should().Contain("is too long, or a component of the specified path is too long");
@@ -721,6 +730,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -738,6 +748,7 @@
                _fileInternalMapping.FileExists(path).Should().BeTrue();
 
                Action throwingAction = () => _target.SetCreationTime(path, value);
+
                var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
                e.And.Message.Should().Contain("Could not find a part of the directory path '");
                e.And.Message.Should().Contain(path);
@@ -758,6 +769,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().Be("The path is not well-formed (':' used outside the drive label).\r\nParameter name: path");
@@ -775,6 +787,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
             e.And.Message.Should().Contain("Could not find a part of the directory path");
             e.And.Message.Should().Contain(path);
@@ -789,6 +802,7 @@
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetCreationTime(path, value);
+
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
             e.And.Message.Should().Contain("Could not find a part of the directory path");
             e.And.Message.Should().Contain(path);
@@ -804,10 +818,12 @@
             try
             {
                var expected = _target.MaximumFileTimeAsDateTimeOffset;
+
                _target.SetCreationTime(path, expected);
+
                var actual = _target.GetCreationTime(path);
-               Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
-               Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");
+               Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks:N0}");
+               Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks:N0}");
                actual.Should().Be(expected);
             }
             finally
@@ -826,10 +842,12 @@
             try
             {
                var expected = _target.MinimumFileTimeAsDateTimeOffset;
+
                _target.SetCreationTime(path, expected);
+
                var actual = _target.GetCreationTime(path);
-               Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
-               Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");
+               Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks:N0}");
+               Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks:N0}");
                actual.Should().Be(expected);
             }
             finally
@@ -848,10 +866,12 @@
             try
             {
                var expected = FileTimeHelper.TruncateTicksToFileSystemPrecision(DateTime.UtcNow.AddYears(-1));
+
                _target.SetCreationTime(path, expected);
+
                var actual = _target.GetCreationTime(path);
-               Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks.ToString("N0")}");
-               Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks.ToString("N0")}");
+               Trace.WriteLine($"expected = {expected.ToString("o", CultureInfo.InvariantCulture)}\texpected.Ticks = {expected.Ticks:N0}");
+               Trace.WriteLine($"  actual = {actual.ToString("o", CultureInfo.InvariantCulture)}\t  actual.Ticks = {actual.Ticks:N0}");
                actual.Should().Be(expected);
             }
             finally
@@ -859,6 +879,8 @@
                _target.DeleteRecursively(path);
             }
          }
+
+#pragma warning restore CS0618 // Type or member is obsolete
       }
    }
 }
