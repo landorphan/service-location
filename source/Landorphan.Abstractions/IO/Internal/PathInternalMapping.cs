@@ -9,6 +9,7 @@ namespace Landorphan.Abstractions.IO.Internal
    using System.Text;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Common;
+   using Landorphan.TestUtilities;
 
    /// <summary>
    /// Performs operations on <see cref="string"/> instances that contain file or directory path information.
@@ -447,15 +448,22 @@ namespace Landorphan.Abstractions.IO.Internal
             return true;
          }
 
-         // avoid Path.IsPathRooted altogether (look at the implementation if curious)
-         var root = GetRootPath(cleanedPath);
-         if (root != null && root.Length == 1 && (root[0] == DirectorySeparatorCharacter || root[0] == AltDirectorySeparatorCharacter))
+         // avoid Path.IsPathRooted altogether ** For Windows especially NetFx **
+         // (look at the implementation if curious)
+         if (RuntimePlatform.IsWindows())
          {
-            // GetRootPath returns / and \ on relative paths
-            return true;
+            var root = GetRootPath(cleanedPath);
+            if (root != null && root.Length == 1 && (root[0] == DirectorySeparatorCharacter || root[0] == AltDirectorySeparatorCharacter))
+            {
+               // GetRootPath returns / and \ on relative paths
+               return true;
+            }
+            return root.IsNullOrEmpty();
          }
 
-         return root.IsNullOrEmpty();
+         // The Linux/Unix variant is actually decently written so it can be trusted
+         // (it creates a read only variant of the string and evaluates if it starts with root)
+         return !Path.IsPathRooted(cleanedPath);
       }
 
       private static IImmutableSet<Char> BuildInvalidFileNameCharacters()
