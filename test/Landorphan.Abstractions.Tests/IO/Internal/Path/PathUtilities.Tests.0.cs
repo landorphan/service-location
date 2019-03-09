@@ -715,7 +715,8 @@
          public void It_should_trim_leading_and_trailing_spaces_appropriately()
          {
             _target.Combine(Spaces + @"x" + Spaces).Should().Be(Spaces + @"x");
-            _target.Combine(Spaces + @"x" + Spaces, Spaces + @"y" + Spaces).Should().Be(Spaces + @"x\" + Spaces + @"y");
+            _target.Combine(Spaces + @"x" + Spaces, Spaces + @"y" + Spaces)
+               .Should().Be(Spaces + @"x" + _pathUtilities.DirectorySeparatorString + Spaces + @"y");
          }
       }
 

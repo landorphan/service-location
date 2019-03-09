@@ -220,10 +220,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_multiple_trailing_SepChars_it_should_remove_only_one()
          {
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.DirectorySeparatorString).Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString).Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.DirectorySeparatorString).Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString).Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
+               .Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
+               .Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
+               .Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
+               .Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
          }
 
          [TestMethod]
