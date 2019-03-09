@@ -291,6 +291,7 @@
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       String GetTemporaryDirectoryPath();
 
+      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
       /// <summary>
       /// Sets the creation date and time for the specified file or directory.
       /// </summary>
@@ -325,6 +326,7 @@
       /// An object that contains the value to set for the creation date and time of <paramref name="path"/>.
       /// </param>
       void SetCreationTime(String path, DateTimeOffset creationTime);
+      */
 
       /// <summary>
       /// Sets the application's current working directory to the specified directory.

@@ -85,7 +85,7 @@
             case -1:
                // not found
                rv = false;
-               break;            
+               break;
 
             case 1:
                // drive label
@@ -175,7 +175,7 @@
       {
          // returns a cleaned string if it does not throw.
 
-         // Error messages are inconsistent across Directory methods.  
+         // Error messages are inconsistent across Directory methods.
          // This method attempts to standardize the handling of directory path structural validation.
          // It does not check security, existence, etc.
 
@@ -213,9 +213,12 @@
             throw new ArgumentException(msg, argumentName);
          }
 
-         // this call will throw a PathTooLongException as needed.
-         // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-         Path.GetFullPath(cleanedPath);
+         // Path.GetFullPath(cleanedPath) does not throw on non-Windows platforms when path exceeds max length.
+         if (cleanedPath.Length > Int16.MaxValue)
+         {
+            var msg = $"The path '{cleanedPath}' is too long, or a component of the specified path is too long.";
+            throw new PathTooLongException(msg);
+         }
 
          // Leading spaces allowed on resource names, but not trailing.  Whitespace only resource names not allowed.
          // (I do not know how to recognize a directory name versus a resource names canonically)
@@ -228,7 +231,7 @@
 
          // .Net Standard 2.0 throws IOExceptions path not found on directory names with trailing spaces.
          // word character(s) followed by space(s) followed by directory separator character
-         // Original pattern was @"\w+ ... " replaced with @"\w" as for this case will yeild same resuilt
+         // Original pattern was @"\w+ ... " replaced with @"\w" as for this case will yield same result
          pattern = @"\w\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
          evaluator = ReplaceTrailingWhitespace;
          cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);

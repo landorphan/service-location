@@ -647,6 +647,7 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
+      [Obsolete("Currently not reliable")]
       public void SetCreationTime(String path, DateTimeOffset creationTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));

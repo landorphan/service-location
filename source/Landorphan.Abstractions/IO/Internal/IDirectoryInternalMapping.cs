@@ -49,7 +49,7 @@
       /// The path to the destination directory.
       /// </param>
       /// <exception cref="IOException">
-      /// <paramref name="destDirName"/> already exists. 
+      /// <paramref name="destDirName"/> already exists.
       /// -or-
       /// The <paramref name="sourceDirName"/> and <paramref name="destDirName"/> parameters refer to the same file or directory.
       /// </exception>
@@ -57,7 +57,7 @@
       /// The caller does not have the required permissions.
       /// </exception>
       /// <exception cref="ArgumentException">
-      /// <paramref name="sourceDirName"/> 
+      /// <paramref name="sourceDirName"/>
       /// -or-
       /// <paramref name="destDirName"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by
       /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
@@ -165,7 +165,7 @@
       /// -or-
       /// The directory specified by <paramref name="path"/> is read-only.
       /// -or-
-      /// The directory is the application's current working directory. 
+      /// The directory is the application's current working directory.
       /// -or-
       /// The directory contains a read-only file.
       /// -or-
@@ -252,7 +252,7 @@
       /// <paramref name="path"/> and that match the specified search pattern.
       /// </returns>
       /// <exception cref="ArgumentException">
-      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by <see cref="Path.GetInvalidPathChars"/>.  
+      /// <paramref name="path "/>is a zero-length string, contains only white space, or contains invalid characters as defined by <see cref="Path.GetInvalidPathChars"/>.
       /// - or -
       /// <paramref name="searchPattern"/> does not contain a valid pattern.
       /// (.Net Standard 2.0 does not throw <see cref="ArgumentException"/> on invalid patterns, it simply returns no results.  This wrapper still throws <see cref="ArgumentException"/>.
@@ -1030,10 +1030,10 @@
       /// The path to the new location for <paramref name="sourceDirName"/>.
       /// </param>
       /// <exception cref="IOException">
-      /// An attempt was made to move a directory to a different volume. 
-      /// -or- 
-      /// <paramref name="destDirName"/> already exists. 
-      /// -or- 
+      /// An attempt was made to move a directory to a different volume.
+      /// -or-
+      /// <paramref name="destDirName"/> already exists.
+      /// -or-
       /// The <paramref name="sourceDirName"/> and <paramref name="destDirName"/> parameters refer to the same directory.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
@@ -1090,6 +1090,7 @@
       /// <exception cref="PlatformNotSupportedException">
       /// The current operating system is not Windows NT or later.
       /// </exception>
+      [Obsolete("Currently not reliable")]
       void SetCreationTime(String path, DateTimeOffset creationTime);
 
       /// <summary>
