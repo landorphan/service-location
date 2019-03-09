@@ -5,7 +5,13 @@
 
    internal static class FileTimeHelper
    {
-      private static readonly DateTimeOffset t_maximumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
+      /// <summary>
+      /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
+      /// </summary>
+      /// <value>
+      /// The maximum file time as a <see cref="DateTimeOffset"/>.
+      /// </value>
+      internal static DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; } = new Func<DateTimeOffset>(
          () =>
          {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -28,7 +34,16 @@
             return new DateTimeOffset(new DateTime(3_155_378_975_990_000_000, DateTimeKind.Utc));
          })();
 
-      private static readonly Int64 t_maximumPrecisionFileSystemTicks = new Func<Int64>(
+      /// <summary>
+      /// Gets the maximum precision file system ticks supported by the host operating system.
+      /// </summary>
+      /// <value>
+      /// The maximum precision file system ticks.
+      /// </value>
+      /// <remarks>
+      /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
+      /// </remarks>
+      internal static Int64 MaximumPrecisionFileSystemTicks { get; } = new Func<Int64>(
          () =>
          {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -39,7 +54,13 @@
             return TimeSpan.TicksPerSecond;
          })();
 
-      private static readonly DateTimeOffset t_minimumEffectiveDateTimeOffset = new Func<DateTimeOffset>(
+      /// <summary>
+      /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
+      /// </summary>
+      /// <value>
+      /// The minimum file time as a <see cref="DateTimeOffset"/>.
+      /// </value>
+      internal static DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; } = new Func<DateTimeOffset>(
          () =>
          {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -62,33 +83,6 @@
             //                                        0001-01-01T07:28:01.0000000Z
             return new DateTimeOffset(new DateTime(1, 1, 1, 7, 28, 1, DateTimeKind.Utc));
          })();
-
-      /// <summary>
-      /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
-      /// </summary>
-      /// <value>
-      /// The maximum file time as a <see cref="DateTimeOffset"/>.
-      /// </value>
-      internal static DateTimeOffset MaximumFileTimeAsDateTimeOffset => t_maximumEffectiveDateTimeOffset;
-
-      /// <summary>
-      /// Gets the maximum precision file system ticks supported by the host operating system.
-      /// </summary>
-      /// <value>
-      /// The maximum precision file system ticks.
-      /// </value>
-      /// <remarks>
-      /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
-      /// </remarks>
-      internal static Int64 MaximumPrecisionFileSystemTicks => t_maximumPrecisionFileSystemTicks;
-
-      /// <summary>
-      /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
-      /// </summary>
-      /// <value>
-      /// The minimum file time as a <see cref="DateTimeOffset"/>.
-      /// </value>
-      internal static DateTimeOffset MinimumFileTimeAsDateTimeOffset => t_minimumEffectiveDateTimeOffset;
 
       /// <summary>
       /// Truncates the given value to the maximum precision supported by the current platform.

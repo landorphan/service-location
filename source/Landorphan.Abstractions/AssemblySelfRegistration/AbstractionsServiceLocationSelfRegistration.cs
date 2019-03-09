@@ -28,7 +28,7 @@
          IEnvironmentUtilitiesFactory environmentUtilitiesFactory = new EnvironmentUtilitiesFactory();
          registrar.RegisterInstance(environmentUtilitiesFactory);
 
-         IEnvironmentUtilities environmentUtilities = environmentUtilitiesFactory.Create();
+         var environmentUtilities = environmentUtilitiesFactory.Create();
          registrar.RegisterInstance(environmentUtilities);
 
          //
