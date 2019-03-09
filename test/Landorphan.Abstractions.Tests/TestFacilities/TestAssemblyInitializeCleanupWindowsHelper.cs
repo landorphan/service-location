@@ -52,12 +52,12 @@
          }
 
          var allowedExecutionPolicies = new HashSet<String>(StringComparer.OrdinalIgnoreCase) { "RemoteSigned", "Unrestricted", "Bypass" };
-         var executionPolicy = GetPSExecutionPolicyUser();
-         if (!allowedExecutionPolicies.Contains(executionPolicy))
-         {
-            // TODO: TSG, why not throw an exception?
-            return false;
-         }
+         //var executionPolicy = GetPSExecutionPolicyUser();
+         //if (!allowedExecutionPolicies.Contains(executionPolicy))
+         //{
+         //   // TODO: TSG, why not throw an exception?
+         //   return false;
+         //}
 
          /* **************************************************************************************************************
          Create the following folder\file structure with ACLs (C:\ is not hard-coded)
