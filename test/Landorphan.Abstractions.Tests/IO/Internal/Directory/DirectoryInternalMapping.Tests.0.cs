@@ -1100,9 +1100,13 @@
                {
                   e.And.HResult.Should().Be(unchecked((Int32)0x80070091));
                }
-               else if (RuntimePlatform.IsOSPlatform(OSPlatform.OSX, OSPlatform.Linux))
+               else if (RuntimePlatform.IsOSX())
                {
                   e.And.HResult.Should().Be(66);
+               }
+               else if (RuntimePlatform.IsLinux())
+               {
+                  e.And.HResult.Should().Be(39);
                }
                else
                {

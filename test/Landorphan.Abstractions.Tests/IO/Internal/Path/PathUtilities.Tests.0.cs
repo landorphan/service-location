@@ -504,22 +504,22 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_ignore_paths_that_are_wholly_whitespace()
          {
-            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorString)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), Spaces)
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(_pathUtilities.DirectorySeparatorString, Spaces)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), Spaces)
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorString, Spaces)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), Spaces)
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(_pathUtilities.DirectorySeparatorString, Spaces)
                .Should()
-               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(Spaces, _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), Spaces)
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorString, Spaces)
                .Should()
-               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(Spaces, "a", Spaces, "b", Spaces).Should().Be(@"a\b");
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(Spaces, "a", Spaces, "b", Spaces).Should().Be(@"a" + _pathUtilities.DirectorySeparatorString + "b");
          }
 
          [TestMethod]

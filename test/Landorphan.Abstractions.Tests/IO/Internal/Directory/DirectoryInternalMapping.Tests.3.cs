@@ -344,7 +344,17 @@
                   _target.CreateDirectory(sd);
                }
 
-               _pathUtilities.IsPathRelative(Spaces + outerFullPath).Should().BeFalse();
+               var isRelative = _pathUtilities.IsPathRelative(Spaces + outerFullPath);
+
+               // Behvior differs here between Windows and Linux/Unix (OSX) based OSs.
+               if (RuntimePlatform.IsWindows())
+               {
+                  isRelative.Should().BeFalse();
+               }
+               else
+               {
+                  isRelative.Should().BeTrue();
+               }
 
                var actual = _target.GetDirectories(Spaces + outerFullPath);
                actual.Should().Contain(expected);
