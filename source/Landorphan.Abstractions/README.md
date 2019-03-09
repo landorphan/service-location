@@ -10,26 +10,26 @@
 | Directory.EnumerateFileSystemEntries	   | IDirectoryReaderUtilities.EnumerateFileSystemEntries                  |
 | Directory.Exists	                     | IDirectoryUtilities.DirectoryExists                                   |
 | Directory.GetCreationTime	            | IDirectoryUtilities.GetCreationTime                                   |
-| Directory.GetCreationTimeUtc	         | UTC variants not implemented*                                         |
+| Directory.GetCreationTimeUtc	         | <b>(UTC variants not implemented*)</b>                                         |
 | Directory.GetCurrentDirectory	         | IDirectoryUtilities.GetCurrentDirectory                               |
 | Directory.GetDirectories		            | IDirectoryReaderUtilities.GetDirectories                              |
 | Directory.GetDirectoryRoot		         | IPathUtilities.GetRootPath                                            |
 | Directory.GetFiles	                     | IDirectoryReaderUtilities.GetFiles                                    |
 | Directory.GetFileSystemEntries		      | IDirectoryReaderUtilities.GetFileSystemEntries                        |
 | Directory.GetLastAccessTime		         | IDirectoryUtilities.GetLastAccessTime                                 |
-| Directory.GetLastAccessTimeUtc		      | UTC variants not implemented*                                         |
+| Directory.GetLastAccessTimeUtc		      | <b>(UTC variants not implemented*)</b>                                         |
 | Directory.GetLastWriteTime			      | IDirectoryUtilities.GetLastWriteTime                                  |
-| Directory.GetLastWriteTimeUtc			   | UTC variants not implemented*                                         |
+| Directory.GetLastWriteTimeUtc			   | <b>(UTC variants not implemented*)</b>                                         |
 | Directory.GetLogicalDrives			      | IEnvironmentUtilities.GetLogicalDrives                                |
 | Directory.GetParent			            | IPathUtilities.GetParentPath                                          |
 | Directory.Move			                  | IDirectoryWriterUtilities.Move                                        |
-| Directory.SetCreationTime			      | IDirectoryUtilities.SetCreationTime                                   |
-| Directory.SetCreationTimeUtc			   | UTC variants not implemented*                                         |
+| Directory.SetCreationTime			      | <b>(REMOVED FROM INTERFACE**)</b> IDirectoryUtilities.SetCreationTime                                   |
+| Directory.SetCreationTimeUtc			   | <b>(UTC variants not implemented*)</b>                                         |
 | Directory.SetCurrentDirectory			   | IDirectoryUtilities.SetCurrentDirectory                               |
 | Directory.SetLastAccessTime			      | IDirectoryUtilities.SetLastAccessTime                                 |
-| Directory.SetLastAccessTimeUtc			   | UTC variants not implemented*                                         |
+| Directory.SetLastAccessTimeUtc			   | <b>(UTC variants not implemented*)</b>                                         |
 | Directory.SetLastWriteTime			      | IDirectoryUtilities.SetLastWriteTime                                  |
-| Directory.SetLastWriteTimeUtc			   | UTC variants not implemented*                                         |
+| Directory.SetLastWriteTimeUtc			   | <b>(UTC variants not implemented*)</b>                                         |
 | File.AppendAllLines			            | IFileWriterUtilities.AppendAllLines                                   |
 | File.AppendText			                  | IFileWriterUtilities.AppendAllText                                    |
 | File.Copy			                        | IFileWriterUtilities.CopyNoOverwrite                                  |
@@ -43,11 +43,11 @@
 | File.Exists			                     | IFileUtilities.FileExists                                             |
 | File.GetAttributes			               | IFileUtilities.GetAttributes                                          |
 | File.GetCreationTime			            | IFileUtilities.GetCreationTime                                        |
-| File.GetCreationTimeUtc			         | UTC variants not implemented*                                         |
+| File.GetCreationTimeUtc			         | <b>(UTC variants not implemented*)</b>                                         |
 | File.GetLastAccessTime			         | IFileUtilities.GetLastAccessTime                                      |
-| File.GetLastAccessTimeUtc			      | UTC variants not implemented*                                         |
+| File.GetLastAccessTimeUtc			      | <b>(UTC variants not implemented*)</b>                                         |
 | File.GetLastWriteTime			            | IFileUtilities.GetLastWriteTime                                       |
-| File.GetLastWriteTimeUtc			         | UTC variants not implemented*                                         |
+| File.GetLastWriteTimeUtc			         | <b>(UTC variants not implemented*)</b>                                |
 | File.Move			                        | IFileWriterUtilities.Move                                             |
 | File.Open			                        | IFileReaderUtilities.Open                                             |
 | File.OpenRead			                  | IFileReaderUtilities.OpenRead                                         |
@@ -62,7 +62,7 @@
 | File.Replace			                     | IFileWriterUtilities.ReplaceContentsWithBackup                        |
 | File.Replace			                     | IFileWriterUtilities.ReplaceContentsWithBackupIgnoringMetadataErrors  |
 | File.SetAttributes			               | IFileUtilities.SetAttributes                                          |
-| File.SetCreationTime			            | IFileUtilities.SetCreationTime                                        |
+| File.SetCreationTime			            | <b>(REMOVED FROM INTERFACE**)</b>IFileUtilities.SetCreationTime       |
 | File.SetCreationTimeUtc			         | UTC variants not implemented                                          |
 | File.SetLastAccessTime			         | IFileUtilities.SetLastAccessTime                                      |
 | File.SetLastAccessTimeUtc			      | UTC variants not implemented                                          |
@@ -121,6 +121,14 @@
 | Environment.UserName		               | IEnvironmentUtilities.UserName                                        |
 | Environment.Version			            | IEnvironmentUtilities.ClrVersion                                      |
 | Environment.WorkingSet			         | IEnvironmentUtilities.WorkingSetBytes                                 |
+
+\* UTC Variants not implemented:  All times are converted to UTC by this library.  Unspecified values are consistently 
+treated as UTC.
+
+
+\*\* REMOVED FROM INTERFACE:  Setting creation time proved to be unreliable and untestable, so it has been
+removed from the interface.  You are free to call File.SetCreationTime and Directory.SetCreationTime.
+
 
 
 * TODO: consider collapsing into one wrapper each:

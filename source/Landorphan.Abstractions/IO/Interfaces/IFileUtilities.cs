@@ -269,6 +269,7 @@
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       String GetRandomFileName();
 
+      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
       /// <summary>
       /// Sets the date and time the file was created.
       /// </summary>
@@ -307,6 +308,7 @@
       /// <paramref name="path"/>.
       /// </param>
       void SetCreationTime(String path, DateTimeOffset creationTime);
+      */
 
       /// <summary>
       /// Sets the date and time the specified file was last accessed.

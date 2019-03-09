@@ -20,12 +20,12 @@
             }
 
             // TODO: need confirmation on OSX
-            // linux: (creation time has 1 second less tolerance that other file time values)
+            // linux:
             //    precision is to the 1s
             //    precision in ticks is Timespan.TicksPerSecond or 10_000_000
-            //                                     12/31/9999 23:59:58.0000000
-            //                                     3_155_378_975_980_000_000 confirmed on Ubuntu 18.04 2019.03.07
-            return new DateTimeOffset(new DateTime(3_155_378_975_980_000_000, DateTimeKind.Utc));
+            //                                     12/31/9999 23:59:59.0000000
+            //                                     3_155_378_975_990_000_000 confirmed on Ubuntu 18.04 2019.03.07
+            return new DateTimeOffset(new DateTime(3_155_378_975_990_000_000, DateTimeKind.Utc));
          })();
 
       private static readonly Int64 t_maximumPrecisionFileSystemTicks = new Func<Int64>(
@@ -54,7 +54,7 @@
             }
 
             // TODO: need confirmation on OSX
-            // linux: (creation time has 1 second less tolerance that other file time values)
+            // linux:
             //    precision is to the 1s
             //    precision in ticks is Timespan.TicksPerSecond or 10_000_000
             //

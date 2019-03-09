@@ -85,7 +85,7 @@
             case -1:
                // not found
                rv = false;
-               break;            
+               break;
 
             case 1:
                // drive label
@@ -213,9 +213,12 @@
             throw new ArgumentException(msg, argumentName);
          }
 
-         // this call will throw a PathTooLongException as needed.
-         // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-         Path.GetFullPath(cleanedPath);
+         // Path.GetFullPath(cleanedPath) does not throw on non-Windows platforms when path exceeds max length.
+         if (cleanedPath.Length > Int16.MaxValue)
+         {
+            var msg = $"The path '{cleanedPath}' is too long, or a component of the specified path is too long.";
+            throw new PathTooLongException(msg);
+         }
 
          // Leading spaces allowed on resource names, but not trailing.  Whitespace only resource names not allowed.
          // (I do not know how to recognize a directory name versus a resource names canonically)

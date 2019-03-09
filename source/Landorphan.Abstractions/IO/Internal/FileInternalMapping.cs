@@ -86,7 +86,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          contents.ArgumentNotNull(nameof(contents));
 
-         AppendAllLines(path, new[] {contents}, encoding);
+         AppendAllLines(path, new[] { contents }, encoding);
       }
 
       /// <inheritdoc/>
@@ -264,8 +264,11 @@ namespace Landorphan.Abstractions.IO.Internal
             ThrowFileNotFoundException(cleanedPath, nameof(path));
          }
 #endif
-
-         var rv = new DateTimeOffset(File.GetCreationTime(cleanedPath).ToUtc());
+         // force a refresh of cached information regarding the file, needed on linux
+         var fileInfo = new FileInfo(cleanedPath);
+         fileInfo.Refresh();
+         var rv = fileInfo.CreationTimeUtc;
+         // var rv = new DateTimeOffset(File.GetCreationTime(cleanedPath).ToUtc());
          return rv;
       }
 
@@ -282,8 +285,11 @@ namespace Landorphan.Abstractions.IO.Internal
             ThrowFileNotFoundException(cleanedPath, nameof(path));
          }
 #endif
-
-         var rv = new DateTimeOffset(File.GetLastAccessTime(cleanedPath).ToUtc());
+         // force a refresh of cached information regarding the file, needed on linux
+         var fileInfo = new FileInfo(cleanedPath);
+         fileInfo.Refresh();
+         var rv = fileInfo.LastAccessTimeUtc;
+         //var rv = new DateTimeOffset(File.GetLastAccessTime(cleanedPath).ToUtc());
          return rv;
       }
 
@@ -300,8 +306,11 @@ namespace Landorphan.Abstractions.IO.Internal
             ThrowFileNotFoundException(cleanedPath, nameof(path));
          }
 #endif
-
-         var rv = new DateTimeOffset(File.GetLastWriteTime(cleanedPath).ToUtc());
+         // force a refresh of cached information regarding the file, needed on linux
+         var fileInfo = new FileInfo(cleanedPath);
+         fileInfo.Refresh();
+         var rv = fileInfo.LastWriteTimeUtc;
+         // var rv = new DateTimeOffset(File.GetLastWriteTime(cleanedPath).ToUtc());
          return rv;
       }
 
@@ -604,6 +613,7 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
+      [Obsolete("Currently not reliable")]
       public void SetCreationTime(String path, DateTimeOffset creationTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
@@ -628,7 +638,6 @@ namespace Landorphan.Abstractions.IO.Internal
             ThrowFileNotFoundException(cleanedPath, nameof(path));
          }
 #endif
-
          File.SetCreationTimeUtc(cleanedPath, creationTime.UtcDateTime);
       }
 
@@ -686,7 +695,6 @@ namespace Landorphan.Abstractions.IO.Internal
             ThrowFileNotFoundException(cleanedPath, nameof(path));
          }
 #endif
-
          File.SetLastWriteTimeUtc(cleanedPath, lastWriteTime.UtcDateTime);
       }
 
@@ -1038,7 +1046,7 @@ namespace Landorphan.Abstractions.IO.Internal
          // Windows API ReplaceFile wrapper
          // https://msdn.microsoft.com/en-us/library/windows/desktop/aa365512(v=vs.85).aspx
          // backup the contents of destinationFileName to destinationBackupFileName
-         // replace the contents of destinationFileName with the contents of sourceFileName 
+         // replace the contents of destinationFileName with the contents of sourceFileName
          // and delete sourceFileName
 
          // BCL notes
