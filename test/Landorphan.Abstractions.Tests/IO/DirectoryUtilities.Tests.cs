@@ -531,7 +531,22 @@
             var expected = _tempPath;
             _target.SetCurrentDirectory(expected);
             var actual = _target.GetCurrentDirectory();
-
+            
+            // On the Mac, the temp directory could be rerouted via a symlink
+            // to a subdirectory (var) under the /private directory.
+            // Here we attempt to determine if this is the case.
+            //
+            // FURTHER:
+            // As Mac (either APFS or HFS) can be either case sensitive or case 
+            // insensitive, a case insensitive comparision is performed here.
+            if (RuntimePlatform.IsOSX() &&
+                expected.StartsWith("/var", StringComparison.OrdinalIgnoreCase) &&
+                actual.StartsWith("/private/var", StringComparison.OrdinalIgnoreCase))
+            {
+               var prefixLength = "/private".Length;
+               actual = actual.Substring(prefixLength);
+            }
+          
             actual.Should().NotBe(was);
             actual.Should().Be(expected);
          }

@@ -647,6 +647,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void It_should_return_as_expected()
          {
             // HAPPY PATH TEST:
