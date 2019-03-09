@@ -175,7 +175,7 @@
       {
          // returns a cleaned string if it does not throw.
 
-         // Error messages are inconsistent across Directory methods.  
+         // Error messages are inconsistent across Directory methods.
          // This method attempts to standardize the handling of directory path structural validation.
          // It does not check security, existence, etc.
 
@@ -231,7 +231,7 @@
 
          // .Net Standard 2.0 throws IOExceptions path not found on directory names with trailing spaces.
          // word character(s) followed by space(s) followed by directory separator character
-         // Original pattern was @"\w+ ... " replaced with @"\w" as for this case will yeild same resuilt
+         // Original pattern was @"\w+ ... " replaced with @"\w" as for this case will yield same result
          pattern = @"\w\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
          evaluator = ReplaceTrailingWhitespace;
          cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
