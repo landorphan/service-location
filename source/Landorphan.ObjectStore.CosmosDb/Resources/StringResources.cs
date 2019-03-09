@@ -1,4 +1,4 @@
-namespace Landorphan.ObjectStore.CosmosDb
+namespace Landorphan.ObjectStore.CosmosDb.Resources
 {
    using System;
 
