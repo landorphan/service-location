@@ -53,7 +53,7 @@
             // relative
             _target.SetCurrentDirectory(_target.GetTemporaryDirectoryPath());
             var path = _pathUtilities.Combine(_pathUtilities.Combine(
-               _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+               _pathUtilities.DirectorySeparatorString,
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative)));
             try
             {

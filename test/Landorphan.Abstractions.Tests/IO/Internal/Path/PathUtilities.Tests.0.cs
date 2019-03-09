@@ -550,16 +550,16 @@
          {
             // TODO: how is @"\\" handled
 
-            _target.Combine(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+            _target.Combine(_pathUtilities.DirectorySeparatorString)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(_pathUtilities.DirectorySeparatorString, _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"\\");
             _target.Combine(
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+                  _pathUtilities.DirectorySeparatorString,
+                  _pathUtilities.DirectorySeparatorString,
+                  _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"\\\");
 
@@ -576,23 +576,23 @@
                .Should()
                .Be(@"///");
 
-            _target.Combine(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+            _target.Combine(_pathUtilities.DirectorySeparatorString, _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()
                .Be(@"\/");
             _target.Combine(
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
                   String.Empty,
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+                  _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"/\");
             _target.Combine(
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+                  _pathUtilities.DirectorySeparatorString,
                   String.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()
                .Be(@"\/");
             _target.Combine(
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+                  _pathUtilities.DirectorySeparatorString,
                   String.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
                   String.Empty,
@@ -600,9 +600,9 @@
                .Should()
                .Be(@"\//");
             _target.Combine(
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+                  _pathUtilities.DirectorySeparatorString,
                   String.Empty,
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+                  _pathUtilities.DirectorySeparatorString,
                   String.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()
@@ -610,9 +610,9 @@
             _target.Combine(
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
                   String.Empty,
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+                  _pathUtilities.DirectorySeparatorString,
                   String.Empty,
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+                  _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"/\\");
             _target.Combine(
@@ -620,7 +620,7 @@
                   String.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
                   String.Empty,
-                  _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+                  _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"//\");
          }
@@ -629,16 +629,16 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_directory_separator_char()
          {
-            _target.Combine(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+            _target.Combine(_pathUtilities.DirectorySeparatorString)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(Spaces, _pathUtilities.DirectorySeparatorString)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), Spaces)
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(_pathUtilities.DirectorySeparatorString, Spaces)
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            _target.Combine(Spaces + _pathUtilities.DirectorySeparatorCharacter + Spaces).Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Be(_pathUtilities.DirectorySeparatorString);
+            _target.Combine(Spaces + _pathUtilities.DirectorySeparatorCharacter + Spaces).Should().Be(_pathUtilities.DirectorySeparatorString);
 
             _target.Combine(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()

@@ -221,9 +221,9 @@
          public void And_path_has_multiple_trailing_SepChars_it_should_remove_only_one()
          {
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
-               .Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Should().Be(_pathUtilities.DirectorySeparatorString);
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
-               .Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Should().Be(_pathUtilities.DirectorySeparatorString);
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
                .Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
@@ -378,9 +378,9 @@
             IOStringUtilities.ValidateCanonicalPath(driveNoSep, "arg").Should().Be(driveNoSep);
             IOStringUtilities.ValidateCanonicalPath(drive, "arg").Should().Be(drive);
             IOStringUtilities.ValidateCanonicalPath(driveAltSep, "arg").Should().Be(driveAltSep);
-            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
+            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.DirectorySeparatorString, "arg")
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Be(_pathUtilities.DirectorySeparatorString);
             IOStringUtilities.ValidateCanonicalPath(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
                .Should()
                .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
