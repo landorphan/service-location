@@ -1,5 +1,6 @@
 ﻿#define IO_PRECHECKS
 
+
 namespace Landorphan.Abstractions.IO.Internal
 {
    using System;
@@ -693,6 +694,7 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
+      [Obsolete("Currently not reliable")]
       public void SetLastAccessTime(String path, DateTimeOffset lastAccessTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
@@ -720,6 +722,7 @@ namespace Landorphan.Abstractions.IO.Internal
       }
 
       /// <inheritdoc/>
+      [Obsolete("Currently not reliable")]
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
       public void SetLastWriteTime(String path, DateTimeOffset lastWriteTime)
       {

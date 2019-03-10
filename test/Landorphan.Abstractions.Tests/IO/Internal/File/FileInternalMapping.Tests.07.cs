@@ -56,8 +56,8 @@
 
             Action throwingAction = () => _target.ReadLines(fileFullPath);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
-            e.And.Message.Should().StartWith("Could not load file or assembly");
-            e.And.Message.Should().EndWith("The system cannot find the file specified.");
+            e.And.Message.Should().Contain("Could not load file or assembly");
+            e.And.Message.Should().Contain("The system cannot find the file specified.");
          }
 
          [TestMethod]

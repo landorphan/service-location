@@ -116,7 +116,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             var actual = _target.GetParentPath(path0);
@@ -134,7 +134,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             var actual = _target.GetParentPath(path0);
@@ -148,6 +148,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_is_a_resource_name_It_should_return_null_unc()
          {
             var actual = _target.GetParentPath(@"\\localhost");
@@ -472,7 +473,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             var actual = _target.GetRootPath(path0);
@@ -490,7 +491,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = _tempPath + Spaces;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             var actual = _target.GetRootPath(path0);
@@ -646,6 +647,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void It_should_return_as_expected()
          {
             // HAPPY PATH TEST:
@@ -781,7 +783,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             _target.HasExtension(path0).Should().BeFalse();
@@ -794,7 +796,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             _target.HasExtension(path0).Should().BeFalse();
@@ -1005,7 +1007,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             _target.IsPathRelative(_tempPath).Should().BeFalse();
 
             _target.IsPathRelative(Spaces + _tempPath).Should().BeFalse();
@@ -1017,7 +1019,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             _target.IsPathRelative(_tempPath).Should().BeFalse();
 
             _target.IsPathRelative(_tempPath + Spaces).Should().BeFalse();

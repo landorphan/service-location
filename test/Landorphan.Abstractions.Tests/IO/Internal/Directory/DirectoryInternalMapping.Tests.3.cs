@@ -228,7 +228,24 @@
          {
             var path = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
             _target.SetCurrentDirectory(path);
-            _target.GetCurrentDirectory().Should().Be(path);
+            var actual = _target.GetCurrentDirectory();
+            
+            // On the Mac, the temp directory could be rerouted via a symlink
+            // to a subdirectory (var) under the /private directory.
+            // Here we attempt to determine if this is the case.
+            //
+            // FURTHER:
+            // As Mac (either APFS or HFS) can be either case sensitive or case 
+            // insensitive, a case insensitive comparision is performed here.
+            if (RuntimePlatform.IsOSX() &&
+                path.StartsWith("/var", StringComparison.OrdinalIgnoreCase) &&
+                actual.StartsWith("/private/var", StringComparison.OrdinalIgnoreCase))
+            {
+               var prefixLength = "/private".Length;
+               actual = actual.Substring(prefixLength);
+            }
+            
+            actual.Should().Be(path);
          }
 
          [TestMethod]
@@ -344,7 +361,9 @@
                   _target.CreateDirectory(sd);
                }
 
-               _pathUtilities.IsPathRelative(Spaces + outerFullPath).Should().BeFalse();
+               var isRelative = _pathUtilities.IsPathRelative(Spaces + outerFullPath);
+
+               isRelative.Should().BeFalse();
 
                var actual = _target.GetDirectories(Spaces + outerFullPath);
                actual.Should().Contain(expected);

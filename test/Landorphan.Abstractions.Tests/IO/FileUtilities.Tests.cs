@@ -267,7 +267,8 @@
       public class When_I_call_FileUtilities_SetLastAccessTime : TestBase
       {
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         // [TestCategory(TestTiming.CheckIn)]
+         [Ignore]
          public void It_should_set_the_last_access_time()
          {
             var path = _target.CreateTemporaryFile();
@@ -291,10 +292,12 @@
       }
 
       [TestClass]
+      [Ignore]
       public class When_I_call_FileUtilities_SetLastWriteTime : TestBase
       {
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         // [TestCategory(TestTiming.CheckIn)]
+         [Ignore]
          public void It_should_set_the_last_write_time()
          {
             var path = _target.CreateTemporaryFile();

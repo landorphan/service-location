@@ -9,6 +9,7 @@
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.TestUtilities;
    using Microsoft.Win32;
 
    [SuppressMessage("Platform.Compat", "PC001: API not supported on all platforms")]
@@ -51,13 +52,13 @@
             throw new InvalidOperationException($"Cannot perform {nameof(Arrange)} on non-Windows platforms");
          }
 
-         var allowedExecutionPolicies = new HashSet<String>(StringComparer.OrdinalIgnoreCase) { "RemoteSigned", "Unrestricted", "Bypass" };
-         var executionPolicy = GetPSExecutionPolicyUser();
-         if (!allowedExecutionPolicies.Contains(executionPolicy))
-         {
-            // TODO: TSG, why not throw an exception?
-            return false;
-         }
+         //var allowedExecutionPolicies = new HashSet<String>(StringComparer.OrdinalIgnoreCase) { "RemoteSigned", "Unrestricted", "Bypass" };
+         //var executionPolicy = GetPSExecutionPolicyUser();
+         //if (!allowedExecutionPolicies.Contains(executionPolicy))
+         //{
+         //   // TODO: TSG, why not throw an exception?
+         //   return false;
+         //}
 
          /* **************************************************************************************************************
          Create the following folder\file structure with ACLs (C:\ is not hard-coded)
@@ -350,7 +351,16 @@
 
          // parallel knowledge/maintenance here
          var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
-         var localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
+
+         string localFolderRoot = null;
+         if (RuntimePlatform.IsWindows())
+         {
+            localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
+         }
+         else
+         {
+            localFolderRoot = "/";
+         }
 
          // NOTE:  cannot check for the existence of a file(s)/folder(s) in this block because the current user does not have access to many of the extant paths by design.
          TestHardCodes.WindowsLocalTestPaths.SetLocalFolderRoot(localFolderRoot);
