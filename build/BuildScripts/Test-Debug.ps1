@@ -4,7 +4,9 @@
   .SYNOPSIS
     Cleans, builds debug, executes all tests.
   .EXAMPLE
-    & Test-Debug.ps1
+    Test-Debug.ps1
+  .EXAMPLE
+    Test-Debug.ps1 -SolutionFileName 'HelloWorld.sln'
   .EXAMPLE
     ./build/BuildScript/Test-Release.ps1 -SolutionFile './Landorphan.Ioc.ServiceLocation.XPlat.sln' -VSTest
   .INPUTS
@@ -23,45 +25,23 @@ param
 begin
 {
   Set-StrictMode -Version Latest
-
   $started = [datetime]::UtcNow
-
-  if ($null -eq (Get-Module -Name 'mwp.utilities'))
-  {
-    $ConfirmPreference = "High" #([High], Medium, Low, None)
-    $DebugPreference = "Continue" #([SilentlyContinue], Continue, Inquire, Stop)
-    $ErrorActionPreference = "Continue" #(SilentlyContinue, [Continue], Suspend <!--NOT ALLOWED -->, Inquire, Stop)
-    $InformationPreference = "Continue" #(SilentlyContinue, Continue, Inquire, Stop)
-    $VerbosePreference = "Continue" #([SilentlyContinue], Continue, Inquire, Stop)
-    $WarningPreference = "Inquire" #(SilentlyContinue, [Continue], Inquire, Stop)
-  }
-  else
-  {
-    Use-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
-  }
-
   $thisScriptDirectory = Split-Path $script:MyInvocation.MyCommand.Path
-  $setVarScript = Join-Path -Path (Split-Path $thisScriptDirectory) -ChildPath 'Set-BuildVariables.ps1'
-  $removeVarScript = Join-Path -Path (Split-Path $thisScriptDirectory) -ChildPath 'Remove-BuildVariables.ps1'
+
+  if ($null -eq (Get-Module -Name 'CSharpBuild'))
+  {
+    Import-Module -Name (Join-Path -Path $thisScriptDirectory -ChildPath '../CSharpBuild')
+  }
+  Use-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
   $buildDebugScript = Join-Path -Path $thisScriptDirectory -ChildPath 'Build-Debug.ps1'
-  $getTestBinaryDebugScript = Join-Path -Path $thisScriptDirectory -ChildPath 'Get-TestBinaryDebug.ps1'
 }
 process
 {
+  Set-BuildVariable -SolutionFileName $SolutionFileName
   try
   {
     & $buildDebugScript -SolutionFileName $SolutionFileName
-    & $setVarScript -SolutionFileName $SolutionFileName
-
-    $testBinaries = & $getTestBinaryDebugScript | ForEach-Object { $_.FullName }
-    foreach ($testBinary in $testBinaries)
-    {
-      if (!(Test-Path $testBinary))
-      {
-        throw "Could not find test project at: $testBinary"
-      }
-    }
-
+    $testBinaries = Get-TestBinaryDebug -SolutionFile $SolutionFileName | ForEach-Object { $_.FullName }
     $results = Join-Path -Path $buildSolutionDirectory -ChildPath 'TestResults'
 
     if ($VSTest)
@@ -88,7 +68,7 @@ process
   }
   finally
   {
-    & $removeVarScript
+    Clear-BuildVariable
   }
 }
 end

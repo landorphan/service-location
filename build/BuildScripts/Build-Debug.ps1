@@ -4,7 +4,9 @@
   .SYNOPSIS
     Builds the solution as debug, and all of its dependencies.
   .EXAMPLE
-    & Build-Debug.ps1
+    Build-Debug.ps1
+  .EXAMPLE
+    Build-Debug.ps1 -SolutionFileName 'HelloWorld.sln'
   .INPUTS
     (None)
   .OUTPUTS
@@ -19,34 +21,23 @@ param
 begin
 {
   Set-StrictMode -Version Latest
-
   $started = [datetime]::UtcNow
-
-  if ($null -eq (Get-Module -Name 'mwp.utilities'))
-  {
-    $ConfirmPreference = "High" #([High], Medium, Low, None)
-    $DebugPreference = "Continue" #([SilentlyContinue], Continue, Inquire, Stop)
-    $ErrorActionPreference = "Continue" #(SilentlyContinue, [Continue], Suspend <!--NOT ALLOWED -->, Inquire, Stop)
-    $InformationPreference = "Continue" #(SilentlyContinue, Continue, Inquire, Stop)
-    $VerbosePreference = "Continue" #([SilentlyContinue], Continue, Inquire, Stop)
-    $WarningPreference = "Inquire" #(SilentlyContinue, [Continue], Inquire, Stop)
-  }
-  else
-  {
-    Use-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
-  }
-
   $thisScriptDirectory = Split-Path $script:MyInvocation.MyCommand.Path
-  $setVarScript = Join-Path -Path (Split-Path $thisScriptDirectory) -ChildPath 'Set-BuildVariables.ps1'
-  $removeVarScript = Join-Path -Path (Split-Path $thisScriptDirectory) -ChildPath 'Remove-BuildVariables.ps1'
+
+  if ($null -eq (Get-Module -Name 'CSharpBuild'))
+  {
+    Import-Module -Name (Join-Path -Path $thisScriptDirectory -ChildPath '../CSharpBuild')
+  }
+  Use-CallerPreference -Cmdlet $PSCmdlet -SessionState $ExecutionContext.SessionState
   $buildCleanScript = Join-Path -Path $thisScriptDirectory -ChildPath 'Build-Clean.ps1'
 }
 process
 {
+  Set-BuildVariable -SolutionFileName $SolutionFileName
   try
   {
     & $buildCleanScript -SolutionFileName $SolutionFileName
-    & $setVarScript -SolutionFileName $SolutionFileName
+    Write-Debug "Build-Debug.ps1 $buildSetVarInvocationCount"
 
     if ($null -eq $buildSolution)
     {
@@ -60,15 +51,14 @@ process
       return 2
     }
 
-    # Use this syntax if a .Net Framework is added
+    # Use this syntax if a .Net Framework is added (dotnet build fails on .Net Framework projects with NuGet packages)
     # Verbosity: q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
-    # MSbuild.exe /property:Configuration=Debug /verbosity:normal /restore /detailedsummary $buildSolution
-
+    # MSbuild.exe /property:Configuration=Release /verbosity:normal /restore /detailedsummary $buildSolution
     dotnet build $buildSolution -c debug
   }
   finally
   {
-    & $removeVarScript
+    Clear-BuildVariable
   }
 }
 end
