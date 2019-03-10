@@ -268,7 +268,7 @@
       {
          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
-         [Ignore]
+         [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_access_time()
          {
             var path = _target.CreateTemporaryFile();
@@ -292,12 +292,12 @@
       }
 
       [TestClass]
-      [Ignore]
+      [Ignore("Ignored by TGS")]
       public class When_I_call_FileUtilities_SetLastWriteTime : TestBase
       {
          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
-         [Ignore]
+         [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_write_time()
          {
             var path = _target.CreateTemporaryFile();

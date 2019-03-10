@@ -6,7 +6,6 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
@@ -221,13 +220,17 @@
          public void And_path_has_multiple_trailing_SepChars_it_should_remove_only_one()
          {
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
-               .Should().Be(_pathUtilities.DirectorySeparatorString);
+               .Should()
+               .Be(_pathUtilities.DirectorySeparatorString);
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
-               .Should().Be(_pathUtilities.DirectorySeparatorString);
+               .Should()
+               .Be(_pathUtilities.DirectorySeparatorString);
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
-               .Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Should()
+               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
             IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
-               .Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Should()
+               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
          }
 
          [TestMethod]

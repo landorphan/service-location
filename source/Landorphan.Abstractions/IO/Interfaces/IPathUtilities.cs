@@ -2,7 +2,6 @@ namespace Landorphan.Abstractions.IO.Interfaces
 {
    using System;
    using System.Collections.Immutable;
-   using System.Globalization;
    using System.IO;
    using System.Security;
 
@@ -28,7 +27,7 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <value>
       /// The alternate directory separator as a string.
       /// </value>
-      string AltDirectorySeparatorString { get; }
+      String AltDirectorySeparatorString { get; }
 
       /// <summary>
       /// Provides a platform-specific character used to separate directory levels in a path string that reflects a hierarchical file system
@@ -46,7 +45,7 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <value>
       /// The directory separator as a string.
       /// </value>
-      string DirectorySeparatorString { get; }
+      String DirectorySeparatorString { get; }
 
       /// <summary>
       /// A platform-specific separator character used to separate path strings in environment variables.

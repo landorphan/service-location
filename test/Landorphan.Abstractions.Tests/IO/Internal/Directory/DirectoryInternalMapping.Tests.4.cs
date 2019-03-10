@@ -30,7 +30,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -53,7 +53,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -105,7 +105,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -155,7 +155,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -276,7 +276,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -476,7 +476,7 @@
          public void It_should_return_the_known_FileSystemEntries()
          {
             var outerFullPath =
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
@@ -506,12 +506,13 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_GetLastAccessTime : TestBase
       {
+#pragma warning disable CS0618 // Type or member is obsolete
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -524,7 +525,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -556,9 +557,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
-            var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
+            var path0 = Spaces + TempPath;
+            TempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
+            var path1 = Spaces + TempPath.Substring(0, TempPath.Length - 1);
 
             var actual = _target.GetLastAccessTime(path0);
             actual.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
@@ -571,9 +572,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should__not_throw()
          {
-            var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
-            var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
+            var path0 = TempPath + "  ";
+            TempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
+            var path1 = TempPath.Substring(0, TempPath.Length - 1) + Spaces;
 
             var actual = _target.GetLastAccessTime(path0);
             actual.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
@@ -628,7 +629,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -717,7 +718,7 @@
          {
             // NOTE: when using %temp%, SetLastAccessTime was running afoul of the following IOException:
             // The process cannot access the file 'c:\temp' because it is being used by another process.
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_last_access_time));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_last_access_time));
             _target.CreateDirectory(path);
             try
             {
@@ -730,17 +731,20 @@
                _target.DeleteRecursively(path);
             }
          }
+
+#pragma warning restore CS0618 // Type or member is obsolete
       }
 
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_GetLastWriteTime : TestBase
       {
+#pragma warning disable CS0618 // Type or member is obsolete
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -753,7 +757,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -785,9 +789,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
-            var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
+            var path0 = Spaces + TempPath;
+            TempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
+            var path1 = Spaces + TempPath.Substring(0, TempPath.Length - 1);
 
             var actual = _target.GetLastWriteTime(path0);
             actual.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
@@ -800,9 +804,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should__not_throw()
          {
-            var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
-            var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
+            var path0 = TempPath + "  ";
+            TempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
+            var path1 = TempPath.Substring(0, TempPath.Length - 1) + Spaces;
 
             var actual = _target.GetLastWriteTime(path0);
             actual.Should().BeOnOrBefore(DateTimeOffset.UtcNow);
@@ -857,7 +861,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -946,7 +950,7 @@
          {
             // NOTE: when using %temp%, SetLastWriteTime was running afoul of the following IOException:
             // The process cannot access the file 'c:\temp' because it is being used by another process.
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_last_write_time));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_last_write_time));
             _target.CreateDirectory(path);
             try
             {
@@ -959,6 +963,8 @@
                _target.DeleteRecursively(path);
             }
          }
+
+#pragma warning restore CS0618 // Type or member is obsolete
       }
 
       [TestClass]

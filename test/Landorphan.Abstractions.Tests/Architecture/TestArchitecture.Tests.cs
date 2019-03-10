@@ -33,16 +33,6 @@
 
       [TestMethod]
       [TestCategory(TestTiming.IdeOnly)]
-      public void Find_ignored_tests()
-      {
-         var asm = GetType().Assembly;
-         Find_ignored_tests_in_assembly(asm);
-
-         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
-      }
-
-      [TestMethod]
-      [TestCategory(TestTiming.IdeOnly)]
       public void Check_TestHardCodes_WindowsPaths()
       {
          // strange to test test code, but a lot of arranging is going on behind the scenes.
@@ -59,8 +49,8 @@
             TestHardCodes.WindowsLocalTestPaths.LocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder.Should().NotBeNull();
             TestHardCodes.WindowsLocalTestPaths.LocalFolderReadExecuteListFolderContents.Should().NotBeNull();
 
-            TestHardCodes.WindowsLocalTestPaths.MappedDrive .Should().NotBeNull();
-            TestHardCodes.WindowsLocalTestPaths.UnmappedDrive .Should().NotBeNull();
+            TestHardCodes.WindowsLocalTestPaths.MappedDrive.Should().NotBeNull();
+            TestHardCodes.WindowsLocalTestPaths.UnmappedDrive.Should().NotBeNull();
 
             TestHardCodes.WindowsUncTestPaths.UncShareRoot.Should().NotBeNull();
             TestHardCodes.WindowsUncTestPaths.UncFileFullControlFolderOwnerOnlyFile.Should().NotBeNull();
@@ -73,6 +63,16 @@
             TestHardCodes.WindowsUncTestPaths.UncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder.Should().NotBeNull();
             TestHardCodes.WindowsUncTestPaths.UncFolderReadExecuteListFolderContents.Should().NotBeNull();
          }
+      }
+
+      [TestMethod]
+      [TestCategory(TestTiming.IdeOnly)]
+      public void Find_ignored_tests()
+      {
+         var asm = GetType().Assembly;
+         Find_ignored_tests_in_assembly(asm);
+
+         TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
       }
 
       protected override Assembly GetTestAssembly()

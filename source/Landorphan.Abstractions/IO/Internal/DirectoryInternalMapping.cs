@@ -1,6 +1,5 @@
 ﻿#define IO_PRECHECKS
 
-
 namespace Landorphan.Abstractions.IO.Internal
 {
    using System;

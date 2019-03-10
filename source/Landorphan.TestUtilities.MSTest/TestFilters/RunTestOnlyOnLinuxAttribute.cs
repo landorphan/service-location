@@ -8,7 +8,7 @@ namespace Landorphan.TestUtilities.TestFilters
    /// only if the platform where the test is executed is Linux.
    /// Although: Other TestFilterAttributes may be applied to the class that alters this behavior.
    /// </summary>
-   [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+   [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
    public sealed class RunTestOnlyOnLinuxAttribute : TestFilterAttribute
    {
       /// <inheritdoc/>

@@ -17,6 +17,11 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 
    internal static class TestHardCodes
    {
+      internal const Int32 PathAlwaysTooLong = 32768;
+      // it could be something smaller based on the operating system.
+      internal const Int32 PathMaxDirLengthWithoutTrailingSepChar = PathMaxDirLengthWithTrailingSepChar - 1;
+      // it could be something smaller based on the operating system.
+      internal const Int32 PathMaxDirLengthWithTrailingSepChar = Int16.MaxValue;
       /* ****************************************************************************************************************************************************************
       Starting with apps running under the .NET Framework 4.6.2, the .NET Framework supports long paths in excess of 260 (or MAX_PATH) characters. 
       The conditions under which a PathTooLongException exception are thrown depend on the version of the .NET Framework that an app targets:
@@ -37,13 +42,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
 
       // Used to signal that the OSPlatform was neither OSX, Windows or Linux
       // should only ocure if a new OSPlatform is added to dotnet core support.
-      internal const string UnrecognizedPlatform = "The test was unable to recognize the OS Platform, the test result can not be validated.";
-      
-      internal const Int32 PathAlwaysTooLong = 32768;
-      // it could be something smaller based on the operating system.
-      internal const Int32 PathMaxDirLengthWithoutTrailingSepChar = PathMaxDirLengthWithTrailingSepChar - 1;
-      // it could be something smaller based on the operating system.
-      internal const Int32 PathMaxDirLengthWithTrailingSepChar = Int16.MaxValue;
+      internal const String UnrecognizedPlatform = "The test was unable to recognize the OS Platform, the test result can not be validated.";
 
       internal const String WindowsInvalidPathCharacter = "|";
 
@@ -54,7 +53,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
       internal static IEnumerable<Char> GetDirSepChars()
       {
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         return new[] { pathUtilities.DirectorySeparatorCharacter, pathUtilities.AltDirectorySeparatorCharacter };
+         return new[] {pathUtilities.DirectorySeparatorCharacter, pathUtilities.AltDirectorySeparatorCharacter};
       }
 
       private static void InitializeWindowsTestPaths()

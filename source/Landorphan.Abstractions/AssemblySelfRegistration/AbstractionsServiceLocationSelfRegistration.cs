@@ -9,7 +9,6 @@
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-
    /// <summary>
    /// Registers the services of this assembly with the <see cref="IocServiceLocator"/>.
    /// </summary>

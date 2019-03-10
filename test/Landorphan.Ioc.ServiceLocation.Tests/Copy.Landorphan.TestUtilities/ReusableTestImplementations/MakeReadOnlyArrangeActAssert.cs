@@ -1,5 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Landorphan.TestUtilities.ReusableTestImplementations
+﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
    using System;
    using System.Collections.Generic;
@@ -10,7 +9,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
    using System.Reflection;
    using FluentAssertions;
    using Landorphan.Common.Interfaces;
-   using Landorphan.TestUtilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable  InconsistentNaming

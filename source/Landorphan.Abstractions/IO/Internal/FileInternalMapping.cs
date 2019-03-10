@@ -86,7 +86,7 @@ namespace Landorphan.Abstractions.IO.Internal
       {
          contents.ArgumentNotNull(nameof(contents));
 
-         AppendAllLines(path, new[] { contents }, encoding);
+         AppendAllLines(path, new[] {contents}, encoding);
       }
 
       /// <inheritdoc/>

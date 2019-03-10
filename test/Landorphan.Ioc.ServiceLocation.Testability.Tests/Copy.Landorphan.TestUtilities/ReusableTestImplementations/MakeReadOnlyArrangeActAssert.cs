@@ -1,5 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Landorphan.TestUtilities.ReusableTestImplementations
+﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
    using System;
    using System.Collections.Generic;

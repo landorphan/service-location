@@ -1,7 +1,6 @@
 namespace Landorphan.TestUtilities
 {
    using System;
-   using System.Diagnostics.CodeAnalysis;
    using System.IO;
    using System.Linq;
    using System.Reflection;
@@ -25,18 +24,6 @@ namespace Landorphan.TestUtilities
    {
       private readonly String _originalCurrentDirectory;
       private Lazy<EventMonitor> _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
-
-      /// <summary>
-      /// Allows for a static OnTestInitialize method to be supplied that will be
-      /// called before every test instance execution.
-      /// </summary>
-      public static Action<TestBase> OnTestInitialize { get; set; }
-
-      /// <summary>
-      /// Allows for a static OnTestCleanup method to be supplied that will be called
-      /// after every test instance execution.
-      /// </summary>
-      public static Action<TestBase> OnTestCleanup { get; set; }
 
       /// <summary>
       /// Initializes a new instance of the <see cref="TestBase" /> class.
@@ -68,6 +55,18 @@ namespace Landorphan.TestUtilities
          var tms = IocServiceLocator.Resolve<ITestMockingService>();
          tms.ApplyTestInstanceMockingOnTopOfTestRunMocking();
       }
+
+      /// <summary>
+      /// Allows for a static OnTestCleanup method to be supplied that will be called
+      /// after every test instance execution.
+      /// </summary>
+      public static Action<TestBase> OnTestCleanup { get; set; }
+
+      /// <summary>
+      /// Allows for a static OnTestInitialize method to be supplied that will be
+      /// called before every test instance execution.
+      /// </summary>
+      public static Action<TestBase> OnTestInitialize { get; set; }
 
       /// <summary>
       /// Gets or sets the test context which provides information about and functionality for the current test run.
@@ -121,24 +120,6 @@ namespace Landorphan.TestUtilities
          OnTestInitialize?.Invoke(this);
       }
 
-      private void ApplyTestFilters()
-      {
-         MethodInfo methodInfo = this.GetType().GetMethod(this.TestContext.TestName);
-         if (methodInfo != null)
-         {
-            var testFilters = (from a in methodInfo.GetCustomAttributes()
-                                let tf = a as TestFilterAttribute
-                              where tf != null
-                             select tf);
-
-            bool suppress = testFilters.Any(tf => tf.ReturnInconclusiveTestResult());
-            if (suppress)
-            {
-               Assert.Inconclusive("This test has been suppressed by test filters evaluated against the runtime environment.");
-            }
-         }
-      }
-
       /// <summary>
       /// Called once after each test method invocation.
       /// </summary>
@@ -148,6 +129,7 @@ namespace Landorphan.TestUtilities
          {
             _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
          }
+
          OnTestCleanup?.Invoke(this);
       }
 
@@ -170,6 +152,25 @@ namespace Landorphan.TestUtilities
 
          // Cleanup any test specific mocks.
          tms.ResetIndividualTestContainers();
+      }
+
+      private void ApplyTestFilters()
+      {
+         MethodInfo methodInfo = this.GetType().GetMethod(this.TestContext.TestName);
+         if (methodInfo != null)
+         {
+            var testFilters = (
+               from a in methodInfo.GetCustomAttributes()
+               let tf = a as TestFilterAttribute
+               where tf != null
+               select tf);
+
+            bool suppress = testFilters.Any(tf => tf.ReturnInconclusiveTestResult());
+            if (suppress)
+            {
+               Assert.Inconclusive("This test has been suppressed by test filters evaluated against the runtime environment.");
+            }
+         }
       }
    }
 }

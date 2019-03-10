@@ -55,9 +55,10 @@
          {
             // relative
             _target.SetCurrentDirectory(_target.GetTemporaryDirectoryPath());
-            var path = _pathUtilities.Combine(_pathUtilities.Combine(
-               _pathUtilities.DirectorySeparatorString,
-               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative)));
+            var path = _pathUtilities.Combine(
+               _pathUtilities.Combine(
+                  _pathUtilities.DirectorySeparatorString,
+                  Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative)));
             try
             {
                _target.CreateDirectory(path);
@@ -534,7 +535,7 @@
             var expected = _tempPath;
             _target.SetCurrentDirectory(expected);
             var actual = _target.GetCurrentDirectory();
-            
+
             // On the Mac, the temp directory could be rerouted via a symlink
             // to a subdirectory (var) under the /private directory.
             // Here we attempt to determine if this is the case.
@@ -549,7 +550,7 @@
                var prefixLength = "/private".Length;
                actual = actual.Substring(prefixLength);
             }
-          
+
             actual.Should().NotBe(was);
             actual.Should().Be(expected);
          }
@@ -560,7 +561,7 @@
       {
          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
-         [Ignore]
+         [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_access_time()
          {
             var path = _pathUtilities.Combine(
@@ -591,7 +592,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         [Ignore]
+         [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_write_time()
          {
             var path = _pathUtilities.Combine(

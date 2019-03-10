@@ -63,7 +63,7 @@
          // "it (static) is guaranteed to be loaded and to have its fields initialized and its static constructor called before the class is referenced for the first time in your program. MSDocs"
          // This is not true!  (IocServiceLocator.t_RootContainer is null at this point, use IocContainer.RootContainer instead).
          t_singletonInstance = new IocServiceLocator();
-         
+
          var rootContainer = IocContainer.RootContainer;
          //'/'ILoggerFactory loggerFactory = new LoggerFactory();
          //'/'rootContainer.Registrar.RegisterInstance(loggerFactory);

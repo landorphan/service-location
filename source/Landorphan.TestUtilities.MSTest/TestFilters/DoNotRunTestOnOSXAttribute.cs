@@ -9,7 +9,9 @@ namespace Landorphan.TestUtilities.TestFilters
    /// if the platform where the test is executed is OSX.
    /// </summary>
    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
-   [SuppressMessage("SonarLint.CodeSmell", "S101: Name does not match camel case rules",
+   [SuppressMessage(
+      "SonarLint.CodeSmell",
+      "S101: Name does not match camel case rules",
       Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
    public sealed class DoNotRunTestOnOSXAttribute : TestFilterAttribute
    {

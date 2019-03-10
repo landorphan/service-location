@@ -7,7 +7,6 @@
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Common.Exceptions;
    using Landorphan.Ioc.ServiceLocation;
@@ -718,7 +717,8 @@
          {
             _target.Combine(Spaces + @"x" + Spaces).Should().Be(Spaces + @"x");
             _target.Combine(Spaces + @"x" + Spaces, Spaces + @"y" + Spaces)
-               .Should().Be(Spaces + @"x" + _pathUtilities.DirectorySeparatorString + Spaces + @"y");
+               .Should()
+               .Be(Spaces + @"x" + _pathUtilities.DirectorySeparatorString + Spaces + @"y");
          }
       }
 

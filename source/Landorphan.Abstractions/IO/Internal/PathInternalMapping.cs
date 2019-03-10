@@ -33,25 +33,13 @@ namespace Landorphan.Abstractions.IO.Internal
       public Char AltDirectorySeparatorCharacter => Path.AltDirectorySeparatorChar;
 
       /// <inheritdoc/>
-      public string AltDirectorySeparatorString
-      {
-         get 
-         { 
-            return AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
-         }
-      }
+      public String AltDirectorySeparatorString => AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
 
       /// <inheritdoc/>
       public Char DirectorySeparatorCharacter => Path.DirectorySeparatorChar;
 
       /// <inheritdoc/>
-      public string DirectorySeparatorString 
-      {
-         get 
-         {
-            return DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
-         }
-      }
+      public String DirectorySeparatorString => DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
 
       /// <inheritdoc/>
       public Char PathSeparatorCharacter => Path.PathSeparator;
@@ -476,6 +464,7 @@ namespace Landorphan.Abstractions.IO.Internal
                // GetRootPath returns / and \ on relative paths
                return true;
             }
+
             return root.IsNullOrEmpty();
          }
 

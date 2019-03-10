@@ -5,7 +5,6 @@
    using System.IO;
    using System.Linq;
    using FluentAssertions;
-   using Landorphan.Abstractions.Tests.IO.Internal.Directory;
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFilters;

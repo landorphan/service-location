@@ -24,6 +24,6 @@ namespace Landorphan.TestUtilities.TestFilters
       /// True if the test method should return
       /// Inconclusive otherwise false.
       /// </returns>
-      public abstract bool ReturnInconclusiveTestResult();
+      public abstract Boolean ReturnInconclusiveTestResult();
    }
 }

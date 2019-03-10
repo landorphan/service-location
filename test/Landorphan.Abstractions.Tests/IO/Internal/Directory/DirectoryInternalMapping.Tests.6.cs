@@ -19,6 +19,7 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_SetLastAccessTime : TestBase
       {
+#pragma warning disable CS0618 // Type or member is obsolete
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_lastAccessTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
@@ -33,7 +34,7 @@
          public void And_the_lastAccessTime_is_less_than_minimum_It_should_throw_ArgumentOutOfRangeException()
          {
             var lastAccessTime = _target.MinimumFileTimeAsDateTimeOffset.Add(TimeSpan.FromTicks(-1));
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.CreateDirectory(path);
             try
             {
@@ -51,7 +52,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -65,7 +66,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -143,7 +144,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -235,10 +236,10 @@
 
          [TestMethod]
          //[TestCategory(TestTiming.CheckIn)]
-         [Ignore]
+         [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_access_time()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_last_access_time));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_last_access_time));
             _target.CreateDirectory(path);
             try
             {
@@ -257,11 +258,13 @@
                _target.DeleteRecursively(path);
             }
          }
+#pragma warning restore CS0618 // Type or member is obsolete
       }
 
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_SetLastWriteTime : TestBase
       {
+#pragma warning disable CS0618 // Type or member is obsolete
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_lastWriteTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
@@ -276,7 +279,7 @@
          public void And_the_lastWriteTime_is_less_than_minimum_It_should_throw_ArgumentOutOfRangeException()
          {
             var lastWriteTime = _target.MinimumFileTimeAsDateTimeOffset.Add(TimeSpan.FromTicks(-1));
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.CreateDirectory(path);
             try
             {
@@ -294,7 +297,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -308,7 +311,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -386,7 +389,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -477,10 +480,10 @@
 
          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
-         [Ignore]
+         [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_write_time()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_last_write_time));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_set_the_last_write_time));
             _target.CreateDirectory(path);
             try
             {
@@ -499,6 +502,7 @@
                _target.DeleteRecursively(path);
             }
          }
+#pragma warning restore CS0618 // Type or member is obsolete
       }
 
       [TestClass]

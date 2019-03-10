@@ -4,7 +4,6 @@
    using System.Globalization;
    using System.IO;
    using System.Linq;
-   using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -18,7 +17,7 @@
 
    // ReSharper disable InconsistentNaming
 
-   public static partial class DirectoryInternalMapping_Tests 
+   public static partial class DirectoryInternalMapping_Tests
    {
       private const String Spaces = "   ";
       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
@@ -26,9 +25,8 @@
       private static readonly IFileInternalMapping _fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly DirectoryInternalMapping _target = new DirectoryInternalMapping();
-      private static String _tempPath =>
-         _directoryUtilities.GetTemporaryDirectoryPath();
-      
+
+      private static String TempPath { get; } = _directoryUtilities.GetTemporaryDirectoryPath();
 
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_Copy : TestBase
@@ -38,8 +36,8 @@
          [RunTestOnlyOnWindows]
          public void And_the_destDirName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _tempPath +
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = TempPath +
                               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
                               ":" +
                               Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -64,8 +62,8 @@
          [RunTestOnlyOnWindows]
          public void And_the_destDirName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             try
             {
@@ -86,8 +84,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_has_leading_spaces_It_should_not_throw()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = Spaces + _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = Spaces + _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
                _target.CreateDirectory(sourceDirName);
@@ -107,8 +105,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_has_trailing_spaces_It_should_not_throw()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + Spaces;
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + Spaces;
             try
             {
                _target.CreateDirectory(sourceDirName);
@@ -128,7 +126,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_is_empty_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = String.Empty;
             try
             {
@@ -149,7 +147,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_is_null_It_should_throw_ArgumentNullException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             String destDirName = null;
             try
             {
@@ -176,7 +174,7 @@
                return;
             }
 
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
             try
@@ -198,8 +196,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_is_too_long_It_should_throw_PathTooLongException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
             try
             {
                _target.CreateDirectory(sourceDirName);
@@ -219,7 +217,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_is_white_space_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             const String DestDirName = " \t ";
 
             Action throwingAction = () => _target.Copy(sourceDirName, DestDirName);
@@ -232,7 +230,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_is_within_SourceDirName_It_should_throw_IOException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = _pathUtilities.Combine(sourceDirName, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
@@ -256,8 +254,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_matches_an_existing_directory_It_should_not_throw()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             try
             {
                _target.CreateDirectory(sourceDirName);
@@ -278,7 +276,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_matches_an_existing_file_It_should_throw_IOException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = _fileInternalMapping.CreateTemporaryFile();
             try
             {
@@ -303,7 +301,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destDirName_matches_sourceDirName_It_should_not_throw()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = sourceDirName;
             try
             {
@@ -325,7 +323,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_destDirName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             const String DestDirName = ":";
             try
             {
@@ -348,7 +346,7 @@
          // Test Setup not running on XPlat bases.
          public void And_the_sourceDirName_and_DestDirName_do_not_share_a_common_root_It_should_not_throw()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var destDirName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.LocalFolderRoot, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(sourceDirName);
@@ -370,8 +368,8 @@
          [RunTestOnlyOnWindows]
          public void And_the_sourceDirName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            var destDirName = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var sourceDirName = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var destDirName = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -384,8 +382,8 @@
          [RunTestOnlyOnWindows]
          public void And_the_sourceDirName_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -397,8 +395,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceDirName_does_not_exist_It_should_throw_DirectoryNotFoundException()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -410,8 +408,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceDirName_has_leading_spaces_It_should_not_throw()
          {
-            var sourceDirName = Spaces + _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = Spaces + _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -433,8 +431,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceDirName_has_trailing_spaces_It_should_not_throw()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + Spaces;
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + Spaces;
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -457,7 +455,7 @@
          public void And_the_sourceDirName_is_empty_It_should_throw_ArgumentException()
          {
             var sourceDirName = String.Empty;
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -470,7 +468,7 @@
          public void And_the_sourceDirName_is_null_It_should_throw_ArgumentNullException()
          {
             String sourceDirName = null;
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             // ReSharper disable once ExpressionIsAlwaysNull
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
@@ -490,7 +488,7 @@
 
             var sourceDirName = _pathUtilities.Combine(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DirectoryExists(TestHardCodes.WindowsLocalTestPaths.UnmappedDrive).Should().BeFalse();
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -502,8 +500,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceDirName_is_too_long_It_should_throw_PathTooLongException()
          {
-            var sourceDirName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(sourceDirName, destDirName);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -516,7 +514,7 @@
          public void And_the_sourceDirName_is_white_space_It_should_throw_ArgumentException()
          {
             const String SourceDirName = " \t ";
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(SourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -529,7 +527,7 @@
          public void And_the_sourceDirName_matches_an_existing_file_It_should_throw_DirectoryNotFoundException()
          {
             var sourceDirName = _fileInternalMapping.CreateTemporaryFile();
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -553,7 +551,7 @@
          public void And_the_sourceDirName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String SourceDirName = ":";
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Copy(SourceDirName, destDirName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -597,8 +595,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_copy_the_directory()
          {
-            var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destDirName = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
             {
@@ -633,7 +631,7 @@
          public void And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_directory()
          {
             // HAPPY PATH TEST:
-            var firstDirCreatedUnderTemp = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var firstDirCreatedUnderTemp = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             var path = _pathUtilities.Combine(firstDirCreatedUnderTemp, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
@@ -679,7 +677,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_directory_already_exists_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             // CreateDirectory()
             // arrange
@@ -716,7 +714,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_directory_does_not_exist_It_should_create_the_directory()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DirectoryExists(path).Should().BeTrue();
@@ -732,7 +730,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -750,7 +748,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -786,7 +784,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             // when tested, the existence of a trailing backslash made no difference
-            var path = String.Format(CultureInfo.InvariantCulture, @"   {0}\{1}\", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = String.Format(CultureInfo.InvariantCulture, @"   {0}\{1}\", TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DirectoryExists(path.Trim()).Should().BeTrue();
@@ -802,7 +800,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             // when tested, the existence of a trailing backslash made no difference
-            var path = String.Format(CultureInfo.InvariantCulture, @"{0}\{1}\   ", _tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = String.Format(CultureInfo.InvariantCulture, @"{0}\{1}\   ", TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DirectoryExists(path.Trim()).Should().BeTrue();
@@ -904,7 +902,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.CreateDirectory(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -939,7 +937,7 @@
          public void And_the_path_matches_an_existing_directory_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            var path = _tempPath;
+            var path = TempPath;
             _target.CreateDirectory(path);
 
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
@@ -994,7 +992,7 @@
          public void It_should_create_the_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_absolute));
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(TempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -1011,7 +1009,7 @@
          public void It_should_create_the_directory_relative()
          {
             // relative
-            _target.SetCurrentDirectory(_tempPath);
+            _target.SetCurrentDirectory(TempPath);
             var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative);
             try
             {
@@ -1073,7 +1071,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_directory_is_empty_It_should_delete_the_directory()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DeleteEmpty(path);
@@ -1085,7 +1083,7 @@
          public void And_the_directory_is_not_empty_It_should_throw_IOException()
          {
             var fileMapper = new FileInternalMapping();
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             // .Net Standard removed the period in empty. and changed it to empty : (path)
             var matchRegEx = ".*[Dd]irectory (is )?not empty.*";
@@ -1149,6 +1147,7 @@
                {
                   throw new NotSupportedException(TestHardCodes.UnrecognizedPlatform);
                }
+
                _target.DirectoryExists(path).Should().BeTrue();
             }
             finally
@@ -1162,7 +1161,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath +
+            var path = TempPath +
                        Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) +
                        ":" +
                        Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -1178,7 +1177,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.DeleteEmpty(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1190,7 +1189,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteEmpty(path);
 
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
@@ -1200,7 +1199,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DeleteEmpty(Spaces + path);
@@ -1211,7 +1210,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DeleteEmpty(path + Spaces);
@@ -1261,7 +1260,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.DeleteEmpty(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -1285,7 +1284,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_matches_an_existing_file_It_should_throw_IOException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             _target.CreateDirectory(path);
@@ -1354,7 +1353,7 @@
          public void It_should_delete_an_empty_directory_absolute()
          {
             // absolute
-            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(_tempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_absolute));
+            var path = _pathUtilities.Combine(_pathUtilities.GetFullPath(TempPath), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_absolute));
             try
             {
                _target.CreateDirectory(path);
@@ -1373,7 +1372,7 @@
          public void It_should_delete_an_empty_directory_relative()
          {
             // relative
-            _target.SetCurrentDirectory(_tempPath);
+            _target.SetCurrentDirectory(TempPath);
             var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_an_empty_directory_relative);
             try
             {

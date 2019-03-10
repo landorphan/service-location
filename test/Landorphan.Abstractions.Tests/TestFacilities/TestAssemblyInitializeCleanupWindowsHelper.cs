@@ -1,7 +1,6 @@
 ﻿namespace Landorphan.Abstractions.Tests.TestFacilities
 {
    using System;
-   using System.Collections.Generic;
    using System.Diagnostics;
    using System.Diagnostics.CodeAnalysis;
    using System.Runtime.InteropServices;
@@ -352,7 +351,7 @@
          // parallel knowledge/maintenance here
          var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
 
-         string localFolderRoot = null;
+         String localFolderRoot = null;
          if (RuntimePlatform.IsWindows())
          {
             localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");

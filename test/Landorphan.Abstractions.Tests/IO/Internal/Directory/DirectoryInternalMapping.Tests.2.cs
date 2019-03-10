@@ -31,7 +31,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -54,7 +54,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -106,7 +106,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
@@ -156,7 +156,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
@@ -276,7 +276,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -455,7 +455,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_files()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
@@ -493,7 +493,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -516,7 +516,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -568,7 +568,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -618,7 +618,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -739,7 +739,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -939,7 +939,7 @@
          public void It_should_return_the_known_FileSystemEntries()
          {
             var outerFullPath =
-               _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
+               _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),

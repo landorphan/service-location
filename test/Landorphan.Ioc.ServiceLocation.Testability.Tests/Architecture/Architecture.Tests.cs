@@ -3,9 +3,9 @@
    using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
-   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
    using Landorphan.Ioc.ServiceLocation.Testability.Tests.TestFacilities;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming

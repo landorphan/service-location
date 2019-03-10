@@ -1,14 +1,6 @@
 ﻿namespace Landorphan.Abstractions.Tests.Architecture
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Diagnostics;
-   using System.Runtime.InteropServices;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
 

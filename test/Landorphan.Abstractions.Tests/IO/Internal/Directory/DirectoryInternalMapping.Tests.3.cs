@@ -27,7 +27,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetCreationTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -40,7 +40,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetCreationTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -114,7 +114,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetCreationTime(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -204,7 +204,7 @@
          {
             // NOTE: when using %temp%, SetCreationTime was running afoul of the following IOException:
             // The process cannot access the file 'c:\temp' because it is being used by another process.
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_creation_time));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_get_the_creation_time));
             _target.CreateDirectory(path);
             try
             {
@@ -226,10 +226,10 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_current_directory()
          {
-            var path = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_tempPath);
+            var path = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(TempPath);
             _target.SetCurrentDirectory(path);
             var actual = _target.GetCurrentDirectory();
-            
+
             // On the Mac, the temp directory could be rerouted via a symlink
             // to a subdirectory (var) under the /private directory.
             // Here we attempt to determine if this is the case.
@@ -244,7 +244,7 @@
                var prefixLength = "/private".Length;
                actual = actual.Substring(prefixLength);
             }
-            
+
             actual.Should().Be(path);
          }
 
@@ -267,7 +267,7 @@
          {
             const String expectedMessage = "The path is not well-formed (':' used outside the drive label).\r\nParameter name: path";
 
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetDirectories(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -290,7 +290,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetDirectories(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -345,7 +345,7 @@
             // TODO: create a test against an existing directory that is left padded with children that are not left-padded.
             // Does the left-padding on the parent still cascade to the results?
 
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -399,7 +399,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -519,7 +519,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetDirectories(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -718,7 +718,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_subdirectories()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -756,7 +756,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.GetFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -779,7 +779,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.GetFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -831,7 +831,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
@@ -881,7 +881,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
@@ -1001,7 +1001,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetFiles(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -1180,7 +1180,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_files()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),

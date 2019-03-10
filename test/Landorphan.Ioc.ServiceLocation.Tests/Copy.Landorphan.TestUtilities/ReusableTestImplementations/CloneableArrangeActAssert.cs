@@ -1,5 +1,4 @@
-﻿// ReSharper disable once CheckNamespace
-namespace Landorphan.TestUtilities.ReusableTestImplementations
+﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
    using System;
    using System.Diagnostics.CodeAnalysis;
@@ -16,6 +15,14 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
    public abstract class CloneableArrangeActAssert<T> : ArrangeActAssert where T : ICloneable
    {
       /// <summary>
+      /// Descendants should assign a value before calling the test implementation.
+      /// </summary>
+      /// <value>
+      /// The target.
+      /// </value>
+      protected abstract T Target { get; set; }
+
+      /// <summary>
       /// Implementation of the test of <see cref="ICloneable.Clone"/>.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
@@ -30,13 +37,5 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
          actualAsIEquatable?.Equals(Target).Should().BeTrue();
          actualAsIEquatable?.Should().NotBeSameAs(Target);
       }
-
-      /// <summary>
-      /// Descendants should assign a value before calling the test implementation.
-      /// </summary>
-      /// <value>
-      /// The target.
-      /// </value>
-      protected abstract T Target { get; set; }
    }
 }
