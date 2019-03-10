@@ -53,7 +53,7 @@
             // relative
             _target.SetCurrentDirectory(_target.GetTemporaryDirectoryPath());
             var path = _pathUtilities.Combine(_pathUtilities.Combine(
-               _pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
+               _pathUtilities.DirectorySeparatorString,
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_create_the_directory_relative)));
             try
             {
@@ -393,7 +393,23 @@
          public void It_should_get_the_current_directory()
          {
             _target.SetCurrentDirectory(_tempPath);
-            _target.GetCurrentDirectory().Should().Be(_tempPath);
+            var actual = _target.GetCurrentDirectory();
+            // On the Mac, the temp directory could be rerouted via a symlink
+            // to a subdirectory (var) under the /private directory.
+            // Here we attempt to determine if this is the case.
+            //
+            // FURTHER:
+            // As Mac (either APFS or HFS) can be either case sensitive or case 
+            // insensitive, a case insensitive comparision is performed here.
+            if (RuntimePlatform.IsOSX() &&
+                _tempPath.StartsWith("/var", StringComparison.OrdinalIgnoreCase) &&
+                actual.StartsWith("/private/var", StringComparison.OrdinalIgnoreCase))
+            {
+               var prefixLength = "/private".Length;
+               actual = actual.Substring(prefixLength);
+            }
+
+            actual.Should().Be(_tempPath);
          }
       }
 
@@ -515,7 +531,22 @@
             var expected = _tempPath;
             _target.SetCurrentDirectory(expected);
             var actual = _target.GetCurrentDirectory();
-
+            
+            // On the Mac, the temp directory could be rerouted via a symlink
+            // to a subdirectory (var) under the /private directory.
+            // Here we attempt to determine if this is the case.
+            //
+            // FURTHER:
+            // As Mac (either APFS or HFS) can be either case sensitive or case 
+            // insensitive, a case insensitive comparision is performed here.
+            if (RuntimePlatform.IsOSX() &&
+                expected.StartsWith("/var", StringComparison.OrdinalIgnoreCase) &&
+                actual.StartsWith("/private/var", StringComparison.OrdinalIgnoreCase))
+            {
+               var prefixLength = "/private".Length;
+               actual = actual.Substring(prefixLength);
+            }
+          
             actual.Should().NotBe(was);
             actual.Should().Be(expected);
          }

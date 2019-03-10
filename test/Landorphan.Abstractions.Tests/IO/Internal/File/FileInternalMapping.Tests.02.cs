@@ -57,6 +57,8 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
+         // This behvior is not present on Linux/Unix OSs
          public void And_the_extension_is_empty_or_spaces_It_should_create_a_file_without_an_extension()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
@@ -417,6 +419,8 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
+         // Linux/Unix do not consider a file with an extension and one without equivalent
          public void And_the_extension_is_empty_or_spaces_It_should_create_a_file_without_an_extension()
          {
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
