@@ -26,7 +26,9 @@
       private static readonly IFileInternalMapping _fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
       private static readonly DirectoryInternalMapping _target = new DirectoryInternalMapping();
-      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+      private static String _tempPath =>
+         _directoryUtilities.GetTemporaryDirectoryPath();
+      
 
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_Copy : TestBase
@@ -342,6 +344,8 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
+         // Test Setup not running on XPlat bases.
          public void And_the_sourceDirName_and_DestDirName_do_not_share_a_common_root_It_should_not_throw()
          {
             var sourceDirName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));

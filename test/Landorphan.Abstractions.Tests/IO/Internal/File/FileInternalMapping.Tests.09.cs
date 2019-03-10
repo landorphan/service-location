@@ -503,7 +503,8 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         // [TestCategory(TestTiming.CheckIn)]
+         [Ignore]
          public void It_should_set_the_last_access_time()
          {
             var path = _target.CreateTemporaryFile();
@@ -756,7 +757,8 @@
          }
 
          [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
+         // [TestCategory(TestTiming.CheckIn)]
+         [Ignore]
          public void It_should_set_the_last_write_time()
          {
             var path = _target.CreateTemporaryFile();
