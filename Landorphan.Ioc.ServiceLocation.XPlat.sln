@@ -8,39 +8,32 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F10433A2-DCDF-476B-98D2-F3D9939EB5A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2B05C482-3783-4E78-B382-561792F5197B}"
-ProjectSection(SolutionItems) = preProject
-	build\Get-SourceCSharpProjects.ps1 = build\Get-SourceCSharpProjects.ps1
-	build\Get-SourceCSharpProjectsNetCore.ps1 = build\Get-SourceCSharpProjectsNetCore.ps1
-	build\Get-SourceCSharpProjectsNetFx.ps1 = build\Get-SourceCSharpProjectsNetFx.ps1
-	build\Get-SourceCSharpProjectsNetStd.ps1 = build\Get-SourceCSharpProjectsNetStd.ps1
-	build\Get-TestCSharpProjects.ps1 = build\Get-TestCSharpProjects.ps1
-	build\Get-TestCSharpProjectsNetCore.ps1 = build\Get-TestCSharpProjectsNetCore.ps1
-	build\Get-TestCSharpProjectsNetFx.ps1 = build\Get-TestCSharpProjectsNetFx.ps1
-	build\Remove-BuildVariables.ps1 = build\Remove-BuildVariables.ps1
-	build\Set-BuildVariables.ps1 = build\Set-BuildVariables.ps1
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build\.gitignore = build\.gitignore
+		build\CSharpBuild.psd1 = build\CSharpBuild.psd1
+		build\CSharpBuild.psm1 = build\CSharpBuild.psm1
+		build\LICENSE = build\LICENSE
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildScripts", "BuildScripts", "{F4EC09B2-5F75-407D-AD71-4527BE778A49}"
-ProjectSection(SolutionItems) = preProject
-	build\BuildScripts\Build-Clean.ps1 = build\BuildScripts\Build-Clean.ps1
-	build\BuildScripts\Build-Debug.ps1 = build\BuildScripts\Build-Debug.ps1
-	build\BuildScripts\Build-Release.ps1 = build\BuildScripts\Build-Release.ps1
-	build\BuildScripts\Get-TestBinaryDebug.ps1 = build\BuildScripts\Get-TestBinaryDebug.ps1
-	build\BuildScripts\Get-TestBinaryRelease.ps1 = build\BuildScripts\Get-TestBinaryRelease.ps1
-	build\BuildScripts\README.md = build\BuildScripts\README.md
-	build\BuildScripts\Test-Debug.ps1 = build\BuildScripts\Test-Debug.ps1
-	build\BuildScripts\Test-Release.ps1 = build\BuildScripts\Test-Release.ps1
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build\BuildScripts\Build-Clean.ps1 = build\BuildScripts\Build-Clean.ps1
+		build\BuildScripts\Build-Debug.ps1 = build\BuildScripts\Build-Debug.ps1
+		build\BuildScripts\Build-Release.ps1 = build\BuildScripts\Build-Release.ps1
+		build\BuildScripts\README.md = build\BuildScripts\README.md
+		build\BuildScripts\Test-Debug.ps1 = build\BuildScripts\Test-Debug.ps1
+		build\BuildScripts\Test-Release.ps1 = build\BuildScripts\Test-Release.ps1
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF33A87D-5CD8-4335-A032-3D4638C23FE2}"
-ProjectSection(SolutionItems) = preProject
-	AssemblyVersion.cs = AssemblyVersion.cs
-	Directory.Build.props = Directory.Build.props
-	LICENSE = LICENSE
-	README.md = README.md
-	Resharper.Todo.Explorer.md = Resharper.Todo.Explorer.md
-	TODO.md = TODO.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		AssemblyVersion.cs = AssemblyVersion.cs
+		Directory.Build.props = Directory.Build.props
+		LICENSE = LICENSE
+		README.md = README.md
+		Resharper.Todo.Explorer.md = Resharper.Todo.Explorer.md
+		TODO.md = TODO.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation", "source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj", "{EDDD5388-8B57-4F5C-B394-2C48A27CB736}"
 EndProject
@@ -55,13 +48,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Testability.Tests", "test\Landorphan.Ioc.ServiceLocation.Testability.Tests\Landorphan.Ioc.ServiceLocation.Testability.Tests.csproj", "{2C29FBD0-DE06-4DCB-A5C7-77A3AD6A4BF8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690-4432-4990-A9A0-BBB16EB45438}"
-ProjectSection(SolutionItems) = preProject
-	build\NuGet\landorphan.abstractions.nuspec = build\NuGet\landorphan.abstractions.nuspec
-	build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
-	build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
-	build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
-	build\NuGet\nuget.exe = build\NuGet\nuget.exe
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build\NuGet\landorphan.abstractions.nuspec = build\NuGet\landorphan.abstractions.nuspec
+		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
+		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
+		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
+		build\NuGet\nuget.exe = build\NuGet\nuget.exe
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
 	ProjectSection(SolutionItems) = preProject
@@ -89,38 +82,33 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JetBrains", "JetBrains", "{AF862719-838D-45D9-A9B2-9C3D614DC3F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rider", "Rider", "{92997536-A386-4756-A1F6-7F3871F97B5A}"
-ProjectSection(SolutionItems) = preProject
-	build\JetBrains\Rider\JetBrains.Rider.Settings.FromLinux.zip = build\JetBrains\Rider\JetBrains.Rider.Settings.FromLinux.zip
-	build\JetBrains\Rider\JetBrains.Rider.Settings.FromWindows.jar = build\JetBrains\Rider\JetBrains.Rider.Settings.FromWindows.jar
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build\JetBrains\Rider\JetBrains.Rider.Settings.FromLinux.zip = build\JetBrains\Rider\JetBrains.Rider.Settings.FromLinux.zip
+		build\JetBrains\Rider\JetBrains.Rider.Settings.FromWindows.jar = build\JetBrains\Rider\JetBrains.Rider.Settings.FromWindows.jar
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layout", "Layout", "{50462F38-BCBD-454D-BF3D-8EDF11D1CFF5}"
-ProjectSection(SolutionItems) = preProject
-	build\JetBrains\Layout\ResharperLayout.Current.xml = build\JetBrains\Layout\ResharperLayout.Current.xml
-	build\JetBrains\Layout\ResharperLayout.Editing.xml = build\JetBrains\Layout\ResharperLayout.Editing.xml
-	build\JetBrains\Layout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml
-	build\JetBrains\Layout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml
-	build\JetBrains\Layout\ResharperLayoutFull.2018.3.2.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.2.WithoutRegions.xml
-	build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build\JetBrains\Layout\ResharperLayout.Current.xml = build\JetBrains\Layout\ResharperLayout.Current.xml
+		build\JetBrains\Layout\ResharperLayout.Editing.xml = build\JetBrains\Layout\ResharperLayout.Editing.xml
+		build\JetBrains\Layout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml
+		build\JetBrains\Layout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml
+		build\JetBrains\Layout\ResharperLayoutFull.2018.3.2.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.2.WithoutRegions.xml
+		build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{FDC127F3-82DF-496D-AECD-F6CC15369685}"
-ProjectSection(SolutionItems) = preProject
-	build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset = build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset
-	build\CodeAnalysis\Copy-DefaultProductionRuleset-NetCore-ToProjects.ps1 = build\CodeAnalysis\Copy-DefaultProductionRuleset-NetCore-ToProjects.ps1
-	build\CodeAnalysis\Copy-DefaultProductionRuleset-NetFx-ToProjects.ps1 = build\CodeAnalysis\Copy-DefaultProductionRuleset-NetFx-ToProjects.ps1
-	build\CodeAnalysis\Copy-DefaultProductionRuleset-NetStd-ToProjects.ps1 = build\CodeAnalysis\Copy-DefaultProductionRuleset-NetStd-ToProjects.ps1
-	build\CodeAnalysis\Copy-DefaultTestRuleset-NetCore-ToProjects.ps1 = build\CodeAnalysis\Copy-DefaultTestRuleset-NetCore-ToProjects.ps1
-	build\CodeAnalysis\Copy-DefaultTestRuleset-NetFx-ToProjects.ps1 = build\CodeAnalysis\Copy-DefaultTestRuleset-NetFx-ToProjects.ps1
-	build\CodeAnalysis\Copy-FxCop-Rulesets.ps1 = build\CodeAnalysis\Copy-FxCop-Rulesets.ps1
-	build\CodeAnalysis\CustomDictionary.xml = build\CodeAnalysis\CustomDictionary.xml
-	build\CodeAnalysis\Default.Production.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Production.NetCore.FxCop.15.0.WithSonarLint.ruleset
-	build\CodeAnalysis\Default.Production.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Production.NetFx.FxCop.15.0.WithSonarLint.ruleset
-	build\CodeAnalysis\Default.Production.NetStd.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Production.NetStd.FxCop.15.0.WithSonarLint.ruleset
-	build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset
-	build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset
-	build\CodeAnalysis\README.md = build\CodeAnalysis\README.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset = build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Copy-FxCopRuleset.ps1 = build\CodeAnalysis\Copy-FxCopRuleset.ps1
+		build\CodeAnalysis\CustomDictionary.xml = build\CodeAnalysis\CustomDictionary.xml
+		build\CodeAnalysis\Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\README.md = build\CodeAnalysis\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
