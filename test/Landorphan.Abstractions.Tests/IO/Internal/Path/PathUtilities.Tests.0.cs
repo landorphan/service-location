@@ -546,6 +546,8 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
+         // NOTE, this test has too many Windows specific checks, it needs to be redone for XPlat
          public void It_should_not_collapse_multiple_directory_separator_characters()
          {
             // TODO: how is @"\\" handled

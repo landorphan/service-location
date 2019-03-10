@@ -14,7 +14,7 @@
 
    public static class ExecutionEnvironment_Tests
    {
-      [TestClass]
+      //[TestClass]
       public class When_executing_tests_in_windows : TestBase
       {
          //[TestMethod]
