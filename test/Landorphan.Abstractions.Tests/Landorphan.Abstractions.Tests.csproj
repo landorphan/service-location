@@ -31,6 +31,10 @@
    </PropertyGroup>
    <ItemGroup>
      <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <None Remove="Specifications\Model.feature" />
+   </ItemGroup>
+   <ItemGroup>
+     <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\WindowsPaths.feature.cs" />
    </ItemGroup>
    <ItemGroup>
      <AdditionalFiles Include="Landorphan.Abstractions.Tests.NetCore.ruleset" />
@@ -45,6 +49,9 @@
       <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
       <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
       <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+      <PackageReference Include="SpecFlow" Version="3.0.177-beta" />
+      <PackageReference Include="SpecFlow.MsTest" Version="3.0.177-beta" />
+      <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.177-beta" />
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
 
       <PackageReference Include="Landorphan.Common" Version="0.9.546" />
@@ -84,11 +91,45 @@
    </ItemGroup>
 
    <ItemGroup>
+     <Compile Update="Specifications\IO\Path\WindowsPaths.feature.cs">
+       <DesignTime>True</DesignTime>
+       <AutoGen>True</AutoGen>
+       <DependentUpon>WindowsPaths.feature</DependentUpon>
+     </Compile>
+     <Compile Update="Specifications\Model.feature.cs">
+       <DesignTime>True</DesignTime>
+       <AutoGen>True</AutoGen>
+       <DependentUpon>Model.feature</DependentUpon>
+     </Compile>
+     <Compile Update="StepDefinitions\DoNothingSteps.cs">
+       <SubType>Code</SubType>
+     </Compile>
+     <Compile Update="StepDefinitions\PathSteps.cs">
+       <SubType>Code</SubType>
+     </Compile>
+   </ItemGroup>
+
+   <ItemGroup>
       <None Update="Arrange-LocalFiles.ps1">
          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Specifications\IO\Path\WindowsPaths.feature">
+        <LastGenOutput>WindowsPaths.feature.cs</LastGenOutput>
       </None>
       <None Update="Teardown-LocalFiles.ps1">
          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+   </ItemGroup>
+
+   <ItemGroup>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPaths.feature">
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+       <LastGenOutput>WindowsPaths.feature.cs</LastGenOutput>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\Model.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>Model.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
    </ItemGroup>
 </Project>
