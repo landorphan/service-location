@@ -37,6 +37,7 @@ Examples:
 | Long UNC           | \\?\UNC\server\share\dir\file.txt | 4      | {Server} server | {Segment} share       | {Segment} dir      | {Segment} file.txt | Absolute | Legal       |
 | Self Relative      | .\dir\file.txt                    | 3      | {Self} .        | {Segment} dir         | {Segment} file.txt | (null)             | Relative | Legal       |
 | Parent Relative    | ..\dir\file.txt                   | 3      | {Parent} ..     | {Segment} dir         | {Segment} file.txt | (null)             | Relative | Legal       |
+# Empty segments will show up in the non-normalized for but will not be present in the normalized form
 | Empty Abs Segment  | C:\dir\\file.txt                  | 4      | {Root} C        | {Segment} dir         | {Empty} (empty)    | {Segment} file.txt | Absolute | Legal       |
 | Empty Rel Segment  | .\dir\\file.txt                   | 4      | {Self} .        | {segment} dir         | {Empty} (empty)    | {Segment} file.txt | Relative | Legal       |
 | Relative           | dir\file.txt                      | 2      | {Segment} dir   | {Segment} file.txt    | (null)             | (null)             | Relative | Legal       |

@@ -1,10 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Landorphan.Abstractions.NIO.Paths.Internal
 {
-   class PathTokenizer
+   internal abstract class PathTokenizer
    {
+      private char[] path;
+      private int loc = 0;
+
+      protected PathTokenizer(string path)
+      {
+      }
    }
 }
