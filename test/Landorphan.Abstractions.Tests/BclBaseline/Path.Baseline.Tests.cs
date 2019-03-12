@@ -1,10 +1,11 @@
-﻿namespace Landorphan.Abstractions.Tests.BclBaseline
+namespace Landorphan.Abstractions.Tests.BclBaseline
 {
    using System;
    using System.Collections.Generic;
    using System.Collections.Immutable;
    using System.Diagnostics;
    using System.IO;
+   using System.Runtime.InteropServices;
    using FluentAssertions;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.Tests.TestFacilities;
@@ -518,36 +519,55 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void Path_GetInvalidFileNameChars_Windows_Behavior()
+         public void Path_GetInvalidFileNameChars_Behavior()
          {
             // Path: GetInvalidFileNameChars
-            // Util: GetInvalidFileNameCharacters 
-            var actual = Path.GetInvalidFileNameChars();
-            var expected = new HashSet<Char>(
-               new[]
-               {
-                  '"', '<', '>', '|', Char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011',
-                  '\x0012', '\x0013', '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F', ':', '*', '?', '\\', '/'
-               });
+            // Util: GetInvalidFileNameCharacters
+            HashSet<Char> expected;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               expected = new HashSet<Char>(
+                  new[]
+                  {
+                     '"', '<', '>', '|', Char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011',
+                     '\x0012', '\x0013', '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F', ':', '*', '?', '\\', '/'
+                  });
+            }
+            else
+            {
+               // null and directory separator
+               expected = new HashSet<Char>(new[] { Char.MinValue, '/' });
+            }
 
+            var actual = Path.GetInvalidFileNameChars();
             actual.Should().OnlyContain(element => expected.Contains(element));
             util.GetInvalidFileNameCharacters().Should().OnlyContain(element => expected.Contains(element));
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
-         public void Path_GetInvalidPathChars_Windows_Behavior()
+         public void Path_GetInvalidPathChars_Behavior()
          {
             // Path: GetInvalidPathChars
-            // Util: GetInvalidPathCharacters 
-            var actual = Path.GetInvalidPathChars();
-            var expected = new HashSet<Char>(
-               new[]
-               {
-                  '|', Char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011', '\x0012', '\x0013',
-                  '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F'
-               });
+            // Util: GetInvalidPathCharacters
+            HashSet<Char> expected;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+               expected = new HashSet<Char>(
+                  new[]
+                  {
+                     '|', Char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011', '\x0012',
+                     '\x0013',
+                     '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F'
+                  });
+            }
+            else
+            {
+               // null 
+               expected = new HashSet<Char>(new[] { Char.MinValue });
+            }
 
+            var actual = Path.GetInvalidPathChars();
             actual.Should().OnlyContain(element => expected.Contains(element));
             util.GetInvalidPathCharacters().Should().OnlyContain(element => expected.Contains(element));
          }
