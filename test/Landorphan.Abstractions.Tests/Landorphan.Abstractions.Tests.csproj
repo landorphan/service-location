@@ -31,6 +31,7 @@
    </PropertyGroup>
    <ItemGroup>
      <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <None Remove="Specifications\IO\Path\Model.feature" />
      <None Remove="Specifications\Model.feature" />
    </ItemGroup>
    <ItemGroup>
@@ -91,6 +92,11 @@
    </ItemGroup>
 
    <ItemGroup>
+     <Compile Update="Specifications\IO\Path\Model.feature.cs">
+       <DesignTime>True</DesignTime>
+       <AutoGen>True</AutoGen>
+       <DependentUpon>Model.feature</DependentUpon>
+     </Compile>
      <Compile Update="Specifications\IO\Path\WindowsPaths.feature.cs">
        <DesignTime>True</DesignTime>
        <AutoGen>True</AutoGen>
@@ -122,6 +128,11 @@
    </ItemGroup>
 
    <ItemGroup>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\Model.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>Model.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
      <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPaths.feature">
        <Generator>SpecFlowSingleFileGenerator</Generator>
        <LastGenOutput>WindowsPaths.feature.cs</LastGenOutput>

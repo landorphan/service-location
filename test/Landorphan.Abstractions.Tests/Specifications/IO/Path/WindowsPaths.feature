@@ -5,7 +5,7 @@ Feature: WindowsPaths
 	I want to be able to parse paths on multiple platforms correctly
 
 Scenario Outline: Drive Rooted Paths
-	Given I have the following path
+	Given I have the following path <Path>
 	 When I parse the path as a Windows Path
 	 Then I should receive a path object
 	  And the segment "root" should be <Root>

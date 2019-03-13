@@ -9,8 +9,8 @@ namespace Landorphan.Abstractions.Tests.StepDefinitions
    [Binding]
    public sealed class PathSteps
    {
-      [Given(@"I have the following path")]
-      public void GivenIHaveTheFollowingPath()
+      [Given(@"I have the following path: (.*)")]
+      public void GivenIHaveTheFollowingPath(string path)
       {
       }
 
