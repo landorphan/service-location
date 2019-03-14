@@ -8,39 +8,39 @@ namespace Landorphan.Abstractions.NIO.Paths.Internal
    using System.Xml.Schema;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   internal enum CharacterType
+   internal class WindowsPathTokenizer : PathTokenizer
    {
-      Null,
-      End,
-      PathSeparator,
-      Colon,
-      QuestionMark,
-      Period,
-      IllegalCharacter,
-      LegalCharacter
-   }
 
-   internal struct ParsedCharacter
-   {
-      public ParsedCharacter(CharacterType characterType, char character)
+
+      public WindowsPathTokenizer(string path) : base(PreParsePath(path))
       {
-         this.CharacterType = characterType;
-         this.Character = character;
+
       }
 
-      public CharacterType CharacterType { get; private set; }
+      internal static string PreParsePath(string path)
+      {
+         if (path == null)
+         {
+            return null;
+         }
 
-      public char Character { get; private set; }
-   }
-
-   internal enum WindowsParseState
-   {
-      Start,
-      InSegment
-   }
-
-   internal class WindowsPathStateMachine
-   {
+         if (path.StartsWith(@"\\?\UNC\"))
+         {
+            // Converts the (\\?\UNC\server\...) pattern into (UNC:server\...)
+            path = "UNC:" + path.Substring(8);
+         }
+         else if (path.StartsWith(@"\\?\", StringComparison.Ordinal))
+         {
+            // Converts the (\\?\C:...) pattern into (C:...)
+            path = path.Substring(4);
+         }
+         else if (path.StartsWith(@"\\"))
+         {
+            // Converts the (\\server\...) pattern into (UNC:server\...)
+            path = "UNC:" + path.Substring(2);
+         }
+         return path.Replace('\\', '/');
+      }
       //private static readonly ParsedCharacter End = new ParsedCharacter(CharacterType.End, WindowsPathChars.Null);
       //private static readonly ParsedCharacter Null = new ParsedCharacter(CharacterType.Null, WindowsPathChars.Null);
       //private static readonly ParsedCharacter Period = new ParsedCharacter(CharacterType.Period, WindowsPathChars.Period);
@@ -97,7 +97,7 @@ namespace Landorphan.Abstractions.NIO.Paths.Internal
       //   return !IsIllegalCharacter(character);
       //}
 
-      //public WindowsPathStateMachine(string pathString)
+      //public WindowsPathTokenizer(string pathString)
       //{
       //   path = pathString.ToCharArray();
       //}

@@ -96,7 +96,7 @@ namespace Landorphan.Abstractions.Tests.Specifications.IO.Path
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given(string.Format("I have the following path {0}", path), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("I have the following path: {0}", path), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
   testRunner.When("I parse the path as a Windows Path", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10

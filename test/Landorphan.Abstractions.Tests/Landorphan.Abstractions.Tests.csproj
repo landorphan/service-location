@@ -31,10 +31,12 @@
    </PropertyGroup>
    <ItemGroup>
      <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
-     <None Remove="Specifications\IO\Path\Model.feature" />
+     <None Remove="Specifications\IO\Path\WindowsPreParse.feature" />
+     <None Remove="Specifications\IO\Path\WindowsTokenizer.feature" />
      <None Remove="Specifications\Model.feature" />
    </ItemGroup>
    <ItemGroup>
+     <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\IO\Path\WindowsPreParse - Copy.feature.cs" />
      <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\WindowsPaths.feature.cs" />
    </ItemGroup>
    <ItemGroup>
@@ -92,15 +94,10 @@
    </ItemGroup>
 
    <ItemGroup>
-     <Compile Update="Specifications\IO\Path\Model.feature.cs">
+     <Compile Update="Specifications\IO\Path\WindowsTokenizer.feature.cs">
        <DesignTime>True</DesignTime>
        <AutoGen>True</AutoGen>
-       <DependentUpon>Model.feature</DependentUpon>
-     </Compile>
-     <Compile Update="Specifications\IO\Path\WindowsPaths.feature.cs">
-       <DesignTime>True</DesignTime>
-       <AutoGen>True</AutoGen>
-       <DependentUpon>WindowsPaths.feature</DependentUpon>
+       <DependentUpon>WindowsTokenizer.feature</DependentUpon>
      </Compile>
      <Compile Update="Specifications\Model.feature.cs">
        <DesignTime>True</DesignTime>
@@ -128,9 +125,14 @@
    </ItemGroup>
 
    <ItemGroup>
-     <SpecFlowFeatureFiles Update="Specifications\IO\Path\Model.feature">
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPreParse.feature">
        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-       <LastGenOutput>Model.feature.cs</LastGenOutput>
+       <LastGenOutput>WindowsPreParse.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsTokenizer.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>WindowsTokenizer.feature.cs</LastGenOutput>
        <Generator>SpecFlowSingleFileGenerator</Generator>
      </SpecFlowFeatureFiles>
      <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPaths.feature">

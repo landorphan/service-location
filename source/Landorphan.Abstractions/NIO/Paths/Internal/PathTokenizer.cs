@@ -4,13 +4,27 @@ using System.Text;
 
 namespace Landorphan.Abstractions.NIO.Paths.Internal
 {
+   using System.Linq;
+
    internal abstract class PathTokenizer
    {
-      private char[] path;
-      private int loc = 0;
+      private readonly string[] tokens;
 
       protected PathTokenizer(string path)
       {
+         if (path == null)
+         {
+            tokens = Array.Empty<string>();
+         }
+         else
+         {
+            tokens = path.Split('/');
+         }
+      }
+
+      public string[] GetTokens()
+      {
+         return tokens.ToArray();
       }
    }
 }
