@@ -31,6 +31,7 @@
    </PropertyGroup>
    <ItemGroup>
      <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <None Remove="Specifications\IO\Path\WindowsPathSegments.feature" />
      <None Remove="Specifications\IO\Path\WindowsPreParse.feature" />
      <None Remove="Specifications\IO\Path\WindowsTokenizer.feature" />
      <None Remove="Specifications\Model.feature" />
@@ -94,10 +95,10 @@
    </ItemGroup>
 
    <ItemGroup>
-     <Compile Update="Specifications\IO\Path\WindowsTokenizer.feature.cs">
+     <Compile Update="Specifications\IO\Path\WindowsPathSegments.feature.cs">
        <DesignTime>True</DesignTime>
        <AutoGen>True</AutoGen>
-       <DependentUpon>WindowsTokenizer.feature</DependentUpon>
+       <DependentUpon>WindowsPathSegments.feature</DependentUpon>
      </Compile>
      <Compile Update="Specifications\Model.feature.cs">
        <DesignTime>True</DesignTime>
@@ -125,9 +126,17 @@
    </ItemGroup>
 
    <ItemGroup>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\indowsPathSegments.feature">
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
      <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPreParse.feature">
        <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
        <LastGenOutput>WindowsPreParse.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPathSegments.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>WindowsPathSegments.feature.cs</LastGenOutput>
        <Generator>SpecFlowSingleFileGenerator</Generator>
      </SpecFlowFeatureFiles>
      <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsTokenizer.feature">

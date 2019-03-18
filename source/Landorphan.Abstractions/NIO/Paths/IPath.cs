@@ -13,10 +13,12 @@ namespace Landorphan.Abstractions.NIO.Paths
 
    public interface IPath
    {
-      string SuppliedString { get; }
+      string SuppliedPathString { get; }
 
-      ISegment RootSegment { get; }
+      ISegment LeadingSegment { get; }
 
       PathStatus Status { get; }
+
+      ISegment[] Segments { get; }
    }
 }

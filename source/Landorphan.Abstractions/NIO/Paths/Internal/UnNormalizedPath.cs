@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Landorphan.Abstractions.NIO.Paths.Internal
 {
-   public class UnNormalizedPath : IPath
-   {
-      public String SuppliedString { get; private set; }
+   //public class UnNormalizedPath : IPath
+   //{
+   //   public String SuppliedPathString { get; private set; }
 
-      public ISegment RootSegment { get; private set; }
-      public PathStatus Status { get; private set; }
-   }
+   //   public ISegment LeadingSegment { get; private set; }
+   //   public PathStatus Status { get; private set; }
+   //}
 }

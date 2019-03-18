@@ -4,7 +4,7 @@ Feature: Windows Path Segments
 	As a member of the Landorphan Team
 	I want to to be able to convert incoming paths into a more managable form
 
-Scenario Outline: Windows tokenizer generates the following tokens
+Scenario Outline: Windows Segmenter generates the following segments
 	Given I have the following path: <Path>
          # NOTE: the segmentor does not produce a normalized form.
 	 When I segment the Windows path
@@ -16,50 +16,59 @@ Scenario Outline: Windows tokenizer generates the following tokens
 Examples:
 # NOTE: Due to Gherkin parsing rules, \ needs to be escaped.  In order to avoid that necissity and
 # make the following examples easier to read (`) will be used in place of the (\) character
-| Path                               | Segment 0  | Segment 1 | Segment 2 | Segment 3 | Segment 4 |
-| (null)                             | (null)     | (null)    | (null)    | (null)    | (null)    |
-| (empty)                            | (empty)    | (null)    | (null)    | (null)    | (null)    |
-| C:`                                | C:         | (empty)   | (null)    | (null)    | (null)    |
-| C:`dir`file.txt                    | C:         | dir       | file.txt  | (null)    | (null)    |
-| C:`dir`file.txt`                   | C:         | dir       | file.txt  | (empty)   | (null)    |
-| C:`dir                             | C:         | dir       | (null)    | (null)    | (null)    |
-| C:`dir`                            | C:         | dir       | (empty)   | (null)    | (null)    |
-| C:`dir``file.txt                   | C:         | dir       | (empty)   | file.txt  | (null)    |
-| C:.`file.txt                       | C:.        | file.txt  | (null)    | (null)    | (null)    |
-| C:.`file.txt`                      | C:.        | file.txt  | (empty)   | (null)    | (null)    |
-| C:file.txt                         | C:file.txt | (null)    | (null)    | (null)    | (null)    |
-| C:file.txt`                        | C:file.txt | (empty)   | (null)    | (null)    | (null)    |
-| C:dir                              | C:dir      | (null)    | (null)    | (null)    | (null)    |
-| C:dir`                             | C:dir      | (empty)   | (null)    | (null)    | (null)    |
-| C:dir`file.txt                     | C:dir      | file.txt  | (null)    | (null)    | (null)    |
-| C:dir`file.txt`                    | C:dir      | file.txt  | (empty)   | (null)    | (null)    |
-| ``server`share                     | UNC:server | share     | (null)    | (null)    | (null)    |
-| ``server`share`                    | UNC:server | share     | (empty)   | (null)    | (null)    |
-| ``server`file.txt                  | UNC:server | file.txt  | (null)    | (null)    | (null)    |
-| ``server`file.txt`                 | UNC:server | file.txt  | (empty)   | (null)    | (null)    |
-| ``server`share`dir`file.txt        | UNC:server | share     | dir       | file.txt  | (null)    |
-| ``server`share`dir`file.txt`       | UNC:server | share     | dir       | file.txt  | (empty)   |
-| ``?`C:`dir`file.txt                | C:         | dir       | file.txt  | (null)    | (null)    |
-| ``?`C:`dir`file.txt`               | C:         | dir       | file.txt  | (empty)   | (null)    |
-| ``?`UNC`server`share`dir`file.txt  | UNC:server | share     | dir       | file.txt  | (null)    |
-| ``?`UNC`server`share`dir`file.txt` | UNC:server | share     | dir       | file.txt  | (empty)   |
-| `dir`file.txt`                     | (empty)    | dir       | file.txt  | (empty)   | (null)    |
-| .                                  | .          | (null)    | (null)    | (null)    | (null)    |
-| .`                                 | .          | (empty)   | (null)    | (null)    | (null)    |
-| .`file.txt                         | .          | file.txt  | (null)    | (null)    | (null)    |
-| .`file.txt`                        | .          | file.txt  | (empty)   | (null)    | (null)    |
-| .`dir                              | .          | dir       | (null)    | (null)    | (null)    |
-| .`dir`                             | .          | dir       | (empty)   | (null)    | (null)    |
-| .`dir`file.txt                     | .          | dir       | file.txt  | (null)    | (null)    |
-| .`dir`file.txt`                    | .          | dir       | file.txt  | (empty)   | (null)    |
-| ..                                 | ..         | (null)    | (null)    | (null)    | (null)    |
-| ..`                                | ..         | (empty)   | (null)    | (null)    | (null)    |
-| ..`dir`file.txt                    | ..         | dir       | file.txt  | (null)    | (null)    |
-| ..`dir`file.txt`                   | ..         | dir       | file.txt  | (empty)   | (null)    |
-# A Byproduct of the parser means the following will be accepted as a legitimate source
-| UNC:server                         | UNC:server | (null)    | (null)    | (null)    | (null)    |
-| UNC:server`                        | UNC:server | (empty)   | (null)    | (null)    | (null)    |
-| UNC:server`share                   | UNC:server | share     | (null)    | (null)    | (null)    |
-| UNC:server`share`                  | UNC:server | share     | (empty)   | (null)    | (null)    |
-| UNC:server`share`dir               | UNC:server | share     | dir       | (null)    | (null)    |
-| UNC:server`share`dir`              | UNC:server | share     | dir       | (empty)   | (null)    |
+#
+# Path Segment Type Shorthand:
+# {N} = NullSegment, {E} = EmptySegment, {R} = RootSegment, {D} = DeviceSegment, {/} = VolumelessRootSegment
+# {V} = VolumeRelativeSegment, {U} = UncSegment, {G} = Segment, {.} = SelfSegmentk, {..} = ParentSegment
+| Path                               | Segment 0   | Segment 1    | Segment 2    | Segment 3    | Segment 4   | Segment 5  |
+| (null)                             | {N} (null)  | {N} (null)   | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| (empty)                            | {E} (empty) | {N} (null)   | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| C:`                                | {R} C:      | {E} (empty)  | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| C:`dir`file.txt                    | {R} C:      | {G} dir      | {G} file.txt | {N} (null)   | {N} (null)  | {N} (null) |
+| C:`dir`file.txt`                   | {R} C:      | {G} dir      | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+| C:`dir                             | {R} C:      | {G} dir      | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| C:`dir`                            | {R} C:      | {G} dir      | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| C:`dir``file.txt                   | {R} C:      | {G} dir      | {E} (empty)  | {G} file.txt | {N} (null)  | {N} (null) |
+| C:.`file.txt                       | {V} C:      | {.} .        | {G} file.txt | {N} (null)   | {N} (null)  | {N} (null) |
+| C:.`file.txt`                      | {V} C:      | {.} .        | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+| C:file.txt                         | {V} C:      | {G} file.txt | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| C:file.txt`                        | {V} C:      | {G} file.txt | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| C:dir                              | {V} C:      | {G} dir      | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| C:dir`                             | {V} C:      | {G} dir      | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| C:dir`file.txt                     | {V} C:      | {G} dir      | {G} file.txt | {N} (null)   | {N} (null)  | {N} (null) |
+| C:dir`file.txt`                    | {V} C:      | {G} dir      | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+| ``server`share                     | {U} server  | {G} share    | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| ``server`share`                    | {U} server  | {G} share    | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| ``server`file.txt                  | {U} server  | {G} file.txt | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| ``server`file.txt`                 | {U} server  | {G} file.txt | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| ``server`share`dir`file.txt        | {U} server  | {G} share    | {G} dir      | {G} file.txt | {N} (null)  | {N} (null) |
+| ``server`share`dir`file.txt`       | {U} server  | {G} share    | {G} dir      | {G} file.txt | {E} (empty) | {N} (null) |
+| ``?`C:`dir`file.txt                | {R} C:      | {G} dir      | {G} file.txt | {N} (null)   | {N} (null)  | {N} (null) |
+| ``?`C:`dir`file.txt`               | {R} C:      | {G} dir      | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+| ``?`UNC`server`share`dir`file.txt  | {U} server  | {G} share    | {G} dir      | {G} file.txt | {N} (null)  | {N} (null) |
+| ``?`UNC`server`share`dir`file.txt` | {U} server  | {G} share    | {G} dir      | {G} file.txt | {E} (empty) | {N} (null) |
+| `dir`file.txt`                     | {E} (empty) | {/} dir      | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+| .                                  | {.} .       | {N} (null)   | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| .`                                 | {.} .       | {E} (empty)  | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| .`file.txt                         | {.} .       | {G} file.txt | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| .`file.txt`                        | {.} .       | {G} file.txt | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| .`dir                              | {.} .       | {G} dir      | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| .`dir`                             | {.} .       | {G} dir      | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| .`dir`file.txt                     | {.} .       | {G} dir      | {G} file.txt | {N} (null)   | {N} (null)  | {N} (null) |
+| .`dir`file.txt`                    | {.} .       | {G} dir      | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+| ..                                 | {..} ..     | {N} (null)   | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| ..`                                | {..} ..     | {E} (empty)  | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| ..`dir`file.txt                    | {..} ..     | {G} dir      | {G} file.txt | {N} (null)   | {N} (null)  | {N} (null) |
+| ..`dir`file.txt`                   | {..} ..     | {G} dir      | {G} file.txt | {E} (empty)  | {N} (null)  | {N} (null) |
+# Device paths should resolve to a device but the unnormalized segments will still be present
+| CON                                | {D} CON     | {N} (null)   | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| C:`CON                             | {R} C:      | {D} CON      | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| ..`CON                             | {..} ..     | {D} CON      | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| `dir`CON                           | {E} (empty) | {/} dir      | {D} CON      | {N} (null)   | {N} (null)  | {N} (null) |
+# A Byproduct of the parser means the following will be accepted as a legitimate source                                  
+| UNC:server                         | {U} server  | {N} (null)   | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| UNC:server`                        | {U} server  | {E} (empty)  | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| UNC:server`share                   | {U} server  | {G} share    | {N} (null)   | {N} (null)   | {N} (null)  | {N} (null) |
+| UNC:server`share`                  | {U} server  | {G} share    | {E} (empty)  | {N} (null)   | {N} (null)  | {N} (null) |
+| UNC:server`share`dir               | {U} server  | {G} share    | {G} dir      | {N} (null)   | {N} (null)  | {N} (null) |
+| UNC:server`share`dir`              | {U} server  | {G} share    | {G} dir      | {E} (empty)  | {N} (null)  | {N} (null) |

@@ -22,7 +22,7 @@ namespace Landorphan.Abstractions.NIO.Paths.Internal
          }
       }
 
-      public string[] GetTokens()
+      internal string[] GetTokens()
       {
          return tokens.ToArray();
       }
