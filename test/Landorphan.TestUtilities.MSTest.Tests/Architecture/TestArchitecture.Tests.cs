@@ -1,4 +1,4 @@
-﻿namespace Landorphan.TestUtilities.MSTest.Tests.Architecture
+namespace Landorphan.TestUtilities.MSTest.Tests.Architecture
 {
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
@@ -16,7 +16,7 @@
       [TestCategory(TestTiming.CheckIn)]
       public void All_But_Excluded_Tests_Descend_From_TestBase()
       {
-         All_But_Excluded_Tests_Descend_From_TestBase_Implementation();
+         All_But_Excluded_Tests_Descend_From_TestBase_Or_Where_Generated_By_SpecFlow_Implementation();
       }
 
       [SuppressMessage("SonarLint.CodeSmell", "S2699: Tests should include assertions", Justification = "Base implementation has assertion (MWP)")]

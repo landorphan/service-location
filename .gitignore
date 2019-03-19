@@ -331,3 +331,6 @@ ASALocalRun/
 
 # Ignore MAC extra files
 .DS_Store
+
+#Specflow generated files
+*.feature.cs

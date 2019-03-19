@@ -6,6 +6,7 @@ namespace Landorphan.Abstractions.NIO.Paths
 {
    public enum PathStatus
    {
+      Undetermined,
       Legal,
       Discouraged,
       Illegal
@@ -20,5 +21,7 @@ namespace Landorphan.Abstractions.NIO.Paths
       PathStatus Status { get; }
 
       ISegment[] Segments { get; }
+
+      IPath SuppliedPath { get; }
    }
 }

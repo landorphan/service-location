@@ -20,6 +20,7 @@ namespace Landorphan.Abstractions.Tests.StepDefinitions
       private ISegment[] segments;
       public string preParsedPath;
       public IPath parsedPath;
+      public IPath originalForm;
 
       [Given(@"I have the following path: (.*)")]
       public void GivenIHaveTheFollowingPath(string path)
@@ -177,10 +178,18 @@ namespace Landorphan.Abstractions.Tests.StepDefinitions
          actual.Should().Be(expected);
       }
 
+      [When(@"I evaluate the original form")]
+      public void WhenIEvaluteTheNonnormalizedForm()
+      {
+         this.originalForm = parsedPath.SuppliedPath;
+         segments = originalForm.Segments;
+      }
+
 
       [Then(@"the segment ""(.*)"" should be (.*)")]
       public void ThenTheSegmentShouldBeC(string root, string value)
       {
+
       }
 
       [Then(@"the path should be anchored to (.*)")]
@@ -195,8 +204,9 @@ namespace Landorphan.Abstractions.Tests.StepDefinitions
 
 
       [Then(@"the segment length should be (.*)")]
-      public void ThenTheSegmentLengthShouldBe(int p0)
+      public void ThenTheSegmentLengthShouldBe(int expected)
       {
+         segments.Length.Should().Be(expected);
       }
    }
 }

@@ -95,6 +95,11 @@
    </ItemGroup>
 
    <ItemGroup>
+     <Compile Update="Specifications\IO\Path\WindowsPaths.feature.cs">
+       <DesignTime>True</DesignTime>
+       <AutoGen>True</AutoGen>
+       <DependentUpon>WindowsPaths.feature</DependentUpon>
+     </Compile>
      <Compile Update="Specifications\IO\Path\WindowsPathSegments.feature.cs">
        <DesignTime>True</DesignTime>
        <AutoGen>True</AutoGen>
@@ -126,6 +131,9 @@
    </ItemGroup>
 
    <ItemGroup>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\indowsPaths.feature">
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
      <SpecFlowFeatureFiles Update="Specifications\IO\Path\indowsPathSegments.feature">
        <Generator>SpecFlowSingleFileGenerator</Generator>
      </SpecFlowFeatureFiles>

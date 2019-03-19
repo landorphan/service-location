@@ -1,6 +1,7 @@
-﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
+namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
    using System;
+   using System.CodeDom.Compiler;
    using System.Collections.Generic;
    using System.Collections.Immutable;
    using System.Diagnostics;
@@ -20,9 +21,10 @@
    {
       /// <summary>
       /// Verifies that all test classes descend from <see cref="TestBase" /> except for those explicitly excluded.
+      /// One exception are test classes generated from SpecFlow
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
-      protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
+      protected void All_But_Excluded_Tests_Descend_From_TestBase_Or_Where_Generated_By_SpecFlow_Implementation()
       {
          var failureMessages = new List<String>();
 
@@ -32,7 +34,9 @@
          var testClassTypes = GetAllEffectiveTestTypesTestAssembly();
          foreach (var testClass in testClassTypes)
          {
-            if (!typeof(TestBase).IsAssignableFrom(testClass) && !excludedTypes.Contains(testClass))
+            var attribute = testClass.GetCustomAttribute<GeneratedCodeAttribute>();
+            if ((!typeof(TestBase).IsAssignableFrom(testClass) && !excludedTypes.Contains(testClass)) &&
+                (attribute == null || attribute.Tool != "TechTalk.SpecFlow"))
             {
                failureMessages.Add(
                   String.Format(

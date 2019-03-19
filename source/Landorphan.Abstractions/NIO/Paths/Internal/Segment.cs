@@ -6,20 +6,6 @@ namespace Landorphan.Abstractions.NIO.Paths.Internal
 {
    using System.Linq;
 
-   public enum SegmentType
-   {
-      GenericSegment,
-      NullSegment,
-      EmptySegment,
-      RootSegment,
-      DeviceSegment,
-      VolumelessRootSegment,
-      VolumeRelativeSegment,
-      UncSegment,
-      SelfSegment,
-      ParentSegment
-   }
-
    internal class Segment : ISegment
    {
       public static readonly string[] DeviceNames = new String[]
@@ -50,7 +36,7 @@ namespace Landorphan.Abstractions.NIO.Paths.Internal
          {
             return EmptySegment;
          }
-         else if (DeviceNames.Contains(input))
+         else if (IsDeviceSegment(input))
          {
             return new Segment(SegmentType.DeviceSegment, input);
          }
@@ -58,6 +44,11 @@ namespace Landorphan.Abstractions.NIO.Paths.Internal
          {
             return new Segment(SegmentType.GenericSegment, input);
          }
+      }
+
+      public static bool IsDeviceSegment(string input)
+      {
+         return DeviceNames.Contains(input);
       }
 
       public Segment(SegmentType type, string name)

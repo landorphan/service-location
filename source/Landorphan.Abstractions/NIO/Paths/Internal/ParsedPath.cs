@@ -25,6 +25,7 @@ namespace Landorphan.Abstractions.NIO.Paths
          ParsedPath retval = new ParsedPath();
          retval.Segments = segments;
          retval.LeadingSegment = segments[0];
+         retval.Status = PathStatus.Undetermined;
          return retval;
       }
 
@@ -32,5 +33,7 @@ namespace Landorphan.Abstractions.NIO.Paths
       public ISegment LeadingSegment { get; private set; }
       public PathStatus Status { get; internal set; }
       public ISegment[] Segments { get; private set; }
+
+      public IPath SuppliedPath => this;
    }
 }

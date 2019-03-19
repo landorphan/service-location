@@ -40,6 +40,11 @@ namespace Landorphan.Abstractions.NIO.Paths
       {
          IList<Segment> segments = new List<Segment>();
 
+         if (tokens.Length == 0)
+         {
+            segments.Add(Segment.NullSegment);
+            return segments.ToArray();
+         }
          for (int i = 0; i<tokens.Length; i++)
          {
             if (i == 0)
@@ -58,7 +63,14 @@ namespace Landorphan.Abstractions.NIO.Paths
                   }
                   else
                   {
-                     segments.Add(new Segment(SegmentType.RootSegment, parts[0] + ":"));
+                     if (Segment.IsDeviceSegment(parts[0]))
+                     {
+                        segments.Add(new Segment(SegmentType.DeviceSegment, parts[0]));
+                     }
+                     else
+                     {
+                        segments.Add(new Segment(SegmentType.RootSegment, parts[0] + ":"));
+                     }
                   }
                }
                else if (tokens.Length == 1)
