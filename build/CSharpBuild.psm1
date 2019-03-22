@@ -41,7 +41,6 @@ function Clear-BuildVariable
     }
     else
     {
-
       $global:buildSetVarInvocationCount -= 1
       Write-Debug "CSharpBuild.psm1 Clear-BuildVariable `$global:buildSetVarInvocationCount=$global:buildSetVarInvocationCount"
       $remove = (0 -ge $buildSetVarInvocationCount)
@@ -501,14 +500,15 @@ function Set-BuildVariable
   {
     if ($null -eq (Get-Variable -Name buildSetVarInvocationCount -Scope Global -ErrorAction SilentlyContinue))
     {
-      Write-Debug "CSharpBuild.psm1 Allocating buildSetVarInvocationCount"
       New-Variable -Name buildSetVarInvocationCount -Scope Global -Value 1
+      Write-Debug "CSharpBuild.psm1 Set-BuildVariable initialized `$global:buildSetVarInvocationCount=$global:buildSetVarInvocationCount"
     }
     else
     {
       $global:buildSetVarInvocationCount += 1
+      Write-Debug "CSharpBuild.psm1 Set-BuildVariable incremented `$global:buildSetVarInvocationCount=$global:buildSetVarInvocationCount"
     }
-    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildSetVarInvocationCount=$global:buildSetVarInvocationCount"
+
     if ($null -eq (Get-Variable -Name buildDirectory -Scope Global -ErrorAction SilentlyContinue))
     {
       New-Variable -Name buildDirectory -Scope Global -Value (Split-Path -Path $script:MyInvocation.MyCommand.Path)
@@ -573,15 +573,13 @@ function Set-BuildVariable
       else
       {
         # Solution File Name specified
-        Write-Debug "`$SolutionFileName = $SolutionFileName"
         if (![System.IO.Path]::IsPathRooted($SolutionFileName))
         {
-          Write-Debug "The path $SolutionFileName is NOT rooted"
           $SolutionFileName = Join-Path -Path $buildSolutionDirectory -ChildPath $SolutionFileName
         }
         else
         {
-          Write-Debug "The path $SolutionFileName is rooted"
+          # path is rooted, do not join
         }
 
         if (![System.IO.File]::Exists($SolutionFileName))
@@ -611,6 +609,15 @@ function Set-BuildVariable
         Write-Warning "Build Test directory not found: [$buildTestDirectory]"
       }
     }
+
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildDirectory=$global:buildDirectory"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildCodeAnalysisDirectory=$global:buildCodeAnalysisDirectory"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildProjectSpecificDirectory=$global:buildProjectSpecificDirectory"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildScriptsDirectory=$global:buildScriptsDirectory"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildSolutionDirectory=$global:buildSolutionDirectory"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildSolution=$global:buildSolution"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildSourceDirectory=$global:buildSourceDirectory"
+    Write-Debug "CSharpBuild.psm1 Set-BuildVariable `$global:buildTestDirectory=$global:buildTestDirectory"
   }
   end {}
 }
@@ -908,12 +915,12 @@ function Get-SourceCSharpProjectNetCore
           }
           else
           {
-            Write-Debug "$source ''TargetFramework'' value does not start with ''netcore''"
+            Write-Information "$source ''TargetFramework'' value does not start with ''netcore''"
           }
         }
         else
         {
-          Write-Debug "$source does not have a ''TargetFramework'' key"
+          Write-Information "$source does not have a ''TargetFramework'' key"
         }
       }
     }
@@ -962,7 +969,7 @@ function Get-SourceCSharpProjectNetFx
         }
         else
         {
-          Write-Debug "$source does not have a ''TargetFrameworkVersion'' key"
+          Write-Information "$source does not have a ''TargetFrameworkVersion'' key"
         }
       }
     }
@@ -1014,12 +1021,12 @@ function Get-SourceCSharpProjectNetStd
           }
           else
           {
-            Write-Debug "$source ''TargetFramework'' value does not start with ''netstandard''"
+            Write-Information "$source ''TargetFramework'' value does not start with ''netstandard''"
           }
         }
         else
         {
-          Write-Debug "$source does not have a ''TargetFramework'' key"
+          Write-Information "$source does not have a ''TargetFramework'' key"
         }
       }
     }
@@ -1159,12 +1166,12 @@ function Get-TestCSharpProjectNetCore
           }
           else
           {
-            Write-Debug "$test ''TargetFramework'' value does not start with ''netcore''"
+            Write-Information "$test ''TargetFramework'' value does not start with ''netcore''"
           }
         }
         else
         {
-          Write-Debug "$test does not have a ''TargetFramework'' key"
+          Write-Information "$test does not have a ''TargetFramework'' key"
         }
       }
     }
@@ -1213,7 +1220,7 @@ function Get-TestCSharpProjectNetFx
         }
         else
         {
-          Write-Debug "$test does not have a ''TargetFrameworkVersion'' key"
+          Write-Information "$test does not have a ''TargetFrameworkVersion'' key"
         }
       }
     }

@@ -37,7 +37,6 @@ process
   try
   {
     & $buildCleanScript -SolutionFileName $SolutionFileName
-    Write-Debug "Build-Release.ps1 $buildSetVarInvocationCount"
 
     if ($null -eq $buildSolution)
     {

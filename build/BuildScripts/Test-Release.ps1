@@ -39,7 +39,6 @@ process
   try
   {
     & $buildReleaseScript -SolutionFileName $SolutionFileName
-    Write-Debug "Build-Release.ps1 $buildSetVarInvocationCount"
 
     $testBinaries = Get-TestBinaryRelease -SolutionFile $SolutionFileName | ForEach-Object { $_.FullName }
     $results = Join-Path -Path $buildSolutionDirectory -ChildPath 'TestResults'

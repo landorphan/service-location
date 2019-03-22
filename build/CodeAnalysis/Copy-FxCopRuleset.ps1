@@ -1,4 +1,4 @@
-﻿<#
+<#
   .SYNOPSIS
     Copies all default rulesets to the respective projects in source and test.
   .EXAMPLE
@@ -44,7 +44,6 @@ process
   }
   finally
   {
-    Write-Debug "Finally"
     Clear-BuildVariable
   }
   end

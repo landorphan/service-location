@@ -46,7 +46,6 @@ process
 
     if ($VSTest)
     {
-      Write-Debug "$($VSTest.GetType().FullName)"
       # vstest requires a list of binaries
       # ~6 minutes on my machine
       # assumes vstest.console.exe is in the path environment variable ($Env:Path)
