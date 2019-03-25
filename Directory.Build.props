@@ -2,4 +2,9 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)\AssemblyVersion.cs" />
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != ''">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
 </Project>
