@@ -10,7 +10,26 @@ namespace Landorphan.Instrumentation.Interfaces
    /// </summary>
    public interface IInstrumentationAsyncStorage
    {
+      /// <summary>
+      /// Used to set an Async variable.
+      /// </summary>
+      /// <param name="name">
+      /// The name of the value to set.
+      /// </param>
+      /// <param name="value">
+      /// The value to set.
+      /// </param>
       void Set(string name, object value);
+
+      /// <summary>
+      /// Used to get an Async variable.
+      /// </summary>
+      /// <param name="name">
+      /// The name of the value.
+      /// </param>
+      /// <returns>
+      /// The value of the variable previously set.
+      /// </returns>
       object Get(string name);
    }
 }

@@ -2,6 +2,39 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard1.0;netstandard2.0</TargetFrameworks>
-    </PropertyGroup>
+       <NoWarn>1701;1702;</NoWarn>
 
-</Project>
+       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+       <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DefineConstants>DEBUG;TRACE</DefineConstants>
+      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+      <WarningLevel>4</WarningLevel>
+
+      <IntermediateOutputPath>..\..\obj\debug\$(AssemblyName)\</IntermediateOutputPath>
+      <OutputPath>..\..\bin\debug\$(AssemblyName)</OutputPath>
+      <DocumentationFile>..\..\bin\debug\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
+   </PropertyGroup>
+   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DefineConstants>TRACE</DefineConstants>
+      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+      <WarningLevel>4</WarningLevel>
+
+      <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
+      <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
+      <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
+   </PropertyGroup>
+
+   <PropertyGroup>
+      <CodeAnalysisRuleSet>Landorphan.Instrumentation.NetStd.ruleset</CodeAnalysisRuleSet>
+   </PropertyGroup>
+   <ItemGroup>
+      <None Remove="Landorphan.Instrumentation.NetStd.ruleset" />
+   </ItemGroup>
+   <ItemGroup>
+      <AdditionalFiles Include="Landorphan.Instrumentation.NetStd.ruleset" />
+   </ItemGroup>
+
+ </Project>

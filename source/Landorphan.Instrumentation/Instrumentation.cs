@@ -22,7 +22,7 @@ namespace Landorphan.Instrumentation
       /// The instrumentation context which tracks the current state of
       /// instrumentation information.
       /// </param>
-      private Instrumentation(IInstrumentationContext context)
+      internal Instrumentation(IInstrumentationContext context)
       {
          Context = context;
       }
@@ -31,9 +31,12 @@ namespace Landorphan.Instrumentation
       /// Bootstraps the Instrumentation system.
       /// </summary>
       /// <param name="asyncStorage">
-      /// Implementation of Asy
+      /// Implementation of AsyncStorage system used to store data between
+      /// async calls.
       /// </param>
-      /// <param name="bootstrapData"></param>
+      /// <param name="bootstrapData">
+      /// Application specific bootstrap data.
+      /// </param>
       public static void Bootstrap(IInstrumentationAsyncStorage asyncStorage,
                                    InstrumentationBootstrapData bootstrapData)
       {
@@ -43,19 +46,22 @@ namespace Landorphan.Instrumentation
          }
       }
 
+      /// <summary>
+      /// Gets the Instrumentation Context.
+      /// </summary>
       public IInstrumentationContext Context { get; private set; }
 
+      /// <summary>
+      /// Gets the current Instrumentation instance.
+      /// </summary>
       public static Instrumentation Current
       {
          get { return singleton; }
       }
 
-      public static bool IsBootstrapped
-      {
-         get
-         {
-            return singleton != null;
-         }
-      }
+      /// <summary>
+      /// Gets a flag indicating if instrumentation has been bootstrapped.
+      /// </summary>
+      public static bool IsBootstrapped => singleton != null;
    }
 }
