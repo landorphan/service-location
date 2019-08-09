@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+   <metadata>
+      <!-- Required elements-->
+      <id>Landorphan.Instrumentation</id>
+      <version>$version$</version>
+      <description>Lightweight Instrumentation management system.</description>
+      <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
+
+      <!-- Optional elements -->
+      <title>Landorphan.Instrumentation</title>
+      <owners>landorphan, mprochaska, tstockstill</owners>
+      <projectUrl>https://github.com/landorphan/service-location</projectUrl>
+      <license type="expression">MIT</license>
+      <!-- Not deployed yet
+        <iconUrl>https://github.com/landorphan/common/raw/master/logo.png</iconUrl>
+        -->
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+      <developmentDependency>false</developmentDependency>
+      <summary>light weight instrumentation management system.</summary>
+      <releaseNotes>Initial public release.</releaseNotes>
+      <copyright>Copyright © 2019 - Landorphan, LLC.</copyright>
+      <language></language>
+      <tags>common, utility, instrumentation</tags>
+      <repository type="git" url="https://github.com/landorphan/service-location"/>
+      <!-- <packageTypes>
+         <packageType name="Dependency" />
+      </packageTypes>
+      <dependencies>
+         <group targetFramework=".NETStandard2.0">
+            <dependency id="Landorphan.Common" version="0.9.467" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Logging" version="2.2.0" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Configuration" version="2.2.0" exclude="Build,Analyzers" />
+            <dependency id="System.Collections.Immutable" version="1.5.0" exclude="Build,Analyzers" />
+         </group>
+      </dependencies> -->
+   </metadata>
+</package>
