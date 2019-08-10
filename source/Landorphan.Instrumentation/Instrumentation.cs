@@ -1,5 +1,6 @@
 namespace Landorphan.Instrumentation
 {
+   using System;
    using Landorphan.Instrumentation.Implementation;
    using Landorphan.Instrumentation.Interfaces;
 
@@ -9,6 +10,9 @@ namespace Landorphan.Instrumentation
    /// </summary>
    public class Instrumentation
    {
+      internal static Action<Instrumentation> setInstance = x => singleton = x;
+      internal static Func<Instrumentation> getInstance = () => singleton;
+
       /// <summary>
       /// The instrumentation singleton instance.  Only one instrumentation
       /// instance should exist at a time.
@@ -40,9 +44,9 @@ namespace Landorphan.Instrumentation
       public static void Bootstrap(IInstrumentationAsyncStorage asyncStorage,
                                    InstrumentationBootstrapData bootstrapData)
       {
-         if (singleton == null)
+         if (Current == null)
          {
-            singleton = new Instrumentation(new InstrumentationContext());
+            setInstance(new Instrumentation(new InstrumentationContext()));
          }
       }
 
@@ -54,14 +58,11 @@ namespace Landorphan.Instrumentation
       /// <summary>
       /// Gets the current Instrumentation instance.
       /// </summary>
-      public static Instrumentation Current
-      {
-         get { return singleton; }
-      }
+      public static Instrumentation Current => getInstance();
 
       /// <summary>
       /// Gets a flag indicating if instrumentation has been bootstrapped.
       /// </summary>
-      public static bool IsBootstrapped => singleton != null;
+      public static bool IsBootstrapped => Current != null;
    }
 }

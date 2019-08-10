@@ -1,3 +1,4 @@
+@Check-In
 Feature: Bootstrap
 	In order to Instrument my code
 	As a developer
@@ -5,6 +6,6 @@ Feature: Bootstrap
 
 Scenario: Bootstraping is required to use the system
 	Given I do nothing
-    When I call IsBootstraped
+    When I evaluate Instrumentation.IsBootstraped
 	 Then the return value should be 'false'
 

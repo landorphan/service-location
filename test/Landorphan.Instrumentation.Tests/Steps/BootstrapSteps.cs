@@ -3,7 +3,9 @@ using TechTalk.SpecFlow;
 
 namespace Landorphan.Instrumentation.Tests.Steps
 {
-    [Binding]
+   using FluentAssertions;
+
+   [Binding]
     public class BootstrapSteps
     {
        ScenarioContext _scenarioContext;
@@ -20,16 +22,17 @@ namespace Landorphan.Instrumentation.Tests.Steps
         {
         }
         
-        [When(@"I call IsBootstraped")]
+        [When(@"I evaluate Instrumentation.IsBootstraped")]
         public void WhenICallIsBootstraped()
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
+           _featureContext.Set(Instrumentation.IsBootstrapped, "return");
         }
         
         [Then(@"the return value should be '(.*)'")]
         public void ThenTheReturnValueShouldBe(string value)
         {
-           _scenarioContext.Pending();
+           _featureContext.Get<bool>("return").Should().BeFalse();
         }
     }
 }
