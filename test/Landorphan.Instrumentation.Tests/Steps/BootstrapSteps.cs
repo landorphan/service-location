@@ -8,8 +8,8 @@ namespace Landorphan.Instrumentation.Tests.Steps
    [Binding]
     public class BootstrapSteps
     {
-       ScenarioContext _scenarioContext;
-       FeatureContext _featureContext;
+       private readonly ScenarioContext _scenarioContext;
+       private readonly FeatureContext _featureContext;
 
        public BootstrapSteps(ScenarioContext scenarioContext, FeatureContext featureContext)
        {
@@ -25,14 +25,26 @@ namespace Landorphan.Instrumentation.Tests.Steps
         [When(@"I evaluate Instrumentation.IsBootstraped")]
         public void WhenICallIsBootstraped()
         {
-            throw new NotImplementedException();
-           //_scenarioContext.Set(Instrumentation.IsBootstrapped, "return");
+           throw new NotImplementedException();
+           // _scenarioContext.Set(Instrumentation.IsBootstrapped, "return");
         }
         
         [Then(@"the return value should be '(.*)'")]
         public void ThenTheReturnValueShouldBe(string value)
         {
-           _scenarioContext.Get<bool>("return").Should().BeFalse();
+           _scenarioContext.Get<object>("return").ToString().Should().Be(value);
         }
-    }
+
+        [Given(@"I bootstrap Instrumentation")]
+        public void GivenIBootstrapInstrumentation()
+        {
+           // ScenarioContext.Current.Pending();
+        }
+
+        [When(@"I evaluate Instrumentation\.Context\.ApplicationName")]
+        public void WhenIEvaluateInstrumentation_Context_ApplicationName()
+        {
+           // ScenarioContext.Current.Pending();
+        }
+   }
 }
