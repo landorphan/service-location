@@ -58,6 +58,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Bootstrap.feature</DependentUpon>
     </Compile>
+    <Compile Update="TestFacilities\SpecFlowSetupCleanup.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

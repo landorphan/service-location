@@ -10,8 +10,11 @@ namespace Landorphan.Instrumentation
    /// </summary>
    public class Instrumentation
    {
-      internal static Action<Instrumentation> setInstance = x => singleton = x;
-      internal static Func<Instrumentation> getInstance = () => singleton;
+      internal static readonly Action<Instrumentation> originalSetInstance = x => singleton = x;
+      internal static Action<Instrumentation> setInstance = originalSetInstance;
+
+      internal static Func<Instrumentation> originalGetInstance = () => singleton;
+      internal static Func<Instrumentation> getInstance = originalGetInstance;
 
       /// <summary>
       /// The instrumentation singleton instance.  Only one instrumentation

@@ -16,8 +16,8 @@ namespace Landorphan.Instrumentation.Tests.Steps
           _scenarioContext = scenarioContext;
           _featureContext = featureContext;
        }
-
-      [Given(@"I do nothing")]
+      
+       [Given(@"I do nothing")]
         public void GivenIDoNothing()
         {
         }
@@ -26,13 +26,13 @@ namespace Landorphan.Instrumentation.Tests.Steps
         public void WhenICallIsBootstraped()
         {
             throw new NotImplementedException();
-           _featureContext.Set(Instrumentation.IsBootstrapped, "return");
+           //_scenarioContext.Set(Instrumentation.IsBootstrapped, "return");
         }
         
         [Then(@"the return value should be '(.*)'")]
         public void ThenTheReturnValueShouldBe(string value)
         {
-           _featureContext.Get<bool>("return").Should().BeFalse();
+           _scenarioContext.Get<bool>("return").Should().BeFalse();
         }
     }
 }
