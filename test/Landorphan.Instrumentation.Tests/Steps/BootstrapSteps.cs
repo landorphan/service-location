@@ -6,7 +6,16 @@ namespace Landorphan.Instrumentation.Tests.Steps
     [Binding]
     public class BootstrapSteps
     {
-        [Given(@"I do nothing")]
+       ScenarioContext _scenarioContext;
+       FeatureContext _featureContext;
+
+       public BootstrapSteps(ScenarioContext scenarioContext, FeatureContext featureContext)
+       {
+          _scenarioContext = scenarioContext;
+          _featureContext = featureContext;
+       }
+
+      [Given(@"I do nothing")]
         public void GivenIDoNothing()
         {
         }
@@ -20,7 +29,7 @@ namespace Landorphan.Instrumentation.Tests.Steps
         [Then(@"the return value should be '(.*)'")]
         public void ThenTheReturnValueShouldBe(string value)
         {
-            ScenarioContext.Current.Pending();
+           _scenarioContext.Pending();
         }
     }
 }
