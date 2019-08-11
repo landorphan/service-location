@@ -13,11 +13,8 @@ namespace Landorphan.Instrumentation.Implementation
       /// <summary>
       /// Initializes a new instance of the <see cref="InstrumentationContextManager"/> class.
       /// </summary>
-      /// <param name="sessionStorage">
-      /// The session storage system.
-      /// </param>
-      /// <param name="asyncStorage">
-      /// The async storage system.
+      /// <param name="bootstrapData">
+      /// The bootstrap data.
       /// </param>
       public InstrumentationContextManager(InstrumentationBootstrapData bootstrapData)
       {
