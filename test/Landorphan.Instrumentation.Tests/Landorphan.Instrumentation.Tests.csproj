@@ -58,9 +58,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Bootstrap.feature</DependentUpon>
     </Compile>
-    <Compile Update="TestFacilities\SpecFlowSetupCleanup.cs">
-      <SubType>Code</SubType>
+    <Compile Update="Specifications\SessionManagement.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SessionManagement.feature</DependentUpon>
     </Compile>
+    <Compile Update="TestFacilities\SpecFlowSetupCleanup.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,6 +78,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Bootstrap.feature.cs</LastGenOutput>
       <Generator Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"></Generator>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Specifications\SessionManagement.feature">
+      <Generator></Generator>
     </SpecFlowFeatureFiles>
   </ItemGroup>
 

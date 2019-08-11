@@ -4,12 +4,40 @@ Feature: Bootstrap
 	As a developer
 	I want to bootstrap the Instrumentation system
 
-Scenario: Bootstraping is required to use the system
-	Given I do nothing
-    When I evaluate Instrumentation.IsBootstraped
-	 Then the return value should be 'False'
+Background: Given a proper Bootstrap is setup
+     Given I setup bootstrap data with:
+     | Field              | Value                          |
+     | Application        | InstrumentationTestApplication |
+     | SetBootstrapData   | True                           |
+     | SetAsyncStorage    | True                           |
+     | SetSessionStorage  | True                           |
+     | SetIdentityManager | True                           |
 
-#Scenario: When I bootstrap the system the Applicaiton Name is set
-#   Given I bootstrap Instrumentation
-#    When I evaluate Instrumentation.Context.ApplicationName
-#    Then the return value should be 'instrumentationTest'
+Scenario: Bootstrapping is required to use the system
+	Given I do nothing
+    Then the value of Instrumentation.IsBootstrapped should be 'False'
+
+Scenario: When I bootstrap the system the Application Name is set
+   Given I bootstrap Instrumentation
+    Then the value of Context.RootApplicationName should be 'InstrumentationTestApplication'
+
+Scenario: When I bootstrap the system without an AsyncStorage, the  system should not bootstrap
+   Given I override bootstrap data with:
+         | Field           | Value |
+         | SetAsyncStorage | False |
+     And I bootstrap Instrumentation
+    Then the value of Instrumentation.IsBootstrapped should be 'False'
+
+Scenario: When I bootstrap the system without an SetSessionStorage, the  system should not bootstrap
+   Given I override bootstrap data with:
+         | Field             | Value |
+         | SetSessionStorage | False |
+     And I bootstrap Instrumentation
+    Then the value of Instrumentation.IsBootstrapped should be 'False'
+
+Scenario: When I bootstrap the system without an Bootstrap Data, the  system should not bootstrap
+   Given I override bootstrap data with:
+         | Field            | Value |
+         | SetBootstrapData | False |
+     And I bootstrap Instrumentation
+    Then the value of Instrumentation.IsBootstrapped should be 'False'
