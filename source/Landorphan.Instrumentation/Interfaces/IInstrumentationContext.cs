@@ -21,6 +21,12 @@ namespace Landorphan.Instrumentation.Interfaces
       Guid SessionId { get; }
 
       /// <summary>
+      /// Gets a value indicating if the system is in a session.
+      /// True if the system is in a session otherwise false.
+      /// </summary>
+      bool IsInSession { get; }
+
+      /// <summary>
       /// Gets the name of the application currently executing code.
       /// </summary>
       string ExecutingApplicationName { get; }
@@ -35,5 +41,11 @@ namespace Landorphan.Instrumentation.Interfaces
       /// Get's the user's actual identity (if known) otherwise null.
       /// </summary>
       string UserIdentity { get; }
+
+      /// <summary>
+      /// Provides data associated with the User.  This can be set to
+      /// any type designated by the application.
+      /// </summary>
+      object UserData { get; }
    }
 }

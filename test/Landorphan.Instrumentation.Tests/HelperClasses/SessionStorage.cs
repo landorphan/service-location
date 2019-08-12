@@ -16,7 +16,8 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
 
       public object Get(string name)
       {
-         return sessionValues[name];
+         sessionValues.TryGetValue(name, out var retval);
+         return retval;
       }
    }
 }

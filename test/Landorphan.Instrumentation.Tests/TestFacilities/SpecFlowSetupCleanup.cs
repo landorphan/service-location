@@ -14,14 +14,14 @@ namespace Landorphan.Instrumentation.Tests.TestFacilities
    [Binding]
    public sealed class SpecFlowSetupCleanup
    {
-      private readonly ScenarioContext _scenarioContext;
-      private readonly FeatureContext _featureContext;
+      private readonly ScenarioContext scenarioContext;
+      private readonly FeatureContext featureContext;
 
       // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
       public SpecFlowSetupCleanup(ScenarioContext scenarioContext, FeatureContext featureContext)
       {
-         _scenarioContext = scenarioContext;
-         _featureContext = featureContext;
+         this.scenarioContext = scenarioContext;
+         this.featureContext = featureContext;
       }
 
 
@@ -34,12 +34,13 @@ namespace Landorphan.Instrumentation.Tests.TestFacilities
       [BeforeScenario]
       public void BeforeScenario()
       {
-         _scenarioContext.Set<Instrumentation>((Instrumentation) null);
-         _scenarioContext.Set<object>(null, "return");
-         Instrumentation.getInstance = () => _scenarioContext.Get<Instrumentation>();
-         Instrumentation.setInstance = x => _scenarioContext.Set<Instrumentation>(x);
-         var identityManager = new IdentityManager();
-         _scenarioContext.Set<IdentityManager>(identityManager);
+         scenarioContext.Set<Instrumentation>((Instrumentation) null);
+         scenarioContext.Set<object>(null, "return");
+         Instrumentation.getInstance = () => scenarioContext.Get<Instrumentation>();
+         Instrumentation.setInstance = x => scenarioContext.Set<Instrumentation>(x);
+         scenarioContext.Set<TestData>(new TestData());
+         var identityManager = new IdentityManager(scenarioContext);
+         scenarioContext.Set<IdentityManager>(identityManager);
          //TODO: implement logic that has to run before executing each scenario
       }
 

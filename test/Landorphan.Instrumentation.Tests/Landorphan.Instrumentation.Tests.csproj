@@ -69,14 +69,12 @@
   <ItemGroup>
     <None Update="Specifications\Bootstrap.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Bootstrap.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
   <ItemGroup>
     <SpecFlowFeatureFiles Update="Specifications\Bootstrap.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Bootstrap.feature.cs</LastGenOutput>
       <Generator Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"></Generator>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Specifications\SessionManagement.feature">
