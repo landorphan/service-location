@@ -8,8 +8,9 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
    using System.Collections.ObjectModel;
    using System.Threading;
    using Landorphan.Instrumentation.Interfaces;
+   using Landorphan.Instrumentation.PlugIns;
 
-   public class AsyncStorage : IInstrumentationStorage
+   public class AsyncStorage : IInstrumentationPluginStorage
    {
       private static object lockObject = new object();
       private AsyncLocal<ConcurrentDictionary<string, object>> local = new AsyncLocal<ConcurrentDictionary<String, Object>>();

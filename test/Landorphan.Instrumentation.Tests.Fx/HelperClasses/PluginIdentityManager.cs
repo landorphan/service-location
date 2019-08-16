@@ -5,13 +5,14 @@ using System.Text;
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
    using Landorphan.Instrumentation.Interfaces;
+   using Landorphan.Instrumentation.PlugIns;
    using TechTalk.SpecFlow;
 
-   public class IdentityManager : IInstrumentationIdentityManager
+   public class PluginIdentityManager : IInstrumentationPluginIdentityManager
    {
       private ScenarioContext scenarioContext;
 
-      public IdentityManager(ScenarioContext scenarioContext)
+      public PluginIdentityManager(ScenarioContext scenarioContext)
       {
          this.scenarioContext = scenarioContext;
       }

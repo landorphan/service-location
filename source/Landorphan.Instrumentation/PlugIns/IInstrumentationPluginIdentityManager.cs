@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Landorphan.Instrumentation.Interfaces
+namespace Landorphan.Instrumentation.PlugIns
 {
    /// <summary>
    /// Provides a method for the application to control how
    /// users are identified within the application.
    /// </summary>
-   public interface IInstrumentationIdentityManager
+   public interface IInstrumentationPluginIdentityManager
    {
       /// <summary>
       /// Get's an anonymous user identity for a user who has

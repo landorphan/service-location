@@ -2,6 +2,7 @@ namespace Landorphan.Instrumentation
 {
    using System;
    using Landorphan.Instrumentation.Interfaces;
+   using Landorphan.Instrumentation.PlugIns;
 
    /// <summary>
    /// Provides information on the bootstrapping of the
@@ -15,21 +16,45 @@ namespace Landorphan.Instrumentation
       public string ApplicationName { get; set; }
 
       /// <summary>
-      /// Gets or sets an implementation of <see cref="IInstrumentationStorage"/> used to store
+      /// The name of the main application entry point for the application.
+      /// Typically the function where bootstrapping occurs.
+      /// </summary>
+      public string ApplicationEntryPointName { get; set; }
+
+      /// <summary>
+      /// Gets or sets an implementation of <see cref="IInstrumentationPluginStorage"/> used to store
       /// data between async calls.
       /// </summary>
-      public IInstrumentationStorage AsyncStorage { get; set; }
+      public IInstrumentationPluginStorage AsyncStorage { get; set; }
 
       /// <summary>
-      /// Gets or sets an implementation of <see cref="IInstrumentationStorage"/> used to store
+      /// Gets or sets an implementation of <see cref="IInstrumentationPluginStorage"/> used to store
       /// data within a user session.
       /// </summary>
-      public IInstrumentationStorage SessionStorage { get; set; }
+      public IInstrumentationPluginStorage SessionStorage { get; set; }
 
       /// <summary>
-      /// Gets or sets an implementation of <see cref="IInstrumentationIdentityManager"/> used to
+      /// Gets or sets an implementation of <see cref="IInstrumentationPluginEntryPointStorage"/> used
+      /// to allow access to the currently defined entry point.
+      /// </summary>
+      public IInstrumentationPluginEntryPointStorage EntryPointStorage { get; set; }
+
+      /// <summary>
+      /// Gets or sets an implementation of <see cref="IInstrumentationPluginPerfManager"/> used
+      /// to create and manage APM traces.
+      /// </summary>
+      public IInstrumentationPluginPerfManager ApplicationPerformanceManager { get; set; }
+
+      /// <summary>
+      /// Gets or sets an implementation of <see cref="IInstrumentationPluginLog"/> used
+      /// to log data to the underlying data store.
+      /// </summary>
+      public IInstrumentationPluginLog Logger { get; set; }
+
+      /// <summary>
+      /// Gets or sets an implementation of <see cref="IInstrumentationPluginIdentityManager"/> used to
       /// determine and set user Identity Information.
       /// </summary>
-      public IInstrumentationIdentityManager IdentityManager { get; set; }
+      public IInstrumentationPluginIdentityManager IdentityManager { get; set; }
    }
 }

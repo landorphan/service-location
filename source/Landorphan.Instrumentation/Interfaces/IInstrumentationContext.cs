@@ -16,6 +16,16 @@ namespace Landorphan.Instrumentation.Interfaces
       string RootApplicationName { get; }
 
       /// <summary>
+      /// Gets the main application entry point.
+      /// </summary>
+      IEntryPointExecution ApplicationEntryPoint { get; }
+
+      /// <summary>
+      /// Gets the current entry point.
+      /// </summary>
+      IEntryPointExecution CurrentEntryPoint { get; }
+
+      /// <summary>
       /// Returns the session ID for the current session.
       /// </summary>
       Guid SessionId { get; }
