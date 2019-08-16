@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: NeutralResourcesLanguage("en-US")]
 
 #if BuildServer
-[assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests, PublicKey=" + Landorphan.Instrumentation.Resources.StringResources.PublicKey)]
+[assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests.Fx, PublicKey=" + Landorphan.Instrumentation.Resources.StringResources.PublicKey)]
 #else
-[assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests")]
+[assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests.Fx")]
 #endif
