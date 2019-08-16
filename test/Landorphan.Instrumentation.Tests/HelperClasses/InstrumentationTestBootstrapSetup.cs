@@ -10,5 +10,13 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
       public bool SetBootstrapData { get; set; }
 
       public bool SetIdentityManager { get; set; }
+
+      public bool SetEntryPointStorage { get; set; }
+
+      public bool SetPerfManager { get; set; }
+
+      public bool SetLogger { get; set; }
+
+      public string ApplicationEntryPointName { get; set; }
    }
 }

@@ -5,8 +5,9 @@ using System.Text;
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
    using Landorphan.Instrumentation.Interfaces;
+   using Landorphan.Instrumentation.PlugIns;
 
-   public class SessionStorage : IInstrumentationStorage
+   public class SessionStorage : IInstrumentationPluginStorage
    {
       Dictionary<string, object> sessionValues = new Dictionary<string, object>();
       public void Set(string name, object value)

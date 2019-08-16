@@ -6,12 +6,16 @@ Feature: User Identity Manager
 
 Background: Given a proper Bootstrap is setup
      Given I setup bootstrap data with:
-           | Field              | Value                          |
-           | Application        | InstrumentationTestApplication |
-           | SetBootstrapData   | True                           |
-           | SetAsyncStorage    | True                           |
-           | SetSessionStorage  | True                           |
-           | SetIdentityManager | True                           |
+           | Field                     | Value                          |
+           | Application               | InstrumentationTestApplication |
+           | SetBootstrapData          | True                           |
+           | SetAsyncStorage           | True                           |
+           | SetSessionStorage         | True                           |
+           | SetIdentityManager        | True                           |
+           | ApplicationEntryPointName | Main                           |
+           | SetEntryPointStorage      | True                           |
+           | SetPerfManager            | True                           |
+           | SetLogger                 | True                           |
       And I mock the user id to be '12345'
 
 Scenario: When I bootstrap the system without an IdentityManager, the  system should not bootstrap

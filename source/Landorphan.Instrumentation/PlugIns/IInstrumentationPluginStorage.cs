@@ -1,4 +1,4 @@
-namespace Landorphan.Instrumentation.Interfaces
+namespace Landorphan.Instrumentation.PlugIns
 {
    /// <summary>
    /// This provides storage to track a call through
@@ -11,7 +11,7 @@ namespace Landorphan.Instrumentation.Interfaces
    /// The caller must supply two instances of this class one for Asynchronous storage
    /// and one for session storage
    /// </summary>
-   public interface IInstrumentationStorage
+   public interface IInstrumentationPluginStorage
    {
       /// <summary>
       /// Used to set an Async or Session variable.

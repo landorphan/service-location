@@ -39,10 +39,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DatadogSharp" Version="1.5.5.1" />
     <PackageReference Include="FluentAssertions" Version="5.6.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="PostSharp" Version="6.3.2-preview" />
+    <PackageReference Include="PostSharp.Patterns.Diagnostics" Version="6.3.2-preview" />
     <PackageReference Include="SpecFlow" Version="3.1.21-beta" />
     <PackageReference Include="SpecFlow.MsTest" Version="3.1.21-beta" />
     <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.1.21-beta" />
@@ -50,6 +53,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\source\Landorphan.Instrumentation\Landorphan.Instrumentation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PostSharp.Patterns.Diagnostics">
+      <HintPath>..\..\..\..\..\Users\tstockstill\.nuget\packages\postsharp.patterns.diagnostics.redist\6.3.2-preview\lib\netstandard2.0\PostSharp.Patterns.Diagnostics.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -64,12 +73,6 @@
       <DependentUpon>SessionManagement.feature</DependentUpon>
     </Compile>
     <Compile Update="TestFacilities\SpecFlowSetupCleanup.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Specifications\Bootstrap.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

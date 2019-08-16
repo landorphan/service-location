@@ -59,5 +59,16 @@ namespace Landorphan.Instrumentation.Interfaces
       /// Application defined data to associate with the user.
       /// </param>
       void IdentifyUser(string userId, object userData);
+
+      /// <summary>
+      /// Creates an entry point into the application.
+      /// </summary>
+      /// <param name="entryPointName">
+      /// The name of the entry point.
+      /// </param>
+      /// <returns>
+      /// An object used to track the life cycle of the entry point.
+      /// </returns>
+      IEntryPointExecution CreateEntryPoint(string entryPointName);
    }
 }

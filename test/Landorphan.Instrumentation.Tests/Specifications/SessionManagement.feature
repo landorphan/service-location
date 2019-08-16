@@ -6,12 +6,16 @@ Feature: Session Management
 
 Background: Given a proper Bootstrap is setup
      Given I setup bootstrap data with:
-           | Field              | Value                          |
-           | Application        | InstrumentationTestApplication |
-           | SetBootstrapData   | True                           |
-           | SetAsyncStorage    | True                           |
-           | SetSessionStorage  | True                           |
-           | SetIdentityManager | True                           |
+           | Field                     | Value                          |
+           | Application               | InstrumentationTestApplication |
+           | SetBootstrapData          | True                           |
+           | SetAsyncStorage           | True                           |
+           | SetSessionStorage         | True                           |
+           | SetIdentityManager        | True                           |
+           | ApplicationEntryPointName | Main                           |
+           | SetEntryPointStorage      | True                           |
+           | SetPerfManager            | True                           |
+           | SetLogger                 | True                           |
        And I bootstrap Instrumentation
        And Instrumentation is bootstrapped
 
