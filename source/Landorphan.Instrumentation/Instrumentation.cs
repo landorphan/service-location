@@ -10,7 +10,7 @@ namespace Landorphan.Instrumentation
    /// This is the main Instrumentation class is used to interact
    /// with the Instrumentation system.
    /// </summary>
-   public class Instrumentation : IInstrumentationRecordMethod
+   public class Instrumentation : IInstrumentationRecordMethod, IInstrumentationRecordAction
    {
       internal static readonly Action<Instrumentation> originalSetInstance = x => singleton = x;
       internal static Action<Instrumentation> setInstance = originalSetInstance;
@@ -128,5 +128,10 @@ namespace Landorphan.Instrumentation
          return new MethodExecution(compilationData, bootstrapData, Context, arguments);
       }
 
+      /// <inheritdoc />
+      public void RecordAction(string actionName, KeyValuePair<string, string> actionTags)
+      {
+         throw new NotImplementedException();
+      }
    }
 }

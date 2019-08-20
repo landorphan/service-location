@@ -58,5 +58,20 @@ namespace Landorphan.Instrumentation.PlugIns
       /// The exception that return from the method execution.
       /// </param>
       void LogMethodException(IMethodCompilationData methodData, IInstrumentationContext context, ArgumentData[] arguments, Exception exception);
+
+      /// <summary>
+      /// Called to log an action to the underlying system.
+      /// </summary>
+      /// <param name="name">
+      /// The name of the action to log.
+      /// </param>
+      /// <param name="context">
+      /// The context of the Instrumentation state to provide further data into the logs.
+      /// </param>
+      /// <param name="tags">
+      /// Action specific tags to log along with the action.
+      /// </param>
+      void LogAction(string name, IInstrumentationContext context, KeyValuePair<string, string> tags);
+
    }
 }

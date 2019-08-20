@@ -13,7 +13,7 @@ namespace Landorphan.Instrumentation.Interfaces
       /// </summary>
       string EntryPointName { get; }
 
-      /// <summary>
+      /// <summary>  
       /// Returns the performance trace for the current entry point.
       /// </summary>
       IPerfTrace Trace { get; }
