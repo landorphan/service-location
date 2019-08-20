@@ -18,6 +18,6 @@ namespace Landorphan.Instrumentation.Interfaces
       /// <param name="actionTags">
       /// The tags that occur as part of the action.
       /// </param>
-      void RecordAction(string actionName, KeyValuePair<string, string> actionTags);
+      void RecordAction(string actionName, IEnumerable<KeyValuePair<string, string>> actionTags);
    }
 }

@@ -129,9 +129,9 @@ namespace Landorphan.Instrumentation
       }
 
       /// <inheritdoc />
-      public void RecordAction(string actionName, KeyValuePair<string, string> actionTags)
+      public void RecordAction(string actionName, IEnumerable<KeyValuePair<string, string>> actionTags)
       {
-         throw new NotImplementedException();
+         this.bootstrapData.Logger.LogAction(actionName, Context, actionTags);
       }
    }
 }
