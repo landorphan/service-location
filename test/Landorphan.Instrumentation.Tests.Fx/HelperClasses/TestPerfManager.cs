@@ -56,7 +56,7 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
       }
 
       public string TraceId => traceId.ToString();
-      public IPerfSpan CurrentSpan { get; internal set; }
+      public IPerfSpan CurrentSpan { get; internal set; }   
    }
 
    public class TestPerfManager : IInstrumentationPluginPerfManager

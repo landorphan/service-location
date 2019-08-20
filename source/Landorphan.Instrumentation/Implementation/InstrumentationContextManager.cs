@@ -107,7 +107,8 @@ namespace Landorphan.Instrumentation.Implementation
       public IEntryPointExecution CreateEntryPoint(string entryPointName)
       {
          var trace = this.bootstrapData.ApplicationPerformanceManager.StartTrace(entryPointName);
-         return new EntryPointExecution(trace, entryPointName);
+         var entryPoint = new EntryPointExecution(trace, entryPointName);
+         return entryPoint;
       }
    }  
 }
