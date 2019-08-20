@@ -9,6 +9,15 @@ namespace Landorphan.Instrumentation.Interfaces
    /// </summary>
    public interface IInstrumentationRecordAction
    {
+      /// <summary>
+      /// Records an action that occurs on behalf of the user.
+      /// </summary>
+      /// <param name="actionName">
+      /// The name of the action.
+      /// </param>
+      /// <param name="actionTags">
+      /// The tags that occur as part of the action.
+      /// </param>
       void RecordAction(string actionName, KeyValuePair<string, string> actionTags);
    }
 }

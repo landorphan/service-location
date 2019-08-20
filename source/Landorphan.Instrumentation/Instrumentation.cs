@@ -128,6 +128,7 @@ namespace Landorphan.Instrumentation
          return new MethodExecution(compilationData, bootstrapData, Context, arguments);
       }
 
+      /// <inheritdoc />
       public void RecordAction(string actionName, KeyValuePair<string, string> actionTags)
       {
          throw new NotImplementedException();
