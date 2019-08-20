@@ -71,7 +71,7 @@ namespace Landorphan.Instrumentation.PlugIns
       /// <param name="tags">
       /// Action specific tags to log along with the action.
       /// </param>
-      void LogAction(string name, IInstrumentationContext context, KeyValuePair<string, string> tags);
+      void LogAction(string name, IInstrumentationContext context, IEnumerable<KeyValuePair<string, string>> tags);
 
    }
 }
