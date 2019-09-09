@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
       <TargetFramework>netstandard2.0</TargetFramework>
       <LangVersion>7.2</LangVersion>
@@ -43,6 +43,7 @@
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
       <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
