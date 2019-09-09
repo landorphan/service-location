@@ -5,6 +5,12 @@ Channel  | Under Development | Released
 
 Very light weight Service Locator pattern designed specifically for encouraging testable code and dependency abstraction.
 
+Documentation: API documentation from the most recent build can be found here:
+
+<https://docs.landorphan.com/landorphan-ioc-service-location/latest/index.html>
+
+
+
 Source:
 
 This source code has Sonar Lint rules enabled, to see these in Visual Studio, go to Visual Studio, Tools, Extensions and Update, select Online and search for Sonar Lint for Visual Studio 2017
