@@ -7,7 +7,7 @@ namespace Landorphan.Ioc.Example.Service
    {
       IEnumerable<string> GetCurrencyCodes();
       decimal GetRate(string baseCurrency, string exchangeCurrency);
-      IEnumerable<KeyValuePair<string, decimal>> GetRates(string baseCurrency);
+      IDictionary<string, decimal> GetRates(string baseCurrency);
       DateTime GetRateDate();
    }
 }

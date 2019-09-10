@@ -109,7 +109,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Instrumentation.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.Example.Service", "examples\Landorphan.Ioc.Example.Service\Landorphan.Ioc.Example.Service.csproj", "{D5BB65BC-D628-4251-AC07-C9A6352C8258}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Example.Service", "examples\Landorphan.Ioc.Example.Service\Landorphan.Ioc.Example.Service.csproj", "{D5BB65BC-D628-4251-AC07-C9A6352C8258}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Example.ConsoleApp", "examples\Landorphan.Ioc.Example.ConsoleApp\Landorphan.Ioc.Example.ConsoleApp.csproj", "{3342DA33-4DE5-4210-B055-ED6FD5583E29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.Example.Tests", "examples\Landorphan.Ioc.Example.Tests\Landorphan.Ioc.Example.Tests.csproj", "{61E8A7B3-781B-4A1E-B18E-330CB852514F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -173,6 +177,14 @@ Global
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3342DA33-4DE5-4210-B055-ED6FD5583E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3342DA33-4DE5-4210-B055-ED6FD5583E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3342DA33-4DE5-4210-B055-ED6FD5583E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3342DA33-4DE5-4210-B055-ED6FD5583E29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E8A7B3-781B-4A1E-B18E-330CB852514F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E8A7B3-781B-4A1E-B18E-330CB852514F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E8A7B3-781B-4A1E-B18E-330CB852514F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E8A7B3-781B-4A1E-B18E-330CB852514F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,6 +211,8 @@ Global
 		{4DA690A7-6837-4481-963B-C285E53C4A6C} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 		{7031615D-A6F8-4B9B-A2C1-40677CF88DA4} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
+		{3342DA33-4DE5-4210-B055-ED6FD5583E29} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
+		{61E8A7B3-781B-4A1E-B18E-330CB852514F} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}

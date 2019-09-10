@@ -27,8 +27,8 @@ namespace Landorphan.Ioc.Example.Service
 
       public IEnumerable<string> GetCurrencyCodes()
       {
-         var rateData = GetExchangeRates(DefaultBaseCurrency);
-         return rateData.Rates.Keys;
+         var rateData = GetRates(DefaultBaseCurrency);
+         return rateData.Keys;
       }
 
       public decimal GetRate(string baseCurrency, string exchangeCurrency)
@@ -37,9 +37,13 @@ namespace Landorphan.Ioc.Example.Service
          return rateData.Rates[exchangeCurrency];
       }
 
-      public IEnumerable<KeyValuePair<string, decimal>> GetRates(string baseCurrency)
+      public IDictionary<string, decimal> GetRates(string baseCurrency)
       {
          var rateData = GetExchangeRates(baseCurrency);
+         if (!rateData.Rates.ContainsKey(baseCurrency))
+         {
+            rateData.Rates[baseCurrency] = 1;
+         }
          return rateData.Rates;
       }
 
