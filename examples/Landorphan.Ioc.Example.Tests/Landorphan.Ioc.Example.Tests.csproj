@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <RootNamespace>Landorphan.Ioc.Example.Tests</RootNamespace>
+    <NoWarn>1701;1702;</NoWarn>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />
+    <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
+    <ProjectReference Include="..\..\source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
+    <ProjectReference Include="..\Landorphan.Ioc.Example.ConsoleApp\Landorphan.Ioc.Example.ConsoleApp.csproj" />
+    <ProjectReference Include="..\Landorphan.Ioc.Example.Service\Landorphan.Ioc.Example.Service.csproj" />
+  </ItemGroup>
+
+</Project>
