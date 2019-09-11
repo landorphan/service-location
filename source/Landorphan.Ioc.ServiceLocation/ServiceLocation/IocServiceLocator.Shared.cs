@@ -1,14 +1,15 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
    using System.Collections.Generic;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
+   using Landorphan.Ioc.Logging;
    using Landorphan.Ioc.Logging.Internal;
+   using Landorphan.Ioc.Logging.Internal.Interfaces;
    using Landorphan.Ioc.Resources;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
-   using Microsoft.Extensions.Logging;
 
    /// <summary>
    /// An inversion of control service locator implementation for dependency injection.
@@ -44,9 +45,6 @@
    /// </remarks>
    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
    {
-      // This field is initialized in CanLog()
-      private ILogger<IocServiceLocator> _logger;
-
       /// <summary>
       /// Initializes static members of the <see cref="IocServiceLocator"/> class.
       /// </summary>
@@ -109,7 +107,7 @@
       /// <inheritdoc />
       public IIocServiceLocator ServiceLocator => this;
 
-      private Boolean CanLog(out ILogger<IocServiceLocator> logger, out IIocLoggingUtilitiesService loggingUtilitiesService)
+      private Boolean CanLog(out IIocLogger<IocServiceLocator> logger, out IIocLoggingUtilitiesService loggingUtilitiesService)
       {
          logger = null;
          loggingUtilitiesService = null;
@@ -126,7 +124,7 @@
             return false;
          }
 
-         if (!_ambientContainer.Resolver.IsRegisteredChain<ILoggerFactory>())
+         if (!_ambientContainer.Resolver.IsRegisteredChain<IIocLoggerFactory>())
          {
             // prevent an infinite loop
             return false;
@@ -134,15 +132,9 @@
 
          // lazily create the logger for this class instance (a  singleton).
          // (the logger factory is registered by the IocServiceLocator static ctor)
-         var loggerFactory = _ambientContainer.Resolver.Resolve<ILoggerFactory>();
+         var loggerFactory = _ambientContainer.Resolver.Resolve<IIocLoggerManager>();
          {
-            if (_logger == null)
-            {
-               _logger = loggerFactory?.CreateLogger<IocServiceLocator>();
-            }
-
-            // Microsoft guidance: one logger instance per logging class instance.
-            logger = _logger;
+            logger = loggerFactory.GetLogger<IocServiceLocator>();
 
             if (_ambientContainer.Resolver.TryResolve(out loggingUtilitiesService))
             {

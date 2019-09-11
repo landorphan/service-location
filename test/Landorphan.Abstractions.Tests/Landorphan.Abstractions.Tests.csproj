@@ -58,7 +58,7 @@
       <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.177-beta" />
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
 
-      <PackageReference Include="Landorphan.Common" Version="0.9.546" />
+      <PackageReference Include="Landorphan.Common" Version="0.9.814" />
       
       <!--Analyzers-->
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">

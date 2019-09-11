@@ -1,10 +1,11 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
    using System.Collections.Immutable;
    using System.Linq;
    using Landorphan.Common;
    using Landorphan.Ioc.Logging.Internal;
+   using Landorphan.Ioc.Logging.Internal.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Exceptions;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using Landorphan.Ioc.ServiceLocation.Internal;
@@ -234,6 +235,7 @@
          var types = asm.SafeGetTypes();
          var rv = (from t in types where t.IsInterface || t.IsAbstract select t).ToImmutableHashSet();
          rv = rv.Remove(typeof(IIocLoggingUtilitiesService));
+         rv = rv.Remove(typeof(IIocLoggerManager));
 
          return rv;
       }

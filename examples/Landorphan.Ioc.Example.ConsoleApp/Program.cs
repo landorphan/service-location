@@ -115,6 +115,7 @@ namespace Landorphan.Ioc.Example.ConsoleApp
       {
          // Register services local to this application... By Default this is not tested.
          IocServiceLocator.AmbientContainer.Registrar.RegisterImplementation<IConsole, ApplicationConsole>();
+
          // Transfer control to the application handler class..
          // This simulates how a windows application would hand control over the windowing subsystem
          // while also not providing a bad pattern to follow for console applications.
