@@ -38,7 +38,7 @@
    </ItemGroup>
 
    <ItemGroup>
-      <PackageReference Include="Landorphan.Common" Version="0.9.546" />
+      <PackageReference Include="Landorphan.Common" Version="0.9.814" />
       
       <!--Analyzers-->
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">

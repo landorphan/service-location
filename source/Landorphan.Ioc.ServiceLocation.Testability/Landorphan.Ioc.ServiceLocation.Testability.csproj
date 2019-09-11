@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
-      <TargetFramework>netstandard2.0</TargetFramework>
+      <TargetFramework Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0</TargetFramework>
+      <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;net451</TargetFrameworks>
       <LangVersion>7.2</LangVersion>
       <NoWarn>1701;1702;</NoWarn>
       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -38,13 +39,11 @@
    </ItemGroup>
 
    <ItemGroup>
-     <PackageReference Include="Landorphan.Common" Version="0.9.546" />
+     <PackageReference Include="Landorphan.Common" Version="0.9.814" />
      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
        <PrivateAssets>all</PrivateAssets>
        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
      </PackageReference>
-     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
-     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
        <PrivateAssets>all</PrivateAssets>
        <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
