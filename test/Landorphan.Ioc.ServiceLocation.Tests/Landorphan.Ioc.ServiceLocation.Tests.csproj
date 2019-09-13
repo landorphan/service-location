@@ -29,13 +29,6 @@
       <CodeAnalysisRuleSet>Landorphan.Ioc.ServiceLocation.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
    </PropertyGroup>
    <ItemGroup>
-     <None Remove="Landorphan.Ioc.ServiceLocation.Tests.NetCore.ruleset" />
-   </ItemGroup>
-   <ItemGroup>
-     <AdditionalFiles Include="Landorphan.Ioc.ServiceLocation.Tests.NetCore.ruleset" />
-   </ItemGroup>
-
-   <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="5.6.0" />
       <PackageReference Include="Landorphan.Common" Version="0.9.814" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
@@ -63,6 +56,7 @@
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
    </ItemGroup>
+
 
    <ItemGroup>
      <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />

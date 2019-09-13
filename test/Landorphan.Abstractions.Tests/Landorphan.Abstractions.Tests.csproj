@@ -61,22 +61,6 @@
       <PackageReference Include="Landorphan.Common" Version="0.9.814" />
       
       <!--Analyzers-->
-      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Text.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
 
       <!-- This is an OMG cool library, I ended up shelling out to powershell to elevate as admin, but hot damn, I like this library and the analyzer that goes with it
          <PackageReference Include="Microsoft.Windows.Compatibility" Version="2.0.1" />

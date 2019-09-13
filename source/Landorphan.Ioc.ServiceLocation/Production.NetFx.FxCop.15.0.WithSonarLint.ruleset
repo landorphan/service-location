@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Default Test Code Analysis Rules for .Net Framework projects including SonarLint rules"
-         Description="Rules for Landorphan .Net Framework tests."
+<RuleSet Name="Default Production Code Analysis Rules for .Net Framework projects including SonarLint rules"
+         Description="Rules for Landorphan .Net Framework source."
          ToolsVersion="15.0">
    <IncludeAll Action="Warning" />
 
@@ -22,7 +22,7 @@
    <!--Microsoft.CodeQuality.Analyzers From "Microsoft.CodeQuality.Analyzers" Version="2.6.3"-->
    <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--CA1024: Use properties where appropriate -->
       <Rule Id="CA1024" Action="None" />
@@ -36,33 +36,34 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1014: Mark assemblies with CLSCompliantAttribute -->
-      <Rule Id="CA1014" Action="None" />
+      <Rule Id="CA1014" Action="Warning" />
       <!--CA1034: Nested types should not be visible -->
-      <Rule Id="CA1034" Action="None" />
+      <Rule Id="CA1034" Action="Warning" />
       <!--CA1051: Do not declare visible instance fields -->
-      <Rule Id="CA1051" Action="None" />
+      <Rule Id="CA1051" Action="Warning" />
       <!--CA1501: Avoid excessive inheritance -->
-      <Rule Id="CA1501" Action="None" />
+      <Rule Id="CA1501" Action="Warning" />
       <!--CA1506: Avoid excessive class coupling -->
-      <Rule Id="CA1506" Action="None" />
+      <Rule Id="CA1506" Action="Warning" />
       <!--CA1707: Identifiers should not contain underscores -->
-      <Rule Id="CA1707" Action="None" />
+      <Rule Id="CA1707" Action="Warning" />
       <!--CA1711: Identifiers should not have incorrect suffix -->
-      <Rule Id="CA1711" Action="None" />
+      <Rule Id="CA1711" Action="Warning" />
       <!--CA1720: Identifiers should not contain type names -->
-      <Rule Id="CA1720" Action="None" />
+      <Rule Id="CA1720" Action="Warning" />
       <!--CA1801: Review unused parameters -->
-      <Rule Id="CA1801" Action="None" />
+      <Rule Id="CA1801" Action="Warning" />
       <!--CA1806: Do not ignore method results -->
-      <Rule Id="CA1806" Action="None" />
+      <Rule Id="CA1806" Action="Warning" />
       <!--CA1812: Avoid uninstantiated internal classes -->
-      <Rule Id="CA1812" Action="None" />
+      <Rule Id="CA1812" Action="Warning" />
       <!--CA1823: Avoid unused private fields -->
-      <Rule Id="CA1823" Action="None" />
+      <Rule Id="CA1823" Action="Warning" />
       <!--CA2211: Non-constant fields should not be visible -->
-      <Rule Id="CA2211" Action="None" />
+      <Rule Id="CA2211" Action="Warning" />
 
       <!-- Remaining Rules-->
+      <!--CA1000: Do not declare static members on generic types-->
       <Rule Id="CA1000" Action="Warning" />
       <Rule Id="CA1008" Action="Warning" />
       <Rule Id="CA1010" Action="Warning" />
@@ -126,7 +127,7 @@
    <!--Microsoft.CodeQuality.CSharp.Analyzers From "Microsoft.CodeQuality.Analyzers" Version="2.6.3"-->
    <Rules AnalyzerId="Microsoft.CodeQuality.CSharp.Analyzers" RuleNamespace="Microsoft.CodeQuality.CSharp.Analyzers">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--CA1500: Variable names should not match field names -->
       <Rule Id="CA1500" Action="None" />
@@ -163,9 +164,9 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1305: Specify IFormat provider -->
-      <Rule Id="CA1305" Action="None" />
+      <Rule Id="CA1305" Action="Warning" />
       <!--CA1307: Specify StringComparison -->
-      <Rule Id="CA1307" Action="None" />
+      <Rule Id="CA1307" Action="Warning" />
 
 
       <!-- Remaining Rules-->
@@ -246,7 +247,7 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1704: Identifiers should be spelled correctly-->
-      <Rule Id="CA1704" Action="None" />
+      <Rule Id="CA1704" Action="Warning" />
    </Rules>
 
    <!--SonarAnalyzer.CSharp-->
@@ -297,7 +298,7 @@
          The burden should be on the designer that uses the collection, not on the value type itself.
          The implementer of the collection should guard against unknown mutations (MWP) -->
       <Rule Id="S2328" Action="None" />
-      <!--S2339: Public constant members should not be used.   This rule is well-intentioned but fails to recognize the limitations (cannot use in Attributes, cannot use in switch statements, ...)-->
+      <!--s2339: Public constant members should not be used.   This rule is well-intentioned but fails to recognize the limitations (cannot use in Attributes, cannot use in switch statements, ...)-->
       <Rule Id="S2339" Action="None" />
       <!--S2955: Generic parameters not constrained to reference types should not be compared to "null".  Suggests breaking changes -->
       <Rule Id="S2955" Action="None" />
@@ -330,9 +331,9 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--S101: Types should be named in PascalCase -->
-      <Rule Id="S101" Action="None" />
+      <Rule Id="S101" Action="Warning" />
       <!--S4056: Overloads with a "CultureInfo" or an "IFormatProvider" parameter should be used-->
-      <Rule Id="S4056" Action="None" />
+      <Rule Id="S4056" Action="Warning" />
 
       <!-- Remaining Rules-->
       <Rule Id="S100" Action="Warning" />
@@ -663,7 +664,7 @@
    <!--Microsoft.Analyzers.ManagedCodeAnalysis-->
    <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--CA1004: Generic methods should provide type parameter -->
       <Rule Id="CA1004" Action="None" />
@@ -685,27 +686,27 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <!--CA1005: Avoid excessive parameters on generic types -->
-      <Rule Id="CA1005" Action="None" />
+      <Rule Id="CA1005" Action="Warning" />
       <!--CA1026: Default parameters should not be used -->
-      <Rule Id="CA1026" Action="None" />
+      <Rule Id="CA1026" Action="Warning" />
       <!--CA1031: Do not catch general exception types -->
-      <Rule Id="CA1031" Action="None" />
+      <Rule Id="CA1031" Action="Warning" />
       <!--CA1062: Validate arguments of public methods -->
-      <Rule Id="CA1062" Action="None" />
+      <Rule Id="CA1062" Action="Warning" />
       <!--CA1303: Do not pass literals as localized parameters -->
-      <Rule Id="CA1303" Action="None" />
+      <Rule Id="CA1303" Action="Warning" />
       <!--CA1702: Compound words should be cased correctly -->
-      <Rule Id="CA1702" Action="None" />
+      <Rule Id="CA1702" Action="Warning" />
       <!--CA1709: Identifiers should be cased correctly -->
-      <Rule Id="CA1709" Action="None" />
+      <Rule Id="CA1709" Action="Warning" />
       <!--CA1800: Do not cast unnecessarily.  This rule just counts casts, expects a variable to be defined if casting more than once. -->
-      <Rule Id="CA1800" Action="None" />
+      <Rule Id="CA1800" Action="Warning" />
       <!--CA1804: Remove unused locals -->
-      <Rule Id="CA1804" Action="None" />
+      <Rule Id="CA1804" Action="Warning" />
       <!--CA1811: Avoid uncalled private code -->
-      <Rule Id="CA1811" Action="None" />
+      <Rule Id="CA1811" Action="Warning" />
       <!--CA2122: Do not indirectly expose methods with link demands -->
-      <Rule Id="CA2122" Action="None" />
+      <Rule Id="CA2122" Action="Warning" />
 
       <!-- Remaining Rules-->
       <!--Duplicates Microsoft.CodeQuality.Analyzers
@@ -1337,7 +1338,7 @@
    <!--Microsoft.CodeAnalysis.CSharp.Features-->
    <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--IDE0001: Simplify Names-->
       <Rule Id="IDE0001" Action="None" />
@@ -1378,9 +1379,9 @@
       <!-- ************************* -->
       <!-- (Change "Warning" to "None" in Test projects) -->
       <Rule Id="IDE0004" Action="Warning" />
-      <Rule Id="IDE0004WithoutSuggestion" Action="None" />
+      <Rule Id="IDE0004WithoutSuggestion" Action="Warning" />
       <Rule Id="IDE0007" Action="Warning" />
-      <Rule Id="IDE0007WithoutSuggestion" Action="None" />
+      <Rule Id="IDE0007WithoutSuggestion" Action="Warning" />
 
 
       <!-- Remaining Rules-->
