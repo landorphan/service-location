@@ -25,9 +25,6 @@
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
    </PropertyGroup>
 
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Ioc.ServiceLocation.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
    <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="5.6.0" />
       <PackageReference Include="Landorphan.Common" Version="0.9.814" />
@@ -38,23 +35,6 @@
       <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
       <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
-
-      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Text.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
    </ItemGroup>
 
 
