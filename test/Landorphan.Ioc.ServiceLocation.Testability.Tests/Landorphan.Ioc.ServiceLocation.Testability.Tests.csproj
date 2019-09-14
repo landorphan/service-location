@@ -22,6 +22,14 @@
       <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
    </PropertyGroup>
+   <ItemGroup>
+     <Compile Remove="Copy.Landorphan.TestUtilities\**" />
+     <EmbeddedResource Remove="Copy.Landorphan.TestUtilities\**" />
+     <None Remove="Copy.Landorphan.TestUtilities\**" />
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Remove="Architecture\Rulesets.Tests.cs" />
+   </ItemGroup>
 
    <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="5.6.0" />
@@ -38,5 +46,6 @@
    <ItemGroup>
       <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />
       <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
+      <ProjectReference Include="..\..\source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
    </ItemGroup>
 </Project>

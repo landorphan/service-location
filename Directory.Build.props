@@ -28,15 +28,15 @@
       <None Remove="Test.NetFx.FxCop.15.0.WithSonarLint.ruleset" />
    </ItemGroup>
    <ItemGroup>
-      <AdditionalFiles Include="Production.NetCore.FxCop.15.0.WithSonarLint.ruleset"
+      <EmbeddedResource Include="Production.NetCore.FxCop.15.0.WithSonarLint.ruleset"
             Condition="Exists('Production.NetCore.FxCop.15.0.WithSonarLint.ruleset')" />
-      <AdditionalFiles Include="Production.NetFx.FxCop.15.0.WithSonarLint.ruleset"
+      <EmbeddedResource Include="Production.NetFx.FxCop.15.0.WithSonarLint.ruleset"
             Condition="Exists('Production.NetFx.FxCop.15.0.WithSonarLint.ruleset')" />
-      <AdditionalFiles Include="Production.NetStd.FxCop.15.0.WithSonarLint.ruleset" 
+      <EmbeddedResource Include="Production.NetStd.FxCop.15.0.WithSonarLint.ruleset" 
             Condition="Exists('Production.NetStd.FxCop.15.0.WithSonarLint.ruleset')" />
-      <AdditionalFiles Include="Test.NetCore.FxCop.15.0.WithSonarLint.ruleset" 
+      <EmbeddedResource Include="Test.NetCore.FxCop.15.0.WithSonarLint.ruleset" 
             Condition="Exists('Test.NetCore.FxCop.15.0.WithSonarLint.ruleset')" />
-      <AdditionalFiles Include="Test.NetFx.FxCop.15.0.WithSonarLint.ruleset" 
+      <EmbeddedResource Include="Test.NetFx.FxCop.15.0.WithSonarLint.ruleset" 
             Condition="Exists('Test.NetFx.FxCop.15.0.WithSonarLint.ruleset')" />
    </ItemGroup>
 
