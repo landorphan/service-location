@@ -2,11 +2,6 @@
    <PropertyGroup>
       <TargetFramework>netstandard2.0</TargetFramework>
       <LangVersion>7.2</LangVersion>
-      <NoWarn>1701;1702;</NoWarn>
-
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -27,39 +22,7 @@
       <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
    </PropertyGroup>
 
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.ObjectStore.CosmosDb.NetStd.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
-   <ItemGroup>
-      <None Remove="Landorphan.ObjectStore.CosmosDb.NetStd.ruleset" />
-   </ItemGroup>
-   <ItemGroup>
-      <AdditionalFiles Include="Landorphan.ObjectStore.CosmosDb.NetStd.ruleset" />
-   </ItemGroup>
-
    <ItemGroup>
       <PackageReference Include="Landorphan.Common" Version="0.9.814" />
-      
-      <!--Analyzers-->
-      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Text.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
    </ItemGroup>
 </Project>

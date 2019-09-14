@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyCompany("Landorphan, LLC.")]
 [assembly: AssemblyProduct("Landorphan.Ioc.ServiceLocation")]
 [assembly: AssemblyTitle("Landorphan.Ioc.ServiceLocation")]
 [assembly: AssemblyDescription("")]

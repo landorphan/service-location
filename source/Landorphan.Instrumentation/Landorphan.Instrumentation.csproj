@@ -2,11 +2,6 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard1.0</TargetFrameworks>
-       <NoWarn>1701;1702;</NoWarn>
-
-       <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-       <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-       <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -26,15 +21,4 @@
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
       <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
    </PropertyGroup>
-
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Instrumentation.NetStd.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
-   <ItemGroup>
-      <None Remove="Landorphan.Instrumentation.NetStd.ruleset" />
-   </ItemGroup>
-   <ItemGroup>
-      <AdditionalFiles Include="Landorphan.Instrumentation.NetStd.ruleset" />
-   </ItemGroup>
-
  </Project>

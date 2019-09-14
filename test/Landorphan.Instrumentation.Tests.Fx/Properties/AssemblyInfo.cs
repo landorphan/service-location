@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Landorphan.Instrumentation.Tests.Fx")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Landorphan.Instrumentation.Tests.Fx")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]

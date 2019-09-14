@@ -1,10 +1,9 @@
-﻿using System;
+using System;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyCompany("Landorphan.ObjectStore.CosmosDb")]
 [assembly: AssemblyProduct("Landorphan.ObjectStore.CosmosDb")]
 [assembly: AssemblyTitle("Landorphan.ObjectStore.CosmosDb")]
 [assembly: AssemblyCulture("")]

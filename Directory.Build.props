@@ -3,12 +3,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)\AssemblyVersion.cs" />
   </ItemGroup>
 
+   <PropertyGroup>
+      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+   </PropertyGroup>
+
   <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != ''">
+    <NoWarn>1701;1702;</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
 
-   <!-- <ItemGroup>
+   <ItemGroup>
       <None Remove="Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset" />
       <None Remove="Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset" />
       <None Remove="Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset" />
@@ -32,9 +39,9 @@
       <AdditionalFiles Include="Test.NetFx.FxCop.15.0.WithSonarLint.ruleset" 
             Condition="Exists('Test.NetFx.FxCop.15.0.WithSonarLint.ruleset')" />
    </ItemGroup>
- -->
 
-<!-- 
+
+
    <ItemGroup Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
@@ -56,9 +63,9 @@
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-   </ItemGroup> -->
+   </ItemGroup>
 
-   <!-- <ItemGroup Condition="$(TargetFramework.Contains('netstandard'))">
+   <ItemGroup Condition="$(TargetFramework.Contains('netstandard'))">
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -79,9 +86,9 @@
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-   </ItemGroup> -->
+   </ItemGroup>
    
-   <!-- <ItemGroup Condition="$(TargetFramework.Contains('netcore'))">
+   <ItemGroup Condition="$(TargetFramework.Contains('netcore'))">
       <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -98,6 +105,6 @@
          <PrivateAssets>all</PrivateAssets>
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
-   </ItemGroup> -->
+   </ItemGroup>
 
 </Project>

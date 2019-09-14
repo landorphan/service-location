@@ -3,10 +3,7 @@
    <PropertyGroup>
       <TargetFramework>netcoreapp2.2</TargetFramework>
       <LangVersion>7.2</LangVersion>
-      <NoWarn>1701;1702</NoWarn>
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+      <IsTestProject>True</IsTestProject>
    </PropertyGroup>
 
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -26,11 +23,7 @@
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
    </PropertyGroup>
 
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Abstractions.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
    <ItemGroup>
-     <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
      <None Remove="Specifications\IO\Path\WindowsPathSegments.feature" />
      <None Remove="Specifications\IO\Path\WindowsPreParse.feature" />
      <None Remove="Specifications\IO\Path\WindowsTokenizer.feature" />
@@ -39,9 +32,6 @@
    <ItemGroup>
      <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\IO\Path\WindowsPreParse - Copy.feature.cs" />
      <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\WindowsPaths.feature.cs" />
-   </ItemGroup>
-   <ItemGroup>
-     <AdditionalFiles Include="Landorphan.Abstractions.Tests.NetCore.ruleset" />
    </ItemGroup>
 
    <ItemGroup>
@@ -59,16 +49,6 @@
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
 
       <PackageReference Include="Landorphan.Common" Version="0.9.814" />
-      
-      <!--Analyzers-->
-
-      <!-- This is an OMG cool library, I ended up shelling out to powershell to elevate as admin, but hot damn, I like this library and the analyzer that goes with it
-         <PackageReference Include="Microsoft.Windows.Compatibility" Version="2.0.1" />
-         <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-         </PackageReference>
-     -->
    </ItemGroup>
 
    <ItemGroup>

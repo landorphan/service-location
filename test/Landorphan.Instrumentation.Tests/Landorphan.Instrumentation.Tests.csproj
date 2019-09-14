@@ -4,11 +4,8 @@
   <PropertyGroup>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <IsPackable>false</IsPackable>
-    <NoWarn>1701;1702</NoWarn>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>{8B8121C6-BEAB-44BC-B484-9A4AF4A62165}</ProjectGuid>
+    <IsTestProject>True</IsTestProject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -23,9 +20,6 @@
     <WarningLevel>4</WarningLevel>
     <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
     <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <CodeAnalysisRuleSet>Landorphan.Instrumentation.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Landorphan.Instrumentation.Tests.NetCore.ruleset" />
