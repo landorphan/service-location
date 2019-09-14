@@ -13,6 +13,8 @@ using System.Runtime.InteropServices;
 
 #if BuildServer
 [assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests.Fx, PublicKey=" + Landorphan.Instrumentation.Resources.StringResources.PublicKey)]
+[assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests.NetFx, PublicKey=" + Landorphan.Instrumentation.Resources.StringResources.PublicKey)]
 #else
 [assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests.Fx")]
+[assembly: InternalsVisibleTo("Landorphan.Instrumentation.Tests.NetFx")]
 #endif

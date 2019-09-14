@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{65807C31-348B-4BC0-95E0-7D7F8938A547}"
 EndProject
@@ -77,7 +77,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.ObjectStore.Cosm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.Performance.Tests", "test\Landorphan.Ioc.Collections.Performance.Tests\Landorphan.Ioc.Collections.Performance.Tests.csproj", "{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.Collections.Performance.Tests.Fx", "test\Landorphan.Ioc.Collections.Performance.Tests.Fx\Landorphan.Ioc.Collections.Performance.Tests.Fx.csproj", "{2BE5337F-5730-4881-9163-C187E951C613}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.Performance.Tests.Fx", "test\Landorphan.Ioc.Collections.Performance.Tests.Fx\Landorphan.Ioc.Collections.Performance.Tests.Fx.csproj", "{2BE5337F-5730-4881-9163-C187E951C613}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8323FDA5-2688-425B-8A30-7836EE3F2C08}"
 	ProjectSection(SolutionItems) = preProject
@@ -110,7 +110,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layout", "Layout", "{0FE84C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Instrumentation", "source\Landorphan.Instrumentation\Landorphan.Instrumentation.csproj", "{4DA690A7-6837-4481-963B-C285E53C4A6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Instrumentation.Tests.Fx", "test\Landorphan.Instrumentation.Tests.Fx\Landorphan.Instrumentation.Tests.Fx.csproj", "{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Instrumentation.Tests.Fx", "test\Landorphan.Instrumentation.Tests.Fx\Landorphan.Instrumentation.Tests.Fx.csproj", "{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}"
 EndProject
@@ -121,6 +121,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Example.Tests", "examples\Landorphan.Ioc.Example.Tests\Landorphan.Ioc.Example.Tests.csproj", "{61E8A7B3-781B-4A1E-B18E-330CB852514F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Logging.Microsoft", "source\Landorphan.Ioc.ServiceLocation.Logging.Microsoft\Landorphan.Ioc.ServiceLocation.Logging.Microsoft.csproj", "{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Instrumentation.Tests.NetFx", "test\Landorphan.Instrumentation.Tests.NetFx\Landorphan.Instrumentation.Tests.NetFx.csproj", "{09927D76-96AA-4AF5-BB0F-36876EFFEED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -196,6 +198,10 @@ Global
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -225,6 +231,7 @@ Global
 		{3342DA33-4DE5-4210-B055-ED6FD5583E29} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 		{61E8A7B3-781B-4A1E-B18E-330CB852514F} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}
