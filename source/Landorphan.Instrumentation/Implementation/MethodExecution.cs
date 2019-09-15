@@ -1,15 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Landorphan.Instrumentation.Implementation
 {
+   using Landorphan.Common;
    using Landorphan.Instrumentation.Interfaces;
 
    /// <summary>
    /// Manages the execution of a method.
    /// </summary>
-   public class MethodExecution : IMethodExecution
+   public class MethodExecution : DisposableObject, IMethodExecution
    {
       private readonly IMethodCompilationData methodData;
       private readonly ArgumentData[] argumentData;
@@ -44,7 +43,7 @@ namespace Landorphan.Instrumentation.Implementation
       }
 
       /// <inheritdoc />
-      public void Dispose()
+      protected override void ReleaseManagedResources()
       {
          bootstrapData.Logger.LogMethodExit(methodData, context, argumentData, this.ReturnValue);
       }

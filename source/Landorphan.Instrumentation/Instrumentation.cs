@@ -78,7 +78,11 @@ namespace Landorphan.Instrumentation
 
                   foreach (var propertyInfo in properties)
                   {
+#pragma warning disable S4056 // Overloads with a "CultureInfo" or an "IFormatProvider" parameter should be used
+                              // -- This rule is not useful on this method as the value will be returned.  Further
+                              // This is strictly doing a null check.
                      if (object.ReferenceEquals(null, propertyInfo.GetValue(bootstrapData)))
+#pragma warning restore S4056 // Overloads with a "CultureInfo" or an "IFormatProvider" parameter should be used
                      {
                         bootstrapErrors.Add(new ArgumentException($"the bootstrapData property {propertyInfo.Name} can not be null."));
                         bootstrapFailure = true;
@@ -133,7 +137,7 @@ namespace Landorphan.Instrumentation
       }
 
       /// <inheritdoc />
-      public void RecordAction(string actionName, IEnumerable<KeyValuePair<string, string>> actionTags)
+      public void RecordAction(string actionName, KeyValuePair<string, string>[] actionTags)
       {
          this.bootstrapData.Logger.LogAction(actionName, Context, actionTags);
       }

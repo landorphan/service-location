@@ -24,7 +24,7 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
          Trace.WriteLine($"Error in Method: {methodData.MethodName}");
       }
 
-      public void LogAction(string name, IInstrumentationContext context, IEnumerable<KeyValuePair<string, string>> tags)
+      public void LogAction(string name, IInstrumentationContext context, KeyValuePair<string, string>[] tags)
       {
          Trace.WriteLine($"Action Occurred: {name}");
       }

@@ -13,11 +13,11 @@ namespace Landorphan.Instrumentation.Interfaces
       /// Records an action that occurs on behalf of the user.
       /// </summary>
       /// <param name="actionName">
-      /// The name of the action.
+      ///    The name of the action.
       /// </param>
       /// <param name="actionTags">
-      /// The tags that occur as part of the action.
+      ///    The tags that occur as part of the action.
       /// </param>
-      void RecordAction(string actionName, IEnumerable<KeyValuePair<string, string>> actionTags);
+      void RecordAction(string actionName, KeyValuePair<string, string>[] actionTags);
    }
 }

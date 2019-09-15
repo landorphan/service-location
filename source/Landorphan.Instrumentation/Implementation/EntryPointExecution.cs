@@ -1,14 +1,12 @@
-using System.Collections.Generic;
-using System.Text;
-
 namespace Landorphan.Instrumentation.Interfaces
 {
+   using Landorphan.Common;
    using Landorphan.Instrumentation.PlugIns;
 
    /// <summary>
    /// Represents an Entry Point within the applciaiton.
    /// </summary>
-   public class EntryPointExecution : IEntryPointExecution
+   public class EntryPointExecution : DisposableObject, IEntryPointExecution
    {
       /// <summary>
       /// Creates a new instance of the EntryPointExecution class.
@@ -23,12 +21,6 @@ namespace Landorphan.Instrumentation.Interfaces
       {
          this.Trace = trace;
          this.EntryPointName = name;
-      }
-
-      /// <inheritdoc />
-      public void Dispose()
-      {
-         this.Trace.Dispose();
       }
 
       /// <inheritdoc />

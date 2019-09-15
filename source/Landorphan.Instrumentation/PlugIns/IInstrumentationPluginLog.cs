@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Landorphan.Instrumentation.PlugIns
 {
@@ -63,15 +62,15 @@ namespace Landorphan.Instrumentation.PlugIns
       /// Called to log an action to the underlying system.
       /// </summary>
       /// <param name="name">
-      /// The name of the action to log.
+      ///    The name of the action to log.
       /// </param>
       /// <param name="context">
-      /// The context of the Instrumentation state to provide further data into the logs.
+      ///    The context of the Instrumentation state to provide further data into the logs.
       /// </param>
       /// <param name="tags">
-      /// Action specific tags to log along with the action.
+      ///    Action specific tags to log along with the action.
       /// </param>
-      void LogAction(string name, IInstrumentationContext context, IEnumerable<KeyValuePair<string, string>> tags);
+      void LogAction(string name, IInstrumentationContext context, KeyValuePair<string, string>[] tags);
 
    }
 }

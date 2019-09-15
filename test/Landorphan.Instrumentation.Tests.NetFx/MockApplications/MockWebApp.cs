@@ -16,12 +16,12 @@ namespace Landorphan.Instrumentation.Tests.MockApplications.WebApp
       private static Dictionary<string, MethodInfo> GetWebMethods()
       {
          var retval = new Dictionary<string, MethodInfo>();
-         var methdos = (from m in typeof(MockWebApp).GetMethods()
+         var methods = (from m in typeof(MockWebApp).GetMethods()
                        where m.Name.Contains("WebMethod")
                       select m).ToList();
-         foreach (var method in methdos)
+         foreach (var method in methods)
          {
-            WebMethods.Add(method.Name, method);
+            retval.Add(method.Name, method);
          }
 
          return retval;
