@@ -10,12 +10,14 @@ namespace Landorphan.Instrumentation.Tests.MockApplications.DesktopApp
    {
       public void OnCreateControl()
       {
-
+         // Method intentionally left empty as this strictly simulates a form
+         // but doesn't actually crate one or leverage the windows subsystem.
       }
 
       public void OnClosing(EventArgs args)
       {
-
+         // Method intentionally left empty as this strictly simulates a form
+         // but doesn't actually crate one or leverage the windows subsystem.
       }
    }
 
@@ -56,10 +58,11 @@ namespace Landorphan.Instrumentation.Tests.MockApplications.DesktopApp
 
       public void Run()
       {
-
+         // Method intentionally left empty as this strictly simulates an application
+         // but doesn't actually crate one or leverage the windows subsystem.
       }
 
-      #pragma warning disable CS0028
+#pragma warning disable CS0028
       public static MockDesktopApp Main(object[] args)
       {
          var retval = new MockDesktopApp(args);

@@ -1,5 +1,6 @@
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
+   using System;
    using System.Linq;
    using System.Reflection;
    using Landorphan.Instrumentation.Interfaces;
@@ -8,6 +9,7 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
    using PostSharp.Serialization;
 
    [PSerializable]
+   [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method | AttributeTargets.Property)]
    public sealed class LogMethodAttribute : OnMethodBoundaryAspect
    {
       private class ExectionData
@@ -29,8 +31,10 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
 
       public override void OnEntry(MethodExecutionArgs args)
       {
-         var executionData = new ExectionData();
-         executionData.Arguments = new ArgumentData[args.Arguments.Count];
+         var executionData = new ExectionData
+         {
+            Arguments = new ArgumentData[args.Arguments.Count]
+         };
          for (int i = 0; i < args.Arguments.Count; i++)
          {
             executionData.Arguments[i] = new ArgumentData { ParameterData = parameterData[i], ArgumentValue = args.Arguments[i] };

@@ -28,6 +28,7 @@ namespace Landorphan.Instrumentation.Tests.Steps
       [Given(@"I do nothing")]
       public void GivenIDoNothing()
       {
+         // Method intentionally left empty because this method is used to support the statement 'Given I do nothing'.
       }
 
       [Given(@"I mock the user id to be '(.*)'")]
@@ -93,7 +94,7 @@ namespace Landorphan.Instrumentation.Tests.Steps
          CloseForOrCompleteMethod(formOrWeb, entryPointStorage.CurrentContext, scenarioContext);
       }
 
-      public static void CloseForOrCompleteMethod(string formOrWeb, string name, ScenarioContext scenarioContext)
+      public static void CloseForOrCompleteMethod(string formOrWeb, string name, SpecFlowContext scenarioContext)
       {
          var entryPointStorage = scenarioContext.Get<TestEntryPointStorage>();
          var mockWebApp = scenarioContext.Get<MockWebApp>();
@@ -107,7 +108,7 @@ namespace Landorphan.Instrumentation.Tests.Steps
          else
          {
             var method = (MethodInfo)formOrMethods[name];
-            var retval = method.Invoke(mockWebApp, new[] { "Hello World" });
+            method.Invoke(mockWebApp, new object[] { "Hello World" });
          }
          formOrMethods.Remove(name);
 
@@ -161,12 +162,11 @@ namespace Landorphan.Instrumentation.Tests.Steps
                break;
             default:
                throw new InvalidOperationException("Unknown value class.");
-               break;
          }
          ThenTheReturnValueShouldBe(isNot, value, retval);
       }
 
-      private UserData internalUserData = null;
+      private UserData internalUserData;
 
       [Given(@"I set the value of (.*) to '(.*)'")]
       public void GivenISetTheValueOfInternalUserData_EmailTo(string name, string value)
@@ -186,7 +186,6 @@ namespace Landorphan.Instrumentation.Tests.Steps
                break;
             default:
                throw new InvalidOperationException("Unexpected value type.");
-               break;
          }
       }
 
@@ -197,8 +196,9 @@ namespace Landorphan.Instrumentation.Tests.Steps
       }
 
       [Then(@"the session data value '(.*)' should be '(.*)'")]
-      public void ThenTheSessionDataValueOfNameShouldBeValue(string name, string expected)
+      public void ThenTheSessionDataValueOfNameShouldBeValue(string name, string inputExpected)
       {
+         string expected = inputExpected;
          var actual = Instrumentation.Current.Context.GetSessionData(name);
          if (expected == "(null)")
          {
@@ -213,8 +213,9 @@ namespace Landorphan.Instrumentation.Tests.Steps
          Instrumentation.Current.Context.IdentifyUser(userIdentity, internalUserData);
       }
 
-      public void ThenTheReturnValueShouldBe(string isNot, string value, object retval)
+      public void ThenTheReturnValueShouldBe(string isNot, string value, object inputRetval)
       {
+         object retval = inputRetval;
          if (isNot.Length > 0)
          {
             retval.Should().NotBe(value);

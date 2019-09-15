@@ -1,5 +1,6 @@
 namespace Landorphan.Ioc.Example.Service
 {
+   using System;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
    using RestSharp;
 
@@ -7,7 +8,7 @@ namespace Landorphan.Ioc.Example.Service
    {
       public void RegisterServiceInstances(IIocContainerRegistrar registrar)
       {
-         registrar.RegisterInstance<IRestClient>(new RestClient(@"https://api.exchangeratesapi.io/latest"));
+         registrar.RegisterInstance<IRestClient>(new RestClient(new Uri(@"https://api.exchangeratesapi.io/latest")));
          registrar.RegisterImplementation<IRestRequestFactory, RestRequestFactory>();
          registrar.RegisterImplementation<ICurrencyExchangeRates, CurrencyExchangeRates>();
       }

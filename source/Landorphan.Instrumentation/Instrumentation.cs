@@ -13,10 +13,14 @@ namespace Landorphan.Instrumentation
    public class Instrumentation : IInstrumentationRecordMethod, IInstrumentationRecordAction
    {
       internal static readonly Action<Instrumentation> originalSetInstance = x => singleton = x;
+#pragma warning disable S2223 // Non-constant static fields should not be visible -- Used for Test Hooks as this project does not take an IOC dependency.
       internal static Action<Instrumentation> setInstance = originalSetInstance;
+#pragma warning restore S2223 // Non-constant static fields should not be visible
 
       internal static readonly Func<Instrumentation> originalGetInstance = () => singleton;
+#pragma warning disable S2223 // Non-constant static fields should not be visible -- Used for Test Hooks as this project does not take an IOC dependency.
       internal static Func<Instrumentation> getInstance = originalGetInstance;
+#pragma warning restore S2223 // Non-constant static fields should not be visible
 
       private readonly InstrumentationBootstrapData bootstrapData;
 

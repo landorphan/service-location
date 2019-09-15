@@ -4,9 +4,10 @@ using System.Collections.Generic;
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
    using System.Collections.Concurrent;
+   using Landorphan.Common;
    using Landorphan.Instrumentation.PlugIns;
 
-   public class TestPerfSpan : IPerfSpan
+   public class TestPerfSpan : DisposableObject, IPerfSpan
    {
       protected internal Guid spanId = Guid.NewGuid();
 
@@ -23,8 +24,9 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
          this.ParentSpan = parent;
       }
 
-      public virtual void Dispose()
+      protected override void ReleaseManagedResources()
       {
+         base.ReleaseUnmanagedResources();
          ((TestPerfTrace)this.ParentTrace).CurrentSpan = this.ParentSpan;
       }
 
@@ -47,9 +49,9 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
          CurrentSpan = this;
       }
 
-      public override void Dispose()
+      protected override void ReleaseUnmanagedResources()
       {
-         base.Dispose();
+         base.ReleaseUnmanagedResources();
          traces.Remove(traceId);
       }
 

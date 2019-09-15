@@ -93,7 +93,7 @@ namespace Landorphan.Ioc.Example.ConsoleApp
             var fromCurrency = args[1];
             var amountAsString = args[2];
             var toCurrency = args[3];
-            if (!decimal.TryParse(amountAsString, out var ammount))
+            if (!decimal.TryParse(amountAsString, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
             {
                ShowUsage($"unable to convert the amount supplied {amountAsString}");
                return;
@@ -111,7 +111,7 @@ namespace Landorphan.Ioc.Example.ConsoleApp
                ShowUsage($"supplied toCurrency not in the list of available codes {toCurrency}");
             }
 
-            var converted = converter.Convert(toCurrency, ammount, fromCurrency);
+            var converted = converter.Convert(toCurrency, amount, fromCurrency);
             Console.WriteLine(converted.ToString(CultureInfo.InvariantCulture));
          }
       }
