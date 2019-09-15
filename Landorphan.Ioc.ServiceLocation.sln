@@ -106,7 +106,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layout", "Layout", "{0FE84C
 		build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Instrumentation", "source\Landorphan.Instrumentation\Landorphan.Instrumentation.csproj", "{4DA690A7-6837-4481-963B-C285E53C4A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.InstrumentationManagement", "source\Landorphan.InstrumentationManagement\Landorphan.InstrumentationManagement.csproj", "{4DA690A7-6837-4481-963B-C285E53C4A6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}"
 EndProject
@@ -118,7 +118,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Example.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Logging.Microsoft", "source\Landorphan.Ioc.ServiceLocation.Logging.Microsoft\Landorphan.Ioc.ServiceLocation.Logging.Microsoft.csproj", "{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Instrumentation.Tests.NetFx", "test\Landorphan.Instrumentation.Tests.NetFx\Landorphan.Instrumentation.Tests.NetFx.csproj", "{09927D76-96AA-4AF5-BB0F-36876EFFEED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.InstrumentationManagement.Tests", "test\Landorphan.InstrumentationManagement.Tests\Landorphan.InstrumentationManagement.Tests.csproj", "{09927D76-96AA-4AF5-BB0F-36876EFFEED1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{620F829C-E1A7-4618-A037-36B4A046B51F}"
 	ProjectSection(SolutionItems) = preProject

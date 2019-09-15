@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
-      <TargetFramework>netstandard2.0</TargetFramework>
-      <LangVersion>7.2</LangVersion>
-      <RootNamespace>Landorphan.TestUtilities</RootNamespace>
-      <AssemblyName>Landorphan.TestUtilities.MSTest</AssemblyName>
+     <TargetFramework>netstandard2.0</TargetFramework>
+     <LangVersion>7.2</LangVersion>
+     <RootNamespace>Landorphan.TestUtilities</RootNamespace>
+     <AssemblyName>Landorphan.TestUtilities.MSTest</AssemblyName>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
