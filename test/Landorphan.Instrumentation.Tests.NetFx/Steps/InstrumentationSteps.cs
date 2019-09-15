@@ -2,11 +2,8 @@ namespace Landorphan.Instrumentation.Tests.Steps
 {
    using System;
    using System.Collections.Generic;
-   using System.Net.Security;
    using System.Reflection;
-   using System.Threading;
    using FluentAssertions;
-   using FluentAssertions.Common;
    using Landorphan.Instrumentation.Implementation;
    using Landorphan.Instrumentation.Interfaces;
    using Landorphan.Instrumentation.PlugIns;
@@ -68,7 +65,6 @@ namespace Landorphan.Instrumentation.Tests.Steps
                   scenarioContext.Set<MockWebApp>(mockWebApp);
                }
                method = MockWebApp.WebMethods[formName];
-               var methodInstance = method;
                formOrMethods[formName] = method;
                break;
             default:
@@ -164,6 +160,7 @@ namespace Landorphan.Instrumentation.Tests.Steps
                retval = propertyInfo.GetValue(instance);
                break;
             default:
+               throw new InvalidOperationException("Unknown value class.");
                break;
          }
          ThenTheReturnValueShouldBe(isNot, value, retval);
@@ -188,6 +185,7 @@ namespace Landorphan.Instrumentation.Tests.Steps
                propertyInfo.SetValue(internalUserData, value);
                break;
             default:
+               throw new InvalidOperationException("Unexpected value type.");
                break;
          }
       }
@@ -358,8 +356,8 @@ namespace Landorphan.Instrumentation.Tests.Steps
       private static object GetValueAsType(string name, string value, Type type)
       {
          KeyValuePair<string, string> pair = new KeyValuePair<string, string>(name, value);
-         Table holdTable = new Table(new string[] {"Field", "Value"});
-         holdTable.AddRow(new string[] {name, value});
+         Table holdTable = new Table(new[] {"Field", "Value"});
+         holdTable.AddRow(new[] { name, value});
          TableRow row = holdTable.Rows[0];
          var retriever = Service.Instance.GetValueRetrieverFor(row, type, type);
          return retriever.Retrieve(pair, type, type);

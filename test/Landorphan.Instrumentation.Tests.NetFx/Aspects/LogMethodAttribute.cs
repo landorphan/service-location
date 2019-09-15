@@ -1,19 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
    using System.Linq;
    using System.Reflection;
    using Landorphan.Instrumentation.Interfaces;
-   using Landorphan.Instrumentation.Resources;
    using Landorphan.Instrumentation.Tests.Aspects;
    using PostSharp.Aspects;
    using PostSharp.Serialization;
 
    [PSerializable]
-   public class LogMethodAttribute : OnMethodBoundaryAspect
+   public sealed class LogMethodAttribute : OnMethodBoundaryAspect
    {
       private class ExectionData
       {
@@ -27,8 +22,8 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
       {
          methodCompilationData = new AspectMethodCompilationData(method);
          parameterData = (from p in method.GetParameters()
-                        select new ParameterData() { ParameterName = p.Name,
-                                                     ParameterTypeFullName = p.ParameterType.FullName }).ToArray();
+                        select new ParameterData { ParameterName = p.Name,
+                                                   ParameterTypeFullName = p.ParameterType.FullName }).ToArray();
          base.CompileTimeInitialize(method, aspectInfo);
       }
 
@@ -38,7 +33,7 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
          executionData.Arguments = new ArgumentData[args.Arguments.Count];
          for (int i = 0; i < args.Arguments.Count; i++)
          {
-            executionData.Arguments[i] = new ArgumentData() { ParameterData = parameterData[i], ArgumentValue = args.Arguments[i] };
+            executionData.Arguments[i] = new ArgumentData { ParameterData = parameterData[i], ArgumentValue = args.Arguments[i] };
          }
          
          args.MethodExecutionTag = executionData;

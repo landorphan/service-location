@@ -27,7 +27,7 @@ namespace Landorphan.Instrumentation.Implementation
       {
          this.bootstrapData = bootstrapData;
          // this.sessionStorage = bootstrapData.SessionStorage;
-         this.bootstrapData.SessionStorage.Set(nameof(SessionId), new Guid());
+         this.bootstrapData.SessionStorage.Set(nameof(SessionId), Guid.Empty);
          this.bootstrapData.SessionStorage.Set(nameof(SessionData), new Dictionary<string, string>());
          // this.asyncStorage = bootstrapData.AsyncStorage;
          // this.entryPointStorage = bootstrapData.EntryPointStorage;
@@ -82,9 +82,9 @@ namespace Landorphan.Instrumentation.Implementation
          }
       }
 
-      public string GetSessionData(string key)
+      public string GetSessionData(string name)
       {
-         SessionData.TryGetValue(key, out var result);
+         SessionData.TryGetValue(name, out var result);
          return result;
       }
 

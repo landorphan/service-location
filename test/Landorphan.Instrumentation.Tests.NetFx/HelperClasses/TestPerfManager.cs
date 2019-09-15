@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
    using System.Collections.Concurrent;
    using Landorphan.Instrumentation.PlugIns;
-   using TechTalk.SpecFlow.Tracing;
 
    public class TestPerfSpan : IPerfSpan
    {
@@ -40,7 +38,7 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
    public class TestPerfTrace : TestPerfSpan, IPerfTrace
    {
       internal static IDictionary<Guid, TestPerfTrace> traces = new ConcurrentDictionary<Guid, TestPerfTrace>();
-      private Guid traceId = Guid.NewGuid();
+      private readonly Guid traceId = Guid.NewGuid();
 
       public TestPerfTrace(string name) : base (name)
       {
@@ -61,9 +59,9 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
 
    public class TestPerfManager : IInstrumentationPluginPerfManager
    {
-      public IPerfTrace StartTrace(string name)
+      public IPerfTrace StartTrace(string traceName)
       {
-         return new TestPerfTrace(name);
+         return new TestPerfTrace(traceName);
       }
    }
 }

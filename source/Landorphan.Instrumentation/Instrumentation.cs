@@ -15,10 +15,10 @@ namespace Landorphan.Instrumentation
       internal static readonly Action<Instrumentation> originalSetInstance = x => singleton = x;
       internal static Action<Instrumentation> setInstance = originalSetInstance;
 
-      internal static Func<Instrumentation> originalGetInstance = () => singleton;
+      internal static readonly Func<Instrumentation> originalGetInstance = () => singleton;
       internal static Func<Instrumentation> getInstance = originalGetInstance;
 
-      private InstrumentationBootstrapData bootstrapData;
+      private readonly InstrumentationBootstrapData bootstrapData;
 
       /// <summary>
       /// The instrumentation singleton instance.  Only one instrumentation
@@ -43,7 +43,7 @@ namespace Landorphan.Instrumentation
       }
 
       private static readonly object lockObject = new Object();
-      private static List<Exception> bootstrapErrors = new List<Exception>(new Exception[] { new InvalidOperationException("Bootstrap not called") });
+      private static readonly List<Exception> bootstrapErrors = new List<Exception>(new Exception[] { new InvalidOperationException("Bootstrap not called") });
 
       /// <summary>
       /// Bootstraps the Instrumentation system.

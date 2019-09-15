@@ -34,7 +34,9 @@ namespace Landorphan.Tests.Architecture
             }
          }
 
+#pragma warning disable S3902
          var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+#pragma warning restore S3902
          foreach (var ruleSetInfo in ruleSets)
          {
             var newRuleSetPath = Path.Combine(currentDirectory, ruleSetInfo.Key);

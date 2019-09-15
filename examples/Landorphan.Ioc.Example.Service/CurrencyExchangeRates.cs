@@ -18,7 +18,7 @@ namespace Landorphan.Ioc.Example.Service
 
       internal ExchangeRates GetExchangeRates(string baseCurrency)
       {
-         var client = new RestClient(@"https://api.exchangeratesapi.io/latest");
+         var client = new RestClient(new Uri(@"https://api.exchangeratesapi.io/latest"));
          var request = new RestRequest(Method.GET);
          request.AddParameter("base", baseCurrency);
          var result = client.Execute<ExchangeRates>(request);

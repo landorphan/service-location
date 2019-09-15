@@ -11,10 +11,10 @@ namespace Landorphan.Instrumentation.Implementation
    /// </summary>
    public class MethodExecution : IMethodExecution
    {
-      private IMethodCompilationData methodData;
-      private ArgumentData[] argumentData;
-      private InstrumentationBootstrapData bootstrapData;
-      private IInstrumentationContext context;
+      private readonly IMethodCompilationData methodData;
+      private readonly ArgumentData[] argumentData;
+      private readonly InstrumentationBootstrapData bootstrapData;
+      private readonly IInstrumentationContext context;
 
       /// <summary>
       /// Creates a new instance of the MethodExecution class.

@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Landorphan.Instrumentation.Tests.MockApplications.DesktopApp
 {
-   using System.Diagnostics.CodeAnalysis;
    using Landorphan.Instrumentation.Tests.HelperClasses;
 
    [LogMethod]
@@ -42,14 +40,14 @@ namespace Landorphan.Instrumentation.Tests.MockApplications.DesktopApp
    [LogMethod]
    public class MockDesktopApp
    {
-      public static Dictionary<string, Type> FormsClasses = new Dictionary<string, Type>()
+      public static Dictionary<string, Type> FormsClasses = new Dictionary<string, Type>
       {
          { typeof(MyForm).Name, typeof(MyForm) },
          { typeof(MyForm1).Name, typeof(MyForm1) },
          { typeof(MyForm2).Name, typeof(MyForm2) }
       };
 
-      public object[] Args { get; set; }
+      private object[] Args { get; set; }
 
       public MockDesktopApp(object[] args)
       {

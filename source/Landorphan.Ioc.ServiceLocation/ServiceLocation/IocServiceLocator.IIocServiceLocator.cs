@@ -1,12 +1,10 @@
 namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
-   using System.Reflection;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
    {
-      public string _aproperty { get; set; }
       /// <inheritdoc/>
       Object IServiceProvider.GetService(Type serviceType)
       {

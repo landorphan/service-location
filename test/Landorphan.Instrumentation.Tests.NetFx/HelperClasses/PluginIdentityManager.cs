@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Landorphan.Instrumentation.Tests.HelperClasses
 {
-   using Landorphan.Instrumentation.Interfaces;
    using Landorphan.Instrumentation.PlugIns;
    using TechTalk.SpecFlow;
 
    public class PluginIdentityManager : IInstrumentationPluginIdentityManager
    {
-      private ScenarioContext scenarioContext;
+      private readonly ScenarioContext scenarioContext;
 
       public PluginIdentityManager(ScenarioContext scenarioContext)
       {

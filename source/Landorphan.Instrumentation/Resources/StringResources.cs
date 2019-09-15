@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Landorphan.Instrumentation.Resources
 {
-   class StringResources
+   static class StringResources
    {
       internal const String PublicKey = "0024000004800000140100000602000000240000525341310008000001000100c33ba254dba2d79dba4c1fe136efb36588f73cc16afd66a43aebf7489ac82ab66c2fff42d8503459eff95139e0" +
                                         "ff790b6688513b19edf991760ef7ad02740a296c3ce5d098586b236b6abaa75038eb03af7d643d9a84b47bca0ed1cabbf4de9605c76007aab2e3abe7633d90860648ab1e38035fda5943971c64" +

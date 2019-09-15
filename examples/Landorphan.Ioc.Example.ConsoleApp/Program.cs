@@ -10,7 +10,7 @@ namespace Landorphan.Ioc.Example.ConsoleApp
 
    class Program
    {
-      private string[] args;
+      private readonly string[] args;
 
       public Program(string[] args)
       {
@@ -50,6 +50,9 @@ namespace Landorphan.Ioc.Example.ConsoleApp
             case "convert":
                this.HandleConvertRequest();
                break;
+            default:
+               this.ShowUsage("Unknown command");
+               break;
          }
       }
 
@@ -73,15 +76,17 @@ namespace Landorphan.Ioc.Example.ConsoleApp
          }
       }
 
+
+      public const int ConverterExpectedArguments = 4;
       public void HandleConvertRequest()
       {
-         if (args.Length < 4)
+         if (args.Length < ConverterExpectedArguments)
          {
             ShowUsage("insufficient command arguments:");
          }
-         else if (args.Length > 4)
+         else if (args.Length > ConverterExpectedArguments)
          {
-            ShowUsage($"unknown command argument: {args[4]}");
+            ShowUsage($"unknown command argument: {args[ConverterExpectedArguments]}");
          }
          else
          {

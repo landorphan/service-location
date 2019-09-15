@@ -4,7 +4,7 @@ namespace Landorphan.Instrumentation.Tests.HelperClasses
 
    public class InstrumentationTestBootstrapSetup
    {
-      public ApplicationEnum Application { get; set; }
+      public Application Application { get; set; }
       public bool SetAsyncStorage { get; set; }
       public bool SetSessionStorage { get; set; }
       public bool SetBootstrapData { get; set; }
