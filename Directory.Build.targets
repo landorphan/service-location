@@ -1,0 +1,93 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+   <!-- <ItemGroup>
+      <NotKnownTestFramework Include="@(PackageReference)" Exclude="MSTest.TestFramework;NUnit;xunit"></NotKnownTestFramework>
+   </ItemGroup> -->
+
+  <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != '' AND '$(OS)' == 'Windows_NT'">
+    <DefineConstants>$(DefineConstants);BuildServer</DefineConstants>
+  </PropertyGroup>
+
+    <PropertyGroup>
+        <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+        <FrameworkGroup Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">NetFx</FrameworkGroup>
+        <FrameworkGroup Condition="$(TargetFramework.Contains('netstandard'))">NetStd</FrameworkGroup>
+        <FrameworkGroup Condition="$(TargetFramework.Contains('netcore'))">NetCore</FrameworkGroup>
+        <DefineConstants Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">$(DefineConstants);NETFX</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('netstandard'))">$(DefineConstants);NETSTD</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('netcore'))">$(DefineConstants);NETCORE</DefineConstants>
+        <!-- 
+        <PackageReferencesCount>$([System.Int32]::Parse(@(PackageReference->Count()))</PackageReferencesCount>
+        <NotKnownTestFrameworkCount>$([System.Int32]::Parse(@(NotKnownTestFramework->Count()))</NotKnownTestFrameworkCount>
+        <HasTestFramework Condition="$(PackageReferencesCount) &gt; $(NotKnownTestFrameworkCount)">True</HasTestFramework>
+        <HasTestFramework Condition="$(PackageReferencesCount) == $(NotKnownTestFrameworkCount)">False</HasTestFramework>
+        <HasTestFrameworkComputation>'$(PackageReferencesCount)' != '$(NotKnownTestFrameworkCount)'</HasTestFrameworkComputation>
+        <CandidateTestProject Condition="'$(HasTestFramework)' == 'True' OR $(ProjectGuids.Contains('3AC096D0-A1C2-E12C-1390-A8335801FDAB'))">True</CandidateTestProject>
+        <CandidateTestProject Condition="'$(HasTestFramework)' != 'True' AND !($(ProjectGuids.Contains('3AC096D0-A1C2-E12C-1390-A8335801FDAB')))">False</CandidateTestProject>
+        <IsTestProject Condition="'$(IsTestProject)' == '' AND '$(CandidateTestProject)' == 'True'">True</IsTestProject> 
+        -->
+        <UseTestRulesets Condition="'$(IsProductionProject)' != 'True' AND '$(IsTestProject)' == 'True'">True</UseTestRulesets>
+        <DefineConstants Condition="'$(IsProductionProject)' == 'True' OR '$(IsTestProject)' != 'True'">$(DefineConstants);PROD</DefineConstants>
+        <DefineConstants Condition="'$(IsProductionProject)' != 'True' AND '$(IsTestProject)' == 'True'">$(DefineConstants);TEST</DefineConstants>
+    </PropertyGroup>
+
+     <PropertyGroup Condition="'$(FrameworkGroup)' == 'NetFx' AND '$(UseTestRulesets)' != 'True'">
+       <DefaultRuleSet>Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset</DefaultRuleSet>
+       <CodeAnalysisRuleSet>Production.NetFx.FxCop.15.0.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+     </PropertyGroup>
+     <PropertyGroup Condition="'$(FrameworkGroup)' == 'NetStd' AND '$(UseTestRulesets)' != 'True'">
+       <DefaultRuleSet>Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset</DefaultRuleSet>
+       <CodeAnalysisRuleSet>Production.NetStd.FxCop.15.0.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+     </PropertyGroup>
+     <PropertyGroup Condition="'$(FrameworkGroup)' == 'NetCore' AND '$(UseTestRulesets)' != 'True'">
+       <DefaultRuleSet>Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset</DefaultRuleSet>
+       <CodeAnalysisRuleSet>Production.NetCore.FxCop.15.0.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+     </PropertyGroup>
+     <PropertyGroup Condition="'$(FrameworkGroup)' == 'NetCore' AND '$(UseTestRulesets)' == 'True'">
+       <DefaultRuleSet>Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset</DefaultRuleSet>
+       <CodeAnalysisRuleSet>Test.NetCore.FxCop.15.0.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+     </PropertyGroup>
+     <PropertyGroup Condition="'$(FrameworkGroup)' == 'NetFx' AND '$(UseTestRulesets)' == 'True'">
+       <DefaultRuleSet>Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset</DefaultRuleSet>
+       <CodeAnalysisRuleSet>Test.NetFx.FxCop.15.0.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+     </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsTestProject)' == 'True' AND '$(HasTestFramework)' != 'False'">
+    <Compile Include="$(MSBuildThisFileDirectory)\Landorphan.Tests.Architecture.cs" />
+  </ItemGroup>
+
+   <Target Name="ValidateAndReportCodeAnalysis"
+           BeforeTargets="CoreCompile">
+      <Message Text="Running ValidateAndReportCodeAnalysis Target" />
+      <Message Text="Building Assembly: $(AssemblyName)" />
+      <Message Text="Target Framework: $(TargetFramework)" />
+<!-- 
+      <Message Text="Packages Contained: $(PackageReferencesCount)" />
+      <Message Text="Non Test Frameworks Contained: $(NotKnownTestFrameworkCount)" />
+      <Message Text="HasTestFramework: $(HasTestFramework)" />
+      <Message Text="Has Test Framework Computation: $(HasTestFrameworkComputation)" />
+      <Message Text="CandidateTestProject: $(CandidateTestProject)" />
+ -->
+      <Message Text="Is Test Project: $(IsTestProject)" />
+      <Message Text="Use Test Rules: $(UseTestRulesets)" />
+
+      <Message Text="Framework Group: $(FrameworkGroup)" />
+      <Message Text="Current Defines: $(DefineConstants)" />
+      <Message Text="Should Be NetFx Group: $(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))" />
+      <Message Text="Should Be NetCore Group: $(TargetFramework.Contains('netcore'))" />
+      <Message Text="Should Be NetStd Group: $(TargetFramework.Contains('netstandard'))" />
+
+      <Message Text="Default Rule Set from Build Directory: $(DefaultRuleSet)" />
+      <Message Text="CodeAnalysisRuleSet: $(CodeAnalysisRuleSet)" />
+      <Message Text="Rule Set File Exists: $(Exists('$(CodeAnalysisRuleSet)') == 'True')" />
+
+      <!-- <Error Condition="'$(FrameworkGroup)' != ''" Text="The framework group for this project could not be determined.  This may be because the framework type is not recognized by the build system.  Verify that the framework is supported by contacting the collaborators of the project." /> -->
+      <Error Condition="'$(CodeAnalysisRuleSet)' == ''" Text="No code analysis rule set defined.  Ensure code analysis rules are property defined." />
+      <Error Condition="'$(DefaultRuleSet)' == ''" Text="No default code analysis rule set defined.  Ensure a default code analysis rule set can be determined." />
+
+      <Error Condition="!Exists('$(CodeAnalysisRuleSet)')" Text="The code analysis rule set does not exist in the project directory.  Copy the default code analysis rulset '$(DefaultRuleSet)' from the build/CodeAnalysis directory into the project folder and rename it to '$(CodeAnalysisRuleSet)'"></Error>
+      <Message Text="Index of Test Project: $(TargetFramework.Contains('netcore'))" />
+   </Target>
+
+
+</Project>

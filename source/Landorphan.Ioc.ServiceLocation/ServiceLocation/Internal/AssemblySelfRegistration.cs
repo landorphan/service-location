@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Landorphan.Ioc.ServiceLocation.Internal
 {
    using Landorphan.Ioc.Logging.Internal;

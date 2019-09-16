@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation
+namespace Landorphan.Ioc.ServiceLocation
 {
    using System;
    using Landorphan.Ioc.ServiceLocation.Interfaces;

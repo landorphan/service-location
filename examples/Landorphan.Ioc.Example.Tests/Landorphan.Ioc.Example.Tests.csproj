@@ -3,11 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <RootNamespace>Landorphan.Ioc.Example.Tests</RootNamespace>
-    <NoWarn>1701;1702;</NoWarn>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>

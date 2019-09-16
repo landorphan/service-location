@@ -10,7 +10,7 @@ namespace Landorphan.Ioc.Example.ConsoleApp
 
    class Program
    {
-      private string[] args;
+      private readonly string[] args;
 
       public Program(string[] args)
       {
@@ -50,6 +50,9 @@ namespace Landorphan.Ioc.Example.ConsoleApp
             case "convert":
                this.HandleConvertRequest();
                break;
+            default:
+               this.ShowUsage("Unknown command");
+               break;
          }
       }
 
@@ -73,22 +76,24 @@ namespace Landorphan.Ioc.Example.ConsoleApp
          }
       }
 
+
+      public const int ConverterExpectedArguments = 4;
       public void HandleConvertRequest()
       {
-         if (args.Length < 4)
+         if (args.Length < ConverterExpectedArguments)
          {
             ShowUsage("insufficient command arguments:");
          }
-         else if (args.Length > 4)
+         else if (args.Length > ConverterExpectedArguments)
          {
-            ShowUsage($"unknown command argument: {args[4]}");
+            ShowUsage($"unknown command argument: {args[ConverterExpectedArguments]}");
          }
          else
          {
             var fromCurrency = args[1];
             var amountAsString = args[2];
             var toCurrency = args[3];
-            if (!decimal.TryParse(amountAsString, out var ammount))
+            if (!decimal.TryParse(amountAsString, NumberStyles.Any, CultureInfo.InvariantCulture, out var amount))
             {
                ShowUsage($"unable to convert the amount supplied {amountAsString}");
                return;
@@ -106,7 +111,7 @@ namespace Landorphan.Ioc.Example.ConsoleApp
                ShowUsage($"supplied toCurrency not in the list of available codes {toCurrency}");
             }
 
-            var converted = converter.Convert(toCurrency, ammount, fromCurrency);
+            var converted = converter.Convert(toCurrency, amount, fromCurrency);
             Console.WriteLine(converted.ToString(CultureInfo.InvariantCulture));
          }
       }

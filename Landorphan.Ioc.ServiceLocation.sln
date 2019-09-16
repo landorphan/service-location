@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29020.237
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{65807C31-348B-4BC0-95E0-7D7F8938A547}"
 EndProject
@@ -28,6 +28,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JetBrains", "JetBrains", "{982D60AF-AA0E-4BAF-A541-0BB9F80D385D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF33A87D-5CD8-4335-A032-3D4638C23FE2}"
+	ProjectSection(SolutionItems) = preProject
+		AssemblyVersion.cs = AssemblyVersion.cs
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation", "source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj", "{EDDD5388-8B57-4F5C-B394-2C48A27CB736}"
 EndProject
@@ -72,8 +77,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.ObjectStore.Cosm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.Performance.Tests", "test\Landorphan.Ioc.Collections.Performance.Tests\Landorphan.Ioc.Collections.Performance.Tests.csproj", "{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.Collections.Performance.Tests.Fx", "test\Landorphan.Ioc.Collections.Performance.Tests.Fx\Landorphan.Ioc.Collections.Performance.Tests.Fx.csproj", "{2BE5337F-5730-4881-9163-C187E951C613}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8323FDA5-2688-425B-8A30-7836EE3F2C08}"
 	ProjectSection(SolutionItems) = preProject
 		build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset = build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset
@@ -103,9 +106,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layout", "Layout", "{0FE84C
 		build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Instrumentation", "source\Landorphan.Instrumentation\Landorphan.Instrumentation.csproj", "{4DA690A7-6837-4481-963B-C285E53C4A6C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Instrumentation.Tests.Fx", "test\Landorphan.Instrumentation.Tests.Fx\Landorphan.Instrumentation.Tests.Fx.csproj", "{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.InstrumentationManagement", "source\Landorphan.InstrumentationManagement\Landorphan.InstrumentationManagement.csproj", "{4DA690A7-6837-4481-963B-C285E53C4A6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}"
 EndProject
@@ -115,7 +116,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Example.Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Example.Tests", "examples\Landorphan.Ioc.Example.Tests\Landorphan.Ioc.Example.Tests.csproj", "{61E8A7B3-781B-4A1E-B18E-330CB852514F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.Ioc.ServiceLocation.Logging.Microsoft", "source\Landorphan.Ioc.ServiceLocation.Logging.Microsoft\Landorphan.Ioc.ServiceLocation.Logging.Microsoft.csproj", "{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation.Logging.Microsoft", "source\Landorphan.Ioc.ServiceLocation.Logging.Microsoft\Landorphan.Ioc.ServiceLocation.Logging.Microsoft.csproj", "{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.InstrumentationManagement.Tests", "test\Landorphan.InstrumentationManagement.Tests\Landorphan.InstrumentationManagement.Tests.csproj", "{09927D76-96AA-4AF5-BB0F-36876EFFEED1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{620F829C-E1A7-4618-A037-36B4A046B51F}"
+	ProjectSection(SolutionItems) = preProject
+		build\tests\Landorphan.Tests.Architecture.cs = build\tests\Landorphan.Tests.Architecture.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,18 +171,10 @@ Global
 		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BE5337F-5730-4881-9163-C187E951C613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BE5337F-5730-4881-9163-C187E951C613}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BE5337F-5730-4881-9163-C187E951C613}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BE5337F-5730-4881-9163-C187E951C613}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DA690A7-6837-4481-963B-C285E53C4A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DA690A7-6837-4481-963B-C285E53C4A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA690A7-6837-4481-963B-C285E53C4A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DA690A7-6837-4481-963B-C285E53C4A6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7031615D-A6F8-4B9B-A2C1-40677CF88DA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -191,6 +191,10 @@ Global
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,16 +214,16 @@ Global
 		{976B1FED-3B23-40C0-85DC-2C089DF2060E} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{290768D8-A155-4148-96CA-BEAE88241430} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 		{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
-		{2BE5337F-5730-4881-9163-C187E951C613} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{8323FDA5-2688-425B-8A30-7836EE3F2C08} = {2B05C482-3783-4E78-B382-561792F5197B}
 		{98D67DA8-2430-43D3-9844-636F2FDDF3AB} = {982D60AF-AA0E-4BAF-A541-0BB9F80D385D}
 		{0FE84CF8-C2C8-4E5B-8616-AAD19373D486} = {982D60AF-AA0E-4BAF-A541-0BB9F80D385D}
 		{4DA690A7-6837-4481-963B-C285E53C4A6C} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
-		{7031615D-A6F8-4B9B-A2C1-40677CF88DA4} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 		{D5BB65BC-D628-4251-AC07-C9A6352C8258} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 		{3342DA33-4DE5-4210-B055-ED6FD5583E29} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 		{61E8A7B3-781B-4A1E-B18E-330CB852514F} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{09927D76-96AA-4AF5-BB0F-36876EFFEED1} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
+		{620F829C-E1A7-4618-A037-36B4A046B51F} = {2B05C482-3783-4E78-B382-561792F5197B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}

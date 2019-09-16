@@ -159,11 +159,10 @@ namespace Landorphan.TestUtilities
          MethodInfo methodInfo = this.GetType().GetMethod(this.TestContext.TestName);
          if (methodInfo != null)
          {
-            var testFilters = (
-               from a in methodInfo.GetCustomAttributes()
-               let tf = a as TestFilterAttribute
-               where tf != null
-               select tf);
+            var testFilters = (from a in methodInfo.GetCustomAttributes()
+                                let tf = a as TestFilterAttribute
+                              where tf != null
+                             select tf).ToList();
 
             bool suppress = testFilters.Any(tf => tf.ReturnInconclusiveTestResult());
             if (suppress)

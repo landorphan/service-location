@@ -3,10 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Landorphan.Ioc.Example.Service</RootNamespace>
-    <NoWarn>1701;1702;</NoWarn>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

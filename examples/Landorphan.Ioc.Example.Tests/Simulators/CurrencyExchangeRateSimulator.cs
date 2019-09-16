@@ -6,9 +6,9 @@ namespace Landorphan.Ioc.Example.Tests.Simulators
 {
    using Landorphan.Ioc.Example.Service;
 
-   class CurrencyExchangeRateSimulator : ICurrencyExchangeRates
+   public class CurrencyExchangeRateSimulator : ICurrencyExchangeRates
    {
-      private Dictionary<string, decimal> usdRates = new Dictionary<string, decimal>();
+      private readonly Dictionary<string, decimal> usdRates = new Dictionary<string, decimal>();
 
       public void SetUsdRate(string currency, decimal ammount)
       {

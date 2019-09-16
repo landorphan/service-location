@@ -9,7 +9,7 @@ namespace Landorphan.Ioc.ServiceLocation.Logging.Microsoft.Internal
 
    internal class IocLogger<T> : IIocLogger<T>
    {
-      private ILogger<T> internalLoger;
+      private readonly ILogger<T> internalLoger;
 
       public IocLogger(ILogger<T> extensionsLogger)
       {

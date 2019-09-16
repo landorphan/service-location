@@ -2,12 +2,17 @@ namespace Landorphan.Ioc.Example.Service
 {
    using System;
    using System.Collections.Generic;
+   using Landorphan.Ioc.ServiceLocation;
    using RestSharp;
 
    public class ExchangeRates
    {
       public ExchangeRates() { }
+#pragma warning disable CA2227 // Collection properties should be read only -- This is needed for serialization to work properly for the test project.
+#pragma warning disable S4004 // Collection properties should be readonly -- This is needed for serialization to work properly for the test project.
       public Dictionary<string, decimal> Rates { get; set; }
+#pragma warning restore S4004 // Collection properties should be readonly
+#pragma warning restore CA2227 // Collection properties should be read only
       public string Base { get; set; }
       public DateTime Date { get; set; }
    }
@@ -18,7 +23,7 @@ namespace Landorphan.Ioc.Example.Service
 
       internal ExchangeRates GetExchangeRates(string baseCurrency)
       {
-         var client = new RestClient(@"https://api.exchangeratesapi.io/latest");
+         var client = IocServiceLocator.Resolve<IRestClient>();
          var request = new RestRequest(Method.GET);
          request.AddParameter("base", baseCurrency);
          var result = client.Execute<ExchangeRates>(request);

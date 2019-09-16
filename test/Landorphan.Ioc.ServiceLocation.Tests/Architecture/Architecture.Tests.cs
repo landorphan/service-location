@@ -1,11 +1,11 @@
-﻿namespace Landorphan.Ioc.Tests.Architecture
+namespace Landorphan.Ioc.Tests.Architecture
 {
    using System.Collections.Immutable;
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using Landorphan.Ioc.Tests.TestFacilities;
    using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
+   using Landorphan.TestUtilities.ReusableTestImplementations;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
