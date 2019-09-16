@@ -4,7 +4,7 @@
       <NotKnownTestFramework Include="@(PackageReference)" Exclude="MSTest.TestFramework;NUnit;xunit"></NotKnownTestFramework>
    </ItemGroup> -->
 
-  <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != ''">
+  <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != '' AND '$(OS)' != 'Windows_NT'">
     <DefineConstants>$(DefineConstants);BuildServer</DefineConstants>
   </PropertyGroup>
 
