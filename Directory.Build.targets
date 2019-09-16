@@ -68,6 +68,7 @@
       <Message Text="Use Test Rules: $(UseTestRulesets)" />
 
       <Message Text="Framework Group: $(FrameworkGroup)" />
+      <Message Text="Current Defines: $(DefineConstants)" />
       <Message Text="Should Be NetFx Group: $(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))" />
       <Message Text="Should Be NetCore Group: $(TargetFramework.Contains('netcore'))" />
       <Message Text="Should Be NetStd Group: $(TargetFramework.Contains('netstandard'))" />
