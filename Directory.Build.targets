@@ -9,9 +9,9 @@
         <FrameworkGroup Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">NetFx</FrameworkGroup>
         <FrameworkGroup Condition="$(TargetFramework.Contains('netstandard'))">NetStd</FrameworkGroup>
         <FrameworkGroup Condition="$(TargetFramework.Contains('netcore'))">NetCore</FrameworkGroup>
-        <DefineConstants Condition="'$(FrameworkGroup)' == 'NetFx'">$(DefineConstants);NETFX</DefineConstants>
-        <DefineConstants Condition="'$(FrameworkGroup)' == 'NetStd'">$(DefineConstants);NETSTD</DefineConstants>
-        <DefineConstants Condition="'$(FrameworkGroup)' == 'NetCore'">$(DefineConstants);NETCORE</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">$(DefineConstants);NETFX</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('netstandard'))">$(DefineConstants);NETSTD</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('netcore'))">$(DefineConstants);NETCORE</DefineConstants>
         <!-- 
         <PackageReferencesCount>$([System.Int32]::Parse(@(PackageReference->Count()))</PackageReferencesCount>
         <NotKnownTestFrameworkCount>$([System.Int32]::Parse(@(NotKnownTestFramework->Count()))</NotKnownTestFrameworkCount>
