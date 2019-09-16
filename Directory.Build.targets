@@ -53,7 +53,7 @@
   </ItemGroup>
 
    <Target Name="ValidateAndReportCodeAnalysis"
-           AfterTargets="Compile">
+           BeforeTargets="Compile">
       <Message Text="Running ValidateAndReportCodeAnalysis Target" />
       <Message Text="Building Assembly: $(AssemblyName)" />
       <Message Text="Target Framework: $(TargetFramework)" />
