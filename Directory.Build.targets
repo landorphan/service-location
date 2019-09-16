@@ -4,6 +4,10 @@
       <NotKnownTestFramework Include="@(PackageReference)" Exclude="MSTest.TestFramework;NUnit;xunit"></NotKnownTestFramework>
    </ItemGroup> -->
 
+  <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != ''">
+    <DefineConstants>$(DefineConstants);BuildServer</DefineConstants>
+  </PropertyGroup>
+
     <PropertyGroup>
         <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
         <FrameworkGroup Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">NetFx</FrameworkGroup>
