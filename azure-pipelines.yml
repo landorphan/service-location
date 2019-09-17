@@ -17,7 +17,6 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-steps:
 - script: |
    echo Write your commands here
    
