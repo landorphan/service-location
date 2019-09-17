@@ -77,6 +77,16 @@ steps:
    # Use the environment variables input below to pass secret variables to this script.
   displayName: 'Unzip NuGetKeyVaultSignTool.zip into Agent.BuildDirectory\\d'
 
+- task: eliostruyf.build-task.custom-build-task.file-creator@2
+  displayName: 'Create sign.cs File'
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.SourcesDirectory)\sign.cs'
+    filecontent: |
+     using System.Reflection;
+     
+     [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
+     
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
