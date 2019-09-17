@@ -3,10 +3,7 @@
    <PropertyGroup>
       <TargetFramework>netcoreapp2.2</TargetFramework>
       <LangVersion>7.2</LangVersion>
-      <NoWarn>1701;1702</NoWarn>
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+      <IsTestProject>True</IsTestProject>
    </PropertyGroup>
 
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -26,14 +23,15 @@
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
    </PropertyGroup>
 
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Abstractions.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
    <ItemGroup>
-     <None Remove="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <None Remove="Specifications\IO\Path\WindowsPathSegments.feature" />
+     <None Remove="Specifications\IO\Path\WindowsPreParse.feature" />
+     <None Remove="Specifications\IO\Path\WindowsTokenizer.feature" />
+     <None Remove="Specifications\Model.feature" />
    </ItemGroup>
    <ItemGroup>
-     <AdditionalFiles Include="Landorphan.Abstractions.Tests.NetCore.ruleset" />
+     <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\IO\Path\WindowsPreParse - Copy.feature.cs" />
+     <SpecFlowObsoleteCodeBehindFiles Remove="Specifications\WindowsPaths.feature.cs" />
    </ItemGroup>
 
    <ItemGroup>
@@ -42,37 +40,15 @@
       <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
       <PackageReference Include="Microsoft.VisualStudio.TestPlatform" Version="14.0.0" />
+      <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0" />
       <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
       <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+      <PackageReference Include="SpecFlow" Version="3.0.177-beta" />
+      <PackageReference Include="SpecFlow.MsTest" Version="3.0.177-beta" />
+      <PackageReference Include="SpecFlow.Tools.MsBuild.Generation" Version="3.0.177-beta" />
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
 
-      <PackageReference Include="Landorphan.Common" Version="0.9.546" />
-      
-      <!--Analyzers-->
-      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Text.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-
-      <!-- This is an OMG cool library, I ended up shelling out to powershell to elevate as admin, but hot damn, I like this library and the analyzer that goes with it
-         <PackageReference Include="Microsoft.Windows.Compatibility" Version="2.0.1" />
-         <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-         </PackageReference>
-     -->
+      <PackageReference Include="Landorphan.Common" Version="0.9.814" />
    </ItemGroup>
 
    <ItemGroup>
@@ -83,11 +59,62 @@
    </ItemGroup>
 
    <ItemGroup>
+     <Compile Update="Specifications\IO\Path\WindowsPathSegments.feature.cs">
+       <DesignTime>True</DesignTime>
+       <AutoGen>True</AutoGen>
+       <DependentUpon>WindowsPathSegments.feature</DependentUpon>
+     </Compile>
+     <Compile Update="Specifications\Model.feature.cs">
+       <DesignTime>True</DesignTime>
+       <AutoGen>True</AutoGen>
+       <DependentUpon>Model.feature</DependentUpon>
+     </Compile>
+     <Compile Update="StepDefinitions\DoNothingSteps.cs" />
+     <Compile Update="StepDefinitions\PathSteps.cs" />
+   </ItemGroup>
+
+   <ItemGroup>
       <None Update="Arrange-LocalFiles.ps1">
          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Specifications\IO\Path\WindowsPaths.feature">
+        <LastGenOutput>WindowsPaths.feature.cs</LastGenOutput>
       </None>
       <None Update="Teardown-LocalFiles.ps1">
          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+   </ItemGroup>
+
+   <ItemGroup>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\indowsPaths.feature">
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\indowsPathSegments.feature">
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPreParse.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>WindowsPreParse.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPathSegments.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>WindowsPathSegments.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsTokenizer.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>WindowsTokenizer.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\IO\Path\WindowsPaths.feature">
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+       <LastGenOutput>WindowsPaths.feature.cs</LastGenOutput>
+     </SpecFlowFeatureFiles>
+     <SpecFlowFeatureFiles Update="Specifications\Model.feature">
+       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+       <LastGenOutput>Model.feature.cs</LastGenOutput>
+       <Generator>SpecFlowSingleFileGenerator</Generator>
+     </SpecFlowFeatureFiles>
    </ItemGroup>
 </Project>

@@ -1,7 +1,6 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability
 {
    using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
    /// <summary>

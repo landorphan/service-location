@@ -19,6 +19,17 @@
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
       /// <summary>
+      /// Gets the maximum precision file system ticks supported by the host operating system.
+      /// </summary>
+      /// <value>
+      /// The maximum precision file system ticks.
+      /// </value>
+      /// <remarks>
+      /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
+      /// </remarks>
+      Int64 MaximumPrecisionFileSystemTicks { get; }
+
+      /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -280,6 +291,7 @@
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       String GetTemporaryDirectoryPath();
 
+      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
       /// <summary>
       /// Sets the creation date and time for the specified file or directory.
       /// </summary>
@@ -314,6 +326,7 @@
       /// An object that contains the value to set for the creation date and time of <paramref name="path"/>.
       /// </param>
       void SetCreationTime(String path, DateTimeOffset creationTime);
+      */
 
       /// <summary>
       /// Sets the application's current working directory to the specified directory.

@@ -13,6 +13,7 @@
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
    using Landorphan.TestUtilities.TestFacilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming   
@@ -27,7 +28,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_directory_is_empty_It_should_delete_the_directory()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DeleteRecursively(path);
@@ -38,7 +39,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_directory_is_not_empty_It_should_delete_the_directory()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             // nested file
@@ -60,9 +61,10 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.DeleteRecursively(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -72,9 +74,10 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.DeleteRecursively(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -86,7 +89,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _target.DeleteRecursively(path);
 
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
@@ -96,7 +99,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DeleteRecursively(Spaces + path);
@@ -107,7 +110,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.CreateDirectory(path);
             _target.DeleteRecursively(path + Spaces);
@@ -123,7 +126,7 @@
             Action throwingAction = () => _target.DeleteRecursively(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -157,7 +160,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.DeleteRecursively(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -174,14 +177,14 @@
             Action throwingAction = () => _target.DeleteRecursively(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_matches_an_existing_file_It_should_throw_IOException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             var filePath = _pathUtilities.Combine(path, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
 
             _target.CreateDirectory(path);
@@ -209,6 +212,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -236,6 +240,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -250,7 +255,7 @@
          {
             // absolute
             var path = _pathUtilities.Combine(
-               _pathUtilities.GetFullPath(_tempPath),
+               _pathUtilities.GetFullPath(TempPath),
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_a_directory_with_files_and_subdirectories_absolute));
             try
             {
@@ -275,7 +280,7 @@
          public void It_should_delete_a_directory_with_files_and_subdirectories_relative()
          {
             // relative
-            _target.SetCurrentDirectory(_tempPath);
+            _target.SetCurrentDirectory(TempPath);
             var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_delete_a_directory_with_files_and_subdirectories_relative);
             try
             {
@@ -333,7 +338,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_return_false()
          {
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             _target.DirectoryExists(path).Should().BeFalse();
          }
@@ -342,7 +347,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_an_invalid_character_It_should_return_false()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "<";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "<";
             _target.DirectoryExists(path).Should().BeFalse();
          }
 
@@ -350,7 +355,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_return_false()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             _target.DirectoryExists(path).Should().BeFalse();
          }
@@ -359,9 +364,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_exists_with_leading_whitespace_It_should_return_true()
          {
-            var paddedPath = Spaces + _tempPath;
+            var paddedPath = Spaces + TempPath;
 
-            _target.DirectoryExists(_tempPath).Should().BeTrue();
+            _target.DirectoryExists(TempPath).Should().BeTrue();
             _target.DirectoryExists(paddedPath).Should().BeTrue();
          }
 
@@ -369,9 +374,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_exists_with_trailing_whitespace_It_should_return_true()
          {
-            var paddedPath = _tempPath + Spaces;
+            var paddedPath = TempPath + Spaces;
 
-            _target.DirectoryExists(_tempPath).Should().BeTrue();
+            _target.DirectoryExists(TempPath).Should().BeTrue();
             _target.DirectoryExists(paddedPath).Should().BeTrue();
          }
 
@@ -413,7 +418,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_return_false()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             _target.DirectoryExists(path).Should().BeFalse();
          }
@@ -445,6 +450,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_return_false()
          {
             const String path = ":";
@@ -479,7 +485,7 @@
          {
             // absolute -- extant
             var path = _pathUtilities.Combine(
-               _pathUtilities.GetFullPath(_tempPath),
+               _pathUtilities.GetFullPath(TempPath),
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_distinguish_between_extant_and_non_extant_directories_absolute));
             try
             {
@@ -493,7 +499,7 @@
 
             // absolute -- non-extant
             path = _pathUtilities.Combine(
-               _pathUtilities.GetFullPath(_tempPath),
+               _pathUtilities.GetFullPath(TempPath),
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_distinguish_between_extant_and_non_extant_directories_absolute));
             _target.DirectoryExists(path).Should().BeFalse();
          }
@@ -503,7 +509,7 @@
          public void It_should_distinguish_between_extant_and_non_extant_directories_relative()
          {
             // relative -- extant
-            _target.SetCurrentDirectory(_tempPath);
+            _target.SetCurrentDirectory(TempPath);
             var path = @".\" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_distinguish_between_extant_and_non_extant_directories_relative);
             try
             {
@@ -557,11 +563,12 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             const String expectedMessage = "The path is not well-formed (':' used outside the drive label).\r\nParameter name: path";
 
-            var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
+            var path = TempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             Action throwingAction = () => _target.EnumerateDirectories(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -581,9 +588,10 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
+            var path = _pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
 
             Action throwingAction = () => _target.EnumerateDirectories(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -638,7 +646,7 @@
             // TODO: create a test against an existing directory that is left padded with children that are not left-padded.
             // Does the left-padding on the parent still cascade to the results?
 
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -654,7 +662,9 @@
                   _target.CreateDirectory(sd);
                }
 
-               _pathUtilities.IsPathRelative(Spaces + outerFullPath).Should().BeFalse();
+               // Behavior differs here between Windows and Linux/Unix (OSX) platforms.
+               var isRelative = _pathUtilities.IsPathRelative(Spaces + outerFullPath);
+               isRelative.Should().BeFalse();
 
                var actual = _target.EnumerateDirectories(Spaces + outerFullPath);
                actual.Should().Contain(expected);
@@ -690,7 +700,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -745,17 +755,17 @@
             Action throwingAction = () => _target.EnumerateDirectories(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.EnumerateDirectories(path, "*");
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.EnumerateDirectories(path, "*", SearchOption.AllDirectories);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -810,7 +820,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.EnumerateDirectories(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -837,17 +847,17 @@
             Action throwingAction = () => _target.EnumerateDirectories(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.EnumerateDirectories(path, "*");
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.EnumerateDirectories(path, "*", SearchOption.AllDirectories);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -886,6 +896,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -934,6 +945,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_throw_DirectoryNotFoundException()
          {
             var path = _pathUtilities.Combine(@"\\localhost\", Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
@@ -1007,7 +1019,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_subdirectories()
          {
-            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
+            var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
             var expected = new List<String>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),

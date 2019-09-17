@@ -2,11 +2,6 @@
    <PropertyGroup>
       <TargetFramework>netstandard2.0</TargetFramework>
       <LangVersion>7.2</LangVersion>
-      <NoWarn>1701;1702;</NoWarn>
-
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
@@ -27,45 +22,15 @@
       <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
    </PropertyGroup>
 
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Abstractions.NetStd.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
    <ItemGroup>
-      <None Remove="Landorphan.Abstractions.NetStd.ruleset" />
-   </ItemGroup>
-   <ItemGroup>
-      <AdditionalFiles Include="Landorphan.Abstractions.NetStd.ruleset" />
-   </ItemGroup>
-
-   <ItemGroup>
-      <PackageReference Include="Landorphan.Common" Version="0.9.546" />
+      <PackageReference Include="Landorphan.Common" Version="0.9.814" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
-      <!--Analyzers-->
-      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.NetFramework.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Text.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
    </ItemGroup>
 
    <ItemGroup>
      <ProjectReference Include="..\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
+     <ProjectReference Include="..\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
    </ItemGroup>
 </Project>

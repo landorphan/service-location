@@ -328,3 +328,9 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Ignore MAC extra files
+.DS_Store
+
+# Ignore SpecFlow Generated Files
+*.feature.cs

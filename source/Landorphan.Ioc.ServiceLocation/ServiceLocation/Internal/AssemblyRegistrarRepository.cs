@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation.Internal
+namespace Landorphan.Ioc.ServiceLocation.Internal
 {
    using System;
    using System.Collections.Generic;
@@ -111,6 +111,10 @@
 
          var assemblyNameEqualityComparer = new AssemblyNameEqualityComparer();
          var rv = new List<Type>();
+
+         // add the internal registrar.
+         rv.Add(typeof(AssemblySelfRegistration));
+
          while (unordered.Count > 0)
          {
             var currentAssemblyRegistrarType = unordered.Dequeue();
@@ -173,7 +177,9 @@
                throw new AbstractAssemblyRegistrarException(registrarType);
             }
 
-            if (ReferenceEquals(registrarType.GetConstructor(Array.Empty<Type>()), null))
+#pragma warning disable CA1825 // Avoid zero-length array allocations.
+            if (ReferenceEquals(registrarType.GetConstructor(new Type[0]), null))
+#pragma warning restore CA1825 // Avoid zero-length array allocations.
             {
                throw new AssemblyRegistrarMustHavePublicDefaultConstructorException(registrarType);
             }

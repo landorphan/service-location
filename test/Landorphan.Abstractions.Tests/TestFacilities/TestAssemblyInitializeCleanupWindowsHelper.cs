@@ -8,19 +8,56 @@
    using Landorphan.Abstractions.Interfaces;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Ioc.ServiceLocation;
+   using Landorphan.TestUtilities;
+   using Microsoft.Win32;
 
    [SuppressMessage("Platform.Compat", "PC001: API not supported on all platforms")]
    internal class TestAssemblyInitializeCleanupWindowsHelper
    {
-      // this class is called by TestAssemblyInitializeCleanup to arrange or teardown Windows-Specific resources.
-      // it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
-
-      internal void Arrange()
+      /// <summary>
+      /// Gets the PowerShell 32-bit execution policy.
+      /// </summary>
+      /// <remarks>
+      /// Expected values are RemoteSigned, Unrestricted, Bypass, Restricted, AllSigned, Undefined
+      /// </remarks>
+      /// <returns>
+      /// The execution policy as a string.
+      /// "PowerShell 32-bit ExecutionPolicy not found." when the registry value was not found.
+      /// "Not on Windows" when executed in a non-Windows environment.
+      /// </returns>
+      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "Sonar lint does not handle abbreviations and acronyms (MWP)")]
+      public static String GetPSExecutionPolicyUser()
       {
+         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            const String defaultValue = "PowerShell 32-bit ExecutionPolicy not found.";
+
+            // for machine, use @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell"
+            var rv = (String)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell", "ExecutionPolicy", defaultValue);
+            return rv;
+         }
+
+         return "Not on Windows";
+      }
+
+      // this class is called by TestAssemblyInitializeCleanup to arrange or teardown Windows-Specific resources.
+      // Except for GetPSExecutionPolicyUser() it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
+
+      internal Boolean Arrange()
+      {
+         // returns true when arrange completed, otherwise false
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
             throw new InvalidOperationException($"Cannot perform {nameof(Arrange)} on non-Windows platforms");
          }
+
+         //var allowedExecutionPolicies = new HashSet<String>(StringComparer.OrdinalIgnoreCase) { "RemoteSigned", "Unrestricted", "Bypass" };
+         //var executionPolicy = GetPSExecutionPolicyUser();
+         //if (!allowedExecutionPolicies.Contains(executionPolicy))
+         //{
+         //   // TODO: TSG, why not throw an exception?
+         //   return false;
+         //}
 
          /* **************************************************************************************************************
          Create the following folder\file structure with ACLs (C:\ is not hard-coded)
@@ -43,7 +80,10 @@
          {
             InitializeTestHardCodesWindowsLocalTestPaths();
             InitializeTestHardCodesWindowsUncTestPaths();
+            return true;
          }
+
+         return false;
       }
 
       internal void Teardown()
@@ -61,7 +101,7 @@
       }
 
       [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
-      private ProcessStartInfo BuildPSElevatedStartInfo()
+      private ProcessStartInfo BuildPSStartInfoElevated()
       {
          // returns null when the PowerShell executable path cannot be found.
 
@@ -95,6 +135,40 @@
          return startInfo;
       }
 
+      // ReSharper disable once UnusedMember.Local
+      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
+      private ProcessStartInfo BuildPSStartInfoNotElevated()
+      {
+         // returns null when the PowerShell executable path cannot be found.
+
+         var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+         var pwd = dirUtilities.GetCurrentDirectory();
+
+         var psExeFullPath = GetPowerShellPath();
+         if (psExeFullPath == null)
+         {
+            return null;
+         }
+
+         var startInfo = new ProcessStartInfo
+         {
+            // CreateNoWindow = true seems to be ignored on Windows with UAC enabled.  UAC prompts for confirmation, then a PowerShell window pops and closes.
+            CreateNoWindow = true,
+            ErrorDialog = false,
+            FileName = psExeFullPath,
+            // Set UseShellExecute to false for redirection of output streams
+            // Set UseShellExecute to true if you want Verb to be honored
+            // >> you cannot redirect output and elevate
+            // >> if you do not redirect output, you can create a deadlock by accessing both streams
+            UseShellExecute = true,
+            WorkingDirectory = pwd
+         };
+
+         startInfo.RedirectStandardOutput = !startInfo.UseShellExecute;
+         startInfo.RedirectStandardError = !startInfo.UseShellExecute;
+         return startInfo;
+      }
+
       private Int32 ExecuteArrangeScript(out String output, out String error)
       {
          var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
@@ -106,7 +180,7 @@
          }
 
          // Execute an Administrator-Only script to create local files and folders for tests.
-         var startInfo = BuildPSElevatedStartInfo();
+         var startInfo = BuildPSStartInfoElevated();
          if (startInfo == null)
          {
             const String err = "failed to create PowerShell start info";
@@ -116,11 +190,11 @@
             return -1;
          }
 
-         var exitCode = ExecutePowerShellScript(startInfo, scriptPath, out output, out error);
+         var exitCode = ExecutePowerShellScriptElevated(startInfo, scriptPath, out output, out error);
          return exitCode;
       }
 
-      private Int32 ExecutePowerShellScript(ProcessStartInfo startInfo, String scriptPath, out String output, out String error)
+      private Int32 ExecutePowerShellScriptElevated(ProcessStartInfo startInfo, String scriptPath, out String output, out String error)
       {
          // in order to elevate, must use ShellExecute = true
          // when ShellExecute, redirection of StandardOutput and StandardError is not allowed.
@@ -134,19 +208,16 @@
          // 15 seconds was timing out on the build server
          // 2 minutes works
          var twoMinutes = new TimeSpan(0, 2, 0);
-
          const Int32 oneSecondInMilliseconds = 1000;
-
-         // ReSharper disable once StringLiteralTypo
-         const String stdErrLogFileName = @"PSLogStdErr.txt";
-         const String stdOutLogFileName = @"PSLogStdOut.txt";
 
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
          var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
          var fileReaderUtilities = IocServiceLocator.Resolve<IFileReaderUtilities>();
-
          var pwd = dirUtilities.GetCurrentDirectory();
+
+         var stdErrLogFileName = fileUtilities.CreateTemporaryFile();
+         var stdOutLogFileName = fileUtilities.CreateTemporaryFile();
 
          var scriptFullPath = pathUtilities.GetFullPath(scriptPath);
          // 2 is standard error, 1 is standard output
@@ -160,7 +231,10 @@
             return -1;
          }
 
+         error = String.Empty;
+         output = String.Empty;
          Int32 exitCode;
+
          using (var ps = new Process())
          {
             ps.StartInfo = startInfo;
@@ -229,7 +303,7 @@
          }
 
          // Execute an Administrator-Only script to delete local files and folders for tests.
-         var startInfo = BuildPSElevatedStartInfo();
+         var startInfo = BuildPSStartInfoElevated();
          if (startInfo == null)
          {
             const String err = "failed to create PowerShell start info";
@@ -239,7 +313,7 @@
             return -1;
          }
 
-         var exitCode = ExecutePowerShellScript(startInfo, scriptPath, out output, out error);
+         var exitCode = ExecutePowerShellScriptElevated(startInfo, scriptPath, out output, out error);
          return exitCode;
       }
 
@@ -276,7 +350,16 @@
 
          // parallel knowledge/maintenance here
          var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
-         var localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
+
+         String localFolderRoot = null;
+         if (RuntimePlatform.IsWindows())
+         {
+            localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
+         }
+         else
+         {
+            localFolderRoot = "/";
+         }
 
          // NOTE:  cannot check for the existence of a file(s)/folder(s) in this block because the current user does not have access to many of the extant paths by design.
          TestHardCodes.WindowsLocalTestPaths.SetLocalFolderRoot(localFolderRoot);

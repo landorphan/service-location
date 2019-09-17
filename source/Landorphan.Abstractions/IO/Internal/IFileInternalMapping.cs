@@ -25,6 +25,17 @@
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
       /// <summary>
+      /// Gets the maximum precision file system ticks supported by the host operating system.
+      /// </summary>
+      /// <value>
+      /// The maximum precision file system ticks.
+      /// </value>
+      /// <remarks>
+      /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
+      /// </remarks>
+      Int64 MaximumPrecisionFileSystemTicks { get; }
+
+      /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -33,7 +44,7 @@
       DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
 
       /// <summary>
-      /// Appends lines to a file, and then closes the file.  If the specified path root exits, this method will create intermediate directories and 
+      /// Appends lines to a file, and then closes the file.  If the specified path root exits, this method will create intermediate directories and
       /// the file itself as needed.  It then appends the specified lines to the file, and closes the file.
       /// </summary>
       /// <param name="path">
@@ -47,9 +58,9 @@
       /// </param>
       /// <exception cref="ArgumentNullException">
       /// <paramref name=" path "/> is <c>null</c>
-      /// -or- 
+      /// -or-
       /// <paramref name="contents"/> is <c>null</c>
-      /// -or- 
+      /// -or-
       /// <paramref name="encoding"/> is <c>null</c>.
       /// </exception>
       /// <exception cref="ArgumentException">
@@ -352,45 +363,11 @@
       /// </param>
       /// <returns>
       /// <c>true</c> if the caller has the required permissions and <paramref name="path"/> contains the name of an existing file; otherwise,
-      /// <c>false</c>.  
+      /// <c>false</c>.
       /// <p>This method also returns <c>false</c> when <paramref name="path"/> is null, an invalid path, or a zero-length string.</p>
       /// <p>This method will also return <c>false</c> when the caller does not have sufficient permissions to read the specified file.</p>
       /// </returns>
       Boolean FileExists(String path);
-
-      /// <summary>
-      /// Gets the <see cref="FileAttributes"/> of the file on the path.
-      /// </summary>
-      /// <param name="path">
-      /// The path to the file.
-      /// </param>
-      /// <returns>
-      /// The <see cref="FileAttributes"/> of the file on the path.
-      /// </returns>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is empty, contains only white spaces, or contains invalid characters.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or both exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="NotSupportedException">
-      /// <paramref name="path"/> is in an invalid format.
-      /// </exception>
-      /// <exception cref="FileNotFoundException">
-      /// <paramref name="path"/> represents a file and is invalid, such as being on an unmapped
-      /// drive, or the file cannot be found.
-      /// </exception>
-      /// <exception cref="DirectoryNotFoundException">
-      /// <paramref name="path"/> represents a directory and is invalid, such as being on an
-      /// unmapped drive, or the directory cannot be found.
-      /// </exception>
-      /// <exception cref="IOException">
-      /// This file is being used by another process.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// The caller does not have the required permission.
-      /// </exception>
-      FileAttributes GetAttributes(String path);
 
       /// <summary>
       /// Returns the creation date and time of the specified file or directory.
@@ -538,20 +515,20 @@
       /// <returns>
       /// A <see cref="FileMode"/> opened in the specified mode and path, with read/write access and not shared.
       /// </returns>
-      /// <exception cref="ArgumentException">      
+      /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
       /// </exception>
-      /// <exception cref="ArgumentNullException">      
+      /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
-      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive).
       /// </exception>
       /// <exception cref="IOException">
-      /// An I/O error occurred while opening the file. 
+      /// An I/O error occurred while opening the file.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
@@ -569,10 +546,10 @@
       /// </exception>
       /// <exception cref="FileNotFoundException">
       /// The file specified in path was not found.
-      /// </exception>   
+      /// </exception>
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
-      /// </exception>      
+      /// </exception>
       FileStream Open(String path, FileMode mode);
 
       /// <summary>
@@ -590,20 +567,20 @@
       /// <returns>
       /// An unshared <see cref="FileStream"/> that provides access to the specified file, with the specified mode and access.
       /// </returns>
-      /// <exception cref="ArgumentException">      
+      /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
       /// </exception>
-      /// <exception cref="ArgumentNullException">      
+      /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
-      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive).
       /// </exception>
       /// <exception cref="IOException">
-      /// An I/O error occurred while opening the file. 
+      /// An I/O error occurred while opening the file.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
@@ -623,10 +600,10 @@
       /// </exception>
       /// <exception cref="FileNotFoundException">
       /// The file specified in path was not found.
-      /// </exception>   
+      /// </exception>
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
-      /// </exception>   
+      /// </exception>
       FileStream Open(String path, FileMode mode, FileAccess access);
 
       /// <summary>
@@ -647,20 +624,20 @@
       /// <returns>
       /// A <see cref="FileStream"/> on the specified path, having the specified mode with read, write, or read/write access and the specified sharing option.
       /// </returns>
-      /// <exception cref="ArgumentException">      
+      /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
       /// </exception>
-      /// <exception cref="ArgumentNullException">      
+      /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
-      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive).
       /// </exception>
       /// <exception cref="IOException">
-      /// An I/O error occurred while opening the file. 
+      /// An I/O error occurred while opening the file.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
@@ -682,10 +659,10 @@
       /// </exception>
       /// <exception cref="FileNotFoundException">
       /// The file specified in path was not found.
-      /// </exception>   
+      /// </exception>
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
-      /// </exception>   
+      /// </exception>
       FileStream Open(String path, FileMode mode, FileAccess access, FileShare share);
 
       /// <summary>
@@ -697,20 +674,20 @@
       /// <returns>
       /// A read-only <see cref="FileStream"/> on the specified path.
       /// </returns>
-      /// <exception cref="ArgumentException">      
+      /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
       /// </exception>
-      /// <exception cref="ArgumentNullException">      
+      /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
-      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive).
       /// </exception>
       /// <exception cref="IOException">
-      /// An I/O error occurred while opening the file. 
+      /// An I/O error occurred while opening the file.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
@@ -725,10 +702,10 @@
       /// </exception>
       /// <exception cref="FileNotFoundException">
       /// The file specified in path was not found.
-      /// </exception>   
+      /// </exception>
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
-      /// </exception>   
+      /// </exception>
       FileStream OpenRead(String path);
 
       /// <summary>
@@ -740,20 +717,20 @@
       /// <returns>
       /// A <see cref="StreamReader"/> on the specified path.
       /// </returns>
-      /// <exception cref="ArgumentException">      
+      /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
       /// </exception>
-      /// <exception cref="ArgumentNullException">      
+      /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
-      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive).
       /// </exception>
       /// <exception cref="IOException">
-      /// An I/O error occurred while opening the file. 
+      /// An I/O error occurred while opening the file.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
@@ -768,10 +745,10 @@
       /// </exception>
       /// <exception cref="FileNotFoundException">
       /// The file specified in path was not found.
-      /// </exception>   
+      /// </exception>
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
-      /// </exception>  
+      /// </exception>
       StreamReader OpenText(String path);
 
       /// <summary>
@@ -783,20 +760,20 @@
       /// <returns>
       /// An unshared <see cref="FileStream"/> object on the specified path with <see cref="FileAccess.Write"/> access.
       /// </returns>
-      /// <exception cref="ArgumentException">      
+      /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or more invalid characters as defined by InvalidPathChars.
       /// </exception>
-      /// <exception cref="ArgumentNullException">      
+      /// <exception cref="ArgumentNullException">
       /// <paramref name="path"/> is null.
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified <paramref name="path"/>, file name, or both exceed the system-defined maximum length.
       /// </exception>
       /// <exception cref="DirectoryNotFoundException">
-      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive). 
+      /// The specified <paramref name="path"/> is invalid, (for example, it is on an unmapped drive).
       /// </exception>
       /// <exception cref="IOException">
-      /// An I/O error occurred while opening the file. 
+      /// An I/O error occurred while opening the file.
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
@@ -811,10 +788,10 @@
       /// </exception>
       /// <exception cref="FileNotFoundException">
       /// The file specified in path was not found.
-      /// </exception>   
+      /// </exception>
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
-      /// </exception>  
+      /// </exception>
       FileStream OpenWrite(String path);
 
       /// <summary>
@@ -1092,7 +1069,7 @@
       /// The <paramref name="destinationFileName"/> parameter specifies a directory.
       /// -or-
       /// This operation is not supported on the current platform.
-      /// -or- 
+      /// -or-
       /// The caller does not have the required permission.
       /// </exception>
       void ReplaceContentsNoBackup(String sourceFileName, String destinationFileName);
@@ -1148,7 +1125,7 @@
       /// The <paramref name="destinationFileName"/> parameter specifies a directory.
       /// -or-
       /// This operation is not supported on the current platform.
-      /// -or- 
+      /// -or-
       /// The caller does not have the required permission.
       /// </exception>
       void ReplaceContentsNoBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName);
@@ -1217,9 +1194,9 @@
       /// The <paramref name="destinationFileName"/> parameter specifies a directory.
       /// -or-
       /// The <paramref name="destinationBackupFileName"/> parameter specifies a file that is read-only.
-      /// -or- 
+      /// -or-
       /// This operation is not supported on the current platform.
-      /// -or- 
+      /// -or-
       /// The caller does not have the required permission.
       /// </exception>
       void ReplaceContentsWithBackup(String sourceFileName, String destinationFileName, String destinationBackupFileName);
@@ -1288,45 +1265,12 @@
       /// The <paramref name="destinationFileName"/> parameter specifies a directory.
       /// -or-
       /// The <paramref name="destinationBackupFileName"/> parameter specifies a file that is read-only.
-      /// -or- 
+      /// -or-
       /// This operation is not supported on the current platform.
-      /// -or- 
+      /// -or-
       /// The caller does not have the required permission.
       /// </exception>
       void ReplaceContentsWithBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName, String destinationBackupFileName);
-
-      /// <summary>
-      /// Sets the specified <see cref="FileAttributes"/> of the file on the specified path.
-      /// </summary>
-      /// <param name="path">
-      /// The path to the file.
-      /// </param>
-      /// <param name="fileAttributes">
-      /// A bitwise combination of the enumeration values.
-      /// </param>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is empty, contains only white spaces, contains invalid characters, or
-      /// the file attribute is invalid.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or both exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="NotSupportedException">
-      /// <paramref name="path"/> is in an invalid format.
-      /// </exception>
-      /// <exception cref="DirectoryNotFoundException">
-      /// The specified path is invalid, (for example, it is on an unmapped drive).
-      /// </exception>
-      /// <exception cref="FileNotFoundException">
-      /// The file cannot be found.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// <paramref name="path"/> specified a file that is read-only.-or- This operation is not
-      /// supported on the current platform.-or-
-      /// <paramref name="path"/> specified a directory.-or- The caller does not have the
-      /// required permission.
-      /// </exception>
-      void SetAttributes(String path, FileAttributes fileAttributes);
 
       /// <summary>
       /// Sets the date and time the file was created.
@@ -1365,6 +1309,7 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
+      [Obsolete("Currently not reliable")]
       void SetCreationTime(String path, DateTimeOffset creationTime);
 
       /// <summary>
@@ -1375,7 +1320,7 @@
       /// </param>
       /// <param name="lastAccessTime">
       /// A <see cref="DateTimeOffset"/> containing the value to set for the last access date and time of
-      /// <paramref name="path"/>. 
+      /// <paramref name="path"/>.
       /// </param>
       /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
@@ -1411,7 +1356,7 @@
       /// </param>
       /// <param name="lastWriteTime">
       /// A <see cref="DateTimeOffset"/> containing the value to set for the last write date and time of
-      /// <paramref name="path"/>. 
+      /// <paramref name="path"/>.
       /// </param>
       /// <exception cref="ArgumentException">
       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
@@ -1456,9 +1401,9 @@
       /// <paramref name="path"/> contains one or more invalid characters as defined by <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
-      /// <paramref name="path"/> is null 
+      /// <paramref name="path"/> is null
       /// -or-
-      /// <paramref name="bytes"/> is null 
+      /// <paramref name="bytes"/> is null
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified path, file name, or both exceed the system-defined maximum length.
@@ -1471,7 +1416,7 @@
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
-      /// -or- 
+      /// -or-
       /// This operation is not supported on the current platform.
       /// -or-
       /// <paramref name="path"/> specified a directory.
@@ -1504,9 +1449,9 @@
       /// <paramref name="path"/> contains one or more invalid characters as defined by <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
       /// </exception>
       /// <exception cref="ArgumentNullException">
-      /// <paramref name="path"/> is null 
+      /// <paramref name="path"/> is null
       /// -or-
-      /// <paramref name="bytes"/> is null 
+      /// <paramref name="bytes"/> is null
       /// </exception>
       /// <exception cref="PathTooLongException">
       /// The specified path, file name, or both exceed the system-defined maximum length.
@@ -1519,7 +1464,7 @@
       /// </exception>
       /// <exception cref="UnauthorizedAccessException">
       /// <paramref name="path"/> specified a file that is read-only.
-      /// -or- 
+      /// -or-
       /// This operation is not supported on the current platform.
       /// -or-
       /// <paramref name="path"/> specified a directory.

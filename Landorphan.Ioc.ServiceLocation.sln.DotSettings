@@ -5,6 +5,7 @@
 	<s:Boolean x:Key="/Default/CodeInspection/Highlighting/ColorUsageHighlightingEnabled/@EntryValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/Highlighting/IdentifierHighlightingEnabled/@EntryValue">False</s:Boolean>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=BuiltInTypeReferenceStyle/@EntryIndexedValue">SUGGESTION</s:String>
+	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=BuiltInTypeReferenceStyleForMemberAccess/@EntryIndexedValue">SUGGESTION</s:String>
 	<s:String x:Key="/Default/CodeInspection/Highlighting/InspectionSeverities/=UnusedMember_002EGlobal/@EntryIndexedValue">DO_NOT_SHOW</s:String>
 	<s:Boolean x:Key="/Default/CodeInspection/Highlighting/MergeVsBulbItemsIntoReSharperBulb/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/CodeCleanup/Profiles/=Etl_0020No_002DReformat/@EntryIndexedValue"></s:String>
@@ -30,8 +31,8 @@
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_FOREACH/@EntryValue">Required</s:String>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_IFELSE/@EntryValue">Required</s:String>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BRACES_FOR_WHILE/@EntryValue">Required</s:String>
-	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BUILTIN_TYPE_REFERENCE_FOR_MEMBER_ACCESS_STYLE/@EntryValue">UseClrName</s:String>
-	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/BUILTIN_TYPE_REFERENCE_STYLE/@EntryValue">UseClrName</s:String>
+	
+	
 	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/BLANK_LINES_AROUND_FIELD/@EntryValue">0</s:Int64>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/EMPTY_BLOCK_STYLE/@EntryValue">MULTILINE</s:String>
 	<s:Int64 x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/KEEP_BLANK_LINES_IN_CODE/@EntryValue">1</s:Int64>
@@ -58,28 +59,36 @@
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_LINQ_EXPRESSIONS/@EntryValue">WRAP_IF_LONG</s:String>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpFormat/WRAP_PARAMETERS_STYLE/@EntryValue">CHOP_IF_LONG</s:String>
 	<s:String x:Key="/Default/CodeStyle/CSharpFileLayoutPatterns/Pattern/@EntryValue">&lt;Patterns xmlns="urn:schemas-jetbrains-com:member-reordering-patterns"&gt;&#xD;
-   &lt;!--R# does not recursively apply ordering to nested types, it only applies the ordering specified at teh outer-most level --&gt;&#xD;
+    &lt;!--&#xD;
+		R# does not recursively apply ordering to nested types, at least not always.&#xD;
+      It only applies the ordering specified at the outer-most level, at least in some cases.&#xD;
+      &#xD;
+      BUG: // ReSharper disable StringLiteralTypo defeats matches&#xD;
+	--&gt;&#xD;
 &#xD;
-   &lt;TypePattern Priority="200" DisplayName="Non-reorderable types" RemoveRegions="All"&gt;&#xD;
-      &lt;TypePattern.Match&gt;&#xD;
-         &lt;Or&gt;&#xD;
-            &lt;And&gt;&#xD;
-               &lt;Kind Is="Interface" /&gt;&#xD;
-               &lt;Or&gt;&#xD;
-                  &lt;HasAttribute Name="System.Runtime.InteropServices.InterfaceTypeAttribute" /&gt;&#xD;
-                  &lt;HasAttribute Name="System.Runtime.InteropServices.ComImport" /&gt;&#xD;
-               &lt;/Or&gt;&#xD;
-            &lt;/And&gt;&#xD;
-            &lt;Kind Is="Struct" /&gt;&#xD;
-            &lt;HasAttribute Name="JetBrains.Annotations.NoReorderAttribute" /&gt;&#xD;
-            &lt;HasAttribute Name="JetBrains.Annotations.NoReorder" /&gt;&#xD;
-            &lt;HasAttribute Name="System.Runtime.InteropServices.StructLayoutAttribute" Inherited="True" /&gt;&#xD;
-         &lt;/Or&gt;&#xD;
-      &lt;/TypePattern.Match&gt;&#xD;
-   &lt;/TypePattern&gt;&#xD;
+    &lt;TypePattern Priority="200" DisplayName="Non-reorderable types" RemoveRegions="All"&gt;&#xD;
+       &lt;TypePattern.Match&gt;&#xD;
+          &lt;Or&gt;&#xD;
+             &lt;And&gt;&#xD;
+                &lt;Kind Is="Interface" /&gt;&#xD;
+                &lt;Or&gt;&#xD;
+                   &lt;HasAttribute Name="System.Runtime.InteropServices.InterfaceTypeAttribute" /&gt;&#xD;
+                   &lt;HasAttribute Name="System.Runtime.InteropServices.ComImport" /&gt;&#xD;
+                &lt;/Or&gt;&#xD;
+             &lt;/And&gt;&#xD;
+             &lt;And&gt;&#xD;
+                &lt;Kind Is="Struct" /&gt;&#xD;
+                &lt;Or&gt;&#xD;
+                   &lt;HasAttribute Name="JetBrains.Annotations.NoReorderAttribute" /&gt;&#xD;
+                   &lt;HasAttribute Name="JetBrains.Annotations.NoReorder" /&gt;&#xD;
+                   &lt;HasAttribute Name="System.Runtime.InteropServices.StructLayoutAttribute" Inherited="True" /&gt;&#xD;
+                &lt;/Or&gt;&#xD;
+             &lt;/And&gt;&#xD;
+          &lt;/Or&gt;&#xD;
+       &lt;/TypePattern.Match&gt;&#xD;
+    &lt;/TypePattern&gt;&#xD;
 &#xD;
    &lt;TypePattern Priority="95" DisplayName="Spec Flow Bindings" RemoveRegions="All"&gt;&#xD;
-      &lt;!-- TODO: Test with Resharper 2018.2.3 or later--&gt;&#xD;
       &lt;TypePattern.Match&gt;&#xD;
          &lt;Or&gt;&#xD;
             &lt;And&gt;&#xD;
@@ -105,7 +114,7 @@
             &lt;/Or&gt;&#xD;
          &lt;/Entry.Match&gt;&#xD;
          &lt;Entry.SortBy&gt;&#xD;
-            &lt;Access /&gt;&#xD;
+            &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;&#xD;
             &lt;Kind Is="Member" /&gt;&#xD;
             &lt;Static /&gt;&#xD;
             &lt;Readonly /&gt;&#xD;
@@ -424,7 +433,6 @@
    &lt;/TypePattern&gt;&#xD;
 &#xD;
    &lt;TypePattern Priority="90" DisplayName="MSTest (BDD)" RemoveRegions="All"&gt;&#xD;
-      &lt;!-- Note: Currently evaluating with Resharper 2018.2.3--&gt;&#xD;
       &lt;TypePattern.Match&gt;&#xD;
          &lt;Or&gt;&#xD;
             &lt;And&gt;&#xD;
@@ -477,7 +485,7 @@
                &lt;/Or&gt;&#xD;
             &lt;/Entry.Match&gt;&#xD;
             &lt;Entry.SortBy&gt;&#xD;
-               &lt;Access /&gt;&#xD;
+               &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;&#xD;
                &lt;Static /&gt;&#xD;
                &lt;Kind Is="Member" /&gt;&#xD;
                &lt;Readonly /&gt;&#xD;
@@ -1053,7 +1061,7 @@
                &lt;/Or&gt;&#xD;
             &lt;/Entry.Match&gt;&#xD;
             &lt;Entry.SortBy&gt;&#xD;
-               &lt;Access /&gt;&#xD;
+               &lt;Access Order="Public Internal ProtectedInternal Protected Private" /&gt;&#xD;
                &lt;Static /&gt;&#xD;
                &lt;Kind Is="Member" /&gt;&#xD;
                &lt;Readonly /&gt;&#xD;
@@ -1488,6 +1496,7 @@
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Formattable/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=formattable/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Formattable/@EntryIndexRemoved">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=HKEY/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Holdem/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=hold_0027em/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=indexable/@EntryIndexedValue">True</s:Boolean>
@@ -1516,6 +1525,7 @@
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=reprioritized/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=reregister/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Resharper/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=retval/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Roundtuit/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Ruleset/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=ruleset/@EntryIndexedValue">True</s:Boolean>

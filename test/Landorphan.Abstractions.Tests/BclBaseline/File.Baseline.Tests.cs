@@ -75,7 +75,7 @@
       {
          [TestMethod]
          [Ignore("Proof of bug in BCL")]
-         public void I_should_but_cannot_delete_a_temporary_file_after_ReadLines()
+         public void It_should_but_cannot_delete_a_temporary_file_after_ReadLines()
          {
             var filePath = Path.GetTempFileName();
             try

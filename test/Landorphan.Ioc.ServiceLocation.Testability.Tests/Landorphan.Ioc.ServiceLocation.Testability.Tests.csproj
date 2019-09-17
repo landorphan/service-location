@@ -3,10 +3,7 @@
       <TargetFramework>netcoreapp2.2</TargetFramework>
       <LangVersion>7.2</LangVersion>
       <RootNamespace>Landorphan.Ioc.ServiceLocation.Testability.Tests</RootNamespace>
-      <NoWarn>1701;1702;1718</NoWarn>
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+      <IsTestProject>True</IsTestProject>
    </PropertyGroup>
 
    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -25,47 +22,30 @@
       <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
       <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
    </PropertyGroup>
-
-   <PropertyGroup>
-      <CodeAnalysisRuleSet>Landorphan.Ioc.ServiceLocation.Testability.Tests.NetCore.ruleset</CodeAnalysisRuleSet>
-   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Landorphan.Ioc.ServiceLocation.Testability.Tests.NetCore.ruleset" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="Landorphan.Ioc.ServiceLocation.Testability.Tests.NetCore.ruleset" />
-  </ItemGroup>
+   <ItemGroup>
+     <Compile Remove="Copy.Landorphan.TestUtilities\**" />
+     <EmbeddedResource Remove="Copy.Landorphan.TestUtilities\**" />
+     <None Remove="Copy.Landorphan.TestUtilities\**" />
+   </ItemGroup>
+   <ItemGroup>
+     <Compile Remove="Architecture\Rulesets.Tests.cs" />
+   </ItemGroup>
 
    <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="5.6.0" />
-      <PackageReference Include="Landorphan.Common" Version="0.9.546" />
-      <PackageReference Include="Microsoft.CodeQuality.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
+      <PackageReference Include="Landorphan.Common" Version="0.9.814" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
       <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
       <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
-      <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.TestPlatform" Version="14.0.0" />
       <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
       <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
-      <PackageReference Include="SonarAnalyzer.CSharp" Version="7.10.0.7896">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
       <PackageReference Include="System.Collections.Immutable" Version="1.5.0" />
-      <PackageReference Include="Text.Analyzers" Version="2.6.3">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-      </PackageReference>
    </ItemGroup>
 
    <ItemGroup>
       <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />
       <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
+      <ProjectReference Include="..\..\source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
    </ItemGroup>
 </Project>

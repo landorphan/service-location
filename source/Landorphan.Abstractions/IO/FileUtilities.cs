@@ -1,7 +1,6 @@
 namespace Landorphan.Abstractions.IO
 {
    using System;
-   using System.IO;
    using Landorphan.Abstractions.IO.Interfaces;
    using Landorphan.Abstractions.IO.Internal;
    using Landorphan.Ioc.ServiceLocation;
@@ -18,6 +17,16 @@ namespace Landorphan.Abstractions.IO
          {
             var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
             return fileInternalMapping.MaximumFileTimeAsDateTimeOffset;
+         }
+      }
+
+      /// <inheritdoc/>
+      public Int64 MaximumPrecisionFileSystemTicks
+      {
+         get
+         {
+            var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
+            return fileInternalMapping.MaximumPrecisionFileSystemTicks;
          }
       }
 
@@ -67,13 +76,6 @@ namespace Landorphan.Abstractions.IO
       }
 
       /// <inheritdoc/>
-      public FileAttributes GetAttributes(String path)
-      {
-         var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
-         return fileInternalMapping.GetAttributes(path);
-      }
-
-      /// <inheritdoc/>
       public DateTimeOffset GetCreationTime(String path)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
@@ -101,19 +103,14 @@ namespace Landorphan.Abstractions.IO
          return fileInternalMapping.GetRandomFileName();
       }
 
-      /// <inheritdoc/>
-      public void SetAttributes(String path, FileAttributes fileAttributes)
-      {
-         var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
-         fileInternalMapping.SetAttributes(path, fileAttributes);
-      }
-
+      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
       /// <inheritdoc/>
       public void SetCreationTime(String path, DateTimeOffset creationTime)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.SetCreationTime(path, creationTime);
       }
+      */
 
       /// <inheritdoc/>
       public void SetLastAccessTime(String path, DateTimeOffset lastAccessTime)

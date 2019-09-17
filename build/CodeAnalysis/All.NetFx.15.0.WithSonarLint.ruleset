@@ -22,7 +22,7 @@
    <!--Microsoft.CodeQuality.Analyzers From "Microsoft.CodeQuality.Analyzers" Version="2.6.3"-->
    <Rules AnalyzerId="Microsoft.CodeQuality.Analyzers" RuleNamespace="Microsoft.CodeQuality.Analyzers">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--CA1024: Use properties where appropriate -->
       <Rule Id="CA1024" Action="None" />
@@ -126,7 +126,7 @@
    <!--Microsoft.CodeQuality.CSharp.Analyzers From "Microsoft.CodeQuality.Analyzers" Version="2.6.3"-->
    <Rules AnalyzerId="Microsoft.CodeQuality.CSharp.Analyzers" RuleNamespace="Microsoft.CodeQuality.CSharp.Analyzers">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--CA1500: Variable names should not match field names -->
       <Rule Id="CA1500" Action="None" />
@@ -660,7 +660,7 @@
    <!--Microsoft.Analyzers.ManagedCodeAnalysis-->
    <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--CA1004: Generic methods should provide type parameter -->
       <Rule Id="CA1004" Action="None" />
@@ -1334,7 +1334,7 @@
    <!--Microsoft.CodeAnalysis.CSharp.Features-->
    <Rules AnalyzerId="Microsoft.CodeAnalysis.CSharp.Features" RuleNamespace="Microsoft.CodeAnalysis.CSharp.Features">
       <!-- *************************** -->
-      <!-- Disabled In Source Projects -->
+      <!-- Disabled In Test Projects -->
       <!-- *************************** -->
       <!--IDE0001: Simplify Names-->
       <Rule Id="IDE0001" Action="None" />

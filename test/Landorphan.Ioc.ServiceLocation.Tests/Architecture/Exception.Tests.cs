@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.Tests.Architecture
+namespace Landorphan.Ioc.Tests.Architecture
 {
    using System;
    using System.Collections.Immutable;
@@ -6,10 +6,10 @@
    using System.Reflection;
    using Landorphan.Ioc.ServiceLocation.Exceptions;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
    using Landorphan.Ioc.Tests.Mocks;
    using Landorphan.Ioc.Tests.TestFacilities;
+   using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.ReusableTestImplementations;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming

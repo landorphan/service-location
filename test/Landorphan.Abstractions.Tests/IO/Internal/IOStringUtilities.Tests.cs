@@ -9,6 +9,7 @@
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -104,6 +105,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_path_contains_a_colon_that_is_not_part_of_the_drive_label_It_should_return_true()
          {
             IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(@".\abc:defg\").Should().BeTrue();
@@ -153,6 +155,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_path_starts_with_colon_It_should_return_true()
          {
             IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(":Abc").Should().BeTrue();
@@ -208,18 +211,26 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_multiple_trailing_directory_separator_characters_It_should_remove_only_1()
          {
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/\").Should().Be(@"\/");
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\/").Should().Be(@"/\");
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/" + _pathUtilities.DirectorySeparatorString).Should().Be(@"\/");
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\" + _pathUtilities.AltDirectorySeparatorString).Should().Be(@"/\");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_has_multiple_trailing_SepChars_it_should_remove_only_one()
          {
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\\").Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"\/").Should().Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"/\").Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
-            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(@"//").Should().Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
+               .Should()
+               .Be(_pathUtilities.DirectorySeparatorString);
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.DirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
+               .Should()
+               .Be(_pathUtilities.DirectorySeparatorString);
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.DirectorySeparatorString)
+               .Should()
+               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_pathUtilities.AltDirectorySeparatorString + _pathUtilities.AltDirectorySeparatorString)
+               .Should()
+               .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
          }
 
          [TestMethod]
@@ -370,9 +381,9 @@
             IOStringUtilities.ValidateCanonicalPath(driveNoSep, "arg").Should().Be(driveNoSep);
             IOStringUtilities.ValidateCanonicalPath(drive, "arg").Should().Be(drive);
             IOStringUtilities.ValidateCanonicalPath(driveAltSep, "arg").Should().Be(driveAltSep);
-            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
+            IOStringUtilities.ValidateCanonicalPath(_pathUtilities.DirectorySeparatorString, "arg")
                .Should()
-               .Be(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+               .Be(_pathUtilities.DirectorySeparatorString);
             IOStringUtilities.ValidateCanonicalPath(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture), "arg")
                .Should()
                .Be(_pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
@@ -471,6 +482,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_path_starts_with_a_colon_character_It_should_throw_ArgumentException()
          {
             const String argName = "testArg";

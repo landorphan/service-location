@@ -5,6 +5,7 @@
    using System.Globalization;
    using System.IO;
    using System.Linq;
+   using System.Runtime.InteropServices;
    using System.Text;
    using System.Text.RegularExpressions;
    using Landorphan.Abstractions.IO.Interfaces;
@@ -55,6 +56,12 @@
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
       internal static Boolean DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(String path)
       {
+         // Not a concept that applies to non Windows OS variants
+         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+         {
+            return false;
+         }
+
          if (path == null)
          {
             return false;
@@ -168,7 +175,7 @@
       {
          // returns a cleaned string if it does not throw.
 
-         // Error messages are inconsistent across Directory methods.  
+         // Error messages are inconsistent across Directory methods.
          // This method attempts to standardize the handling of directory path structural validation.
          // It does not check security, existence, etc.
 
@@ -206,9 +213,12 @@
             throw new ArgumentException(msg, argumentName);
          }
 
-         // this call will throw a PathTooLongException as needed.
-         // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-         Path.GetFullPath(cleanedPath);
+         // Path.GetFullPath(cleanedPath) does not throw on non-Windows platforms when path exceeds max length.
+         if (cleanedPath.Length > Int16.MaxValue)
+         {
+            var msg = $"The path '{cleanedPath}' is too long, or a component of the specified path is too long.";
+            throw new PathTooLongException(msg);
+         }
 
          // Leading spaces allowed on resource names, but not trailing.  Whitespace only resource names not allowed.
          // (I do not know how to recognize a directory name versus a resource names canonically)
@@ -221,7 +231,8 @@
 
          // .Net Standard 2.0 throws IOExceptions path not found on directory names with trailing spaces.
          // word character(s) followed by space(s) followed by directory separator character
-         pattern = @"\w+\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
+         // Original pattern was @"\w+ ... " replaced with @"\w" as for this case will yield same result
+         pattern = @"\w\s+[\" + pathUtilities.DirectorySeparatorCharacter + @"\" + pathUtilities.AltDirectorySeparatorCharacter + @"]+";
          evaluator = ReplaceTrailingWhitespace;
          cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
 

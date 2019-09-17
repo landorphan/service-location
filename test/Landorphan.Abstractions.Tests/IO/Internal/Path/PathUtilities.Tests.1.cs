@@ -10,6 +10,7 @@
    using Landorphan.Abstractions.Tests.TestFacilities;
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.TestUtilities;
+   using Landorphan.TestUtilities.TestFilters;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
    // ReSharper disable InconsistentNaming
@@ -63,6 +64,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -76,6 +78,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -112,7 +115,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             var actual = _target.GetParentPath(path0);
@@ -130,7 +133,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             var actual = _target.GetParentPath(path0);
@@ -144,6 +147,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_is_a_resource_name_It_should_return_null_unc()
          {
             var actual = _target.GetParentPath(@"\\localhost");
@@ -202,12 +206,12 @@
             Action throwingAction = () => _target.GetParentPath(String.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.GetParentPath(Spaces);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -231,11 +235,12 @@
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -248,6 +253,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -263,6 +269,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -415,6 +422,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -427,6 +435,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -463,7 +472,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             var actual = _target.GetRootPath(path0);
@@ -481,7 +490,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = _tempPath + Spaces;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             var actual = _target.GetRootPath(path0);
@@ -561,12 +570,12 @@
             Action throwingAction = () => _target.GetRootPath(String.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             throwingAction = () => _target.GetRootPath(Spaces);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
@@ -590,11 +599,12 @@
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -607,6 +617,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -622,6 +633,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -634,6 +646,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void It_should_return_as_expected()
          {
             // HAPPY PATH TEST:
@@ -719,6 +732,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -732,6 +746,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -767,7 +782,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = Spaces + _tempPath;
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = Spaces + _tempPath.Substring(0, _tempPath.Length - 1);
 
             _target.HasExtension(path0).Should().BeFalse();
@@ -780,7 +795,7 @@
          {
             // HAPPY PATH TEST:
             var path0 = _tempPath + "  ";
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             var path1 = _tempPath.Substring(0, _tempPath.Length - 1) + Spaces;
 
             _target.HasExtension(path0).Should().BeFalse();
@@ -851,11 +866,12 @@
             Action throwingAction = () => _target.HasExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
-            e.And.Message.Should().Be("The path is not well-formed (cannot be empty or all whitespace).\r\nParameter name: path");
+            e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -941,6 +957,7 @@
       {
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var random0 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
@@ -954,6 +971,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
             var path = _target.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)) + "|";
@@ -988,7 +1006,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             _target.IsPathRelative(_tempPath).Should().BeFalse();
 
             _target.IsPathRelative(Spaces + _tempPath).Should().BeFalse();
@@ -1000,7 +1018,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             // HAPPY PATH TEST:
-            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture));
+            _tempPath.Should().EndWith(_pathUtilities.DirectorySeparatorString);
             _target.IsPathRelative(_tempPath).Should().BeFalse();
 
             _target.IsPathRelative(_tempPath + Spaces).Should().BeFalse();
@@ -1079,6 +1097,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             const String path = ":";
@@ -1091,6 +1110,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
             // HAPPY PATH TEST:
@@ -1105,6 +1125,7 @@
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
+         [RunTestOnlyOnWindows]
          public void And_the_path_uses_an_unknown_network_name_share_It_should_not_throw()
          {
             // HAPPY PATH TEST:

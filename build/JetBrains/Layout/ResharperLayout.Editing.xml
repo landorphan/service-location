@@ -6,23 +6,27 @@
       BUG: // ReSharper disable StringLiteralTypo defeats matches
 	-->
 
-   <TypePattern Priority="200" DisplayName="Non-reorderable types" RemoveRegions="All">
-      <TypePattern.Match>
-         <Or>
-            <And>
-               <Kind Is="Interface" />
-               <Or>
-                  <HasAttribute Name="System.Runtime.InteropServices.InterfaceTypeAttribute" />
-                  <HasAttribute Name="System.Runtime.InteropServices.ComImport" />
-               </Or>
-            </And>
-            <Kind Is="Struct" />
-            <HasAttribute Name="JetBrains.Annotations.NoReorderAttribute" />
-            <HasAttribute Name="JetBrains.Annotations.NoReorder" />
-            <HasAttribute Name="System.Runtime.InteropServices.StructLayoutAttribute" Inherited="True" />
-         </Or>
-      </TypePattern.Match>
-   </TypePattern>
+    <TypePattern Priority="200" DisplayName="Non-reorderable types" RemoveRegions="All">
+       <TypePattern.Match>
+          <Or>
+             <And>
+                <Kind Is="Interface" />
+                <Or>
+                   <HasAttribute Name="System.Runtime.InteropServices.InterfaceTypeAttribute" />
+                   <HasAttribute Name="System.Runtime.InteropServices.ComImport" />
+                </Or>
+             </And>
+             <And>
+                <Kind Is="Struct" />
+                <Or>
+                   <HasAttribute Name="JetBrains.Annotations.NoReorderAttribute" />
+                   <HasAttribute Name="JetBrains.Annotations.NoReorder" />
+                   <HasAttribute Name="System.Runtime.InteropServices.StructLayoutAttribute" Inherited="True" />
+                </Or>
+             </And>
+          </Or>
+       </TypePattern.Match>
+    </TypePattern>
 
    <TypePattern Priority="95" DisplayName="Spec Flow Bindings" RemoveRegions="All">
       <TypePattern.Match>

@@ -1,4 +1,4 @@
-﻿namespace Landorphan.Ioc.ServiceLocation.Internal
+namespace Landorphan.Ioc.ServiceLocation.Internal
 {
    using System;
    using System.Collections.Immutable;
@@ -6,11 +6,12 @@
    using System.Linq;
    using Landorphan.Common;
    using Landorphan.Common.Threading;
+   using Landorphan.Ioc.Logging;
    using Landorphan.Ioc.Logging.Internal;
+   using Landorphan.Ioc.Logging.Internal.Interfaces;
    using Landorphan.Ioc.Resources;
    using Landorphan.Ioc.ServiceLocation.EventArguments;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Microsoft.Extensions.Logging;
 
    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage
@@ -40,7 +41,6 @@
       private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
       private readonly Guid _uid;
       private IImmutableSet<IOwnedIocContainer> _children = ImmutableHashSet<IOwnedIocContainer>.Empty;
-      private ILogger<IocContainer> _logger;
       private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
       private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
          ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>.Empty;
@@ -183,7 +183,7 @@
          }
       }
 
-      private Boolean CanLog(out ILogger<IocContainer> logger, out IIocLoggingUtilitiesService loggingUtilitiesService)
+      private Boolean CanLog(out IIocLogger<IocContainer> logger, out IIocLoggingUtilitiesService loggingUtilitiesService)
       {
          logger = null;
          loggingUtilitiesService = null;
@@ -203,14 +203,9 @@
 
          // lazily create the logger
          // using ambientContainer.Resolver.TryResolve creates an infinite loop.
-         if (ambientContainer.Resolver.TryResolve(out ILoggerFactory loggerFactory))
+         if (ambientContainer.Resolver.TryResolve(out IIocLoggerManager loggerFactory))
          {
-            if (_logger == null)
-            {
-               _logger = loggerFactory?.CreateLogger<IocContainer>();
-            }
-
-            logger = _logger;
+            logger = loggerFactory.GetLogger<IocContainer>();
 
             if (ambientContainer.Resolver.TryResolve(out loggingUtilitiesService))
             {

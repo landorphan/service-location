@@ -21,6 +21,15 @@ namespace Landorphan.Abstractions.IO.Interfaces
       Char AltDirectorySeparatorCharacter { get; }
 
       /// <summary>
+      /// Provides the platform-specific alternate directory separator as a string to simplify casting
+      /// issues.
+      /// </summary>
+      /// <value>
+      /// The alternate directory separator as a string.
+      /// </value>
+      String AltDirectorySeparatorString { get; }
+
+      /// <summary>
       /// Provides a platform-specific character used to separate directory levels in a path string that reflects a hierarchical file system
       /// organization.
       /// </summary>
@@ -28,6 +37,15 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// The directory separator character.
       /// </value>
       Char DirectorySeparatorCharacter { get; }
+
+      /// <summary>
+      /// Provides the platform-specific directory separator as a string to simplify casting
+      /// issues.
+      /// </summary>
+      /// <value>
+      /// The directory separator as a string.
+      /// </value>
+      String DirectorySeparatorString { get; }
 
       /// <summary>
       /// A platform-specific separator character used to separate path strings in environment variables.

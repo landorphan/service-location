@@ -9,7 +9,6 @@
    using Landorphan.Ioc.ServiceLocation;
    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-
    /// <summary>
    /// Registers the services of this assembly with the <see cref="IocServiceLocator"/>.
    /// </summary>
@@ -28,7 +27,7 @@
          IEnvironmentUtilitiesFactory environmentUtilitiesFactory = new EnvironmentUtilitiesFactory();
          registrar.RegisterInstance(environmentUtilitiesFactory);
 
-         IEnvironmentUtilities environmentUtilities = environmentUtilitiesFactory.Create();
+         var environmentUtilities = environmentUtilitiesFactory.Create();
          registrar.RegisterInstance(environmentUtilities);
 
          //

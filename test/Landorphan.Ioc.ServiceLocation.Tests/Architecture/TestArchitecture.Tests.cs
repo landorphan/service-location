@@ -1,10 +1,10 @@
-﻿namespace Landorphan.Ioc.Tests.Architecture
+namespace Landorphan.Ioc.Tests.Architecture
 {
    using System.Diagnostics.CodeAnalysis;
    using System.Reflection;
    using FluentAssertions;
    using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations.Architecture;
+   using Landorphan.TestUtilities.ReusableTestImplementations;
    using Landorphan.TestUtilities.TestFacilities;
    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
