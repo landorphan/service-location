@@ -38,6 +38,21 @@ steps:
    echo Use the environment variables input below to pass secret variables to this script
   displayName: 'Display Environment Info & Setup'
 
+- script: |
+   echo Write your commands here
+   
+   mkdir %AGENT_BUILDDIRECTORY%\d
+   
+   echo Use the environment variables input below to pass secret variables to this script
+  displayName: 'Create Dependency Directory'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Download AzureSignTool'
+  inputs:
+    command: custom
+    custom: tool
+    arguments: 'install AzureSignTool --version 2.0.17 --tool-path $(Agent.BuildDirectory)\d'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
