@@ -17,16 +17,38 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+steps:
+- script: |
+   echo Write your commands here
+   
+   mkdir "$(Build.BinariesDirectory)/raw-build"
+   dir "$(Build.BinariesDirectory)/raw-build"
+   set
+   
+   echo ""
+   echo ""
+   echo "dotnet --list-runtimes"
+   dotnet --list-runtimes
+   echo ""
+   echo ""
+   echo "dotnet --list-sdks"
+   dotnet --list-sdks
+   echo ""
+   echo ""
+   
+   echo Use the environment variables input below to pass secret variables to this script
+  displayName: 'Display Environment Info & Setup'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+# - task: VSBuild@1
+#   inputs:
+#     solution: '$(solution)'
+#     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+#     platform: '$(buildPlatform)'
+#     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
