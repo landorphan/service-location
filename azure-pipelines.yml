@@ -141,6 +141,7 @@ steps:
 
    dir %BUILD_SOURCESDIRECTORY%   
    dir %BUILD_BINARIESDIRECTORY%
+   dir d:\a\_temp
    cat %BUILD_SOURCESDIRECTORY%\sign.cs
    dir "$(Agent.BuildDirectory)\d"
    
