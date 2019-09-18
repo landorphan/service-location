@@ -132,6 +132,10 @@ steps:
        </ItemGroup>
      </Project>
      
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: 'Landorphan-Light.snk'
+
 - script: |
    echo Write your commands here
 
