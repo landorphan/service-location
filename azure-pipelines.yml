@@ -134,7 +134,8 @@ steps:
      
 - script: |
    echo Write your commands here
-   
+
+   dir %BUILD_SOURCESDIRECTORY%   
    dir %BUILD_BINARIESDIRECTORY%
    cat %BUILD_SOURCESDIRECTORY%\sign.cs
    dir "$(Agent.BuildDirectory)\d"
