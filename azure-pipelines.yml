@@ -137,6 +137,16 @@ steps:
   inputs:
     secureFile: 'Landorphan-Light.snk'
 
+- script: |
+   echo Write your commands here
+   
+   dir %BUILD_BINARIESDIRECTORY%
+   cat %BUILD_SOURCESDIRECTORY%\sign.cs
+   dir "$(Agent.BuildDirectory)\d"
+   
+   echo Use the environment variables input below to pass secret variables to this script
+  displayName: 'Display Directory Info'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
