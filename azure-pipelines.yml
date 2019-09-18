@@ -86,6 +86,51 @@ steps:
      using System.Reflection;
      
      [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
+
+
+- bash: |
+   # Write your commands here
+   
+   VERSION_FILE="$(echo '/$(Build.BinariesDirectory)' | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')/raw-build/version.txt"
+   echo $VERSION_FILE 
+   find AssemblyVersion.cs -exec sed -i -r "s/\(\"([0-9]+\.[0-9]+)\.[0-9]+\"/(\"\1\."$BUILD_BUILDID"\"/g" {} \;
+   cat AssemblyVersion.cs | grep -oP '(?<=AssemblyVersion\(\")[0-9]+\.[0-9]+\.[0-9]+' > $VERSION_FILE
+   
+   # Use the environment variables input below to pass secret variables to this script
+  displayName: 'Update Build Version'
+
+- powershell: |
+   # Write your powershell commands here.
+   
+   $Env:VERSION = (cat '$(Build.BinariesDirectory)\raw-build\version.txt')
+   if ($env:BUILD_SOURCEBRANCHNAME -eq 'develop') 
+   { 
+     $Env:VERSION = $Env:VERSION + "-prerelease"; 
+   }
+   elseif ($env:BUILD_SOURCEBRANCHNAME -eq 'master') 
+   { 
+   }
+   else 
+   { 
+     $Env:VERSION = $Env:VERSION + "-develop"; 
+   }
+   echo "$Env:VERSION"
+   
+   Out-File -FilePath '$(Build.BinariesDirectory)\raw-build\version.txt' -InputObject $Env:VERSION -Encoding ASCII
+   # Use the environment variables input below to pass secret variables to this script.
+  displayName: 'Add Pre-release qualifer'
+
+- task: eliostruyf.build-task.custom-build-task.file-creator@2
+  displayName: 'Create sign.proj File'
+  inputs:
+    fileoverwrite: true
+    filepath: '$(Build.SourcesDirectory)\\sign.proj'
+    filecontent: |
+     <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+       <ItemGroup>
+         <Compile Include="$(Build.SourcesDirectory)\sign.cs" />
+       </ItemGroup>
+     </Project>
      
 - task: DownloadSecureFile@1
   displayName: 'Download Key.Snk'
