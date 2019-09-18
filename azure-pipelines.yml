@@ -132,11 +132,6 @@ steps:
        </ItemGroup>
      </Project>
      
-- task: DownloadSecureFile@1
-  displayName: 'Download Landorphan-Light.snk'
-  inputs:
-    secureFile: 'Landorphan-Light.snk'
-
 - script: |
    echo Write your commands here
    
@@ -147,9 +142,9 @@ steps:
    echo Use the environment variables input below to pass secret variables to this script
   displayName: 'Display Directory Info'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+# - task: NuGetCommand@2
+#   inputs:
+#     restoreSolution: '$(solution)'
 
 # - task: VSBuild@1
 #   inputs:
