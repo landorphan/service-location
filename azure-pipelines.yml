@@ -133,7 +133,7 @@ steps:
      </Project>
      
 - task: DownloadSecureFile@1
-  displayName: 'Download Key.Snk'
+  displayName: 'Download Landorphan-Light.snk'
   inputs:
     secureFile: 'Landorphan-Light.snk'
 
