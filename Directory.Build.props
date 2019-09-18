@@ -107,4 +107,6 @@
       </PackageReference>
    </ItemGroup>
 
+   <Import Condition="Exists('$(MSBuildThisFileDirectory)\sign.proj')" Project="$(MSBuildThisFileDirectory)\sign.proj" />
+
 </Project>
