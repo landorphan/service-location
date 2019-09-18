@@ -87,6 +87,11 @@ steps:
      
      [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
      
+- task: DownloadSecureFile@1
+  displayName: 'Download Key.Snk'
+  inputs:
+    secureFile: 'Landorphan-Light.snk'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
