@@ -148,17 +148,17 @@ steps:
    echo Use the environment variables input below to pass secret variables to this script
   displayName: 'Display Directory Info'
 
-# - task: NuGetCommand@2
-#   inputs:
-#     restoreSolution: '$(solution)'
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
 
-# - task: VSBuild@1
-#   inputs:
-#     solution: '$(solution)'
-#     msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-#     platform: '$(buildPlatform)'
-#     configuration: '$(buildConfiguration)'
-
+- task: VSBuild@1
+  displayName: 'Build solution **/Landorphan.Ioc.ServiceLocation.sln'
+  inputs:
+    solution: '**/Landorphan.Ioc.ServiceLocation.sln'
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    
 - task: VSTest@2
   inputs:
     platform: '$(buildPlatform)'
