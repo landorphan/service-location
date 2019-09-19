@@ -189,3 +189,17 @@ steps:
     platform: '$(BuildPlatform)'
     configuration: '$(BuildConfiguration)'
     diagnosticsEnabled: True
+
+- task: CopyFiles@2
+  displayName: 'TEMP: Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '$(Build.SourcesDirectory)\**\bin\$(BuildConfiguration)\**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
