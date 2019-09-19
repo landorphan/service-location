@@ -61,6 +61,7 @@
       <Message Text="Running ValidateAndReportCodeAnalysis Target" />
       <Message Text="Building Assembly: $(AssemblyName)" />
       <Message Text="Target Framework: $(TargetFramework)" />
+      <Message Text="Project Name: $([System.IO.Path]::GetFullPath($(OutputPath)\$(MSBuildProjectName)$(MSBuildProjectExtension)))" />
 <!-- 
       <Message Text="Packages Contained: $(PackageReferencesCount)" />
       <Message Text="Non Test Frameworks Contained: $(NotKnownTestFrameworkCount)" />
@@ -89,5 +90,12 @@
       <Message Text="Index of Test Project: $(TargetFramework.Contains('netcore'))" />
    </Target>
 
-
+    <Target Name="CreateSignableListingFiles"
+            AfterTargets="CoreCompile">
+      <WriteLinesToFile
+            File="$(OutputPath)\$(MSBuildProjectName).sign"
+            Lines="$([System.IO.Path]::GetFullPath($(OutputPath)\$(MSBuildProjectName)$(MSBuildProjectExtension)))"
+            Overwrite="true"
+            Encoding="utf-8"/>
+    </Target>
 </Project>
