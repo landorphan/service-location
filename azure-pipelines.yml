@@ -67,8 +67,12 @@ steps:
     script: |
       # Write your commands here
       
+      echo 'Striping content from publickey text'
       cat '$(Agent.TempDirectory)/fake.token' | sed '/^\W*$/d' | sed '/^Pub.*$/d' | tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
+      
+      echo 'displaying publickey hex code'
       cat '$(Agent.TempDirectory)/fake.hex'
+      echo "\nCompleted Script"
 
 - script: error 
 
