@@ -46,16 +46,23 @@ steps:
    echo Use the environment variables input below to pass secret variables to this script
   displayName: 'Create Dependency Directory'
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      sn /?
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
       # Write your commands here
       
-      sn
       ls '$(Agent.TempDirectory)'
-      
-      echo 'Hello world'
+
+- script: error 
 
 - task: DotNetCoreCLI@2
   displayName: 'Download AzureSignTool'
