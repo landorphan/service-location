@@ -61,6 +61,8 @@ steps:
       echo 'Converting Publik Key to String'
       & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -q -tp '$(Agent.TempDirectory)\fake.publickey' > '$(Agent.TempDirectory)\fake.token'
 
+      cat '$(Agent.TempDirectory)\fake.token'
+
 - task: Bash@3
   inputs:
     targetType: 'inline'
