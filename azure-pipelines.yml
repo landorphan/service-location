@@ -52,6 +52,7 @@ steps:
     script: |
       # Write your commands here
       
+      sn
       ls '$(Agent.TempDirectory)'
       
       echo 'Hello world'
