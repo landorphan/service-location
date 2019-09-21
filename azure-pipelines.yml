@@ -59,7 +59,7 @@ steps:
       & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -p '$(Agent.TempDirectory)\fake.snk' '$(Agent.TempDirectory)\fake.publickey'
       
       echo 'Converting Publik Key to String'
-      & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -q -tp '$(Agent.TempDirectory)\fake.publickey' | Out-File -Encoding UTF8NoBOM -FilePath '$(Agent.TempDirectory)\fake.token'
+      & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -q -tp '$(Agent.TempDirectory)\fake.publickey' | Out-File -Encoding ASCII -FilePath '$(Agent.TempDirectory)\fake.token'
 
       cat '$(Agent.TempDirectory)\fake.token'
 
