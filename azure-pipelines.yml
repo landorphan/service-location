@@ -75,9 +75,11 @@ steps:
       echo 'Striping content from publickey text'
       cat '$(Agent.TempDirectory)/fake.token' | sed '/^\W*$/d' | sed '/^Pub.*$/d' | tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
       
+      echo 'Setting Publickey variable'
+      publickey=$(cat '$(Agent.TempDirectory)/fake.hex')
       echo 'displaying publickey hex code'
-      cat '$(Agent.TempDirectory)/fake.hex'
-      echo ""
+      echo $publickey
+
       ls '$(Agent.TempDirectory)'
       echo "Completed Script"
 
