@@ -77,7 +77,7 @@ steps:
       
       echo 'displaying publickey hex code'
       cat '$(Agent.TempDirectory)/fake.hex'
-      echo "\n"
+      echo ""
       ls '$(Agent.TempDirectory)'
       echo "Completed Script"
 
