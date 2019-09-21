@@ -67,7 +67,8 @@ steps:
     script: |
       # Write your commands here
       
-      ls '$(Agent.TempDirectory)'
+      cat '$(Agent.TempDirectory)/fake.token' | sed '/^\W*$/d' | sed '/^Pub.*$/d' | tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
+      cat '$(Agent.TempDirectory)/fake.hex'
 
 - script: error 
 
