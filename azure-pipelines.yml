@@ -72,7 +72,9 @@ steps:
       
       echo 'displaying publickey hex code'
       cat '$(Agent.TempDirectory)/fake.hex'
-      echo "\nCompleted Script"
+      echo "\n"
+      ls '$(Agent.TempDirectory)'
+      echo "Completed Script"
 
 - script: error 
 
