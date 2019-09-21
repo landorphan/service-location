@@ -52,8 +52,9 @@ steps:
     script: |
       # Write your PowerShell commands here.
       
-      ls 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe'
-      sn /?
+      & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -k '$(Agent.TempDirectory)\fake.snk'
+      & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' '$(Agent.TempDirectory)\fake.snk' '$(Agent.TempDirectory)\fake.publickey'
+      & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -q -tp '$(Agent.TempDirectory)\fake.publickey' > '$(Agent.TempDirectory)\fake.token'
 
 - task: Bash@3
   inputs:
