@@ -69,6 +69,9 @@ steps:
     script: |
       # Write your commands here
       
+      echo 'Displaying PublicKey Text'
+      cat '$(Agent.TempDirectory)/fake.token'
+
       echo 'Striping content from publickey text'
       cat '$(Agent.TempDirectory)/fake.token' | sed '/^\W*$/d' | sed '/^Pub.*$/d' | tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
       
