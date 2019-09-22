@@ -227,7 +227,7 @@ stages:
           testAssemblyVer2: |
             **\$(BuildConfiguration)\**\*Tests.dll
             **\$(BuildConfiguration)\**\*Tests.*.dll
-          !**\obj\**
+            !**\obj\**
           testFiltercriteria: '(TestCategory=Check-In|Check-In-Non-Ide)'
           codeCoverageEnabled: true
           platform: '$(BuildPlatform)'
