@@ -98,27 +98,27 @@ stages:
           arguments: 'install AzureSignTool --version 2.0.17 --tool-path $(Agent.BuildDirectory)\d'
 
       - bash: |
-        # Write your commands here
-        
-        convert_path() {
-          echo $(echo "/$1" | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')
-        }
-        
-        TOOL_PATH="$(echo $(convert_path '$(Agent.BuildDirectory)\d\NuGetKeyVaultSignTool.zip'))"
-        
-        echo $TOOL_PATH
-        
-        curl -o "$TOOL_PATH" "https://lndfbuild.blob.core.windows.net/utils/NuGetKeyVaultSignTool.zip"
-        
-        # Use the environment variables input below to pass secret variables to this script
+          # Write your commands here
+          
+          convert_path() {
+            echo $(echo "/$1" | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')
+          }
+          
+          TOOL_PATH="$(echo $(convert_path '$(Agent.BuildDirectory)\d\NuGetKeyVaultSignTool.zip'))"
+          
+          echo $TOOL_PATH
+          
+          curl -o "$TOOL_PATH" "https://lndfbuild.blob.core.windows.net/utils/NuGetKeyVaultSignTool.zip"
+          
+          # Use the environment variables input below to pass secret variables to this script
         displayName: 'Download NuGetKeyVaultSignTool.zip'
 
       - powershell: |
-        # Write your powershell commands here.
-        
-        Expand-Archive -Path "$(Agent.BuildDirectory)\d\NuGetKeyVaultSignTool.zip" -DestinationPath "$(Agent.BuildDirectory)\d\"
-        
-        # Use the environment variables input below to pass secret variables to this script.
+          # Write your powershell commands here.
+          
+          Expand-Archive -Path "$(Agent.BuildDirectory)\d\NuGetKeyVaultSignTool.zip" -DestinationPath "$(Agent.BuildDirectory)\d\"
+          
+          # Use the environment variables input below to pass secret variables to this script.
         displayName: 'Unzip NuGetKeyVaultSignTool.zip into Agent.BuildDirectory\\d'
 
       - task: eliostruyf.build-task.custom-build-task.file-creator@2
@@ -127,41 +127,41 @@ stages:
           fileoverwrite: true
           filepath: '$(Build.SourcesDirectory)\sign.cs'
           filecontent: |
-          using System.Reflection;
-          
-          [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
+            using System.Reflection;
+            
+            [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
 
 
       - bash: |
-        # Write your commands here
-        
-        VERSION_FILE="$(echo '/$(Build.BinariesDirectory)' | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')/raw-build/version.txt"
-        echo $VERSION_FILE 
-        find AssemblyVersion.cs -exec sed -i -r "s/\(\"([0-9]+\.[0-9]+)\.[0-9]+\"/(\"\1\."$BUILD_BUILDID"\"/g" {} \;
-        cat AssemblyVersion.cs | grep -oP '(?<=AssemblyVersion\(\")[0-9]+\.[0-9]+\.[0-9]+' > $VERSION_FILE
-        
-        # Use the environment variables input below to pass secret variables to this script
+          # Write your commands here
+          
+          VERSION_FILE="$(echo '/$(Build.BinariesDirectory)' | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')/raw-build/version.txt"
+          echo $VERSION_FILE 
+          find AssemblyVersion.cs -exec sed -i -r "s/\(\"([0-9]+\.[0-9]+)\.[0-9]+\"/(\"\1\."$BUILD_BUILDID"\"/g" {} \;
+          cat AssemblyVersion.cs | grep -oP '(?<=AssemblyVersion\(\")[0-9]+\.[0-9]+\.[0-9]+' > $VERSION_FILE
+          
+          # Use the environment variables input below to pass secret variables to this script
         displayName: 'Update Build Version'
 
       - powershell: |
-        # Write your powershell commands here.
-        
-        $Env:VERSION = (cat '$(Build.BinariesDirectory)\raw-build\version.txt')
-        if ($env:BUILD_SOURCEBRANCHNAME -eq 'develop') 
-        { 
-          $Env:VERSION = $Env:VERSION + "-prerelease"; 
-        }
-        elseif ($env:BUILD_SOURCEBRANCHNAME -eq 'master') 
-        { 
-        }
-        else 
-        { 
-          $Env:VERSION = $Env:VERSION + "-develop"; 
-        }
-        echo "$Env:VERSION"
-        
-        Out-File -FilePath '$(Build.BinariesDirectory)\raw-build\version.txt' -InputObject $Env:VERSION -Encoding ASCII
-        # Use the environment variables input below to pass secret variables to this script.
+          # Write your powershell commands here.
+          
+          $Env:VERSION = (cat '$(Build.BinariesDirectory)\raw-build\version.txt')
+          if ($env:BUILD_SOURCEBRANCHNAME -eq 'develop') 
+          { 
+            $Env:VERSION = $Env:VERSION + "-prerelease"; 
+          }
+          elseif ($env:BUILD_SOURCEBRANCHNAME -eq 'master') 
+          { 
+          }
+          else 
+          { 
+            $Env:VERSION = $Env:VERSION + "-develop"; 
+          }
+          echo "$Env:VERSION"
+          
+          Out-File -FilePath '$(Build.BinariesDirectory)\raw-build\version.txt' -InputObject $Env:VERSION -Encoding ASCII
+          # Use the environment variables input below to pass secret variables to this script.
         displayName: 'Add Pre-release qualifer'
 
       - task: eliostruyf.build-task.custom-build-task.file-creator@2
@@ -170,26 +170,26 @@ stages:
           fileoverwrite: true
           filepath: '$(Build.SourcesDirectory)\\sign.proj'
           filecontent: |
-          <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-            <ItemGroup>
-              <Compile Include="$(Build.SourcesDirectory)\sign.cs" />
-            </ItemGroup>
-          </Project>
+            <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+              <ItemGroup>
+                <Compile Include="$(Build.SourcesDirectory)\sign.cs" />
+              </ItemGroup>
+            </Project>
           
       - task: DownloadSecureFile@1
         inputs:
           secureFile: 'Landorphan-Light.snk'
 
       - script: |
-        echo Write your commands here
+          echo Write your commands here
 
-        dir %BUILD_SOURCESDIRECTORY%   
-        dir %BUILD_BINARIESDIRECTORY%
-        dir d:\a\_temp
-        cat %BUILD_SOURCESDIRECTORY%\sign.cs
-        dir "$(Agent.BuildDirectory)\d"
-        
-        echo Use the environment variables input below to pass secret variables to this script
+          dir %BUILD_SOURCESDIRECTORY%   
+          dir %BUILD_BINARIESDIRECTORY%
+          dir d:\a\_temp
+          cat %BUILD_SOURCESDIRECTORY%\sign.cs
+          dir "$(Agent.BuildDirectory)\d"
+          
+          echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Display Directory Info'
 
       - task: NuGetCommand@2
@@ -211,13 +211,13 @@ stages:
           SecretsFilter: 'LandorphanKeyVaultKey'
 
       - script: |
-        echo Write your commands here
-        
-        %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\net451\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
-        
-        %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\netstandard2.0\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
-        
-        echo Use the environment variables input below to pass secret variables to this script
+          echo Write your commands here
+          
+          %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\net451\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
+          
+          %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\netstandard2.0\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
+          
+          echo Use the environment variables input below to pass secret variables to this script
         displayName: 'ServiceLocation: Azure Code Sign copy'
 
 
@@ -225,8 +225,8 @@ stages:
         displayName: 'VsTest - testAssemblies'
         inputs:
           testAssemblyVer2: |
-          **\$(BuildConfiguration)\**\*Tests.dll
-          **\$(BuildConfiguration)\**\*Tests.*.dll
+            **\$(BuildConfiguration)\**\*Tests.dll
+            **\$(BuildConfiguration)\**\*Tests.*.dll
           !**\obj\**
           testFiltercriteria: '(TestCategory=Check-In|Check-In-Non-Ide)'
           codeCoverageEnabled: true
