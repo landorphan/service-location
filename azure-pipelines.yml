@@ -42,14 +42,6 @@ stages:
           echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Display Environment Info & Setup'
 
-      - script: |
-          echo Write your commands here
-          
-          mkdir %AGENT_BUILDDIRECTORY%\d
-          
-          echo Use the environment variables input below to pass secret variables to this script
-        displayName: 'Create Dependency Directory'
-
       - task: PowerShell@2
         inputs:
           targetType: 'inline'

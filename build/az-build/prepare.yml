@@ -1,3 +1,10 @@
 steps:
   - task: NuGetToolInstaller@1
     displayName: Download most recent NuGet Tools
+  - script: |
+      echo Write your commands here
+      
+      mkdir %AGENT_BUILDDIRECTORY%\d
+      
+      echo Use the environment variables input below to pass secret variables to this script
+    displayName: 'Create Dependency Directory'
