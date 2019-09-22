@@ -22,8 +22,7 @@ stages:
       pool:
         vmImage: 'windows-latest'
       steps:
-      - task: NuGetToolInstaller@1
-      
+      - template: prepare.yml
       - script: |
           echo Write your commands here
           mkdir "$(Build.BinariesDirectory)/raw-build"
