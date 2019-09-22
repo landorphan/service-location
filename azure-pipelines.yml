@@ -23,6 +23,7 @@ stages:
         vmImage: 'windows-latest'
       steps:
       - task: NuGetToolInstaller@1
+      
       - script: |
           echo Write your commands here
           mkdir "$(Build.BinariesDirectory)/raw-build"
