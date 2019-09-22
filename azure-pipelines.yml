@@ -24,30 +24,30 @@ stages:
       steps:
       - task: NuGetToolInstaller@1
       - script: |
-        echo Write your commands here
-        mkdir "$(Build.BinariesDirectory)/raw-build"
-        dir "$(Build.BinariesDirectory)/raw-build"
-        set
-        
-        echo ""
-        echo ""
-        echo "dotnet --list-runtimes"
-        dotnet --list-runtimes
-        echo ""
-        echo ""
-        echo "dotnet --list-sdks"
-        dotnet --list-sdks
-        echo ""
-        echo ""
-        echo Use the environment variables input below to pass secret variables to this script
+          echo Write your commands here
+          mkdir "$(Build.BinariesDirectory)/raw-build"
+          dir "$(Build.BinariesDirectory)/raw-build"
+          set
+          
+          echo ""
+          echo ""
+          echo "dotnet --list-runtimes"
+          dotnet --list-runtimes
+          echo ""
+          echo ""
+          echo "dotnet --list-sdks"
+          dotnet --list-sdks
+          echo ""
+          echo ""
+          echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Display Environment Info & Setup'
 
       - script: |
-        echo Write your commands here
-        
-        mkdir %AGENT_BUILDDIRECTORY%\d
-        
-        echo Use the environment variables input below to pass secret variables to this script
+          echo Write your commands here
+          
+          mkdir %AGENT_BUILDDIRECTORY%\d
+          
+          echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Create Dependency Directory'
 
       - task: PowerShell@2
