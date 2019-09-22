@@ -81,37 +81,6 @@ stages:
 
       - script: error 
 
-      - task: DotNetCoreCLI@2
-        displayName: 'Download AzureSignTool'
-        inputs:
-          command: custom
-          custom: tool
-          arguments: 'install AzureSignTool --version 2.0.17 --tool-path $(Agent.BuildDirectory)\d'
-
-      - bash: |
-          # Write your commands here
-          
-          convert_path() {
-            echo $(echo "/$1" | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')
-          }
-          
-          TOOL_PATH="$(echo $(convert_path '$(Agent.BuildDirectory)\d\NuGetKeyVaultSignTool.zip'))"
-          
-          echo $TOOL_PATH
-          
-          curl -o "$TOOL_PATH" "https://lndfbuild.blob.core.windows.net/utils/NuGetKeyVaultSignTool.zip"
-          
-          # Use the environment variables input below to pass secret variables to this script
-        displayName: 'Download NuGetKeyVaultSignTool.zip'
-
-      - powershell: |
-          # Write your powershell commands here.
-          
-          Expand-Archive -Path "$(Agent.BuildDirectory)\d\NuGetKeyVaultSignTool.zip" -DestinationPath "$(Agent.BuildDirectory)\d\"
-          
-          # Use the environment variables input below to pass secret variables to this script.
-        displayName: 'Unzip NuGetKeyVaultSignTool.zip into Agent.BuildDirectory\\d'
-
       - task: eliostruyf.build-task.custom-build-task.file-creator@2
         displayName: 'Create sign.cs File'
         inputs:
