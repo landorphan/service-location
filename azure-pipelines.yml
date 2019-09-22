@@ -16,7 +16,7 @@ stages:
     displayName: Windows Build
     dependsOn: 
     jobs:
-    - job: sign-setup
+    - job: sign_setup
       displayName: Setup System for Code Signing
       dependsOn: []
       pool:
