@@ -22,7 +22,7 @@ stages:
       pool:
         vmImage: 'windows-latest'
       steps:
-      - template: builds\az-build\prepare.yml
+      - template: .\builds\az-build\prepare.yml
       - script: |
           echo Write your commands here
           mkdir "$(Build.BinariesDirectory)/raw-build"
