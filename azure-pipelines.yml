@@ -23,7 +23,6 @@ stages:
         vmImage: 'windows-latest'
       steps:
       - task: NuGetToolInstaller@1
-
       - script: |
         echo Write your commands here
         mkdir "$(Build.BinariesDirectory)/raw-build"
@@ -40,7 +39,6 @@ stages:
         dotnet --list-sdks
         echo ""
         echo ""
-        
         echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Display Environment Info & Setup'
 
