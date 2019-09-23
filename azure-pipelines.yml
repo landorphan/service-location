@@ -22,8 +22,8 @@ stages:
       pool:
         vmImage: 'windows-latest'
       steps:
-      - template: build/az-build/prepare.yml
-      - template: build/az-build/sign-setup.yml
+      - template: build/az-build/prep-env.yml
+      - template: build/az-build/prep-sign.yml
 
     - job: system_diagnostics
       displayName: Setup System for Code Signing
