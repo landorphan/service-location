@@ -97,18 +97,6 @@ stages:
           # Use the environment variables input below to pass secret variables to this script.
         displayName: 'Add Pre-release qualifer'
 
-      - task: eliostruyf.build-task.custom-build-task.file-creator@2
-        displayName: 'Create sign.proj File'
-        inputs:
-          fileoverwrite: true
-          filepath: '$(Build.SourcesDirectory)\\sign.proj'
-          filecontent: |
-            <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-              <ItemGroup>
-                <Compile Include="$(Build.SourcesDirectory)\sign.cs" />
-              </ItemGroup>
-            </Project>
-          
       - task: DownloadSecureFile@1
         inputs:
           secureFile: 'Landorphan-Light.snk'

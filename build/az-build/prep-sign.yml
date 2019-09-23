@@ -41,3 +41,15 @@ steps:
         ls '$(Agent.TempDirectory)'
         echo "Completed Script"
   
+  - task: eliostruyf.build-task.custom-build-task.file-creator@2
+    displayName: 'Create sign.proj File'
+    inputs:
+      fileoverwrite: true
+      filepath: '$(Build.SourcesDirectory)\\sign.proj'
+      filecontent: |
+        <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+          <PropertyGroup>
+            <AssemblyOriginatorKeyFile>$(Agent.TempDirectory)\fake.snk</AssemblyOriginatorKeyFile>
+            <DelaySign>True</DelaySign>
+          </PropertyGroup>
+        </Project>
