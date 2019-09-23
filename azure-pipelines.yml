@@ -27,9 +27,9 @@ stages:
 
     - job: system_diagnostics
       displayName: Setup System for Code Signing
-      dependsOn: sign_setup
+      dependsOn: setup
       variables:
-        DS_PK: $[ dependencies.sign_setup.outputs['get_delay_key.DS_PK'] ]
+        DS_PK: $[ dependencies.setup.outputs['get_delay_key.DS_PK'] ]
       pool:
         vmImage: 'windows-latest'
       steps:
