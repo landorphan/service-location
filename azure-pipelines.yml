@@ -23,6 +23,7 @@ stages:
         vmImage: 'windows-latest'
       steps:
       - template: build/az-build/prepare.yml
+      - template: build/az-build/sign-setup.yml
       - script: |
           echo Write your commands here
           mkdir "$(Build.BinariesDirectory)/raw-build"
@@ -41,43 +42,6 @@ stages:
           echo ""
           echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Display Environment Info & Setup'
-
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your PowerShell commands here.
-            
-            echo 'Generating Key'
-            & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -k '$(Agent.TempDirectory)\fake.snk'
-            
-            echo 'Exctracting Publick Key'
-            & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -p '$(Agent.TempDirectory)\fake.snk' '$(Agent.TempDirectory)\fake.publickey'
-            
-            echo 'Converting Publik Key to String'
-            & 'C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\sn.exe' -q -tp '$(Agent.TempDirectory)\fake.publickey' | Out-File -Encoding ASCII -FilePath '$(Agent.TempDirectory)\fake.token'
-
-            cat '$(Agent.TempDirectory)\fake.token'
-
-      - task: Bash@3
-        inputs:
-          targetType: 'inline'
-          script: |
-            # Write your commands here
-            
-            echo 'Displaying PublicKey Text'
-            cat '$(Agent.TempDirectory)/fake.token'
-
-            echo 'Striping content from publickey text'
-            cat '$(Agent.TempDirectory)/fake.token' | sed '/^\W*$/d' | sed '/^Pub.*$/d' | tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
-            
-            echo 'Setting Publickey variable'
-            publickey=$(cat '$(Agent.TempDirectory)/fake.hex')
-            echo 'displaying publickey hex code'
-            echo $publickey
-
-            ls '$(Agent.TempDirectory)'
-            echo "Completed Script"
 
       - script: error 
 
