@@ -27,7 +27,7 @@ stages:
 
     - job: system_diagnostics
       displayName: Setup System for Code Signing
-      dependsOn: []
+      dependsOn: sign_setup
       variables:
         DS_PK: $[ dependencies.sign_setup.outputs['get_delay_key.DS_PK'] ]
       pool:
@@ -39,7 +39,7 @@ stages:
           dir "$(Build.BinariesDirectory)/raw-build"
           set
           
-          echo ""
+          echo "%DS_PK%"
           echo ""
           echo "dotnet --list-runtimes"
           dotnet --list-runtimes
