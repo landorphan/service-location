@@ -16,7 +16,7 @@ stages:
     displayName: Windows Build
     dependsOn: 
     jobs:
-    - job: sign_setup
+    - job: setup
       displayName: Setup System for Code Signing
       dependsOn: []
       pool:
@@ -120,6 +120,12 @@ stages:
         inputs:
           restoreSolution: '$(solution)'
 
+    - job: core_build
+      displayName: Run the core build
+      dependsOn: setup
+      pool:
+        vmImage: 'windows-latest'
+      steps:
       - task: VSBuild@1
         displayName: 'Build solution **/Landorphan.Ioc.ServiceLocation.sln'
         inputs:
