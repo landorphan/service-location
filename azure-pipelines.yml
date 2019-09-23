@@ -26,7 +26,7 @@ stages:
       - template: build/az-build/prep-sign.yml
 
     - job: system_diagnostics
-      displayName: Setup System for Code Signing
+      displayName: Output System diagnostics
       dependsOn: setup
       variables:
         DS_PK: $[ dependencies.setup.outputs['get_delay_key.DS_PK'] ]
