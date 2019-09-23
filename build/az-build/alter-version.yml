@@ -1,0 +1,34 @@
+steps:
+  - bash: |
+      # Write your commands here
+      # Setting variable for version file
+      LNDF_VER="$(echo '/$(Agent.TempDirectory)' | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')/version.txt"
+      # echoing version file for visibility durring build logs
+      echo $LNDF_VER 
+      # updating version file with BUILD ID.
+      find AssemblyVersion.cs -exec sed -i -r "s/\(\"([0-9]+\.[0-9]+)\.[0-9]+\"/(\"\1\."$BUILD_BUILDID"\"/g" {} \;
+      cat AssemblyVersion.cs | grep -oP '(?<=AssemblyVersion\(\")[0-9]+\.[0-9]+\.[0-9]+' > $LNDF_VER
+      
+      # Use the environment variables input below to pass secret variables to this script
+    displayName: 'Update Build Version (in AssemblyVersion.cs file)'
+
+  - powershell: |
+      # Write your powershell commands here.
+      
+      $Env:VERSION = (cat '$(Agent.TempDirectory)\version.txt')
+      if ($env:BUILD_SOURCEBRANCHNAME -eq 'develop') 
+      { 
+        $Env:VERSION = $Env:VERSION + "-prerelease"; 
+      }
+      elseif ($env:BUILD_SOURCEBRANCHNAME -eq 'master') 
+      { 
+      }
+      else 
+      { 
+        $Env:VERSION = $Env:VERSION + "-local"; 
+      }
+      echo "$Env:VERSION"
+      
+      Out-File -FilePath '$(Agent.TempDirectory)\version.txt' -InputObject $Env:VERSION -Encoding ASCII
+      # Use the environment variables input below to pass secret variables to this script.
+    displayName: 'Add Pre-release qualifer (to version.txt file)'
