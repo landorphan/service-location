@@ -24,13 +24,22 @@ stages:
       steps:
       - template: build/az-build/prepare.yml
       - template: build/az-build/sign-setup.yml
+
+    - job: system_diagnostics
+      displayName: Setup System for Code Signing
+      dependsOn: sign_setup
+      variables:
+        DS_PK: $[ dependencies.sign_setup.outputs['get_delay_key.DS_PK'] ]
+      pool:
+        vmImage: 'windows-latest'
+      steps:
       - script: |
           echo Write your commands here
           mkdir "$(Build.BinariesDirectory)/raw-build"
           dir "$(Build.BinariesDirectory)/raw-build"
           set
           
-          echo ""
+          echo "%DS_PK%"
           echo ""
           echo "dotnet --list-runtimes"
           dotnet --list-runtimes
