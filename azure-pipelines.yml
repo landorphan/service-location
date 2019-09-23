@@ -44,6 +44,9 @@ stages:
           
           echo "%DS_PK%"
           echo ""
+          echo "Build Version: %DS_VER$"
+          echo "Full Build Version: %DS_VER_FULL%"
+          echo ""
           echo "dotnet --list-runtimes"
           dotnet --list-runtimes
           echo ""
