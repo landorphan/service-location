@@ -30,6 +30,8 @@ stages:
       displayName: Output System diagnostics
       dependsOn: setup
       variables:
+        LNDF_VER: $[ dependencies.setup.outputs['set_version.LNDF_VER'] ]
+        LNDF_VER_FULL: $[ dependencies.setup.outputs['set_veersion_full.LNDF_VER_FULL'] ]
         DS_PK: $[ dependencies.setup.outputs['get_delay_key.DS_PK'] ]
       pool:
         vmImage: 'windows-latest'

@@ -8,9 +8,11 @@ steps:
       # updating version file with BUILD ID.
       find AssemblyVersion.cs -exec sed -i -r "s/\(\"([0-9]+\.[0-9]+)\.[0-9]+\"/(\"\1\."$BUILD_BUILDID"\"/g" {} \;
       cat AssemblyVersion.cs | grep -oP '(?<=AssemblyVersion\(\")[0-9]+\.[0-9]+\.[0-9]+' > $LNDF_VER
+      echo "##vso[task.setvariable variable=LNDF_VER;isOutput=true]$LNDF_VER"
       
       # Use the environment variables input below to pass secret variables to this script
     displayName: 'Update Build Version (in AssemblyVersion.cs file)'
+    name: set_version
 
   - powershell: |
       # Write your powershell commands here.
@@ -28,7 +30,9 @@ steps:
         $Env:VERSION = $Env:VERSION + "-local"; 
       }
       echo "$Env:VERSION"
+      echo "##vso[task.setvariable variable=LNDF_VER_FULL;isOutput=true]$Env:VERSION"
       
       Out-File -FilePath '$(Agent.TempDirectory)\version.txt' -InputObject $Env:VERSION -Encoding ASCII
       # Use the environment variables input below to pass secret variables to this script.
     displayName: 'Add Pre-release qualifer (to version.txt file)'
+    name: set_veersion_full
