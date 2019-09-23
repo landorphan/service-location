@@ -1,8 +1,8 @@
 steps:
   - task: PowerShell@2
+    displayName: Generate Fake Sign Key (for delay signing)
     inputs:
       targetType: 'inline'
-      displayName: Generate Fake Sign Key (for delay signing)
       script: |
         # Write your PowerShell commands here.
         
@@ -18,9 +18,9 @@ steps:
         cat '$(Agent.TempDirectory)\fake.token'
 
   - task: Bash@3
+    displayName: Exctract Sign Token (for InternalsVisibleTo)
     inputs:
       targetType: 'inline'
-      displayName: Exctract Sign Token (for InternalsVisibleTo)
       script: |
         # Write your commands here
         
