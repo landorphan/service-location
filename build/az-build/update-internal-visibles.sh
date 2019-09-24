@@ -12,7 +12,7 @@ cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei  's/\s*(\[assembly:\s+Interna
 cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\"(.*)\s*\".*/\1\"\2, PublicKey=\" + Landorphan.BuildServer.Resources.LandorphanBuildServerResources.PublicKey\"\)\]\r\n/g"
 
 # Now we can reassemble the original Public Key inclusive InternalsVisibleTo statements
-cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\*\s*\{(.*)\}\s*\{(.*)\}/\1\"\2, PublicKey=\3\)\]/g"
+cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\*\s*\{(.*)\}\s*\{(.*)\}/\1\"\2, PublicKey=\3\"\)\]/g"
 
 # dump changes to console for log
 cat $AGENT_TEMPDIRECTORY/ivt.files | xargs git diff
