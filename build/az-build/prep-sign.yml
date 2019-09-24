@@ -30,7 +30,9 @@ steps:
         cat '$(Agent.TempDirectory)/fake.token'
 
         echo 'Striping content from publickey text'
-        cat '$(Agent.TempDirectory)/fake.token' | sed '/^\W*$/d' | sed '/^Pub.*$/d' | tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
+        ls '$(Agent.TempDirectory)/fake.token' | xargs sed -i '/^\W*$/d' 
+        ls '$(Agent.TempDirectory)/fake.token' | xargs sed -i '/^Pub.*$/d' 
+        ls '$(Agent.TempDirectory)/fake.token' | xargs tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
         
         echo 'Setting Publickey variable'
         DS_PK=$(cat '$(Agent.TempDirectory)/fake.hex')
