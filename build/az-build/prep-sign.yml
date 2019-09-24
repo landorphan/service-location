@@ -100,3 +100,10 @@ steps:
           }
         }
         
+  - task: Bash@3
+    displayName: 'Output sign.cs for diagnostics'
+    name: get_delay_key
+    inputs:
+      targetType: 'inline'
+      script: |
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs" 
