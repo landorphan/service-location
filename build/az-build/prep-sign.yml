@@ -52,6 +52,7 @@ steps:
 
         ls '$(Agent.TempDirectory)'
         echo "Completed Script"
+        error
   
   - task: eliostruyf.build-task.custom-build-task.file-creator@2
     displayName: 'Create sign.proj File'
