@@ -5,7 +5,7 @@ cat $AGENT_TEMPDIRECTORY/ivt.files
 
 # Do an inital replace to preserve any existing Private key statements (this will ge replaced later)
 # NOTE: This also adds a new line without the private key to ensure that the fake key can be added.
-cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei  's/\s*(\[assembly:\s+InternalsVisibleTo\s*\()"(.*)\s*,\s*PublicKey=(.*)\)\]/\1* {\2} {\3}\n\[assembly: InternalsVisibleTo("\2"\)\]/g'
+cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei  's/\s*(\[assembly:\s+InternalsVisibleTo\s*\()"(.*)\s*,\s*PublicKey=(.*)\)\]/\1* {\2} {\3}\r\n\[assembly: InternalsVisibleTo("\2"\)\]/g'
 
 # Now the script can safely replace the reamining InternalsVisibleTo References as they should
 # not contain a public key.
