@@ -93,6 +93,7 @@ stages:
       pool:
         vmImage: 'windows-latest'
       steps:
+      
       - task: NuGetToolInstaller@1
         displayName: Download most recent NuGet Tools
 
