@@ -25,6 +25,7 @@ stages:
       - template: build/az-build/prep-env.yml
       - template: build/az-build/prep-sign.yml
       - template: build/az-build/alter-version.yml
+      - template: build/az-build/alter-sign.yml
 
     - job: system_diagnostics
       displayName: Output System diagnostics
@@ -86,67 +87,67 @@ stages:
           echo Use the environment variables input below to pass secret variables to this script
         displayName: 'Display Directory Info'
 
-    - job: core_build
-      displayName: Run the core build
-      dependsOn: setup
-      pool:
-        vmImage: 'windows-latest'
-      steps:
-      - task: NuGetToolInstaller@1
-        displayName: Download most recent NuGet Tools
+    # - job: core_build
+    #   displayName: Run the core build
+    #   dependsOn: setup
+    #   pool:
+    #     vmImage: 'windows-latest'
+    #   steps:
+    #   - task: NuGetToolInstaller@1
+    #     displayName: Download most recent NuGet Tools
 
-      - task: NuGetCommand@2
-        inputs:
-          restoreSolution: '$(solution)'
+    #   - task: NuGetCommand@2
+    #     inputs:
+    #       restoreSolution: '$(solution)'
 
-      - task: VSBuild@1
-        displayName: 'Build solution **/Landorphan.Ioc.ServiceLocation.sln'
-        inputs:
-          solution: '**/Landorphan.Ioc.ServiceLocation.sln'
-          platform: '$(BuildPlatform)'
-          configuration: '$(BuildConfiguration)'
+    #   - task: VSBuild@1
+    #     displayName: 'Build solution **/Landorphan.Ioc.ServiceLocation.sln'
+    #     inputs:
+    #       solution: '**/Landorphan.Ioc.ServiceLocation.sln'
+    #       platform: '$(BuildPlatform)'
+    #       configuration: '$(BuildConfiguration)'
           
-      - task: AzureKeyVault@1
-        displayName: 'Azure Key Vault: landorphan-build'
-        inputs:
-          azureSubscription: 'Landorphan Holdings (1286ed67-15ce-4500-899e-e79313d8329f)'
-          KeyVaultName: 'landorphan-build'
-          SecretsFilter: 'LandorphanKeyVaultKey'
+    #   - task: AzureKeyVault@1
+    #     displayName: 'Azure Key Vault: landorphan-build'
+    #     inputs:
+    #       azureSubscription: 'Landorphan Holdings (1286ed67-15ce-4500-899e-e79313d8329f)'
+    #       KeyVaultName: 'landorphan-build'
+    #       SecretsFilter: 'LandorphanKeyVaultKey'
 
-      - script: |
-          echo Write your commands here
+    #   - script: |
+    #       echo Write your commands here
           
-          %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\net451\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
+    #       %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\net451\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
           
-          %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\netstandard2.0\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
+    #       %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\netstandard2.0\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
           
-          echo Use the environment variables input below to pass secret variables to this script
-        displayName: 'ServiceLocation: Azure Code Sign copy'
+    #       echo Use the environment variables input below to pass secret variables to this script
+    #     displayName: 'ServiceLocation: Azure Code Sign copy'
 
 
-      - task: VSTest@2
-        displayName: 'VsTest - testAssemblies'
-        inputs:
-          testAssemblyVer2: |
-            **\$(BuildConfiguration)\**\*Tests.dll
-            **\$(BuildConfiguration)\**\*Tests.*.dll
-            !**\obj\**
-          testFiltercriteria: '(TestCategory=Check-In|Check-In-Non-Ide)'
-          codeCoverageEnabled: true
-          platform: '$(BuildPlatform)'
-          configuration: '$(BuildConfiguration)'
-          diagnosticsEnabled: True
+    #   - task: VSTest@2
+    #     displayName: 'VsTest - testAssemblies'
+    #     inputs:
+    #       testAssemblyVer2: |
+    #         **\$(BuildConfiguration)\**\*Tests.dll
+    #         **\$(BuildConfiguration)\**\*Tests.*.dll
+    #         !**\obj\**
+    #       testFiltercriteria: '(TestCategory=Check-In|Check-In-Non-Ide)'
+    #       codeCoverageEnabled: true
+    #       platform: '$(BuildPlatform)'
+    #       configuration: '$(BuildConfiguration)'
+    #       diagnosticsEnabled: True
 
-      - task: CopyFiles@2
-        displayName: 'TEMP: Copy Files to: $(Build.ArtifactStagingDirectory)'
-        inputs:
-          SourceFolder: '$(system.defaultworkingdirectory)'
-          Contents: '$(Build.SourcesDirectory)\**\bin\$(BuildConfiguration)\**'
-          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    #   - task: CopyFiles@2
+    #     displayName: 'TEMP: Copy Files to: $(Build.ArtifactStagingDirectory)'
+    #     inputs:
+    #       SourceFolder: '$(system.defaultworkingdirectory)'
+    #       Contents: '$(Build.SourcesDirectory)\**\bin\$(BuildConfiguration)\**'
+    #       TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 
-      - task: PublishBuildArtifacts@1
-        inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
+    #   - task: PublishBuildArtifacts@1
+    #     inputs:
+    #       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #       ArtifactName: 'drop'
+    #       publishLocation: 'Container'

@@ -1,6 +1,4 @@
 steps:
-  - task: NuGetToolInstaller@1
-    displayName: Download most recent NuGet Tools
   - script: |
       echo Write your commands here
       

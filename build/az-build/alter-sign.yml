@@ -1,0 +1,6 @@
+steps:
+  - task: Bash@3
+    name: update_internals_visible_to
+    displayName: 'Updating source code (.cs files) to rework key for internals visible to'
+    inputs:
+      filePath: 'build/az-build/update-internal-visibles.sh'
