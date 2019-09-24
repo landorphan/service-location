@@ -24,27 +24,30 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        function wslpath() { 
+        echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+        }
         # Write your commands here
         
         echo 'Displaying PublicKey Text'
-        cat "$AGENT_TEMPDIRECTORY/fake.token"
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token"
 
         echo 'Striping content from publickey text'
-        ls "$AGENT_TEMPDIRECTORY/fake.token"
+        ls "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token"
 
-        ls "$AGENT_TEMPDIRECTORY/fake.token" | xargs sed -i '/^\W*$/d' 
-        ls "$AGENT_TEMPDIRECTORY/fake.token" | xargs sed -i '/^Pub.*$/d' 
+        ls "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | xargs sed -i '/^\W*$/d' 
+        ls "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | xargs sed -i '/^Pub.*$/d' 
 
         echo 'after alteration'
-        cat "$AGENT_TEMPDIRECTORY/fake.token"
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token"
 
-        ls "$AGENT_TEMPDIRECTORY/fake.token" | xargs tr -d '\r\n' > "$AGENT_TEMPDIRECTORY/fake.hex"
+        ls "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | xargs tr -d '\r\n' > "$(wslpath $AGENT_TEMPDIRECTORY)/fake.hex"
         
         echo 'as one string'
-        cat "$AGENT_TEMPDIRECTORY/fake.hex"
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.hex"
         echo ''
         echo 'Setting Publickey variable'
-        DS_PK=$(cat "$AGENT_TEMPDIRECTORY/fake.hex")
+        DS_PK=$(cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.hex")
         echo 'displaying publickey hex code'
         echo $DS_PK
         echo "##vso[task.setvariable variable=DS_PK]$DS_PK"
