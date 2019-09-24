@@ -127,6 +127,7 @@ steps:
         <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
           <PropertyGroup>
             <AssemblyOriginatorKeyFile>$(Agent.TempDirectory)\fake.snk</AssemblyOriginatorKeyFile>
+            <SignAssembly>True</SignAssembly>
           </PropertyGroup>
 
           <ItemGroup>
