@@ -62,7 +62,7 @@ stages:
 
       - task: Bash@3
         displayName: 'Output sign.cs for diagnostics'
-        name: get_delay_key
+        name: output_sign_cs_file
         inputs:
           targetType: 'inline'
           script: |
