@@ -9,6 +9,7 @@ steps:
       find AssemblyVersion.cs -exec sed -i -r "s/\(\"([0-9]+\.[0-9]+)\.[0-9]+\"/(\"\1\."$BUILD_BUILDID"\"/g" {} \;
       cat AssemblyVersion.cs | grep -oP '(?<=AssemblyVersion\(\")[0-9]+\.[0-9]+\.[0-9]+' > $LNDF_VER
       echo "##vso[task.setvariable variable=LNDF_VER;isOutput=true]$LNDF_VER"
+      echo "##vso[task.setvariable variable=LNDF_VER]$LNDF_VER"
       
       # Use the environment variables input below to pass secret variables to this script
     displayName: 'Update Build Version (in AssemblyVersion.cs file)'
@@ -30,6 +31,7 @@ steps:
         $Env:VERSION = $Env:VERSION + "-local"; 
       }
       echo "$Env:VERSION"
+      echo "##vso[task.setvariable variable=LNDF_VER_FULL]$Env:VERSION"
       echo "##vso[task.setvariable variable=LNDF_VER_FULL;isOutput=true]$Env:VERSION"
       
       Out-File -FilePath '$(Agent.TempDirectory)\version.txt' -InputObject $Env:VERSION -Encoding ASCII
