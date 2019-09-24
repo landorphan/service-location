@@ -41,7 +41,7 @@ stages:
 
       - task: Bash@3
         displayName: 'Insert key data'
-        name: get_delay_key
+        name: insert_key_data
         inputs:
           targetType: 'inline'
           script: |
