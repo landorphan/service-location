@@ -41,7 +41,7 @@ steps:
         echo 'after alteration'
         cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token"
 
-        ls "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | xargs tr -d '\r\n' > "$(wslpath $AGENT_TEMPDIRECTORY)/fake.hex"
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | tr -d '\r\n' > "$(wslpath $AGENT_TEMPDIRECTORY)/fake.hex"
         
         echo 'as one string'
         cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.hex"
