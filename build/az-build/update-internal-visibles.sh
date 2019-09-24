@@ -12,4 +12,4 @@ cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei  's/\s*(\[assembly:\s+Interna
 cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\"(.*)\s*\".*/\1\"\2, PublicKey=$DS_PK\"\)\]/g"
 
 # Now we can reassemble the original Public Key inclusive InternalsVisibleTo statements
-cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -E "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\*\s*\{(.*)\}\s*\{(.*)\}/\1\"\2, PublicKey=\3\)\]/g"
+cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\*\s*\{(.*)\}\s*\{(.*)\}/\1\"\2, PublicKey=\3\)\]/g"
