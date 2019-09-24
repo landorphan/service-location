@@ -161,6 +161,12 @@ stages:
           platform: '$(BuildPlatform)'
           configuration: '$(BuildConfiguration)'
           diagnosticsEnabled: True
+      
+      - task: CopyFiles@2
+        inputs:
+          SourceFolder: '$(Agent.TempDirectory)'
+          Contents: 'assemblies.sign'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
       - task: CopyFiles@2
         displayName: 'TEMP: Copy Files to: $(Build.ArtifactStagingDirectory)'
