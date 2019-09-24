@@ -99,8 +99,8 @@ steps:
       filepath: '$(Agent.TempDirectory)\\sign.cs'
       filecontent: |
           \"\";
-          }
-        }
+          \}
+        \}
         #End of File
 
   - task: Bash@3
