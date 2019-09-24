@@ -2,7 +2,7 @@ steps:
   - bash: |
       # Write your commands here
       # Setting variable for version file
-      LNDF_VER="$(echo '/$(Agent.TempDirectory)' | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')/version.txt"
+      export LNDF_VER="$(echo '/$(Agent.TempDirectory)' | sed 's/\\/\//g' | sed 's/://' | sed -e 's/\(.*\)/\L\1/')/version.txt"
       # echoing version file for visibility durring build logs
       echo $LNDF_VER 
       # updating version file with BUILD ID.
