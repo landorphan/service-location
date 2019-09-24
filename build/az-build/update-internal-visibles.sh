@@ -13,3 +13,6 @@ cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+Internal
 
 # Now we can reassemble the original Public Key inclusive InternalsVisibleTo statements
 cat $AGENT_TEMPDIRECTORY/ivt.files | xargs sed -Ei "s/\s*(\[assembly:\s+InternalsVisibleTo\s*\()\*\s*\{(.*)\}\s*\{(.*)\}/\1\"\2, PublicKey=\3\)\]/g"
+
+# dump changes to console for log
+cat $AGENT_TEMPDIRECTORY/ivt.files | xargs git diff
