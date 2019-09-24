@@ -26,6 +26,49 @@ stages:
       - template: build/az-build/prep-sign.yml
       - template: build/az-build/alter-version.yml
       - template: build/az-build/alter-sign.yml
+      - task: eliostruyf.build-task.custom-build-task.file-creator@2
+        displayName: 'Start sign.cs File'
+        inputs:
+          fileoverwrite: true
+          filepath: '$(Agent.TempDirectory)\\sign.cs'
+          filecontent: |
+            namespace Landorphan.BuildServer.Resources
+            \{
+              using System;
+              internal static class LandorphanBuildServerResources
+              \{
+                internal const string PublicKey = "" +
+
+      - task: Bash@3
+        displayName: 'Insert key data'
+        name: get_delay_key
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Insert Token data as C# String
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | sed -E 's/^(.*)$/\"\1\" +/' >> "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs"
+            # End of Script
+
+      - task: eliostruyf.build-task.custom-build-task.file-creator@2
+        displayName: 'End sign.cs File'
+        inputs:
+          fileoverwrite: false
+          filepath: '$(Agent.TempDirectory)\\sign.cs'
+          filecontent: |
+            \"\";
+              \}
+            \}
+            #End of File
+
+      - task: Bash@3
+        displayName: 'Output sign.cs for diagnostics'
+        name: get_delay_key
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Output Sign File
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs" 
+
 
     # - job: system_diagnostics
     #   displayName: Output System diagnostics
