@@ -30,6 +30,8 @@ steps:
         cat '$(Agent.TempDirectory)/fake.token'
 
         echo 'Striping content from publickey text'
+        ls '$(Agent.TempDirectory)/fake.token' 
+
         ls '$(Agent.TempDirectory)/fake.token' | xargs sed -i '/^\W*$/d' 
         ls '$(Agent.TempDirectory)/fake.token' | xargs sed -i '/^Pub.*$/d' 
 
