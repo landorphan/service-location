@@ -27,72 +27,72 @@ stages:
       - template: build/az-build/alter-version.yml
       - template: build/az-build/alter-sign.yml
 
-    - job: system_diagnostics
-      displayName: Output System diagnostics
-      dependsOn: setup
-      variables:
-        LNDF_VER: $[ dependencies.setup.outputs['set_version.LNDF_VER'] ]
-        LNDF_VER_FULL: $[ dependencies.setup.outputs['set_veersion_full.LNDF_VER_FULL'] ]
-        DS_PK: $[ dependencies.setup.outputs['get_delay_key.DS_PK'] ]
-      pool:
-        vmImage: 'windows-latest'
-      steps:
-      - script: |
-          echo Write your commands here
-          mkdir "$(Build.BinariesDirectory)/raw-build"
-          dir "$(Build.BinariesDirectory)/raw-build"
-          set
+    # - job: system_diagnostics
+    #   displayName: Output System diagnostics
+    #   dependsOn: setup
+    #   variables:
+    #     LNDF_VER: $[ dependencies.setup.outputs['set_version.LNDF_VER'] ]
+    #     LNDF_VER_FULL: $[ dependencies.setup.outputs['set_veersion_full.LNDF_VER_FULL'] ]
+    #     DS_PK: $[ dependencies.setup.outputs['get_delay_key.DS_PK'] ]
+    #   pool:
+    #     vmImage: 'windows-latest'
+    #   steps:
+    #   - script: |
+    #       echo Write your commands here
+    #       mkdir "$(Build.BinariesDirectory)/raw-build"
+    #       dir "$(Build.BinariesDirectory)/raw-build"
+    #       set
           
-          echo "%DS_PK%"
-          echo ""
-          echo "Build Version: %DS_VER$"
-          echo "Full Build Version: %DS_VER_FULL%"
-          echo ""
-          echo "dotnet --list-runtimes"
-          dotnet --list-runtimes
-          echo ""
-          echo ""
-          echo "dotnet --list-sdks"
-          dotnet --list-sdks
-          echo ""
-          echo ""
-          echo Use the environment variables input below to pass secret variables to this script
-        displayName: 'Display Environment Info & Setup'
+    #       echo "%DS_PK%"
+    #       echo ""
+    #       echo "Build Version: %DS_VER$"
+    #       echo "Full Build Version: %DS_VER_FULL%"
+    #       echo ""
+    #       echo "dotnet --list-runtimes"
+    #       dotnet --list-runtimes
+    #       echo ""
+    #       echo ""
+    #       echo "dotnet --list-sdks"
+    #       dotnet --list-sdks
+    #       echo ""
+    #       echo ""
+    #       echo Use the environment variables input below to pass secret variables to this script
+    #     displayName: 'Display Environment Info & Setup'
 
-      - script: error 
+    #   - script: error 
 
-      # - task: eliostruyf.build-task.custom-build-task.file-creator@2
-      #   displayName: 'Create sign.cs File'
-      #   inputs:
-      #     fileoverwrite: true
-      #     filepath: '$(Build.SourcesDirectory)\sign.cs'
-      #     filecontent: |
-      #       using System.Reflection;
+    #   # - task: eliostruyf.build-task.custom-build-task.file-creator@2
+    #   #   displayName: 'Create sign.cs File'
+    #   #   inputs:
+    #   #     fileoverwrite: true
+    #   #     filepath: '$(Build.SourcesDirectory)\sign.cs'
+    #   #     filecontent: |
+    #   #       using System.Reflection;
             
-      #       [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
+    #   #       [assembly:AssemblyKeyFileAttribute(@"$(Agent.TempDirectory)\Landorphan-Light.snk")]
 
-      - task: DownloadSecureFile@1
-        inputs:
-          secureFile: 'Landorphan-Light.snk'
+    #   - task: DownloadSecureFile@1
+    #     inputs:
+    #       secureFile: 'Landorphan-Light.snk'
 
-      - script: |
-          echo Write your commands here
+    #   - script: |
+    #       echo Write your commands here
 
-          dir %BUILD_SOURCESDIRECTORY%   
-          dir %BUILD_BINARIESDIRECTORY%
-          dir d:\a\_temp
-          cat %BUILD_SOURCESDIRECTORY%\sign.cs
-          dir "$(Agent.BuildDirectory)\d"
+    #       dir %BUILD_SOURCESDIRECTORY%   
+    #       dir %BUILD_BINARIESDIRECTORY%
+    #       dir d:\a\_temp
+    #       cat %BUILD_SOURCESDIRECTORY%\sign.cs
+    #       dir "$(Agent.BuildDirectory)\d"
           
-          echo Use the environment variables input below to pass secret variables to this script
-        displayName: 'Display Directory Info'
+    #       echo Use the environment variables input below to pass secret variables to this script
+    #     displayName: 'Display Directory Info'
 
-    - job: core_build
-      displayName: Run the core build
-      dependsOn: setup
-      pool:
-        vmImage: 'windows-latest'
-      steps:
+    # - job: core_build
+    #   displayName: Run the core build
+    #   dependsOn: setup
+    #   pool:
+    #     vmImage: 'windows-latest'
+    #   steps:
       - task: Bash@3
         inputs:
           targetType: 'inline'
