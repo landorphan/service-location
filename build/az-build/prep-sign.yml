@@ -30,15 +30,15 @@ steps:
         cat '$(Agent.TempDirectory)/fake.token'
 
         echo 'Striping content from publickey text'
-        ls (wslpath '$(Agent.TempDirectory)/fake.token')
+        ls $(wslpath '$(Agent.TempDirectory)/fake.token')
 
-        ls (wslpath '$(Agent.TempDirectory)/fake.token') | xargs sed -i '/^\W*$/d' 
-        ls (wslpath '$(Agent.TempDirectory)/fake.token') | xargs sed -i '/^Pub.*$/d' 
+        ls $(wslpath '$(Agent.TempDirectory)/fake.token') | xargs sed -i '/^\W*$/d' 
+        ls $(wslpath '$(Agent.TempDirectory)/fake.token') | xargs sed -i '/^Pub.*$/d' 
 
         echo 'after alteration'
-        cat (wslpath '$(Agent.TempDirectory)/fake.token')
+        cat $(wslpath '$(Agent.TempDirectory)/fake.token')
 
-        ls (wslpath '$(Agent.TempDirectory)/fake.token') | xargs tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
+        ls $(wslpath '$(Agent.TempDirectory)/fake.token') | xargs tr -d '\r\n' > '$(Agent.TempDirectory)/fake.hex'
         
         echo 'as one string'
         cat '$(Agent.TempDirectory)/fake.hex'
