@@ -24,6 +24,8 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+        # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
         function wslpath() { 
         echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
         }
@@ -55,7 +57,67 @@ steps:
 
         ls "$AGENT_TEMPDIRECTORY"
         echo "Completed Script"
-  
+
+  - task: Bash@3
+    displayName: 'Write the start of the sign.cs file'
+    name: start_sign_cs_file
+    inputs:
+      targetType: 'inline'
+      script: |
+        # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+        # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
+        function wslpath() { 
+          echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+        }
+        # Insert Token data as C# String
+        cat build/az-build/sign-start.cs > "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs"
+        # End of Script
+
+  - task: Bash@3
+    displayName: 'Insert key data into sign.cs'
+    name: insert_key_data
+    inputs:
+      targetType: 'inline'
+      script: |
+        # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+        # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
+        function wslpath() { 
+          echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+        }
+        # Insert Token data as C# String
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/fake.token" | sed -E 's/^(.*)$/\"\1\" +/' >> "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs"
+        # End of Script
+
+  - task: Bash@3
+    displayName: 'Write the end of the sign.cs file'
+    name: end_sign_cs_file
+    inputs:
+      targetType: 'inline'
+      script: |
+        # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+        # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
+        function wslpath() { 
+          echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+        }
+        # Insert Token data as C# String
+        cat build/az-build/sign-end.cs >> "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs"
+        # End of Script
+
+  - task: Bash@3
+    displayName: 'Output sign.cs for diagnostics'
+    name: output_sign_cs_file
+    inputs:
+      targetType: 'inline'
+      script: |
+        # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+        # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
+        function wslpath() { 
+          echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+        }
+        # Output Sign File
+        cat "$(wslpath $AGENT_TEMPDIRECTORY)/sign.cs" 
+
+
   - task: eliostruyf.build-task.custom-build-task.file-creator@2
     displayName: 'Create sign.proj File'
     inputs:
@@ -67,5 +129,9 @@ steps:
             <AssemblyOriginatorKeyFile>$(Agent.TempDirectory)\fake.snk</AssemblyOriginatorKeyFile>
             <DelaySign>True</DelaySign>
           </PropertyGroup>
+
+          <ItemGroup>
+            <Compile Include="$(Agent.TempDirectory)\sign.cs" />
+          </ItemGroup>
         </Project>
 
