@@ -148,7 +148,7 @@ stages:
             }
             # Locate all assemblies that need to be signed.
             ls "$(wslpath $AGENT_BUILDDIRECTORY)/d"
-            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % ls $(wslpath %)
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % echo "$(wslpath '%')""
 
       - script: |
           echo Write your commands here
