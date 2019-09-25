@@ -22,7 +22,7 @@ stages:
       pool:
         vmImage: 'windows-latest'
       steps:
-#      - template: build/az-build/prep-env.yml
+      - template: build/az-build/prep-env.yml
       - template: build/az-build/prep-sign.yml
       - template: build/az-build/alter-version.yml
       - template: build/az-build/alter-sign.yml
