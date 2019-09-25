@@ -116,6 +116,7 @@ stages:
           configuration: '$(BuildConfiguration)'
           
       - task: Bash@3
+        displayName: 'Create list of output assemblies for code signing'
         inputs:
           targetType: 'inline'
           script: |
@@ -131,11 +132,23 @@ stages:
 
       - task: AzureKeyVault@1
         displayName: 'Azure Key Vault: landorphan-build'
-        enabled: false
         inputs:
           azureSubscription: 'Landorphan Holdings (1286ed67-15ce-4500-899e-e79313d8329f)'
           KeyVaultName: 'landorphan-build'
           SecretsFilter: 'LandorphanKeyVaultKey'
+
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+            # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
+            function wslpath() { 
+              echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+            }
+            # Locate all assemblies that need to be signed.
+            ls "$(wslpath $AGENT_BUILDDIRECTORY)/d"
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % ls %
 
       - script: |
           echo Write your commands here
