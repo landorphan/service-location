@@ -10,6 +10,8 @@
 
     <PropertyGroup>
         <CodeAnalysisRuleSet></CodeAnalysisRuleSet>
+        <AssemblyExtension Condition="'$(OutputType)' == 'Library'">.dll</AssemblyExtension>
+        <AssemblyExtension Condition="'$(OutputType)' != 'Library'">.exe</AssemblyExtension>
         <FrameworkGroup Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">NetFx</FrameworkGroup>
         <FrameworkGroup Condition="$(TargetFramework.Contains('netstandard'))">NetStd</FrameworkGroup>
         <FrameworkGroup Condition="$(TargetFramework.Contains('netcore'))">NetCore</FrameworkGroup>
@@ -94,7 +96,7 @@
             AfterTargets="CoreCompile">
       <WriteLinesToFile
             File="$(OutputPath)\$(MSBuildProjectName).sign"
-            Lines="$([System.IO.Path]::GetFullPath($(OutputPath)\$(MSBuildProjectName)$(MSBuildProjectExtension)))"
+            Lines="$([System.IO.Path]::GetFullPath($(OutputPath)\$(MSBuildProjectName)$(AssemblyExtension)))"
             Overwrite="true"
             Encoding="utf-8"/>
     </Target>
