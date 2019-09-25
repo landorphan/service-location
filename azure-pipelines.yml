@@ -125,7 +125,7 @@ stages:
               echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
             }
             # Locate all assemblies that need to be signed.
-            find . -name '*.sign' | xargs cat > "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign"
+            find . -name '*.sign' | xargs cat | sed -E 's/.([\x20-\x7E]*)/\1/g' > "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign"
             echo 'Located the following assemblies to sign'
             cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign"
 
