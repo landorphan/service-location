@@ -125,8 +125,14 @@ stages:
             function wslpath() { 
               echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
             }
+            function wslpath2 {
+              while read data; do
+                echo "$data" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|' 
+              done
+            }
+            
             # Locate all assemblies that need to be signed.
-            find . -name '*.sign' | xargs cat | sed -E 's/.([\x20-\x7E]*)/\1/g' > "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign"
+            find . -name '*.sign' | xargs cat | sed -E 's/.([\x20-\x7E]*)/\1/g' | echo "$(wslpath2 %)" > "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign"
             echo 'Located the following assemblies to sign'
             cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign"
 
@@ -148,7 +154,7 @@ stages:
             }
             # Locate all assemblies that need to be signed.
             ls "$(wslpath $AGENT_BUILDDIRECTORY)/d"
-            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % echo "$(wslpath '%')""
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % ls "%"
 
       - script: |
           echo Write your commands here
