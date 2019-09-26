@@ -154,6 +154,7 @@ stages:
             }
             # Script a signing of all assemblies produced by the build.
             cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | xargs -I % "$(wslpath $AGENT_BUILDDIRECTORY)/d/azuresigntool.exe" sign "%" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
+            echo 'Code sign job comlete'
 
       - script: |
           echo Write your commands here
