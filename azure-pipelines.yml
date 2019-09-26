@@ -153,8 +153,8 @@ stages:
               echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
             }
             # Locate all assemblies that need to be signed.
-            ls "$(wslpath $AGENT_BUILDDIRECTORY)/d"
-            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % ls "%"
+            # ls "$(wslpath $AGENT_BUILDDIRECTORY)/d"
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % "$(wslpath $AGENT_BUILDDIRECTORY)/d/" ls "%" 
 
       - script: |
           echo Write your commands here
