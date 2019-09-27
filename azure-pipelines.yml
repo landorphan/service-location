@@ -175,7 +175,8 @@ stages:
             # Get a list of Nuget Files to generate (this dedups items generated in the build)
             # This list includes only the project file names (.csproj) without the extension.
             find . -name *.csproj | xargs grep -l 'NugetPackage' | xargs -I + sh -c 'TEMP_VAR="+"; TEMP_VAR2="$(basename '+')"; echo "$(dirname $TEMP_VAR)/${TEMP_VAR2%.*}"' > "$(wslpath $AGENT_TEMPDIRECTORY)/nuget.list"
-
+            echo "${!NUGET*}"
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/nuget.list"
             
 
             echo 'Nuget Generation Complete'
