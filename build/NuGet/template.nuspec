@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+   <metadata>
+      <!-- Required elements-->
+      <id>$NUGET_ID</id>
+      <version>$LNDF_VER_FULL</version>
+      <description>$NUGET_DESC</description>
+      <authors>$NUGET_AUTHORS</authors>
+
+      <!-- Optional elements -->
+      <title>$NUGET_ID</title>
+      <owners>$NUGET_OWNERS</owners>
+      <projectUrl>$NUGET_PROJECTURL</projectUrl>
+      <license type="expression">$NUGET_LICENSE</license>
+      <!-- Not deployed yet
+        <iconUrl>https://github.com/landorphan/common/raw/master/logo.png</iconUrl>
+        -->
+      <requireLicenseAcceptance>false</requireLicenseAcceptance>
+      <developmentDependency>false</developmentDependency>
+      <summary>$NUGET_SUMMARY</summary>
+      <releaseNotes>$NUGET_RELEASENOTES</releaseNotes>
+      <copyright>$NUGET_COPYRIGHT</copyright>
+      <language></language>
+      <tags>$NUGET_TAGS</tags>
+      <repository type="git" url="$NUGET_REPO"/>
+      <packageTypes>
+         <packageType name="Dependency" /> 
+      </packageTypes>
+      <dependencies>
+         <group targetFramework=".NETStandard2.0">
+            <dependency id="Landorphan.Common" version="0.9.467" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Logging" version="2.2.0" exclude="Build,Analyzers" />
+            <dependency id="Microsoft.Extensions.Configuration" version="2.2.0" exclude="Build,Analyzers" />
+            <dependency id="System.Collections.Immutable" version="1.5.0" exclude="Build,Analyzers" />
+         </group>
+      </dependencies>
+   </metadata>
+</package>

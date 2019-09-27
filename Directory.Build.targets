@@ -58,6 +58,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)\Landorphan.Tests.Architecture.cs" />
   </ItemGroup>
 
+  <PropertyGroup Condition="'$(NugetPackage)' == 'True'">
+    <NugetId Condition="'$(NugetId)' == '' AND '$(AssemblyName)' == ''">$(MSBuildProjectName)</NugetId>
+    <NugetId Condition="'$(NugetId)' == '' AND '$(AssemblyName)' != ''">$(AssemblyName)</NugetId>
+    <NugetSummary Condition="'$(NugetSummary)' == ''">$(NugetDesc)</NugetSummary>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(NugetPackage)' == 'True'">
+    <NugetProperty Include='NUGET_ID="$(NugetId)"' />
+    <NugetProperty Include='NUGET_RELEASENOTES="$(NugetReleaseNotes)"' />
+    <NugetProperty Include='NUGET_TAGS="$(NugetTags)"' />
+  </ItemGroup>
+
    <Target Name="ValidateAndReportCodeAnalysis"
            BeforeTargets="CoreCompile">
       <Message Text="Running ValidateAndReportCodeAnalysis Target" />
@@ -92,12 +104,37 @@
       <Message Text="Index of Test Project: $(TargetFramework.Contains('netcore'))" />
    </Target>
 
-    <Target Name="CreateSignableListingFiles"
+    <Target Name="WriteBuildDataFilesForServerBuilds"
             AfterTargets="CoreCompile">
       <WriteLinesToFile
             File="$(OutputPath)\$(MSBuildProjectName).sign"
             Lines="$([System.IO.Path]::GetFullPath($(OutputPath)\$(MSBuildProjectName)$(AssemblyExtension)))"
             Overwrite="true"
-            Encoding="utf-8"/>
+            Encoding="ascii"/>
+      <WriteLinesToFile
+            Condition="'$(IsTestProject)' == 'True'"
+            File="$(OutputPath)\$(MSBuildProjectName).test"
+            Lines="$([System.IO.Path]::GetFullPath($(OutputPath)\$(MSBuildProjectName)$(AssemblyExtension)))"
+            Overwrite="true"
+            Encoding="ascii"/>
+      <Error Condition="'$(NugetPackage)' == 'True' AND ('$(NugetId)' == '' OR '$(NugetReleaseNotes)' == '' OR '$(NugetTags)' == '' OR '$(NugetDesc)' == '')" Text="For Nuget Packages a NugetId, NugetReleaseNotes, NugetTags and NugetDesc must be supplied." />
+      <WriteLinesToFile
+            Condition="'$(NugetPackage)' == 'True'"
+            File="$(OutputPath)\$(MSBuildProjectName)+$(TargetFramework)+nuget.env"
+            Lines="@(NugetProperty)"
+            Overwrite="true"
+            Encoding="ascii"/>
+      <WriteLinesToFile
+            Condition="'$(NugetPackage)' == 'True'"
+            File="$(OutputPath)\$(MSBuildProjectName)+$(TargetFramework)+nuget.desc"
+            Lines="$(NugetDesc)"
+            Overwrite="true"
+            Encoding="ascii"/>
+      <WriteLinesToFile
+            Condition="'$(NugetPackage)' == 'True'"
+            File="$(OutputPath)\$(MSBuildProjectName)+$(TargetFramework)+nuget.summary"
+            Lines="$(NugetSummary)"
+            Overwrite="true"
+            Encoding="ascii"/>
     </Target>
 </Project>

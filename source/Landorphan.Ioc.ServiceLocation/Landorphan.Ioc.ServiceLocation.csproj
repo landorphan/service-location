@@ -4,6 +4,10 @@
       <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;net451</TargetFrameworks>
       <LangVersion>7.2</LangVersion>
       <RootNamespace>Landorphan.Ioc</RootNamespace>
+      <NugetPackage>True</NugetPackage>
+      <NugetReleaseNotes>Initial public release.</NugetReleaseNotes>
+      <NugetTags>common, utility, instrumentation</NugetTags>
+      <NugetDesc>Lightweight Instrumentation management system.</NugetDesc>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>

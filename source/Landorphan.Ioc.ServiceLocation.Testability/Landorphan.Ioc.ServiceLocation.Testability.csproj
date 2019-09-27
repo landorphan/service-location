@@ -4,6 +4,10 @@
       <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;net451</TargetFrameworks>
       <LangVersion>7.2</LangVersion>
       <AssemblyName>Landorphan.Ioc.ServiceLocation.Testability</AssemblyName>
+      <NugetPackage>True</NugetPackage>
+      <NugetReleaseNotes>Initial public release.</NugetReleaseNotes>
+      <NugetTags>common, utility</NugetTags>
+      <NugetDesc>Arranges multiple layers of test containers without taking a dependency on any test framework.</NugetDesc>
    </PropertyGroup>
    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <DefineConstants>DEBUG;TRACE</DefineConstants>
