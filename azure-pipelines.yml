@@ -10,6 +10,10 @@ variables:
   solution: 'Landorphan.Ioc.ServiceLocation.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  NUGET_AUTHORS: 'Landorphan LLC, Michael Prochaska, Timothy Stockstill'
+  NUGET_OWNERS: 'landorphan, mprochaska, tstockstill'
+  NUGET_LICENSE: 'MIT'
+  NUGET_COPYRIGHT: 'Copyright © 2019 - Landorphan, LLC.'
 
 stages:
   - stage: win_build
@@ -144,6 +148,7 @@ stages:
           SecretsFilter: 'LandorphanKeyVaultKey'
 
       - task: Bash@3
+        displayName: 'Sign the resulting assembly files.'
         inputs:
           targetType: 'inline'
           script: |
@@ -152,21 +157,23 @@ stages:
             function wslpath() { 
               echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
             }
-            # Locate all assemblies that need to be signed.
-            ls "$(wslpath $AGENT_BUILDDIRECTORY)/d"
-            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | head -n 1 | xargs -I % ls "%"
+            # Script a signing of all assemblies produced by the build.
+            cat "$(wslpath $AGENT_TEMPDIRECTORY)/assemblies.sign" | xargs -I % "$(wslpath $AGENT_BUILDDIRECTORY)/d/azuresigntool.exe" sign "%" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
+            echo 'Code sign job comlete'
 
-      - script: |
-          echo Write your commands here
-          
-          %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\net451\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
-          
-          %AGENT_BUILDDIRECTORY%\d\AzureSignTool.exe sign "%BUILD_SOURCESDIRECTORY%\bin\release\Landorphan.Ioc.ServiceLocation\netstandard2.0\Landorphan.Ioc.ServiceLocation.dll" --file-digest sha256 --description-url "https://github.com/landorphan/service-location" --no-page-hashing --timestamp-rfc3161 http://timestamp.comodoca.com --timestamp-digest sha256 --azure-key-vault-url "https://landorphan-build.vault.azure.net/" --azure-key-vault-client-id "b32bbbae-55c3-4f5b-bf40-0292d349886f" --azure-key-vault-client-secret "$(LandorphanKeyVaultKey)" --azure-key-vault-certificate "Landorphan-LightWeight-CodeSign"
-          
-          echo Use the environment variables input below to pass secret variables to this script
-        displayName: 'ServiceLocation: Azure Code Sign copy'
-        enabled: false
+      - task: Bash@3
+        displayName: 'Generate Nuget Files'
+        inputs:
+          targetType: 'inline'
+          script: |
+            # This is needed because some PM in Azure Dev Ops beleives that presenting Windows paths to bash is 
+            # you know it... "Not a bug" ... way to go JR PM at MSFT ... way to have no clue what your market is.
+            function wslpath() { 
+              echo "$1" | sed -e 's|\\|/|g' -e 's|^\([A-Za-z]\)\:/\(.*\)|/\L\1\E/\2|'
+            }
+            # Script a signing of all assemblies produced by the build.
 
+            echo 'Nuget Generation Complete'
 
       - task: VSTest@2
         displayName: 'VsTest - testAssemblies'
