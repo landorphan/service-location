@@ -160,6 +160,7 @@ stages:
             # *2 = pipe the results into "$TEMP_DIR/assemblies.list"
             #       *1  |         *2
             done | uniq > "$TEMP_DIR/assemblies.list"
+            echo 'Located the following assemblies'
             cat "$TEMP_DIR/assemblies.list"
 
             # Locate all Assemblies that are going to be generating a NugetPackage (ones with <NugetPackage>True</NugetPackage> in them).
@@ -170,7 +171,8 @@ stages:
             # *3 = pipe into a script which extractes only the file name without an extension   
             # *4 = pipe that into a new file "nuget.list" in the temp directory
             #       *1            |            *2                |                                        *3                                                                 |          *4
-            find . -name *.csproj | xargs grep -l 'NugetPackage' | xargs -I + sh -c 'TEMP_VAR="+"; TEMP_VAR2="$(basename '+')"; echo "$(dirname $TEMP_VAR)/${TEMP_VAR2%.*}"' > "$TEMP_DIR/nuget.list"
+            echo 'Located the following assemblies to generate NuGet Packages from'
+            find . -name *.csproj | xargs grep -l 'NugetPackage' | xargs -I + sh -c 'TEMP_VAR="+"; TEMP_VAR2="$(basename '+')"; echo "${TEMP_VAR2%.*}"' > "$TEMP_DIR/nuget.list"
             cat "$TEMP_DIR/nuget.list"
 
       - task: AzureKeyVault@1
