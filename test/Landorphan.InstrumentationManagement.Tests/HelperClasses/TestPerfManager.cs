@@ -7,64 +7,64 @@ namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
     using Landorphan.InstrumentationManagement.PlugIns;
 
     public class TestPerfSpan : DisposableObject, IPerfSpan
-   {
-       protected internal Guid spanId = Guid.NewGuid();
+    {
+        protected internal Guid SpanIdField = Guid.NewGuid();
 
-       public TestPerfSpan(string name)
-      {
-         Name = name;
-         ParentSpan = this;
-      }
+        public TestPerfSpan(string name)
+        {
+            Name = name;
+            ParentSpan = this;
+        }
 
-       public TestPerfSpan(string name, TestPerfTrace trace, TestPerfSpan parent)
-      {
-         Name = name;
-         ParentTrace = trace;
-         ParentSpan = parent;
-      }
+        public TestPerfSpan(string name, TestPerfTrace trace, TestPerfSpan parent)
+        {
+            Name = name;
+            ParentTrace = trace;
+            ParentSpan = parent;
+        }
 
-       protected override void ReleaseManagedResources()
-      {
-         base.ReleaseUnmanagedResources();
-         ((TestPerfTrace)ParentTrace).CurrentSpan = ParentSpan;
-      }
+        protected override void ReleaseManagedResources()
+        {
+            base.ReleaseUnmanagedResources();
+            ((TestPerfTrace)ParentTrace).CurrentSpan = ParentSpan;
+        }
 
-       public string Name { get; private set; }
+        public string Name { get; private set; }
 
-       public IPerfSpan ParentSpan { get; protected set; }
-       public IPerfTrace ParentTrace { get; set; }
+        public IPerfSpan ParentSpan { get; protected set; }
+        public IPerfTrace ParentTrace { get; set; }
 
-       public string SpanId => spanId.ToString();
-   }
+        public string SpanId => SpanIdField.ToString();
+    }
 
-   public class TestPerfTrace : TestPerfSpan, IPerfTrace
-   {
-       internal static IDictionary<Guid, TestPerfTrace> traces = new ConcurrentDictionary<Guid, TestPerfTrace>();
-       private readonly Guid traceId = Guid.NewGuid();
+    public class TestPerfTrace : TestPerfSpan, IPerfTrace
+    {
+        internal static IDictionary<Guid, TestPerfTrace> traces = new ConcurrentDictionary<Guid, TestPerfTrace>();
+        private readonly Guid traceId = Guid.NewGuid();
 
-       public TestPerfTrace(string name) : base (name)
-      {
-         ParentTrace = this;
-         traces.Add(traceId, this);
-         CurrentSpan = this;
-      }
+        public TestPerfTrace(string name) : base(name)
+        {
+            ParentTrace = this;
+            traces.Add(traceId, this);
+            CurrentSpan = this;
+        }
 
-       protected override void ReleaseUnmanagedResources()
-      {
-         base.ReleaseUnmanagedResources();
-         traces.Remove(traceId);
-      }
+        protected override void ReleaseUnmanagedResources()
+        {
+            base.ReleaseUnmanagedResources();
+            traces.Remove(traceId);
+        }
 
-       public IPerfSpan CurrentSpan { get; internal set; }
+        public IPerfSpan CurrentSpan { get; internal set; }
 
-       public string TraceId => traceId.ToString();
-   }
+        public string TraceId => traceId.ToString();
+    }
 
-   public class TestPerfManager : IInstrumentationPluginPerfManager
-   {
-       public IPerfTrace StartTrace(string traceName)
-      {
-         return new TestPerfTrace(traceName);
-      }
-   }
+    public class TestPerfManager : IInstrumentationPluginPerfManager
+    {
+        public IPerfTrace StartTrace(string traceName)
+        {
+            return new TestPerfTrace(traceName);
+        }
+    }
 }

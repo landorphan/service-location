@@ -1,14 +1,13 @@
 namespace Landorphan.TestUtilities.NUnit.Tests.Architecture
 {
+    using global::NUnit.Framework;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
     using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using global::NUnit.Framework;
-    using Landorphan.TestUtilities.ReusableTestImplementations;
 
     // ReSharper disable InconsistentNaming
 
-    [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
     [TestFixture]
     public class Architecture_Tests : ArchitecturalRequirements
     {
@@ -30,7 +29,7 @@ namespace Landorphan.TestUtilities.NUnit.Tests.Architecture
 
         protected override IImmutableSet<Assembly> GetAssembliesUnderTest()
         {
-            return TestAssemblyInitializeCleanup.AssembliesUnderTest;
+            return TestAssemblyInitTearDown.AssembliesUnderTest;
         }
     }
 }

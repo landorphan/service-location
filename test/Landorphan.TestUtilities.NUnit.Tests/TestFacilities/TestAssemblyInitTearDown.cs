@@ -14,7 +14,7 @@ using NUnit.Framework;
 [SuppressMessage("Microsoft.Design", "CA1050: Declare types in namespaces", Justification = "This class follows the design specification of NUnit (mproch 2020.05.08)")]
 [SuppressMessage("Sonar", "S3903: Types should be defined in named namespaces", Justification = "This class follows the design specification of NUnit (mproch 2020.05.08)")]
 // ReSharper disable once CheckNamespace
-public static class TestAssemblyInitializeCleanup
+public static class TestAssemblyInitTearDown
 {
     internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
 
@@ -44,7 +44,6 @@ public static class TestAssemblyInitializeCleanup
 
         // Landorphan.TestUtilities.MSTest
         assemblies.Add(typeof(ArrangeActAssert).Assembly);
-
         AssembliesUnderTest = assemblies.ToImmutable();
     }
 }

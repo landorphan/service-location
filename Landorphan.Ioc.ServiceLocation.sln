@@ -79,14 +79,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8323FDA5-2688-425B-8A30-7836EE3F2C08}"
 	ProjectSection(SolutionItems) = preProject
-		build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset = build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset
+		AllRules.16.5.WithSonarLint.ruleset = AllRules.16.5.WithSonarLint.ruleset
 		build\CodeAnalysis\Copy-FxCopRuleset.ps1 = build\CodeAnalysis\Copy-FxCopRuleset.ps1
 		build\CodeAnalysis\CustomDictionary.xml = build\CodeAnalysis\CustomDictionary.xml
-		build\CodeAnalysis\Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset
 		build\CodeAnalysis\README.md = build\CodeAnalysis\README.md
 	EndProjectSection
 EndProject
@@ -124,7 +121,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.NU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.Common", "source\Landorphan.TestUtilities.Common\Landorphan.TestUtilities.Common.csproj", "{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Landorphan.TestUtilities.NUnit.Tests", "test\Landorphan.TestUtilities.NUnit.Tests\Landorphan.TestUtilities.NUnit.Tests.csproj", "{681AEAD8-D6C3-41A6-9897-5C98FE00819E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.NUnit.Tests", "test\Landorphan.TestUtilities.NUnit.Tests\Landorphan.TestUtilities.NUnit.Tests.csproj", "{681AEAD8-D6C3-41A6-9897-5C98FE00819E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

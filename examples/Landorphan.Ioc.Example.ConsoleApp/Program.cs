@@ -4,6 +4,8 @@ namespace Landorphan.Ioc.Example.ConsoleApp
     using System.Linq;
     using Landorphan.Ioc.ServiceLocation;
 
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
+
     internal class Program
     {
         public const int ConverterExpectedArguments = 4;

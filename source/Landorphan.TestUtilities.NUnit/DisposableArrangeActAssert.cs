@@ -309,6 +309,7 @@ namespace Landorphan.TestUtilities
         [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used", Justification = "Not displaying")]
         [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
         [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used", Justification = "2 is not a magic number for dictionary type arguments.")]
+        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "by design")]
         private bool TryHandleDictionaryOfDisposables(object fieldValue)
         {
             // Handles:
