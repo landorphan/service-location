@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <!-- Required elements-->
-        <id>Landorphan.TestUtilities.MSTest</id>
+        <id>Landorphan.TestUtilities.NUnit</id>
         <version>$version$</version>
-        <description>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the MSTest framework.</description>
+        <description>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the NUnit3 framework.</description>
         <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
 
         <!-- Optional elements -->
-        <title>Landorphan.TestUtilities.MSTest</title>
+        <title>Landorphan.TestUtilities.NUnit</title>
         <owners>landorphan, mprochaska, tstockstill</owners>
         <projectUrl>https://github.com/landorphan/service-location</projectUrl>
         <license type="expression">MIT</license>
@@ -17,9 +17,9 @@
         -->
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>false</developmentDependency>
-        <summary>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the MSTest framework.</summary>
+        <summary>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the NUnit3 framework.</summary>
         <releaseNotes>Initial public release.</releaseNotes>
-        <copyright>Copyright © 2019 - Landorphan, LLC.</copyright>
+        <copyright>Copyright © 2020 - Landorphan, LLC.</copyright>
         <language></language>
         <tags>common, utility</tags>
         <repository type="git" url="https://github.com/landorphan/service-location"/>
@@ -37,8 +37,8 @@
 
                 <dependency id="FluentAssertions" version="5.10.13" exclude="Build,Analyzers"/>
                 <dependency id="Microsoft.NET.Test.Sdk" version="16.6.1" exclude="Build,Analyzers" />
-                <dependency id="Microsoft.VisualStudio.TestPlatform" version="14.0.0" exclude="Build,Analyzers" />
-                <dependency id="MSTest.TestFramework" version="2.1.1" exclude="Build,Analyzers" />
+                <dependency id="NUnit" Version="3.12.0"  exclude="Build,Analyzers"/>
+                <dependency id="NUnit3TestAdapter" Version="3.16.1"  exclude="Build,Analyzers"/>
                 <dependency id="System.Collections.Immutable" version="1.7.1" exclude="Build,Analyzers" />
             </group>
         </dependencies>
