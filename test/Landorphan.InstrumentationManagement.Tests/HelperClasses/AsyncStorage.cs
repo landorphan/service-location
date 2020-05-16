@@ -12,7 +12,7 @@ namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
     public class AsyncStorage : IInstrumentationPluginStorage
     {
 #if NETCORE
-       private readonly AsyncLocal<ConcurrentDictionary<string, object>> asyncLocal = new AsyncLocal<ConcurrentDictionary<string, object>>();
+        private readonly AsyncLocal<ConcurrentDictionary<string, object>> asyncLocal = new AsyncLocal<ConcurrentDictionary<string, object>>();
 #endif
 
         public object Get(string name)
@@ -25,12 +25,12 @@ namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
          }
          return retval;
 #elif NETCORE
-         object retval = null;
-         if (asyncLocal.Value is ConcurrentDictionary<string, object> localStorage)
-         {
-            retval = localStorage[name];
-         }
-         return retval;
+            object retval = null;
+            if (asyncLocal.Value is ConcurrentDictionary<string, object> localStorage)
+            {
+                retval = localStorage[name];
+            }
+            return retval;
 #else
 #pragma warning disable S3717 // Track use of "NotImplementedException"
             throw new NotImplementedException("This operation is not implemented for this runtime.");
@@ -49,12 +49,12 @@ namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
 
          localStorage[name] = value;
 #elif NETCORE
-         if (!(asyncLocal.Value is ConcurrentDictionary<string, object> localStorage))
-         {
-            localStorage = new ConcurrentDictionary<string, object>();
-            asyncLocal.Value = localStorage;
-         }
-         localStorage[name] = value;
+            if (!(asyncLocal.Value is ConcurrentDictionary<string, object> localStorage))
+            {
+                localStorage = new ConcurrentDictionary<string, object>();
+                asyncLocal.Value = localStorage;
+            }
+            localStorage[name] = value;
 #else
 #pragma warning disable S3717 // Track use of "NotImplementedException"
             throw new NotImplementedException("This operation is not implemented for this runtime.");

@@ -8,6 +8,12 @@
         <DefineConstants>$(DefineConstants);BuildServer</DefineConstants>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <DefineConstants Condition="$(TargetFramework.Contains('net4')) OR $(TargetFramework.Contains('net5'))">$(DefineConstants);NETFX</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('netstandard'))">$(DefineConstants);NETSTD</DefineConstants>
+        <DefineConstants Condition="$(TargetFramework.Contains('netcore'))">$(DefineConstants);NETCORE</DefineConstants>
+    </PropertyGroup>
+
     <!--updated rulesets and analyzers 
     <PropertyGroup>
         <CodeAnalysisRuleSet></CodeAnalysisRuleSet>

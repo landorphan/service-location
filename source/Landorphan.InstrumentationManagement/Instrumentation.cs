@@ -1,17 +1,16 @@
 namespace Landorphan.InstrumentationManagement
 {
+    using Landorphan.InstrumentationManagement.Implementation;
+    using Landorphan.InstrumentationManagement.Interfaces;
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using Landorphan.Common;
-    using Landorphan.InstrumentationManagement.Implementation;
-    using Landorphan.InstrumentationManagement.Interfaces;
 
     /// <summary>
     /// This is the main Instrumentation class is used to interact
     /// with the Instrumentation system.
     /// </summary>
-#pragma warning disable CA1724 // name Instrumentation conflicts with System.Management.Instrumentation -- This name is prefered. 
+#pragma warning disable CA1724 // name Instrumentation conflicts with System.Management.Instrumentation -- This name is preferred. 
     public class Instrumentation : IInstrumentationRecordMethod, IInstrumentationRecordAction
 #pragma warning restore CA1724
     {
@@ -96,8 +95,6 @@ namespace Landorphan.InstrumentationManagement
         /// </param>
         public static IEntryPointExecution Bootstrap(InstrumentationBootstrapData bootstrapData)
         {
-            bootstrapData.ArgumentNotNull(nameof(bootstrapData));
-
             IEntryPointExecution retval = null;
             lock (lockObject)
             {
@@ -134,7 +131,9 @@ namespace Landorphan.InstrumentationManagement
                     }
                     if (!bootstrapFailure)
                     {
+#pragma warning disable CA1062 // Validate arguments of public methods
                         var trace = bootstrapData.ApplicationPerformanceManager.StartTrace(bootstrapData.ApplicationEntryPointName);
+#pragma warning restore CA1062 // Validate arguments of public methods
                         retval = new EntryPointExecution(trace, trace.Name);
                         bootstrapData.AsyncStorage.Set(nameof(InstrumentationContextManager.RootApplicationName), bootstrapData.ApplicationName);
                         setInstance(new Instrumentation(new InstrumentationContextManager(bootstrapData)

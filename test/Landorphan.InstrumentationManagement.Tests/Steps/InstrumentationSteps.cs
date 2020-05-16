@@ -176,8 +176,6 @@ namespace Landorphan.InstrumentationManagement.Tests.Steps
 
         public void ThenTheReturnValueShouldBe(string isNot, string value, object inputRetval)
         {
-            isNot.ArgumentNotNull(nameof(isNot));
-            inputRetval.ArgumentNotNull(nameof(inputRetval));
             var retval = inputRetval;
             if (isNot.Length > 0)
             {
