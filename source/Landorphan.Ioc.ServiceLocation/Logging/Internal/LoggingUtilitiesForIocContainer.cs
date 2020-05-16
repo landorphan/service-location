@@ -1,12 +1,12 @@
 ﻿namespace Landorphan.Ioc.Logging.Internal
 {
-   using System;
-   using System.Globalization;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Globalization;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Logging utilities specific to the<see cref="IocServiceLocator"/> singleton instance.   
    /// </summary>
    /// <remarks>
@@ -14,15 +14,15 @@
    /// </remarks>
    internal sealed class LoggingUtilitiesForIocContainer : ILoggingUtilitiesForIocContainer
    {
-      private readonly IIocLoggingUtilitiesService _parent;
+       private readonly IIocLoggingUtilitiesService _parent;
 
-      internal LoggingUtilitiesForIocContainer(IIocLoggingUtilitiesService parent)
+       internal LoggingUtilitiesForIocContainer(IIocLoggingUtilitiesService parent)
       {
          parent.ArgumentNotNull(nameof(parent));
          _parent = parent;
       }
 
-      public void GetMessageChildContainerAdded(IIocContainerMetaIdentity parentContainer, IIocContainerMetaIdentity childContainer, out String message)
+       public void GetMessageChildContainerAdded(IIocContainerMetaIdentity parentContainer, IIocContainerMetaIdentity childContainer, out string message)
       {
          parentContainer.ArgumentNotNull(nameof(parentContainer));
          childContainer.ArgumentNotNull(nameof(childContainer));
@@ -39,7 +39,7 @@
                    $"\tChildContainerUid:{childContainerUid}\tChildContainerName:{childContainerName}";
       }
 
-      public void GetMessageChildContainerRemoved(IIocContainerMetaIdentity parentContainer, IIocContainerMetaIdentity childContainer, out String message)
+       public void GetMessageChildContainerRemoved(IIocContainerMetaIdentity parentContainer, IIocContainerMetaIdentity childContainer, out string message)
       {
          parentContainer.ArgumentNotNull(nameof(parentContainer));
          childContainer.ArgumentNotNull(nameof(childContainer));
@@ -56,7 +56,7 @@
                    $"\tChildContainerUid:{childContainerUid}\tChildContainerName:{childContainerName}";
       }
 
-      public void GetMessageConfigurationChanged(IIocContainerConfiguration configuration, out String message)
+       public void GetMessageConfigurationChanged(IIocContainerConfiguration configuration, out string message)
       {
          configuration.ArgumentNotNull(nameof(configuration));
 
@@ -71,7 +71,7 @@
                    $"\tIsReadOnly:{configuration.IsReadOnly}";
       }
 
-      public void GetMessagePrecludedTypeAdded(IIocContainerMetaIdentity container, Type precludedType, out String message)
+       public void GetMessagePrecludedTypeAdded(IIocContainerMetaIdentity container, Type precludedType, out string message)
       {
          container.ArgumentNotNull(nameof(container));
          precludedType.ArgumentNotNull(nameof(precludedType));
@@ -87,7 +87,7 @@
                    $"\tPrecludedType:{precludedTypeFullName}";
       }
 
-      public void GetMessagePrecludedTypeRemoved(IIocContainerMetaIdentity container, Type precludedType, out String message)
+       public void GetMessagePrecludedTypeRemoved(IIocContainerMetaIdentity container, Type precludedType, out string message)
       {
          container.ArgumentNotNull(nameof(container));
          precludedType.ArgumentNotNull(nameof(precludedType));
@@ -103,7 +103,7 @@
                    $"\tPrecludedType:{precludedTypeFullName}";
       }
 
-      public void GetMessageRegistrationAdded(IIocContainerMetaIdentity container, IRegistrationKey registrationKey, Type toType, Object instance, out String message)
+       public void GetMessageRegistrationAdded(IIocContainerMetaIdentity container, IRegistrationKey registrationKey, Type toType, object instance, out string message)
       {
          container.ArgumentNotNull(nameof(container));
          registrationKey.ArgumentNotNull(nameof(registrationKey));
@@ -135,7 +135,7 @@
          }
       }
 
-      public void GetMessageRegistrationRemoved(IIocContainerMetaIdentity container, IRegistrationKey registrationKey, out String message)
+       public void GetMessageRegistrationRemoved(IIocContainerMetaIdentity container, IRegistrationKey registrationKey, out string message)
       {
          container.ArgumentNotNull(nameof(container));
          registrationKey.ArgumentNotNull(nameof(registrationKey));

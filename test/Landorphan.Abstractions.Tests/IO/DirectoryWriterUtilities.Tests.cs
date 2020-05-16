@@ -1,30 +1,30 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-   using System;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class DirectoryWriterUtilities_Tests
    {
-      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
 
-      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly IDirectoryWriterUtilities _target = IocServiceLocator.Resolve<IDirectoryWriterUtilities>();
-      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+       private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly IDirectoryWriterUtilities _target = IocServiceLocator.Resolve<IDirectoryWriterUtilities>();
+       private static readonly string _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_IDirectoryWriterUtilities_Copy : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_copy_the_directory()
          {
@@ -57,7 +57,7 @@
       [TestClass]
       public class When_I_call_IDirectoryWriterUtilities_Move : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_move_the_directory()
          {
@@ -84,14 +84,14 @@
       [TestClass]
       public class When_I_service_locate_IDirectoryWriterUtilities : ArrangeActAssert
       {
-         private IDirectoryWriterUtilities actual;
+          private IDirectoryWriterUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IDirectoryWriterUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_DirectoryReaderUtilitiesFactory()
          {

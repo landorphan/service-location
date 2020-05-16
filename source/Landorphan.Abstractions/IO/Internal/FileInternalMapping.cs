@@ -2,21 +2,21 @@
 
 namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Security;
-   using System.Text;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.Resources;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Security;
+    using System.Text;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.Resources;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
 
-   /// <summary>
+    /// <summary>
    /// Provides methods for the creation, copying, deletion, moving, and opening of files, and aids in the creation of
    /// <see cref="FileStream"/> objects.
    /// </summary>
@@ -26,19 +26,19 @@ namespace Landorphan.Abstractions.IO.Internal
    // [SuppressMessage("SonarLint.CodeSmell", "S2148: Underscores should be used to make large numbers readable")]
    internal sealed class FileInternalMapping : IFileInternalMapping
    {
-      // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
+       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      ///<inheritdoc/>
+       ///<inheritdoc/>
       public DateTimeOffset MaximumFileTimeAsDateTimeOffset => FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
 
-      ///<inheritdoc/>
-      public Int64 MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
+       ///<inheritdoc/>
+      public long MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
 
-      ///<inheritdoc/>
+       ///<inheritdoc/>
       public DateTimeOffset MinimumFileTimeAsDateTimeOffset => FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
 
-      /// <inheritdoc/>
-      public void AppendAllLines(String path, IEnumerable<String> contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          contents.ArgumentNotNull(nameof(contents));
@@ -49,7 +49,7 @@ namespace Landorphan.Abstractions.IO.Internal
 #if IO_PRECHECKS
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
-            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotCreateFileDirectoryAlreadyExistsFmt, cleanedPath);
+            var msg = string.Format(CultureInfo.InvariantCulture, StringResources.CannotCreateFileDirectoryAlreadyExistsFmt, cleanedPath);
             throw new IOException(msg);
          }
 #endif
@@ -73,7 +73,7 @@ namespace Landorphan.Abstractions.IO.Internal
             var backslashFileName = pathUtilities.PathSeparatorCharacter + pathUtilities.GetFileName(cleanedPath);
             if (uae.Message.Contains(backslashFileName))
             {
-               var msg = uae.Message.Replace(backslashFileName, String.Empty);
+               var msg = uae.Message.Replace(backslashFileName, string.Empty);
                throw new UnauthorizedAccessException(msg, uae);
             }
 
@@ -81,28 +81,28 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public void AppendAllText(String path, String contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void AppendAllText(string path, string contents, Encoding encoding)
       {
          contents.ArgumentNotNull(nameof(contents));
 
          AppendAllLines(path, new[] {contents}, encoding);
       }
 
-      /// <inheritdoc/>
-      public void CopyNoOverwrite(String sourceFileName, String destFileName)
+       /// <inheritdoc/>
+      public void CopyNoOverwrite(string sourceFileName, string destFileName)
       {
          CopyImplementation(sourceFileName, destFileName, false);
       }
 
-      /// <inheritdoc/>
-      public void CopyWithOverwrite(String sourceFileName, String destFileName)
+       /// <inheritdoc/>
+      public void CopyWithOverwrite(string sourceFileName, string destFileName)
       {
          CopyImplementation(sourceFileName, destFileName, true);
       }
 
-      /// <inheritdoc/>
-      public String CreateFile(String path)
+       /// <inheritdoc/>
+      public string CreateFile(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -115,7 +115,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
          if (directoryUtilities.DirectoryExists(cleanedPath))
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                "Cannot create the file '{0}' because a directory with the same name already exists.",
                cleanedPath);
@@ -123,12 +123,12 @@ namespace Landorphan.Abstractions.IO.Internal
          }
 #endif
          var dir = pathUtilities.GetParentPath(cleanedPath).Trim();
-         if (!String.IsNullOrEmpty(dir) && !directoryUtilities.DirectoryExists(dir))
+         if (!string.IsNullOrEmpty(dir) && !directoryUtilities.DirectoryExists(dir))
          {
             directoryUtilities.CreateDirectory(dir);
          }
 
-         const Int32 fourK = 4096;
+         const int fourK = 4096;
          using (File.Create(cleanedPath, fourK, FileOptions.None))
          {
             // file created.
@@ -137,14 +137,14 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public String CreateTemporaryFile()
+       /// <inheritdoc/>
+      public string CreateTemporaryFile()
       {
          return Path.GetTempFileName();
       }
 
-      /// <inheritdoc/>
-      public String CreateText(String path)
+       /// <inheritdoc/>
+      public string CreateText(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -157,7 +157,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
          if (directoryUtilities.DirectoryExists(cleanedPath))
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                "Cannot create the file '{0}' because a directory with the same name already exists.",
                cleanedPath);
@@ -165,7 +165,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
 #endif
          var dir = pathUtilities.GetParentPath(cleanedPath).Trim();
-         if (!String.IsNullOrEmpty(dir) && !directoryUtilities.DirectoryExists(dir))
+         if (!string.IsNullOrEmpty(dir) && !directoryUtilities.DirectoryExists(dir))
          {
             directoryUtilities.CreateDirectory(dir);
          }
@@ -178,8 +178,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public void DeleteFile(String path)
+       /// <inheritdoc/>
+      public void DeleteFile(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -191,7 +191,7 @@ namespace Landorphan.Abstractions.IO.Internal
          // the directory containing the file does not exist.
          // Historical bug here.  No directory was returning when deleting a file in the present working directory.
          // the revised condition fixes the bug.
-         if (!String.IsNullOrEmpty(dir) && !dirUtilities.DirectoryExists(dir))
+         if (!string.IsNullOrEmpty(dir) && !dirUtilities.DirectoryExists(dir))
          {
             return;
          }
@@ -199,16 +199,16 @@ namespace Landorphan.Abstractions.IO.Internal
          // the path is a directory, not a file
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
-            throw new IOException(String.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
+            throw new IOException(string.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
          }
 #endif
 
          File.Delete(cleanedPath);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-      public Boolean FileExists(String path)
+      public bool FileExists(string path)
       {
          try
          {
@@ -251,8 +251,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return false;
       }
 
-      /// <inheritdoc/>
-      public DateTimeOffset GetCreationTime(String path)
+       /// <inheritdoc/>
+      public DateTimeOffset GetCreationTime(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -272,8 +272,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public DateTimeOffset GetLastAccessTime(String path)
+       /// <inheritdoc/>
+      public DateTimeOffset GetLastAccessTime(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -293,8 +293,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public DateTimeOffset GetLastWriteTime(String path)
+       /// <inheritdoc/>
+      public DateTimeOffset GetLastWriteTime(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -314,14 +314,14 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public String GetRandomFileName()
+       /// <inheritdoc/>
+      public string GetRandomFileName()
       {
          return Path.GetRandomFileName();
       }
 
-      /// <inheritdoc/>
-      public void Move(String sourceFileName, String destFileName)
+       /// <inheritdoc/>
+      public void Move(string sourceFileName, string destFileName)
       {
          var cleanedSourceFileName = IOStringUtilities.ValidateCanonicalPath(sourceFileName, "sourceFileName");
          var cleanedDestFileName = IOStringUtilities.ValidateCanonicalPath(destFileName, "destFileName");
@@ -339,16 +339,16 @@ namespace Landorphan.Abstractions.IO.Internal
          if (directoryUtilities.DirectoryExists(cleanedDestFileName))
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, "Cannot move to destination file '{0}' because it is a directory.", cleanedDestFileName));
+               string.Format(CultureInfo.InvariantCulture, "Cannot move to destination file '{0}' because it is a directory.", cleanedDestFileName));
          }
 
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var src = pathUtilities.GetFullPath(cleanedSourceFileName).ToUpperInvariant();
          var dst = pathUtilities.GetFullPath(cleanedDestFileName).ToUpperInvariant();
-         if (String.Equals(src, dst, StringComparison.Ordinal))
+         if (string.Equals(src, dst, StringComparison.Ordinal))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "Cannot move to destination file '{0}' because the source file name and destination file name are the same.",
                   cleanedDestFileName));
@@ -357,7 +357,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (FileExists(cleanedDestFileName))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "Cannot move to destination file '{0}' because the file already exists.",
                   cleanedDestFileName));
@@ -370,20 +370,20 @@ namespace Landorphan.Abstractions.IO.Internal
          File.Move(cleanedSourceFileName, cleanedDestFileName);
       }
 
-      /// <inheritdoc/>
-      public FileStream Open(String path, FileMode mode)
+       /// <inheritdoc/>
+      public FileStream Open(string path, FileMode mode)
       {
          return Open(path, mode, mode == FileMode.Append ? FileAccess.Write : FileAccess.ReadWrite, FileShare.None);
       }
 
-      /// <inheritdoc/>
-      public FileStream Open(String path, FileMode mode, FileAccess access)
+       /// <inheritdoc/>
+      public FileStream Open(string path, FileMode mode, FileAccess access)
       {
          return Open(path, mode, access, FileShare.None);
       }
 
-      /// <inheritdoc/>
-      public FileStream Open(String path, FileMode mode, FileAccess access, FileShare share)
+       /// <inheritdoc/>
+      public FileStream Open(string path, FileMode mode, FileAccess access, FileShare share)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          mode.ArgumentMustBeValidEnumValue(nameof(mode));
@@ -396,12 +396,12 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             if (mode == FileMode.Create)
             {
-               var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotCreateFileDirectoryAlreadyExistsFmt, cleanedPath);
+               var msg = string.Format(CultureInfo.InvariantCulture, StringResources.CannotCreateFileDirectoryAlreadyExistsFmt, cleanedPath);
                throw new IOException(msg);
             }
             else
             {
-               var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+               var msg = string.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
                throw new IOException(msg);
             }
          }
@@ -410,8 +410,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public FileStream OpenRead(String path)
+       /// <inheritdoc/>
+      public FileStream OpenRead(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -419,7 +419,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
-            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+            var msg = string.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
             throw new IOException(msg);
          }
 #endif
@@ -428,8 +428,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public StreamReader OpenText(String path)
+       /// <inheritdoc/>
+      public StreamReader OpenText(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -437,7 +437,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
-            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+            var msg = string.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
             throw new IOException(msg);
          }
 #endif
@@ -445,15 +445,15 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public FileStream OpenWrite(String path)
+       /// <inheritdoc/>
+      public FileStream OpenWrite(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 #if IO_PRECHECKS
          var dirUtilities = IocServiceLocator.Instance.Resolve<IDirectoryUtilities>();
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
-            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
+            var msg = string.Format(CultureInfo.InvariantCulture, StringResources.CannotOpenFileDirectoryAlreadyExistsFmt, cleanedPath);
             throw new IOException(msg);
          }
 #endif
@@ -461,8 +461,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public IImmutableList<Byte> ReadAllBytes(String path)
+       /// <inheritdoc/>
+      public IImmutableList<byte> ReadAllBytes(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -473,12 +473,12 @@ namespace Landorphan.Abstractions.IO.Internal
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
+               string.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
          }
 #endif
 
          var bytes = File.ReadAllBytes(cleanedPath);
-         var builder = ImmutableList<Byte>.Empty.ToBuilder();
+         var builder = ImmutableList<byte>.Empty.ToBuilder();
          foreach (var b in bytes)
          {
             builder.Add(b);
@@ -487,8 +487,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return builder.ToImmutable();
       }
 
-      /// <inheritdoc/>
-      public IImmutableList<String> ReadAllLines(String path, Encoding encoding)
+       /// <inheritdoc/>
+      public IImmutableList<string> ReadAllLines(string path, Encoding encoding)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -499,12 +499,12 @@ namespace Landorphan.Abstractions.IO.Internal
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
+               string.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
          }
 #endif
 
          var lines = File.ReadAllLines(cleanedPath, encoding);
-         var builder = ImmutableList<String>.Empty.ToBuilder();
+         var builder = ImmutableList<string>.Empty.ToBuilder();
          foreach (var line in lines)
          {
             builder.Add(line);
@@ -513,8 +513,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return builder.ToImmutable();
       }
 
-      /// <inheritdoc/>
-      public String ReadAllText(String path, Encoding encoding)
+       /// <inheritdoc/>
+      public string ReadAllText(string path, Encoding encoding)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -525,21 +525,21 @@ namespace Landorphan.Abstractions.IO.Internal
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
+               string.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
          }
 #endif
 
          return File.ReadAllText(cleanedPath, encoding);
       }
 
-      /// <inheritdoc/>
-      public IEnumerable<String> ReadLines(String path)
+       /// <inheritdoc/>
+      public IEnumerable<string> ReadLines(string path)
       {
          return ReadLines(path, Encoding.UTF8);
       }
 
-      /// <inheritdoc/>
-      public IEnumerable<String> ReadLines(String path, Encoding encoding)
+       /// <inheritdoc/>
+      public IEnumerable<string> ReadLines(string path, Encoding encoding)
       {
          // .Net Standard 2.0  File.ReadLines has at least 2 bugs
          // It leaks a file handle
@@ -555,7 +555,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var dir = pathUtilities.GetParentPath(cleanedPath);
 
          // the directory containing the file does not exist.
-         if (!String.IsNullOrEmpty(dir) && !dirUtilities.DirectoryExists(dir))
+         if (!string.IsNullOrEmpty(dir) && !dirUtilities.DirectoryExists(dir))
          {
             ThrowDirectoryNotFoundException(dir, nameof(path));
          }
@@ -564,7 +564,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (dirUtilities.DirectoryExists(cleanedPath))
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
+               string.Format(CultureInfo.InvariantCulture, StringResources.FileNameInvalidMatchesDirectoryNameFmt, cleanedPath));
          }
 
          if (!FileExists(cleanedPath))
@@ -572,7 +572,7 @@ namespace Landorphan.Abstractions.IO.Internal
             throw new FileNotFoundException(null, cleanedPath);
          }
 #endif
-         var builder = ImmutableList<String>.Empty.ToBuilder();
+         var builder = ImmutableList<string>.Empty.ToBuilder();
          using (var sr = new StreamReader(cleanedPath, encoding))
          {
             var line = sr.ReadLine();
@@ -586,35 +586,35 @@ namespace Landorphan.Abstractions.IO.Internal
          return builder.ToImmutable();
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsNoBackup(String sourceFileName, String destinationFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsNoBackup(string sourceFileName, string destinationFileName)
       {
          ReplaceContentsImplementation(sourceFileName, destinationFileName, null, false);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsNoBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsNoBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName)
       {
          ReplaceContentsImplementation(sourceFileName, destinationFileName, null, true);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsWithBackup(String sourceFileName, String destinationFileName, String destinationBackupFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsWithBackup(string sourceFileName, string destinationFileName, string destinationBackupFileName)
       {
          destinationBackupFileName.ArgumentNotNull(nameof(destinationBackupFileName));
          ReplaceContentsImplementation(sourceFileName, destinationFileName, destinationBackupFileName, false);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsWithBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName, String destinationBackupFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsWithBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName, string destinationBackupFileName)
       {
          destinationBackupFileName.ArgumentNotNull(nameof(destinationBackupFileName));
          ReplaceContentsImplementation(sourceFileName, destinationFileName, destinationBackupFileName, true);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [Obsolete("Currently not reliable")]
-      public void SetCreationTime(String path, DateTimeOffset creationTime)
+      public void SetCreationTime(string path, DateTimeOffset creationTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -624,7 +624,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentOutOfRangeException(
                nameof(creationTime),
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
                   MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
@@ -641,8 +641,8 @@ namespace Landorphan.Abstractions.IO.Internal
          File.SetCreationTimeUtc(cleanedPath, creationTime.UtcDateTime);
       }
 
-      /// <inheritdoc/>
-      public void SetLastAccessTime(String path, DateTimeOffset lastAccessTime)
+       /// <inheritdoc/>
+      public void SetLastAccessTime(string path, DateTimeOffset lastAccessTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -652,7 +652,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentOutOfRangeException(
                nameof(lastAccessTime),
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
                   MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
@@ -670,8 +670,8 @@ namespace Landorphan.Abstractions.IO.Internal
          File.SetLastAccessTimeUtc(cleanedPath, lastAccessTime.UtcDateTime);
       }
 
-      /// <inheritdoc/>
-      public void SetLastWriteTime(String path, DateTimeOffset lastWriteTime)
+       /// <inheritdoc/>
+      public void SetLastWriteTime(string path, DateTimeOffset lastWriteTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -681,7 +681,7 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             throw new ArgumentOutOfRangeException(
                nameof(lastWriteTime),
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "The value must be greater than or equal to ({0} ticks).",
                   MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture)));
@@ -698,16 +698,16 @@ namespace Landorphan.Abstractions.IO.Internal
          File.SetLastWriteTimeUtc(cleanedPath, lastWriteTime.UtcDateTime);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllBytes(String path, IImmutableList<Byte> bytes)
+       /// <inheritdoc/>
+      public void WriteAllBytes(string path, IImmutableList<byte> bytes)
       {
          bytes.ArgumentNotNull(nameof(bytes));
 
          WriteAllBytes(path, bytes.ToArray());
       }
 
-      /// <inheritdoc/>
-      public void WriteAllBytes(String path, Byte[] bytes)
+       /// <inheritdoc/>
+      public void WriteAllBytes(string path, byte[] bytes)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          bytes.ArgumentNotNull(nameof(bytes));
@@ -743,24 +743,24 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public void WriteAllLines(String path, IImmutableList<String> contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllLines(string path, IImmutableList<string> contents, Encoding encoding)
       {
          contents.ArgumentNotNull(nameof(contents));
 
          WriteAllLines(path, contents.ToArray(), encoding);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllLines(String path, IEnumerable<String> contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)
       {
          contents.ArgumentNotNull(nameof(contents));
 
          WriteAllLines(path, contents.ToArray(), encoding);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllLines(String path, String[] contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllLines(string path, string[] contents, Encoding encoding)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          contents.ArgumentNotNull(nameof(contents));
@@ -796,8 +796,8 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public void WriteAllText(String path, String contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllText(string path, string contents, Encoding encoding)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
          contents.ArgumentNotNull(nameof(contents));
@@ -832,7 +832,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      private static Boolean PathContainsUnmappedDrive(String path)
+       private static bool PathContainsUnmappedDrive(string path)
       {
          if (path == null)
          {
@@ -845,7 +845,7 @@ namespace Landorphan.Abstractions.IO.Internal
             return false;
          }
 
-         Boolean rv;
+         bool rv;
          var idxColon = path.IndexOf(':');
          switch (idxColon)
          {
@@ -869,36 +869,36 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      private static void ThrowDirectoryNotFoundException(String directoryPath, String argumentName)
+       private static void ThrowDirectoryNotFoundException(string directoryPath, string argumentName)
       {
          throw new DirectoryNotFoundException(
-            String.Format(
+            string.Format(
                CultureInfo.InvariantCulture,
                StringResources.CouldNotFindAllOrPartDirectoryPathParamNameFmt,
-               directoryPath ?? String.Empty,
-               argumentName ?? String.Empty));
+               directoryPath ?? string.Empty,
+               argumentName ?? string.Empty));
       }
 
-      private static void ThrowFileNotFoundException(String filePath, String argumentName)
+       private static void ThrowFileNotFoundException(string filePath, string argumentName)
       {
          throw new FileNotFoundException(
-            String.Format(
+            string.Format(
                CultureInfo.InvariantCulture,
                "Could not find a part of the file path '{0}'.\r\nParameter name: {1}",
-               filePath ?? String.Empty,
-               argumentName ?? String.Empty));
+               filePath ?? string.Empty,
+               argumentName ?? string.Empty));
       }
 
-      private static void ThrowIfOnUnmappedDrive(String filePath, String argumentName)
+       private static void ThrowIfOnUnmappedDrive(string filePath, string argumentName)
       {
-         var cleanedPath = (filePath ?? String.Empty).RightTrim(' ');
+         var cleanedPath = (filePath ?? string.Empty).RightTrim(' ');
          if (PathContainsUnmappedDrive(cleanedPath))
          {
             ThrowFileNotFoundException(cleanedPath, argumentName);
          }
       }
 
-      private void CopyImplementation(String sourceFileName, String destFileName, Boolean overwrite)
+       private void CopyImplementation(string sourceFileName, string destFileName, bool overwrite)
       {
          var cleanedSourceFileName = IOStringUtilities.ValidateCanonicalPath(sourceFileName, nameof(sourceFileName));
          var cleanedDestFileName = IOStringUtilities.ValidateCanonicalPath(destFileName, nameof(destFileName));
@@ -916,7 +916,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (directoryUtilities.DirectoryExists(cleanedDestFileName))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "Cannot create the destination file '{0}' because a directory with the same name already exists.",
                   cleanedDestFileName));
@@ -925,25 +925,25 @@ namespace Landorphan.Abstractions.IO.Internal
          if (FileExists(cleanedDestFileName) && !overwrite)
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, "Cannot create the destination file '{0}' because it already exists.", cleanedDestFileName));
+               string.Format(CultureInfo.InvariantCulture, "Cannot create the destination file '{0}' because it already exists.", cleanedDestFileName));
          }
 #endif
 
          File.Copy(cleanedSourceFileName, cleanedDestFileName, overwrite);
       }
 
-      [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
+       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
       private void ReplaceContentsImplementation(
-         String sourceFileName,
-         String destinationFileName,
-         String destinationBackupFileName,
-         Boolean ignoreMetadataErrors)
+         string sourceFileName,
+         string destinationFileName,
+         string destinationBackupFileName,
+         bool ignoreMetadataErrors)
       {
          var cleanedSourceFileName = IOStringUtilities.ValidateCanonicalPath(sourceFileName, nameof(sourceFileName));
          var cleanedDestinationFileName = IOStringUtilities.ValidateCanonicalPath(destinationFileName, nameof(destinationFileName));
-         String cleanedDestinationBackupFileName = null;
+         string cleanedDestinationBackupFileName = null;
          if (destinationBackupFileName != null)
          {
             cleanedDestinationBackupFileName = IOStringUtilities.ValidateCanonicalPath(destinationBackupFileName, "destinationBackupFileName");
@@ -966,7 +966,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (directoryUtilities.DirectoryExists(cleanedSourceFileName))
          {
             throw new IOException(
-               String.Format(CultureInfo.InvariantCulture, "The file name is invalid.  The source file '{0}' is a directory.", cleanedSourceFileName));
+               string.Format(CultureInfo.InvariantCulture, "The file name is invalid.  The source file '{0}' is a directory.", cleanedSourceFileName));
          }
 
          if (!FileExists(cleanedSourceFileName))
@@ -977,7 +977,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (directoryUtilities.DirectoryExists(cleanedDestinationFileName))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "The file name is invalid.  The destination file '{0}' is a directory.",
                   cleanedDestinationFileName));
@@ -990,10 +990,10 @@ namespace Landorphan.Abstractions.IO.Internal
 
          var src = pathUtilities.GetFullPath(cleanedSourceFileName).ToUpperInvariant();
          var dst = pathUtilities.GetFullPath(cleanedDestinationFileName).ToUpperInvariant();
-         if (String.Equals(src, dst, StringComparison.Ordinal))
+         if (string.Equals(src, dst, StringComparison.Ordinal))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   "Cannot replace the contents of destination file '{0}' because the source file and destination file are the same.",
                   cleanedDestinationFileName));
@@ -1004,7 +1004,7 @@ namespace Landorphan.Abstractions.IO.Internal
             if (directoryUtilities.DirectoryExists(cleanedDestinationBackupFileName))
             {
                throw new IOException(
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      "The file name is invalid.  The destination backup file name '{0}' is a directory.",
                      cleanedDestinationBackupFileName));
@@ -1012,20 +1012,20 @@ namespace Landorphan.Abstractions.IO.Internal
 
             var bck = pathUtilities.GetFullPath(cleanedDestinationBackupFileName).ToUpperInvariant();
 
-            if (String.Equals(bck, src, StringComparison.Ordinal))
+            if (string.Equals(bck, src, StringComparison.Ordinal))
             {
                throw new IOException(
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      "Cannot replace the contents of destination file '{0}' because the source file and destination backup file are the same ('{1}').",
                      cleanedDestinationFileName,
                      cleanedSourceFileName));
             }
 
-            if (String.Equals(bck, dst, StringComparison.Ordinal))
+            if (string.Equals(bck, dst, StringComparison.Ordinal))
             {
                throw new IOException(
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      "Cannot replace the contents of destination file '{0}' because the destination file and destination backup file are the same.",
                      cleanedDestinationBackupFileName));
@@ -1077,7 +1077,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
       [SuppressMessage("SonarLint.CodeSmell", "S100: Methods and properties should be named in PascalCase")]
       [SuppressMessage("SonarLint.CodeSmell", "S3400: Methods should not return constants")]
-      internal Boolean TestHookGetIOPrechecksEnabled()
+      internal bool TestHookGetIOPrechecksEnabled()
       {
          return true;
       }

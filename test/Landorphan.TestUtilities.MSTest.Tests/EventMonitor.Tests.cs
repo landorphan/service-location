@@ -1,29 +1,29 @@
-﻿namespace Landorphan.TestUtilities.MSTest.Tests
+namespace Landorphan.TestUtilities.MSTest.Tests
 {
-   using System;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Linq;
-   using FluentAssertions;
-   using Landorphan.Common;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+    using FluentAssertions;
+    using Landorphan.Common;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class EventMonitor_Tests
    {
-      [TestClass]
+       [TestClass]
       public sealed class When_I_attempt_to_monitor_the_events_of_an_object_that_does_not_source_events : ArrangeActAssert
       {
-         private TestClassSourcingNoEvents _eventSource;
+          private TestClassSourcingNoEvents _eventSource;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             _eventSource = new TestClassSourcingNoEvents();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_throw()
          {
@@ -35,22 +35,22 @@
       [TestClass]
       public sealed class When_I_monitor_the_events_of_an_object_that_sources_events_with_data : ArrangeActAssert
       {
-         private TestClassSourcingAnEventArgsDerivedEvent _eventSource;
-         private Guid _expected;
+          private TestClassSourcingAnEventArgsDerivedEvent _eventSource;
+          private Guid _expected;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             _expected = Guid.NewGuid();
             _eventSource = new TestClassSourcingAnEventArgsDerivedEvent();
             MonitoredEvents.AddEventSource(_eventSource);
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             _eventSource.FireMyEvent(_expected);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_record_that_the_event_fired()
          {
@@ -70,20 +70,20 @@
       [TestClass]
       public sealed class When_I_monitor_the_events_of_an_object_that_sources_non_public_events : ArrangeActAssert
       {
-         private TestClassSourcingANonPublicEventArgsEvent _eventSource;
+          private TestClassSourcingANonPublicEventArgsEvent _eventSource;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             _eventSource = new TestClassSourcingANonPublicEventArgsEvent();
             MonitoredEvents.AddEventSource(_eventSource);
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             _eventSource.FireMyEvent();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_record_that_the_event_fired()
          {
@@ -101,20 +101,20 @@
       [TestClass]
       public sealed class When_I_monitor_the_events_of_an_object_that_sources_public_events : ArrangeActAssert
       {
-         private TestClassSourcingAPublicEventArgsEvent _eventSource;
+          private TestClassSourcingAPublicEventArgsEvent _eventSource;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             _eventSource = new TestClassSourcingAPublicEventArgsEvent();
             MonitoredEvents.AddEventSource(_eventSource);
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             _eventSource.FireMyEvent();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_record_that_the_event_fired()
          {
@@ -132,10 +132,10 @@
       [TestClass]
       public sealed class When_I_monitor_the_events_of_the_same_instance_more_than_once : DisposableArrangeActAssert
       {
-         private readonly MemoryStream _memoryStream = new MemoryStream(1024);
-         private TestClassSourcingAPublicEventArgsEvent _eventSource;
+          private readonly MemoryStream _memoryStream = new MemoryStream(1024);
+          private TestClassSourcingAPublicEventArgsEvent _eventSource;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             var listener = new TextWriterTraceListener(_memoryStream) {Filter = new EventTypeFilter(SourceLevels.Warning)};
 
@@ -143,7 +143,7 @@
             _eventSource = new TestClassSourcingAPublicEventArgsEvent();
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             MonitoredEvents.AddEventSource(_eventSource);
             MonitoredEvents.AddEventSource(_eventSource);
@@ -151,14 +151,17 @@
             _eventSource.FireMyEvent();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_emit_a_trace_warning()
          {
             Trace.Flush();
             _memoryStream.Position = 0;
-            var reader = new StreamReader(_memoryStream);
-            var foo = reader.ReadToEnd();
+            string foo;
+            using (var reader = new StreamReader(_memoryStream))
+            {
+                foo = reader.ReadToEnd();
+            }
 
             foo.Should().Contain("The eventSource has already been registered.  Is this a test bug?");
          }
@@ -181,22 +184,22 @@
       [Serializable]
       internal sealed class TestClassAdditionalDataEventArgs : EventArgs
       {
-         internal TestClassAdditionalDataEventArgs(Guid value)
+          internal TestClassAdditionalDataEventArgs(Guid value)
          {
             Value = value;
          }
 
-         internal Guid Value { get; }
+          internal Guid Value { get; }
       }
 
       private class TestClassSourcingAnEventArgsDerivedEvent
       {
-         private readonly SourceWeakEventHandlerSet<TestClassAdditionalDataEventArgs> _eventListeners =
+          private readonly SourceWeakEventHandlerSet<TestClassAdditionalDataEventArgs> _eventListeners =
             new SourceWeakEventHandlerSet<TestClassAdditionalDataEventArgs>();
 
-         // This event is dynamically subscribed to
-         // ReSharper disable once EventNeverSubscribedTo.Local
-         [SuppressMessage("SonarLint.CodeSmell", "S1144: Unused private types or members should be removed")]
+          // This event is dynamically subscribed to
+          // ReSharper disable once EventNeverSubscribedTo.Local
+          [SuppressMessage("SonarLint.CodeSmell", "S1144: Unused private types or members should be removed")]
          internal event EventHandler<TestClassAdditionalDataEventArgs> MyEvent
          {
             add => _eventListeners.Add(value);
@@ -212,11 +215,11 @@
 
       private class TestClassSourcingANonPublicEventArgsEvent
       {
-         // This event is dynamically subscribed to
-         // ReSharper disable once EventNeverSubscribedTo.Local
-         internal event EventHandler<EventArgs> MyEvent;
+          // This event is dynamically subscribed to
+          // ReSharper disable once EventNeverSubscribedTo.Local
+          internal event EventHandler<EventArgs> MyEvent;
 
-         internal void FireMyEvent()
+          internal void FireMyEvent()
          {
             var listeners = MyEvent;
             listeners?.Invoke(this, EventArgs.Empty);
@@ -225,11 +228,11 @@
 
       private class TestClassSourcingAPublicEventArgsEvent
       {
-         // This event is dynamically subscribed to
-         // ReSharper disable once EventNeverSubscribedTo.Local
-         public event EventHandler<EventArgs> MyEvent;
+          // This event is dynamically subscribed to
+          // ReSharper disable once EventNeverSubscribedTo.Local
+          public event EventHandler<EventArgs> MyEvent;
 
-         internal void FireMyEvent()
+          internal void FireMyEvent()
          {
             var listeners = MyEvent;
             listeners?.Invoke(this, EventArgs.Empty);
@@ -237,7 +240,6 @@
       }
 
       private class TestClassSourcingNoEvents
-      {
-      }
+      {}
    }
 }

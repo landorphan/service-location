@@ -1,19 +1,19 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Linq;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
 
-   /// <summary>
+    /// <summary>
    /// Extension methods for IoC querying the type/name is registration key in the given container, and its chain of parents.
    /// </summary>
    public static class GetRegistrationChainExtensions
    {
-      /// <summary>
+       /// <summary>
       /// Gets all default registration entries for the given container, and its chain of parents, for the given <typeparamref name="TFrom"/> type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -28,10 +28,10 @@
       public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container) where TFrom : class
       {
          container.ArgumentNotNull(nameof(container));
-         return GetRegistrationChain<TFrom>(container, String.Empty);
+         return GetRegistrationChain<TFrom>(container, string.Empty);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets all named registration entries for the given container, and its chain of parents, for the given <typeparamref name="TFrom"/> type and <paramref name="name"/> name.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -46,7 +46,7 @@
       /// <returns>
       /// A non-null collection of zero or more matching entries.
       /// </returns>
-      public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container, String name) where TFrom : class
+      public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain<TFrom>(this IIocContainerRegistrationRepository container, string name) where TFrom : class
       {
          container.ArgumentNotNull(nameof(container));
 
@@ -80,7 +80,7 @@
          return builder.ToImmutable();
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets all default registration entries for the given container, and its chain of parents, for the given <paramref name="fromType"/> type.
       /// </summary>
       /// <param name="container">
@@ -96,10 +96,10 @@
       {
          container.ArgumentNotNull(nameof(container));
 
-         return GetRegistrationChain(container, fromType, String.Empty);
+         return GetRegistrationChain(container, fromType, string.Empty);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets all named registration entries for the given container, and its chain of parents, for the given <paramref name="fromType"/> type and <paramref name="name"/> name.
       /// </summary>
       /// <param name="container">
@@ -114,7 +114,7 @@
       /// <returns>
       /// A non-null collection of zero or more matching entries.
       /// </returns>
-      public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain(this IIocContainerRegistrationRepository container, Type fromType, String name)
+      public static IReadOnlyDictionary<IContainerRegistrationKey, IRegistrationValue> GetRegistrationChain(this IIocContainerRegistrationRepository container, Type fromType, string name)
       {
          container.ArgumentNotNull(nameof(container));
 

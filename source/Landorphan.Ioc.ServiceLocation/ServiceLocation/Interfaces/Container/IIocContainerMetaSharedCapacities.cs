@@ -16,7 +16,7 @@
    /// </remarks>
    public interface IIocContainerMetaSharedCapacities : IIocContainerMetaIdentity
    {
-      /// <summary>
+       /// <summary>
       /// Gets the container.
       /// </summary>
       /// <value>
@@ -24,7 +24,7 @@
       /// </value>
       IIocContainer Container { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container manager.
       /// </summary>
       /// <value>
@@ -32,7 +32,7 @@
       /// </value>
       IIocContainerManager Manager { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container registrar.
       /// </summary>
       /// <value>
@@ -40,7 +40,7 @@
       /// </value>
       IIocContainerRegistrar Registrar { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container resolver.
       /// </summary>
       /// <value>

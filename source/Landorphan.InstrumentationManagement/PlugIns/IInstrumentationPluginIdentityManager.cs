@@ -6,7 +6,7 @@ namespace Landorphan.InstrumentationManagement.PlugIns
    /// </summary>
    public interface IInstrumentationPluginIdentityManager
    {
-      /// <summary>
+       /// <summary>
       /// Get's an anonymous user identity for a user who has
       /// not initiated a login action.
       /// </summary>
@@ -16,7 +16,7 @@ namespace Landorphan.InstrumentationManagement.PlugIns
       /// </returns>
       string GetAnonymousUserId();
 
-      /// <summary>
+       /// <summary>
       /// Called when the system has identified the user to allow the upstream
       /// provider to know more about the user.
       /// </summary>

@@ -1,20 +1,20 @@
 namespace Landorphan.InstrumentationManagement.Implementation
 {
-   using System;
-   using Landorphan.Common;
-   using Landorphan.InstrumentationManagement.Interfaces;
+    using System;
+    using Landorphan.Common;
+    using Landorphan.InstrumentationManagement.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Manages the execution of a method.
    /// </summary>
    public class MethodExecution : DisposableObject, IMethodExecution
    {
-      private readonly IMethodCompilationData methodData;
-      private readonly ArgumentData[] argumentData;
-      private readonly InstrumentationBootstrapData bootstrapData;
-      private readonly IInstrumentationContext context;
+       private readonly ArgumentData[] argumentData;
+       private readonly InstrumentationBootstrapData bootstrapData;
+       private readonly IInstrumentationContext context;
+       private readonly IMethodCompilationData methodData;
 
-      /// <summary>
+       /// <summary>
       /// Creates a new instance of the MethodExecution class.
       /// </summary>
       /// <param name="methodData">
@@ -35,22 +35,22 @@ namespace Landorphan.InstrumentationManagement.Implementation
                                ArgumentData[] arguments)
       {
          this.methodData = methodData;
-         this.argumentData = arguments;
+         argumentData = arguments;
          this.bootstrapData = bootstrapData;
          this.context = context;
          this.bootstrapData.Logger.LogMethodEntry(methodData, context, arguments);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       protected override void ReleaseManagedResources()
       {
-         bootstrapData.Logger.LogMethodExit(methodData, context, argumentData, this.ReturnValue);
+         bootstrapData.Logger.LogMethodExit(methodData, context, argumentData, ReturnValue);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       public object ReturnValue { get; set; }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       public void HandleException(Exception exception)
       {
          ReturnValue = exception;

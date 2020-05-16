@@ -1,11 +1,11 @@
 namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
 {
-   using System;
-   using System.Reflection;
+    using System;
+    using System.Reflection;
 
-   public static class TypeExtensions
+    public static class TypeExtensions
    {
-      public static PropertyInfo GetFirstPropertyByName(this Type type, string name)
+       public static PropertyInfo GetFirstPropertyByName(this Type type, string name)
       {
          var properties = type.GetProperties();
          // Why not use Linq...

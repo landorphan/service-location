@@ -1,43 +1,43 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal.ValueTypes
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable ObjectCreationAsStatement
 
    public static class RegistrationKeyTypeNamePair_Tests
    {
-      private const String Whitespace = " \t ";
+       private const string Whitespace = " \t ";
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_RegistrationKeyTypeNamePair_Clone : CloneableArrangeActAssert<IRegistrationKey>
       {
-         private readonly String name = Guid.NewGuid().ToString("D");
-         private readonly Type type = typeof(IInterface);
-         private Object actualObject;
+          private readonly string name = Guid.NewGuid().ToString("D");
+          private readonly Type type = typeof(IInterface);
+          private object actualObject;
 
-         protected override IRegistrationKey Target { get; set; }
+          protected override IRegistrationKey Target { get; set; }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             var obj = new RegistrationKeyTypeNamePair(type, name);
             Target = obj;
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actualObject = Target.Clone();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_Should_Clone_Correctly()
          {
@@ -66,14 +66,14 @@
       [TestClass]
       public class When_I_create_an_RegistrationKeyTypeNamePair_using_the_default_constructor : ArrangeActAssert
       {
-         private RegistrationKeyTypeNamePair target;
+          private RegistrationKeyTypeNamePair target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = new RegistrationKeyTypeNamePair();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_be_empty()
          {
@@ -130,7 +130,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_equal_null()
          {
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
             target.Equals((IRegistrationKey)null).Should().BeFalse();
          }
@@ -139,12 +139,12 @@
       [TestClass]
       public class When_I_create_an_RegistrationKeyTypeNamePair_using_the_type_constructor : ArrangeActAssert
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_be_equivalent_when_comparing_itself_when_I_IComparable_CompareTo()
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
-            Object o = target;
+            object o = target;
             ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
@@ -162,7 +162,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(AbstractClass));
             target.RegisteredType.Should().Be<AbstractClass>();
-            target.RegisteredName.Should().Be(String.Empty);
+            target.RegisteredName.Should().Be(string.Empty);
             target.IsEmpty.Should().BeFalse();
             target.Equals(RegistrationKeyTypeNamePair.Empty).Should().BeFalse();
          }
@@ -173,7 +173,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
             target.RegisteredType.Should().Be<IInterface>();
-            target.RegisteredName.Should().Be(String.Empty);
+            target.RegisteredName.Should().Be(string.Empty);
             target.IsEmpty.Should().BeFalse();
             target.Equals(RegistrationKeyTypeNamePair.Empty).Should().BeFalse();
          }
@@ -260,7 +260,7 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationKeyTypeNamePair(typeof(AbstractClass));
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
             target.Equals((IRegistrationKey)null).Should().BeFalse();
          }
@@ -291,7 +291,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -300,7 +300,7 @@
       [TestClass]
       public class When_I_create_an_RegistrationKeyTypeNamePair_using_the_type_name_constructor : ArrangeActAssert
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_an_abstract_class()
          {
@@ -330,7 +330,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface), null);
             target.RegisteredType.Should().Be<IInterface>();
-            target.RegisteredName.Should().Be(String.Empty);
+            target.RegisteredName.Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -430,7 +430,7 @@
          {
             var name = Guid.NewGuid().ToString("D");
             var target = new RegistrationKeyTypeNamePair(typeof(AbstractClass), name);
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
             target.Equals((IRegistrationKey)null).Should().BeFalse();
          }
@@ -462,7 +462,7 @@
          {
             var target = new RegistrationKeyTypeNamePair(typeof(IInterface));
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -481,32 +481,32 @@
       [TestClass]
       public class When_I_use_operators_on_RegistrationKeyTypeNamePair : ArrangeActAssert
       {
-         private RegistrationKeyTypeNamePair abstractTypeEmptyName;
-         private RegistrationKeyTypeNamePair abstractTypeNameA;
-         private RegistrationKeyTypeNamePair abstractTypeNameZ;
-         private RegistrationKeyTypeNamePair abstractTypeNoName;
-         private RegistrationKeyTypeNamePair emptyEquivalent;
-         private RegistrationKeyTypeNamePair interfaceTypeEmptyName;
-         private RegistrationKeyTypeNamePair interfaceTypeNameA;
-         private RegistrationKeyTypeNamePair interfaceTypeNameZ;
-         private RegistrationKeyTypeNamePair interfaceTypeNoName;
+          private RegistrationKeyTypeNamePair abstractTypeEmptyName;
+          private RegistrationKeyTypeNamePair abstractTypeNameA;
+          private RegistrationKeyTypeNamePair abstractTypeNameZ;
+          private RegistrationKeyTypeNamePair abstractTypeNoName;
+          private RegistrationKeyTypeNamePair emptyEquivalent;
+          private RegistrationKeyTypeNamePair interfaceTypeEmptyName;
+          private RegistrationKeyTypeNamePair interfaceTypeNameA;
+          private RegistrationKeyTypeNamePair interfaceTypeNameZ;
+          private RegistrationKeyTypeNamePair interfaceTypeNoName;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
-            abstractTypeEmptyName = new RegistrationKeyTypeNamePair(typeof(AbstractClass), String.Empty);
+            abstractTypeEmptyName = new RegistrationKeyTypeNamePair(typeof(AbstractClass), string.Empty);
             abstractTypeNameA = new RegistrationKeyTypeNamePair(typeof(AbstractClass), "A");
             abstractTypeNameZ = new RegistrationKeyTypeNamePair(typeof(AbstractClass), "Z");
             abstractTypeNoName = new RegistrationKeyTypeNamePair(typeof(AbstractClass));
 
             emptyEquivalent = new RegistrationKeyTypeNamePair();
 
-            interfaceTypeEmptyName = new RegistrationKeyTypeNamePair(typeof(IInterface), String.Empty);
+            interfaceTypeEmptyName = new RegistrationKeyTypeNamePair(typeof(IInterface), string.Empty);
             interfaceTypeNameA = new RegistrationKeyTypeNamePair(typeof(IInterface), "A");
             interfaceTypeNameZ = new RegistrationKeyTypeNamePair(typeof(IInterface), "Z");
             interfaceTypeNoName = new RegistrationKeyTypeNamePair(typeof(IInterface));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [SuppressMessage("Compiler.Warning", "CS1718: Comparison made to same variable", Justification = "Intended (MWP)")]
          [SuppressMessage("SonarLint.CodeSmell", "S1764: Identical expressions should not be used on both sides of a binary operator", Justification = "Intended (MWP)")]
@@ -910,19 +910,15 @@
       }
 
       private abstract class AbstractClass
-      {
-      }
+      {}
 
       private sealed class ConcreteClass
-      {
-      }
+      {}
 
       private interface IAnotherInterface
-      {
-      }
+      {}
 
       private interface IInterface
-      {
-      }
+      {}
    }
 }

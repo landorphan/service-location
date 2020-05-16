@@ -1,19 +1,19 @@
 ﻿namespace Landorphan.Abstractions.Interfaces
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Security;
-   using System.Security.Permissions;
-   using Landorphan.Common.Exceptions;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Security;
+    using System.Security.Permissions;
+    using Landorphan.Common.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Provides information about, and means to manipulate, the current environment and platform.
    /// </summary>
    public interface IEnvironmentUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Gets a <see cref="Version"/> Object that describes the major, minor, build, and revision numbers of the common language
       /// runtime.
       /// </summary>
@@ -22,48 +22,48 @@
       /// </value>
       Version ClrVersion { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the command line for this process.
       /// </summary>
       /// <value>
       /// A String containing command-line arguments.
       /// </value>
-      String CommandLine { get; }
+      string CommandLine { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a unique identifier for the current managed thread.
       /// </summary>
       /// <value>
       /// An integer that represents a unique identifier for this managed thread.
       /// </value>
-      Int32 CurrentManagedThreadId { get; }
+      int CurrentManagedThreadId { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the number of milliseconds elapsed since the system started.
       /// </summary>
       /// <value>
       /// The number of milliseconds elapsed since the system started.
       /// </value>
       [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "Sonar does not recognize abbreviations")]
-      Int32 ElapsedSinceSystemStartupMS { get; }
+      int ElapsedSinceSystemStartupMS { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets or sets the exit code of the process.
       /// </summary>
       /// <value>
       /// A 32-bit signed integer containing the exit code. The default value is zero.
       /// </value>
-      Int32 ExitCode { get; set; }
+      int ExitCode { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether the common language runtime (CLR) is shutting down.
       /// </summary>
       /// <value>
       /// <c> true </c> if the CLR is shutting down; otherwise, <c> false </c>.
       /// </value>
-      Boolean HasShutdownStarted { get; }
+      bool HasShutdownStarted { get; }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether the current operating system is a 64-bit operating system.
       /// </summary>
       /// <value>
@@ -72,17 +72,17 @@
       /// </c>
       /// if the operating system is 64-bit; otherwise, <c> false </c>.
       /// </value>
-      Boolean Is64BitOperatingSystem { get; }
+      bool Is64BitOperatingSystem { get; }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether the current process is a 64-bit process.
       /// </summary>
       /// <value>
       /// <c> true </c> if the process is 64-bit; otherwise, <c> false </c>.
       /// </value>
-      Boolean Is64BitProcess { get; }
+      bool Is64BitProcess { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the NetBIOS name of this local computer.
       /// </summary>
       /// <exception cref="InvalidOperationException">
@@ -91,17 +91,17 @@
       /// <value>
       /// A String containing the name of this computer.
       /// </value>
-      String MachineName { get; }
+      string MachineName { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the newline String defined for this environment.
       /// </summary>
       /// <value>
       /// A String containing "\r\n" for non-Unix platforms, or a String containing "\n" for Unix platforms.
       /// </value>
-      String NewLine { get; }
+      string NewLine { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets an <see cref="OperatingSystem"/> Object that contains the current platform identifier and version number.
       /// </summary>
       /// <exception cref="InvalidOperationException">
@@ -115,7 +115,7 @@
       [SuppressMessage("SonarLint.CodeSmell", "S100: Methods and properties should be named in PascalCase")]
       OperatingSystem OSVersion { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the number of processors on the current machine.
       /// </summary>
       /// <value>
@@ -123,9 +123,9 @@
       /// contains multiple processor groups, this property returns the number of logical processors that are available for use by the common
       /// language runtime (CLR).
       /// </value>
-      Int32 ProcessorCount { get; }
+      int ProcessorCount { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets current stack trace information.
       /// </summary>
       /// <exception cref="ArgumentOutOfRangeException">
@@ -134,9 +134,9 @@
       /// <value>
       /// A String containing stack trace information. This value can be <see cref="String.Empty"/>.
       /// </value>
-      String StackTrace { get; }
+      string StackTrace { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the fully qualified path of the system directory.
       /// </summary>
       /// <value>
@@ -145,17 +145,17 @@
       /// <remarks>
       /// Usually C:\WINDOWS\system32
       /// </remarks>
-      String SystemDirectory { get; }
+      string SystemDirectory { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the amount of memory for an operating system's page file.
       /// </summary>
       /// <value>
       /// The number of bytes in a system page file.
       /// </value>
-      Int32 SystemPageSizeBytes { get; }
+      int SystemPageSizeBytes { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the network domain name associated with the current user.
       /// </summary>
       /// <exception cref="PlatformNotSupportedException">
@@ -167,33 +167,33 @@
       /// <value>
       /// The network domain name associated with the current user.
       /// </value>
-      String UserDomainName { get; }
+      string UserDomainName { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether the current process is running in user interactive mode.
       /// </summary>
       /// <value>
       /// <c> true </c> if the current process is running in user interactive mode; otherwise, <c> false </c>.
       /// </value>
-      Boolean UserInteractive { get; }
+      bool UserInteractive { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the user name of the person who is currently logged on to the Windows operating system.
       /// </summary>
       /// <value>
       /// The user name of the person who is logged on to Windows.
       /// </value>
-      String UserName { get; }
+      string UserName { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the amount of physical memory mapped to the process context.
       /// </summary>
       /// <value>
       /// A 64-bit signed integer containing the number of bytes of physical memory mapped to the process context.
       /// </value>
-      Int64 WorkingSetBytes { get; }
+      long WorkingSetBytes { get; }
 
-      /// <summary>
+       /// <summary>
       /// Terminates this process and gives the underlying operating system the specified exit code.
       /// </summary>
       /// <exception cref="SecurityException">
@@ -208,9 +208,9 @@
          "CA1716:IdentifiersShouldNotMatchKeywords",
          MessageId = "Exit",
          Justification = "Matching underlying implementation(MWP)")]
-      void Exit(Int32 exitCode);
+      void Exit(int exitCode);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the name of each environment variable embedded in the specified String with the String equivalent of the value of the
       /// variable, then returns the resulting String.
       /// </summary>
@@ -224,18 +224,18 @@
       /// <returns>
       /// A String with each environment variable replaced by its value.
       /// </returns>
-      String ExpandEnvironmentVariables(String name);
+      string ExpandEnvironmentVariables(string name);
 
-      /// <summary>
+       /// <summary>
       /// Immediately terminates a process after writing a message to the Windows Application event log, and then includes the message in
       /// error reporting to Microsoft.
       /// </summary>
       /// <param name="message">
       /// A message that explains why the process was terminated, or null if no explanation is provided.
       /// </param>
-      void FailFast(String message);
+      void FailFast(string message);
 
-      /// <summary>
+       /// <summary>
       /// Immediately terminates a process after writing a message to the Windows Application event log, and then includes the message and
       /// exception information in error reporting to Microsoft.
       /// </summary>
@@ -245,9 +245,9 @@
       /// <param name="exception">
       /// An exception that represents the error that caused the termination. This is typically the exception in a catch block.
       /// </param>
-      void FailFast(String message, Exception exception);
+      void FailFast(string message, Exception exception);
 
-      /// <summary>
+       /// <summary>
       /// Returns a String array containing the command-line arguments for the current process.
       /// </summary>
       /// <exception cref="NotSupportedException">
@@ -257,9 +257,9 @@
       /// An array of String where each element contains a command-line argument. The first element is the executable file name, and the
       /// following zero or more elements contain the remaining command-line arguments.
       /// </returns>
-      String[] GetCommandLineArgs();
+      string[] GetCommandLineArgs();
 
-      /// <summary>
+       /// <summary>
       /// Retrieves the value of an environment variable from the current process.
       /// </summary>
       /// <exception cref="ArgumentNullException">
@@ -274,9 +274,9 @@
       /// <returns>
       /// The value of the environment variable specified by <paramref name="variable"/>, or null if the environment variable is not found.
       /// </returns>
-      String GetEnvironmentVariable(String variable);
+      string GetEnvironmentVariable(string variable);
 
-      /// <summary>
+       /// <summary>
       /// Retrieves the value of an environment variable from the current process or from the Windows operating system registry key for the
       /// current user or local machine.
       /// </summary>
@@ -304,9 +304,9 @@
       /// The value of the environment variable specified by the <paramref name="variable"/> and <paramref name="target"/> parameters, or null
       /// if the environment variable is not found.
       /// </returns>
-      String GetEnvironmentVariable(String variable, EnvironmentVariableTarget target);
+      string GetEnvironmentVariable(string variable, EnvironmentVariableTarget target);
 
-      /// <summary>
+       /// <summary>
       /// Retrieves all environment variable names and their values from the current process.
       /// </summary>
       /// <exception cref="SecurityException">
@@ -321,7 +321,7 @@
       /// </returns>
       IImmutableSet<IEnvironmentVariable> GetEnvironmentVariables();
 
-      /// <summary>
+       /// <summary>
       /// Retrieves all environment variable names and their values from the current process, or from the Windows operating system registry
       /// key for the current user or local machine.
       /// </summary>
@@ -344,7 +344,7 @@
       /// </returns>
       IImmutableSet<IEnvironmentVariable> GetEnvironmentVariables(EnvironmentVariableTarget target);
 
-      /// <summary>
+       /// <summary>
       /// Returns an array of String containing the names of the logical drives on the current computer.
       /// </summary>
       /// <exception cref="IOException">
@@ -357,9 +357,9 @@
       /// An array of strings where each element contains the name of a logical drive. For example, if the computer's hard drive is the first
       /// logical drive, the first element returned is "C:\".
       /// </returns>
-      String[] GetLogicalDrives();
+      string[] GetLogicalDrives();
 
-      /// <summary>
+       /// <summary>
       /// Gets the path to the system special directory that is identified by the specified enumeration.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -376,9 +376,9 @@
       /// A directory will not physically exist if the operating system did not create it, the existing directory was deleted, or the directory is a
       /// virtual directory, such as My Computer, which does not correspond to a physical path.
       /// </returns>
-      String GetSpecialFolderPath(Environment.SpecialFolder specialFolder);
+      string GetSpecialFolderPath(Environment.SpecialFolder specialFolder);
 
-      /// <summary>
+       /// <summary>
       /// Gets the path to the system special directory that is identified by the specified enumeration, and uses a specified option for
       /// accessing special folders.
       /// </summary>
@@ -405,9 +405,9 @@
          "CA1716:IdentifiersShouldNotMatchKeywords",
          MessageId = "Option",
          Justification = "Matching underlying implementation(MWP)")]
-      String GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option);
+      string GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option);
 
-      /// <summary>
+       /// <summary>
       /// Creates, modifies, or deletes an environment variable stored in the current process.
       /// </summary>
       /// <exception cref="ArgumentNullException">
@@ -431,9 +431,9 @@
       /// <param name="value">
       /// A value to assign to <paramref name="variable"/>.
       /// </param>
-      void SetEnvironmentVariable(String variable, String value);
+      void SetEnvironmentVariable(string variable, string value);
 
-      /// <summary>
+       /// <summary>
       /// Creates, modifies, or deletes an environment variable stored in the current process or in the Windows operating system registry key
       /// reserved for the current user or local machine.
       /// </summary>
@@ -473,6 +473,6 @@
       /// <param name="target">
       /// One of the <see cref="EnvironmentVariableTarget"/> values.
       /// </param>
-      void SetEnvironmentVariable(String variable, String value, EnvironmentVariableTarget target);
+      void SetEnvironmentVariable(string variable, string value, EnvironmentVariableTarget target);
    }
 }

@@ -1,14 +1,14 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using System;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
 
-   /// <summary>
+    /// <summary>
    /// Represents the management interface of the service locator.
    /// </summary>
    public interface IIocServiceLocatorManager : IIocServiceLocatorMetaSharedCapacities
    {
-      /// <summary>
+       /// <summary>
       /// Event queue for all listeners interested the completion of a collection of assemblies having their <see cref="IAssemblySelfRegistration"/> instances invoked.
       /// </summary>
       /// <remarks>
@@ -16,7 +16,7 @@
       /// </remarks>
       event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> AfterContainerAssemblyCollectionSelfRegistrationInvoked;
 
-      /// <summary>
+       /// <summary>
       /// Event queue for all listeners interested in the completion of an individual <see cref="IAssemblySelfRegistration"/> instances invocation.
       /// </summary>
       /// <remarks>
@@ -24,7 +24,7 @@
       /// </remarks>
       event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> AfterContainerAssemblySingleSelfRegistrationInvoked;
 
-      /// <summary>
+       /// <summary>
       /// Event queue for all listeners interested in changes to the ambient container.
       /// </summary>
       /// <remarks>
@@ -32,7 +32,7 @@
       /// </remarks>
       event EventHandler<EventArgs> AmbientContainerChanged;
 
-      /// <summary>
+       /// <summary>
       /// Event queue for all listeners interested the initiation of a collection of assemblies having their <see cref="IAssemblySelfRegistration"/> instances invoked.
       /// </summary>
       /// <remarks>
@@ -40,7 +40,7 @@
       /// </remarks>
       event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> BeforeContainerAssemblyCollectionSelfRegistrationInvoked;
 
-      /// <summary>
+       /// <summary>
       /// Event queue for all listeners interested in the initiation of an individual <see cref="IAssemblySelfRegistration"/> instances invocation.
       /// </summary>
       /// <remarks>
@@ -48,7 +48,7 @@
       /// </remarks>
       event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> BeforeContainerAssemblySingleSelfRegistrationInvoked;
 
-      /// <summary>
+       /// <summary>
       /// Gets the ambient container.
       /// </summary>
       /// <value>
@@ -56,7 +56,7 @@
       /// </value>
       IIocContainer AmbientContainer { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the root container.
       /// </summary>
       /// <value>
@@ -64,7 +64,7 @@
       /// </value>
       IIocContainer RootContainer { get; }
 
-      /// <summary>
+       /// <summary>
       /// Sets the ambient container.
       /// </summary>
       /// <param name="container">

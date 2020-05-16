@@ -1,37 +1,37 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using System.Text;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using System.Text;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when service location finds an assembly with multiple implementations of <see cref="IAssemblySelfRegistration"/>.
    /// </summary>
    /// <seealso cref="LandorphanIocServiceLocationException"/>
    public sealed class MultipleAssemblyRegistrarException : LandorphanIocServiceLocationException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       public MultipleAssemblyRegistrarException() : this(null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="message"> The message that describes the error. </param>
-      public MultipleAssemblyRegistrarException(String message) : this(null, message, null)
+      public MultipleAssemblyRegistrarException(string message) : this(null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
@@ -39,11 +39,11 @@
       /// The exception that is the cause of the current exception, or a null reference if no inner
       /// exception is specified.
       /// </param>
-      public MultipleAssemblyRegistrarException(String message, Exception innerException) : this(null, message, innerException)
+      public MultipleAssemblyRegistrarException(string message, Exception innerException) : this(null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="implementationTypes"> The abstract type that gave rise to this exception. </param>
@@ -51,19 +51,19 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="implementationTypes"> The implementation types that gave rise to this exception. </param>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
-      public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, String message) : this(
+      public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, string message) : this(
          implementationTypes,
          message,
          null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="implementationTypes"> The implementation types that gave rise to this exception. </param>
@@ -76,7 +76,7 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="implementationTypes"> The abstract type that gave rise to this exception. </param>
@@ -85,7 +85,7 @@
       /// The exception that is the cause of the current exception, or a null reference if no inner
       /// exception is specified.
       /// </param>
-      public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, String message, Exception innerException)
+      public MultipleAssemblyRegistrarException(IEnumerable<Type> implementationTypes, string message, Exception innerException)
          : base(NullToDefaultMessage(implementationTypes, message), innerException)
       {
          var cleaned = new List<Type>();
@@ -103,7 +103,7 @@
          ImplementationTypes = cleaned;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="MultipleAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="info">
@@ -117,7 +117,7 @@
          ImplementationTypes = (List<Type>)info.GetValue("implementationTypes", typeof(List<Type>));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -126,12 +126,12 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the implementation types that gave rise to this exception
       /// </summary>
       public IEnumerable<Type> ImplementationTypes { get; }
 
-      private static String NullToDefaultMessage(IEnumerable<Type> implementationTypes, String message)
+       private static string NullToDefaultMessage(IEnumerable<Type> implementationTypes, string message)
       {
          var cleaned = new List<Type>();
          if (!ReferenceEquals(null, implementationTypes))
@@ -145,9 +145,9 @@
             }
          }
 
-         String assemblyName;
-         String assemblyVersion;
-         String typesCsv;
+         string assemblyName;
+         string assemblyVersion;
+         string typesCsv;
          if (cleaned.Count == 0)
          {
             assemblyName = StringResources.NullReplacementValue;
@@ -163,7 +163,7 @@
                sb.Append(", ");
             }
 
-            const Int32 trailingAppendedSuffixLength = 2;
+            const int trailingAppendedSuffixLength = 2;
             var an = cleaned[0].Assembly.GetName();
             assemblyName = an.FullName;
             assemblyVersion = an.Version.ToString();
@@ -171,7 +171,7 @@
          }
 
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.MultipleAssemblyRegistrarDetectedFmt,
                      assemblyName,

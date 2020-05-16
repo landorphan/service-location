@@ -1,39 +1,39 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
-   using System;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class IocContainer_IsolatedContainer_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_isolated_container_and_call_Unregister : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: Unregister Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: Unregister Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerRegistrationRemoved_event_generic_no_name()
          {
             var instance = new RegisteredTypeImplementingIRegisteredType();
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeRegistrationEventArgs>(
@@ -66,7 +66,7 @@
          {
             var instance = new RegisteredTypeImplementingIRegisteredType();
             var registeredName = Guid.NewGuid().ToString("D");
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeRegistrationEventArgs>(
@@ -97,7 +97,7 @@
          public void It_should_fire_the_ContainerRegistrationRemoved_event_non_generic_no_name()
          {
             var instance = new RegisteredTypeImplementingIRegisteredType();
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeRegistrationEventArgs>(
@@ -129,7 +129,7 @@
          {
             var instance = new RegisteredTypeImplementingIRegisteredType();
             var registeredName = Guid.NewGuid().ToString("D");
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeRegistrationEventArgs>(

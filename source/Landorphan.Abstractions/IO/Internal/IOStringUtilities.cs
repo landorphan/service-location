@@ -1,20 +1,20 @@
 ﻿namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Runtime.InteropServices;
-   using System.Text;
-   using System.Text.RegularExpressions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
 
-   internal static class IOStringUtilities
+    internal static class IOStringUtilities
    {
-      internal static String ConditionallyTrimSpaceFromPath(String path)
+       internal static string ConditionallyTrimSpaceFromPath(string path)
       {
          if (path == null)
          {
@@ -53,8 +53,8 @@
          return rv;
       }
 
-      [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
-      internal static Boolean DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(String path)
+       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
+      internal static bool DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(string path)
       {
          // Not a concept that applies to non Windows OS variants
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -78,7 +78,7 @@
          // allow for leading spaces b/c both the BCL and the OS allow for leading spaces.
          path = RemoveLeadingSpacesOnly(path);
 
-         Boolean rv;
+         bool rv;
          var idxColon = path.IndexOf(pathUtilities.VolumeSeparatorCharacter);
          switch (idxColon)
          {
@@ -107,7 +107,7 @@
          return rv;
       }
 
-      internal static String RemoveOneTrailingDirectorySeparatorCharacter(String path)
+      internal static string RemoveOneTrailingDirectorySeparatorCharacter(string path)
       {
          if (path == null)
          {
@@ -129,7 +129,7 @@
          return rv;
       }
 
-      internal static String StandardizeDirectorySeparatorCharacters(String path)
+      internal static string StandardizeDirectorySeparatorCharacters(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -171,7 +171,7 @@
       [SuppressMessage("SonarLint.CodeSmell", "S1067: Expressions should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S2737: Catch clauses should do more than rethrow")]
-      internal static String ValidateCanonicalPath(String path, String argumentName)
+      internal static string ValidateCanonicalPath(string path, string argumentName)
       {
          // returns a cleaned string if it does not throw.
 
@@ -184,7 +184,7 @@
 
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
-         argumentName = argumentName ?? String.Empty;
+         argumentName = argumentName ?? string.Empty;
 
          path.ArgumentNotNull(argumentName);
 
@@ -195,7 +195,7 @@
             throw new ArgumentException(@"The path is not well-formed (cannot be empty or all whitespace).", argumentName);
          }
 
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
 
          // GetInvalidPathCharacters() excludes the following: '|' and 30'ish more unprintable characters
          if (indexNotFound != cleanedPath.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
@@ -206,7 +206,7 @@
          // Check for improper ':'
          if (DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(cleanedPath))
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                @"The path is not well-formed ('{0}' used outside the drive label).",
                pathUtilities.VolumeSeparatorCharacter);
@@ -214,7 +214,7 @@
          }
 
          // Path.GetFullPath(cleanedPath) does not throw on non-Windows platforms when path exceeds max length.
-         if (cleanedPath.Length > Int16.MaxValue)
+         if (cleanedPath.Length > short.MaxValue)
          {
             var msg = $"The path '{cleanedPath}' is too long, or a component of the specified path is too long.";
             throw new PathTooLongException(msg);
@@ -237,14 +237,14 @@
          cleanedPath = Regex.Replace(cleanedPath, pattern, evaluator, RegexOptions.IgnoreCase);
 
          // preserve @"/", @"\", and @"\\" as results.
-         if (String.Equals(cleanedPath, @"\\", StringComparison.Ordinal) || String.Equals(cleanedPath, @"\", StringComparison.Ordinal) || String.Equals(cleanedPath, @"/", StringComparison.Ordinal))
+         if (string.Equals(cleanedPath, @"\\", StringComparison.Ordinal) || string.Equals(cleanedPath, @"\", StringComparison.Ordinal) || string.Equals(cleanedPath, @"/", StringComparison.Ordinal))
          {
             return cleanedPath;
          }
 
          // preserve {drive letter}:\ and {drive letter}:/ as results
          if (cleanedPath.Length == 3 &&
-             Char.IsLetter(cleanedPath[0]) &&
+             char.IsLetter(cleanedPath[0]) &&
              cleanedPath[1] == pathUtilities.VolumeSeparatorCharacter &&
              (cleanedPath[2] == pathUtilities.DirectorySeparatorCharacter || cleanedPath[2] == pathUtilities.AltDirectorySeparatorCharacter))
          {
@@ -259,7 +259,7 @@
          return cleanedPath;
       }
 
-      private static String RemoveLeadingSpacesOnly(String value)
+      private static string RemoveLeadingSpacesOnly(string value)
       {
          // does not remove \t which is an invalid path character
          if (value == null)
@@ -269,7 +269,7 @@
 
          if (value.Length == 0)
          {
-            return String.Empty;
+            return string.Empty;
          }
 
          var sb = new StringBuilder(value);
@@ -282,15 +282,15 @@
       }
 
       [SuppressMessage("SonarLint.CodeSmell", "S3242: Method parameters should be declared with base types")]
-      private static String ReplaceLeadingWhitespace(Match m)
+      private static string ReplaceLeadingWhitespace(Match m)
       {
          // match will have a value unescaped like the following "\   x" or "/    x"
          var sb = new StringBuilder(m.Value);
          for (var i = sb.Length - 1; i >= 0; i--)
          {
-            if (String.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
+            if (string.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
             {
-               sb.Replace(sb[i].ToString(CultureInfo.InvariantCulture), String.Empty, i, 1);
+               sb.Replace(sb[i].ToString(CultureInfo.InvariantCulture), string.Empty, i, 1);
             }
          }
 
@@ -299,7 +299,7 @@
 
       [SuppressMessage("SonarLint.CodeSmell", "S3242: Method parameters should be declared with base types")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-      private static String ReplaceTrailingWhitespace(Match m)
+      private static string ReplaceTrailingWhitespace(Match m)
       {
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var primary = pathUtilities.DirectorySeparatorCharacter;
@@ -317,7 +317,7 @@
                   continue;
                }
 
-               if (String.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
+               if (string.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
                {
                   whiteSpaceStarted = true;
                }
@@ -325,9 +325,9 @@
 
             if (whiteSpaceStarted)
             {
-               if (String.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
+               if (string.IsNullOrWhiteSpace(sb[i].ToString(CultureInfo.InvariantCulture)))
                {
-                  sb.Replace(sb[i].ToString(CultureInfo.InvariantCulture), String.Empty, i, 1);
+                  sb.Replace(sb[i].ToString(CultureInfo.InvariantCulture), string.Empty, i, 1);
                }
                else
                {

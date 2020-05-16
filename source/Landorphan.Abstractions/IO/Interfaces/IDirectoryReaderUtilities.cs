@@ -1,16 +1,16 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.IO;
-   using System.Security;
+    using System;
+    using System.Collections.Immutable;
+    using System.IO;
+    using System.Security;
 
-   /// <summary>
+    /// <summary>
    /// Represents methods for reading from directories.
    /// </summary>
    public interface IDirectoryReaderUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of directory names in a specified path.
       /// </summary>
       /// <param name="path">
@@ -42,9 +42,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateDirectories(String path);
+      IImmutableSet<string> EnumerateDirectories(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of directory names that match a search pattern in a specified path.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -83,9 +83,9 @@
       /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
       /// <paramref name="path"/> and that match the specified search pattern.
       /// </returns>
-      IImmutableSet<String> EnumerateDirectories(String path, String searchPattern);
+      IImmutableSet<string> EnumerateDirectories(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of directory names that match a search pattern in a specified path, and optionally searches
       /// subdirectories.
       /// </summary>
@@ -132,9 +132,9 @@
       /// An enumerable collection of the full names (including paths) for the directories in the directory specified by
       /// <paramref name="path"/> and that match the specified search pattern and option.
       /// </returns>
-      IImmutableSet<String> EnumerateDirectories(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> EnumerateDirectories(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names in a specified path.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -167,9 +167,9 @@
       /// An enumerable collection of the full names (including paths) for the files in the directory specified by
       /// <paramref name="path"/>.
       /// </returns>
-      IImmutableSet<String> EnumerateFiles(String path);
+      IImmutableSet<string> EnumerateFiles(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names that match a search pattern in a specified path.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -207,9 +207,9 @@
       /// An enumerable collection of the full names (including paths) for the files in the directory specified by
       /// <paramref name="path"/> and that match the specified search pattern.
       /// </returns>
-      IImmutableSet<String> EnumerateFiles(String path, String searchPattern);
+      IImmutableSet<string> EnumerateFiles(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names that match a search pattern in a specified path, and optionally searches
       /// subdirectories.
       /// </summary>
@@ -256,9 +256,9 @@
       /// An enumerable collection of the full names (including paths) for the files in the directory specified by
       /// <paramref  name="path"/> and that match the specified search pattern and option.
       /// </returns>
-      IImmutableSet<String> EnumerateFiles(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file-system entries in a specified path.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -290,9 +290,9 @@
       /// <returns>
       /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/>.
       /// </returns>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path);
+      IImmutableSet<string> EnumerateFileSystemEntries(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file-system entries that match a search pattern in a specified path.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -330,9 +330,9 @@
       /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/> and that match the specified
       /// search pattern.
       /// </returns>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern);
+      IImmutableSet<string> EnumerateFileSystemEntries(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally
       /// searches subdirectories.
       /// </summary>
@@ -379,9 +379,9 @@
       /// An enumerable collection of file-system entries in the directory specified by <paramref name="path"/> and that match the specified
       /// search pattern and option.
       /// </returns>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> EnumerateFileSystemEntries(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of subdirectories (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -412,9 +412,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetDirectories(String path);
+      IImmutableSet<string> GetDirectories(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of subdirectories (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -449,9 +449,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetDirectories(String path, String searchPattern);
+      IImmutableSet<string> GetDirectories(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of subdirectories (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -489,9 +489,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetDirectories(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> GetDirectories(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of files (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -522,9 +522,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFiles(String path);
+      IImmutableSet<string> GetFiles(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of files (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -559,9 +559,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFiles(String path, String searchPattern);
+      IImmutableSet<string> GetFiles(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of files (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -599,9 +599,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFiles(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> GetFiles(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of all files and subdirectories in a specified directory.
       /// </summary>
       /// <param name="path">
@@ -632,9 +632,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFileSystemEntries(String path);
+      IImmutableSet<string> GetFileSystemEntries(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of all files and subdirectories in a specified directory.
       /// </summary>
       /// <param name="path">
@@ -669,9 +669,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern);
+      IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of all files and subdirectories in a specified directory.
       /// </summary>
       /// <param name="path">
@@ -709,6 +709,6 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern, SearchOption searchOption);
    }
 }

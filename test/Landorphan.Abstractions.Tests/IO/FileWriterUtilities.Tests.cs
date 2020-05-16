@@ -1,38 +1,38 @@
 namespace Landorphan.Abstractions.Tests.IO
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Globalization;
-   using System.Linq;
-   using System.Text;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class FileWriterUtilities_Tests
    {
-      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
 
-      private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-      private static readonly IFileReaderUtilities _fileReaderUtilities = IocServiceLocator.Resolve<IFileReaderUtilities>();
-      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly IFileWriterUtilities _target = IocServiceLocator.Resolve<IFileWriterUtilities>();
-      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+       private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+       private static readonly IFileReaderUtilities _fileReaderUtilities = IocServiceLocator.Resolve<IFileReaderUtilities>();
+       private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly IFileWriterUtilities _target = IocServiceLocator.Resolve<IFileWriterUtilities>();
+       private static readonly string _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_IFileWriterUtilities_AppendAllLines : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_append_all_lines()
          {
@@ -55,11 +55,11 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_AppendAllText : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_append_all_text()
          {
-            const String contents = "one\r\ntwo\r\nthree";
+            const string contents = "one\r\ntwo\r\nthree";
             var path = _fileUtilities.CreateTemporaryFile();
             try
             {
@@ -78,7 +78,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_CopyNoOverwrite : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_copy_the_file()
          {
@@ -101,7 +101,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_CopyWithOverwrite : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_copy_the_file()
          {
@@ -125,7 +125,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_Move : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_move_the_file()
          {
@@ -149,7 +149,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_OpenWrite : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_open_the_file()
          {
@@ -171,7 +171,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_ReplaceContentsNoBackup : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Failing intermittently")]
          public void It_should_replace_the_contents()
@@ -203,7 +203,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_ReplaceContentsNoBackupIgnoringMetadataErrors : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Failing locally on Windows")]
          public void It_should_replace_the_contents()
@@ -235,7 +235,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_ReplaceContentsWithBackup : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_replace_the_contents_and_back_up_destination()
          {
@@ -272,7 +272,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_ReplaceContentsWithBackupIgnoringMetadataErrors : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_replace_the_contents_and_back_up_destination()
          {
@@ -309,11 +309,11 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_WriteAllBytes : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_write_the_bytes()
          {
-            var expected = new Byte[] { 0x01, 0x01, 0x02, 0x03 }.ToImmutableList();
+            var expected = new byte[] { 0x01, 0x01, 0x02, 0x03 }.ToImmutableList();
 
             var path = _fileUtilities.CreateTemporaryFile();
             try
@@ -342,7 +342,7 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_WriteAllLines : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_write_the_contents()
          {
@@ -354,7 +354,7 @@ namespace Landorphan.Abstractions.Tests.IO
                _target.WriteAllLines(path, expected.ToArray(), Encoding.UTF8);
                _fileReaderUtilities.ReadAllLines(path, Encoding.UTF8).Should().BeEquivalentTo(expected);
 
-               _target.WriteAllLines(path, (IEnumerable<String>)expected, Encoding.UTF8);
+               _target.WriteAllLines(path, (IEnumerable<string>)expected, Encoding.UTF8);
                _fileReaderUtilities.ReadAllLines(path, Encoding.UTF8).Should().BeEquivalentTo(expected);
 
                _target.WriteAllLines(path, expected, Encoding.UTF8);
@@ -370,11 +370,11 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_call_IFileWriterUtilities_WriteAllText : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_write_the_contents()
          {
-            const String expected = "zero\r\none\r\ntwo\r\nthree";
+            const string expected = "zero\r\none\r\ntwo\r\nthree";
 
             var path = _fileUtilities.CreateTemporaryFile();
             try
@@ -392,14 +392,14 @@ namespace Landorphan.Abstractions.Tests.IO
       [TestClass]
       public class When_I_service_locate_IFileWriterUtilities : ArrangeActAssert
       {
-         private IFileWriterUtilities actual;
+          private IFileWriterUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IFileWriterUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_FileReaderUtilitiesFactory()
          {

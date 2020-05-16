@@ -5,7 +5,7 @@ namespace Landorphan.InstrumentationManagement.Interfaces
    /// </summary>
    public interface IInstrumentationRecordMethod
    {
-      /// <summary>
+       /// <summary>
       /// Called when a method is entered and disposed when it is complete.
       /// </summary>
       /// <returns>

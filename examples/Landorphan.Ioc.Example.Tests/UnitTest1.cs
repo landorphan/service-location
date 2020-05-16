@@ -1,16 +1,15 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace Landorphan.Ioc.Example.Tests
 {
-   using FluentAssertions;
-   using Landorphan.Ioc.Example.ConsoleApp;
-   using Landorphan.Ioc.Example.Service;
-   using Landorphan.Ioc.ServiceLocation;
+    using FluentAssertions;
+    using Landorphan.Ioc.Example.ConsoleApp;
+    using Landorphan.Ioc.Example.Service;
+    using Landorphan.Ioc.ServiceLocation;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   [TestClass]
+    [TestClass]
    public class UnitTest1
    {
-      [TestMethod]
+       [TestMethod]
       public void The_Service_Should_Convert_Rates_Properly()
       {
          var exchangeRateService = IocServiceLocator.Resolve<ICurrencyExchangeRates>();

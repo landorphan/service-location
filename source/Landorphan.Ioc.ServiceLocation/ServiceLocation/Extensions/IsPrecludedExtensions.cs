@@ -1,16 +1,16 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
-   using System;
-   using System.Linq;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Linq;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Extension methods for IoC querying whether a type/name is registered in the given container, or the given container and its chain of parents.
    /// </summary>
    public static class IsPrecludedExtensions
    {
-      /// <summary>
+       /// <summary>
       /// Determines whether or not a given type is precluded from service location.
       /// </summary>
       /// <remarks>
@@ -25,7 +25,7 @@
       /// <returns>
       /// <c> true </c> if this instance is precluded from registration for service location; otherwise <c> false </c>.
       /// </returns>
-      public static Boolean IsPrecluded<TPrecluded>(this IIocContainerManager manager)
+      public static bool IsPrecluded<TPrecluded>(this IIocContainerManager manager)
       {
          manager.ArgumentNotNull(nameof(manager));
 
@@ -34,7 +34,7 @@
          return rv;
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not a given type is precluded from service location.
       /// </summary>
       /// <remarks>
@@ -49,7 +49,7 @@
       /// <returns>
       /// <c> true </c> if this instance is precluded from registration for service location; otherwise <c> false </c>.
       /// </returns>
-      public static Boolean IsPrecluded(this IIocContainerManager manager, Type fromType)
+      public static bool IsPrecluded(this IIocContainerManager manager, Type fromType)
       {
          manager.ArgumentNotNull(nameof(manager));
          var rv = manager.PrecludedTypes.Contains(fromType);

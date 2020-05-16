@@ -1,28 +1,28 @@
 ﻿namespace Ioc.Collections.Performance.Tests
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Text;
-   using System.Threading;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Text;
+    using System.Threading;
 
-   // ReSharper disable UseFormatSpecifierInInterpolation
+    // ReSharper disable UseFormatSpecifierInInterpolation
    // ReSharper disable ConditionIsAlwaysTrueOrFalse
    // ReSharper disable IdentifierTypo
    [SuppressMessage("SonarLint.CodeSmell", "S1144: Unused private types or members should be removed")]
    internal static class Program
    {
-      private const String Line = "--------------------";
+       private const string Line = "--------------------";
 
-      // the *key* in IOC registrations is a type, with an optional name.
-      // off the top of my head, that leaves n obvious implementation choices
-      //    Dictionary<Type, String>
-      //    ImmutableDictionary<Type, String>
-      //    HashSet<ValueType: composed of Type, String>
-      //    ImmutableHashSet<ValueType: composed of Type, String>
-      //    List variations of the same
-      private static void Main()
+       // the *key* in IOC registrations is a type, with an optional name.
+       // off the top of my head, that leaves n obvious implementation choices
+       //    Dictionary<Type, String>
+       //    ImmutableDictionary<Type, String>
+       //    HashSet<ValueType: composed of Type, String>
+       //    ImmutableHashSet<ValueType: composed of Type, String>
+       //    List variations of the same
+       private static void Main()
       {
          var results = RunRandom();
          Console.WriteLine(results);
@@ -31,12 +31,12 @@
          Console.ReadKey();
       }
 
-      // ReSharper disable once UnusedMember.Local
-      private static String RunRandom()
+       // ReSharper disable once UnusedMember.Local
+       private static string RunRandom()
       {
          var rnd = new Random();
 
-         const Int32 count = 10000;
+         const int count = 10000;
          IList<KeyValuePair<Type, Type>> list;
          using (var builder = new TestTypesBuilder())
          {
@@ -44,9 +44,9 @@
             builder.BuildTypePairs(count, out var asmName, out list);
          }
 
-         const Boolean allowNamedImplementations = true;
-         const Boolean allowPreclusionOfTypes = true;
-         const Boolean throwOnRegistrationCollision = true;
+         const bool allowNamedImplementations = true;
+         const bool allowPreclusionOfTypes = true;
+         const bool throwOnRegistrationCollision = true;
 
          using (var target = new ImmutableDictionaryTarget(allowNamedImplementations, allowPreclusionOfTypes, throwOnRegistrationCollision))
          {
@@ -114,10 +114,10 @@
          }
       }
 
-      // ReSharper disable once UnusedMember.Local
-      private static String RunSequential()
+       // ReSharper disable once UnusedMember.Local
+       private static string RunSequential()
       {
-         const Int32 count = 10000;
+         const int count = 10000;
          // ReSharper disable once NotAccessedVariable
          IList<KeyValuePair<Type, Type>> list;
          using (var builder = new TestTypesBuilder())
@@ -125,9 +125,9 @@
             builder.BuildTypePairs(count, out var asmName, out list);
          }
 
-         const Boolean allowNamedImplementations = true;
-         const Boolean allowPreclusionOfTypes = true;
-         const Boolean throwOnRegistrationCollision = true;
+         const bool allowNamedImplementations = true;
+         const bool allowPreclusionOfTypes = true;
+         const bool throwOnRegistrationCollision = true;
 
          using (var target = new ImmutableDictionaryTarget(allowNamedImplementations, allowPreclusionOfTypes, throwOnRegistrationCollision))
          {

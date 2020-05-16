@@ -1,30 +1,30 @@
-﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
+namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Linq;
-   using System.Reflection;
-   using Landorphan.Common;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using Landorphan.Common;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    /// <summary>
    /// Test implementations for test architectural requirements.
    /// </summary>
    public abstract class TestArchitecturalRequirements : TestBase
    {
-      /// <summary>
+       /// <summary>
       /// Verifies that all test classes descend from <see cref="TestBase" /> except for those explicitly excluded.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
 
          var excludedTypes = GetTestTypesNotRequiredToDescendFromTestBase();
          Trace.Assert(excludedTypes != null, "GetTestTypesNotRequiredToDescendFromTestBase() returned null -- which it must not do");
@@ -35,7 +35,7 @@
             if (!typeof(TestBase).IsAssignableFrom(testClass) && !excludedTypes.Contains(testClass))
             {
                failureMessages.Add(
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      "The test class '{0}' is not descended from TestBase but should be.",
                      testClass.Name));
@@ -44,26 +44,26 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Verifies that all tests that are not ignored have one and only one timing category.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Control flow statements if, switch, for, foreach, while, do and try should not be nested too deeply")]
       protected void All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
 
          // Get the Timing fields
-         var testTimingValues = new HashSet<String>(StringComparer.Ordinal);
+         var testTimingValues = new HashSet<string>(StringComparer.Ordinal);
          var categoryTimingType = typeof(TestTiming);
          var fields = categoryTimingType.GetFields(BindingFlags.Public | BindingFlags.Static);
          foreach (var f in fields)
          {
-            testTimingValues.Add((String)f.GetValue(null));
+            testTimingValues.Add((string)f.GetValue(null));
          }
 
          var testClassTypes = GetAllEffectiveTestTypesTestAssembly();
@@ -97,7 +97,7 @@
 
                      case 0:
                         failureMessages.Add(
-                           String.Format(
+                           string.Format(
                               CultureInfo.InvariantCulture,
                               "The test '{0}.{1}' is not decorated with [TestCategory(WellKnownCategories.Timing.*)] but should be.",
                               testClass.Name,
@@ -106,7 +106,7 @@
 
                      default:
                         failureMessages.Add(
-                           String.Format(
+                           string.Format(
                               CultureInfo.InvariantCulture,
                               "The test '{0}.{1}' is decorated with more than one [TestCategory(WellKnownCategories.Timing.*)] but should only have one timing attribute.",
                               testClass.Name,
@@ -119,11 +119,11 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Searches the given <paramref name="assembly"/> for ignored tests.
       /// </summary>
       /// <param name="assembly">
@@ -139,7 +139,7 @@
          Trace.WriteLine($"Examining {assembly.GetName().Name} looking for ignored test methods...");
          var types = assembly.SafeGetTypes();
 
-         var builder = ImmutableHashSet<String>.Empty.WithComparer(StringComparer.InvariantCultureIgnoreCase).ToBuilder();
+         var builder = ImmutableHashSet<string>.Empty.WithComparer(StringComparer.InvariantCultureIgnoreCase).ToBuilder();
          foreach (var t in types)
          {
             var isMSTestClass = (
@@ -171,7 +171,7 @@
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the test assembly to be evaluated.
       /// </summary>
       /// <returns>
@@ -180,7 +180,7 @@
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
       protected abstract Assembly GetTestAssembly();
 
-      /// <summary>
+       /// <summary>
       /// Gets the test types not required to descend from <see cref="TestBase" />.
       /// </summary>
       /// <returns>
@@ -195,7 +195,7 @@
          return ImmutableHashSet<Type>.Empty;
       }
 
-      private IList<Type> GetAllEffectiveTestTypesTestAssembly()
+       private IList<Type> GetAllEffectiveTestTypesTestAssembly()
       {
          return (
             from t in GetAllTestTypesInTestAssembly()
@@ -206,7 +206,7 @@
             select t).ToList();
       }
 
-      private IList<Type> GetAllTestTypesInTestAssembly()
+       private IList<Type> GetAllTestTypesInTestAssembly()
       {
          return (from t in GetTestAssembly().SafeGetTypes() where t.GetCustomAttributes(typeof(TestClassAttribute), true).Any() select t)
             .ToList();

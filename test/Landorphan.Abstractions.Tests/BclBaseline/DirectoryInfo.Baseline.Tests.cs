@@ -1,29 +1,29 @@
 ﻿namespace Landorphan.Abstractions.Tests.BclBaseline
 {
-   using System.Diagnostics;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Diagnostics;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class DirectoryInfo_Baseline_Tests
    {
-      // These tests document what is:  test failures means an implementation detail has changed
-      // change the assertion to document "what is"
-      // if you believe the behavior to be incorrect, modify the behavior of the abstraction, fix the abstraction tests, and update these documentation tests
-      // to show "what is"
+       // These tests document what is:  test failures means an implementation detail has changed
+       // change the assertion to document "what is"
+       // if you believe the behavior to be incorrect, modify the behavior of the abstraction, fix the abstraction tests, and update these documentation tests
+       // to show "what is"
 
-      // Currently there is no abstraction for DirectoryInfo
-      [TestClass]
+       // Currently there is no abstraction for DirectoryInfo
+       [TestClass]
       public class Issues_To_Address : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
          [TestCategory(TestTiming.Manual)]
          [Ignore("documents behavior, does not test code")]

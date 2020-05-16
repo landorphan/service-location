@@ -1,25 +1,25 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_SetCreationTime : TestBase
       {
 #pragma warning disable CS0618 // Type or member is obsolete
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_creationTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
          {
@@ -122,7 +122,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -134,7 +134,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -164,7 +164,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -176,7 +176,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -209,7 +209,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.SetCreationTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -221,7 +221,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_FileNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -276,7 +276,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_SetLastAccessTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_lastAccessTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
          {
@@ -378,7 +378,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.SetLastAccessTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -390,7 +390,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.SetLastAccessTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -420,7 +420,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -432,7 +432,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.SetLastAccessTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -465,7 +465,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.SetLastAccessTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -477,7 +477,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_FileNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -530,7 +530,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_SetLastWriteTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_lastWriteTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
          {
@@ -632,7 +632,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.SetLastWriteTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -644,7 +644,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.SetLastWriteTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -674,7 +674,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -686,7 +686,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.SetLastWriteTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -719,7 +719,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.SetLastWriteTime(path, DateTimeOffset.UtcNow);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -731,7 +731,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_FileNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),

@@ -1,27 +1,27 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Text;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_ReadLines : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -97,7 +97,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            Action throwingAction = () => _target.ReadLines(String.Empty);
+            Action throwingAction = () => _target.ReadLines(string.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -117,7 +117,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -151,7 +151,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var fileFullPath = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var fileFullPath = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.ReadLines(fileFullPath);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -163,7 +163,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String fileFullPath = " \t ";
+            const string fileFullPath = " \t ";
 
             Action throwingAction = () => _target.ReadLines(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -193,7 +193,7 @@
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo
-            const String path = ":abcd";
+            const string path = ":abcd";
 
             Action throwingAction = () => _target.ReadLines(path);
             var e = throwingAction.Should().Throw<ArgumentException>();

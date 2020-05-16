@@ -1,36 +1,36 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
+    using System;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when a requested type could not be resolved to an implementation.
    /// </summary>
    /// <seealso cref="LandorphanIocServiceLocationException"/>
    public sealed class ResolutionException : LandorphanIocServiceLocationException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       public ResolutionException() : this(null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       /// <param name="message">
       /// The message that describes the error.
       /// </param>
-      public ResolutionException(String message) : this(null, null, message, null)
+      public ResolutionException(string message) : this(null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       /// <param name="message">
@@ -40,11 +40,11 @@
       /// The exception that is the cause of the current exception, or a null reference
       /// if no inner exception is specified.
       /// </param>
-      public ResolutionException(String message, Exception innerException) : this(null, null, message, innerException)
+      public ResolutionException(string message, Exception innerException) : this(null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       /// <param name="requestedType">
@@ -54,7 +54,7 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       /// <param name="requestedType">
@@ -63,11 +63,11 @@
       /// <param name="name">
       /// The name.
       /// </param>
-      public ResolutionException(Type requestedType, String name) : this(requestedType, name, null, null)
+      public ResolutionException(Type requestedType, string name) : this(requestedType, name, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       /// <param name="requestedType">
@@ -82,14 +82,14 @@
       /// <param name="innerException">
       /// The inner exception.
       /// </param>
-      public ResolutionException(Type requestedType, String name, String message, Exception innerException)
+      public ResolutionException(Type requestedType, string name, string message, Exception innerException)
          : base(NullToDefaultMessage(message, requestedType, name), innerException)
       {
          Name = name ?? StringResources.NullReplacementValue;
          RequestedType = requestedType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ResolutionException"/> class.
       /// </summary>
       /// <param name="info"> The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown. </param>
@@ -100,7 +100,7 @@
          Name = info.GetString("name");
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -110,24 +110,24 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the requested name that could not be resolved.
       /// </summary>
-      public String Name { get; }
+      public string Name { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the requested type that could not be resolved.
       /// </summary>
       public Type RequestedType { get; }
 
-      private static String NullToDefaultMessage(String message, Type requestedType, String name)
+       private static string NullToDefaultMessage(string message, Type requestedType, string name)
       {
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ResolutionIocExceptionDefaultMessageFmt,
                      requestedType == null ? StringResources.NullReplacementValue : requestedType.FullName,
-                     name ?? String.Empty);
+                     name ?? string.Empty);
 
          return rv;
       }

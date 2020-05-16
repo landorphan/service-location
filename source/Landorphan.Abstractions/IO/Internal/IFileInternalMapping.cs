@@ -1,22 +1,22 @@
 ﻿namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Security;
-   using System.Text;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Common.Exceptions;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Security;
+    using System.Text;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Common.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Represents the internal mapping from the static BCL <see cref="File" /> class to an interface.
    /// </summary>
    /// <remarks>No <see cref="FileStream" /> methods have been mapped.</remarks>
    internal interface IFileInternalMapping
    {
-      /// <summary>
+       /// <summary>
       /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -24,7 +24,7 @@
       /// </value>
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the maximum precision file system ticks supported by the host operating system.
       /// </summary>
       /// <value>
@@ -33,9 +33,9 @@
       /// <remarks>
       /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
       /// </remarks>
-      Int64 MaximumPrecisionFileSystemTicks { get; }
+      long MaximumPrecisionFileSystemTicks { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -43,7 +43,7 @@
       /// </value>
       DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Appends lines to a file, and then closes the file.  If the specified path root exits, this method will create intermediate directories and
       /// the file itself as needed.  It then appends the specified lines to the file, and closes the file.
       /// </summary>
@@ -96,9 +96,9 @@
       /// </exception>
       // TODO: change the implementation to throw ArgumentException instead of NotSupportedException.
       // NOTE: have yet to see this exception
-      void AppendAllLines(String path, IEnumerable<String> contents, Encoding encoding);
+      void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Appends the specified string to the file, creating the file if it does not already exist.
       /// </summary>
       /// <param name="path">
@@ -143,9 +143,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      void AppendAllText(String path, String contents, Encoding encoding);
+      void AppendAllText(string path, string contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Copies an existing file to a new file. Overwriting a file of the same name is not allowed.
       /// </summary>
       /// <param name="sourceFileName">
@@ -186,9 +186,9 @@
       /// format.
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void CopyNoOverwrite(String sourceFileName, String destFileName);
+      void CopyNoOverwrite(string sourceFileName, string destFileName);
 
-      /// <summary>
+       /// <summary>
       /// Copies an existing file to a new file. Overwriting a file of the same name is allowed.
       /// </summary>
       /// <param name="sourceFileName">
@@ -230,9 +230,9 @@
       /// format.
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void CopyWithOverwrite(String sourceFileName, String destFileName);
+      void CopyWithOverwrite(string sourceFileName, string destFileName);
 
-      /// <summary>
+       /// <summary>
       /// Creates or overwrites a file in the specified path as a zero-byte file, and then closes the file.  If the specified path root exists, this method will create intermediate directories,
       /// as well as the file itself as needed.
       /// </summary>
@@ -267,9 +267,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      String CreateFile(String path);
+      string CreateFile(string path);
 
-      /// <summary>
+       /// <summary>
       /// Creates a uniquely named, zero-byte temporary file on disk and returns the full path of that file.
       /// </summary>
       /// <returns>
@@ -280,9 +280,9 @@
       /// - or -
       /// This method was unable to create a temporary file.
       /// </exception>
-      String CreateTemporaryFile();
+      string CreateTemporaryFile();
 
-      /// <summary>
+       /// <summary>
       /// Creates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.  If the specified path root exists, this method will create intermediate
       /// directories, as well as the file itself as needed.
       /// </summary>
@@ -317,9 +317,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      String CreateText(String path);
+      string CreateText(string path);
 
-      /// <summary>
+       /// <summary>
       /// Deletes the specified file.
       /// </summary>
       /// <param name="path">
@@ -353,9 +353,9 @@
       /// -or-
       /// <paramref name="path"/> specified a read-only file.
       /// </exception>
-      void DeleteFile(String path);
+      void DeleteFile(string path);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to determine whether the specified file exists.
       /// </summary>
       /// <param name="path">
@@ -367,9 +367,9 @@
       /// <p>This method also returns <c>false</c> when <paramref name="path"/> is null, an invalid path, or a zero-length string.</p>
       /// <p>This method will also return <c>false</c> when the caller does not have sufficient permissions to read the specified file.</p>
       /// </returns>
-      Boolean FileExists(String path);
+      bool FileExists(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the creation date and time of the specified file or directory.
       /// </summary>
       /// <param name="path">
@@ -395,9 +395,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      DateTimeOffset GetCreationTime(String path);
+      DateTimeOffset GetCreationTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last accessed.
       /// </summary>
       /// <param name="path">
@@ -423,9 +423,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      DateTimeOffset GetLastAccessTime(String path);
+      DateTimeOffset GetLastAccessTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last written to.
       /// </summary>
       /// <param name="path">
@@ -451,9 +451,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      DateTimeOffset GetLastWriteTime(String path);
+      DateTimeOffset GetLastWriteTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Generates a a cryptographically strong, random string that can be used as a file name.
       /// </summary>
       /// <returns>
@@ -463,9 +463,9 @@
       /// Does not create a file.
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetRandomFileName();
+      string GetRandomFileName();
 
-      /// <summary>
+       /// <summary>
       /// Moves a specified file to a new location, providing the option to specify a new file name.
       /// </summary>
       /// <param name="sourceFileName">
@@ -501,9 +501,9 @@
       /// format.
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void Move(String sourceFileName, String destFileName);
+      void Move(string sourceFileName, string destFileName);
 
-      /// <summary>
+       /// <summary>
       /// Opens a <see cref="FileStream"/> on the specified path with read/write access with no sharing.
       /// </summary>
       /// <param name="path">
@@ -550,9 +550,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      FileStream Open(String path, FileMode mode);
+      FileStream Open(string path, FileMode mode);
 
-      /// <summary>
+       /// <summary>
       /// Opens a <see cref="FileStream"/> on the specified path, with the specified mode and access with no sharing.
       /// </summary>
       /// <param name="path">
@@ -604,9 +604,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      FileStream Open(String path, FileMode mode, FileAccess access);
+      FileStream Open(string path, FileMode mode, FileAccess access);
 
-      /// <summary>
+       /// <summary>
       /// Opens a <see cref="FileStream"/> on the specified path, having the specified mode with read, write, or read/write access and the specified sharing option.
       /// </summary>
       /// <param name="path">
@@ -663,9 +663,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      FileStream Open(String path, FileMode mode, FileAccess access, FileShare share);
+      FileStream Open(string path, FileMode mode, FileAccess access, FileShare share);
 
-      /// <summary>
+       /// <summary>
       /// Opens an existing file for reading.
       /// </summary>
       /// <param name="path">
@@ -706,9 +706,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      FileStream OpenRead(String path);
+      FileStream OpenRead(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens an existing UTF-8 encoded text file for reading.
       /// </summary>
       /// <param name="path">
@@ -749,9 +749,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      StreamReader OpenText(String path);
+      StreamReader OpenText(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens an existing file or creates a new file for writing.
       /// </summary>
       /// <param name="path">
@@ -792,9 +792,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      FileStream OpenWrite(String path);
+      FileStream OpenWrite(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens a binary file, reads the contents of the file into a byte array, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -833,9 +833,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableList<Byte> ReadAllBytes(String path);
+      IImmutableList<byte> ReadAllBytes(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens a file, reads all lines of the file with the specified encoding, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -879,9 +879,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableList<String> ReadAllLines(String path, Encoding encoding);
+      IImmutableList<string> ReadAllLines(string path, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Opens a file, reads all lines of the file with the specified encoding, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -925,9 +925,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      String ReadAllText(String path, Encoding encoding);
+      string ReadAllText(string path, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Opens a text file with <see cref="Encoding.UTF8"/>, reads all lines of the file into a string array, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -968,9 +968,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      IEnumerable<String> ReadLines(String path);
+      IEnumerable<string> ReadLines(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens a text file with the specified <paramref name="encoding"/>, reads all lines of the file into a string array, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -1016,9 +1016,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      IEnumerable<String> ReadLines(String path, Encoding encoding);
+      IEnumerable<string> ReadLines(string path, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file.
       /// </summary>
       /// <param name="sourceFileName">
@@ -1072,9 +1072,9 @@
       /// -or-
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsNoBackup(String sourceFileName, String destinationFileName);
+      void ReplaceContentsNoBackup(string sourceFileName, string destinationFileName);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file and ignoring metadata errors.
       /// </summary>
       /// <param name="sourceFileName">
@@ -1128,9 +1128,9 @@
       /// -or-
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsNoBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName);
+      void ReplaceContentsNoBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file, and backing up the original contents of the replaced file
       /// </summary>
       /// <param name="sourceFileName">
@@ -1199,9 +1199,9 @@
       /// -or-
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsWithBackup(String sourceFileName, String destinationFileName, String destinationBackupFileName);
+      void ReplaceContentsWithBackup(string sourceFileName, string destinationFileName, string destinationBackupFileName);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file, and backing up the original contents of the replaced file and ignoring metadata errors.
       /// </summary>
       /// <param name="sourceFileName">
@@ -1270,9 +1270,9 @@
       /// -or-
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsWithBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName, String destinationBackupFileName);
+      void ReplaceContentsWithBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName, string destinationBackupFileName);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time the file was created.
       /// </summary>
       /// <param name="path">
@@ -1310,9 +1310,9 @@
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
       [Obsolete("Currently not reliable")]
-      void SetCreationTime(String path, DateTimeOffset creationTime);
+      void SetCreationTime(string path, DateTimeOffset creationTime);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time the specified file was last accessed.
       /// </summary>
       /// <param name="path">
@@ -1346,9 +1346,9 @@
       /// <paramref name="lastAccessTime"/> specifies a value outside the range of dates or
       /// times permitted for this operation.
       /// </exception>
-      void SetLastAccessTime(String path, DateTimeOffset lastAccessTime);
+      void SetLastAccessTime(string path, DateTimeOffset lastAccessTime);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time that the specified file was last written to.
       /// </summary>
       /// <param name="path">
@@ -1382,9 +1382,9 @@
       /// <paramref name="lastWriteTime"/> specifies a value outside the range of dates or times
       /// permitted for this operation.
       /// </exception>
-      void SetLastWriteTime(String path, DateTimeOffset lastWriteTime);
+      void SetLastWriteTime(string path, DateTimeOffset lastWriteTime);
 
-      /// <summary>
+       /// <summary>
       /// Creates or overwrites the contents of the specified file, writing the bytes, and closing the file.
       /// </summary>
       /// <param name="path">
@@ -1430,9 +1430,9 @@
       /// The caller does not have the required permission.
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes")]
-      void WriteAllBytes(String path, Byte[] bytes);
+      void WriteAllBytes(string path, byte[] bytes);
 
-      /// <summary>
+       /// <summary>
       /// Creates or overwrites the contents of the specified file, writing the bytes, and closing the file.
       /// </summary>
       /// <param name="path">
@@ -1477,9 +1477,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>      [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes")]
-      void WriteAllBytes(String path, IImmutableList<Byte> bytes);
+      void WriteAllBytes(string path, IImmutableList<byte> bytes);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file, writes the specified string array to the file by using the specified encoding, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -1521,9 +1521,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      void WriteAllLines(String path, String[] contents, Encoding encoding);
+      void WriteAllLines(string path, string[] contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file, writes the specified string array to the file by using the specified encoding, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -1565,9 +1565,9 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      void WriteAllLines(String path, IImmutableList<String> contents, Encoding encoding);
+      void WriteAllLines(string path, IImmutableList<string> contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file by using the specified encoding, writes a collection of strings to the file, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -1610,9 +1610,9 @@
       /// -or-
       /// The caller does not have the required permission.
       /// </exception>
-      void WriteAllLines(String path, IEnumerable<String> contents, Encoding encoding);
+      void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file, writes the specified string to the file using the specified encoding, and then closes the file. If the target
       /// file already exists, it is overwritten.
       /// </summary>
@@ -1655,6 +1655,6 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      void WriteAllText(String path, String contents, Encoding encoding);
+      void WriteAllText(string path, string contents, Encoding encoding);
    }
 }

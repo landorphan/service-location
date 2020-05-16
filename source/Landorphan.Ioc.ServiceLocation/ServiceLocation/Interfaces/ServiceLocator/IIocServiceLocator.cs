@@ -1,15 +1,15 @@
 namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using System;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Represents the client interface for service location.
    /// </summary>
    /// <seealso cref="IServiceProvider"/>
    public interface IIocServiceLocator : IServiceProvider, IIocServiceLocatorMetaSharedCapacities
    {
-      /// <summary>
+       /// <summary>
       /// Resolves the default instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -23,7 +23,7 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// </exception>
       TFrom Resolve<TFrom>() where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -38,9 +38,9 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <typeparamref name="TFrom"/> service instance.
       /// </exception>
-      TFrom Resolve<TFrom>(String name) where TFrom : class;
+      TFrom Resolve<TFrom>(string name) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Resolves the default instance of the requested type.
       /// </summary>
       /// <exception cref="ResolutionException">
@@ -52,9 +52,9 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <returns>
       /// The retrieved instance.
       /// </returns>
-      Object Resolve(Type fromType);
+      object Resolve(Type fromType);
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -69,9 +69,9 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the named <paramref name="fromType"/> service instance.
       /// </exception>
-      Object Resolve(Type fromType, String name);
+      object Resolve(Type fromType, string name);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -83,9 +83,9 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <returns>
       /// <c>true</c> when a default registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve<TFrom>(out TFrom instance) where TFrom : class;
+      bool TryResolve<TFrom>(out TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -100,9 +100,9 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <returns>
       /// <c>true</c> when the named registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve<TFrom>(String name, out TFrom instance) where TFrom : class;
+      bool TryResolve<TFrom>(string name, out TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -114,9 +114,9 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <returns>
       /// <c>true</c> when a default registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve(Type fromType, out Object instance);
+      bool TryResolve(Type fromType, out object instance);
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -131,6 +131,6 @@ namespace Landorphan.Ioc.ServiceLocation.Interfaces
       /// <returns>
       /// <c>true</c> when the named registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve(Type fromType, String name, out Object instance);
+      bool TryResolve(Type fromType, string name, out object instance);
    }
 }

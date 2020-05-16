@@ -1,21 +1,21 @@
 ﻿namespace Landorphan.TestUtilities.MSTest.Tests.Architecture
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Reflection;
-   using Landorphan.Common.Exceptions;
-   using Landorphan.TestUtilities.MSTest.Tests.TestFacilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Landorphan.Common.Exceptions;
+    using Landorphan.TestUtilities.MSTest.Tests.TestFacilities;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
    [TestClass]
    public class Exception_Tests : ExceptionValidityRequirements
    {
-      [TestMethod]
+       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable()
       {

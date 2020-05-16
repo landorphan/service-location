@@ -1,157 +1,157 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Internal
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Reflection;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   // ReSharper disable ConvertToAutoProperty
+    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage
    // ReSharper disable RedundantExtendsListEntry
 
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
-      /// <inheritdoc cref="IIocContainer"/>
+       /// <inheritdoc cref="IIocContainer"/>
       event EventHandler<ContainerTypeRegistrationEventArgs> IIocContainerRegistrar.ContainerRegistrationAdded
       {
          add => _listenersContainerRegistrationAdded.Add(value);
          remove => _listenersContainerRegistrationAdded.Remove(value);
       }
 
-      /// <inheritdoc cref="IIocContainer"/>
+       /// <inheritdoc cref="IIocContainer"/>
       event EventHandler<ContainerTypeRegistrationEventArgs> IIocContainerRegistrar.ContainerRegistrationRemoved
       {
          add => _listenersContainerRegistrationRemoved.Add(value);
          remove => _listenersContainerRegistrationRemoved.Remove(value);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterImplementation<TFrom, TTo>()
       {
          ((IIocContainerRegistrar)this).RegisterImplementation<TFrom, TTo>(null);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Usage", "CA2208: Instantiate argument exceptions correctly", Justification = "Using type parameters (MWP)")]
-      void IIocContainerRegistrar.RegisterImplementation<TFrom, TTo>(String name)
+      void IIocContainerRegistrar.RegisterImplementation<TFrom, TTo>(string name)
       {
          RegisterImplementationImplementation(typeof(TFrom), nameof(TFrom), name, typeof(TTo), nameof(TTo), false);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterImplementation(Type fromType, Type toType)
       {
          ((IIocContainerRegistrar)this).RegisterImplementation(fromType, null, toType);
       }
 
-      /// <inheritdoc/>
-      void IIocContainerRegistrar.RegisterImplementation(Type fromType, String name, Type toType)
+       /// <inheritdoc/>
+      void IIocContainerRegistrar.RegisterImplementation(Type fromType, string name, Type toType)
       {
          RegisterImplementationImplementation(fromType, nameof(fromType), name, toType, nameof(toType), false);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       void IIocContainerRegistrar.RegisterInstance<TFrom>(TFrom instance)
       {
          ((IIocContainerRegistrar)this).RegisterInstance(null, instance);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Usage", "CA2208: Instantiate argument exceptions correctly", Justification = "Using type parameters (MWP)")]
-      void IIocContainerRegistrar.RegisterInstance<TFrom>(String name, TFrom instance)
+      void IIocContainerRegistrar.RegisterInstance<TFrom>(string name, TFrom instance)
       {
          RegisterInstanceImplementation(typeof(TFrom), nameof(TFrom), name, instance, nameof(instance), false);
       }
 
-      /// <inheritdoc/>
-      void IIocContainerRegistrar.RegisterInstance(Type fromType, Object instance)
+       /// <inheritdoc/>
+      void IIocContainerRegistrar.RegisterInstance(Type fromType, object instance)
       {
          ((IIocContainerRegistrar)this).RegisterInstance(fromType, null, instance);
       }
 
-      /// <inheritdoc/>
-      void IIocContainerRegistrar.RegisterInstance(Type fromType, String name, Object instance)
+       /// <inheritdoc/>
+      void IIocContainerRegistrar.RegisterInstance(Type fromType, string name, object instance)
       {
          RegisterInstanceImplementation(fromType, nameof(fromType), name, instance, nameof(instance), false);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterImplementation<TFrom, TTo>()
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterImplementation<TFrom, TTo>()
       {
          return ((IIocContainerRegistrar)this).TryRegisterImplementation<TFrom, TTo>(null);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterImplementation<TFrom, TTo>(String name)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterImplementation<TFrom, TTo>(string name)
       {
          return RegisterImplementationImplementation(typeof(TFrom), nameof(TFrom), name, typeof(TTo), nameof(TTo), true);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterImplementation(Type fromType, Type toType)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterImplementation(Type fromType, Type toType)
       {
          return ((IIocContainerRegistrar)this).TryRegisterImplementation(fromType, null, toType);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterImplementation(Type fromType, String name, Type toType)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterImplementation(Type fromType, string name, Type toType)
       {
          return RegisterImplementationImplementation(fromType, nameof(fromType), name, toType, nameof(toType), true);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterInstance<TFrom>(TFrom instance)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterInstance<TFrom>(TFrom instance)
       {
          return ((IIocContainerRegistrar)this).TryRegisterInstance(null, instance);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterInstance<TFrom>(String name, TFrom instance)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterInstance<TFrom>(string name, TFrom instance)
       {
          return RegisterInstanceImplementation(typeof(TFrom), nameof(TFrom), name, instance, nameof(instance), true);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterInstance(Type fromType, Object instance)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterInstance(Type fromType, object instance)
       {
          return ((IIocContainerRegistrar)this).TryRegisterInstance(fromType, null, instance);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.TryRegisterInstance(Type fromType, String name, Object instance)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.TryRegisterInstance(Type fromType, string name, object instance)
       {
          return RegisterInstanceImplementation(fromType, nameof(fromType), name, instance, nameof(instance), true);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.Unregister<TFrom>()
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.Unregister<TFrom>()
       {
          return ((IIocContainerRegistrar)this).Unregister(typeof(TFrom), null);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.Unregister<TFrom>(String name)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.Unregister<TFrom>(string name)
       {
          return UnregisterImplementation(typeof(TFrom), name);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.Unregister(Type fromType)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.Unregister(Type fromType)
       {
          return ((IIocContainerRegistrar)this).Unregister(fromType, null);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocContainerRegistrar.Unregister(Type fromType, String name)
+       /// <inheritdoc/>
+      bool IIocContainerRegistrar.Unregister(Type fromType, string name)
       {
          return UnregisterImplementation(fromType, name);
       }
 
-      private void OnContainerRegistrationAdded(RegistrationKeyTypeNamePair typeNamePair, Type toType, Object instance)
+       private void OnContainerRegistrationAdded(RegistrationKeyTypeNamePair typeNamePair, Type toType, object instance)
       {
          // fires the event
          TryLogRegistrationAddedOrRemoved(IocEventIdCodes.IocContainer.RegistrationAdded, typeNamePair, toType, instance);
@@ -161,7 +161,7 @@
          _listenersContainerRegistrationAdded?.Invoke(this, e);
       }
 
-      private void OnContainerRegistrationRemoved(RegistrationKeyTypeNamePair typeNamePair)
+       private void OnContainerRegistrationRemoved(RegistrationKeyTypeNamePair typeNamePair)
       {
          // fires the event
          TryLogRegistrationAddedOrRemoved(IocEventIdCodes.IocContainer.RegistrationRemoved, typeNamePair, null, null);
@@ -171,11 +171,11 @@
          _listenersContainerRegistrationRemoved?.Invoke(this, e);
       }
 
-      [SuppressMessage("Microsoft.Maintainability", "CA1502: Avoid excessive complexity")]
+       [SuppressMessage("Microsoft.Maintainability", "CA1502: Avoid excessive complexity")]
       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-      private Boolean RegisterImplementationImplementation(Type fromType, String fromTypeParameterName, String name, Type toType, String toTypeParameterName, Boolean tryLogic)
+      private bool RegisterImplementationImplementation(Type fromType, string fromTypeParameterName, string name, Type toType, string toTypeParameterName, bool tryLogic)
       {
          // fromType: not null
          if (fromType == null)
@@ -346,7 +346,7 @@
       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-      private Boolean RegisterInstanceImplementation(Type fromType, String fromTypeParameterName, String name, Object instance, String instanceParameterName, Boolean tryLogic)
+      private bool RegisterInstanceImplementation(Type fromType, string fromTypeParameterName, string name, object instance, string instanceParameterName, bool tryLogic)
       {
          // fromType: not null
          if (fromType == null)
@@ -480,7 +480,7 @@
          }
       }
 
-      private Boolean UnregisterImplementation(Type fromType, String name)
+      private bool UnregisterImplementation(Type fromType, string name)
       {
          if (fromType == null || !(fromType.IsAbstract || fromType.IsInterface) || fromType.ContainsGenericParameters)
          {
@@ -493,7 +493,7 @@
             return false;
          }
 
-         Boolean rv;
+         bool rv;
          var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
          using (_registrationsLock.EnterWriteLock())
          {

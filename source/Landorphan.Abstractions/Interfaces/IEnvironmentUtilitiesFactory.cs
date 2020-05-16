@@ -5,7 +5,7 @@
    /// </summary>
    public interface IEnvironmentUtilitiesFactory
    {
-      /// <summary>
+       /// <summary>
       /// Creates a <see cref="IEnvironmentUtilities"/> instance.
       /// </summary>
       /// <returns>

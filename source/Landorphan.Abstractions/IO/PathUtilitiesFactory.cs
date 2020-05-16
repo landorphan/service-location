@@ -1,14 +1,14 @@
 ﻿namespace Landorphan.Abstractions.IO
 {
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
 
-   /// <summary>
+    /// <summary>
    /// Factory for instantiating <see cref="IPathUtilities"/> instances.
    /// </summary>
    public sealed class PathUtilitiesFactory : IPathUtilitiesFactory
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IPathUtilities Create()
       {
          return new PathInternalMapping();

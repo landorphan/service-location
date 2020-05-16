@@ -1,20 +1,20 @@
-﻿namespace Landorphan.Abstractions.Tests.TestFacilities
+namespace Landorphan.Abstractions.Tests.TestFacilities
 {
-   using System;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Runtime.InteropServices;
-   using System.Text;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.Win32;
+    using System;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.InteropServices;
+    using System.Text;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.Win32;
 
-   [SuppressMessage("Platform.Compat", "PC001: API not supported on all platforms")]
+    [SuppressMessage("Platform.Compat", "PC001: API not supported on all platforms")]
    internal class TestAssemblyInitializeCleanupWindowsHelper
    {
-      /// <summary>
+       /// <summary>
       /// Gets the PowerShell 32-bit execution policy.
       /// </summary>
       /// <remarks>
@@ -26,24 +26,24 @@
       /// "Not on Windows" when executed in a non-Windows environment.
       /// </returns>
       [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "Sonar lint does not handle abbreviations and acronyms (MWP)")]
-      public static String GetPSExecutionPolicyUser()
+      public static string GetPSExecutionPolicyUser()
       {
          if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
-            const String defaultValue = "PowerShell 32-bit ExecutionPolicy not found.";
+            const string defaultValue = "PowerShell 32-bit ExecutionPolicy not found.";
 
             // for machine, use @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell"
-            var rv = (String)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell", "ExecutionPolicy", defaultValue);
+            var rv = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\PowerShell\1\ShellIds\Microsoft.PowerShell", "ExecutionPolicy", defaultValue);
             return rv;
          }
 
          return "Not on Windows";
       }
 
-      // this class is called by TestAssemblyInitializeCleanup to arrange or teardown Windows-Specific resources.
-      // Except for GetPSExecutionPolicyUser() it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
+       // this class is called by TestAssemblyInitializeCleanup to arrange or teardown Windows-Specific resources.
+       // Except for GetPSExecutionPolicyUser() it is not intended to be called by test classes, it is a "friend" class to TestAssemblyInitializeCleanup
 
-      internal Boolean Arrange()
+       internal bool Arrange()
       {
          // returns true when arrange completed, otherwise false
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -86,7 +86,7 @@
          return false;
       }
 
-      internal void Teardown()
+       internal void Teardown()
       {
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
@@ -100,7 +100,7 @@
          Trace.WriteLine(error);
       }
 
-      [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
+       [SuppressMessage("SonarLint.Naming", "S100: Methods and properties should be named in PascalCase", Justification = "False positive, PS is an abbreviation of PowerShell")]
       private ProcessStartInfo BuildPSStartInfoElevated()
       {
          // returns null when the PowerShell executable path cannot be found.
@@ -169,11 +169,11 @@
          return startInfo;
       }
 
-      private Int32 ExecuteArrangeScript(out String output, out String error)
+      private int ExecuteArrangeScript(out string output, out string error)
       {
          var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
 
-         const String scriptPath = @".\Arrange-LocalFiles.ps1";
+         const string scriptPath = @".\Arrange-LocalFiles.ps1";
          if (!fileUtilities.FileExists(scriptPath))
          {
             Trace.WriteLine($"WARNING: could not find {scriptPath}, local file path tests will be inconclusive.");
@@ -183,9 +183,9 @@
          var startInfo = BuildPSStartInfoElevated();
          if (startInfo == null)
          {
-            const String err = "failed to create PowerShell start info";
+            const string err = "failed to create PowerShell start info";
             Trace.WriteLine($"WARNING: {err}.");
-            output = String.Empty;
+            output = string.Empty;
             error = err;
             return -1;
          }
@@ -194,7 +194,7 @@
          return exitCode;
       }
 
-      private Int32 ExecutePowerShellScriptElevated(ProcessStartInfo startInfo, String scriptPath, out String output, out String error)
+      private int ExecutePowerShellScriptElevated(ProcessStartInfo startInfo, string scriptPath, out string output, out string error)
       {
          // in order to elevate, must use ShellExecute = true
          // when ShellExecute, redirection of StandardOutput and StandardError is not allowed.
@@ -208,7 +208,7 @@
          // 15 seconds was timing out on the build server
          // 2 minutes works
          var twoMinutes = new TimeSpan(0, 2, 0);
-         const Int32 oneSecondInMilliseconds = 1000;
+         const int oneSecondInMilliseconds = 1000;
 
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
@@ -226,14 +226,14 @@
          {
             var err = $"ERROR: could not find {scriptPath}.";
             Trace.WriteLine(err);
-            output = String.Empty;
+            output = string.Empty;
             error = err;
             return -1;
          }
 
-         error = String.Empty;
-         output = String.Empty;
-         Int32 exitCode;
+         error = string.Empty;
+         output = string.Empty;
+         int exitCode;
 
          using (var ps = new Process())
          {
@@ -276,7 +276,7 @@
          }
          else
          {
-            error = String.Empty;
+            error = string.Empty;
          }
 
          if (fileUtilities.FileExists(stdOutLogFileName))
@@ -286,17 +286,17 @@
          }
          else
          {
-            output = String.Empty;
+            output = string.Empty;
          }
 
          return exitCode;
       }
 
-      private Int32 ExecuteTeardownScript(out String output, out String error)
+      private int ExecuteTeardownScript(out string output, out string error)
       {
          var fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
 
-         const String scriptPath = @".\Teardown-LocalFiles.ps1";
+         const string scriptPath = @".\Teardown-LocalFiles.ps1";
          if (!fileUtilities.FileExists(scriptPath))
          {
             Trace.WriteLine($"WARNING: could not find {scriptPath}.");
@@ -306,9 +306,9 @@
          var startInfo = BuildPSStartInfoElevated();
          if (startInfo == null)
          {
-            const String err = "failed to create PowerShell start info";
+            const string err = "failed to create PowerShell start info";
             Trace.WriteLine($"WARNING: {err}.");
-            output = String.Empty;
+            output = string.Empty;
             error = err;
             return -1;
          }
@@ -317,7 +317,7 @@
          return exitCode;
       }
 
-      private String GetPowerShellPath()
+      private string GetPowerShellPath()
       {
          if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
          {
@@ -327,7 +327,7 @@
          var environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
-         String rv;
+         string rv;
          if (environmentUtilities.Is64BitOperatingSystem)
          {
             // 32-bit powershell exe on 64-bit Windows %SystemRoot%\SysWOW64\WindowsPowerShell\v1.0\powershell.exe
@@ -351,7 +351,7 @@
          // parallel knowledge/maintenance here
          var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
 
-         String localFolderRoot = null;
+         string localFolderRoot;
          if (RuntimePlatform.IsWindows())
          {
             localFolderRoot = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");

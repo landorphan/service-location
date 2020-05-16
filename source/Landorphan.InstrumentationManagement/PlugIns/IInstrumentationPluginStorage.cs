@@ -13,20 +13,7 @@ namespace Landorphan.InstrumentationManagement.PlugIns
    /// </summary>
    public interface IInstrumentationPluginStorage
    {
-      /// <summary>
-      /// Used to set an Async or Session variable.
-      /// </summary>
-      /// <param name="name">
-      /// The name of the value to set.
-      /// </param>
-      /// <param name="value">
-      /// The value to set.
-      /// </param>
-#pragma warning disable CA1716 // Identifiers should not match keywords -- Name conflict will never exist on usage, this name is prefered.
-      void Set(string name, object value);
-#pragma warning restore CA1716 // Identifiers should not match keywords
-
-      /// <summary>
+       /// <summary>
       /// Used to get an Async or Session variable.
       /// </summary>
       /// <param name="name">
@@ -37,6 +24,18 @@ namespace Landorphan.InstrumentationManagement.PlugIns
       /// </returns>
 #pragma warning disable CA1716 // Identifiers should not match keywords -- Name conflict will never exist on usage, this name is prefered.
       object Get(string name);
+#pragma warning restore CA1716 // Identifiers should not match keywords
+       /// <summary>
+      /// Used to set an Async or Session variable.
+      /// </summary>
+      /// <param name="name">
+      /// The name of the value to set.
+      /// </param>
+      /// <param name="value">
+      /// The value to set.
+      /// </param>
+#pragma warning disable CA1716 // Identifiers should not match keywords -- Name conflict will never exist on usage, this name is prefered.
+      void Set(string name, object value);
 #pragma warning restore CA1716 // Identifiers should not match keywords
    }
 }

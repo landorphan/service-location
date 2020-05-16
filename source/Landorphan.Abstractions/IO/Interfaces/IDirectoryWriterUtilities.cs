@@ -1,15 +1,15 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
 
-   /// <summary>
+    /// <summary>
    /// Represents methods for writing to directories.
    /// </summary>
    public interface IDirectoryWriterUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Copies a directory and its contents to a new location.
       /// </summary>
       /// <param name="sourceDirName">
@@ -43,9 +43,9 @@
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Dir")]
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void Copy(String sourceDirName, String destDirName);
+      void Copy(string sourceDirName, string destDirName);
 
-      /// <summary>
+       /// <summary>
       /// Moves a directory and its contents to a new location.
       /// </summary>
       /// <param name="sourceDirName">
@@ -80,6 +80,6 @@
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Dir")]
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void Move(String sourceDirName, String destDirName);
+      void Move(string sourceDirName, string destDirName);
    }
 }

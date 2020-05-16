@@ -1,9 +1,9 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using Landorphan.Common.Interfaces;
+    using System;
+    using Landorphan.Common.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents a registration key.
    /// </summary>
    /// <remarks>
@@ -16,15 +16,15 @@
       IComparable<IRegistrationValue>,
       IEquatable<IRegistrationValue>
    {
-      /// <summary>
+       /// <summary>
       /// Gets the implementation instance.
       /// </summary>
       /// <value>
       /// The implementation instance.
       /// </value>
-      Object ImplementationInstance { get; }
+      object ImplementationInstance { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the implementation type.
       /// </summary>
       /// <value>
@@ -32,12 +32,12 @@
       /// </value>
       Type ImplementationType { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether or not this instance is empty.
       /// </summary>
       /// <value>
       /// <c>true</c> when this instance is empty; otherwise <c>false</c>.
       /// </value>
-      Boolean IsEmpty { get; }
+      bool IsEmpty { get; }
    }
 }

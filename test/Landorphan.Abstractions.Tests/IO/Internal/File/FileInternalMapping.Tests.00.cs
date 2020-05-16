@@ -1,43 +1,43 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Text;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
-      private const String Spaces = "   ";
-      private static readonly IDirectoryInternalMapping _directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
-      private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly FileInternalMapping _target = new FileInternalMapping();
-      private static readonly String _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
+       private const string Spaces = "   ";
+       private static readonly IDirectoryInternalMapping _directoryInternalMapping = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
+       private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly FileInternalMapping _target = new FileInternalMapping();
+       private static readonly string _tempPath = _directoryInternalMapping.GetTemporaryDirectoryPath();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_AppendAllLines : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_contents_are_empty_It_should_throw_not_throw()
          {
             // HAPPY PATH TEST:
             var path = _target.CreateTemporaryFile();
-            var contents = Array.Empty<String>();
+            var contents = Array.Empty<string>();
 
             try
             {
@@ -56,7 +56,7 @@
          public void And_the_contents_are_null_It_should_throw_ArgumentNullException()
          {
             var path = _target.CreateTemporaryFile();
-            const IEnumerable<String> contents = null;
+            const IEnumerable<string> contents = null;
 
             try
             {
@@ -77,7 +77,7 @@
             // HAPPY PATH TEST:
             var path = _target.CreateTemporaryFile();
             var contents = new[] {"one", null, "three", null, "five"};
-            var expected = (from e in contents select e ?? String.Empty).ToList();
+            var expected = (from e in contents select e ?? string.Empty).ToList();
 
             try
             {
@@ -182,7 +182,7 @@
             var contents = new[] {"one", "two", "three"};
 
             // invalid character in the path before the file name.
-            var invalidFilePathDirectoryPath = String.Format(
+            var invalidFilePathDirectoryPath = string.Format(
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
@@ -196,7 +196,7 @@
             e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
 
             // invalid character in the file name
-            var invalidFilePathFileName = String.Format(
+            var invalidFilePathFileName = string.Format(
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
@@ -333,7 +333,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
             var contents = new[] {"one", "two", "three"};
 
             var enc = new UTF8Encoding(false, true);
@@ -382,7 +382,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             var contents = new[] {"one", "two", "three"};
 
@@ -397,7 +397,7 @@
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
             // with tab
-            const String path0 = " \t ";
+            const string path0 = " \t ";
             var contents = new[] {"one", "two", "three"};
 
             Action throwingAction = () => _target.AppendAllLines(path0, contents, Encoding.ASCII);
@@ -406,7 +406,7 @@
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
             // without tab
-            const String path1 = Spaces;
+            const string path1 = Spaces;
             throwingAction = () => _target.AppendAllLines(path1, contents, Encoding.ASCII);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
@@ -505,12 +505,12 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_AppendAllText : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_contents_are_empty_It_should_throw_not_throw()
          {
             var path = _target.CreateTemporaryFile();
-            var contents = String.Empty;
+            var contents = string.Empty;
 
             try
             {
@@ -529,7 +529,7 @@
          public void And_the_contents_are_null_It_should_throw_ArgumentNullException()
          {
             var path = _target.CreateTemporaryFile();
-            const String contents = null;
+            const string contents = null;
 
             try
             {
@@ -550,7 +550,7 @@
             var unalteredPath = _target.CreateTemporaryFile();
             try
             {
-               const String contents = "Abc123";
+               const string contents = "Abc123";
                var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + _pathUtilities.DirectorySeparatorCharacter + _pathUtilities.GetFileName(unalteredPath);
 
                _target.AppendAllText(path, contents, Encoding.UTF8);
@@ -568,7 +568,7 @@
          public void And_the_encoding_is_null_It_should_throw_ArgumentNullException()
          {
             var path = _target.CreateTemporaryFile();
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             try
             {
@@ -590,7 +590,7 @@
             var path = _pathUtilities.GetParentPath(unalteredPath) + _pathUtilities.DirectorySeparatorCharacter + Spaces + _pathUtilities.GetFileName(unalteredPath);
             try
             {
-               const String contents = "Abc123";
+               const string contents = "Abc123";
 
                _target.AppendAllText(path, contents, Encoding.ASCII);
                var actual = _target.ReadAllText(path, Encoding.ASCII);
@@ -609,7 +609,7 @@
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
             var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(path, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -622,10 +622,10 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             // invalid character in the path before the file name.
-            var invalidFilePathDirectoryPath = String.Format(
+            var invalidFilePathDirectoryPath = string.Format(
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
@@ -638,7 +638,7 @@
             e.And.Message.Should().Be("The path is not well-formed (invalid characters).\r\nParameter name: path");
 
             // invalid character in the file name
-            var invalidFilePathFileName = String.Format(
+            var invalidFilePathFileName = string.Format(
                CultureInfo.InvariantCulture,
                @"{0}\{1}\{2}",
                _tempPath,
@@ -655,7 +655,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_in_the_parent_directory_It_should_create_the_directory_and_the_file_and_append_the_text()
          {
-            const String contents = "one\r\ntwo\r\nthree";
+            const string contents = "one\r\ntwo\r\nthree";
             var path = _pathUtilities.Combine(
                _tempPath,
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -681,7 +681,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_match_an_existing_file_It_should_create_the_file_and_append_the_text()
          {
-            const String contents = "one\r\ntwo\r\nthree";
+            const string contents = "one\r\ntwo\r\nthree";
             var path = _pathUtilities.Combine(
                _tempPath,
                "And_the_path_does_not_match_an_existing_file_It_should_create_the_file_and_append_the_text.txt");
@@ -708,7 +708,7 @@
             var unalteredPath = _target.CreateTemporaryFile();
             try
             {
-               const String contents = "Abc123";
+               const string contents = "Abc123";
                var path = Spaces + unalteredPath;
 
                _target.AppendAllText(path, contents, Encoding.ASCII);
@@ -728,7 +728,7 @@
             var unalteredPath = _target.CreateTemporaryFile();
             try
             {
-               const String contents = "Abc123";
+               const string contents = "Abc123";
                var path = unalteredPath + Spaces;
 
                _target.AppendAllText(path, contents, Encoding.ASCII);
@@ -745,8 +745,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
-            const String contents = "Abc123";
+            var path = string.Empty;
+            const string contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(path, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -758,7 +758,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(null, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -780,7 +780,7 @@
 
             var dirName = _pathUtilities.GetParentPath(path);
 
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(path, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -792,9 +792,9 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(path, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -806,8 +806,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path0 = " \t ";
-            const String contents = "Abc123";
+            const string path0 = " \t ";
+            const string contents = "Abc123";
 
             Action throwingAction = () => _target.AppendAllText(path0, contents, Encoding.ASCII);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -821,7 +821,7 @@
          {
             var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
             _directoryInternalMapping.CreateDirectory(path);
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             try
             {
@@ -844,7 +844,7 @@
          public void And_the_path_matches_an_existing_existing_file_It_should_append_the_text()
          {
             var path = _target.CreateTemporaryFile();
-            const String contents = "Abc123";
+            const string contents = "Abc123";
 
             try
             {

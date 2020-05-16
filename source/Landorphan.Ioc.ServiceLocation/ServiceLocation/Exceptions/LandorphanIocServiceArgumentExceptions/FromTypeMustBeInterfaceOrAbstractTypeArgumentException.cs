@@ -18,24 +18,24 @@
    [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
    public sealed class FromTypeMustBeInterfaceOrAbstractTypeArgumentException : LandorphanIocServiceLocationArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="FromTypeMustBeInterfaceOrAbstractTypeArgumentException"/> class.
       /// </summary>
       public FromTypeMustBeInterfaceOrAbstractTypeArgumentException() : this(null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="FromTypeMustBeInterfaceOrAbstractTypeArgumentException"/> class.
       /// </summary>
       /// <param name="message">
       /// The error message that explains the reason for the exception.
       /// </param>
-      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(String message) : this(null, null, message, null)
+      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(string message) : this(null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="FromTypeMustBeInterfaceOrAbstractTypeArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -43,11 +43,11 @@
       /// </param>
       /// <param name="innerException"> The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(String message, Exception innerException) : this(null, null, message, innerException)
+      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(string message, Exception innerException) : this(null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="FromTypeMustBeInterfaceOrAbstractTypeArgumentException"/> class.
       /// </summary>
       /// <param name="actualType">
@@ -56,11 +56,11 @@
       /// <param name="paramName">
       /// The name of the parameter that caused the exception.
       /// </param>
-      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(Type actualType, String paramName) : this(actualType, paramName, null, null)
+      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(Type actualType, string paramName) : this(actualType, paramName, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="FromTypeMustBeInterfaceOrAbstractTypeArgumentException"/> class.
       /// </summary>
       /// <param name="actualType">
@@ -75,13 +75,13 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(Type actualType, String paramName, String message, Exception innerException)
+      public FromTypeMustBeInterfaceOrAbstractTypeArgumentException(Type actualType, string paramName, string message, Exception innerException)
          : base(paramName, NullToDefaultMessage(actualType, paramName, message), innerException)
       {
          ActualType = actualType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="FromTypeMustBeInterfaceOrAbstractTypeArgumentException"/> class.
       /// </summary>
       /// <param name="info"> The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown. </param>
@@ -92,7 +92,7 @@
          ActualType = (Type)info.GetValue("toType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -101,20 +101,20 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the implementation type.
       /// </summary>
       public Type ActualType { get; }
 
-      private static String NullToDefaultMessage(Type actualType, String paramName, String message)
+       private static string NullToDefaultMessage(Type actualType, string paramName, string message)
       {
          var cleanedRegisteredType = null == actualType ? StringResources.NullReplacementValue : actualType.FullName;
          var cleanedParamName = paramName.TrimNullToEmpty();
          var paramNameSuffix = cleanedParamName.Length == 0
             ? StringResources.ArgumentExceptionNoParamNameSuffix
-            : String.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
+            : string.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.FromTypeMustBeInterfaceOrAbstractTypeArgumentExceptionNameTypeFmt,
                      cleanedRegisteredType,

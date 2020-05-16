@@ -1,35 +1,35 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when a type argument does not implement a required interface or abstract type.
    /// </summary>
    [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
    public sealed class ToTypeMustImplementTypeArgumentException : LandorphanIocServiceLocationArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustImplementTypeArgumentException"/> class.
       /// </summary>
       public ToTypeMustImplementTypeArgumentException() : this(null, null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
-      public ToTypeMustImplementTypeArgumentException(String message) : this(null, null, null, message, null)
+      public ToTypeMustImplementTypeArgumentException(string message) : this(null, null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -38,11 +38,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public ToTypeMustImplementTypeArgumentException(String message, Exception innerException) : this(null, null, null, message, innerException)
+      public ToTypeMustImplementTypeArgumentException(string message, Exception innerException) : this(null, null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="fromType">
@@ -54,12 +54,12 @@
       /// <param name="paramName">
       /// The name of the parameter that gave rise to this exception.
       /// </param>
-      public ToTypeMustImplementTypeArgumentException(Type fromType, Type toType, String paramName)
+      public ToTypeMustImplementTypeArgumentException(Type fromType, Type toType, string paramName)
          : this(fromType, toType, paramName, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="fromType">
@@ -77,7 +77,7 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public ToTypeMustImplementTypeArgumentException(Type fromType, Type toType, String paramName, String message, Exception innerException) : base(
+      public ToTypeMustImplementTypeArgumentException(Type fromType, Type toType, string paramName, string message, Exception innerException) : base(
          paramName,
          NullToDefaultMessage(fromType, toType, paramName, message),
          innerException)
@@ -86,7 +86,7 @@
          ToType = toType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="info">
@@ -102,7 +102,7 @@
          FromType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -112,26 +112,26 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the required interface or abstract type.
       /// </summary>
       public Type FromType { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the type that gave rise to this exception.
       /// </summary>
       public Type ToType { get; }
 
-      private static String NullToDefaultMessage(Type fromType, Type toType, String paramName, String message)
+       private static string NullToDefaultMessage(Type fromType, Type toType, string paramName, string message)
       {
          var cleanedFromType = null == fromType ? StringResources.NullReplacementValue : fromType.FullName;
          var cleanedToType = null == toType ? StringResources.NullReplacementValue : toType.FullName;
          var cleanedParamName = paramName.TrimNullToEmpty();
          var paramNameSuffix = cleanedParamName.Length == 0
             ? StringResources.ArgumentExceptionNoParamNameSuffix
-            : String.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
+            : string.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ToTypeMustImplementTypeArgumentExceptionDefaultMessageFmt,
                      cleanedFromType,

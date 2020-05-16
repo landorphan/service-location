@@ -29,7 +29,7 @@
    /// </remarks>
    public interface IAssemblySelfRegistration
    {
-      /// <summary>
+       /// <summary>
       /// Registers service interface types with instances, or implementation types with default constructors, for the assembly that defines a single class that implements this interface.
       /// </summary>
       /// <param name="registrar">

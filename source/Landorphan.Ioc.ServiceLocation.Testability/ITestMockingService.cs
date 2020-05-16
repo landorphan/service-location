@@ -1,8 +1,8 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability
 {
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents the mocking capabilities of the test subsystem.
    /// </summary>
    /// <remarks>
@@ -27,7 +27,7 @@
    // docfx 2.40.8.0 does not seem to handle <list type="table"> correctly, but MD tables work just fine as long as the table is the first element in remarks :)
    public interface ITestMockingService
    {
-      /// <summary>
+       /// <summary>
       /// Gets the root container.
       /// </summary>
       /// <value>
@@ -35,7 +35,7 @@
       /// </value>
       IIocContainer RootContainer { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the test instance container on top of the root container.
       /// </summary>
       /// <value>
@@ -43,7 +43,7 @@
       /// </value>
       IIocContainer TestInstanceOnRootContainer { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container on top of the test run container on top of the root container.
       /// </summary>
       /// <value>
@@ -51,7 +51,7 @@
       /// </value>
       IIocContainer TestInstanceOnTestRunOnRootContainer { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the test run container on top of the root container.
       /// </summary>
       /// <value>
@@ -59,27 +59,27 @@
       /// </value>
       IIocContainer TestRunContainer { get; }
 
-      /// <summary>
+       /// <summary>
       /// Removes all mocking.
       /// </summary>
       void ApplyNoMocking();
 
-      /// <summary>
+       /// <summary>
       /// Applies test instance mocking on top of the root container.
       /// </summary>
       void ApplyTestInstanceMockingOnly();
 
-      /// <summary>
+       /// <summary>
       /// Applies test instance mocking on top of test run mocking on top of the root container.
       /// </summary>
       void ApplyTestInstanceMockingOnTopOfTestRunMocking();
 
-      /// <summary>
+       /// <summary>
       /// Applies test run mocking on top of the root container.
       /// </summary>
       void ApplyTestRunMockingOnly();
 
-      /// <summary>
+       /// <summary>
       /// Resets the individual test containers.
       /// </summary>
       void ResetIndividualTestContainers();

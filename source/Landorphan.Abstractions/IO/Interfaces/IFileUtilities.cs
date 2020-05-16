@@ -1,15 +1,15 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
 
-   /// <summary>
+    /// <summary>
    /// Represents methods for working with files.
    /// </summary>
    public interface IFileUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -17,7 +17,7 @@
       /// </value>
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the maximum precision file system ticks supported by the host operating system.
       /// </summary>
       /// <value>
@@ -26,9 +26,9 @@
       /// <remarks>
       /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
       /// </remarks>
-      Int64 MaximumPrecisionFileSystemTicks { get; }
+      long MaximumPrecisionFileSystemTicks { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -36,7 +36,7 @@
       /// </value>
       DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Creates or overwrites a file in the specified path as a zero-byte file, and then closes the file.  If the specified path root exists, 
       /// this method will create intermediate directories, as well as the file itself as needed.
       /// </summary>
@@ -71,9 +71,9 @@
       /// <returns>
       /// The full path of the temporary file.
       /// </returns>
-      String CreateFile(String path);
+      string CreateFile(string path);
 
-      /// <summary>
+       /// <summary>
       /// Creates a uniquely named, zero-byte temporary file on disk and returns the full path of that file.
       /// </summary>
       /// <exception cref="IOException">
@@ -84,9 +84,9 @@
       /// <returns>
       /// The full path of the temporary file.
       /// </returns>
-      String CreateTemporaryFile();
+      string CreateTemporaryFile();
 
-      /// <summary>
+       /// <summary>
       /// Creates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.  If the specified path root exists, this method will create intermediate
       /// directories, as well as the file itself as needed.
       /// </summary>
@@ -121,9 +121,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>
-      String CreateText(String path);
+      string CreateText(string path);
 
-      /// <summary>
+       /// <summary>
       /// Deletes the specified file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -157,9 +157,9 @@
       /// <param name="path">
       /// The name of the file to be deleted. Wild-card characters are not supported.
       /// </param>
-      void DeleteFile(String path);
+      void DeleteFile(string path);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to determine whether the specified file exists.
       /// </summary>
       /// <param name="path">
@@ -171,9 +171,9 @@
       /// <p>This method also returns <c>false</c> when <paramref name="path"/> is null, an invalid path, or a zero-length string.</p>
       /// <p>This method will also return <c>false</c> when the caller does not have sufficient permissions to read the specified file.</p>
       /// </returns>
-      Boolean FileExists(String path);
+      bool FileExists(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the creation date and time of the specified file or directory.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -199,9 +199,9 @@
       /// <returns>
       /// A <see cref="DateTimeOffset"/> structure set to the creation date and time for the specified file or directory.
       /// </returns>
-      DateTimeOffset GetCreationTime(String path);
+      DateTimeOffset GetCreationTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last accessed.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -227,9 +227,9 @@
       /// <returns>
       /// A <see cref="DateTimeOffset"/> structure set to the date and time that the specified file or directory was last accessed.
       /// </returns>
-      DateTimeOffset GetLastAccessTime(String path);
+      DateTimeOffset GetLastAccessTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last written to.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -255,9 +255,9 @@
       /// <returns>
       /// A <see cref="DateTimeOffset"/> structure set to the date and time that the specified file or directory was last written to.
       /// </returns>
-      DateTimeOffset GetLastWriteTime(String path);
+      DateTimeOffset GetLastWriteTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Generates a a cryptographically strong, random string that can be used as a file name.
       /// </summary>
       /// <returns>
@@ -267,50 +267,50 @@
       /// Does not create a file.
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetRandomFileName();
+      string GetRandomFileName();
 
-      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
-      /// <summary>
-      /// Sets the date and time the file was created.
-      /// </summary>
-      /// <exception cref="FileNotFoundException">
-      /// The specified path was not found.
-      /// </exception>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
-      /// more invalid characters as defined by
-      /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
-      /// </exception>
-      /// <exception cref="ArgumentNullException">
-      /// <paramref name="path"/> is null.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or both exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="IOException">
-      /// An I/O error occurred while performing the operation.
-      /// </exception>
-      /// <exception cref="ArgumentOutOfRangeException">
-      /// <paramref name="creationTime"/> specifies a value outside the range of dates, times,
-      /// or both permitted for this operation.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// The caller does not have the required permission.
-      /// </exception>
-      /// <exception cref="NotSupportedException">
-      /// <paramref name="path"/> is in an invalid format.
-      /// </exception>
-      /// <param name="path">
-      /// The file for which to set the creation date and time information.
-      /// </param>
-      /// <param name="creationTime">
-      /// A <see cref="DateTimeOffset"/> containing the value to set for the creation date and time of
-      /// <paramref name="path"/>.
-      /// </param>
-      void SetCreationTime(String path, DateTimeOffset creationTime);
-      */
+       /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
+       /// <summary>
+       /// Sets the date and time the file was created.
+       /// </summary>
+       /// <exception cref="FileNotFoundException">
+       /// The specified path was not found.
+       /// </exception>
+       /// <exception cref="ArgumentException">
+       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
+       /// more invalid characters as defined by
+       /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
+       /// </exception>
+       /// <exception cref="ArgumentNullException">
+       /// <paramref name="path"/> is null.
+       /// </exception>
+       /// <exception cref="PathTooLongException">
+       /// The specified path, file name, or both exceed the system-defined maximum length.
+       /// </exception>
+       /// <exception cref="IOException">
+       /// An I/O error occurred while performing the operation.
+       /// </exception>
+       /// <exception cref="ArgumentOutOfRangeException">
+       /// <paramref name="creationTime"/> specifies a value outside the range of dates, times,
+       /// or both permitted for this operation.
+       /// </exception>
+       /// <exception cref="UnauthorizedAccessException">
+       /// The caller does not have the required permission.
+       /// </exception>
+       /// <exception cref="NotSupportedException">
+       /// <paramref name="path"/> is in an invalid format.
+       /// </exception>
+       /// <param name="path">
+       /// The file for which to set the creation date and time information.
+       /// </param>
+       /// <param name="creationTime">
+       /// A <see cref="DateTimeOffset"/> containing the value to set for the creation date and time of
+       /// <paramref name="path"/>.
+       /// </param>
+       void SetCreationTime(String path, DateTimeOffset creationTime);
+       */
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time the specified file was last accessed.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -344,9 +344,9 @@
       /// A <see cref="DateTimeOffset"/> containing the value to set for the last access date and time of
       /// <paramref name="path"/>. 
       /// </param>
-      void SetLastAccessTime(String path, DateTimeOffset lastAccessTime);
+      void SetLastAccessTime(string path, DateTimeOffset lastAccessTime);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time that the specified file was last written to.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -380,6 +380,6 @@
       /// A <see cref="DateTimeOffset"/> containing the value to set for the last write date and time of
       /// <paramref name="path"/>. 
       /// </param>
-      void SetLastWriteTime(String path, DateTimeOffset lastWriteTime);
+      void SetLastWriteTime(string path, DateTimeOffset lastWriteTime);
    }
 }

@@ -1,32 +1,32 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.EventArgs
 {
-   using System;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class ContainerTypeRegistrationEventArgs_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_create_an_ContainerTypeRegistrationEventArgs_using_the_container_assembly_constructor : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: ContainerTypeEventArgs (container, fromType, name, toType, instance) constructor tests";
-         private readonly Guid containerUid = Guid.NewGuid();
+          private readonly string containerName = "Isolated Test Container: ContainerTypeEventArgs (container, fromType, name, toType, instance) constructor tests";
+          private readonly Guid containerUid = Guid.NewGuid();
 
-         private IOwnedIocContainer container;
-         private Type fromType;
-         private Object instance;
-         private String name;
-         private ContainerTypeRegistrationEventArgs target;
-         private Type toType;
+          private IOwnedIocContainer container;
+          private Type fromType;
+          private object instance;
+          private string name;
+          private ContainerTypeRegistrationEventArgs target;
+          private Type toType;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             fromType = typeof(IInterface);
@@ -35,7 +35,7 @@
             toType = typeof(Implementation);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_a_null_container()
          {
@@ -111,14 +111,14 @@
       [TestClass]
       public class When_I_create_an_ContainerTypeRegistrationEventArgs_using_the_default_constructor : ArrangeActAssert
       {
-         private ContainerTypeRegistrationEventArgs target;
+          private ContainerTypeRegistrationEventArgs target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = new ContainerTypeRegistrationEventArgs();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_have_the_expected_default_values()
          {
@@ -131,11 +131,9 @@
       }
 
       private interface IInterface
-      {
-      }
+      {}
 
       private class Implementation : IInterface
-      {
-      }
+      {}
    }
 }

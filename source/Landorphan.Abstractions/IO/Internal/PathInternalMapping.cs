@@ -1,17 +1,17 @@
 namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Text;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Common;
-   using Landorphan.TestUtilities;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Common;
+    using Landorphan.TestUtilities;
 
-   /// <summary>
+    /// <summary>
    /// Performs operations on <see cref="string"/> instances that contain file or directory path information.
    /// These operations are performed in a cross-platform manner.
    /// </summary>
@@ -21,35 +21,35 @@ namespace Landorphan.Abstractions.IO.Internal
    // Unlike File and Directory, the internal mapping presents the public interface.
    internal sealed class PathInternalMapping : IPathUtilities
    {
-      private const Int32 IndexNotFound = -1;
+       private const int IndexNotFound = -1;
 
-      // skip leading @"/" or @"\"
-      private const Int32 SkipPrefixCharacters = 2;
+       // skip leading @"/" or @"\"
+       private const int SkipPrefixCharacters = 2;
 
-      private static readonly Lazy<IImmutableSet<Char>> t_invalidFileNameCharacters = new Lazy<IImmutableSet<Char>>(BuildInvalidFileNameCharacters);
-      private static readonly Lazy<IImmutableSet<Char>> t_invalidPathCharacters = new Lazy<IImmutableSet<Char>>(BuildInvalidPathCharacters);
+       private static readonly Lazy<IImmutableSet<char>> t_invalidFileNameCharacters = new Lazy<IImmutableSet<char>>(BuildInvalidFileNameCharacters);
+       private static readonly Lazy<IImmutableSet<char>> t_invalidPathCharacters = new Lazy<IImmutableSet<char>>(BuildInvalidPathCharacters);
 
-      /// <inheritdoc/>
-      public Char AltDirectorySeparatorCharacter => Path.AltDirectorySeparatorChar;
+       /// <inheritdoc/>
+      public char AltDirectorySeparatorCharacter => Path.AltDirectorySeparatorChar;
 
-      /// <inheritdoc/>
-      public String AltDirectorySeparatorString => AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
+       /// <inheritdoc/>
+      public string AltDirectorySeparatorString => AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
 
-      /// <inheritdoc/>
-      public Char DirectorySeparatorCharacter => Path.DirectorySeparatorChar;
+       /// <inheritdoc/>
+      public char DirectorySeparatorCharacter => Path.DirectorySeparatorChar;
 
-      /// <inheritdoc/>
-      public String DirectorySeparatorString => DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
+       /// <inheritdoc/>
+      public string DirectorySeparatorString => DirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture);
 
-      /// <inheritdoc/>
-      public Char PathSeparatorCharacter => Path.PathSeparator;
+       /// <inheritdoc/>
+      public char PathSeparatorCharacter => Path.PathSeparator;
 
-      /// <inheritdoc/>
-      public Char VolumeSeparatorCharacter => Path.VolumeSeparatorChar;
+       /// <inheritdoc/>
+      public char VolumeSeparatorCharacter => Path.VolumeSeparatorChar;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
-      public String ChangeExtension(String path, String extension)
+      public string ChangeExtension(string path, string extension)
       {
          // edge-case implementation choice, an extension of "   .Foo" returns a {path}.   .Foo result.
 
@@ -67,15 +67,15 @@ namespace Landorphan.Abstractions.IO.Internal
          }
          // KNOWN: path is canonically valid.
 
-         String cleanedExtension;
-         if (extension.IsNull() || extension.Length == 0 || extension.RightTrim(' ').Length == 0 || String.Equals(extension.RightTrim(' '), ".", StringComparison.Ordinal))
+         string cleanedExtension;
+         if (extension.IsNull() || extension.Length == 0 || extension.RightTrim(' ').Length == 0 || string.Equals(extension.RightTrim(' '), ".", StringComparison.Ordinal))
          {
             // an extension value of null removes the extension
             cleanedExtension = null;
          }
          else
          {
-            const Int32 indexNotFound = -1;
+            const int indexNotFound = -1;
             if (indexNotFound != extension.IndexOfAny(GetInvalidPathCharacters().ToArray()) ||
                 indexNotFound != extension.IndexOfAny(GetInvalidFileNameCharacters().ToArray()))
             {
@@ -92,17 +92,17 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (cleanedPath.Length == 0)
          {
-            return cleanedExtension ?? String.Empty;
+            return cleanedExtension ?? string.Empty;
          }
 
          // BCL implementation notes:  thrown argument exceptions have a parameter name of null.
          return Path.ChangeExtension(cleanedPath, cleanedExtension);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
-      public String Combine(params String[] paths)
+      public string Combine(params string[] paths)
       {
          // c:{additional path specification} is a path of the current directory on the c drive + specification
          // c:\{additional path specification} is a path on the c drive + specification
@@ -125,7 +125,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
             if (cleanedPath.Last() != DirectorySeparatorCharacter && cleanedPath.Last() != AltDirectorySeparatorCharacter)
             {
-               if (cleanedPath.Length == 2 && Char.IsLetter(cleanedPath[0]) && cleanedPath[1] == VolumeSeparatorCharacter)
+               if (cleanedPath.Length == 2 && char.IsLetter(cleanedPath[0]) && cleanedPath[1] == VolumeSeparatorCharacter)
                {
                   // preserve @"c:" as a result by not appending a directory separator character
                }
@@ -141,7 +141,7 @@ namespace Landorphan.Abstractions.IO.Internal
          // preserve string.Empty as result.
          if (sb.Length == 0)
          {
-            return String.Empty;
+            return string.Empty;
          }
 
          var rv = sb.ToString();
@@ -155,8 +155,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public String GetExtension(String path)
+       /// <inheritdoc/>
+      public string GetExtension(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -171,15 +171,15 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (cleanedPath.Length == 0)
          {
-            return String.Empty;
+            return string.Empty;
          }
 
          var rv = Path.GetExtension(cleanedPath);
          return rv;
       }
 
-      /// <inheritdoc/>
-      public String GetFileName(String path)
+       /// <inheritdoc/>
+      public string GetFileName(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -195,8 +195,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return Path.GetFileName(cleanedPath);
       }
 
-      /// <inheritdoc/>
-      public String GetFileNameWithoutExtension(String path)
+       /// <inheritdoc/>
+      public string GetFileNameWithoutExtension(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -212,8 +212,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return Path.GetFileNameWithoutExtension(cleanedPath);
       }
 
-      /// <inheritdoc/>
-      public String GetFullPath(String path)
+       /// <inheritdoc/>
+      public string GetFullPath(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -228,7 +228,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (cleanedPath.Length == 0)
          {
-            return String.Empty;
+            return string.Empty;
          }
 
          // BCL behavior:
@@ -239,24 +239,24 @@ namespace Landorphan.Abstractions.IO.Internal
          return Path.GetFullPath(cleanedPath);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<Char> GetInvalidFileNameCharacters()
+       /// <inheritdoc/>
+      public IImmutableSet<char> GetInvalidFileNameCharacters()
       {
          // '"', '<', '>', '|', char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011',
          // '\x0012', '\x0013', '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F', ':', '*', '?', '\\', '/'
          return t_invalidFileNameCharacters.Value;
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<Char> GetInvalidPathCharacters()
+       /// <inheritdoc/>
+      public IImmutableSet<char> GetInvalidPathCharacters()
       {
          // '|', char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011', '\x0012', '\x0013',
          // '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F' 
          return t_invalidPathCharacters.Value;
       }
 
-      /// <inheritdoc/>
-      public String GetParentPath(String path)
+       /// <inheritdoc/>
+      public string GetParentPath(string path)
       {
          // ReSharper disable CommentTypo
 
@@ -302,7 +302,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (rv != null)
          {
-            const Int32 rootDrivePathLength = 3;
+            const int rootDrivePathLength = 3;
             if (rv.Length == rootDrivePathLength && rv[1] == VolumeSeparatorCharacter)
             {
                // want to return c:\ instead of c:
@@ -322,7 +322,7 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("SonarLint.CodeSmell", "S1067: Expressions should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage(
@@ -330,7 +330,7 @@ namespace Landorphan.Abstractions.IO.Internal
          "S1871: Two branches in a conditional structure should not have exactly the same implementation",
          Justification = "The conditions are complex, combinging them would just make readability worse.")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-      public String GetRootPath(String path)
+      public string GetRootPath(string path)
       {
          // ReSharper disable CommentTypo
 
@@ -373,7 +373,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          var separators = new[] {DirectorySeparatorCharacter, AltDirectorySeparatorCharacter};
 
-         if (cleanedPath.Length > SkipPrefixCharacters && String.Equals(rv, cleanedPath, StringComparison.Ordinal))
+         if (cleanedPath.Length > SkipPrefixCharacters && string.Equals(rv, cleanedPath, StringComparison.Ordinal))
          {
             // special handling unc
             // Path.GetPathRoot(@"\\share")          returns @"\\share"
@@ -399,7 +399,7 @@ namespace Landorphan.Abstractions.IO.Internal
             }
          }
 
-         const Int32 rootDrivePathLength = 3;
+         const int rootDrivePathLength = 3;
          if (rv != null && rv.Length == rootDrivePathLength && rv[1] == VolumeSeparatorCharacter)
          {
             // want to return c:\ instead of c:
@@ -415,8 +415,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public Boolean HasExtension(String path)
+       /// <inheritdoc/>
+      public bool HasExtension(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -437,8 +437,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return Path.HasExtension(cleanedPath);
       }
 
-      /// <inheritdoc/>
-      public Boolean IsPathRelative(String path)
+       /// <inheritdoc/>
+      public bool IsPathRelative(string path)
       {
          path.ArgumentNotNull(nameof(path));
 
@@ -473,9 +473,9 @@ namespace Landorphan.Abstractions.IO.Internal
          return !Path.IsPathRooted(cleanedPath);
       }
 
-      private static IImmutableSet<Char> BuildInvalidFileNameCharacters()
+       private static IImmutableSet<char> BuildInvalidFileNameCharacters()
       {
-         var builder = ImmutableHashSet<Char>.Empty.ToBuilder();
+         var builder = ImmutableHashSet<char>.Empty.ToBuilder();
          foreach (var ch in Path.GetInvalidFileNameChars())
          {
             builder.Add(ch);
@@ -484,9 +484,9 @@ namespace Landorphan.Abstractions.IO.Internal
          return builder.ToImmutable();
       }
 
-      private static IImmutableSet<Char> BuildInvalidPathCharacters()
+       private static IImmutableSet<char> BuildInvalidPathCharacters()
       {
-         var builder = ImmutableHashSet<Char>.Empty.ToBuilder();
+         var builder = ImmutableHashSet<char>.Empty.ToBuilder();
          foreach (var ch in Path.GetInvalidPathChars())
          {
             builder.Add(ch);

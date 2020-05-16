@@ -1,17 +1,17 @@
 ﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Linq;
-   using System.Reflection;
-   using FluentAssertions;
-   using Landorphan.Common.Interfaces;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Reflection;
+    using FluentAssertions;
+    using Landorphan.Common.Interfaces;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable  InconsistentNaming
+    // ReSharper disable  InconsistentNaming
 
    /// <summary>
    /// Implements test of <see cref="IConvertsToReadOnly"/> and <see cref="IQueryReadOnly"/>
@@ -21,9 +21,9 @@
    /// </typeparam>
    public abstract class MakeReadOnlyArrangeActAssert<T> : ArrangeActAssert where T : IConvertsToReadOnly, IQueryReadOnly
    {
-      private IList<PropertyInfo> _propertyInfos;
+       private IList<PropertyInfo> _propertyInfos;
 
-      /// <summary>
+       /// <summary>
       /// Descendants should assign a value before calling the test implementation.
       /// </summary>
       /// <value>
@@ -31,7 +31,7 @@
       /// </value>
       protected abstract T Target { get; set; }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       protected override void ActMethod()
       {
          Target.MakeReadOnly();
@@ -41,7 +41,7 @@
                .ToImmutableList();
       }
 
-      /// <summary>
+       /// <summary>
       /// Asserts <see cref="IQueryReadOnly.IsReadOnly"/> is true.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
@@ -50,7 +50,7 @@
          Target.IsReadOnly.Should().BeTrue();
       }
 
-      /// <summary>
+       /// <summary>
       /// Asserts all property setters throw <see cref="NotSupportedException"/>.
       /// </summary>
       [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
@@ -59,7 +59,7 @@
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void It_Should_Throw_On_All_Property_Setters_Implementation()
       {
-         var unprotectedSetters = new List<String>();
+         var unprotectedSetters = new List<string>();
          foreach (var pi in _propertyInfos)
          {
             var propertyInfo = pi;
@@ -96,7 +96,7 @@
          unprotectedSetters.Should().BeEmpty();
       }
 
-      private Object GetDefaultValue(PropertyInfo pi)
+       private object GetDefaultValue(PropertyInfo pi)
       {
          return pi.PropertyType.IsValueType ? Activator.CreateInstance(pi.PropertyType) : null;
       }

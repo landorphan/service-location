@@ -1,24 +1,24 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation
 {
-   using System;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class IocServiceLocator_IIocServiceLocatorManager_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_IIocServiceLocatorManager : ArrangeActAssert
       {
-         private IIocContainer childContainer;
-         private IIocServiceLocatorManager target;
-         private IIocServiceLocator targetInstance;
+          private IIocContainer childContainer;
+          private IIocServiceLocatorManager target;
+          private IIocServiceLocator targetInstance;
 
-         protected override void TeardownTestMethod()
+          protected override void TeardownTestMethod()
          {
             IocServiceLocator.Instance.Manager.RootContainer.Registrar.Unregister<IMyService>();
             IocServiceLocator.Instance.Manager.RootContainer.Manager.RemovePrecludedType(typeof(IPrecludedService));
@@ -27,7 +27,7 @@
             base.TeardownTestMethod();
          }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             targetInstance = IocServiceLocator.Instance;
             target = targetInstance.Manager;
@@ -38,11 +38,11 @@
             IocServiceLocator.Instance.Manager.RootContainer.Manager.AddPrecludedType(typeof(IPrecludedService));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_me_to_set_the_ambient_container()
          {
-            Object actualSender = null;
+            object actualSender = null;
             System.EventArgs actualEventArgs = null;
             var eh = new EventHandler<System.EventArgs>(
                (o, e) =>
@@ -87,16 +87,15 @@
 
       private interface IMyService
       {
-         Guid GetUid();
+          Guid GetUid();
       }
 
       private interface IPrecludedService
-      {
-      }
+      {}
 
       private class MyService : IMyService
       {
-         public Guid GetUid()
+          public Guid GetUid()
          {
             return Guid.NewGuid();
          }

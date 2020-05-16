@@ -1,30 +1,30 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal
 {
-   using System;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable StringLiteralTypo
    // ReSharper disable CommentTypo
 
    public static class IOStringUtilities_Tests
    {
-      private const String Spaces = "   ";
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private const string Spaces = "   ";
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_IOStringUtilities_ConditionallyTrimSpaceFromPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_has_leading_or_trailing_spaces_it_should_trim_appropriately()
          {
@@ -73,7 +73,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_empty_it_should_return_empty()
          {
-            IOStringUtilities.ConditionallyTrimSpaceFromPath(String.Empty).Should().Be(String.Empty);
+            IOStringUtilities.ConditionallyTrimSpaceFromPath(string.Empty).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -87,7 +87,7 @@
       [TestClass]
       public class When_I_call_IOStringUtilities_DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_a_colon_after_the_drive_label_colon_It_should_return_true()
          {
@@ -143,7 +143,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_empty_It_should_return_false()
          {
-            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(String.Empty).Should().BeFalse();
+            IOStringUtilities.DoesPathContainsVolumeSeparatorCharacterThatIsNotPartOfTheDriveLabel(string.Empty).Should().BeFalse();
          }
 
          [TestMethod]
@@ -165,7 +165,7 @@
       [TestClass]
       public class When_I_call_IOStringUtilities_RemoveOneTrailingDirectorySeparatorCharacter : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_not_have_a_SepChar_It_should_return_path()
          {
@@ -237,7 +237,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_empty_It_should_return_empty()
          {
-            var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(String.Empty);
+            var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(string.Empty);
             actual.Length.Should().Be(0);
          }
 
@@ -253,7 +253,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_spaces_It_should_return_spaces()
          {
-            const String expected = "  ";
+            const string expected = "  ";
             var actual = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(expected);
             actual.Should().Be(expected);
          }
@@ -262,7 +262,7 @@
       [TestClass]
       public class When_I_call_IOStringUtilities_StandardizeDirectorySeparatorCharacters : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_does_not_have_mixed_separator_characters_it_should_return_path()
          {
@@ -304,7 +304,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_empty_it_should_return_empty()
          {
-            IOStringUtilities.StandardizeDirectorySeparatorCharacters(String.Empty).Should().Be(String.Empty);
+            IOStringUtilities.StandardizeDirectorySeparatorCharacters(string.Empty).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -320,7 +320,7 @@
       [TestClass]
       public class When_I_call_IOStringUtilities_ValidateCanonicalPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_contains_a_colon_character_which_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
@@ -333,7 +333,7 @@
             // usually c:\
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
-            const String argName = "testArg";
+            const string argName = "testArg";
             var directoryPath = drive + "Any : Folder";
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -354,7 +354,7 @@
             // usually c:\
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
-            const String argName = "testArg";
+            const string argName = "testArg";
             var directoryPath = drive + "|";
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -395,8 +395,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_empty_It_should_throw_ArgumentException()
          {
-            const String argName = "testArg";
-            var directoryPath = String.Empty;
+            const string argName = "testArg";
+            var directoryPath = string.Empty;
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be(argName);
@@ -407,8 +407,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_not_rooted_with_leading_spaces_It_should_leave_the_leading_spaces()
          {
-            const String argName = "testArg";
-            const String directoryPath = @"   windows   ";
+            const string argName = "testArg";
+            const string directoryPath = @"   windows   ";
             var actual = IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             actual.Should().Be(directoryPath.TrimEnd());
          }
@@ -417,8 +417,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String argName = "testArg";
-            const String directoryPath = null;
+            const string argName = "testArg";
+            const string directoryPath = null;
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
             e.And.ParamName.Should().Be(argName);
@@ -449,7 +449,7 @@
             // usually c:\
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
 
-            const String argName = "testArg";
+            const string argName = "testArg";
             var directoryPath = @"   " + drive + "windows   ";
             var actual = IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             actual.Should().Be(directoryPath.Trim());
@@ -459,8 +459,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            const String argName = "testArg";
-            var directoryPath = new String('A', TestHardCodes.PathAlwaysTooLong);
+            const string argName = "testArg";
+            var directoryPath = new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -472,8 +472,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String argName = "testArg";
-            const String directoryPath = Spaces;
+            const string argName = "testArg";
+            const string directoryPath = Spaces;
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be(argName);
@@ -485,8 +485,8 @@
          [RunTestOnlyOnWindows]
          public void And_path_starts_with_a_colon_character_It_should_throw_ArgumentException()
          {
-            const String argName = "testArg";
-            const String directoryPath = @":abcdef";
+            const string argName = "testArg";
+            const string directoryPath = @":abcdef";
             Action throwingAction = () => IOStringUtilities.ValidateCanonicalPath(directoryPath, argName);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be(argName);

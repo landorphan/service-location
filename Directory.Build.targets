@@ -52,10 +52,6 @@
        <CodeAnalysisRuleSet>Test.NetFx.FxCop.15.0.WithSonarLint.ruleset</CodeAnalysisRuleSet>
      </PropertyGroup>
 
-  <ItemGroup Condition="'$(IsTestProject)' == 'True' AND '$(HasTestFramework)' != 'False'">
-    <Compile Include="$(MSBuildThisFileDirectory)\Landorphan.Tests.Architecture.cs" />
-  </ItemGroup>
-
    <Target Name="ValidateAndReportCodeAnalysis"
            BeforeTargets="CoreCompile">
       <Message Text="Running ValidateAndReportCodeAnalysis Target" />

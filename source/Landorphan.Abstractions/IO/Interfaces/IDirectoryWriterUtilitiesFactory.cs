@@ -5,7 +5,7 @@
    /// </summary>
    public interface IDirectoryWriterUtilitiesFactory
    {
-      /// <summary>
+       /// <summary>
       /// Creates a <see cref="IDirectoryWriterUtilities"/> instance.
       /// </summary>
       /// <returns>

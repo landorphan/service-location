@@ -1,54 +1,54 @@
 ﻿namespace Landorphan.Abstractions.Internal
 {
-   using System;
-   using System.Diagnostics;
-   using System.Globalization;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Common;
+    using System;
+    using System.Diagnostics;
+    using System.Globalization;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Common;
 
-   /// <summary>
+    /// <summary>
    /// Default implementation of <see cref="IEnvironmentVariable"/>
    /// </summary>
    [DebuggerDisplay("{Name}={Value}")]
    internal sealed class EnvironmentVariable : IEnvironmentVariable
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="EnvironmentVariable"/> class.
       /// </summary>
       /// <param name="name"> The name. </param>
       /// <param name="value"> The value. </param>
-      public EnvironmentVariable(String name, String value)
+      public EnvironmentVariable(string name, string value)
       {
          Name = name.TrimNullToEmpty();
          Value = value.TrimNullToNull();
       }
 
-      /// <inheritdoc/>
-      public String Name { get; }
+       /// <inheritdoc/>
+      public string Name { get; }
 
-      /// <inheritdoc/>
-      public String Value { get; }
+       /// <inheritdoc/>
+      public string Value { get; }
 
-      /// <inheritdoc/>
-      public Boolean Equals(IEnvironmentVariable other)
+       /// <inheritdoc/>
+      public bool Equals(IEnvironmentVariable other)
       {
          if (ReferenceEquals(null, other))
          {
             return false;
          }
 
-         return String.Equals(Name, other.Name.TrimNullToEmpty(), StringComparison.OrdinalIgnoreCase) &&
-                String.Equals(Value, other.Value.TrimNullToNull(), StringComparison.OrdinalIgnoreCase);
+         return string.Equals(Name, other.Name.TrimNullToEmpty(), StringComparison.OrdinalIgnoreCase) &&
+                string.Equals(Value, other.Value.TrimNullToNull(), StringComparison.OrdinalIgnoreCase);
       }
 
-      /// <inheritdoc/>
-      public override Boolean Equals(Object obj)
+       /// <inheritdoc/>
+      public override bool Equals(object obj)
       {
          return Equals(obj as IEnvironmentVariable);
       }
 
-      /// <inheritdoc/>
-      public override Int32 GetHashCode()
+       /// <inheritdoc/>
+      public override int GetHashCode()
       {
          unchecked
          {
@@ -57,10 +57,10 @@
          }
       }
 
-      /// <inheritdoc/>
-      public override String ToString()
+       /// <inheritdoc/>
+      public override string ToString()
       {
-         return String.Format(CultureInfo.InvariantCulture, "Name: {0}, Value: {1}", Name, Value ?? String.Empty);
+         return string.Format(CultureInfo.InvariantCulture, "Name: {0}, Value: {1}", Name, Value ?? string.Empty);
       }
    }
 }

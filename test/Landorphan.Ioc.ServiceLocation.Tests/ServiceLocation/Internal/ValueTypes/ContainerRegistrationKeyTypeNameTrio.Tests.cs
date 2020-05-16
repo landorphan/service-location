@@ -1,48 +1,48 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal.ValueTypes
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.Ioc.Tests.Mocks;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.Ioc.Tests.Mocks;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable ObjectCreationAsStatement
 
    public static class ContainerRegistrationKeyTypeNameTrio_Tests
    {
-      private const String Whitespace = " \t ";
+       private const string Whitespace = " \t ";
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_ContainerRegistrationKeyTypeNameTrio_Clone : CloneableArrangeActAssert<IContainerRegistrationKey>
       {
-         private const String containerName = "Mocking Container";
+          private const string containerName = "Mocking Container";
 
-         private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
-         private readonly String registeredName = Guid.NewGuid().ToString("D");
-         private readonly Type registeredType = typeof(IInterface);
+          private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
+          private readonly string registeredName = Guid.NewGuid().ToString("D");
+          private readonly Type registeredType = typeof(IInterface);
 
-         private Object actualObject;
+          private object actualObject;
 
-         protected override IContainerRegistrationKey Target { get; set; }
+          protected override IContainerRegistrationKey Target { get; set; }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             var obj = new ContainerRegistrationKeyTypeNameTrio(container, registeredType, registeredName);
             Target = obj;
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actualObject = Target.Clone();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_Should_Clone_Correctly()
          {
@@ -71,14 +71,14 @@
       [TestClass]
       public class When_I_create_an_ContainerRegistrationKeyTypeNameTrio_using_the_default_constructor : ArrangeActAssert
       {
-         private ContainerRegistrationKeyTypeNameTrio target;
+          private ContainerRegistrationKeyTypeNameTrio target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = new ContainerRegistrationKeyTypeNameTrio();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_be_empty()
          {
@@ -135,7 +135,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_equal_null()
          {
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
             target.Equals((IContainerRegistrationKey)null).Should().BeFalse();
          }
@@ -144,16 +144,16 @@
       [TestClass]
       public class When_I_create_an_ContainerRegistrationKeyTypeNameTrio_using_the_type_constructor : ArrangeActAssert
       {
-         private const String containerName = "Mocking Container";
+          private const string containerName = "Mocking Container";
 
-         private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
+          private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_be_equivalent_when_comparing_itself_when_I_IComparable_CompareTo()
          {
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface));
-            Object o = target;
+            object o = target;
             ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
@@ -171,7 +171,7 @@
          {
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass));
             target.RegisteredType.Should().Be<AbstractClass>();
-            target.RegisteredName.Should().Be(String.Empty);
+            target.RegisteredName.Should().Be(string.Empty);
             target.IsEmpty.Should().BeFalse();
             target.Equals(ContainerRegistrationKeyTypeNameTrio.Empty).Should().BeFalse();
          }
@@ -182,7 +182,7 @@
          {
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface));
             target.RegisteredType.Should().Be<IInterface>();
-            target.RegisteredName.Should().Be(String.Empty);
+            target.RegisteredName.Should().Be(string.Empty);
             target.IsEmpty.Should().BeFalse();
             target.Equals(ContainerRegistrationKeyTypeNameTrio.Empty).Should().BeFalse();
          }
@@ -269,7 +269,7 @@
          public void It_should_not_equal_null()
          {
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass));
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
             target.Equals((IContainerRegistrationKey)null).Should().BeFalse();
          }
@@ -309,7 +309,7 @@
          {
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface));
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -318,11 +318,11 @@
       [TestClass]
       public class When_I_create_an_ContainerRegistrationKeyTypeNameTrio_using_the_type_name_constructor : ArrangeActAssert
       {
-         private const String containerName = "Mocking Container";
+          private const string containerName = "Mocking Container";
 
-         private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
+          private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_an_abstract_class()
          {
@@ -352,7 +352,7 @@
          {
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface), null);
             target.RegisteredType.Should().Be<IInterface>();
-            target.RegisteredName.Should().Be(String.Empty);
+            target.RegisteredName.Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -452,7 +452,7 @@
          {
             var name = Guid.NewGuid().ToString("D");
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass), name);
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
             target.Equals((IContainerRegistrationKey)null).Should().BeFalse();
          }
@@ -495,7 +495,7 @@
             var name = Guid.NewGuid().ToString("D");
             var target = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface), name);
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -514,36 +514,36 @@
       [TestClass]
       public class When_I_use_operators_on_ContainerRegistrationKeyTypeNameTrio : ArrangeActAssert
       {
-         private const String containerName = "Mocking Container";
+          private const string containerName = "Mocking Container";
 
-         private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
+          private readonly IIocContainerMetaIdentity container = new MockContainerImplementingIIocContainerMetaIdentity(containerName, Guid.NewGuid());
 
-         private ContainerRegistrationKeyTypeNameTrio abstractTypeEmptyName;
-         private ContainerRegistrationKeyTypeNameTrio abstractTypeNameA;
-         private ContainerRegistrationKeyTypeNameTrio abstractTypeNameZ;
-         private ContainerRegistrationKeyTypeNameTrio abstractTypeNoName;
-         private ContainerRegistrationKeyTypeNameTrio emptyEquivalent;
-         private ContainerRegistrationKeyTypeNameTrio interfaceTypeEmptyName;
-         private ContainerRegistrationKeyTypeNameTrio interfaceTypeNameA;
-         private ContainerRegistrationKeyTypeNameTrio interfaceTypeNameZ;
-         private ContainerRegistrationKeyTypeNameTrio interfaceTypeNoName;
+          private ContainerRegistrationKeyTypeNameTrio abstractTypeEmptyName;
+          private ContainerRegistrationKeyTypeNameTrio abstractTypeNameA;
+          private ContainerRegistrationKeyTypeNameTrio abstractTypeNameZ;
+          private ContainerRegistrationKeyTypeNameTrio abstractTypeNoName;
+          private ContainerRegistrationKeyTypeNameTrio emptyEquivalent;
+          private ContainerRegistrationKeyTypeNameTrio interfaceTypeEmptyName;
+          private ContainerRegistrationKeyTypeNameTrio interfaceTypeNameA;
+          private ContainerRegistrationKeyTypeNameTrio interfaceTypeNameZ;
+          private ContainerRegistrationKeyTypeNameTrio interfaceTypeNoName;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
-            abstractTypeEmptyName = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass), String.Empty);
+            abstractTypeEmptyName = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass), string.Empty);
             abstractTypeNameA = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass), "A");
             abstractTypeNameZ = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass), "Z");
             abstractTypeNoName = new ContainerRegistrationKeyTypeNameTrio(container, typeof(AbstractClass));
 
             emptyEquivalent = new ContainerRegistrationKeyTypeNameTrio();
 
-            interfaceTypeEmptyName = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface), String.Empty);
+            interfaceTypeEmptyName = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface), string.Empty);
             interfaceTypeNameA = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface), "A");
             interfaceTypeNameZ = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface), "Z");
             interfaceTypeNoName = new ContainerRegistrationKeyTypeNameTrio(container, typeof(IInterface));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [SuppressMessage("Compiler.Warning", "CS1718: Comparison made to same variable", Justification = "Intended (MWP)")]
          [SuppressMessage("SonarLint.CodeSmell", "S1764: Identical expressions should not be used on both sides of a binary operator", Justification = "Intended (MWP)")]
@@ -947,19 +947,15 @@
       }
 
       private abstract class AbstractClass
-      {
-      }
+      {}
 
       private sealed class ConcreteClass
-      {
-      }
+      {}
 
       private interface IAnotherInterface
-      {
-      }
+      {}
 
       private interface IInterface
-      {
-      }
+      {}
    }
 }

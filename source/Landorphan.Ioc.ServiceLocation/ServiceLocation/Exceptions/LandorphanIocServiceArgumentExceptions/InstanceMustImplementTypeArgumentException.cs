@@ -1,37 +1,37 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when an instance argument does not implement a required interface or abstract type.
    /// </summary>
    [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
    public sealed class InstanceMustImplementTypeArgumentException : LandorphanIocServiceLocationArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="InstanceMustImplementTypeArgumentException"/> class.
       /// </summary>
       public InstanceMustImplementTypeArgumentException() : this(null, null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="InstanceMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="message">
       /// The error message that explains the reason for the exception.
       /// </param>
-      public InstanceMustImplementTypeArgumentException(String message) : this(null, null, null, message, null)
+      public InstanceMustImplementTypeArgumentException(string message) : this(null, null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="InstanceMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -40,12 +40,12 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public InstanceMustImplementTypeArgumentException(String message, Exception innerException)
+      public InstanceMustImplementTypeArgumentException(string message, Exception innerException)
          : this(null, null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="InstanceMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="fromType">
@@ -57,12 +57,12 @@
       /// <param name="paramName">
       /// The name of the parameter that gave rise to this exception.
       /// </param>
-      public InstanceMustImplementTypeArgumentException(Type fromType, Object instance, String paramName)
+      public InstanceMustImplementTypeArgumentException(Type fromType, object instance, string paramName)
          : this(fromType, instance, paramName, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="InstanceMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="fromType">
@@ -82,16 +82,16 @@
       /// </param>
       public InstanceMustImplementTypeArgumentException(
          Type fromType,
-         Object instance,
-         String paramName,
-         String message,
+         object instance,
+         string paramName,
+         string message,
          Exception innerException) : base(paramName, NullToDefaultMessage(fromType, instance, paramName, message), innerException)
       {
          FromType = fromType;
          Instance = instance;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="InstanceMustImplementTypeArgumentException"/> class.
       /// </summary>
       /// <param name="info">
@@ -103,11 +103,11 @@
       // ReSharper disable once UnusedMember.Local
       private InstanceMustImplementTypeArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
-         Instance = info.GetValue("instance", typeof(Object));
+         Instance = info.GetValue("instance", typeof(object));
          FromType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -117,26 +117,26 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the required interface or abstract type.
       /// </summary>
       public Type FromType { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the instance that gave rise to this exception.
       /// </summary>
-      public Object Instance { get; }
+      public object Instance { get; }
 
-      private static String NullToDefaultMessage(Type fromType, Object instance, String paramName, String message)
+       private static string NullToDefaultMessage(Type fromType, object instance, string paramName, string message)
       {
          var cleanedFromType = fromType == null ? StringResources.NullReplacementValue : fromType.FullName;
          var cleanedInstanceType = instance == null ? StringResources.NullReplacementValue : instance.GetType().FullName;
          var cleanedParamName = paramName.TrimNullToEmpty();
          var paramNameSuffix = cleanedParamName.Length == 0
             ? StringResources.ArgumentExceptionNoParamNameSuffix
-            : String.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
+            : string.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.InstanceMustImplementTypeArgumentExceptionDefaultMessageFmt,
                      cleanedFromType,

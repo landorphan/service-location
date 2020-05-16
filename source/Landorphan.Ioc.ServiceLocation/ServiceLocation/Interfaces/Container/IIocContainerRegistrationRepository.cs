@@ -1,8 +1,8 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System.Collections.Immutable;
+    using System.Collections.Immutable;
 
-   /// <summary>
+    /// <summary>
    /// Represents the collection of registrations in a <see cref="IIocContainer"/>.
    /// </summary>
    /// <remarks>
@@ -11,7 +11,7 @@
    /// <seealso cref="IIocContainerMetaIdentity"/>
    public interface IIocContainerRegistrationRepository : IIocContainerMetaSharedCapacities
    {
-      /// <summary>
+       /// <summary>
       /// Gets the service location registrations for the container.
       /// </summary>
       /// <value>

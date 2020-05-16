@@ -1,26 +1,26 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.Directory
 {
-   using System;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class DirectoryInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_DirectoryInternalMapping_SetLastAccessTime : TestBase
       {
 #pragma warning disable CS0618 // Type or member is obsolete
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_lastAccessTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
          {
@@ -100,7 +100,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -113,7 +113,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -144,7 +144,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -157,7 +157,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -194,7 +194,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastAccessTime(path, value);
@@ -207,7 +207,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -265,7 +265,7 @@
       public class When_I_call_DirectoryInternalMapping_SetLastWriteTime : TestBase
       {
 #pragma warning disable CS0618 // Type or member is obsolete
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_lastWriteTime_is_greater_than_maximum_It_should_throw_ArgumentOutOfRangeException()
          {
@@ -345,7 +345,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -358,7 +358,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -389,7 +389,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -402,7 +402,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -439,7 +439,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
             var value = new DateTimeOffset(DateTimeOffset.UtcNow.Ticks, TimeSpan.Zero);
 
             Action throwingAction = () => _target.SetLastWriteTime(path, value);
@@ -452,7 +452,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -508,7 +508,7 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_TestHookPathContainsUnmappedDrive : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_contains_no_colon_characters_It_should_return_false()
          {
@@ -526,7 +526,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_return_false()
          {
-            DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(String.Empty).Should().BeFalse();
+            DirectoryInternalMapping.TestHookPathContainsUnmappedDrive(string.Empty).Should().BeFalse();
          }
 
          [TestMethod]
@@ -570,14 +570,14 @@
       [TestClass]
       public class When_I_service_locate_IDirectoryInternalMapping : ArrangeActAssert
       {
-         private IDirectoryInternalMapping actual;
+          private IDirectoryInternalMapping actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IDirectoryInternalMapping>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_DirectoryInternalMapping()
          {

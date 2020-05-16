@@ -12,7 +12,7 @@
    /// </remarks>
    public interface IIocServiceLocatorMetaSharedCapacities
    {
-      /// <summary>
+       /// <summary>
       /// Gets the manager of the service locator.
       /// </summary>
       /// <value>
@@ -23,7 +23,7 @@
       /// </remarks>
       IIocServiceLocatorManager Manager { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the service locator.
       /// </summary>
       /// <value>

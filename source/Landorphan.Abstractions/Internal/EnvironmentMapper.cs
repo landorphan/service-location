@@ -1,15 +1,15 @@
 ﻿namespace Landorphan.Abstractions.Internal
 {
-   using System;
-   using System.Collections;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Linq;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Common;
-   using Landorphan.Common.Exceptions;
+    using System;
+    using System.Collections;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Common;
+    using Landorphan.Common.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Provides information about, and means to manipulate, the current environment and platform.
    /// </summary>
    /// <remarks>
@@ -17,112 +17,112 @@
    /// </remarks>
    internal sealed class EnvironmentInternalMapping : IEnvironmentUtilities
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public Version ClrVersion => Environment.Version;
 
-      /// <inheritdoc/>
-      public String CommandLine => Environment.CommandLine;
+       /// <inheritdoc/>
+      public string CommandLine => Environment.CommandLine;
 
-      /// <inheritdoc/>
-      public Int32 CurrentManagedThreadId => Environment.CurrentManagedThreadId;
+       /// <inheritdoc/>
+      public int CurrentManagedThreadId => Environment.CurrentManagedThreadId;
 
-      /// <inheritdoc/>
-      public Int32 ElapsedSinceSystemStartupMS => Environment.TickCount;
+       /// <inheritdoc/>
+      public int ElapsedSinceSystemStartupMS => Environment.TickCount;
 
-      /// <inheritdoc/>
-      public Int32 ExitCode
+       /// <inheritdoc/>
+      public int ExitCode
       {
          get => Environment.ExitCode;
          set => Environment.ExitCode = value;
       }
 
-      /// <inheritdoc/>
-      public Boolean HasShutdownStarted => Environment.HasShutdownStarted;
+       /// <inheritdoc/>
+      public bool HasShutdownStarted => Environment.HasShutdownStarted;
 
-      /// <inheritdoc/>
-      public Boolean Is64BitOperatingSystem => Environment.Is64BitOperatingSystem;
+       /// <inheritdoc/>
+      public bool Is64BitOperatingSystem => Environment.Is64BitOperatingSystem;
 
-      /// <inheritdoc/>
-      public Boolean Is64BitProcess => Environment.Is64BitProcess;
+       /// <inheritdoc/>
+      public bool Is64BitProcess => Environment.Is64BitProcess;
 
-      /// <inheritdoc/>
-      public String MachineName => Environment.MachineName;
+       /// <inheritdoc/>
+      public string MachineName => Environment.MachineName;
 
-      /// <inheritdoc/>
-      public String NewLine => Environment.NewLine;
+       /// <inheritdoc/>
+      public string NewLine => Environment.NewLine;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public OperatingSystem OSVersion => Environment.OSVersion;
 
-      /// <inheritdoc/>
-      public Int32 ProcessorCount => Environment.ProcessorCount;
+       /// <inheritdoc/>
+      public int ProcessorCount => Environment.ProcessorCount;
 
-      /// <inheritdoc/>
-      public String StackTrace => Environment.StackTrace;
+       /// <inheritdoc/>
+      public string StackTrace => Environment.StackTrace;
 
-      /// <inheritdoc/>
-      public String SystemDirectory => Environment.SystemDirectory;
+       /// <inheritdoc/>
+      public string SystemDirectory => Environment.SystemDirectory;
 
-      /// <inheritdoc/>
-      public Int32 SystemPageSizeBytes => Environment.SystemPageSize;
+       /// <inheritdoc/>
+      public int SystemPageSizeBytes => Environment.SystemPageSize;
 
-      /// <inheritdoc/>
-      public String UserDomainName => Environment.UserDomainName;
+       /// <inheritdoc/>
+      public string UserDomainName => Environment.UserDomainName;
 
-      /// <inheritdoc/>
-      public Boolean UserInteractive => Environment.UserInteractive;
+       /// <inheritdoc/>
+      public bool UserInteractive => Environment.UserInteractive;
 
-      /// <inheritdoc/>
-      public String UserName => Environment.UserName;
+       /// <inheritdoc/>
+      public string UserName => Environment.UserName;
 
-      /// <inheritdoc/>
-      public Int64 WorkingSetBytes => Environment.WorkingSet;
+       /// <inheritdoc/>
+      public long WorkingSetBytes => Environment.WorkingSet;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("SonarLint.CodeSmell", "S1147: Exit methods should not be called")]
-      public void Exit(Int32 exitCode)
+      public void Exit(int exitCode)
       {
          Environment.Exit(exitCode);
       }
 
-      /// <inheritdoc/>
-      public String ExpandEnvironmentVariables(String name)
+       /// <inheritdoc/>
+      public string ExpandEnvironmentVariables(string name)
       {
          return Environment.ExpandEnvironmentVariables(name);
       }
 
-      /// <inheritdoc/>
-      public void FailFast(String message)
+       /// <inheritdoc/>
+      public void FailFast(string message)
       {
          Environment.FailFast(message);
       }
 
-      /// <inheritdoc/>
-      public void FailFast(String message, Exception exception)
+       /// <inheritdoc/>
+      public void FailFast(string message, Exception exception)
       {
          Environment.FailFast(message, exception);
       }
 
-      /// <inheritdoc/>
-      public String[] GetCommandLineArgs()
+       /// <inheritdoc/>
+      public string[] GetCommandLineArgs()
       {
          return Environment.GetCommandLineArgs();
       }
 
-      /// <inheritdoc/>
-      public String GetEnvironmentVariable(String variable)
+       /// <inheritdoc/>
+      public string GetEnvironmentVariable(string variable)
       {
          variable.ArgumentNotNull(nameof(variable));
 
          return Environment.GetEnvironmentVariable(variable.Trim());
       }
 
-      /// <inheritdoc/>
-      public String GetEnvironmentVariable(String variable, EnvironmentVariableTarget target)
+       /// <inheritdoc/>
+      public string GetEnvironmentVariable(string variable, EnvironmentVariableTarget target)
       {
          if (!Enum.IsDefined(typeof(EnvironmentVariableTarget), target))
          {
-            throw new ExtendedInvalidEnumArgumentException(nameof(target), (Int64)target, typeof(EnvironmentVariableTarget));
+            throw new ExtendedInvalidEnumArgumentException(nameof(target), (long)target, typeof(EnvironmentVariableTarget));
          }
 
          variable.ArgumentNotNull(nameof(variable));
@@ -130,7 +130,7 @@
          return Environment.GetEnvironmentVariable(variable.Trim(), target);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IImmutableSet<IEnvironmentVariable> GetEnvironmentVariables()
       {
          var builder = ImmutableHashSet<IEnvironmentVariable>.Empty.ToBuilder();
@@ -144,12 +144,12 @@
          return builder.ToImmutable();
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IImmutableSet<IEnvironmentVariable> GetEnvironmentVariables(EnvironmentVariableTarget target)
       {
          if (!Enum.IsDefined(typeof(EnvironmentVariableTarget), target))
          {
-            throw new ExtendedInvalidEnumArgumentException(nameof(target), (Int64)target, typeof(EnvironmentVariableTarget));
+            throw new ExtendedInvalidEnumArgumentException(nameof(target), (long)target, typeof(EnvironmentVariableTarget));
          }
 
          var builder = ImmutableHashSet<IEnvironmentVariable>.Empty.ToBuilder();
@@ -163,36 +163,36 @@
          return builder.ToImmutable();
       }
 
-      /// <inheritdoc/>
-      public String[] GetLogicalDrives()
+       /// <inheritdoc/>
+      public string[] GetLogicalDrives()
       {
          return Environment.GetLogicalDrives();
       }
 
-      /// <inheritdoc/>
-      public String GetSpecialFolderPath(Environment.SpecialFolder specialFolder)
+       /// <inheritdoc/>
+      public string GetSpecialFolderPath(Environment.SpecialFolder specialFolder)
       {
          return GetSpecialFolderPath(specialFolder, Environment.SpecialFolderOption.None);
       }
 
-      /// <inheritdoc/>
-      public String GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option)
+       /// <inheritdoc/>
+      public string GetSpecialFolderPath(Environment.SpecialFolder specialFolder, Environment.SpecialFolderOption option)
       {
          if (!Enum.IsDefined(typeof(Environment.SpecialFolder), specialFolder))
          {
-            throw new ExtendedInvalidEnumArgumentException(nameof(specialFolder), (Int64)specialFolder, typeof(Environment.SpecialFolder));
+            throw new ExtendedInvalidEnumArgumentException(nameof(specialFolder), (long)specialFolder, typeof(Environment.SpecialFolder));
          }
 
          if (!Enum.IsDefined(typeof(Environment.SpecialFolderOption), option))
          {
-            throw new ExtendedInvalidEnumArgumentException(nameof(option), (Int64)option, typeof(Environment.SpecialFolderOption));
+            throw new ExtendedInvalidEnumArgumentException(nameof(option), (long)option, typeof(Environment.SpecialFolderOption));
          }
 
          return Environment.GetFolderPath(specialFolder, option);
       }
 
-      /// <inheritdoc/>
-      public void SetEnvironmentVariable(String variable, String value)
+       /// <inheritdoc/>
+      public void SetEnvironmentVariable(string variable, string value)
       {
          variable.ArgumentNotNull(nameof(variable));
          variable = variable.Trim();
@@ -200,8 +200,8 @@
          Environment.SetEnvironmentVariable(variable, value);
       }
 
-      /// <inheritdoc/>
-      public void SetEnvironmentVariable(String variable, String value, EnvironmentVariableTarget target)
+       /// <inheritdoc/>
+      public void SetEnvironmentVariable(string variable, string value, EnvironmentVariableTarget target)
       {
          variable.ArgumentNotNull(nameof(variable));
          variable = variable.Trim();

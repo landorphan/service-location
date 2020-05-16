@@ -1,20 +1,20 @@
 ﻿namespace Landorphan.Abstractions.Tests.Architecture
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Reflection;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Reflection;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    [TestClass]
    public class Exception_Tests : ExceptionValidityRequirements
    {
-      [TestMethod]
+       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable()
       {
@@ -90,9 +90,9 @@
          return TestAssemblyInitializeCleanup.AssembliesUnderTest;
       }
 
-      protected override Boolean GetDefaultValueForParameterType(Type parameterType, out Object defaultValue)
+      protected override bool GetDefaultValueForParameterType(Type parameterType, out object defaultValue)
       {
-         defaultValue = new Object();
+         defaultValue = new object();
          return false;
       }
    }

@@ -1,23 +1,23 @@
 ﻿namespace Landorphan.Abstractions.Tests.Internal.Environment
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class EnvironmentVariable_Tests
    {
-      private const String Whitespace = " \t ";
+       private const string Whitespace = " \t ";
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_EnvironmentVariable_ToString : ArrangeActAssert
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_convert_as_expected()
          {
@@ -25,12 +25,12 @@
             var name = "myName";
             var value = "1";
             var target = new EnvironmentVariable(name, value);
-            target.ToString().Should().Be(String.Format(CultureInfo.InvariantCulture, "Name: {0}, Value: {1}", name, value));
+            target.ToString().Should().Be(string.Format(CultureInfo.InvariantCulture, "Name: {0}, Value: {1}", name, value));
 
             name = "Another Name";
             value = null;
             target = new EnvironmentVariable(name, value);
-            target.ToString().Should().Be(String.Format(CultureInfo.InvariantCulture, "Name: {0}, Value: {1}", name, String.Empty));
+            target.ToString().Should().Be(string.Format(CultureInfo.InvariantCulture, "Name: {0}, Value: {1}", name, string.Empty));
 
             // ReSharper restore ExpressionIsAlwaysNull
          }
@@ -39,7 +39,7 @@
       [TestClass]
       public class When_I_compare_for_EnvironmentVariable_for_equality : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_distinguish_dissimilar_instances()
          {
@@ -47,8 +47,8 @@
             var first = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
             var second = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
             EnvironmentVariable third = null;
-            Object fourth = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
-            var obj = new Object();
+            object fourth = new EnvironmentVariable(Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), null);
+            var obj = new object();
 
             first.Equals(second).Should().BeFalse();
             second.Equals(first).Should().BeFalse();
@@ -91,8 +91,8 @@
          {
             var name = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var first = new EnvironmentVariable(name.ToUpperInvariant(), String.Empty);
-            var second = new EnvironmentVariable(name.ToLowerInvariant(), String.Empty);
+            var first = new EnvironmentVariable(name.ToUpperInvariant(), string.Empty);
+            var second = new EnvironmentVariable(name.ToLowerInvariant(), string.Empty);
 
             first.Equals(second).Should().BeTrue();
             second.Equals(first).Should().BeTrue();
@@ -106,12 +106,12 @@
       [TestClass]
       public class When_I_construct_an_EnvironmentVariable : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_null_values()
          {
             var expectedName = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-            String expectedValue = null;
+            string expectedValue = null;
 
             // ReSharper disable once ExpressionIsAlwaysNull
             var actual = new EnvironmentVariable(expectedName, expectedValue);
@@ -123,7 +123,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_coalesce_names_to_empty()
          {
-            var expectedName = String.Empty;
+            var expectedName = string.Empty;
             var expectedValue = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
             var actual = new EnvironmentVariable(null, expectedValue);

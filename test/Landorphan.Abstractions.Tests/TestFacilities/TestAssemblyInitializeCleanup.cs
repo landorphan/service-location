@@ -1,23 +1,23 @@
 ﻿namespace Landorphan.Abstractions.Tests.TestFacilities
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Reflection;
-   using System.Runtime.InteropServices;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Ioc.ServiceLocation;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Ioc.ServiceLocation;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   [TestClass]
+    [TestClass]
    public static class TestAssemblyInitializeCleanup
    {
-      internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
+       internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
 
-      /// <summary>
+       /// <summary>
       /// Performs assembly level initialization.
       /// </summary>
       /// <remarks>
@@ -44,7 +44,7 @@
          // Configure the simulator as needed.
       }
 
-      /// <summary>
+       /// <summary>
       /// Frees resources obtained by the test assembly.
       /// </summary>
       /// <remarks>

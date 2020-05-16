@@ -1,19 +1,19 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Security;
-   using System.Text;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Security;
+    using System.Text;
 
-   /// <summary>
+    /// <summary>
    /// Represents methods for writing to files.
    /// </summary>
    public interface IFileWriterUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Appends lines to a file, and then closes the file.  If the specified path root exits, this method will create intermediate directories and 
       /// the file itself as needed.  It then appends the specified lines to the file, and closes the file.
       /// </summary>
@@ -66,9 +66,9 @@
       /// </exception>
       // TODO: change the implementation to throw ArgumentException instead of NotSupportedException.
       // NOTE: have yet to see this exception
-      void AppendAllLines(String path, IEnumerable<String> contents, Encoding encoding);
+      void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Appends the specified string to the file, creating the file if it does not already exist.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -113,9 +113,9 @@
       /// <param name="encoding">
       /// The character encoding to use.
       /// </param>
-      void AppendAllText(String path, String contents, Encoding encoding);
+      void AppendAllText(string path, string contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Copies an existing file to a new file. Overwriting a file of the same name is not allowed.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -156,9 +156,9 @@
       /// The name of the destination file. This cannot be a directory or an existing file.
       /// </param>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void CopyNoOverwrite(String sourceFileName, String destFileName);
+      void CopyNoOverwrite(string sourceFileName, string destFileName);
 
-      /// <summary>
+       /// <summary>
       /// Copies an existing file to a new file. Overwriting a file of the same name is allowed.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -200,9 +200,9 @@
       /// The name of the destination file. This cannot be a directory.
       /// </param>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void CopyWithOverwrite(String sourceFileName, String destFileName);
+      void CopyWithOverwrite(string sourceFileName, string destFileName);
 
-      /// <summary>
+       /// <summary>
       /// Moves a specified file to a new location, providing the option to specify a new file name.
       /// </summary>
       /// <exception cref="IOException">
@@ -238,9 +238,9 @@
       /// The new path for the file.
       /// </param>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void Move(String sourceFileName, String destFileName);
+      void Move(string sourceFileName, string destFileName);
 
-      /// <summary>
+       /// <summary>
       /// Opens an existing file or creates a new file for writing.
       /// </summary>
       /// <param name="path">
@@ -281,9 +281,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>  
-      FileStream OpenWrite(String path);
+      FileStream OpenWrite(string path);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file.
       /// </summary>
       /// <param name="sourceFileName">
@@ -337,9 +337,9 @@
       /// -or- 
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsNoBackup(String sourceFileName, String destinationFileName);
+      void ReplaceContentsNoBackup(string sourceFileName, string destinationFileName);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file and ignoring metadata errors.
       /// </summary>
       /// <param name="sourceFileName">
@@ -393,9 +393,9 @@
       /// -or- 
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsNoBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName);
+      void ReplaceContentsNoBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file, and backing up the original contents of the replaced file
       /// </summary>
       /// <param name="sourceFileName">
@@ -464,9 +464,9 @@
       /// -or- 
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsWithBackup(String sourceFileName, String destinationFileName, String destinationBackupFileName);
+      void ReplaceContentsWithBackup(string sourceFileName, string destinationFileName, string destinationBackupFileName);
 
-      /// <summary>
+       /// <summary>
       /// Replaces the contents of a file with the contents from another file, deleting the original file, and backing up the original contents of the replaced file and ignoring metadata errors.
       /// </summary>
       /// <param name="sourceFileName">
@@ -535,9 +535,9 @@
       /// -or- 
       /// The caller does not have the required permission.
       /// </exception>
-      void ReplaceContentsWithBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName, String destinationBackupFileName);
+      void ReplaceContentsWithBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName, string destinationBackupFileName);
 
-      /// <summary>
+       /// <summary>
       /// Creates or overwrites the contents of the specified file, writing the bytes, and closing the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -583,9 +583,9 @@
       /// The bytes to write to the file.
       /// </param>
       [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes")]
-      void WriteAllBytes(String path, Byte[] bytes);
+      void WriteAllBytes(string path, byte[] bytes);
 
-      /// <summary>
+       /// <summary>
       /// Creates or overwrites the contents of the specified file, writing the bytes, and closing the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -631,9 +631,9 @@
       /// The bytes to write to the file.
       /// </param>
       [SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", MessageId = "bytes")]
-      void WriteAllBytes(String path, IImmutableList<Byte> bytes);
+      void WriteAllBytes(string path, IImmutableList<byte> bytes);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file, writes the specified string array to the file by using the specified encoding, and then closes the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -675,9 +675,9 @@
       /// <param name="encoding">
       /// An <see cref="Encoding"/> object that represents the character encoding applied to the string array.
       /// </param>
-      void WriteAllLines(String path, String[] contents, Encoding encoding);
+      void WriteAllLines(string path, string[] contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file, writes the specified string array to the file by using the specified encoding, and then closes the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -719,9 +719,9 @@
       /// <param name="encoding">
       /// An <see cref="Encoding"/> object that represents the character encoding applied to the string array.
       /// </param>
-      void WriteAllLines(String path, IImmutableList<String> contents, Encoding encoding);
+      void WriteAllLines(string path, IImmutableList<string> contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file by using the specified encoding, writes a collection of strings to the file, and then closes the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -764,9 +764,9 @@
       /// <param name="encoding">
       /// The character encoding to use.
       /// </param>
-      void WriteAllLines(String path, IEnumerable<String> contents, Encoding encoding);
+      void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Creates a new file, writes the specified string to the file using the specified encoding, and then closes the file. If the target
       /// file already exists, it is overwritten.
       /// </summary>
@@ -809,6 +809,6 @@
       /// <param name="encoding">
       /// The encoding to apply to the string.
       /// </param>
-      void WriteAllText(String path, String contents, Encoding encoding);
+      void WriteAllText(string path, string contents, Encoding encoding);
    }
 }

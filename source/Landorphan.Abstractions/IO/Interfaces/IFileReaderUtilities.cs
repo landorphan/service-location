@@ -1,19 +1,19 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.IO;
-   using System.Security;
-   using System.Text;
-   using Landorphan.Common.Exceptions;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.IO;
+    using System.Security;
+    using System.Text;
+    using Landorphan.Common.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Represents methods for reading from files.
    /// </summary>
    public interface IFileReaderUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Opens a <see cref="FileStream"/> on the specified path with read/write access with no sharing.
       /// </summary>
       /// <param name="path">
@@ -60,9 +60,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>      
-      FileStream Open(String path, FileMode mode);
+      FileStream Open(string path, FileMode mode);
 
-      /// <summary>
+       /// <summary>
       /// Opens a <see cref="FileStream"/> on the specified path, with the specified mode and access with no sharing.
       /// </summary>
       /// <param name="path">
@@ -114,9 +114,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>   
-      FileStream Open(String path, FileMode mode, FileAccess access);
+      FileStream Open(string path, FileMode mode, FileAccess access);
 
-      /// <summary>
+       /// <summary>
       /// Opens a <see cref="FileStream"/> on the specified path, having the specified mode with read, write, or read/write access and the specified sharing option.
       /// </summary>
       /// <param name="path">
@@ -173,9 +173,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>   
-      FileStream Open(String path, FileMode mode, FileAccess access, FileShare share);
+      FileStream Open(string path, FileMode mode, FileAccess access, FileShare share);
 
-      /// <summary>
+       /// <summary>
       /// Opens an existing file for reading.
       /// </summary>
       /// <param name="path">
@@ -216,9 +216,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>   
-      FileStream OpenRead(String path);
+      FileStream OpenRead(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens an existing UTF-8 encoded text file for reading.
       /// </summary>
       /// <param name="path">
@@ -259,9 +259,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> is in an invalid format.
       /// </exception>  
-      StreamReader OpenText(String path);
+      StreamReader OpenText(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens a binary file, reads the contents of the file into a byte array, and then closes the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -300,9 +300,9 @@
       /// <returns>
       /// A list of byte containing the contents of the file.
       /// </returns>
-      IImmutableList<Byte> ReadAllBytes(String path);
+      IImmutableList<byte> ReadAllBytes(string path);
 
-      /// <summary>
+       /// <summary>
       /// Opens a file, reads all lines of the file with the specified encoding, and then closes the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -346,9 +346,9 @@
       /// <returns>
       /// A list containing all lines of the file.
       /// </returns>
-      IImmutableList<String> ReadAllLines(String path, Encoding encoding);
+      IImmutableList<string> ReadAllLines(string path, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Opens a file, reads all lines of the file with the specified encoding, and then closes the file.
       /// </summary>
       /// <exception cref="ArgumentException">
@@ -392,9 +392,9 @@
       /// <returns>
       /// A string containing all lines of the file.
       /// </returns>
-      String ReadAllText(String path, Encoding encoding);
+      string ReadAllText(string path, Encoding encoding);
 
-      /// <summary>
+       /// <summary>
       /// Opens a text file with the specified <paramref name="encoding"/>, reads all lines of the file into a string array, and then closes the file.
       /// </summary>
       /// <param name="path">
@@ -440,6 +440,6 @@
       /// <exception cref="SecurityException">
       /// The caller does not have the required permission.
       /// </exception>
-      IEnumerable<String> ReadLines(String path, Encoding encoding);
+      IEnumerable<string> ReadLines(string path, Encoding encoding);
    }
 }

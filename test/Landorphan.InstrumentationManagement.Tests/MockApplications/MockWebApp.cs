@@ -1,16 +1,37 @@
 namespace Landorphan.InstrumentationManagement.Tests.MockApplications
 {
-   using System.Collections.Generic;
-   using System.Linq;
-   using System.Reflection;
-   using Landorphan.InstrumentationManagement.Tests.Aspects;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using Landorphan.InstrumentationManagement.Tests.Aspects;
 
-   [LogMethod]
+    [LogMethod]
    public class MockWebApp
    {
-      public static Dictionary<string, MethodInfo> WebMethods = GetWebMethods();
+       public static Dictionary<string, MethodInfo> WebMethods = GetWebMethods();
 
-      private static Dictionary<string, MethodInfo> GetWebMethods()
+       public string GetWebMethod1 (string value)
+      {
+         return value;
+      }
+
+       public void GlobalStart()
+      {
+         // Method intentionally left empty as this strictly simulates a web site
+         // but doesn't actually crate one or leverage the ASP subsystem.
+      }
+
+       public string PostWebMethod1 (string value)
+      {
+         return value;
+      }
+
+       public string PostWebMethod2 (string value)
+      {
+         return value;
+      }
+
+       private static Dictionary<string, MethodInfo> GetWebMethods()
       {
          var retval = new Dictionary<string, MethodInfo>();
          var methods = (from m in typeof(MockWebApp).GetMethods()
@@ -22,32 +43,6 @@ namespace Landorphan.InstrumentationManagement.Tests.MockApplications
          }
 
          return retval;
-      }
-
-      public string PostWebMethod1 (string value)
-      {
-         return value;
-      }
-
-      public string PostWebMethod2 (string value)
-      {
-         return value;
-      }
-
-      public string GetWebMethod1 (string value)
-      {
-         return value;
-      }
-
-      public MockWebApp()
-      {
-
-      }
-
-      public void GlobalStart()
-      {
-         // Method intentionally left empty as this strictly simulates a web site
-         // but doesn't actually crate one or leverage the ASP subsystem.
       }
    }
 }

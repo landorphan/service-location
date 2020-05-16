@@ -1,18 +1,18 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability.Tests
 {
-   using FluentAssertions;
-   using Landorphan.Common.Interfaces;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using FluentAssertions;
+    using Landorphan.Common.Interfaces;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class TestMockingService_Tests
    {
-      [TestClass]
+       [TestClass]
       public class The_TestMockingService_should_be_automatically_registered_with_Ioc : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void Verify()
          {
@@ -25,14 +25,14 @@
       [TestClass]
       public class When_I_have_a_TestMockingService : ArrangeActAssert
       {
-         private ITestMockingService target;
+          private ITestMockingService target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = IocServiceLocator.Resolve<ITestMockingService>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_ApplyNoMocking_the_AmbientContainer_should_be_the_RootContainer()
          {

@@ -1,45 +1,45 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Extensions
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class GetRegistrationChain_Tests
    {
-      public abstract class GetRegistrationChainBase : DisposableArrangeActAssert
+       public abstract class GetRegistrationChainBase : DisposableArrangeActAssert
       {
-         protected readonly String nonUniqueName = "Name Shared in multiple containers";
-         private readonly String childContainerName = "Isolated Test Container (Child): IIocContainerResolver.GetRegistrationChain Tests";
-         private readonly String grandParentContainerName = "Isolated Test Container (Grand Parent): IIocContainerResolver.GetRegistrationChain Tests";
+          protected readonly string nonUniqueName = "Name Shared in multiple containers";
+          private readonly string childContainerName = "Isolated Test Container (Child): IIocContainerResolver.GetRegistrationChain Tests";
+          private readonly string grandParentContainerName = "Isolated Test Container (Grand Parent): IIocContainerResolver.GetRegistrationChain Tests";
 
-         private readonly Guid grandParentContainerUid = Guid.NewGuid();
-         private readonly String parentContainerName = "Isolated Test Container (Parent): IIocContainerResolver.GetRegistrationChain Tests";
-         private readonly String siblingContainerName = "Isolated Test Container (Sibling): IIocContainerResolver.GetRegistrationChain Tests";
-         private IOwnedIocContainer childContainer;
-         private Guid childContainerUid;
-         private IOwnedIocContainer grandParentContainer;
-         private IOwnedIocContainer parentContainer;
-         private Guid parentContainerUid;
-         private IOwnedIocContainer siblingContainer;
-         private Guid siblingContainerUid;
+          private readonly Guid grandParentContainerUid = Guid.NewGuid();
+          private readonly string parentContainerName = "Isolated Test Container (Parent): IIocContainerResolver.GetRegistrationChain Tests";
+          private readonly string siblingContainerName = "Isolated Test Container (Sibling): IIocContainerResolver.GetRegistrationChain Tests";
+          private IOwnedIocContainer childContainer;
+          private Guid childContainerUid;
+          private IOwnedIocContainer grandParentContainer;
+          private IOwnedIocContainer parentContainer;
+          private Guid parentContainerUid;
+          private IOwnedIocContainer siblingContainer;
+          private Guid siblingContainerUid;
 
-         protected IIocContainer ChildContainer => childContainer;
+          protected IIocContainer ChildContainer => childContainer;
 
-         protected IIocContainer GrandParentContainer => grandParentContainer;
+          protected IIocContainer GrandParentContainer => grandParentContainer;
 
-         protected IIocContainer ParentContainer => parentContainer;
+          protected IIocContainer ParentContainer => parentContainer;
 
-         protected IIocContainer SiblingContainer => siblingContainer;
+          protected IIocContainer SiblingContainer => siblingContainer;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             grandParentContainer = IocContainer.TestHookCreateIsolatedContainer(grandParentContainerUid, grandParentContainerName);
             grandParentContainer.Registrar.RegisterImplementation<IRegisteredInGrandParent, ClassImplementingIRegisteredInGrandParent>();
@@ -69,10 +69,10 @@
          }
       }
 
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_Isolated_Container_chain_and_call_GetRegistrationChain : GetRegistrationChainBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_an_empty_set_when_I_check_a_concrete_type()
          {
@@ -121,7 +121,7 @@
          {
             var builder = ImmutableDictionary<IContainerRegistrationKey, IRegistrationValue>.Empty.ToBuilder();
 
-            var key = new ContainerRegistrationKeyTypeNameTrio(ChildContainer, typeof(IRegisteredInChild), String.Empty);
+            var key = new ContainerRegistrationKeyTypeNameTrio(ChildContainer, typeof(IRegisteredInChild), string.Empty);
             var value = new RegistrationValueTypeInstancePair(typeof(ClassImplementingIRegisteredInChild));
             builder.Add(new KeyValuePair<IContainerRegistrationKey, IRegistrationValue>(key, value));
 
@@ -206,71 +206,54 @@
       }
 
       private class AnotherClassImplementingIRegisteredInChildAndSibling : IRegisteredInChildAndSibling
-      {
-      }
+      {}
 
       private class AnotherClassImplementingIRegisteredInGrandParentAndChild : IRegisteredInGrandParentAndChild
-      {
-      }
+      {}
 
       private class AnotherClassIRegisteredInChild : IRegisteredInChild
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisteredInChild : IRegisteredInChild
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisteredInChildAndSibling : IRegisteredInChildAndSibling
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisteredInGrandParent : IRegisteredInGrandParent
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisteredInGrandParentAndChild : IRegisteredInGrandParentAndChild
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisteredInParent : IRegisteredInParent
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisterInSibling : IRegisterInSibling
-      {
-      }
+      {}
 
       private class ClassImplementingIRegisterInSiblingNamed : IRegisterInSiblingNamed
-      {
-      }
+      {}
 
       private interface IRegisteredInChild
-      {
-      }
+      {}
 
       private interface IRegisteredInChildAndSibling
-      {
-      }
+      {}
 
       private interface IRegisteredInGrandParent
-      {
-      }
+      {}
 
       private interface IRegisteredInGrandParentAndChild
-      {
-      }
+      {}
 
       private interface IRegisteredInParent
-      {
-      }
+      {}
 
       private interface IRegisterInSibling
-      {
-      }
+      {}
 
       private interface IRegisterInSiblingNamed
-      {
-      }
+      {}
    }
 }

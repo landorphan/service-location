@@ -1,22 +1,21 @@
 namespace Landorphan.Ioc.ServiceLocation
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Linq;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Logging.Internal;
-   using Landorphan.Ioc.Logging.Internal.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
+    using System;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Logging.Internal;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
 
-   public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
+    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
    {
-      private static readonly IocServiceLocator t_singletonInstance;
+       private static readonly IocServiceLocator t_singletonInstance;
 
-      // the static ctor is in *.Shared.cs
+       // the static ctor is in *.Shared.cs
 
-      /// <summary>
+       /// <summary>
       /// Gets the ambient container.
       /// </summary>
       /// <value>
@@ -24,12 +23,12 @@ namespace Landorphan.Ioc.ServiceLocation
       /// </value>
       public static IIocContainer AmbientContainer => t_singletonInstance._ambientContainer;
 
-      /// <summary>
+       /// <summary>
       /// Gets the singleton instance.
       /// </summary>
       public static IIocServiceLocator Instance => t_singletonInstance;
 
-      /// <summary>
+       /// <summary>
       /// Gets the root container.
       /// </summary>
       /// <value>
@@ -38,7 +37,7 @@ namespace Landorphan.Ioc.ServiceLocation
       // ReSharper disable once ConvertToAutoProperty
       public static IIocContainer RootContainer => IocContainer.RootContainer;
 
-      /// <summary>
+       /// <summary>
       /// Gets the singleton instance the the class type, instead of the interface type.
       /// </summary>
       /// <remarks>
@@ -47,7 +46,7 @@ namespace Landorphan.Ioc.ServiceLocation
       /// </remarks>
       internal static IocServiceLocator InternalInstance => t_singletonInstance;
 
-      /// <summary>
+       /// <summary>
       /// Resolves the default instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -70,7 +69,7 @@ namespace Landorphan.Ioc.ServiceLocation
          return ((IIocServiceLocator)t_singletonInstance).Resolve<TFrom>();
       }
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -91,12 +90,12 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <typerefparam name="TFrom" /> service instance.
       /// </exception>
-      public static TFrom Resolve<TFrom>(String name) where TFrom : class
+      public static TFrom Resolve<TFrom>(string name) where TFrom : class
       {
          return ((IIocServiceLocator)t_singletonInstance).Resolve<TFrom>(name);
       }
 
-      /// <summary>
+       /// <summary>
       /// Resolves the default instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -114,12 +113,12 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <paramref name="fromType" /> service instance.
       /// </exception>
-      public static Object Resolve(Type fromType)
+      public static object Resolve(Type fromType)
       {
          return ((IIocServiceLocator)t_singletonInstance).Resolve(fromType);
       }
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -140,12 +139,12 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <paramref name="fromType" /> service instance.
       /// </exception>
-      public static Object Resolve(Type fromType, String name)
+      public static object Resolve(Type fromType, string name)
       {
          return ((IIocServiceLocator)t_singletonInstance).Resolve(fromType, name);
       }
 
-      /// <summary>
+       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -157,14 +156,14 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <returns>
       /// <c>true</c> when a default registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      public static Boolean TryResolve<TFrom>(out TFrom instance) where TFrom : class
+      public static bool TryResolve<TFrom>(out TFrom instance) where TFrom : class
       {
          var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve<TFrom>(out var working);
          instance = working;
          return rv;
       }
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -179,14 +178,14 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <returns>
       /// <c>true</c> when the named registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      public static Boolean TryResolve<TFrom>(String name, out TFrom instance) where TFrom : class
+      public static bool TryResolve<TFrom>(string name, out TFrom instance) where TFrom : class
       {
          var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve<TFrom>(name, out var working);
          instance = working;
          return rv;
       }
 
-      /// <summary>
+       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -198,14 +197,14 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <returns>
       /// <c>true</c> when a default registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      public static Boolean TryResolve(Type fromType, out Object instance)
+      public static bool TryResolve(Type fromType, out object instance)
       {
          var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve(fromType, out var working);
          instance = working;
          return rv;
       }
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -220,14 +219,14 @@ namespace Landorphan.Ioc.ServiceLocation
       /// <returns>
       /// <c>true</c> when the named registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      public static Boolean TryResolve(Type fromType, String name, out Object instance)
+      public static bool TryResolve(Type fromType, string name, out object instance)
       {
          var rv = ((IIocServiceLocator)t_singletonInstance).TryResolve(fromType, name, out var working);
          instance = working;
          return rv;
       }
 
-      private static IImmutableSet<Type> GetIocInterfacesAndAbstractTypesExceptLoggingInterfaces()
+       private static IImmutableSet<Type> GetIocInterfacesAndAbstractTypesExceptLoggingInterfaces()
       {
          // must review if a service locatable interface is added to this assembly (e.g., logging interfaces, see below).
          // note:  ILoggerFactory is defined externally.

@@ -1,18 +1,18 @@
 namespace Landorphan.InstrumentationManagement.Interfaces
 {
-   using System;
+    using System;
 
-   /// <summary>
+    /// <summary>
    /// Used to track the execution of a method.
    /// </summary>
    public interface IMethodExecution : IDisposable
    {
-      /// <summary>
+       /// <summary>
       /// Gets or sets the value returned from the method.
       /// </summary>
       object ReturnValue { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Manages the occurrence of an exception within a method
       /// execution.
       /// </summary>

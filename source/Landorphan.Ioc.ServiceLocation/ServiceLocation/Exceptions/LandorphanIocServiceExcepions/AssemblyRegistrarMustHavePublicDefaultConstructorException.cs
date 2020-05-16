@@ -1,44 +1,44 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when service location finds an implementation of <see cref="IAssemblySelfRegistration"/> without a public parameterless constructor.
    /// </summary>
    /// <seealso cref="LandorphanIocServiceLocationException"/>
    public sealed class AssemblyRegistrarMustHavePublicDefaultConstructorException : LandorphanIocServiceLocationException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       public AssemblyRegistrarMustHavePublicDefaultConstructorException() : this(null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="message"> The message that describes the error. </param>
-      public AssemblyRegistrarMustHavePublicDefaultConstructorException(String message) : this(null, message, null)
+      public AssemblyRegistrarMustHavePublicDefaultConstructorException(string message) : this(null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
       /// <param name="innerException"> The exception that is the cause of the current exception, or a null reference if no inner exception is specified. </param>
-      public AssemblyRegistrarMustHavePublicDefaultConstructorException(String message, Exception innerException) : this(null, message, innerException)
+      public AssemblyRegistrarMustHavePublicDefaultConstructorException(string message, Exception innerException) : this(null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="implementationType"> The type implementing <see cref="IAssemblySelfRegistration"/>that gave rise to this exception. </param>
@@ -46,16 +46,16 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="implementationType"> The type implementing <see cref="IAssemblySelfRegistration"/>that gave rise to this exception. </param>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
-      public AssemblyRegistrarMustHavePublicDefaultConstructorException(Type implementationType, String message) : this(implementationType, message, null)
+      public AssemblyRegistrarMustHavePublicDefaultConstructorException(Type implementationType, string message) : this(implementationType, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="implementationType"> The type implementing <see cref="IAssemblySelfRegistration"/>that gave rise to this exception. </param>
@@ -67,19 +67,19 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="implementationType"> The type implementing <see cref="IAssemblySelfRegistration"/>that gave rise to this exception. </param>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
       /// <param name="innerException"> The exception that is the cause of the current exception, or a null reference if no inner exception is specified. </param>
-      public AssemblyRegistrarMustHavePublicDefaultConstructorException(Type implementationType, String message, Exception innerException)
+      public AssemblyRegistrarMustHavePublicDefaultConstructorException(Type implementationType, string message, Exception innerException)
          : base(NullToDefaultMessage(implementationType, message), innerException)
       {
          ImplementationType = implementationType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AssemblyRegistrarMustHavePublicDefaultConstructorException"/> class.
       /// </summary>
       /// <param name="info"> The <see cref="SerializationInfo"/> that holds the serialized object data about the exception being thrown. </param>
@@ -89,7 +89,7 @@
          ImplementationType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -98,15 +98,15 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the implementation type that gave rise to this exception.
       /// </summary>
       public Type ImplementationType { get; }
 
-      private static String NullToDefaultMessage(Type implementationType, String message)
+       private static string NullToDefaultMessage(Type implementationType, string message)
       {
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.AssemblyRegistrarMustHavePublicDefaultConstructorExceptionDefaultMessageFmt,
                      implementationType.IsNull() ? StringResources.NullReplacementValue : implementationType.FullName);

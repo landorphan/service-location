@@ -1,25 +1,25 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    public static class IocServiceLocator_IIocServiceLocator_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_IocServiceLocator_GetService : ArrangeActAssert
       {
-         private IIocServiceLocator target;
-         private IServiceProvider targetAsIServiceProvider;
+          private IIocServiceLocator target;
+          private IServiceProvider targetAsIServiceProvider;
 
-         protected override void TeardownTestMethod()
+          protected override void TeardownTestMethod()
          {
             IocServiceLocator.AmbientContainer.Registrar.Unregister<IMyService>();
             IocServiceLocator.AmbientContainer.Manager.RemovePrecludedType(typeof(IPrecludedService));
@@ -27,7 +27,7 @@
             base.TeardownTestMethod();
          }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = IocServiceLocator.Instance;
             targetAsIServiceProvider = target;
@@ -36,7 +36,7 @@
             IocServiceLocator.AmbientContainer.Manager.AddPrecludedType(typeof(IPrecludedService));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_resolve_and_not_throw_when_I_as_for_an_unregistered_type()
          {
@@ -81,10 +81,10 @@
       [TestClass]
       public class When_I_call_IocServiceLocator_Resolve : ArrangeActAssert
       {
-         private readonly String registeredName = "My registered name";
-         private IIocServiceLocator target;
+          private readonly string registeredName = "My registered name";
+          private IIocServiceLocator target;
 
-         protected override void TeardownTestMethod()
+          protected override void TeardownTestMethod()
          {
             IocServiceLocator.AmbientContainer.Registrar.Unregister<IMyService>();
             IocServiceLocator.AmbientContainer.Registrar.Unregister<IMyService>(registeredName);
@@ -93,7 +93,7 @@
             base.TeardownTestMethod();
          }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = IocServiceLocator.Instance;
 
@@ -102,7 +102,7 @@
             IocServiceLocator.AmbientContainer.Manager.AddPrecludedType(typeof(IPrecludedService));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_resolve_a_registered_type_name()
          {
@@ -192,10 +192,10 @@
       [TestClass]
       public class When_I_call_IocServiceLocator_TryResolve : ArrangeActAssert
       {
-         private readonly String registeredName = "My registered name";
-         private IIocServiceLocator target;
+          private readonly string registeredName = "My registered name";
+          private IIocServiceLocator target;
 
-         protected override void TeardownTestMethod()
+          protected override void TeardownTestMethod()
          {
             IocServiceLocator.AmbientContainer.Registrar.Unregister<IMyService>();
             IocServiceLocator.AmbientContainer.Registrar.Unregister<IMyService>(registeredName);
@@ -204,7 +204,7 @@
             base.TeardownTestMethod();
          }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = IocServiceLocator.Instance;
 
@@ -213,7 +213,7 @@
             IocServiceLocator.AmbientContainer.Manager.AddPrecludedType(typeof(IPrecludedService));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_throw_when_I_attempt_to_resolve_a_concrete_type()
          {
@@ -319,25 +319,22 @@
       }
 
       private class ConcreteClass
-      {
-      }
+      {}
 
       private interface IMyService
       {
-         Guid GetUid();
+          Guid GetUid();
       }
 
       private interface IPrecludedService
-      {
-      }
+      {}
 
       private interface IUnregisteredService
-      {
-      }
+      {}
 
       private class MyService : IMyService
       {
-         public Guid GetUid()
+          public Guid GetUid()
          {
             return Guid.NewGuid();
          }

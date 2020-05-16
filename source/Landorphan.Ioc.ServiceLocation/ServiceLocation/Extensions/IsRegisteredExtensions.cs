@@ -1,16 +1,16 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
-   using System;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
+    using System;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
 
-   /// <summary>
+    /// <summary>
    /// Extension methods for IoC.
    /// </summary>
    public static class IsRegisteredExtensions
    {
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, contains a default registration for the given <typeparamref name="TFrom"/> type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -26,14 +26,14 @@
       /// <remarks>
       /// The chain of parent(s) and children is not evaluated.
       /// </remarks>
-      public static Boolean IsRegistered<TFrom>(this IIocContainerRegistrationRepository container) where TFrom : class
+      public static bool IsRegistered<TFrom>(this IIocContainerRegistrationRepository container) where TFrom : class
       {
          container.ArgumentNotNull(nameof(container));
 
-         return IsRegistered<TFrom>(container, String.Empty);
+         return IsRegistered<TFrom>(container, string.Empty);
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, contains a named registration for the given <typeparamref name="TFrom"/> type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -52,7 +52,7 @@
       /// <remarks>
       /// The chain of parent(s) and children is not evaluated.
       /// </remarks>
-      public static Boolean IsRegistered<TFrom>(this IIocContainerRegistrationRepository container, String name)
+      public static bool IsRegistered<TFrom>(this IIocContainerRegistrationRepository container, string name)
       {
          container.ArgumentNotNull(nameof(container));
          var immutableDictionary = container.Registrations;
@@ -69,7 +69,7 @@
          return rv;
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, contains a default registration for the given <paramref name="fromType"/> type.
       /// </summary>
       /// <param name="container">
@@ -85,14 +85,14 @@
       /// <remarks>
       /// The chain of parent(s) and children is not evaluated.
       /// </remarks>
-      public static Boolean IsRegistered(this IIocContainerRegistrationRepository container, Type fromType)
+      public static bool IsRegistered(this IIocContainerRegistrationRepository container, Type fromType)
       {
          container.ArgumentNotNull(nameof(container));
 
-         return IsRegistered(container, fromType, String.Empty);
+         return IsRegistered(container, fromType, string.Empty);
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given container identified by the <see cref="IIocContainerRegistrationRepository"/>, contains a named <paramref name="name"/> registration for the
       /// given <paramref name="fromType"/> type.
       /// </summary>
@@ -112,7 +112,7 @@
       /// <remarks>
       /// The chain of parent(s) and children is not evaluated.
       /// </remarks>
-      public static Boolean IsRegistered(this IIocContainerRegistrationRepository container, Type fromType, String name)
+      public static bool IsRegistered(this IIocContainerRegistrationRepository container, Type fromType, string name)
       {
          container.ArgumentNotNull(nameof(container));
          var immutableDictionary = container.Registrations;
@@ -128,7 +128,7 @@
          return rv;
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, or its chain of parents, contains a default registration for the given <typeparamref name="TFrom"/> type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -141,14 +141,14 @@
       /// <c>true</c> if the given <paramref name="container"/> container, or its chain of parents, contains a default registration for the given <typeparamref name="TFrom"/> type;
       /// otherwise <c>false</c>.
       /// </returns>
-      public static Boolean IsRegisteredChain<TFrom>(this IIocContainerRegistrationRepository container) where TFrom : class
+      public static bool IsRegisteredChain<TFrom>(this IIocContainerRegistrationRepository container) where TFrom : class
       {
          container.ArgumentNotNull(nameof(container));
 
-         return IsRegisteredChain<TFrom>(container, String.Empty);
+         return IsRegisteredChain<TFrom>(container, string.Empty);
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, or its chain of parents, contains a default registration for the given <typeparamref name="TFrom"/> type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -163,7 +163,7 @@
       /// <c>true</c> if the given <paramref name="container"/> container, contains a named registration for the given <typeparamref name="TFrom"/> type that matches <paramref name="name"/>;
       /// otherwise <c>false</c>.
       /// </returns>
-      public static Boolean IsRegisteredChain<TFrom>(this IIocContainerRegistrationRepository container, String name) where TFrom : class
+      public static bool IsRegisteredChain<TFrom>(this IIocContainerRegistrationRepository container, string name) where TFrom : class
       {
          container.ArgumentNotNull(nameof(container));
 
@@ -194,7 +194,7 @@
          return false;
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, or its chain of parents, contains a default registration for the given <paramref name="fromType"/> type.
       /// </summary>
       /// <param name="container">
@@ -207,14 +207,14 @@
       /// <c>true</c> if the given <paramref name="container"/> container, or its chain of parents, contains a default registration for the given <paramref name="fromType"/> type;
       /// otherwise <c>false</c>.
       /// </remarks>
-      public static Boolean IsRegisteredChain(this IIocContainerRegistrationRepository container, Type fromType)
+      public static bool IsRegisteredChain(this IIocContainerRegistrationRepository container, Type fromType)
       {
          container.ArgumentNotNull(nameof(container));
 
-         return IsRegisteredChain(container, fromType, String.Empty);
+         return IsRegisteredChain(container, fromType, string.Empty);
       }
 
-      /// <summary>
+       /// <summary>
       /// Determines whether or not the given <paramref name="container"/> container, or its chain of parents, contains a named registration for the given <paramref name="fromType"/> type.
       /// </summary>
       /// <param name="container">
@@ -230,7 +230,7 @@
       /// <c>true</c> if the given the identified container <see cref="IIocContainerRegistrationRepository"/>, contains a named registration with the given name <paramref name="name"/> for the
       /// given <paramref name="fromType"/> type; otherwise <c>false</c>.
       /// </returns>
-      public static Boolean IsRegisteredChain(this IIocContainerRegistrationRepository container, Type fromType, String name)
+      public static bool IsRegisteredChain(this IIocContainerRegistrationRepository container, Type fromType, string name)
       {
          container.ArgumentNotNull(nameof(container));
 

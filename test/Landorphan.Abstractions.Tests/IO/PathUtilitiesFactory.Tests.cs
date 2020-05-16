@@ -1,29 +1,29 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    [TestClass]
    public class When_I_call_PathUtilitiesFactory_Create : ArrangeActAssert
    {
-      private readonly PathUtilitiesFactory target = new PathUtilitiesFactory();
-      private IPathUtilities actual;
+       private readonly PathUtilitiesFactory target = new PathUtilitiesFactory();
+       private IPathUtilities actual;
 
-      protected override void ActMethod()
+       protected override void ActMethod()
       {
          actual = target.Create();
       }
 
-      [TestMethod]
+       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void It_should_create_an_IPathUtilities_instance()
       {
@@ -34,22 +34,22 @@
    [TestClass]
    public class When_I_call_PathUtilitiesFactory_Create_multiple_times : ArrangeActAssert
    {
-      private readonly PathUtilitiesFactory target = new PathUtilitiesFactory();
-      private HashSet<IPathUtilities> actuals;
+       private readonly PathUtilitiesFactory target = new PathUtilitiesFactory();
+       private HashSet<IPathUtilities> actuals;
 
-      protected override void ArrangeMethod()
+       protected override void ArrangeMethod()
       {
          actuals = new HashSet<IPathUtilities>(new ReferenceEqualityComparer<IPathUtilities>());
       }
 
-      protected override void ActMethod()
+       protected override void ActMethod()
       {
          actuals.Add(target.Create());
          actuals.Add(target.Create());
          actuals.Add(target.Create());
       }
 
-      [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "anew")]
+       [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "anew")]
       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void It_should_return_a_new_instance_each_time()
@@ -61,14 +61,14 @@
    [TestClass]
    public class When_I_service_locate_IPathUtilitiesFactory : ArrangeActAssert
    {
-      private IPathUtilitiesFactory actual;
+       private IPathUtilitiesFactory actual;
 
-      protected override void ActMethod()
+       protected override void ActMethod()
       {
          actual = IocServiceLocator.Resolve<IPathUtilitiesFactory>();
       }
 
-      [TestMethod]
+       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void It_should_give_me_a_PathUtilitiesFactory()
       {

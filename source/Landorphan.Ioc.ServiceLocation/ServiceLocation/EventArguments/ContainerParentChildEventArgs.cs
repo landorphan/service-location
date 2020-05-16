@@ -1,23 +1,23 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
-   using System;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Provides data for events that provide container and type information.
    /// </summary>
    /// <seealso cref="EventArgs"/>
    // ReSharper disable once InheritdocConsiderUsage
    public class ContainerParentChildEventArgs : EventArgs
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerTypeEventArgs"/> class.
       /// </summary>
       public ContainerParentChildEventArgs() : this(null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerTypeEventArgs"/> class.
       /// </summary>
       /// <param name="parent">
@@ -32,12 +32,12 @@
          Child = child;
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the child container.
       /// </summary>
       public IIocContainerMetaIdentity Child { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the parent container.
       /// </summary>
       public IIocContainerMetaIdentity Parent { get; }

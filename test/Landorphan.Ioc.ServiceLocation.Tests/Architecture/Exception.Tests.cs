@@ -1,23 +1,23 @@
 namespace Landorphan.Ioc.Tests.Architecture
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Globalization;
-   using System.Reflection;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.Tests.Mocks;
-   using Landorphan.Ioc.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Globalization;
+    using System.Reflection;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.Tests.Mocks;
+    using Landorphan.Ioc.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    [TestClass]
    public class Exception_Tests : ExceptionValidityRequirements
    {
-      [TestMethod]
+       [TestMethod]
       [TestCategory(TestTiming.CheckIn)]
       public void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable()
       {
@@ -93,7 +93,7 @@ namespace Landorphan.Ioc.Tests.Architecture
          return TestAssemblyInitializeCleanup.AssembliesUnderTest;
       }
 
-      protected override Boolean GetDefaultValueForParameterType(Type parameterType, out Object defaultValue)
+      protected override bool GetDefaultValueForParameterType(Type parameterType, out object defaultValue)
       {
          if (parameterType == typeof(IIocContainerMetaIdentity))
          {

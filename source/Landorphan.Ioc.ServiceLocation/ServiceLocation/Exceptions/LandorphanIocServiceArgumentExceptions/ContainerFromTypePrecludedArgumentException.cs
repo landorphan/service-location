@@ -1,36 +1,36 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when a type argument is a precluded type.
    /// </summary>
    [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
    public sealed class ContainerFromTypePrecludedArgumentException : LandorphanIocServiceLocationArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypePrecludedArgumentException"/> class.
       /// </summary>
       public ContainerFromTypePrecludedArgumentException() : this(null, null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypePrecludedArgumentException"/> class.
       /// </summary>
       /// <param name="message"> The error message that explains the reason for the exception. </param>
-      public ContainerFromTypePrecludedArgumentException(String message) : this(null, null, null, message, null)
+      public ContainerFromTypePrecludedArgumentException(string message) : this(null, null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypePrecludedArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -39,11 +39,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public ContainerFromTypePrecludedArgumentException(String message, Exception innerException) : this(null, null, null, message, innerException)
+      public ContainerFromTypePrecludedArgumentException(string message, Exception innerException) : this(null, null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypePrecludedArgumentException"/> class.
       /// </summary>
       /// <param name = "container">
@@ -55,11 +55,11 @@
       /// <param name="paramName">
       /// The name of the parameter that caused the exception.
       /// </param>
-      public ContainerFromTypePrecludedArgumentException(IIocContainerMetaIdentity container, Type precludedType, String paramName) : this(container, precludedType, paramName, null, null)
+      public ContainerFromTypePrecludedArgumentException(IIocContainerMetaIdentity container, Type precludedType, string paramName) : this(container, precludedType, paramName, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypePrecludedArgumentException"/> class.
       /// </summary>
       /// <param name = "container">
@@ -79,14 +79,14 @@
       /// if no inner exception is specified.
       /// </param>
       // ReSharper disable ExpressionIsAlwaysNull
-      public ContainerFromTypePrecludedArgumentException(IIocContainerMetaIdentity container, Type precludedType, String paramName, String message, Exception innerException)
+      public ContainerFromTypePrecludedArgumentException(IIocContainerMetaIdentity container, Type precludedType, string paramName, string message, Exception innerException)
          : base(paramName, NullToDefaultMessage(container, precludedType, paramName, message), innerException)
       {
          Container = container;
          PrecludedType = precludedType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypePrecludedArgumentException"/> class.
       /// </summary>
       /// <param name="info"> The <see cref="SerializationInfo"/>
@@ -102,7 +102,7 @@
          PrecludedType = (Type)info.GetValue("precludedType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -112,17 +112,17 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the actual type.
       /// </summary>
       public Type PrecludedType { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container that gave rise to this exception.
       /// </summary>
       public IIocContainerMetaIdentity Container { get; }
 
-      private static String NullToDefaultMessage(IIocContainerMetaIdentity container, Type actualType, String paramName, String message)
+       private static string NullToDefaultMessage(IIocContainerMetaIdentity container, Type actualType, string paramName, string message)
       {
          var cleanedContainerUid = StringResources.NullReplacementValue;
          var cleanedContainerName = StringResources.NullReplacementValue;
@@ -136,9 +136,9 @@
          var cleanedParamName = paramName.TrimNullToEmpty();
          var paramNameSuffix = cleanedParamName.Length == 0
             ? StringResources.ArgumentExceptionNoParamNameSuffix
-            : String.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
+            : string.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ContainerTypePrecludedArgumentExceptionFmt,
                      cleanedContainerUid,

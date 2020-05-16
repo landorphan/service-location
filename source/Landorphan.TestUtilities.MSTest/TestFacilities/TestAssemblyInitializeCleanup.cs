@@ -1,14 +1,14 @@
-﻿namespace Landorphan.TestUtilities.TestFacilities
+namespace Landorphan.TestUtilities.TestFacilities
 {
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   /// <summary>
+    /// <summary>
    /// Defines test assembly initialization and cleanup.
    /// </summary>
    [TestClass]
    public static class TestAssemblyInitializeCleanup
    {
-      /// <summary>
+       /// <summary>
       /// Performs assembly level initialization.
       /// </summary>
       /// <remarks>
@@ -23,7 +23,7 @@
          // currently no resources to initialize.
       }
 
-      /// <summary>
+       /// <summary>
       /// Frees resources obtained by the test assembly.
       /// </summary>
       /// <remarks>

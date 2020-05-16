@@ -1,70 +1,70 @@
 namespace Landorphan.Abstractions.Tests.BclBaseline
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.IO;
-   using System.Runtime.InteropServices;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Common.Exceptions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Common.Exceptions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable StringLiteralTypo
 
    public static class Path_Baseline_Tests
    {
-      // MAPPING:
-      // Path:                            IPathUtilities:
-      // ----------------------------------------------------------------------------------------------------------------------
-      // AltDirectorySeparatorChar        AltDirectorySeparatorCharacter
-      // ChangeExtension                  ChangeExtension
-      // Combine                          Combine
-      // DirectorySeparatorChar           DirectorySeparatorCharacter
-      // GetDirectoryName                 GetParentPath        
-      // GetExtension                     GetExtension
-      // GetFileName                      GetFileName
-      // GetFileNameWithoutExtension      GetFileNameWithoutExtension
-      // GetFullPath                      GetFullPath
-      // GetInvalidFileNameChars          GetInvalidFileNameCharacters
-      // GetInvalidPathChars              GetInvalidPathCharacters
-      // GetPathRoot                      GetRootPath
-      // GetRandomFileName                (implemented IFileUtilities and IDirectoryUtilities)
-      // GetTempFileName                  (see IFileUtilities.CreateTemporaryFile)
-      // GetTempPath                      (see IDirectoryUtilities.GetTemporaryDirectoryPath)   
-      // HasExtension                     HasExtension
-      // InvalidPathChars                 GetInvalidFileNameCharacters
-      // IsPathRooted                     IsPathRelative
-      // PathSeparator                    PathSeparatorCharacter
-      // VolumeSeparatorChar              VolumeSeparatorCharacter
+       // MAPPING:
+       // Path:                            IPathUtilities:
+       // ----------------------------------------------------------------------------------------------------------------------
+       // AltDirectorySeparatorChar        AltDirectorySeparatorCharacter
+       // ChangeExtension                  ChangeExtension
+       // Combine                          Combine
+       // DirectorySeparatorChar           DirectorySeparatorCharacter
+       // GetDirectoryName                 GetParentPath        
+       // GetExtension                     GetExtension
+       // GetFileName                      GetFileName
+       // GetFileNameWithoutExtension      GetFileNameWithoutExtension
+       // GetFullPath                      GetFullPath
+       // GetInvalidFileNameChars          GetInvalidFileNameCharacters
+       // GetInvalidPathChars              GetInvalidPathCharacters
+       // GetPathRoot                      GetRootPath
+       // GetRandomFileName                (implemented IFileUtilities and IDirectoryUtilities)
+       // GetTempFileName                  (see IFileUtilities.CreateTemporaryFile)
+       // GetTempPath                      (see IDirectoryUtilities.GetTemporaryDirectoryPath)   
+       // HasExtension                     HasExtension
+       // InvalidPathChars                 GetInvalidFileNameCharacters
+       // IsPathRooted                     IsPathRelative
+       // PathSeparator                    PathSeparatorCharacter
+       // VolumeSeparatorChar              VolumeSeparatorCharacter
 
-      // Not in .Net Standard 2.0
-      // GetRelativePath         
-      // IsPathFullyQualified
-      // Join
-      // TryJoin
+       // Not in .Net Standard 2.0
+       // GetRelativePath         
+       // IsPathFullyQualified
+       // Join
+       // TryJoin
 
-      // These tests document what is:  test failures means an implementation detail has changed
-      // change the assertion to document "what is"
-      // if you believe the behavior to be incorrect, modify the behavior of the abstraction, fix the abstraction tests, and update these documentation tests
-      // to show "what is"
+       // These tests document what is:  test failures means an implementation detail has changed
+       // change the assertion to document "what is"
+       // if you believe the behavior to be incorrect, modify the behavior of the abstraction, fix the abstraction tests, and update these documentation tests
+       // to show "what is"
 
-      private const String Spaces = "   ";
-      // this name 'util' makes the parallel function calls line up
-      private static readonly IPathUtilities util = IocServiceLocator.Resolve<IPathUtilities>();
-      // private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+       private const string Spaces = "   ";
+       // this name 'util' makes the parallel function calls line up
+       private static readonly IPathUtilities util = IocServiceLocator.Resolve<IPathUtilities>();
+       // private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
 
-      [TestClass]
+       [TestClass]
       public class Path_BCL_Fixed_Issues : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [TestCategory(WellKnownTestCategories.ProofOfWorkaroundNeeded)]
          [RunTestOnlyOnWindows]
@@ -80,8 +80,8 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             // C:\folder\file.txt      >> C:\folder
             //
             // ReSharper restore CommentTypo
-            const String uncPathShareFile = @"\\share\file.txt";
-            const String uncPathShare = @"\\share";
+            const string uncPathShareFile = @"\\share\file.txt";
+            const string uncPathShare = @"\\share";
 
             // Proof of fix:
             util.GetParentPath(uncPathShareFile).Should().Be(uncPathShare);
@@ -100,8 +100,8 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
          [RunTestOnlyOnWindows]
          public void GetRootPath_should_return_the_root_of_a_unc_path()
          {
-            const String uncPathShareFile = @"\\share\file.txt";
-            const String uncPathShare = @"\\share";
+            const string uncPathShareFile = @"\\share\file.txt";
+            const string uncPathShare = @"\\share";
 
             // Proof of fix:
             util.GetRootPath(uncPathShareFile).Should().Be(uncPathShare);
@@ -116,8 +116,8 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
          [RunTestOnlyOnWindows]
          public void InvalidFileNameChars_in_extension_argument_to_ChangeExtension_Fixed()
          {
-            const String legalPath = @"temp.txt";
-            const String illegalExtension = @".<";
+            const string legalPath = @"temp.txt";
+            const string illegalExtension = @".<";
 
             // Proof of fix:
             Action throwingAction = () => util.ChangeExtension(legalPath, illegalExtension);
@@ -137,8 +137,8 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
          [RunTestOnlyOnWindows]
          public void InvalidPathChars_in_path_argument_to_ChangeExtension_Fixed()
          {
-            const String IllegalPath = @"|";
-            const String legalExtension = @".txt";
+            const string IllegalPath = @"|";
+            const string legalExtension = @".txt";
 
             // Proof of fix:
             Action throwingAction = () => util.ChangeExtension(IllegalPath, legalExtension);
@@ -156,7 +156,7 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
       [TestClass]
       public class Path_BCL_Non_Issues : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void Document_Path_GetInvalidPathChars_and_Path_GetInvalidFileNameChars()
          {
@@ -164,37 +164,37 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             Trace.WriteLine($"Path.GetInvalidPathChars count ={path.Count}");
             foreach (var c in path)
             {
-               var hex = @"\x" + ((Int32)c).ToString("X4");
+               var hex = @"\x" + ((int)c).ToString("X4");
                Trace.WriteLine($"{hex} \t {c}");
             }
 
-            Trace.WriteLine(String.Empty);
+            Trace.WriteLine(string.Empty);
 
             var file = Path.GetInvalidFileNameChars().ToImmutableHashSet();
             Trace.WriteLine($"Path.GetInvalidFileNameChars count ={file.Count}");
             foreach (var c in file)
             {
-               var hex = @"\x" + ((Int32)c).ToString("X4");
+               var hex = @"\x" + ((int)c).ToString("X4");
                Trace.WriteLine($"{hex} \t {c}");
             }
 
-            Trace.WriteLine(String.Empty);
+            Trace.WriteLine(string.Empty);
 
             var pathExceptFile = path.Except(file);
             Trace.WriteLine($"pathExceptFile count ={pathExceptFile.Count}");
             foreach (var c in pathExceptFile)
             {
-               var hex = @"\x" + ((Int32)c).ToString("X4");
+               var hex = @"\x" + ((int)c).ToString("X4");
                Trace.WriteLine($"{hex} \t {c}");
             }
 
-            Trace.WriteLine(String.Empty);
+            Trace.WriteLine(string.Empty);
 
             var fileExceptPath = file.Except(path);
             Trace.WriteLine($"fileExceptPath count ={fileExceptPath.Count}");
             foreach (var c in fileExceptPath)
             {
-               var hex = @"\x" + ((Int32)c).ToString("X4");
+               var hex = @"\x" + ((int)c).ToString("X4");
                Trace.WriteLine($"{hex} \t {c}");
             }
 
@@ -214,12 +214,12 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             util.ChangeExtension(null, ".txt").Should().Be(null);
 
             // string.Empty propagation:
-            Path.ChangeExtension(String.Empty, null).Should().Be(String.Empty);
-            Path.ChangeExtension(String.Empty, "txt").Should().Be(String.Empty);
-            Path.ChangeExtension(String.Empty, ".txt").Should().Be(String.Empty);
-            util.ChangeExtension(String.Empty, null).Should().Be(String.Empty);
-            util.ChangeExtension(String.Empty, "txt").Should().Be(String.Empty);
-            util.ChangeExtension(String.Empty, ".txt").Should().Be(String.Empty);
+            Path.ChangeExtension(string.Empty, null).Should().Be(string.Empty);
+            Path.ChangeExtension(string.Empty, "txt").Should().Be(string.Empty);
+            Path.ChangeExtension(string.Empty, ".txt").Should().Be(string.Empty);
+            util.ChangeExtension(string.Empty, null).Should().Be(string.Empty);
+            util.ChangeExtension(string.Empty, "txt").Should().Be(string.Empty);
+            util.ChangeExtension(string.Empty, ".txt").Should().Be(string.Empty);
 
             // leading '.' is not required in change extension
             Path.ChangeExtension(@"temp.txt", @"tmp").Should().Be(@"temp.tmp");
@@ -259,11 +259,11 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             util.Combine(drive + @"temp\", "temp.tmp").Should().Be(drive + @"temp\temp.tmp");
 
             // string empty is ignored
-            Path.Combine(String.Empty).Should().Be(String.Empty);
-            util.Combine(String.Empty).Should().Be(String.Empty);
+            Path.Combine(string.Empty).Should().Be(string.Empty);
+            util.Combine(string.Empty).Should().Be(string.Empty);
 
-            Path.Combine(String.Empty, String.Empty).Should().Be(String.Empty);
-            util.Combine(String.Empty, String.Empty).Should().Be(String.Empty);
+            Path.Combine(string.Empty, string.Empty).Should().Be(string.Empty);
+            util.Combine(string.Empty, string.Empty).Should().Be(string.Empty);
 
             // directory separator characters are collapsed by Path, not by PathUtilities (primary)
             //  Path.Combine(@"\", @"\") returns @"\";
@@ -289,17 +289,17 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             Path.Combine(primary, primary).Should().Be(primary);
             util.Combine(primary, primary).Should().Be(primary2);
 
-            Path.Combine(String.Empty, primary).Should().Be(primary);
-            util.Combine(String.Empty, primary).Should().Be(primary);
+            Path.Combine(string.Empty, primary).Should().Be(primary);
+            util.Combine(string.Empty, primary).Should().Be(primary);
 
-            Path.Combine(primary, String.Empty).Should().Be(primary);
-            util.Combine(primary, String.Empty).Should().Be(primary);
+            Path.Combine(primary, string.Empty).Should().Be(primary);
+            util.Combine(primary, string.Empty).Should().Be(primary);
 
-            Path.Combine(String.Empty, primary, String.Empty).Should().Be(primary);
-            util.Combine(String.Empty, primary, String.Empty).Should().Be(primary);
+            Path.Combine(string.Empty, primary, string.Empty).Should().Be(primary);
+            util.Combine(string.Empty, primary, string.Empty).Should().Be(primary);
 
-            Path.Combine(primary, String.Empty, primary).Should().Be(primary);
-            util.Combine(primary, String.Empty, primary).Should().Be(primary2);
+            Path.Combine(primary, string.Empty, primary).Should().Be(primary);
+            util.Combine(primary, string.Empty, primary).Should().Be(primary2);
 
             // directory separator characters are collapsed by Path, not by PathUtilities (alternate)
             //  Path.Combine(alternate, alternate) returns alternate;
@@ -310,40 +310,40 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             Path.Combine(alternate, alternate).Should().Be(alternate);
             util.Combine(alternate, alternate).Should().Be(alternate2);
 
-            Path.Combine(String.Empty, alternate).Should().Be(alternate);
-            util.Combine(String.Empty, alternate).Should().Be(alternate);
+            Path.Combine(string.Empty, alternate).Should().Be(alternate);
+            util.Combine(string.Empty, alternate).Should().Be(alternate);
 
-            Path.Combine(alternate, String.Empty).Should().Be(alternate);
-            util.Combine(alternate, String.Empty).Should().Be(alternate);
+            Path.Combine(alternate, string.Empty).Should().Be(alternate);
+            util.Combine(alternate, string.Empty).Should().Be(alternate);
 
-            Path.Combine(String.Empty, alternate, String.Empty).Should().Be(alternate);
-            util.Combine(String.Empty, alternate, String.Empty).Should().Be(alternate);
+            Path.Combine(string.Empty, alternate, string.Empty).Should().Be(alternate);
+            util.Combine(string.Empty, alternate, string.Empty).Should().Be(alternate);
 
-            Path.Combine(alternate, String.Empty, alternate).Should().Be(alternate);
-            util.Combine(alternate, String.Empty, alternate).Should().Be(alternate2);
+            Path.Combine(alternate, string.Empty, alternate).Should().Be(alternate);
+            util.Combine(alternate, string.Empty, alternate).Should().Be(alternate2);
 
             // directory separator characters are collapsed by Path "right-most" wins
             // not by PathUtilities, which does as asked.
             Path.Combine(primary, alternate).Should().Be(alternate);
             util.Combine(primary, alternate).Should().Be(primaryAlternate);
 
-            Path.Combine(alternate, String.Empty, primary).Should().Be(primary);
-            util.Combine(alternate, String.Empty, primary).Should().Be(alternatePrimary);
+            Path.Combine(alternate, string.Empty, primary).Should().Be(primary);
+            util.Combine(alternate, string.Empty, primary).Should().Be(alternatePrimary);
 
-            Path.Combine(primary, String.Empty, alternate).Should().Be(alternate);
-            util.Combine(primary, String.Empty, alternate).Should().Be(primaryAlternate);
+            Path.Combine(primary, string.Empty, alternate).Should().Be(alternate);
+            util.Combine(primary, string.Empty, alternate).Should().Be(primaryAlternate);
 
-            Path.Combine(primary, String.Empty, alternate, String.Empty, alternate).Should().Be(alternate);
-            util.Combine(primary, String.Empty, alternate, String.Empty, alternate).Should().Be(primaryAlternate2);
+            Path.Combine(primary, string.Empty, alternate, string.Empty, alternate).Should().Be(alternate);
+            util.Combine(primary, string.Empty, alternate, string.Empty, alternate).Should().Be(primaryAlternate2);
 
-            Path.Combine(primary, String.Empty, primary, String.Empty, alternate).Should().Be(alternate);
-            util.Combine(primary, String.Empty, primary, String.Empty, alternate).Should().Be(primary2Alternate);
+            Path.Combine(primary, string.Empty, primary, string.Empty, alternate).Should().Be(alternate);
+            util.Combine(primary, string.Empty, primary, string.Empty, alternate).Should().Be(primary2Alternate);
 
-            Path.Combine(alternate, String.Empty, primary, String.Empty, primary).Should().Be(primary);
-            util.Combine(alternate, String.Empty, primary, String.Empty, primary).Should().Be(alternatePrimary2);
+            Path.Combine(alternate, string.Empty, primary, string.Empty, primary).Should().Be(primary);
+            util.Combine(alternate, string.Empty, primary, string.Empty, primary).Should().Be(alternatePrimary2);
 
-            Path.Combine(alternate, String.Empty, alternate, String.Empty, primary).Should().Be(primary);
-            util.Combine(alternate, String.Empty, alternate, String.Empty, primary).Should().Be(alternate2Primary);
+            Path.Combine(alternate, string.Empty, alternate, string.Empty, primary).Should().Be(primary);
+            util.Combine(alternate, string.Empty, alternate, string.Empty, primary).Should().Be(alternate2Primary);
 
             // spaces are not *entirely* ignored by Path
             // PathUtilities does as asked, and ignoring whitespace on the boundaries of separator characters
@@ -374,17 +374,17 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             Path.Combine(Spaces, primary).Should().Be(primary);
             util.Combine(Spaces, primary).Should().Be(primary);
 
-            Path.Combine(alternate, String.Empty, alternate, String.Empty, alternate).Should().Be(alternate);
-            util.Combine(alternate, String.Empty, alternate, String.Empty, alternate).Should().Be(alternate3);
+            Path.Combine(alternate, string.Empty, alternate, string.Empty, alternate).Should().Be(alternate);
+            util.Combine(alternate, string.Empty, alternate, string.Empty, alternate).Should().Be(alternate3);
 
-            Path.Combine(primary, String.Empty, primary, String.Empty, primary).Should().Be(primary);
-            util.Combine(primary, String.Empty, primary, String.Empty, primary).Should().Be(primary3);
+            Path.Combine(primary, string.Empty, primary, string.Empty, primary).Should().Be(primary);
+            util.Combine(primary, string.Empty, primary, string.Empty, primary).Should().Be(primary3);
 
-            Path.Combine(primary, String.Empty, alternate, String.Empty, primary).Should().Be(primary);
-            util.Combine(primary, String.Empty, alternate, String.Empty, primary).Should().Be(primaryAlternatePrimary);
+            Path.Combine(primary, string.Empty, alternate, string.Empty, primary).Should().Be(primary);
+            util.Combine(primary, string.Empty, alternate, string.Empty, primary).Should().Be(primaryAlternatePrimary);
 
-            Path.Combine(alternate, String.Empty, primary, String.Empty, alternate).Should().Be(alternate);
-            util.Combine(alternate, String.Empty, primary, String.Empty, alternate).Should().Be(alternatePrimaryAlternate);
+            Path.Combine(alternate, string.Empty, primary, string.Empty, alternate).Should().Be(alternate);
+            util.Combine(alternate, string.Empty, primary, string.Empty, alternate).Should().Be(alternatePrimaryAlternate);
 
             Path.Combine(alternate, Spaces, alternate).Should().Be(alternate);
             util.Combine(alternate, Spaces, alternate).Should().Be(alternate2);
@@ -523,20 +523,20 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
          {
             // Path: GetInvalidFileNameChars
             // Util: GetInvalidFileNameCharacters
-            HashSet<Char> expected;
+            HashSet<char> expected;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-               expected = new HashSet<Char>(
+               expected = new HashSet<char>(
                   new[]
                   {
-                     '"', '<', '>', '|', Char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011',
+                     '"', '<', '>', '|', char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011',
                      '\x0012', '\x0013', '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F', ':', '*', '?', '\\', '/'
                   });
             }
             else
             {
                // null and directory separator
-               expected = new HashSet<Char>(new[] { Char.MinValue, '/' });
+               expected = new HashSet<char>(new[] { char.MinValue, '/' });
             }
 
             var actual = Path.GetInvalidFileNameChars();
@@ -550,13 +550,13 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
          {
             // Path: GetInvalidPathChars
             // Util: GetInvalidPathCharacters
-            HashSet<Char> expected;
+            HashSet<char> expected;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-               expected = new HashSet<Char>(
+               expected = new HashSet<char>(
                   new[]
                   {
-                     '|', Char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011', '\x0012',
+                     '|', char.MinValue, '\x0001', '\x0002', '\x0003', '\x0004', '\x0005', '\x0006', '\a', '\b', '\t', '\n', '\v', '\f', '\r', '\x000E', '\x000F', '\x0010', '\x0011', '\x0012',
                      '\x0013',
                      '\x0014', '\x0015', '\x0016', '\x0017', '\x0018', '\x0019', '\x001A', '\x001B', '\x001C', '\x001D', '\x001E', '\x001F'
                   });
@@ -564,7 +564,7 @@ namespace Landorphan.Abstractions.Tests.BclBaseline
             else
             {
                // null 
-               expected = new HashSet<Char>(new[] { Char.MinValue });
+               expected = new HashSet<char>(new[] { char.MinValue });
             }
 
             var actual = Path.GetInvalidPathChars();

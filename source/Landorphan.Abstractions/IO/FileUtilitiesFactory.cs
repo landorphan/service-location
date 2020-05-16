@@ -1,13 +1,13 @@
 namespace Landorphan.Abstractions.IO
 {
-   using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Factory for instantiating <see cref="IFileUtilities"/> instances.
    /// </summary>
    public sealed class FileUtilitiesFactory : IFileUtilitiesFactory
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IFileUtilities Create()
       {
          return new FileUtilities();

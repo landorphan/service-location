@@ -1,126 +1,125 @@
 namespace Landorphan.Abstractions.IO
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.IO;
-   using System.Text;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Ioc.ServiceLocation;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.IO;
+    using System.Text;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Ioc.ServiceLocation;
 
-   /// <summary>
+    /// <summary>
    /// Default implementation of <see cref="IFileWriterUtilities"/>.
    /// </summary>
    public sealed class FileWriterUtilities : IFileWriterUtilities
    {
-      /// <inheritdoc/>
-      public void AppendAllLines(String path, IEnumerable<String> contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.AppendAllLines(path, contents, encoding);
       }
 
-      /// <inheritdoc/>
-      public void AppendAllText(String path, String contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void AppendAllText(string path, string contents, Encoding encoding)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.AppendAllText(path, contents, encoding);
       }
 
-      /// <inheritdoc/>
-      public void CopyNoOverwrite(String sourceFileName, String destFileName)
+       /// <inheritdoc/>
+      public void CopyNoOverwrite(string sourceFileName, string destFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.CopyNoOverwrite(sourceFileName, destFileName);
       }
 
-      /// <inheritdoc/>
-      public void CopyWithOverwrite(String sourceFileName, String destFileName)
+       /// <inheritdoc/>
+      public void CopyWithOverwrite(string sourceFileName, string destFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.CopyWithOverwrite(sourceFileName, destFileName);
       }
 
-      /// <inheritdoc/>
-      public void Move(String sourceFileName, String destFileName)
+       /// <inheritdoc/>
+      public void Move(string sourceFileName, string destFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.Move(sourceFileName, destFileName);
       }
 
-      /// <inheritdoc/>
-      public FileStream OpenWrite(String path)
+       /// <inheritdoc/>
+      public FileStream OpenWrite(string path)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          return fileInternalMapping.OpenWrite(path);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsNoBackup(String sourceFileName, String destinationFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsNoBackup(string sourceFileName, string destinationFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.ReplaceContentsNoBackup(sourceFileName, destinationFileName);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsNoBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsNoBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.ReplaceContentsNoBackupIgnoringMetadataErrors(sourceFileName, destinationFileName);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsWithBackup(String sourceFileName, String destinationFileName, String destinationBackupFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsWithBackup(string sourceFileName, string destinationFileName, string destinationBackupFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
       }
 
-      /// <inheritdoc/>
-      public void ReplaceContentsWithBackupIgnoringMetadataErrors(String sourceFileName, String destinationFileName, String destinationBackupFileName)
+       /// <inheritdoc/>
+      public void ReplaceContentsWithBackupIgnoringMetadataErrors(string sourceFileName, string destinationFileName, string destinationBackupFileName)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.ReplaceContentsWithBackupIgnoringMetadataErrors(sourceFileName, destinationFileName, destinationBackupFileName);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllBytes(String path, Byte[] bytes)
+       /// <inheritdoc/>
+      public void WriteAllBytes(string path, byte[] bytes)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.WriteAllBytes(path, bytes);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllBytes(String path, IImmutableList<Byte> bytes)
+       /// <inheritdoc/>
+      public void WriteAllBytes(string path, IImmutableList<byte> bytes)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.WriteAllBytes(path, bytes);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllLines(String path, String[] contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllLines(string path, string[] contents, Encoding encoding)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.WriteAllLines(path, contents, encoding);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllLines(String path, IImmutableList<String> contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllLines(string path, IImmutableList<string> contents, Encoding encoding)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.WriteAllLines(path, contents, encoding);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllLines(String path, IEnumerable<String> contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.WriteAllLines(path, contents, encoding);
       }
 
-      /// <inheritdoc/>
-      public void WriteAllText(String path, String contents, Encoding encoding)
+       /// <inheritdoc/>
+      public void WriteAllText(string path, string contents, Encoding encoding)
       {
          var fileInternalMapping = IocServiceLocator.Resolve<IFileInternalMapping>();
          fileInternalMapping.WriteAllText(path, contents, encoding);

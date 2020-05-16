@@ -1,11 +1,11 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Runtime.Serialization;
-   using Landorphan.Common.Exceptions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
+    using Landorphan.Common.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Base class for thrown <see cref="ArgumentException"/> instances specific to the <see cref="Landorphan.Ioc.ServiceLocation"/> implementations.
    /// </summary>
    /// <remarks>
@@ -21,24 +21,24 @@
    [SuppressMessage("SonarLint.CodeSmell", "S4027: Exceptions should provide standard constructors", Justification = "False positive (MWP)")]
    public abstract class LandorphanIocServiceLocationArgumentException : LandorphanArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="LandorphanIocServiceLocationArgumentException"/> class.
       /// </summary>
       protected LandorphanIocServiceLocationArgumentException()
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="LandorphanIocServiceLocationArgumentException"/> class.
       /// </summary>
       /// <param name="message">
       /// The message that explains the reason for the exception.
       /// </param>
-      protected LandorphanIocServiceLocationArgumentException(String message) : base(message)
+      protected LandorphanIocServiceLocationArgumentException(string message) : base(message)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="LandorphanIocServiceLocationArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -47,11 +47,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      protected LandorphanIocServiceLocationArgumentException(String message, Exception innerException) : this(null, message, innerException)
+      protected LandorphanIocServiceLocationArgumentException(string message, Exception innerException) : this(null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="LandorphanIocServiceLocationArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -63,12 +63,12 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      protected LandorphanIocServiceLocationArgumentException(String paramName, String message, Exception innerException)
+      protected LandorphanIocServiceLocationArgumentException(string paramName, string message, Exception innerException)
          : base(paramName, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="LandorphanIocServiceLocationArgumentException"/> class.
       /// </summary>
       /// <param name="info">

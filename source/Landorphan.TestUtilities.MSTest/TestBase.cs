@@ -1,16 +1,16 @@
 namespace Landorphan.TestUtilities
 {
-   using System;
-   using System.IO;
-   using System.Linq;
-   using System.Reflection;
-   using System.Runtime.InteropServices;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Testability;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.InteropServices;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Testability;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   /// <summary>
+    /// <summary>
    /// Base class for tests that use TestUtilities.
    /// </summary>
    /// <remarks>
@@ -22,10 +22,10 @@ namespace Landorphan.TestUtilities
    [TestClass]
    public abstract class TestBase
    {
-      private readonly String _originalCurrentDirectory;
-      private Lazy<EventMonitor> _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
+       private readonly string _originalCurrentDirectory;
+       private Lazy<EventMonitor> _eventMonitor = new Lazy<EventMonitor>(() => new EventMonitor());
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="TestBase" /> class.
       /// </summary>
 //      [SuppressMessage("SonarLint.CodeSmell", "S4005: Call the overload that takes a 'System.Uri' as an argument instead.",
@@ -56,24 +56,24 @@ namespace Landorphan.TestUtilities
          tms.ApplyTestInstanceMockingOnTopOfTestRunMocking();
       }
 
-      /// <summary>
+       /// <summary>
       /// Allows for a static OnTestCleanup method to be supplied that will be called
       /// after every test instance execution.
       /// </summary>
       public static Action<TestBase> OnTestCleanup { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Allows for a static OnTestInitialize method to be supplied that will be
       /// called before every test instance execution.
       /// </summary>
       public static Action<TestBase> OnTestInitialize { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Gets or sets the test context which provides information about and functionality for the current test run.
       /// </summary>
       public TestContext TestContext { get; protected set; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the monitored events.
       /// </summary>
       /// <value>
@@ -81,7 +81,7 @@ namespace Landorphan.TestUtilities
       /// </value>
       protected EventMonitor MonitoredEvents => _eventMonitor.Value;
 
-      /// <summary>
+       /// <summary>
       /// Code that executes before any of the tests methods in the test class are executed.
       /// </summary>
       /// <remarks>
@@ -95,7 +95,7 @@ namespace Landorphan.TestUtilities
          // currently empty
       }
 
-      /// <summary>
+       /// <summary>
       /// Steps that are run before each test.
       /// </summary>
       [TestInitialize]
@@ -104,7 +104,7 @@ namespace Landorphan.TestUtilities
          InitializeTestMethod();
       }
 
-      /// <summary>
+       /// <summary>
       /// Called once before each test method invocation.
       /// </summary>
       protected virtual void InitializeTestMethod()
@@ -120,7 +120,7 @@ namespace Landorphan.TestUtilities
          OnTestInitialize?.Invoke(this);
       }
 
-      /// <summary>
+       /// <summary>
       /// Called once after each test method invocation.
       /// </summary>
       protected virtual void TeardownTestMethod()
@@ -133,7 +133,7 @@ namespace Landorphan.TestUtilities
          OnTestCleanup?.Invoke(this);
       }
 
-      /// <summary>
+       /// <summary>
       /// Steps that are run after each test.
       /// </summary>
       [TestCleanup]
@@ -142,7 +142,7 @@ namespace Landorphan.TestUtilities
          TeardownTestMethod();
       }
 
-      /// <summary>
+       /// <summary>
       /// Code that executes after all of the test methods in the test class are executed.
       /// </summary>
       [ClassCleanup]
@@ -154,9 +154,9 @@ namespace Landorphan.TestUtilities
          tms.ResetIndividualTestContainers();
       }
 
-      private void ApplyTestFilters()
+       private void ApplyTestFilters()
       {
-         MethodInfo methodInfo = this.GetType().GetMethod(this.TestContext.TestName);
+         var methodInfo = GetType().GetMethod(TestContext.TestName);
          if (methodInfo != null)
          {
             var testFilters = (from a in methodInfo.GetCustomAttributes()
@@ -164,7 +164,7 @@ namespace Landorphan.TestUtilities
                               where tf != null
                              select tf).ToList();
 
-            bool suppress = testFilters.Any(tf => tf.ReturnInconclusiveTestResult());
+            var suppress = testFilters.Any(tf => tf.ReturnInconclusiveTestResult());
             if (suppress)
             {
                Assert.Inconclusive("This test has been suppressed by test filters evaluated against the runtime environment.");

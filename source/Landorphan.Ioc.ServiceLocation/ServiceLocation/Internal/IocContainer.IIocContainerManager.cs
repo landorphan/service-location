@@ -1,72 +1,72 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Linq;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   // ReSharper disable ConvertToAutoProperty
+    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage
    // ReSharper disable RedundantExtendsListEntry
 
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
-      private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildAdded = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildRemoved = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerConfigurationEventArgs> _listenersContainerConfigurationChange = new SourceWeakEventHandlerSet<ContainerConfigurationEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerTypeEventArgs> _listenersContainerPrecludedTypeAdded = new SourceWeakEventHandlerSet<ContainerTypeEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerTypeEventArgs> _listenersContainerPrecludedTypeRemoved = new SourceWeakEventHandlerSet<ContainerTypeEventArgs>();
+       private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildAdded = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();
+       private readonly SourceWeakEventHandlerSet<ContainerParentChildEventArgs> _listenersContainerChildRemoved = new SourceWeakEventHandlerSet<ContainerParentChildEventArgs>();
+       private readonly SourceWeakEventHandlerSet<ContainerConfigurationEventArgs> _listenersContainerConfigurationChange = new SourceWeakEventHandlerSet<ContainerConfigurationEventArgs>();
+       private readonly SourceWeakEventHandlerSet<ContainerTypeEventArgs> _listenersContainerPrecludedTypeAdded = new SourceWeakEventHandlerSet<ContainerTypeEventArgs>();
+       private readonly SourceWeakEventHandlerSet<ContainerTypeEventArgs> _listenersContainerPrecludedTypeRemoved = new SourceWeakEventHandlerSet<ContainerTypeEventArgs>();
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerParentChildEventArgs> IIocContainerManager.ContainerChildAdded
       {
          add => _listenersContainerChildAdded.Add(value);
          remove => _listenersContainerChildAdded.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerParentChildEventArgs> IIocContainerManager.ContainerChildRemoved
       {
          add => _listenersContainerChildRemoved.Add(value);
          remove => _listenersContainerChildRemoved.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerConfigurationEventArgs> IIocContainerManager.ContainerConfigurationChanged
       {
          add => _listenersContainerConfigurationChange.Add(value);
          remove => _listenersContainerConfigurationChange.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerTypeEventArgs> IIocContainerManager.ContainerPrecludedTypeAdded
       {
          add => _listenersContainerPrecludedTypeAdded.Add(value);
          remove => _listenersContainerPrecludedTypeAdded.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerTypeEventArgs> IIocContainerManager.ContainerPrecludedTypeRemoved
       {
          add => _listenersContainerPrecludedTypeRemoved.Add(value);
          remove => _listenersContainerPrecludedTypeRemoved.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       IIocContainerConfiguration IIocContainerManager.Configuration => _configuration;
 
-      /// <inheritdoc />
-      Boolean IIocContainerManager.IsConfigurationLocked => _configuration.IsReadOnly;
+       /// <inheritdoc />
+      bool IIocContainerManager.IsConfigurationLocked => _configuration.IsReadOnly;
 
-      IReadOnlyCollection<Type> IIocContainerManager.PrecludedTypes => _precludedTypes;
+       IReadOnlyCollection<Type> IIocContainerManager.PrecludedTypes => _precludedTypes;
 
-      [SuppressMessage("Microsoft.Usage", "CA2208: Instantiate argument exceptions correctly", Justification = "Using precludedType parameters (MWP)")]
-      Boolean IIocContainerManager.AddPrecludedType<TPrecluded>()
+       [SuppressMessage("Microsoft.Usage", "CA2208: Instantiate argument exceptions correctly", Justification = "Using precludedType parameters (MWP)")]
+      bool IIocContainerManager.AddPrecludedType<TPrecluded>()
       {
          if (!_configuration.AllowPreclusionOfTypes)
          {
@@ -95,7 +95,7 @@
       }
 
       /// <inheritdoc/>
-      Boolean IIocContainerManager.AddPrecludedType(Type precludedType)
+      bool IIocContainerManager.AddPrecludedType(Type precludedType)
       {
          if (!_configuration.AllowPreclusionOfTypes)
          {
@@ -124,7 +124,7 @@
       }
 
       /// <inheritdoc/>
-      IIocContainer IIocContainerManager.CreateChildContainer(String name)
+      IIocContainer IIocContainerManager.CreateChildContainer(string name)
       {
          IOwnedIocContainer ownedChildContainer = new IocContainer(this, name);
          _children = _children.Add(ownedChildContainer);
@@ -134,7 +134,7 @@
       }
 
       /// <inheritdoc />
-      Boolean IIocContainerManager.LockConfiguration()
+      bool IIocContainerManager.LockConfiguration()
       {
          var was = _configuration.IsReadOnly;
          if (!was)
@@ -146,7 +146,7 @@
       }
 
       /// <inheritdoc/>
-      Boolean IIocContainerManager.RemovePrecludedType<TPrecluded>()
+      bool IIocContainerManager.RemovePrecludedType<TPrecluded>()
       {
          // does not check whether preclusion of types configuration is disabled by design.
          var was = _precludedTypes;
@@ -164,7 +164,7 @@
       }
 
       /// <inheritdoc/>
-      Boolean IIocContainerManager.RemovePrecludedType(Type precludedType)
+      bool IIocContainerManager.RemovePrecludedType(Type precludedType)
       {
          // does not check whether preclusion of types configuration is disabled by design.
          var was = _precludedTypes;
@@ -178,7 +178,7 @@
          return rv;
       }
 
-      private Boolean IsRegisteredDefaultOrNamedInThisOrAncestorContainer(IIocContainerRegistrationRepository container, Type type)
+      private bool IsRegisteredDefaultOrNamedInThisOrAncestorContainer(IIocContainerRegistrationRepository container, Type type)
       {
          if (type == null || !(type.IsInterface || type.IsAbstract) || type.ContainsGenericParameters)
          {

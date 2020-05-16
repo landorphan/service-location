@@ -1,23 +1,23 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
-   using System;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Provides data for the <see cref="IIocContainerRegistrar.ContainerRegistrationAdded"/> event and <see cref="IIocContainerRegistrar.ContainerRegistrationRemoved"/> event.
    /// </summary>
    /// <seealso cref="EventArgs"/>
    public class ContainerTypeRegistrationEventArgs : EventArgs
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerTypeRegistrationEventArgs"/> class.
       /// </summary>
       public ContainerTypeRegistrationEventArgs() : this(null, null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerTypeRegistrationEventArgs"/> class.
       /// </summary>
       /// <param name="container">
@@ -35,7 +35,7 @@
       /// <param name="instance">
       /// The resolved instance, or a null reference if it has yet to be resolved.
       /// </param>
-      public ContainerTypeRegistrationEventArgs(IIocContainerMetaIdentity container, Type fromType, String name, Type toType, Object instance)
+      public ContainerTypeRegistrationEventArgs(IIocContainerMetaIdentity container, Type fromType, string name, Type toType, object instance)
       {
          Container = container;
          FromType = fromType;
@@ -44,33 +44,33 @@
          Instance = instance;
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the inversion of control container in which type was registered.
       /// </summary>
       public IIocContainerMetaIdentity Container { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the type registered.
       /// </summary>
       public Type FromType { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the instance registered.
       /// </summary>
       /// <remarks>
       /// May be a null reference.
       /// </remarks>
-      public Object Instance { get; }
+      public object Instance { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the registered name.
       /// </summary>
       /// <remarks>
       /// May be a null reference.
       /// </remarks>
-      public String Name { get; }
+      public string Name { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the registered implementation type.
       /// </summary>
       /// <remarks>

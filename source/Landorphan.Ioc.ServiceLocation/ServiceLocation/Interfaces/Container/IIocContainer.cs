@@ -1,9 +1,8 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using System.Collections.Generic;
+    using System.Collections.Generic;
 
-   /// <summary>
+    /// <summary>
    /// Represents a dependency injection container.
    /// </summary>
    /// <remarks>
@@ -11,7 +10,7 @@
    /// </remarks>
    public interface IIocContainer : IIocContainerMetaSharedCapacities
    {
-      /// <summary>
+       /// <summary>
       /// Gets all of the immediate children of this container.
       /// </summary>
       /// <value>
@@ -23,15 +22,15 @@
       /// </remarks>
       IReadOnlyCollection<IIocContainer> Children { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether this instance is a root container.
       /// </summary>
       /// <value>
       /// <c> true </c> if this instance is a root container; otherwise <c> false </c>.
       /// </value>
-      Boolean IsRoot { get; }
+      bool IsRoot { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the parent of this container.
       /// </summary>
       /// <value>

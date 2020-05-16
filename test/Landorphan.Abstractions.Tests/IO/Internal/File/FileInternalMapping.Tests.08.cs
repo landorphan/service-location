@@ -1,26 +1,26 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Text;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_ReplaceContents : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_destinationBackupFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -82,7 +82,7 @@
             And_the_destinationBackupFileName_does_exist_It_should_replace_the_contents_of_both_the_destinationFile_and_the_destinationBackupFile()
          {
             // takes 3 seconds on my box
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             var enc = new UTF8Encoding(false, true);
             try
             {
@@ -159,7 +159,7 @@
             And_the_destinationBackupFileName_does_not_exist_It_should_replace_the_contents_of_destinationFile_and_create_the_destinationBackupFile()
          {
             // takes 3 seconds on my box
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             var enc = new UTF8Encoding(false, true);
             try
             {
@@ -239,7 +239,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destinationBackupFileName_has_leading_spaces_It_should_not_throw()
          {
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             try
             {
                var sourceFileName = _target.CreateTemporaryFile();
@@ -273,7 +273,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destinationBackupFileName_has_trailing_spaces_It_should_not_throw()
          {
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             try
             {
                var sourceFileName = _target.CreateTemporaryFile();
@@ -309,7 +309,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = String.Empty;
+            var destinationBackupFileName = string.Empty;
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -337,7 +337,7 @@
             // ReSharper disable ExpressionIsAlwaysNull
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            String destinationBackupFileName = null;
+            string destinationBackupFileName = null;
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -460,7 +460,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            var destinationBackupFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var destinationBackupFileName = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -487,7 +487,7 @@
          {
             var sourceFileName = _target.CreateTemporaryFile();
             var destinationFileName = _target.CreateTemporaryFile();
-            const String destinationBackupFileName = " \t ";
+            const string destinationBackupFileName = " \t ";
             try
             {
                Action throwingAction = () => _target.ReplaceContentsWithBackup(sourceFileName, destinationFileName, destinationBackupFileName);
@@ -684,7 +684,7 @@
          {
             // takes 3 seconds on my box
 
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             try
             {
                var sourceFileName = _target.CreateTemporaryFile();
@@ -733,7 +733,7 @@
          {
             // takes 3 seconds on my box
 
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             try
             {
                var sourceFileName = _target.CreateTemporaryFile();
@@ -781,7 +781,7 @@
          public void And_the_destinationFileName_is_empty_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destinationFileName = String.Empty;
+            var destinationFileName = string.Empty;
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
@@ -818,7 +818,7 @@
          {
             // ReSharper disable ExpressionIsAlwaysNull
             var sourceFileName = _target.CreateTemporaryFile();
-            String destinationFileName = null;
+            string destinationFileName = null;
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
@@ -939,7 +939,7 @@
          public void And_the_destinationFileName_is_too_long_It_should_throw_PathTooLongException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            var destinationFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var destinationFileName = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
@@ -975,7 +975,7 @@
          public void And_the_destinationFileName_is_white_space_It_should_throw_ArgumentException()
          {
             var sourceFileName = _target.CreateTemporaryFile();
-            const String destinationFileName = " \t ";
+            const string destinationFileName = " \t ";
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
             {
@@ -1203,7 +1203,7 @@
          {
             // takes 3 seconds on my box
 
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             try
             {
                var sourceFileName = _target.CreateTemporaryFile();
@@ -1251,7 +1251,7 @@
          public void And_the_sourceFileName_has_trailing_spaces_It_should_not_throw()
          {
             // takes 3 seconds on my box
-            var cleanupFileNames = new List<String>();
+            var cleanupFileNames = new List<string>();
             try
             {
                var sourceFileName = _target.CreateTemporaryFile();
@@ -1298,7 +1298,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
          {
-            var sourceFileName = String.Empty;
+            var sourceFileName = string.Empty;
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
@@ -1335,7 +1335,7 @@
          public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
          {
             // ReSharper disable ExpressionIsAlwaysNull
-            String sourceFileName = null;
+            string sourceFileName = null;
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
@@ -1416,7 +1416,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_too_long_It_should_throw_PathTooLongException()
          {
-            var sourceFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var sourceFileName = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try
@@ -1452,7 +1452,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_white_space_It_should_throw_ArgumentException()
          {
-            const String sourceFileName = " \t ";
+            const string sourceFileName = " \t ";
             var destinationFileName = _target.CreateTemporaryFile();
             var destinationBackupFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".tmp");
             try

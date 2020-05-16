@@ -1,15 +1,15 @@
 namespace Landorphan.InstrumentationManagement.Implementation
 {
-   using Landorphan.Common;
-   using Landorphan.InstrumentationManagement.Interfaces;
-   using Landorphan.InstrumentationManagement.PlugIns;
+    using Landorphan.Common;
+    using Landorphan.InstrumentationManagement.Interfaces;
+    using Landorphan.InstrumentationManagement.PlugIns;
 
-   /// <summary>
+    /// <summary>
    /// Represents an Entry Point within the applciaiton.
    /// </summary>
    public class EntryPointExecution : DisposableObject, IEntryPointExecution
    {
-      /// <summary>
+       /// <summary>
       /// Creates a new instance of the EntryPointExecution class.
       /// </summary>
       /// <param name="trace">
@@ -20,14 +20,14 @@ namespace Landorphan.InstrumentationManagement.Implementation
       /// </param>
       public EntryPointExecution(IPerfTrace trace, string name)
       {
-         this.Trace = trace;
-         this.EntryPointName = name;
+         Trace = trace;
+         EntryPointName = name;
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       public string EntryPointName { get; private set; }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       public IPerfTrace Trace { get; private set; }
    }
 

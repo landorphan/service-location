@@ -1,17 +1,17 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
-   using System;
-   using System.Reflection;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Reflection;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Provides data for the <see cref="IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked"/> event and the
    /// <see cref="IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked"/> event.
    /// </summary>
    /// <seealso cref="EventArgs"/>
    public sealed class ContainerIndividualAssemblyRegistrarInvokedEventArgs : EventArgs
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerIndividualAssemblyRegistrarInvokedEventArgs"/> class using the specified
       /// <see cref="IAssemblySelfRegistration"/>
       /// </summary>
@@ -19,7 +19,7 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerIndividualAssemblyRegistrarInvokedEventArgs"/> class using the specified
       /// <see cref="IAssemblySelfRegistration"/>
       /// </summary>
@@ -36,7 +36,7 @@
          SelfRegistration = selfRegistration;
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the <see cref="Assembly"/> that holds the implementation of the <see cref="IAssemblySelfRegistration"/>.
       /// </summary>
       /// <value>
@@ -44,12 +44,12 @@
       /// </value>
       public Assembly Assembly { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the inversion of control container in which <see cref="IAssemblySelfRegistration"/> will be registering/did register services.
       /// </summary>
       public IIocContainerMetaIdentity Container { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the <see cref="IAssemblySelfRegistration"></see> that will be/was invoked to register services in the <see cref="Container"/>.
       /// </summary>
       /// <returns>

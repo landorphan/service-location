@@ -5,7 +5,7 @@
    /// </summary>
    public interface IDirectoryUtilitiesFactory
    {
-      /// <summary>
+       /// <summary>
       /// Creates a <see cref="IDirectoryUtilities"/> instance.
       /// </summary>
       /// <returns>

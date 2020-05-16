@@ -2,18 +2,18 @@
 
 namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.Resources;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.Resources;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
 
-   /// <summary>
+    /// <summary>
    /// Exposes methods for creating, moving, and enumerating through directories and subdirectories.
    /// </summary>
    /// <remarks>
@@ -22,19 +22,19 @@ namespace Landorphan.Abstractions.IO.Internal
    [SuppressMessage("SonarLint.CodeSmell", "S2148: Underscores should be used to make large numbers readable")]
    internal sealed class DirectoryInternalMapping : IDirectoryInternalMapping
    {
-      // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
+       // Use IO_PRECHECKS to enable/disable non-canonical validation before the BCL call.  These are used to improve the exception messaging.
 
-      ///<inheritdoc/>
+       ///<inheritdoc/>
       public DateTimeOffset MaximumFileTimeAsDateTimeOffset => FileTimeHelper.MaximumFileTimeAsDateTimeOffset;
 
-      ///<inheritdoc/>
-      public Int64 MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
+       ///<inheritdoc/>
+      public long MaximumPrecisionFileSystemTicks => FileTimeHelper.MaximumPrecisionFileSystemTicks;
 
-      ///<inheritdoc/>
+       ///<inheritdoc/>
       public DateTimeOffset MinimumFileTimeAsDateTimeOffset => FileTimeHelper.MinimumFileTimeAsDateTimeOffset;
 
-      /// <inheritdoc/>
-      public void Copy(String sourceDirName, String destDirName)
+       /// <inheritdoc/>
+      public void Copy(string sourceDirName, string destDirName)
       {
          var cleanedSourceDirName = IOStringUtilities.ValidateCanonicalPath(sourceDirName, "sourceDirName");
          var cleanedDestDirName = IOStringUtilities.ValidateCanonicalPath(destDirName, "destDirName");
@@ -53,7 +53,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (fileUtilities.FileExists(cleanedDestDirName))
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.CannotCopyToDestinationDirectoryFileAlreadyExistsFmt,
                cleanedDestDirName);
@@ -62,7 +62,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          var sourceFullPath = pathUtilities.GetFullPath(cleanedSourceDirName);
          var destinationFullPath = pathUtilities.GetFullPath(cleanedDestDirName);
-         if (String.Equals(sourceFullPath, destinationFullPath, StringComparison.OrdinalIgnoreCase))
+         if (string.Equals(sourceFullPath, destinationFullPath, StringComparison.OrdinalIgnoreCase))
          {
             // nothing to do
             return;
@@ -70,7 +70,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (pathUtilities.GetFullPath(cleanedDestDirName).Contains(pathUtilities.GetFullPath(cleanedSourceDirName)))
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.CannotCopyToDestinationDirectorySubfolderOfSourceFmt,
                cleanedDestDirName,
@@ -93,8 +93,8 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public String CreateDirectory(String path)
+       /// <inheritdoc/>
+      public string CreateDirectory(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -112,8 +112,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return di.FullName;
       }
 
-      /// <inheritdoc/>
-      public void DeleteEmpty(String path)
+       /// <inheritdoc/>
+      public void DeleteEmpty(string path)
       {
          try
          {
@@ -131,16 +131,16 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public void DeleteRecursively(String path)
+       /// <inheritdoc/>
+      public void DeleteRecursively(string path)
       {
          DeleteImplementation(path, true);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
       [SuppressMessage("SonarLint.CodeSmell", "S2221: Exception should not be caught when not required by called methods")]
-      public Boolean DirectoryExists(String path)
+      public bool DirectoryExists(string path)
       {
          try
          {
@@ -154,20 +154,20 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateDirectories(String path)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateDirectories(string path)
       {
          return EnumerateDirectories(path, "*", SearchOption.AllDirectories);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateDirectories(String path, String searchPattern)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateDirectories(string path, string searchPattern)
       {
          return EnumerateDirectories(path, searchPattern, SearchOption.AllDirectories);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateDirectories(String path, String searchPattern, SearchOption searchOption)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateDirectories(string path, string searchPattern, SearchOption searchOption)
       {
          path.ArgumentNotNull(nameof(path));
          searchPattern.ArgumentNotNull(nameof(searchPattern));
@@ -177,7 +177,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          // BCL Directory.EnumerateDirectories no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
@@ -209,20 +209,20 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateFiles(String path)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateFiles(string path)
       {
          return EnumerateFiles(path, "*", SearchOption.AllDirectories);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateFiles(String path, String searchPattern)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateFiles(string path, string searchPattern)
       {
          return EnumerateFiles(path, searchPattern, SearchOption.AllDirectories);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateFiles(String path, String searchPattern, SearchOption searchOption)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption)
       {
          path.ArgumentNotNull(nameof(path));
          searchPattern.ArgumentNotNull(nameof(searchPattern));
@@ -232,7 +232,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          // BCL Directory.EnumerateFiles no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
 
          // must not use GetInvalidFileNameCharacters, because that excludes valid search characters such as " * / : < > ? \
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
@@ -265,20 +265,20 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateFileSystemEntries(String path)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateFileSystemEntries(string path)
       {
          return EnumerateFileSystemEntries(path, "*", SearchOption.AllDirectories);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateFileSystemEntries(string path, string searchPattern)
       {
          return EnumerateFileSystemEntries(path, searchPattern, SearchOption.AllDirectories);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern, SearchOption searchOption)
+       /// <inheritdoc/>
+      public IImmutableSet<string> EnumerateFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
       {
          path.ArgumentNotNull(nameof(path));
          searchPattern.ArgumentNotNull(nameof(searchPattern));
@@ -288,7 +288,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          // BCL Directory.EnumerateFileSystemEntries no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
             throw new ArgumentException(@"The search pattern is not well-formed (contains invalid characters).", nameof(searchPattern));
@@ -319,8 +319,8 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public DateTimeOffset GetCreationTime(String path)
+       /// <inheritdoc/>
+      public DateTimeOffset GetCreationTime(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -337,26 +337,26 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public String GetCurrentDirectory()
+       /// <inheritdoc/>
+      public string GetCurrentDirectory()
       {
          return Directory.GetCurrentDirectory();
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetDirectories(String path)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetDirectories(string path)
       {
          return GetDirectories(path, "*", SearchOption.TopDirectoryOnly);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetDirectories(String path, String searchPattern)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetDirectories(string path, string searchPattern)
       {
          return GetDirectories(path, searchPattern, SearchOption.TopDirectoryOnly);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetDirectories(String path, String searchPattern, SearchOption searchOption)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetDirectories(string path, string searchPattern, SearchOption searchOption)
       {
          path.ArgumentNotNull(nameof(path));
          searchPattern.ArgumentNotNull(nameof(searchPattern));
@@ -366,7 +366,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          // BCL no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
@@ -398,20 +398,20 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetFiles(String path)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetFiles(string path)
       {
          return GetFiles(path, "*", SearchOption.TopDirectoryOnly);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetFiles(String path, String searchPattern)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetFiles(string path, string searchPattern)
       {
          return GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetFiles(String path, String searchPattern, SearchOption searchOption)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetFiles(string path, string searchPattern, SearchOption searchOption)
       {
          path.ArgumentNotNull(nameof(path));
          searchPattern.ArgumentNotNull(nameof(searchPattern));
@@ -421,7 +421,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          // BCL no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
@@ -453,20 +453,20 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetFileSystemEntries(String path)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetFileSystemEntries(string path)
       {
          return GetFileSystemEntries(path, "*", SearchOption.TopDirectoryOnly);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern)
       {
          return GetFileSystemEntries(path, searchPattern, SearchOption.TopDirectoryOnly);
       }
 
-      /// <inheritdoc/>
-      public IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern, SearchOption searchOption)
+       /// <inheritdoc/>
+      public IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
       {
          path.ArgumentNotNull(nameof(path));
          searchPattern.ArgumentNotNull(nameof(searchPattern));
@@ -476,7 +476,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          // BCL no longer throws ArgumentException on invalid searchOption
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-         const Int32 indexNotFound = -1;
+         const int indexNotFound = -1;
          if (indexNotFound != searchPattern.IndexOfAny(pathUtilities.GetInvalidPathCharacters().ToArray()))
          {
             throw new ArgumentException(StringResources.SearchPatternContainsInvalidCharacters, nameof(searchPattern));
@@ -508,8 +508,8 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
-      public DateTimeOffset GetLastAccessTime(String path)
+       /// <inheritdoc/>
+      public DateTimeOffset GetLastAccessTime(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 #if IO_PRECHECKS
@@ -527,8 +527,8 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public DateTimeOffset GetLastWriteTime(String path)
+       /// <inheritdoc/>
+      public DateTimeOffset GetLastWriteTime(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -545,22 +545,22 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      /// <inheritdoc/>
-      public String GetRandomDirectoryName()
+       /// <inheritdoc/>
+      public string GetRandomDirectoryName()
       {
          return Path.GetRandomFileName();
       }
 
-      /// <inheritdoc/>
-      public String GetTemporaryDirectoryPath()
+       /// <inheritdoc/>
+      public string GetTemporaryDirectoryPath()
       {
          return Path.GetTempPath();
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
       [SuppressMessage("SonarLint.CodeSmell", "S2221: Exception should not be caught when not required by called methods")]
-      public void Move(String sourceDirName, String destDirName)
+      public void Move(string sourceDirName, string destDirName)
       {
          var cleanedSourceDirName = IOStringUtilities.ValidateCanonicalPath(sourceDirName, "sourceDirName");
          var cleanedDestDirName = IOStringUtilities.ValidateCanonicalPath(destDirName, "destDirName");
@@ -577,7 +577,7 @@ namespace Landorphan.Abstractions.IO.Internal
          var fileUtilities = IocServiceLocator.Instance.Resolve<IFileUtilities>();
          if (fileUtilities.FileExists(cleanedDestDirName))
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.CannotMoveToDestinationDirectoryFileAlreadyExistsFmt,
                cleanedDestDirName);
@@ -587,7 +587,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (DirectoryExists(cleanedDestDirName))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   StringResources.CannotMoveToDestinationDirectoryDirectoryAlreadyExistsFmt,
                   cleanedDestDirName));
@@ -597,7 +597,7 @@ namespace Landorphan.Abstractions.IO.Internal
          if (pathUtilities.GetFullPath(cleanedDestDirName).Contains(pathUtilities.GetFullPath(cleanedSourceDirName)))
          {
             throw new IOException(
-               String.Format(
+               string.Format(
                   CultureInfo.InvariantCulture,
                   StringResources.CannotMoveToDestinationDirectorySubfolderOfSourceFmt,
                   cleanedDestDirName,
@@ -613,13 +613,13 @@ namespace Landorphan.Abstractions.IO.Internal
          {
             // BCL reports the sourceDirName when caller does not have access to the destDirName path.
 
-            var sourceDirNameMessage = String.Format(
+            var sourceDirNameMessage = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.AccessToThePathIsDeniedFmt,
                cleanedSourceDirName);
-            if (String.Equals(ioe.Message, sourceDirNameMessage, StringComparison.Ordinal))
+            if (string.Equals(ioe.Message, sourceDirNameMessage, StringComparison.Ordinal))
             {
-               Boolean haveAccessToSourceDirName;
+               bool haveAccessToSourceDirName;
                try
                {
                   haveAccessToSourceDirName = true;
@@ -635,7 +635,7 @@ namespace Landorphan.Abstractions.IO.Internal
                   // have access to sourceDirName so correct the message.
                   // (changes HResult from 0x80070005 to 0x80131620) 
                   throw new UnauthorizedAccessException(
-                     String.Format(CultureInfo.InvariantCulture, StringResources.AccessToThePathIsDeniedFmt, cleanedDestDirName),
+                     string.Format(CultureInfo.InvariantCulture, StringResources.AccessToThePathIsDeniedFmt, cleanedDestDirName),
                      ioe);
                }
 
@@ -646,9 +646,9 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [Obsolete("Currently not reliable")]
-      public void SetCreationTime(String path, DateTimeOffset creationTime)
+      public void SetCreationTime(string path, DateTimeOffset creationTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -656,7 +656,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (creationTime < MinimumFileTimeAsDateTimeOffset)
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.ValueMustBeGreaterThanOrEqualToTicksFmt,
                MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
@@ -676,8 +676,8 @@ namespace Landorphan.Abstractions.IO.Internal
          Directory.SetCreationTimeUtc(cleanedPath, creationTime.UtcDateTime);
       }
 
-      /// <inheritdoc/>
-      public void SetCurrentDirectory(String path)
+       /// <inheritdoc/>
+      public void SetCurrentDirectory(string path)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -692,9 +692,9 @@ namespace Landorphan.Abstractions.IO.Internal
          Directory.SetCurrentDirectory(cleanedPath);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [Obsolete("Currently not reliable")]
-      public void SetLastAccessTime(String path, DateTimeOffset lastAccessTime)
+      public void SetLastAccessTime(string path, DateTimeOffset lastAccessTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -702,7 +702,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (lastAccessTime < MinimumFileTimeAsDateTimeOffset)
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.ValueMustBeGreaterThanOrEqualToTicksFmt,
                MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
@@ -720,10 +720,10 @@ namespace Landorphan.Abstractions.IO.Internal
          Directory.SetLastAccessTimeUtc(cleanedPath, lastAccessTime.UtcDateTime);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [Obsolete("Currently not reliable")]
       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
-      public void SetLastWriteTime(String path, DateTimeOffset lastWriteTime)
+      public void SetLastWriteTime(string path, DateTimeOffset lastWriteTime)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -731,7 +731,7 @@ namespace Landorphan.Abstractions.IO.Internal
 
          if (lastWriteTime < MinimumFileTimeAsDateTimeOffset)
          {
-            var msg = String.Format(
+            var msg = string.Format(
                CultureInfo.InvariantCulture,
                StringResources.ValueMustBeGreaterThanOrEqualToTicksFmt,
                MinimumFileTimeAsDateTimeOffset.Ticks.ToString("N0", CultureInfo.InvariantCulture));
@@ -750,8 +750,8 @@ namespace Landorphan.Abstractions.IO.Internal
          Directory.SetLastWriteTimeUtc(cleanedPath, lastWriteTime.UtcDateTime);
       }
 
-      [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
-      private static void DeleteImplementation(String path, Boolean recursive)
+       [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used")]
+      private static void DeleteImplementation(string path, bool recursive)
       {
          var cleanedPath = IOStringUtilities.ValidateCanonicalPath(path, nameof(path));
 
@@ -761,8 +761,8 @@ namespace Landorphan.Abstractions.IO.Internal
          if (fileUtilities.FileExists(cleanedPath))
          {
             // improve the BCL message: 'The directory name is invalid.'
-            var msg = String.Format(CultureInfo.InvariantCulture, StringResources.TheDirectoryNameIsInvalidFileAlreadyExistsFmt, cleanedPath);
-            throw new IOException(msg, unchecked((Int32)0x8007010b));
+            var msg = string.Format(CultureInfo.InvariantCulture, StringResources.TheDirectoryNameIsInvalidFileAlreadyExistsFmt, cleanedPath);
+            throw new IOException(msg, unchecked((int)0x8007010b));
          }
 #endif
 
@@ -780,7 +780,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      private static Boolean PathContainsUnmappedDrive(String path)
+      private static bool PathContainsUnmappedDrive(string path)
       {
          // Assumes path has been trimmed of leading
 
@@ -795,7 +795,7 @@ namespace Landorphan.Abstractions.IO.Internal
             return false;
          }
 
-         Boolean rv;
+         bool rv;
          var idxColon = path.IndexOf(':');
          switch (idxColon)
          {
@@ -819,19 +819,19 @@ namespace Landorphan.Abstractions.IO.Internal
          return rv;
       }
 
-      private static void ThrowDirectoryNotFoundException(String directoryPath, String argumentName)
+      private static void ThrowDirectoryNotFoundException(string directoryPath, string argumentName)
       {
          throw new DirectoryNotFoundException(
-            String.Format(
+            string.Format(
                CultureInfo.InvariantCulture,
                StringResources.CouldNotFindAllOrPartDirectoryPathParamNameFmt,
-               directoryPath ?? String.Empty,
-               argumentName ?? String.Empty));
+               directoryPath ?? string.Empty,
+               argumentName ?? string.Empty));
       }
 
-      private static void ThrowIfOnUnmappedDrive(String directoryPath, String argumentName)
+      private static void ThrowIfOnUnmappedDrive(string directoryPath, string argumentName)
       {
-         var cleanedPath = (directoryPath ?? String.Empty).RightTrim(' ');
+         var cleanedPath = (directoryPath ?? string.Empty).RightTrim(' ');
 
          // most BCL Directory methods throw new DirectoryNotFoundException("Could not find a part of the path '<path>'.");
          // some throw new InvalidOperationException("Method failed with unexpected error code 3.");
@@ -842,7 +842,7 @@ namespace Landorphan.Abstractions.IO.Internal
          }
       }
 
-      internal static Boolean TestHookPathContainsUnmappedDrive(String path)
+      internal static bool TestHookPathContainsUnmappedDrive(string path)
       {
          return PathContainsUnmappedDrive(path);
       }

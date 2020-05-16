@@ -1,31 +1,31 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-   using System;
-   using System.Diagnostics;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class FileUtilities_Tests
    {
-      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
-      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
 
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly IFileUtilities _target = IocServiceLocator.Resolve<IFileUtilities>();
-      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly IFileUtilities _target = IocServiceLocator.Resolve<IFileUtilities>();
+       private static readonly string _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileUtilities_CreateFile : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_the_file()
          {
@@ -48,7 +48,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_CreateTemporaryFile : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_a_temporary_file()
          {
@@ -68,7 +68,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_CreateText : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_a_text_file()
          {
@@ -90,7 +90,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_DeleteFile : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_delete_the_file()
          {
@@ -104,7 +104,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_FileExists : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_distinguish_between_extant_and_non_extant_files()
          {
@@ -125,7 +125,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_GetCreationTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_creation_time()
          {
@@ -145,7 +145,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_GetLastAccessTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_last_access_time()
          {
@@ -165,7 +165,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_GetLastWriteTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_last_write_time()
          {
@@ -185,7 +185,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_GetRandomFileName : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_file_name_that_is_not_rooted_and_does_not_exist()
          {
@@ -198,7 +198,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_SetCreationTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Removed SetCreationTime from interface")]
          public void It_should_set_the_creation_time_maximum()
@@ -266,7 +266,7 @@
       [TestClass]
       public class When_I_call_FileUtilities_SetLastAccessTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
          [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_access_time()
@@ -295,7 +295,7 @@
       [Ignore("Ignored by TGS")]
       public class When_I_call_FileUtilities_SetLastWriteTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
          [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_write_time()
@@ -323,14 +323,14 @@
       [TestClass]
       public class When_I_service_locate_IFileUtilities : ArrangeActAssert
       {
-         private IFileUtilities actual;
+          private IFileUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IFileUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_an_FileUtilities()
          {

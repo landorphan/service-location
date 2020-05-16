@@ -1,32 +1,32 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
-   using System;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class IocContainer_IsolatedContainer_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_isolated_container_and_call_AddPrecludedType : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: IIocContainerManager.AddPrecludedType Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+          private readonly string containerName = "Isolated Test Container: IIocContainerManager.AddPrecludedType Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerManager target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Manager;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_I_add_the_same_type_twice()
          {
@@ -62,7 +62,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerChildAdded_event()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerParentChildEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerParentChildEventArgs>(
@@ -92,7 +92,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerChildRemoved()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerParentChildEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerParentChildEventArgs>(
@@ -116,7 +116,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerPrecludedTypeAdded_event_generic()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeEventArgs>(
@@ -141,7 +141,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerPrecludedTypeAdded_event_non_generic()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeEventArgs>(
@@ -166,7 +166,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerPrecludedTypeRemoved_event_generic()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeEventArgs>(
@@ -192,7 +192,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerPrecludedTypeRemoved_event_non_generic()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeEventArgs>(
@@ -240,16 +240,16 @@
       [TestClass]
       public class When_I_have_an_isolated_container_and_call_CreateChildContainer : DisposableArrangeActAssert
       {
-         private readonly String childContainerName = "Isolated Child Test Container";
-         private readonly String containerName = "Isolated Test Container: IIocContainerManager.CreateChildContainer Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private ContainerParentChildEventArgs actualEventArgs;
-         private Object actualSender;
-         private IOwnedIocContainer child;
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+          private readonly string childContainerName = "Isolated Child Test Container";
+          private readonly string containerName = "Isolated Test Container: IIocContainerManager.CreateChildContainer Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private ContainerParentChildEventArgs actualEventArgs;
+          private object actualSender;
+          private IOwnedIocContainer child;
+          private IOwnedIocContainer container;
+          private IIocContainerManager target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Manager;
@@ -265,7 +265,7 @@
             child = (IOwnedIocContainer)target.CreateChildContainer(childContainerName);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_the_child_container()
          {
@@ -291,22 +291,22 @@
       [TestClass]
       public class When_I_have_an_isolated_container_and_call_RemovePrecludedType : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: RemovePrecludedType Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+          private readonly string containerName = "Isolated Test Container: RemovePrecludedType Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerManager target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Manager;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_PrecludedTypeRemoved_event_generic()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeEventArgs>(
@@ -332,7 +332,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_PrecludedTypeRemoved_event_non_generic()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeEventArgs>(
@@ -398,18 +398,18 @@
       [TestClass]
       public class When_I_have_an_isolated_container_and_inspect_its_configuration : ArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: IIocContainerManager.Configuration Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+          private readonly string containerName = "Isolated Test Container: IIocContainerManager.Configuration Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerManager target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Manager;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_have_a_configuration()
          {

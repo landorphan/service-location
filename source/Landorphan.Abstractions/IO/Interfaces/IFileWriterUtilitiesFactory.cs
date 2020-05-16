@@ -5,7 +5,7 @@
    /// </summary>
    public interface IFileWriterUtilitiesFactory
    {
-      /// <summary>
+       /// <summary>
       /// Creates a <see cref="IFileWriterUtilities"/> instance.
       /// </summary>
       /// <returns>

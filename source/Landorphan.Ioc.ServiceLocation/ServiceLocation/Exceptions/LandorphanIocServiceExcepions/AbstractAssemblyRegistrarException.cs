@@ -1,37 +1,37 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when service location finds an abstract implementation of <see cref="IAssemblySelfRegistration"/>.
    /// </summary>
    /// <seealso cref="LandorphanIocServiceLocationException"/>
    public sealed class AbstractAssemblyRegistrarException : LandorphanIocServiceLocationException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       public AbstractAssemblyRegistrarException() : this(null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="message">
       /// The message that describes the error.
       /// </param>
-      public AbstractAssemblyRegistrarException(String message) : this(null, message, null)
+      public AbstractAssemblyRegistrarException(string message) : this(null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="message">
@@ -40,11 +40,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public AbstractAssemblyRegistrarException(String message, Exception innerException) : this(null, message, innerException)
+      public AbstractAssemblyRegistrarException(string message, Exception innerException) : this(null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="abstractType">
@@ -54,7 +54,7 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="abstractType">
@@ -67,7 +67,7 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="abstractType">
@@ -79,13 +79,13 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public AbstractAssemblyRegistrarException(Type abstractType, String message, Exception innerException)
+      public AbstractAssemblyRegistrarException(Type abstractType, string message, Exception innerException)
          : base(NullToDefaultMessage(abstractType, message), innerException)
       {
          AbstractType = abstractType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="AbstractAssemblyRegistrarException"/> class.
       /// </summary>
       /// <param name="info">
@@ -99,7 +99,7 @@
          AbstractType = (Type)info.GetValue("abstractType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -108,7 +108,7 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the abstract type that gave rise to this exception.
       /// </summary>
       /// <value>
@@ -116,10 +116,10 @@
       /// </value>
       public Type AbstractType { get; }
 
-      private static String NullToDefaultMessage(Type abstractType, String message)
+       private static string NullToDefaultMessage(Type abstractType, string message)
       {
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.AbstractAssemblyRegistrarExceptionDefaltMessageFmt,
                      abstractType.IsNull() ? StringResources.NullReplacementValue : abstractType.FullName);

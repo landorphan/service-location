@@ -1,80 +1,80 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Linq;
-   using System.Reflection;
-   using Landorphan.Common;
-   using Landorphan.Common.Interfaces;
-   using Landorphan.Common.Threading;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using System.Reflection;
+    using Landorphan.Common;
+    using Landorphan.Common.Interfaces;
+    using Landorphan.Common.Threading;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
 
-   public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
+    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
    {
-      private readonly AssemblyRegistrarRepository _assemblyRegistrarRepository = new AssemblyRegistrarRepository();
-      private readonly SourceWeakEventHandlerSet<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> _listenersAfterContainerAssemblyCollectionSelfRegistrationInvoked =
+       private readonly AssemblyRegistrarRepository _assemblyRegistrarRepository = new AssemblyRegistrarRepository();
+       private readonly SourceWeakEventHandlerSet<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> _listenersAfterContainerAssemblyCollectionSelfRegistrationInvoked =
          new SourceWeakEventHandlerSet<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerIndividualAssemblyRegistrarInvokedEventArgs> _listenersAfterContainerAssemblySingleSelfRegistrationInvoked =
+       private readonly SourceWeakEventHandlerSet<ContainerIndividualAssemblyRegistrarInvokedEventArgs> _listenersAfterContainerAssemblySingleSelfRegistrationInvoked =
          new SourceWeakEventHandlerSet<ContainerIndividualAssemblyRegistrarInvokedEventArgs>();
 
-      private readonly SourceWeakEventHandlerSet<EventArgs> _listenersAmbientContainerChanged = new SourceWeakEventHandlerSet<EventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> _listenersBeforeContainerAssemblyCollectionSelfRegistrationInvoked =
+       private readonly SourceWeakEventHandlerSet<EventArgs> _listenersAmbientContainerChanged = new SourceWeakEventHandlerSet<EventArgs>();
+       private readonly SourceWeakEventHandlerSet<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> _listenersBeforeContainerAssemblyCollectionSelfRegistrationInvoked =
          new SourceWeakEventHandlerSet<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerIndividualAssemblyRegistrarInvokedEventArgs> _listenersBeforeContainerAssemblySingleSelfRegistrationInvoked =
+       private readonly SourceWeakEventHandlerSet<ContainerIndividualAssemblyRegistrarInvokedEventArgs> _listenersBeforeContainerAssemblySingleSelfRegistrationInvoked =
          new SourceWeakEventHandlerSet<ContainerIndividualAssemblyRegistrarInvokedEventArgs>();
 
-      private readonly Object _selfRegistrationLockObject = new Object();
+       private readonly object _selfRegistrationLockObject = new object();
 
-      private IIocContainer _ambientContainer;
+       private IIocContainer _ambientContainer;
 
-      private InterlockedBoolean _assemblyLoaded = new InterlockedBoolean(true);
+       private InterlockedBoolean _assemblyLoaded = new InterlockedBoolean(true);
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked
       {
          add => _listenersAfterContainerAssemblyCollectionSelfRegistrationInvoked.Add(value);
          remove => _listenersAfterContainerAssemblyCollectionSelfRegistrationInvoked.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> IIocServiceLocatorManager.AfterContainerAssemblySingleSelfRegistrationInvoked
       {
          add => _listenersAfterContainerAssemblySingleSelfRegistrationInvoked.Add(value);
          remove => _listenersAfterContainerAssemblySingleSelfRegistrationInvoked.Remove(value);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       event EventHandler<EventArgs> IIocServiceLocatorManager.AmbientContainerChanged
       {
          add => _listenersAmbientContainerChanged.Add(value);
          remove => _listenersAmbientContainerChanged.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs> IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked
       {
          add => _listenersBeforeContainerAssemblyCollectionSelfRegistrationInvoked.Add(value);
          remove => _listenersBeforeContainerAssemblyCollectionSelfRegistrationInvoked.Remove(value);
       }
 
-      /// <inheritdoc />
+       /// <inheritdoc />
       event EventHandler<ContainerIndividualAssemblyRegistrarInvokedEventArgs> IIocServiceLocatorManager.BeforeContainerAssemblySingleSelfRegistrationInvoked
       {
          add => _listenersBeforeContainerAssemblySingleSelfRegistrationInvoked.Add(value);
          remove => _listenersBeforeContainerAssemblySingleSelfRegistrationInvoked.Remove(value);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       IIocContainer IIocServiceLocatorManager.AmbientContainer => _ambientContainer;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       IIocContainer IIocServiceLocatorManager.RootContainer => IocContainer.InternalRootContainer;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       void IIocServiceLocatorManager.SetAmbientContainer(IIocContainer container)
       {
          container.ArgumentNotNull("container");
@@ -92,7 +92,7 @@
          }
       }
 
-      internal void SelfRegisterAssembliesWithRootContainer()
+       internal void SelfRegisterAssembliesWithRootContainer()
       {
          if (IocContainer.InternalRootContainer == null || InternalInstance == null)
          {
@@ -124,7 +124,7 @@
          }
       }
 
-      private void OnAfterContainerAssemblyCollectionSelfRegistrationInvoked(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
+       private void OnAfterContainerAssemblyCollectionSelfRegistrationInvoked(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
       {
          // fires the event
          TryLogContainerAssemblyCollectionSelfRegistrationsInvoked(IocEventIdCodes.ServiceLocator.ContainerAssemblyCollectionSelfRegistrationsInvokedAfter, assemblies);
@@ -134,7 +134,7 @@
          _listenersAfterContainerAssemblyCollectionSelfRegistrationInvoked?.Invoke(this, e);
       }
 
-      private void OnAfterContainerAssemblySingleSelfRegistrationInvoked(IIocContainerMetaIdentity container, IAssemblySelfRegistration assemblySelfRegistration)
+       private void OnAfterContainerAssemblySingleSelfRegistrationInvoked(IIocContainerMetaIdentity container, IAssemblySelfRegistration assemblySelfRegistration)
       {
          // fires the event
          TryLogContainerSingleAssemblySelfRegistrationInvoked(IocEventIdCodes.ServiceLocator.ContainerSingleAssemblySelfRegistrationInvokedAfter, assemblySelfRegistration);
@@ -144,7 +144,7 @@
          _listenersAfterContainerAssemblySingleSelfRegistrationInvoked?.Invoke(this, e);
       }
 
-      private void OnAmbientContainerChanged()
+       private void OnAmbientContainerChanged()
       {
          TryLogAmbientContainerChanged(IocEventIdCodes.ServiceLocator.AmbientContainerChanged, _ambientContainer);
 
@@ -152,7 +152,7 @@
          _listenersAmbientContainerChanged?.Invoke(this, EventArgs.Empty);
       }
 
-      private void OnBeforeContainerAssemblyCollectionSelfRegistrationInvoked(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
+       private void OnBeforeContainerAssemblyCollectionSelfRegistrationInvoked(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies)
       {
          // fires the event
          TryLogContainerAssemblyCollectionSelfRegistrationsInvoked(IocEventIdCodes.ServiceLocator.ContainerAssemblyCollectionSelfRegistrationInvokedBefore, assemblies);
@@ -162,7 +162,7 @@
          _listenersBeforeContainerAssemblyCollectionSelfRegistrationInvoked?.Invoke(this, e);
       }
 
-      private void OnBeforeContainerAssemblySingleSelfRegistrationInvoked(IIocContainerMetaIdentity container, IAssemblySelfRegistration assemblySelfRegistration)
+       private void OnBeforeContainerAssemblySingleSelfRegistrationInvoked(IIocContainerMetaIdentity container, IAssemblySelfRegistration assemblySelfRegistration)
       {
          // fires the event
          TryLogContainerSingleAssemblySelfRegistrationInvoked(IocEventIdCodes.ServiceLocator.ContainerSingleAssemblySelfRegistrationsInvokedBefore, assemblySelfRegistration);
@@ -172,7 +172,7 @@
          _listenersBeforeContainerAssemblySingleSelfRegistrationInvoked?.Invoke(this, e);
       }
 
-      internal void CurrentDomainAssemblyLoad(Object sender, AssemblyLoadEventArgs args)
+       internal void CurrentDomainAssemblyLoad(object sender, AssemblyLoadEventArgs args)
       {
          // Normal use:  an event handler fired when assemblies are loaded.
          // Kludge used by IocContainer.CheckForNewRegistrations() to ensure assemblies are loaded before accessing container registrations.
@@ -181,7 +181,7 @@
          SelfRegisterAssembliesWithRootContainer();
       }
 
-      private void ContainerDisposing(Object sender, EventArgs e)
+       private void ContainerDisposing(object sender, EventArgs e)
       {
          // maintain _ambientContainer:
          if (ReferenceEquals(sender, _ambientContainer))

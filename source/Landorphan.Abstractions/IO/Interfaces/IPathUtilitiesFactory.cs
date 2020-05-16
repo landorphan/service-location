@@ -5,7 +5,7 @@
    /// </summary>
    public interface IPathUtilitiesFactory
    {
-      /// <summary>
+       /// <summary>
       /// Creates a <see cref="IPathUtilities"/> instance.
       /// </summary>
       /// <returns>

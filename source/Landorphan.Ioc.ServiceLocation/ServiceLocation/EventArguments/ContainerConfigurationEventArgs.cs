@@ -1,21 +1,21 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
-   using System;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Provides data for the <see cref="IIocContainerManager.ContainerConfigurationChanged"/> event.
    /// </summary>
    public class ContainerConfigurationEventArgs : EventArgs
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationEventArgs"/> class.
       /// </summary>
       public ContainerConfigurationEventArgs() : this(null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationEventArgs"/> class.
       /// </summary>
       /// <param name="configuration">
@@ -26,7 +26,7 @@
          Configuration = configuration;
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the inversion of control container configuration.
       /// </summary>
       public IIocContainerConfiguration Configuration { get; }

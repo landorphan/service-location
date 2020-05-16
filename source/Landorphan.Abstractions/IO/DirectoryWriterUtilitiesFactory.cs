@@ -1,13 +1,13 @@
 namespace Landorphan.Abstractions.IO
 {
-   using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Factory for instantiating <see cref="IDirectoryUtilities"/> instances.
    /// </summary>
    public sealed class DirectoryWriterUtilitiesFactory : IDirectoryWriterUtilitiesFactory
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IDirectoryWriterUtilities Create()
       {
          return new DirectoryWriterUtilities();

@@ -1,31 +1,31 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.Directory
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Common.Exceptions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Common.Exceptions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class DirectoryInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_DirectoryInternalMapping_GetFileSystemEntries : TestBase
       {
-         // An empty search pattern does not throw, does it change behavior?
-         // An white-space search pattern does not throw, does it change behavior?
+          // An empty search pattern does not throw, does it change behavior?
+          // An white-space search pattern does not throw, does it change behavior?
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -106,7 +106,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -156,7 +156,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -206,7 +206,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -228,7 +228,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -276,7 +276,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -298,7 +298,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -355,7 +355,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -377,7 +377,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -426,8 +426,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            const String path = @".\";
-            const String SearchPattern = "*.";
+            const string path = @".\";
+            const string SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.GetFileSystemEntries(path, SearchPattern, searchOption);
@@ -439,7 +439,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            const String path = @".\";
+            const string path = @".\";
 
             var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
             var SearchPattern = "*." + pathUtils.GetInvalidFileNameCharacters().First();
@@ -459,8 +459,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = @".\";
-            const String SearchPattern = null;
+            const string path = @".\";
+            const string SearchPattern = null;
 
             Action throwingAction = () => _target.GetFileSystemEntries(path, SearchPattern);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -477,7 +477,7 @@
          {
             var outerFullPath =
                _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
@@ -507,7 +507,7 @@
       public class When_I_call_DirectoryInternalMapping_GetLastAccessTime : TestBase
       {
 #pragma warning disable CS0618 // Type or member is obsolete
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -587,7 +587,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -599,7 +599,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -629,7 +629,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -641,7 +641,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -675,7 +675,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetLastAccessTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -687,7 +687,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -739,7 +739,7 @@
       public class When_I_call_DirectoryInternalMapping_GetLastWriteTime : TestBase
       {
 #pragma warning disable CS0618 // Type or member is obsolete
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -819,7 +819,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -831,7 +831,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -861,7 +861,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -873,7 +873,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -907,7 +907,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -919,7 +919,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -970,7 +970,7 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_GetRandomDirectoryName : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_directory_name_that_is_not_rooted_and_does_not_exist()
          {
@@ -983,7 +983,7 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_GetTemporaryDirectoryPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Fails on build server:  expected is a 8.3 dir name, actual is full dir name")]
          public void It_should_return_the_temporary_directory_path_for_the_current_user()

@@ -1,32 +1,32 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.Directory
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Common.Exceptions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Common.Exceptions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming   
+    // ReSharper disable InconsistentNaming   
 
    [SuppressMessage("SonarLint.CodeSmell", "S4058: Overloads with a StringComparison parameter should be used")]
    public static partial class DirectoryInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_DirectoryInternalMapping_EnumerateFiles : TestBase
       {
-         // An empty search pattern does not throw, does it change behavior?
-         // An white-space search pattern does not throw, does it change behavior?
+          // An empty search pattern does not throw, does it change behavior?
+          // An white-space search pattern does not throw, does it change behavior?
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -107,7 +107,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
@@ -157,7 +157,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt")),
@@ -206,7 +206,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -228,7 +228,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -276,7 +276,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -298,7 +298,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -355,7 +355,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.EnumerateFiles(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -377,7 +377,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -426,8 +426,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            const String path = @".\";
-            const String SearchPattern = "*.";
+            const string path = @".\";
+            const string SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.EnumerateFiles(path, SearchPattern, searchOption);
@@ -439,8 +439,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = @".\";
-            const String SearchPattern = null;
+            const string path = @".\";
+            const string SearchPattern = null;
 
             Action throwingAction = () => _target.EnumerateFiles(path, SearchPattern);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -456,7 +456,7 @@
          public void It_should_return_the_known_files()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_files) + ".txt")),
@@ -485,10 +485,10 @@
       [TestClass]
       public class When_I_call_DirectoryInternalMapping_EnumerateFileSystemEntries : TestBase
       {
-         // An empty search pattern does not throw, does it change behavior?
-         // An white-space search pattern does not throw, does it change behavior?
+          // An empty search pattern does not throw, does it change behavior?
+          // An white-space search pattern does not throw, does it change behavior?
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -569,7 +569,7 @@
          public void And_the_path_has_leading_spaces_It_should_not_throw()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -619,7 +619,7 @@
          public void And_the_path_has_trailing_spaces_It_should_not_throw()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -669,7 +669,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -691,7 +691,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -739,7 +739,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = TempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = TempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -761,7 +761,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -818,7 +818,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -840,7 +840,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -889,8 +889,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchOption_is_unrecognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            const String path = @".\";
-            const String SearchPattern = "*.";
+            const string path = @".\";
+            const string SearchPattern = "*.";
             var searchOption = (SearchOption)(-5);
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern, searchOption);
@@ -902,7 +902,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
-            const String path = @".\";
+            const string path = @".\";
 
             var pathUtils = IocServiceLocator.Resolve<IPathUtilities>();
             var SearchPattern = "*." + pathUtils.GetInvalidFileNameCharacters().First();
@@ -922,8 +922,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_searchPattern_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = @".\";
-            const String SearchPattern = null;
+            const string path = @".\";
+            const string SearchPattern = null;
 
             Action throwingAction = () => _target.EnumerateFileSystemEntries(path, SearchPattern);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -940,7 +940,7 @@
          {
             var outerFullPath =
                _pathUtilities.GetFullPath(_pathUtilities.Combine(TempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_the_known_FileSystemEntries))),

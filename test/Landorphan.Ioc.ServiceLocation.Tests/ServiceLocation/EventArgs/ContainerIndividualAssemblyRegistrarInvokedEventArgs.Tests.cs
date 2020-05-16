@@ -1,34 +1,34 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.EventArgs
 {
-   using System;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class ContainerIndividualAssemblyRegistrarInvokedEventArgs_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_create_an_ContainerIndividualAssemblyRegistrarInvokedEventArgs_using_the_container_assembly_constructor : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: ContainerIndividualAssemblyRegistrarInvokedEventArgs (container, assemblyRegistrar) constructor tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IAssemblySelfRegistration assemblySelfRegistration;
-         private IOwnedIocContainer container;
+          private readonly string containerName = "Isolated Test Container: ContainerIndividualAssemblyRegistrarInvokedEventArgs (container, assemblyRegistrar) constructor tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IAssemblySelfRegistration assemblySelfRegistration;
+          private IOwnedIocContainer container;
 
-         private ContainerIndividualAssemblyRegistrarInvokedEventArgs target;
+          private ContainerIndividualAssemblyRegistrarInvokedEventArgs target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             assemblySelfRegistration = new ATestTypeAssemblySelfRegistration();
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_a_null_assembly()
          {
@@ -66,14 +66,14 @@
       [TestClass]
       public class When_I_create_an_ContainerIndividualAssemblyRegistrarInvokedEventArgs_using_the_default_constructor : ArrangeActAssert
       {
-         private ContainerIndividualAssemblyRegistrarInvokedEventArgs target;
+          private ContainerIndividualAssemblyRegistrarInvokedEventArgs target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = new ContainerIndividualAssemblyRegistrarInvokedEventArgs();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_have_a_null_Container()
          {
@@ -90,7 +90,7 @@
 
       private class ATestTypeAssemblySelfRegistration : IAssemblySelfRegistration
       {
-         public void RegisterServiceInstances(IIocContainerRegistrar registrar)
+          public void RegisterServiceInstances(IIocContainerRegistrar registrar)
          {
             // no implementation.
          }

@@ -1,20 +1,20 @@
 namespace Landorphan.TestUtilities.MSTest.Tests.TestFacilities
 {
-   using System.Collections.Immutable;
-   using System.Reflection;
-   using Landorphan.Ioc.Example.ConsoleApp;
-   using Landorphan.Ioc.Example.Service;
-   using Landorphan.Ioc.Example.Tests.Simulators;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Testability;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Immutable;
+    using System.Reflection;
+    using Landorphan.Ioc.Example.ConsoleApp;
+    using Landorphan.Ioc.Example.Service;
+    using Landorphan.Ioc.Example.Tests.Simulators;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Testability;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   [TestClass]
+    [TestClass]
    public static class TestAssemblyInitializeCleanup
    {
-      internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
+       internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
 
-      /// <summary>
+       /// <summary>
       /// Performs assembly level initialization.
       /// </summary>
       /// <remarks>
@@ -44,7 +44,7 @@ namespace Landorphan.TestUtilities.MSTest.Tests.TestFacilities
          AssembliesUnderTest = assemblies.ToImmutable();
       }
 
-      /// <summary>
+       /// <summary>
       /// Frees resources obtained by the test assembly.
       /// </summary>
       /// <remarks>

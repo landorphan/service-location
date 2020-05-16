@@ -1,36 +1,36 @@
 ﻿namespace Landorphan.Abstractions.Tests.Internal.Environment
 {
-   using System;
-   using System.Collections;
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Linq;
-   using System.Runtime.InteropServices;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.Internal;
-   using Landorphan.Common.Exceptions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Runtime.InteropServices;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.Internal;
+    using Landorphan.Common.Exceptions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable StringLiteralTypo
+    // ReSharper disable StringLiteralTypo
    // ReSharper disable InconsistentNaming
 
    public static class EnvironmentInternalMapping_Tests
    {
-      private static readonly EnvironmentInternalMapping _target = new EnvironmentInternalMapping();
+       private static readonly EnvironmentInternalMapping _target = new EnvironmentInternalMapping();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_EnvironmentMapper_ExpandEnvironmentVariables : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_expand_multiple_variables()
          {
-            const String format = "My system drive is '{0}' and my system root is '{1}'.";
-            var query = String.Format(CultureInfo.InvariantCulture, format, "%SystemDrive%", "%SystemRoot%");
+            const string format = "My system drive is '{0}' and my system root is '{1}'.";
+            var query = string.Format(CultureInfo.InvariantCulture, format, "%SystemDrive%", "%SystemRoot%");
             var actual = _target.ExpandEnvironmentVariables(query);
             actual.Should().Be(Environment.ExpandEnvironmentVariables(query));
          }
@@ -39,7 +39,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_original_string_when_no_variables_are_present()
          {
-            const String query = "The quick brown fox.";
+            const string query = "The quick brown fox.";
             var actual = _target.ExpandEnvironmentVariables(query);
             actual.Should().Be(query);
          }
@@ -57,7 +57,7 @@
       [TestClass]
       public class When_I_call_EnvironmentMapper_GetCommandLineArgs : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_CommandLineArguments()
          {
@@ -68,11 +68,11 @@
       [TestClass]
       public class When_I_call_EnvironmentMapper_GetEnvironmentVariable : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_target_is_not_recognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            Action throwingAction = () => _target.GetEnvironmentVariable("windir", (EnvironmentVariableTarget)Int32.MinValue);
+            Action throwingAction = () => _target.GetEnvironmentVariable("windir", (EnvironmentVariableTarget)int.MinValue);
             var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("target");
             e.And.Message.Should().Contain("The value of argument '");
@@ -85,7 +85,7 @@
          public void And_variable_has_leading_whitespace_It_should_be_recognized_and_returned()
          {
             // windir changed to PATH so the environment variable would be x-plat
-            const String variableName = "   PATH";
+            const string variableName = "   PATH";
 
             var actual = _target.GetEnvironmentVariable(variableName);
             actual.Should().NotBeNull();
@@ -104,7 +104,7 @@
          public void And_variable_has_trailing_whitespace_It_should_be_recognized_and_returned()
          {
             // windir changed to PATH so the environment variable would be x-plat
-            const String variableName = "PATH   ";
+            const string variableName = "PATH   ";
 
             var actual = _target.GetEnvironmentVariable(variableName);
             actual.Should().NotBeNull();
@@ -144,7 +144,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_be_case_sensitive()
          {
-            const String variableName = "WinDir";
+            const string variableName = "WinDir";
 
             var actualMixed0 = _target.GetEnvironmentVariable(variableName);
             var actualMixed1 = _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.Machine);
@@ -191,11 +191,11 @@
       [TestClass]
       public class When_I_call_EnvironmentMapper_GetEnvironmentVariables : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_target_is_not_recognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            Action throwingAction = () => _target.GetEnvironmentVariables((EnvironmentVariableTarget)Int32.MinValue);
+            Action throwingAction = () => _target.GetEnvironmentVariables((EnvironmentVariableTarget)int.MinValue);
             var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("target");
             e.And.Message.Should().Contain("The value of argument '");
@@ -226,25 +226,25 @@
       [TestClass]
       public class When_I_call_EnvironmentMapper_GetLogicalDrives : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_non_null_array_of_non_null_elements()
          {
             var actual = _target.GetLogicalDrives();
             actual.Should().NotBeNull();
             actual.Length.Should().BeGreaterThan(0);
-            actual.Should().NotContain((String)null);
+            actual.Should().NotContain((string)null);
          }
       }
 
       [TestClass]
       public class When_I_call_EnvironmentMapper_GetSpecialDirectoryPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_option_is_not_recognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            Action throwingAction = () => _target.GetSpecialFolderPath(Environment.SpecialFolder.AdminTools, (Environment.SpecialFolderOption)Int32.MinValue);
+            Action throwingAction = () => _target.GetSpecialFolderPath(Environment.SpecialFolder.AdminTools, (Environment.SpecialFolderOption)int.MinValue);
             var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("option");
             e.And.Message.Should().Contain("The value of argument '");
@@ -256,14 +256,14 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_specialDirectory_is_not_recognized_It_should_throw_ExtendedInvalidEnumArgumentException()
          {
-            Action throwingAction = () => _target.GetSpecialFolderPath((Environment.SpecialFolder)Int32.MinValue);
+            Action throwingAction = () => _target.GetSpecialFolderPath((Environment.SpecialFolder)int.MinValue);
             var e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("specialFolder");
             e.And.Message.Should().Contain("The value of argument '");
             e.And.Message.Should().Contain("is invalid for Enum type '");
             e.And.Message.Should().Contain("SpecialFolder");
 
-            throwingAction = () => _target.GetSpecialFolderPath((Environment.SpecialFolder)Int32.MinValue, Environment.SpecialFolderOption.None);
+            throwingAction = () => _target.GetSpecialFolderPath((Environment.SpecialFolder)int.MinValue, Environment.SpecialFolderOption.None);
             e = throwingAction.Should().Throw<ExtendedInvalidEnumArgumentException>();
             e.And.ParamName.Should().Be("specialFolder");
             e.And.Message.Should().Contain("The value of argument '");
@@ -288,24 +288,24 @@
       [TestClass]
       public class When_I_call_EnvironmentMapper_SetEnvironmentVariable : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_value_is_null_It_should_not_throw()
          {
             // Notes:  
             //    not all environment variables can be updated, when they are not updated, no exception is thrown.
 
-            const String variableName = "DXROOT";
+            const string variableName = "DXROOT";
             var was = _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.User);
 
             try
             {
-               _target.SetEnvironmentVariable(variableName, String.Empty);
+               _target.SetEnvironmentVariable(variableName, string.Empty);
                _target.GetEnvironmentVariable(variableName).Should().BeNull();
                _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.User).Should().BeNull();
                _target.SetEnvironmentVariable(variableName, was);
 
-               _target.SetEnvironmentVariable(variableName, String.Empty, EnvironmentVariableTarget.User);
+               _target.SetEnvironmentVariable(variableName, string.Empty, EnvironmentVariableTarget.User);
                _target.GetEnvironmentVariable(variableName).Should().BeNull();
                _target.GetEnvironmentVariable(variableName, EnvironmentVariableTarget.User).Should().BeNull();
             }
@@ -332,14 +332,14 @@
       [TestClass]
       public class When_I_service_locate_IEnvironmentUtilities : ArrangeActAssert
       {
-         private IEnvironmentUtilities actual;
+          private IEnvironmentUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IEnvironmentUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_an_EnvironmentMapper()
          {
@@ -350,14 +350,14 @@
       [TestClass]
       public class When_I_use_EnvironmentMapper_Properties : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_and_set_the_ExitCode()
          {
             var was = _target.ExitCode;
             try
             {
-               const Int32 expected = 415;
+               const int expected = 415;
                _target.ExitCode = expected;
                _target.ExitCode.Should().Be(expected);
                Environment.ExitCode.Should().Be(_target.ExitCode);
@@ -478,7 +478,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_WorkingSetBytes()
          {
-            Double actual = _target.WorkingSetBytes;
+            double actual = _target.WorkingSetBytes;
             actual.Should().BeGreaterThan(0);
          }
       }

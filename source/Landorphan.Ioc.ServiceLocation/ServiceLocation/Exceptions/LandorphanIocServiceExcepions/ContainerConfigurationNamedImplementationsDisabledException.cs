@@ -1,37 +1,37 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when a container is configured to disable named implementations, but an attempt is made to register a named implementation or instance.
    /// </summary>
    /// <seealso cref="LandorphanIocServiceLocationException"/>
    public sealed class ContainerConfigurationNamedImplementationsDisabledException : LandorphanIocServiceLocationException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationNamedImplementationsDisabledException"/> class.
       /// </summary>
       public ContainerConfigurationNamedImplementationsDisabledException() : this(null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationNamedImplementationsDisabledException"/> class.
       /// </summary>
       /// <param name="message">
       /// The error message that explains the reason for the exception.
       /// </param>
-      public ContainerConfigurationNamedImplementationsDisabledException(String message) : this(null, message, null)
+      public ContainerConfigurationNamedImplementationsDisabledException(string message) : this(null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationNamedImplementationsDisabledException"/> class.
       /// </summary>
       /// <param name="message">
@@ -40,11 +40,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public ContainerConfigurationNamedImplementationsDisabledException(String message, Exception innerException) : this(null, message, innerException)
+      public ContainerConfigurationNamedImplementationsDisabledException(string message, Exception innerException) : this(null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationNamedImplementationsDisabledException" /> class.
       /// </summary>
       /// <param name = "container">
@@ -59,14 +59,14 @@
       // ReSharper disable ExpressionIsAlwaysNull
       public ContainerConfigurationNamedImplementationsDisabledException(
          IIocContainerMetaIdentity container,
-         String message,
+         string message,
          Exception innerException)
          : base(NullToDefaultMessage(container, message), innerException)
       {
          Container = container;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerConfigurationNamedImplementationsDisabledException"/> class.
       /// </summary>
       /// <param name="info">
@@ -81,7 +81,7 @@
          Container = (IIocContainerMetaIdentity)info.GetValue("container", typeof(IIocContainerMetaIdentity));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -90,12 +90,12 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container that gave rise to this exception.
       /// </summary>
       public IIocContainerMetaIdentity Container { get; }
 
-      private static String NullToDefaultMessage(IIocContainerMetaIdentity container, String message)
+       private static string NullToDefaultMessage(IIocContainerMetaIdentity container, string message)
       {
          var cleanedContainerUid = StringResources.NullReplacementValue;
          var cleanedContainerName = StringResources.NullReplacementValue;
@@ -106,7 +106,7 @@
          }
 
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ContainerConfigurationNamedImplementationsDisabledExceptionDefaultMessageFmt,
                      cleanedContainerUid,

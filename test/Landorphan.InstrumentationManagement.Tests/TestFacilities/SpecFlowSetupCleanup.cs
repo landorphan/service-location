@@ -1,31 +1,29 @@
 namespace Landorphan.InstrumentationManagement.Tests.TestFacilities
 {
-   using System.Collections.Generic;
-   using System.Linq;
-   using System.Reflection;
-   using Landorphan.InstrumentationManagement;
-   using Landorphan.InstrumentationManagement.Tests.HelperClasses;
-   using Landorphan.InstrumentationManagement.Tests.MockApplications;
-   using Landorphan.InstrumentationManagement.Tests.Steps;
-   using TechTalk.SpecFlow;
-   using TechTalk.SpecFlow.Assist;
-   using TechTalk.SpecFlow.Assist.ValueRetrievers;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
+    using Landorphan.InstrumentationManagement.Tests.HelperClasses;
+    using Landorphan.InstrumentationManagement.Tests.MockApplications;
+    using Landorphan.InstrumentationManagement.Tests.Steps;
+    using TechTalk.SpecFlow;
+    using TechTalk.SpecFlow.Assist;
+    using TechTalk.SpecFlow.Assist.ValueRetrievers;
 
-   [Binding]
+    [Binding]
    public sealed class SpecFlowSetupCleanup
    {
-      private readonly ScenarioContext scenarioContext;
-      private readonly FeatureContext featureContext;
+       private readonly FeatureContext featureContext;
+       private readonly ScenarioContext scenarioContext;
 
-      // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
-      public SpecFlowSetupCleanup(ScenarioContext scenarioContext, FeatureContext featureContext)
+       // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
+       public SpecFlowSetupCleanup(ScenarioContext scenarioContext, FeatureContext featureContext)
       {
          this.scenarioContext = scenarioContext;
          this.featureContext = featureContext;
       }
 
-
-      [BeforeTestRun]
+       [BeforeTestRun]
       public static void BeforeTestRun()
       {
          Service.Instance.ValueRetrievers.Register(new NullValueRetriever("(null)"));
@@ -34,19 +32,19 @@ namespace Landorphan.InstrumentationManagement.Tests.TestFacilities
       [BeforeScenario]
       public void BeforeScenario()
       {
-         scenarioContext.Set<MockWebApp>((MockWebApp)null);
-         Dictionary<string, object> formOrMethods = new Dictionary<string, object>();
-         scenarioContext.Set<Dictionary<string, object>>(formOrMethods, nameof(formOrMethods));
-         scenarioContext.Set<Instrumentation>((Instrumentation) null);
+         scenarioContext.Set((MockWebApp)null);
+         var formOrMethods = new Dictionary<string, object>();
+         scenarioContext.Set(formOrMethods, nameof(formOrMethods));
+         scenarioContext.Set((Instrumentation) null);
          scenarioContext.Set<object>(null, "return");
          Instrumentation.getInstance = () => scenarioContext.Get<Instrumentation>();
-         Instrumentation.setInstance = x => scenarioContext.Set<Instrumentation>(x);
-         scenarioContext.Set<TestLogger>(new TestLogger());
-         scenarioContext.Set<TestData>(new TestData());
-         scenarioContext.Set<TestEntryPointStorage>(new TestEntryPointStorage());
-         scenarioContext.Set<TestPerfManager>(new TestPerfManager());
+         Instrumentation.setInstance = x => scenarioContext.Set(x);
+         scenarioContext.Set(new TestLogger());
+         scenarioContext.Set(new TestData());
+         scenarioContext.Set(new TestEntryPointStorage());
+         scenarioContext.Set(new TestPerfManager());
          var identityManager = new PluginIdentityManager(scenarioContext);
-         scenarioContext.Set<PluginIdentityManager>(identityManager);
+         scenarioContext.Set(identityManager);
          //TODO: implement logic that has to run before executing each scenario
       }
 
@@ -60,7 +58,7 @@ namespace Landorphan.InstrumentationManagement.Tests.TestFacilities
          foreach (var name in names)
          {
             var instance = formOrMethods[name];
-            string forOrWeb = "for";
+            var forOrWeb = "for";
             if (instance is MethodInfo)
             {
                forOrWeb = "web";

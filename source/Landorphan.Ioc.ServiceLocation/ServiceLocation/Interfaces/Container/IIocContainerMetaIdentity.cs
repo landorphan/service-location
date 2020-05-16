@@ -1,8 +1,8 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
+    using System;
 
-   /// <summary>
+    /// <summary>
    /// Represents the meta identity of a <see cref="IIocContainer"/> in concert with
    /// a <see cref="IIocContainerManager"/>,
    /// a <see cref="IIocContainerRegistrar"/>,
@@ -13,7 +13,7 @@
    /// </remarks>
    public interface IIocContainerMetaIdentity
    {
-      /// <summary>
+       /// <summary>
       /// Gets the name of this container.
       /// </summary>
       /// <value>
@@ -22,9 +22,9 @@
       /// <remarks>
       /// This is intended for convenience and application-specific practices.  It is not required to be unique, but probably should be in practice.  Leading and trailing white space is removed
       /// </remarks>
-      String Name { get; }
+      string Name { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the unique identifier of this container instance.
       /// </summary>
       /// <value>

@@ -1,36 +1,36 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.Path
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Common.Exceptions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Common.Exceptions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable StringLiteralTypo
    // ReSharper disable CommentTypo
 
    public static partial class PathUtilities_Tests
    {
-      private const String Spaces = "   ";
-      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly PathInternalMapping _target = new PathInternalMapping();
-      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+       private const string Spaces = "   ";
+       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly PathInternalMapping _target = new PathInternalMapping();
+       private static readonly string _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_PathMapper_ChangeExtension : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_contains_a_colon_character_It_should_throw_ArgumentException()
          {
@@ -265,10 +265,10 @@
          public void And_the_path_is_empty_it_should_return_empty()
          {
             // edge case:  starting will null or empty returns null or empty
-            _target.ChangeExtension(String.Empty, @"txt").Should().Be(String.Empty);
-            _target.ChangeExtension(String.Empty, @".txt").Should().Be(String.Empty);
-            _target.ChangeExtension(String.Empty, @".abc").Should().Be(String.Empty);
-            _target.ChangeExtension(String.Empty, null).Should().Be(String.Empty);
+            _target.ChangeExtension(string.Empty, @"txt").Should().Be(string.Empty);
+            _target.ChangeExtension(string.Empty, @".txt").Should().Be(string.Empty);
+            _target.ChangeExtension(string.Empty, @".abc").Should().Be(string.Empty);
+            _target.ChangeExtension(string.Empty, null).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -279,7 +279,7 @@
             _target.ChangeExtension(null, null).Should().BeNull();
             _target.ChangeExtension(null, "txt").Should().BeNull();
             _target.ChangeExtension(null, ".txt").Should().BeNull();
-            _target.ChangeExtension(null, String.Empty).Should().BeNull();
+            _target.ChangeExtension(null, string.Empty).Should().BeNull();
          }
 
          [TestMethod]
@@ -289,7 +289,7 @@
             _target.ChangeExtension(Spaces, @"txt").Should().Be(@".txt");
             _target.ChangeExtension(Spaces, @".txt").Should().Be(@".txt");
             _target.ChangeExtension(Spaces, @".abc").Should().Be(@".abc");
-            _target.ChangeExtension(Spaces, null).Should().Be(String.Empty);
+            _target.ChangeExtension(Spaces, null).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -297,7 +297,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.ChangeExtension(path, "rtf");
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -349,7 +349,7 @@
       [TestClass]
       public class When_I_call_PathMapper_Combine : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_a_path_contains_an_invalid_character_It_should_throw_ArgumentException()
          {
@@ -406,7 +406,7 @@
          public void And_paths_is_too_long_it_should_not_throw()
          {
             // path length is not enforced
-            _target.Combine(new String('A', 300), new String('B', 300));
+            _target.Combine(new string('A', 300), new string('B', 300));
             TestUtilitiesHardCodes.NoExceptionWasThrown.Should().BeTrue();
          }
 
@@ -582,45 +582,45 @@
                .Be(@"\/");
             _target.Combine(
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"/\");
             _target.Combine(
                   _pathUtilities.DirectorySeparatorString,
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()
                .Be(@"\/");
             _target.Combine(
                   _pathUtilities.DirectorySeparatorString,
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()
                .Be(@"\//");
             _target.Combine(
                   _pathUtilities.DirectorySeparatorString,
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.DirectorySeparatorString,
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture))
                .Should()
                .Be(@"\\/");
             _target.Combine(
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.DirectorySeparatorString,
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"/\\");
             _target.Combine(
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.AltDirectorySeparatorCharacter.ToString(CultureInfo.InvariantCulture),
-                  String.Empty,
+                  string.Empty,
                   _pathUtilities.DirectorySeparatorString)
                .Should()
                .Be(@"//\");
@@ -657,10 +657,10 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_string_Empty()
          {
-            _target.Combine(String.Empty).Should().Be(String.Empty);
-            _target.Combine(String.Empty, String.Empty).Should().Be(String.Empty);
-            _target.Combine(Spaces).Should().Be(String.Empty);
-            _target.Combine(Spaces, Spaces).Should().Be(String.Empty);
+            _target.Combine(string.Empty).Should().Be(string.Empty);
+            _target.Combine(string.Empty, string.Empty).Should().Be(string.Empty);
+            _target.Combine(Spaces).Should().Be(string.Empty);
+            _target.Combine(Spaces, Spaces).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -669,7 +669,7 @@
          {
             // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable AssignNullToNotNullAttribute
-            Action throwingAction = () => _target.Combine(new String[] {null});
+            Action throwingAction = () => _target.Combine(new string[] {null});
             var e = throwingAction.Should().Throw<ArgumentContainsNullException>();
             e.And.ParamName.Should().Be(@"paths");
 
@@ -725,7 +725,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetExtension : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_extension_contains_a_colon_character_It_should_throw_ArgumentException()
          {
@@ -761,7 +761,7 @@
 
             // usually c:\
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
-            _target.GetExtension(drive + @"temp\temp").Should().Be(String.Empty);
+            _target.GetExtension(drive + @"temp\temp").Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -799,9 +799,9 @@
 
             // usually c:\
             var drive = TestHardCodes.WindowsLocalTestPaths.MappedDrive;
-            _target.GetExtension(drive + @"temp\temp").Should().Be(String.Empty);
-            _target.GetExtension(drive + @"temp\temp.").Should().Be(String.Empty);
-            _target.GetExtension(drive + @"temp\temp.   ").Should().Be(String.Empty);
+            _target.GetExtension(drive + @"temp\temp").Should().Be(string.Empty);
+            _target.GetExtension(drive + @"temp\temp.").Should().Be(string.Empty);
+            _target.GetExtension(drive + @"temp\temp.   ").Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -906,8 +906,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_or_spaces_It_should_return_string_empty()
          {
-            _target.GetExtension(String.Empty).Should().Be(String.Empty);
-            _target.GetExtension(Spaces).Should().Be(String.Empty);
+            _target.GetExtension(string.Empty).Should().Be(string.Empty);
+            _target.GetExtension(Spaces).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -924,7 +924,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -950,10 +950,10 @@
             _target.GetExtension(path).Should().Be(".txt");
 
             path = driveNoSep;
-            _target.GetExtension(path).Should().Be(String.Empty);
+            _target.GetExtension(path).Should().Be(string.Empty);
 
             path = drive;
-            _target.GetExtension(path).Should().Be(String.Empty);
+            _target.GetExtension(path).Should().Be(string.Empty);
 
             path = drive + @"temp\my.txt\";
             _target.GetExtension(path).Should().Be(".txt");
@@ -963,7 +963,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetFileName : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
@@ -1043,8 +1043,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_or_spaces_It_should_return_string_empty()
          {
-            _target.GetFileName(String.Empty).Should().Be(String.Empty);
-            _target.GetFileName(Spaces).Should().Be(String.Empty);
+            _target.GetFileName(string.Empty).Should().Be(string.Empty);
+            _target.GetFileName(Spaces).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -1061,7 +1061,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetFileName(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1090,7 +1090,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetFileNameWithoutExtension : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_does_not_exist_It_should_not_throw()
          {
@@ -1170,8 +1170,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_or_spaces_It_should_return_string_empty()
          {
-            _target.GetFileNameWithoutExtension(String.Empty).Should().Be(String.Empty);
-            _target.GetFileNameWithoutExtension(Spaces).Should().Be(String.Empty);
+            _target.GetFileNameWithoutExtension(string.Empty).Should().Be(string.Empty);
+            _target.GetFileNameWithoutExtension(Spaces).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -1188,7 +1188,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetFileNameWithoutExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1217,7 +1217,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetFullPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
          {
@@ -1321,8 +1321,8 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_or_spaces_It_should_return_string_empty()
          {
-            _target.GetFullPath(String.Empty).Should().Be(String.Empty);
-            _target.GetFullPath(Spaces).Should().Be(String.Empty);
+            _target.GetFullPath(string.Empty).Should().Be(string.Empty);
+            _target.GetFullPath(Spaces).Should().Be(string.Empty);
          }
 
          [TestMethod]
@@ -1339,7 +1339,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetFullPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1396,7 +1396,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetInvalidFileNameCharacters : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_retrieve_the_expected_values()
          {
@@ -1407,7 +1407,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetInvalidPathCharacters : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_retrieve_the_expected_values()
          {

@@ -1,36 +1,36 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.EventArgs
 {
-   using System;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class ContainerParentChildEventArgs_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_create_an_ContainerParentChildEventArgs_using_the_container_container_constructor : DisposableArrangeActAssert
       {
-         private readonly String childContainerName = "Isolated Test Child";
-         private readonly String containerName = "Isolated Test Parent: ContainerParentChildEventArgs (parent, child) constructor tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer child;
-         private IOwnedIocContainer parent;
+          private readonly string childContainerName = "Isolated Test Child";
+          private readonly string containerName = "Isolated Test Parent: ContainerParentChildEventArgs (parent, child) constructor tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer child;
+          private IOwnedIocContainer parent;
 
-         private ContainerParentChildEventArgs target;
+          private ContainerParentChildEventArgs target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             parent = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             var manager = parent.Manager;
             child = (IOwnedIocContainer)manager.CreateChildContainer(childContainerName);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_a_null_child()
          {
@@ -68,14 +68,14 @@
       [TestClass]
       public class When_I_create_an_ContainerParentChildEventArgs_using_the_default_constructor : ArrangeActAssert
       {
-         private ContainerParentChildEventArgs target;
+          private ContainerParentChildEventArgs target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = new ContainerParentChildEventArgs();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_have_a_null_Child()
          {

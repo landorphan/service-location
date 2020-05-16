@@ -1,34 +1,34 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-   using System;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class DirectoryUtilities_Tests
    {
-      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
 
-      private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly IDirectoryUtilities _target = IocServiceLocator.Resolve<IDirectoryUtilities>();
-      private static readonly String _tempPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_target.GetTemporaryDirectoryPath());
+       private static readonly IEnvironmentUtilities _environmentUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
+       private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly IDirectoryUtilities _target = IocServiceLocator.Resolve<IDirectoryUtilities>();
+       private static readonly string _tempPath = IOStringUtilities.RemoveOneTrailingDirectorySeparatorCharacter(_target.GetTemporaryDirectoryPath());
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_DirectoryUtilities_CreateDirectory : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_the_directory_absolute()
          {
@@ -99,7 +99,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_DeleteEmpty : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_delete_an_empty_directory_absolute()
          {
@@ -171,7 +171,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_DeleteRecursively : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_delete_a_directory_with_files_and_subdirectories_absolute()
          {
@@ -279,7 +279,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_DirectoryExists : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_distinguish_between_extant_and_non_extant_directories_absolute()
          {
@@ -367,7 +367,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_GetCreationTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Remove SetCreationTime from interface.  See readme.md")]
          public void It_should_get_the_creation_time()
@@ -392,7 +392,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_GetCurrentDirectory : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_current_directory()
          {
@@ -420,7 +420,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_GetLastAccessTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_last_access_time()
          {
@@ -444,7 +444,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_GetLastWriteTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_the_last_write_time()
          {
@@ -468,7 +468,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_GetRandomDirectoryName : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_get_a_random_directory_name_that_is_not_rooted_and_does_not_exist
             ()
@@ -482,7 +482,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_GetTemporaryDirectoryPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Fails on build server:  expected is a 8.3 dir name, actual is full dir name")]
          public void It_should_get_the_temporary_directory()
@@ -496,7 +496,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_SetCreationTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Removed SetCreationTime from interface")]
          public void It_should_set_the_creation_time()
@@ -527,7 +527,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_SetCurrentDirectory : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_set_the_current_directory()
          {
@@ -559,7 +559,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_SetLastAccessTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          // [TestCategory(TestTiming.CheckIn)]
          [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_access_time()
@@ -590,7 +590,7 @@
       [TestClass]
       public class When_I_call_DirectoryUtilities_SetLastWriteTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [Ignore("Ignored by TGS")]
          public void It_should_set_the_last_write_time()
@@ -621,14 +621,14 @@
       [TestClass]
       public class When_I_service_locate_IDirectoryUtilities : ArrangeActAssert
       {
-         private IDirectoryUtilities actual;
+          private IDirectoryUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IDirectoryUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_DirectoryUtilities()
          {

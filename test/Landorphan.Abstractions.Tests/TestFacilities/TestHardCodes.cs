@@ -1,62 +1,62 @@
 namespace Landorphan.Abstractions.Tests.TestFacilities
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Linq;
-   using System.Runtime.InteropServices;
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Common.Threading;
-   using Landorphan.Ioc.ServiceLocation;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Linq;
+    using System.Runtime.InteropServices;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Common.Threading;
+    using Landorphan.Ioc.ServiceLocation;
 
-   // ReSharper disable CommentTypo
+    // ReSharper disable CommentTypo
 
    internal static class TestHardCodes
    {
-      internal const Int32 PathAlwaysTooLong = 32768;
-      // it could be something smaller based on the operating system.
-      internal const Int32 PathMaxDirLengthWithoutTrailingSepChar = PathMaxDirLengthWithTrailingSepChar - 1;
-      // it could be something smaller based on the operating system.
-      internal const Int32 PathMaxDirLengthWithTrailingSepChar = Int16.MaxValue;
-      /* ****************************************************************************************************************************************************************
-      Starting with apps running under the .NET Framework 4.6.2, the .NET Framework supports long paths in excess of 260 (or MAX_PATH) characters. 
-      The conditions under which a PathTooLongException exception are thrown depend on the version of the .NET Framework that an app targets:
+       internal const int PathAlwaysTooLong = 32768;
+       // it could be something smaller based on the operating system.
+       internal const int PathMaxDirLengthWithoutTrailingSepChar = PathMaxDirLengthWithTrailingSepChar - 1;
+       // it could be something smaller based on the operating system.
+       internal const int PathMaxDirLengthWithTrailingSepChar = short.MaxValue;
+       /* ****************************************************************************************************************************************************************
+       Starting with apps running under the .NET Framework 4.6.2, the .NET Framework supports long paths in excess of 260 (or MAX_PATH) characters. 
+       The conditions under which a PathTooLongException exception are thrown depend on the version of the .NET Framework that an app targets:
+ 
+       Apps that target the .NET Framework 4.6.2 and later versions
+          Long paths are supported by default. The runtime throws a PathTooLongException under the following conditions:
+ 
+       The operating system returns COR_E_PATHTOOLONG or its equivalent.
+ 
+          The length of the path exceeds Int16.MaxValue (32,767) characters.
+ 
+          Apps that target the .NET Framework 4.6.1 and earlier versions
+          Long paths are disabled by default, and the legacy behavior is maintained. The runtime throws a PathTooLongException whenever a path exceeds 260 characters. 
+       
+          >> 32767 or something smaller
+ 
+       **************************************************************************************************************************************************************** */
 
-      Apps that target the .NET Framework 4.6.2 and later versions
-         Long paths are supported by default. The runtime throws a PathTooLongException under the following conditions:
+       // Used to signal that the OSPlatform was neither OSX, Windows or Linux
+       // should only ocure if a new OSPlatform is added to dotnet core support.
+       internal const string UnrecognizedPlatform = "The test was unable to recognize the OS Platform, the test result can not be validated.";
 
-      The operating system returns COR_E_PATHTOOLONG or its equivalent.
+       internal const string WindowsInvalidPathCharacter = "|";
 
-         The length of the path exceeds Int16.MaxValue (32,767) characters.
+       private static InterlockedBoolean t_windowsPathsInitialized = false;
 
-         Apps that target the .NET Framework 4.6.1 and earlier versions
-         Long paths are disabled by default, and the legacy behavior is maintained. The runtime throws a PathTooLongException whenever a path exceeds 260 characters. 
-      
-         >> 32767 or something smaller
+       internal static bool AreWindowsPathsInitialized => t_windowsPathsInitialized.GetValue();
 
-      **************************************************************************************************************************************************************** */
-
-      // Used to signal that the OSPlatform was neither OSX, Windows or Linux
-      // should only ocure if a new OSPlatform is added to dotnet core support.
-      internal const String UnrecognizedPlatform = "The test was unable to recognize the OS Platform, the test result can not be validated.";
-
-      internal const String WindowsInvalidPathCharacter = "|";
-
-      private static InterlockedBoolean t_windowsPathsInitialized = false;
-
-      internal static Boolean AreWindowsPathsInitialized => t_windowsPathsInitialized.GetValue();
-
-      internal static IEnumerable<Char> GetDirSepChars()
+       internal static IEnumerable<char> GetDirSepChars()
       {
          var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
          return new[] {pathUtilities.DirectorySeparatorCharacter, pathUtilities.AltDirectorySeparatorCharacter};
       }
 
-      private static void InitializeWindowsTestPaths()
+       private static void InitializeWindowsTestPaths()
       {
          // On Windows machines the arrange and teardown script for both UncTestPaths and WindowsTestsPaths is the same.
          // I choose to suffer with the class cohesion to avoid spreading the knowledge across many power shell scripts.
@@ -81,22 +81,22 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
          }
       }
 
-      internal static class WindowsLocalTestPaths
+       internal static class WindowsLocalTestPaths
       {
-         private static String t_localFileFullControlFolderOwnerOnlyFile;
-         private static String t_localFileOuterFolderNoPermissionsChildFile;
-         private static String t_localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile;
-         private static String t_localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile;
-         private static String t_localFolderEveryoneFullControl;
-         private static String t_localFolderOuterFolderNoPermissions;
-         private static String t_localFolderOuterFolderNoPermissionsInnerFolderNoPermissions;
-         private static String t_localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder;
-         private static String t_localFolderReadExecuteListFolderContents;
-         private static String t_localFolderRoot;
-         private static readonly Lazy<String> t_unmappedDrive = new Lazy<String>(FindUnmappedDrive);
-         private static readonly Lazy<String> t_mappedDrive = new Lazy<String>(FindMappedDrive);
+          private static string t_localFileFullControlFolderOwnerOnlyFile;
+          private static string t_localFileOuterFolderNoPermissionsChildFile;
+          private static string t_localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile;
+          private static string t_localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile;
+          private static string t_localFolderEveryoneFullControl;
+          private static string t_localFolderOuterFolderNoPermissions;
+          private static string t_localFolderOuterFolderNoPermissionsInnerFolderNoPermissions;
+          private static string t_localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder;
+          private static string t_localFolderReadExecuteListFolderContents;
+          private static string t_localFolderRoot;
+          private static readonly Lazy<string> t_unmappedDrive = new Lazy<string>(FindUnmappedDrive);
+          private static readonly Lazy<string> t_mappedDrive = new Lazy<string>(FindMappedDrive);
 
-         internal static String LocalFileFullControlFolderOwnerOnlyFile
+          internal static string LocalFileFullControlFolderOwnerOnlyFile
          {
             get
             {
@@ -110,7 +110,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFileFullControlFolderOwnerOnlyFile = value;
          }
 
-         internal static String LocalFileOuterFolderNoPermissionsChildFile
+          internal static string LocalFileOuterFolderNoPermissionsChildFile
          {
             get
             {
@@ -124,7 +124,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFileOuterFolderNoPermissionsChildFile = value;
          }
 
-         internal static String LocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile
+          internal static string LocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile
          {
             get
             {
@@ -138,7 +138,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile = value;
          }
 
-         internal static String LocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile
+          internal static string LocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile
          {
             get
             {
@@ -152,7 +152,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile = value;
          }
 
-         internal static String LocalFolderEveryoneFullControl
+          internal static string LocalFolderEveryoneFullControl
          {
             get
             {
@@ -166,7 +166,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFolderEveryoneFullControl = value;
          }
 
-         internal static String LocalFolderOuterFolderNoPermissions
+          internal static string LocalFolderOuterFolderNoPermissions
          {
             get
             {
@@ -180,7 +180,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFolderOuterFolderNoPermissions = value;
          }
 
-         internal static String LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions
+          internal static string LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions
          {
             get
             {
@@ -194,7 +194,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFolderOuterFolderNoPermissionsInnerFolderNoPermissions = value;
          }
 
-         internal static String LocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder
+          internal static string LocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder
          {
             get
             {
@@ -208,7 +208,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder = value;
          }
 
-         internal static String LocalFolderReadExecuteListFolderContents
+          internal static string LocalFolderReadExecuteListFolderContents
          {
             get
             {
@@ -222,7 +222,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFolderReadExecuteListFolderContents = value;
          }
 
-         internal static String LocalFolderRoot
+          internal static string LocalFolderRoot
          {
             get
             {
@@ -236,63 +236,63 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_localFolderRoot = value;
          }
 
-         internal static String MappedDrive => t_mappedDrive.Value;
-         internal static String UnmappedDrive => t_unmappedDrive.Value;
+          internal static string MappedDrive => t_mappedDrive.Value;
+          internal static string UnmappedDrive => t_unmappedDrive.Value;
 
-         // Setters are called by TestAssemblyInitializeCleanupWindowsHelper which arranges the local test directories and files.
+          // Setters are called by TestAssemblyInitializeCleanupWindowsHelper which arranges the local test directories and files.
 
-         internal static void SetLocalFileFullControlFolderOwnerOnlyFile(String value)
+          internal static void SetLocalFileFullControlFolderOwnerOnlyFile(string value)
          {
             LocalFileFullControlFolderOwnerOnlyFile = value;
          }
 
-         internal static void SetLocalFileOuterFolderNoPermissionsChildFile(String value)
+          internal static void SetLocalFileOuterFolderNoPermissionsChildFile(string value)
          {
             LocalFileOuterFolderNoPermissionsChildFile = value;
          }
 
-         internal static void SetLocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile(String value)
+          internal static void SetLocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile(string value)
          {
             LocalFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile = value;
          }
 
-         internal static void SetLocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile(String value)
+          internal static void SetLocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile(string value)
          {
             LocalFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile = value;
          }
 
-         internal static void SetLocalFolderEveryoneFullControl(String value)
+          internal static void SetLocalFolderEveryoneFullControl(string value)
          {
             LocalFolderEveryoneFullControl = value;
          }
 
-         internal static void SetLocalFolderOuterFolderNoPermissions(String value)
+          internal static void SetLocalFolderOuterFolderNoPermissions(string value)
          {
             LocalFolderOuterFolderNoPermissions = value;
          }
 
-         internal static void SetLocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions(String value)
+          internal static void SetLocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions(string value)
          {
             LocalFolderOuterFolderNoPermissionsInnerFolderNoPermissions = value;
          }
 
-         internal static void SetLocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder(String value)
+          internal static void SetLocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder(string value)
          {
             LocalFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder = value;
          }
 
-         internal static void SetLocalFolderReadExecuteListFolderContents(String value)
+          internal static void SetLocalFolderReadExecuteListFolderContents(string value)
          {
             LocalFolderReadExecuteListFolderContents = value;
          }
 
-         internal static void SetLocalFolderRoot(String value)
+          internal static void SetLocalFolderRoot(string value)
          {
             LocalFolderRoot = value;
          }
 
-         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-         private static String FindMappedDrive()
+          [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
+         private static string FindMappedDrive()
          {
             // returns null if not on a windows platform
             // returns null if no mapped letters exist
@@ -303,7 +303,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             // best guess:  somewhere in the implementation of System.IO.Path, the current directory is changed, and then changed back
             // it would be best to avoid anything but a writable HD.
 
-            String rv = null;
+            string rv = null;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                // prefer fixed over network but accept both
@@ -349,16 +349,16 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             return rv;
          }
 
-         private static String FindUnmappedDrive()
+         private static string FindUnmappedDrive()
          {
             // returns null if not on a windows platform
             // returns null if no unmapped letters exist between A and Z
             // returns an unmapped drive (e.g. "A:\")
-            String rv = null;
+            string rv = null;
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-               var builder = ImmutableHashSet<String>.Empty.ToBuilder();
+               var builder = ImmutableHashSet<string>.Empty.ToBuilder();
                builder.KeyComparer = StringComparer.InvariantCultureIgnoreCase;
                for (var c = 'A'; c <= 'Z'; c++)
                {
@@ -388,20 +388,20 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
          }
       }
 
-      internal static class WindowsUncTestPaths
+       internal static class WindowsUncTestPaths
       {
-         private static String t_uncFileFullControlFolderOwnerOnlyFile;
-         private static String t_uncFileOuterFolderNoPermissionsChildFile;
-         private static String t_uncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile;
-         private static String t_uncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile;
-         private static String t_uncFolderEveryoneFullControl;
-         private static String t_uncFolderOuterFolderNoPermissions;
-         private static String t_uncFolderOuterFolderNoPermissionsInnerFolderNoPermissions;
-         private static String t_uncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder;
-         private static String t_uncFolderReadExecuteListFolderContents;
-         private static String t_uncShareRoot;
+          private static string t_uncFileFullControlFolderOwnerOnlyFile;
+          private static string t_uncFileOuterFolderNoPermissionsChildFile;
+          private static string t_uncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile;
+          private static string t_uncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile;
+          private static string t_uncFolderEveryoneFullControl;
+          private static string t_uncFolderOuterFolderNoPermissions;
+          private static string t_uncFolderOuterFolderNoPermissionsInnerFolderNoPermissions;
+          private static string t_uncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder;
+          private static string t_uncFolderReadExecuteListFolderContents;
+          private static string t_uncShareRoot;
 
-         internal static String UncFileFullControlFolderOwnerOnlyFile
+          internal static string UncFileFullControlFolderOwnerOnlyFile
          {
             get
             {
@@ -415,7 +415,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFileFullControlFolderOwnerOnlyFile = value;
          }
 
-         internal static String UncFileOuterFolderNoPermissionsChildFile
+          internal static string UncFileOuterFolderNoPermissionsChildFile
          {
             get
             {
@@ -429,7 +429,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFileOuterFolderNoPermissionsChildFile = value;
          }
 
-         internal static String UncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile
+          internal static string UncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile
          {
             get
             {
@@ -443,7 +443,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile = value;
          }
 
-         internal static String UncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile
+          internal static string UncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile
          {
             get
             {
@@ -457,7 +457,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile = value;
          }
 
-         internal static String UncFolderEveryoneFullControl
+          internal static string UncFolderEveryoneFullControl
          {
             get
             {
@@ -471,7 +471,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFolderEveryoneFullControl = value;
          }
 
-         internal static String UncFolderOuterFolderNoPermissions
+          internal static string UncFolderOuterFolderNoPermissions
          {
             get
             {
@@ -485,7 +485,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFolderOuterFolderNoPermissions = value;
          }
 
-         internal static String UncFolderOuterFolderNoPermissionsInnerFolderNoPermissions
+          internal static string UncFolderOuterFolderNoPermissionsInnerFolderNoPermissions
          {
             get
             {
@@ -499,7 +499,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFolderOuterFolderNoPermissionsInnerFolderNoPermissions = value;
          }
 
-         internal static String UncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder
+          internal static string UncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder
          {
             get
             {
@@ -513,7 +513,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder = value;
          }
 
-         internal static String UncFolderReadExecuteListFolderContents
+          internal static string UncFolderReadExecuteListFolderContents
          {
             get
             {
@@ -527,7 +527,7 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncFolderReadExecuteListFolderContents = value;
          }
 
-         internal static String UncShareRoot
+          internal static string UncShareRoot
          {
             get
             {
@@ -541,54 +541,54 @@ namespace Landorphan.Abstractions.Tests.TestFacilities
             private set => t_uncShareRoot = value;
          }
 
-         // Setters are called by TestAssemblyInitializeCleanupWindowsHelper which arranges the local test directories and files.
+          // Setters are called by TestAssemblyInitializeCleanupWindowsHelper which arranges the local test directories and files.
 
-         internal static void SetUncFileFullControlFolderOwnerOnlyFile(String value)
+          internal static void SetUncFileFullControlFolderOwnerOnlyFile(string value)
          {
             UncFileFullControlFolderOwnerOnlyFile = value;
          }
 
-         internal static void SetUncFileOuterFolderNoPermissionsChildFile(String value)
+          internal static void SetUncFileOuterFolderNoPermissionsChildFile(string value)
          {
             UncFileOuterFolderNoPermissionsChildFile = value;
          }
 
-         internal static void SetUncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile(String value)
+          internal static void SetUncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile(string value)
          {
             UncFileOuterFolderNoPermissionsInnerFolderNoPermissionsChildFile = value;
          }
 
-         internal static void SetUncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile(String value)
+          internal static void SetUncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile(string value)
          {
             UncFileOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFile = value;
          }
 
-         internal static void SetUncFolderEveryoneFullControl(String value)
+          internal static void SetUncFolderEveryoneFullControl(string value)
          {
             UncFolderEveryoneFullControl = value;
          }
 
-         internal static void SetUncFolderOuterFolderNoPermissions(String value)
+          internal static void SetUncFolderOuterFolderNoPermissions(string value)
          {
             UncFolderOuterFolderNoPermissions = value;
          }
 
-         internal static void SetUncFolderOuterFolderNoPermissionsInnerFolderNoPermissions(String value)
+          internal static void SetUncFolderOuterFolderNoPermissionsInnerFolderNoPermissions(string value)
          {
             UncFolderOuterFolderNoPermissionsInnerFolderNoPermissions = value;
          }
 
-         internal static void SetUncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder(String value)
+          internal static void SetUncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder(string value)
          {
             UncFolderOuterFolderNoPermissionsReadExecuteListFolderContentsExtantFolder = value;
          }
 
-         internal static void SetUncFolderReadExecuteListFolderContents(String value)
+          internal static void SetUncFolderReadExecuteListFolderContents(string value)
          {
             UncFolderReadExecuteListFolderContents = value;
          }
 
-         internal static void SetUncShareRoot(String value)
+          internal static void SetUncShareRoot(string value)
          {
             UncShareRoot = value;
          }

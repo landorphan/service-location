@@ -1,28 +1,28 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.Path
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable StringLiteralTypo
    // ReSharper disable CommentTypo
 
    public static partial class PathUtilities_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_PathMapper_GetParentPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_parent()
          {
@@ -174,7 +174,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -203,7 +203,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_spaces_or_empty_It_should_throw_ArgumentException()
          {
-            Action throwingAction = () => _target.GetParentPath(String.Empty);
+            Action throwingAction = () => _target.GetParentPath(string.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -218,7 +218,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -230,7 +230,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -243,7 +243,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetParentPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -261,10 +261,10 @@
             var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
+            var path = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
 
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", random0, random1));
+            actual.Should().Be(string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}", random0, random1));
          }
 
          [TestMethod]
@@ -277,7 +277,7 @@
             var path = _target.Combine(@"\\localhost\", random0, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             var actual = _target.GetParentPath(path);
-            actual.Should().Be(String.Format(CultureInfo.InvariantCulture, @"\\localhost\{0}", random0));
+            actual.Should().Be(string.Format(CultureInfo.InvariantCulture, @"\\localhost\{0}", random0));
          }
 
          [TestMethod]
@@ -317,15 +317,15 @@
             _target.GetParentPath(@"./abc/").Should().Be(@".");
             _target.GetParentPath(@"./abc/").Should().Be(@".");
 
-            _target.GetParentPath(@".").Should().Be(String.Empty);
+            _target.GetParentPath(@".").Should().Be(string.Empty);
 
             _target.GetParentPath(@"\abc").Should().Be(_target.DirectorySeparatorCharacter.ToString());
             _target.GetParentPath(@"\abc\").Should().Be(_target.DirectorySeparatorCharacter.ToString());
             _target.GetParentPath(@"/abc/").Should().Be(_target.DirectorySeparatorCharacter.ToString());
             _target.GetParentPath(@"/abc/").Should().Be(_target.DirectorySeparatorCharacter.ToString());
-            _target.GetParentPath(@"abc").Should().Be(String.Empty);
-            _target.GetParentPath(@"abc\").Should().Be(String.Empty);
-            _target.GetParentPath(@"abc/").Should().Be(String.Empty);
+            _target.GetParentPath(@"abc").Should().Be(string.Empty);
+            _target.GetParentPath(@"abc\").Should().Be(string.Empty);
+            _target.GetParentPath(@"abc/").Should().Be(string.Empty);
 
             _target.GetParentPath(@".\abc\123").Should().Be(@".\abc");
             _target.GetParentPath(@".\abc\123\").Should().Be(@".\abc");
@@ -352,7 +352,7 @@
             {
                _directoryUtilities.DirectoryExists(grandChildDirectory).Should().BeTrue();
 
-               _target.GetParentPath(childDirectory).Should().Be(String.Empty);
+               _target.GetParentPath(childDirectory).Should().Be(string.Empty);
                _target.GetParentPath(grandChildDirectory).Should().Be(childDirectory);
             }
             finally
@@ -377,7 +377,7 @@
       [TestClass]
       public class When_I_call_PathMapper_GetRootPath : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_caller_does_not_have_permissions_on_the_target_directory_but_does_on_the_parent_directory_It_should_return_the_root()
          {
@@ -538,7 +538,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -567,7 +567,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_spaces_or_empty_It_should_throw_ArgumentException()
          {
-            Action throwingAction = () => _target.GetRootPath(String.Empty);
+            Action throwingAction = () => _target.GetRootPath(string.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -582,7 +582,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -594,7 +594,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -607,7 +607,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetRootPath(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -625,7 +625,7 @@
             var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}\", random0, random1, random2);
+            var path = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}\", random0, random1, random2);
 
             var actual = _target.GetRootPath(path);
             actual.Should().Be(@"\\" + random0);
@@ -651,7 +651,7 @@
          {
             // HAPPY PATH TEST:
 
-            var builder = ImmutableHashSet<String>.Empty.ToBuilder();
+            var builder = ImmutableHashSet<string>.Empty.ToBuilder();
             builder.KeyComparer = StringComparer.Ordinal;
             builder.Add(_target.DirectorySeparatorCharacter.ToString());
             builder.Add(_target.AltDirectorySeparatorCharacter.ToString());
@@ -681,9 +681,9 @@
             _target.GetRootPath(@"./abc").Should().BeOneOf(bothSeparators);
             _target.GetRootPath(@"./abc/").Should().BeOneOf(bothSeparators);
 
-            _target.GetRootPath(@"abc").Should().Be(String.Empty);
-            _target.GetRootPath(@"abc\").Should().Be(String.Empty);
-            _target.GetRootPath(@"abc/").Should().Be(String.Empty);
+            _target.GetRootPath(@"abc").Should().Be(string.Empty);
+            _target.GetRootPath(@"abc\").Should().Be(string.Empty);
+            _target.GetRootPath(@"abc/").Should().Be(string.Empty);
 
             _target.GetRootPath(@"\abc\123").Should().BeOneOf(bothSeparators);
             _target.GetRootPath(@"\abc\123\").Should().BeOneOf(bothSeparators);
@@ -711,8 +711,8 @@
             {
                _directoryUtilities.DirectoryExists(grandChildDirectory).Should().BeTrue();
 
-               _target.GetRootPath(childDirectory).Should().Be(String.Empty);
-               _target.GetRootPath(grandChildDirectory).Should().Be(String.Empty);
+               _target.GetRootPath(childDirectory).Should().Be(string.Empty);
+               _target.GetRootPath(grandChildDirectory).Should().Be(string.Empty);
             }
             finally
             {
@@ -730,7 +730,7 @@
       [TestClass]
       public class When_I_call_PathMapper_HasExtension : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -828,7 +828,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_or_spaces_It_should_return_false()
          {
-            _target.HasExtension(String.Empty).Should().BeFalse();
+            _target.HasExtension(string.Empty).Should().BeFalse();
          }
 
          [TestMethod]
@@ -861,7 +861,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.HasExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -874,7 +874,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.HasExtension(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -891,7 +891,7 @@
             var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
+            var path = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
 
             _target.HasExtension(path).Should().BeFalse();
          }
@@ -955,7 +955,7 @@
       [TestClass]
       public class When_I_call_PathMapper_IsPathRelative : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -1083,7 +1083,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_spaces_or_empty_It_should_return_false()
          {
-            _target.IsPathRelative(String.Empty).Should().BeTrue();
+            _target.IsPathRelative(string.Empty).Should().BeTrue();
             _target.IsPathRelative(Spaces).Should().BeTrue();
          }
 
@@ -1091,7 +1091,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_return_false()
          {
-            const String path = " \t ";
+            const string path = " \t ";
             _target.IsPathRelative(path).Should().BeTrue();
          }
 
@@ -1100,7 +1100,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.IsPathRelative(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -1118,7 +1118,7 @@
             var random1 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var random2 = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var path = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
+            var path = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", random0, random1, random2);
 
             _target.IsPathRelative(path).Should().BeFalse();
          }
@@ -1173,14 +1173,14 @@
       [TestClass]
       public class When_I_service_locate_IPathUtilities : ArrangeActAssert
       {
-         private IPathUtilities actual;
+          private IPathUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IPathUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_PathUtilities()
          {

@@ -1,10 +1,10 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Represents resolving services for an <see cref="IIocContainer"/> container.
    /// </summary>
    /// <remarks>
@@ -18,7 +18,7 @@
    [SuppressMessage("SonarLint.CodeSmell", "S1939: Inheritance list should not be redundant", Justification = "Being explicit (MWP)")]
    public interface IIocContainerResolver : IIocContainerMetaSharedCapacities, IIocContainerRegistrationRepository
    {
-      /// <summary>
+       /// <summary>
       /// Resolves the default instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -35,7 +35,7 @@
       /// </exception>
       TFrom Resolve<TFrom>() where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -53,9 +53,9 @@
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <typeparamref name="TFrom"/> service instance.
       /// </exception>
-      TFrom Resolve<TFrom>(String name) where TFrom : class;
+      TFrom Resolve<TFrom>(string name) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Resolves the default instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -70,9 +70,9 @@
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <paramref name="fromType"/> service instance.
       /// </exception>
-      Object Resolve(Type fromType);
+      object Resolve(Type fromType);
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -90,9 +90,9 @@
       /// <exception cref="ResolutionException">
       /// Thrown when an error occurs resolving the <paramref name="fromType"/> service instance.
       /// </exception>
-      Object Resolve(Type fromType, String name);
+      object Resolve(Type fromType, string name);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -104,9 +104,9 @@
       /// <returns>
       /// <c>true</c> when a default registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve<TFrom>(out TFrom instance) where TFrom : class;
+      bool TryResolve<TFrom>(out TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -121,9 +121,9 @@
       /// <returns>
       /// <c>true</c> when the named registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve<TFrom>(String name, out TFrom instance) where TFrom : class;
+      bool TryResolve<TFrom>(string name, out TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Attempts to resolve the default instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -135,9 +135,9 @@
       /// <returns>
       /// <c>true</c> when a default registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve(Type fromType, out Object instance);
+      bool TryResolve(Type fromType, out object instance);
 
-      /// <summary>
+       /// <summary>
       /// Resolves a named instance of the requested type.
       /// </summary>
       /// <param name="fromType">
@@ -152,6 +152,6 @@
       /// <returns>
       /// <c>true</c> when the named registered instance was found; otherwise <c>false</c>.
       /// </returns>
-      Boolean TryResolve(Type fromType, String name, out Object instance);
+      bool TryResolve(Type fromType, string name, out object instance);
    }
 }

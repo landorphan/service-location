@@ -1,28 +1,28 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.EventArguments
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Reflection;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Reflection;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Provides data for the <see cref="IIocServiceLocatorManager.BeforeContainerAssemblyCollectionSelfRegistrationInvoked"/> event and the
    /// <see cref="IIocServiceLocatorManager.AfterContainerAssemblyCollectionSelfRegistrationInvoked"/> event.
    /// </summary>
    /// <seealso cref="EventArgs"/>
    public sealed class ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs : EventArgs
    {
-      private readonly IImmutableSet<Assembly> _assemblySet;
+       private readonly IImmutableSet<Assembly> _assemblySet;
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs"/> class.
       /// </summary>
       public ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs() : this(null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerAssemblyCollectionSelfRegistrationInvokedEventArgs"/> class using the specified
       /// <see cref="Container"/> and <see cref="Assemblies"/> collection.
       /// </summary>
@@ -58,7 +58,7 @@
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets a collection of <see cref="Assembly"></see> that represents the assemblies <see cref="IAssemblySelfRegistration"/> instances were invoked to register services.
       /// </summary>
       /// <returns>
@@ -70,7 +70,7 @@
       /// </remarks>
       public IEnumerable<Assembly> Assemblies => _assemblySet;
 
-      /// <summary>
+       /// <summary>
       /// Gets the <see cref="IIocContainerMetaIdentity"></see> in which the <see cref="Assemblies"/>"/> collection of <see cref="IAssemblySelfRegistration"/> instances were invoked
       /// to register services.
       /// </summary>

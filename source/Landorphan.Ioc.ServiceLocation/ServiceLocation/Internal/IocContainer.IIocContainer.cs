@@ -1,23 +1,22 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System.Collections.Generic;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   // ReSharper disable ConvertToAutoProperty
+    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage
    // ReSharper disable RedundantExtendsListEntry
 
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       IReadOnlyCollection<IIocContainer> IIocContainer.Children => _children;
 
-      /// <inheritdoc/>
-      Boolean IIocContainer.IsRoot => _parent.IsNull();
+       /// <inheritdoc/>
+      bool IIocContainer.IsRoot => _parent.IsNull();
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       IIocContainer IIocContainer.Parent => _parent;
    }
 }

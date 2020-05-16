@@ -1,32 +1,32 @@
 ﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Linq;
-   using System.Reflection;
-   using System.Runtime.Serialization;
-   using System.Text;
-   using Landorphan.Common;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+    using System.Text;
+    using Landorphan.Common;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   /// <summary>
+    /// <summary>
    /// Test implementations for exception validity requirements.
    /// </summary>
    public abstract class ExceptionValidityRequirements : TestBase
    {
-      private static readonly Random t_random = new Random();
+       private static readonly Random t_random = new Random();
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that it is NOT decorated with [Serializable].
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -35,11 +35,11 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that it is either abstract or sealed.
       /// </summary>
       /// <exception cref="AssertFailedException" />
@@ -47,7 +47,7 @@
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -56,18 +56,18 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that it is public.
       /// </summary>
       /// <exception cref="AssertFailedException" />
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Be_Public_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -76,7 +76,7 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
 
          foreach (var exceptionType in exceptionTypes)
@@ -85,7 +85,7 @@
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure it is descended from an acceptable base exception.
       /// </summary>
       /// <remarks>
@@ -96,7 +96,7 @@
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -105,17 +105,17 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that has a default constructor.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Have_A_Default_Constructor_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
 
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
@@ -125,17 +125,17 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that has message and inner exception constructor.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -144,17 +144,17 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that has a message constructor.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Have_A_Message_Constructor_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -163,11 +163,11 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that has an serialization constructor.
       /// </summary>
       // WHAT IS THE BP?  [Serializable] is deprecated but BCL classes have this .ctor as well as 
@@ -175,7 +175,7 @@
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -184,17 +184,17 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that has a inner exception constructor.
       /// </summary>
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -203,11 +203,11 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Evaluates each exception to ensure that valid constructors excluding the default constructor, the inner exception
       /// constructor,
       /// the message constructor and the serialization constructor.
@@ -215,7 +215,7 @@
       [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
       protected void Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
       {
-         var failureMessages = new List<String>();
+         var failureMessages = new List<string>();
          var exceptionTypes = FindExceptionTypes().ToList();
          foreach (var et in exceptionTypes)
          {
@@ -224,11 +224,11 @@
 
          if (failureMessages.Count > 0)
          {
-            throw new AssertFailedException(String.Join("\r\n", failureMessages.ToArray()));
+            throw new AssertFailedException(string.Join("\r\n", failureMessages.ToArray()));
          }
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the type or types from which all exceptions must descend.
       /// </summary>
       /// <returns>
@@ -236,7 +236,7 @@
       /// </returns>
       protected abstract IImmutableSet<Type> GetAcceptableBaseExceptionTypes();
 
-      /// <summary>
+       /// <summary>
       /// Gets the assemblies to be evaluated.
       /// </summary>
       /// <returns>
@@ -244,7 +244,7 @@
       /// </returns>
       protected abstract IImmutableSet<Assembly> GetAssembliesUnderTest();
 
-      /// <summary>
+       /// <summary>
       /// Gets a default test value for the given parameter type.
       /// </summary>
       /// <param name="parameterType">
@@ -289,13 +289,13 @@
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1021: Avoid out parameters")]
       [SuppressMessage("Microsoft.Design", "CA1007: Use generics where appropriate", Justification = "Sure, recommend generics, then require I implement this same method to avoid generics.")]
-      protected virtual Boolean GetDefaultValueForParameterType(Type parameterType, out Object defaultValue)
+      protected virtual bool GetDefaultValueForParameterType(Type parameterType, out object defaultValue)
       {
          defaultValue = null;
          return false;
       }
 
-      private static IEnumerable<ConstructorInfo> GetOtherPublicConstructors(Type exceptionType)
+       private static IEnumerable<ConstructorInfo> GetOtherPublicConstructors(Type exceptionType)
       {
          var rv =
             from c in exceptionType.GetConstructors(BindingFlags.Instance | BindingFlags.Public)
@@ -308,35 +308,35 @@
          return rv;
       }
 
-      private static ConstructorInfo GetPublicDefaultConstructor(Type exceptionType)
+       private static ConstructorInfo GetPublicDefaultConstructor(Type exceptionType)
       {
          var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, Type.EmptyTypes, null);
          return rv;
       }
 
-      private static ConstructorInfo GetPublicInnerExceptionConstructor(Type exceptionType)
+       private static ConstructorInfo GetPublicInnerExceptionConstructor(Type exceptionType)
       {
          var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] {typeof(Exception)}, null);
          return rv;
       }
 
-      private static ConstructorInfo GetPublicMessageConstructor(Type exceptionType)
+       private static ConstructorInfo GetPublicMessageConstructor(Type exceptionType)
       {
-         var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] {typeof(String)}, null);
+         var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] {typeof(string)}, null);
          return rv;
       }
 
-      private static ConstructorInfo GetPublicStringAndExceptionConstructor(Type exceptionType)
+       private static ConstructorInfo GetPublicStringAndExceptionConstructor(Type exceptionType)
       {
          var messageInnerExceptionConstructor = exceptionType.GetConstructor(
             BindingFlags.Instance | BindingFlags.Public,
             null,
-            new[] {typeof(String), typeof(Exception)},
+            new[] {typeof(string), typeof(Exception)},
             null);
          return messageInnerExceptionConstructor;
       }
 
-      private static ConstructorInfo GetSerializationConstructor(Type exceptionType)
+       private static ConstructorInfo GetSerializationConstructor(Type exceptionType)
       {
          var serializationConstructor = exceptionType.GetConstructor(
             BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
@@ -346,9 +346,9 @@
          return serializationConstructor;
       }
 
-      private static IEnumerable<String> ValidateExceptionTypeByModifier(Type exceptionType)
+       private static IEnumerable<string> ValidateExceptionTypeByModifier(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
          if (!exceptionType.IsAbstract && !exceptionType.IsSealed)
          {
             var msg = $"The exception type '{exceptionType.Name}' should be abstract or sealed but is neither.";
@@ -358,9 +358,9 @@
          return rv;
       }
 
-      private static IEnumerable<String> ValidateExceptionTypeByScope(Type exceptionType)
+       private static IEnumerable<string> ValidateExceptionTypeByScope(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
          if (!exceptionType.IsPublic)
          {
             var msg = $"The exception type '{exceptionType.Name}' should be public but is not.";
@@ -370,10 +370,10 @@
          return rv;
       }
 
-      [SuppressMessage("SonarLint.CodeSmell", "S3242: Consider using a more general type", Justification = "Considered (MWP)")]
-      private static IEnumerable<String> ValidateNotAttributedSerializable(Type exceptionType)
+       [SuppressMessage("SonarLint.CodeSmell", "S3242: Consider using a more general type", Justification = "Considered (MWP)")]
+      private static IEnumerable<string> ValidateNotAttributedSerializable(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          // exceptionType.IsSerializable should not be used.
          if (exceptionType.GetCustomAttribute<SerializableAttribute>(false) != null)
@@ -386,9 +386,9 @@
 
       [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
       [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "Appropriate in this case.")]
-      private static IEnumerable<String> ValidatePublicDefaultConstructor(Type exceptionType)
+      private static IEnumerable<string> ValidatePublicDefaultConstructor(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          var defaultConstructor = GetPublicDefaultConstructor(exceptionType);
 
@@ -403,7 +403,7 @@
             try
             {
                // The exception type's default constructor should not throw.
-               defaultConstructor.Invoke(Array.Empty<Object>());
+               defaultConstructor.Invoke(Array.Empty<object>());
             }
             catch
             {
@@ -417,9 +417,9 @@
 
       [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
       [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "Appropriate in this case.")]
-      private static IEnumerable<String> ValidatePublicInnerExceptionConstructor(Type exceptionType)
+      private static IEnumerable<string> ValidatePublicInnerExceptionConstructor(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          var publicInnerExceptionConstructor = GetPublicInnerExceptionConstructor(exceptionType);
 
@@ -439,7 +439,7 @@
                try
                {
                   // invoke with nulls
-                  publicInnerExceptionConstructor.Invoke(new Object[] {null});
+                  publicInnerExceptionConstructor.Invoke(new object[] {null});
                }
                catch
                {
@@ -451,7 +451,7 @@
                {
                   // invoke with non-null
                   var innerException = new ArgumentNullException(Guid.NewGuid().ToString());
-                  var exception = publicInnerExceptionConstructor.Invoke(new Object[] {innerException}) as Exception;
+                  var exception = publicInnerExceptionConstructor.Invoke(new object[] {innerException}) as Exception;
 
                   // ReSharper disable once PossibleNullReferenceException
                   if (exception.InnerException != innerException)
@@ -479,9 +479,9 @@
       [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high", Justification = "Test code (MWP)")]
       [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used", Justification = "reflection (MWP)")]
-      private static IEnumerable<String> ValidatePublicMessageAndInnerExceptionConstructor(Type exceptionType)
+      private static IEnumerable<string> ValidatePublicMessageAndInnerExceptionConstructor(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          var publicMessageInnerExceptionConstructor = GetPublicStringAndExceptionConstructor(exceptionType);
 
@@ -495,7 +495,7 @@
          else
          {
             var parameters = publicMessageInnerExceptionConstructor.GetParameters();
-            if (parameters[0].ParameterType == typeof(String) &&
+            if (parameters[0].ParameterType == typeof(string) &&
                 parameters[0].Name.Equals("message", StringComparison.Ordinal) &&
                 parameters[1].ParameterType == typeof(Exception) &&
                 parameters[1].Name.Equals("innerException", StringComparison.Ordinal))
@@ -504,7 +504,7 @@
                try
                {
                   // invoke with nulls
-                  publicMessageInnerExceptionConstructor.Invoke(new Object[] {null, null});
+                  publicMessageInnerExceptionConstructor.Invoke(new object[] {null, null});
                }
                catch
                {
@@ -518,7 +518,7 @@
                   // invoke with non-nulls
                   var message = Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture);
                   var innerException = new ArgumentNullException(Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture));
-                  var exception = publicMessageInnerExceptionConstructor.Invoke(new Object[] {message, innerException}) as Exception;
+                  var exception = publicMessageInnerExceptionConstructor.Invoke(new object[] {message, innerException}) as Exception;
 
                   // ReSharper disable once PossibleNullReferenceException
                   if (!exception.Message.Equals(message, StringComparison.Ordinal))
@@ -553,9 +553,9 @@
 
       [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
       [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
-      private static IEnumerable<String> ValidatePublicMessageConstructor(Type exceptionType)
+      private static IEnumerable<string> ValidatePublicMessageConstructor(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          var messageConstructor = GetPublicMessageConstructor(exceptionType);
 
@@ -578,7 +578,7 @@
                {
                   // invoke with a null message.
 
-                  messageConstructor.Invoke(new Object[] {null});
+                  messageConstructor.Invoke(new object[] {null});
                }
                catch
                {
@@ -591,7 +591,7 @@
                   // invoke with a non-null message.
                   var message = Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture);
 
-                  var exception = messageConstructor.Invoke(new Object[] {message}) as Exception;
+                  var exception = messageConstructor.Invoke(new object[] {message}) as Exception;
 
                   // the message constructor should not mangle the message.
                   if (!exception.Message.Equals(message, StringComparison.Ordinal))
@@ -620,9 +620,9 @@
          return rv;
       }
 
-      private static IEnumerable<String> ValidateSerializationConstructor(Type exceptionType)
+      private static IEnumerable<string> ValidateSerializationConstructor(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          var serializationConstructor = GetSerializationConstructor(exceptionType);
 
@@ -678,9 +678,9 @@
          return rv;
       }
 
-      private IEnumerable<String> ValidateExceptionTypeAncestor(Type exceptionType)
+      private IEnumerable<string> ValidateExceptionTypeAncestor(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
          var acceptableBaseTypes = GetAcceptableBaseExceptionTypes();
 
          var acceptable = false;
@@ -723,9 +723,9 @@
          "S3776: Cognitive Complexity of methods should not be too high",
          Justification = "Known issue (MWP)")]
       [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used")]
-      private IEnumerable<String> ValidateOtherPublicConstructors(Type exceptionType)
+      private IEnumerable<string> ValidateOtherPublicConstructors(Type exceptionType)
       {
-         var rv = new List<String>();
+         var rv = new List<string>();
 
          var otherPublicConstructors = GetOtherPublicConstructors(exceptionType);
          foreach (var constructorInfo in otherPublicConstructors)
@@ -775,7 +775,7 @@
                (from p in parameters where p.Name.Equals("message", StringComparison.Ordinal) select p).SingleOrDefault();
             if (messageParameter != null)
             {
-               if (messageParameter.ParameterType != typeof(String))
+               if (messageParameter.ParameterType != typeof(string))
                {
                   rv.Add(
                      $"Exception type '{exceptionType.Name}' violates the pattern:  'message' parameters in a constructor must be of type string.\n");
@@ -788,7 +788,7 @@
                   var idxImmediatelyPrecedingLast = parameters.IndexOf(parameters.Last()) - 1;
                   var parameterImmediatelyPrecedingLast = parameters[idxImmediatelyPrecedingLast];
                   if (lastParameter.ParameterType != typeof(Exception) ||
-                      !String.Equals(lastParameter.Name, "innerException", StringComparison.Ordinal) ||
+                      !string.Equals(lastParameter.Name, "innerException", StringComparison.Ordinal) ||
                       !ReferenceEquals(messageParameter, parameterImmediatelyPrecedingLast))
                   {
                      rv.Add(
@@ -799,95 +799,95 @@
             }
 
             // any parameter in a constructor must have a read-only property of the same type with a Title-Cased name.
-            var argumentNameValuePairs = new Dictionary<String, Object>();
+            var argumentNameValuePairs = new Dictionary<string, object>();
             foreach (var p in parameters)
             {
-               if (p.ParameterType == typeof(String))
+               if (p.ParameterType == typeof(string))
                {
                   argumentNameValuePairs.Add(p.Name, Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture));
                }
-               else if (typeof(IEnumerable<String>) == p.ParameterType)
+               else if (typeof(IEnumerable<string>) == p.ParameterType)
                {
                   argumentNameValuePairs.Add(
                      p.Name,
-                     new List<String>
+                     new List<string>
                      {
                         Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture),
                         Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture),
                         Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture)
                      });
                }
-               else if (typeof(SByte?) == p.ParameterType)
+               else if (typeof(sbyte?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte?)t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (byte?)t_random.Next(1, sbyte.MaxValue));
                }
-               else if (typeof(SByte) == p.ParameterType)
+               else if (typeof(sbyte) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte)t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (byte)t_random.Next(1, sbyte.MaxValue));
                }
-               else if (typeof(Byte?) == p.ParameterType)
+               else if (typeof(byte?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte?)t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (byte?)t_random.Next(1, sbyte.MaxValue));
                }
-               else if (typeof(Byte) == p.ParameterType)
+               else if (typeof(byte) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte)t_random.Next(1, SByte.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (byte)t_random.Next(1, sbyte.MaxValue));
                }
-               else if (typeof(Boolean?) == p.ParameterType)
+               else if (typeof(bool?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Boolean?)true);
+                  argumentNameValuePairs.Add(p.Name, (bool?)true);
                }
-               else if (typeof(Boolean) == p.ParameterType)
+               else if (typeof(bool) == p.ParameterType)
                {
                   argumentNameValuePairs.Add(p.Name, true);
                }
-               else if (typeof(Int16?) == p.ParameterType)
+               else if (typeof(short?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte?)t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (byte?)t_random.Next(1, short.MaxValue));
                }
-               else if (typeof(Int16) == p.ParameterType)
+               else if (typeof(short) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Byte)t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (byte)t_random.Next(1, short.MaxValue));
                }
-               else if (typeof(UInt16?) == p.ParameterType)
+               else if (typeof(ushort?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt16?)t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (ushort?)t_random.Next(1, short.MaxValue));
                }
-               else if (typeof(UInt16) == p.ParameterType)
+               else if (typeof(ushort) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt16)t_random.Next(1, Int16.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (ushort)t_random.Next(1, short.MaxValue));
                }
-               else if (typeof(Int32?) == p.ParameterType)
+               else if (typeof(int?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int32?)t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (int?)t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(Int32) == p.ParameterType)
+               else if (typeof(int) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(UInt32?) == p.ParameterType)
+               else if (typeof(uint?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int32?)t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (int?)t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(UInt32) == p.ParameterType)
+               else if (typeof(uint) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(Int64?) == p.ParameterType)
+               else if (typeof(long?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int64?)t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (long?)t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(Int64) == p.ParameterType)
+               else if (typeof(long) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (Int64)t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (long)t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(UInt64) == p.ParameterType)
+               else if (typeof(ulong) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt64)t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (ulong)t_random.Next(1, int.MaxValue));
                }
-               else if (typeof(UInt64?) == p.ParameterType)
+               else if (typeof(ulong?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (UInt64?)t_random.Next(1, Int32.MaxValue));
+                  argumentNameValuePairs.Add(p.Name, (ulong?)t_random.Next(1, int.MaxValue));
                }
                else if (typeof(Guid) == p.ParameterType)
                {
@@ -899,29 +899,29 @@
                }
                else if (typeof(DateTime) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc));
+                  argumentNameValuePairs.Add(p.Name, new DateTime(t_random.Next(1, int.MaxValue), DateTimeKind.Utc));
                }
                else if (typeof(DateTime?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (DateTime?)new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc));
+                  argumentNameValuePairs.Add(p.Name, (DateTime?)new DateTime(t_random.Next(1, int.MaxValue), DateTimeKind.Utc));
                }
                else if (typeof(DateTimeOffset) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, new DateTimeOffset(new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc)));
+                  argumentNameValuePairs.Add(p.Name, new DateTimeOffset(new DateTime(t_random.Next(1, int.MaxValue), DateTimeKind.Utc)));
                }
                else if (typeof(DateTimeOffset?) == p.ParameterType)
                {
                   argumentNameValuePairs.Add(
                      p.Name,
-                     (DateTimeOffset?)new DateTimeOffset(new DateTime(t_random.Next(1, Int32.MaxValue), DateTimeKind.Utc)));
+                     (DateTimeOffset?)new DateTimeOffset(new DateTime(t_random.Next(1, int.MaxValue), DateTimeKind.Utc)));
                }
                else if (typeof(TimeSpan) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, new TimeSpan(t_random.Next(1, Int32.MaxValue)));
+                  argumentNameValuePairs.Add(p.Name, new TimeSpan(t_random.Next(1, int.MaxValue)));
                }
                else if (typeof(TimeSpan?) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, (TimeSpan?)new TimeSpan(t_random.Next(1, Int32.MaxValue)));
+                  argumentNameValuePairs.Add(p.Name, (TimeSpan?)new TimeSpan(t_random.Next(1, int.MaxValue)));
                }
                else if (typeof(Type) == p.ParameterType)
                {
@@ -929,7 +929,7 @@
                }
                else if (typeof(IEnumerable<Type>) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, new List<Type> {typeof(Object), typeof(Guid), typeof(ConsoleColor)});
+                  argumentNameValuePairs.Add(p.Name, new List<Type> {typeof(object), typeof(Guid), typeof(ConsoleColor)});
                }
                else if (typeof(Exception) == p.ParameterType)
                {
@@ -940,12 +940,12 @@
                else if (p.ParameterType.IsEnum)
                {
                   var values = Enum.GetValues(p.ParameterType);
-                  var value = values.Cast<Object>().First();
+                  var value = values.Cast<object>().First();
                   argumentNameValuePairs.Add(p.Name, Convert.ChangeType(value, p.ParameterType, CultureInfo.InvariantCulture));
                }
-               else if (typeof(Object) == p.ParameterType)
+               else if (typeof(object) == p.ParameterType)
                {
-                  argumentNameValuePairs.Add(p.Name, new Object());
+                  argumentNameValuePairs.Add(p.Name, new object());
                }
                else
                {
@@ -993,11 +993,11 @@
                      var propertyValue = theProperty.GetValue(exception, null);
                      if (
                         !(ReferenceEquals(kvp.Value, null) &&
-                          String.Equals(theProperty.Name, "Message", StringComparison.Ordinal) &&
+                          string.Equals(theProperty.Name, "Message", StringComparison.Ordinal) &&
                           typeof(ArgumentException).IsAssignableFrom(exceptionType)))
                      {
                         // ArgumentException and derivatives append the argument name so use starts with.
-                        if (propertyValue is String stringValue && !stringValue.StartsWith((String)kvp.Value, StringComparison.CurrentCulture))
+                        if (propertyValue is string stringValue && !stringValue.StartsWith((string)kvp.Value, StringComparison.CurrentCulture))
                         {
                            rv.Add(
                               $"Exception type '{exceptionType.Name}' violates the pattern:  argument exceptions and derived types start " +
@@ -1006,9 +1006,9 @@
                         }
                         else
                         {
-                           if (propertyValue is IEnumerable<Object> objects)
+                           if (propertyValue is IEnumerable<object> objects)
                            {
-                              if (!objects.SequenceEqual(kvp.Value as IEnumerable<Object>))
+                              if (!objects.SequenceEqual(kvp.Value as IEnumerable<object>))
                               {
                                  rv.Add($"Exception type '{exceptionType.Name}' mangled the value of property '{theProperty.Name}'.\n");
                               }
@@ -1020,7 +1020,7 @@
                                  if (typeof(ArgumentException).IsAssignableFrom(exceptionType) && theProperty.Name.Equals("Message", StringComparison.Ordinal))
                                  {
                                     // retest:  Argument Exception Appends \r\nParameter Name: parameter name;
-                                    if (!((String)propertyValue).StartsWith((String)kvp.Value, StringComparison.Ordinal))
+                                    if (!((string)propertyValue).StartsWith((string)kvp.Value, StringComparison.Ordinal))
                                     {
                                        rv.Add($"Exception type '{exceptionType.Name}' mangled the value of property '{theProperty.Name}'.\n");
                                     }

@@ -1,18 +1,18 @@
 ﻿namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Security;
-   using Landorphan.Abstractions.IO.Interfaces;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Security;
+    using Landorphan.Abstractions.IO.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents the internal mapping from the static BCL <see cref="Directory"/> class to an interface.
    /// </summary>
    internal interface IDirectoryInternalMapping
    {
-      /// <summary>
+       /// <summary>
       /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -20,7 +20,7 @@
       /// </value>
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the maximum precision file system ticks supported by the host operating system.
       /// </summary>
       /// <value>
@@ -29,9 +29,9 @@
       /// <remarks>
       /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
       /// </remarks>
-      Int64 MaximumPrecisionFileSystemTicks { get; }
+      long MaximumPrecisionFileSystemTicks { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -39,7 +39,7 @@
       /// </value>
       DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Copies a directory and its contents to a new location.
       /// </summary>
       /// <param name="sourceDirName">
@@ -73,9 +73,9 @@
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Dir")]
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void Copy(String sourceDirName, String destDirName);
+      void Copy(string sourceDirName, string destDirName);
 
-      /// <summary>
+       /// <summary>
       /// Creates all directories and subdirectories in the specified path.
       /// </summary>
       /// <param name="path">
@@ -110,9 +110,9 @@
       /// <exception cref="NotSupportedException">
       /// <paramref name="path"/> contains a colon character (:) that is not part of a drive label (e.g., "C:\").
       /// </exception>
-      String CreateDirectory(String path);
+      string CreateDirectory(string path);
 
-      /// <summary>
+       /// <summary>
       /// Deletes an empty directory from a specified path.
       /// </summary>
       /// <param name="path">
@@ -152,9 +152,9 @@
       /// -or-
       /// The specified path is invalid (for example, it is on an unmapped drive).
       /// </exception>
-      void DeleteEmpty(String path);
+      void DeleteEmpty(string path);
 
-      /// <summary>
+       /// <summary>
       /// Deletes the specified directory and any subdirectories and files in the directory.
       /// </summary>
       /// <param name="path">
@@ -192,9 +192,9 @@
       /// -or-
       /// The specified path is invalid (for example, it is on an unmapped drive).
       /// </exception>
-      void DeleteRecursively(String path);
+      void DeleteRecursively(string path);
 
-      /// <summary>
+       /// <summary>
       /// Determines whether the given path refers to an existing directory on disk.
       /// </summary>
       /// <param name="path">
@@ -203,9 +203,9 @@
       /// <returns>
       /// true if <paramref name="path"/> refers to an existing directory; otherwise, false.
       /// </returns>
-      Boolean DirectoryExists(String path);
+      bool DirectoryExists(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of directory names in a specified path.
       /// </summary>
       /// <param name="path">
@@ -236,9 +236,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateDirectories(String path);
+      IImmutableSet<string> EnumerateDirectories(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of directory names that match a search pattern in a specified path.
       /// </summary>
       /// <param name="path">
@@ -277,9 +277,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateDirectories(String path, String searchPattern);
+      IImmutableSet<string> EnumerateDirectories(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of directory names that match a search pattern in a specified path, and optionally searches subdirectories.
       /// </summary>
       /// <param name="path">
@@ -325,9 +325,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateDirectories(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> EnumerateDirectories(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names in a specified path.
       /// </summary>
       /// <param name="path">
@@ -360,9 +360,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateFiles(String path);
+      IImmutableSet<string> EnumerateFiles(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names that match a search pattern in a specified path.
       /// </summary>
       /// <param name="path">
@@ -400,9 +400,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateFiles(String path, String searchPattern);
+      IImmutableSet<string> EnumerateFiles(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names that match a search pattern in a specified path, and optionally searches
       /// subdirectories.
       /// </summary>
@@ -446,9 +446,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateFiles(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file-system entries in a specified path.
       /// </summary>
       /// <param name="path">
@@ -480,9 +480,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path);
+      IImmutableSet<string> EnumerateFileSystemEntries(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file-system entries that match a search pattern in a specified path.
       /// </summary>
       /// <param name="path">
@@ -520,9 +520,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern);
+      IImmutableSet<string> EnumerateFileSystemEntries(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally
       /// searches subdirectories.
       /// </summary>
@@ -569,9 +569,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> EnumerateFileSystemEntries(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> EnumerateFileSystemEntries(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Gets the creation date and time of a directory.
       /// </summary>
       /// <param name="path">
@@ -593,9 +593,9 @@
       /// <exception cref="PathTooLongException">
       /// The specified path, file name, or both exceed the system-defined maximum length.
       /// </exception>
-      DateTimeOffset GetCreationTime(String path);
+      DateTimeOffset GetCreationTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Gets the current working directory of the application.
       /// </summary>
       /// <returns>
@@ -609,9 +609,9 @@
       /// method is available in the .NET Compact Framework, but is not currently supported.
       /// </exception>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetCurrentDirectory();
+      string GetCurrentDirectory();
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of subdirectories (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -642,9 +642,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetDirectories(String path);
+      IImmutableSet<string> GetDirectories(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of subdirectories (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -679,9 +679,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetDirectories(String path, String searchPattern);
+      IImmutableSet<string> GetDirectories(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of subdirectories (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -719,9 +719,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetDirectories(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> GetDirectories(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of files (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -752,9 +752,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFiles(String path);
+      IImmutableSet<string> GetFiles(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of files (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -789,9 +789,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFiles(String path, String searchPattern);
+      IImmutableSet<string> GetFiles(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of files (including their paths) in the specified directory.
       /// </summary>
       /// <param name="path">
@@ -829,9 +829,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFiles(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> GetFiles(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of all files and subdirectories in a specified directory.
       /// </summary>
       /// <param name="path">
@@ -862,9 +862,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFileSystemEntries(String path);
+      IImmutableSet<string> GetFileSystemEntries(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of all files and subdirectories in a specified directory.
       /// </summary>
       /// <param name="path">
@@ -899,9 +899,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern);
+      IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern);
 
-      /// <summary>
+       /// <summary>
       /// Returns the names of all files and subdirectories in a specified directory.
       /// </summary>
       /// <param name="path">
@@ -939,9 +939,9 @@
       /// <exception cref="UnauthorizedAccessException">
       /// The caller does not have the required permission.
       /// </exception>
-      IImmutableSet<String> GetFileSystemEntries(String path, String searchPattern, SearchOption searchOption);
+      IImmutableSet<string> GetFileSystemEntries(string path, string searchPattern, SearchOption searchOption);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last accessed.
       /// </summary>
       /// <param name="path">
@@ -968,9 +968,9 @@
       /// <exception cref="NotSupportedException">
       /// The <paramref name="path"/> parameter is in an invalid format.
       /// </exception>
-      DateTimeOffset GetLastAccessTime(String path);
+      DateTimeOffset GetLastAccessTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last written to.
       /// </summary>
       /// <param name="path">
@@ -994,9 +994,9 @@
       /// <exception cref="PathTooLongException">
       /// The specified path, file name, or both exceed the system-defined maximum length.
       /// </exception>
-      DateTimeOffset GetLastWriteTime(String path);
+      DateTimeOffset GetLastWriteTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Generates a a cryptographically strong, random string that can be used as a directory name.
       /// </summary>
       /// <returns>
@@ -1006,9 +1006,9 @@
       /// Does not create a directory.
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetRandomDirectoryName();
+      string GetRandomDirectoryName();
 
-      /// <summary>
+       /// <summary>
       /// Returns the path of the current user's temporary folder.
       /// </summary>
       /// <returns>
@@ -1018,9 +1018,9 @@
       /// The caller does not have the required permissions.
       /// </exception>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetTemporaryDirectoryPath();
+      string GetTemporaryDirectoryPath();
 
-      /// <summary>
+       /// <summary>
       /// Moves a directory and its contents to a new location.
       /// </summary>
       /// <param name="sourceDirName">
@@ -1055,9 +1055,9 @@
       /// </exception>
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Dir")]
       [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "dest")]
-      void Move(String sourceDirName, String destDirName);
+      void Move(string sourceDirName, string destDirName);
 
-      /// <summary>
+       /// <summary>
       /// Sets the creation date and time for the specified file or directory.
       /// </summary>
       /// <param name="path">
@@ -1091,9 +1091,9 @@
       /// The current operating system is not Windows NT or later.
       /// </exception>
       [Obsolete("Currently not reliable")]
-      void SetCreationTime(String path, DateTimeOffset creationTime);
+      void SetCreationTime(string path, DateTimeOffset creationTime);
 
-      /// <summary>
+       /// <summary>
       /// Sets the application's current working directory to the specified directory.
       /// </summary>
       /// <param name="path">
@@ -1122,9 +1122,9 @@
       /// <exception cref="DirectoryNotFoundException">
       /// The specified directory was not found.
       /// </exception>
-      void SetCurrentDirectory(String path);
+      void SetCurrentDirectory(string path);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time the specified file or directory was last accessed.
       /// </summary>
       /// <param name="path">
@@ -1157,9 +1157,9 @@
       /// <paramref name="lastAccessTime"/> specifies a value outside the range of dates or times
       /// permitted for this operation.
       /// </exception>
-      void SetLastAccessTime(String path, DateTimeOffset lastAccessTime);
+      void SetLastAccessTime(string path, DateTimeOffset lastAccessTime);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time a directory was last written to.
       /// </summary>
       /// <param name="path">
@@ -1192,6 +1192,6 @@
       /// <paramref name="lastWriteTime"/> specifies a value outside the range of dates or times
       /// permitted for this operation.
       /// </exception>
-      void SetLastWriteTime(String path, DateTimeOffset lastWriteTime);
+      void SetLastWriteTime(string path, DateTimeOffset lastWriteTime);
    }
 }

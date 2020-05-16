@@ -1,9 +1,9 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using Landorphan.Common.Interfaces;
+    using System;
+    using Landorphan.Common.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents the configuration of an <see cref="IIocContainer" />.
    /// </summary>
    /// <remarks>
@@ -13,12 +13,12 @@
    /// </remarks>
    public interface IIocContainerConfiguration : ICloneable, IQueryReadOnly, IEquatable<IIocContainerConfiguration>
    {
-      /// <summary>
+       /// <summary>
       /// Event queue for all listeners interested in state changes to this instance.
       /// </summary>
       event EventHandler<EventArgs> ConfigurationChanged;
 
-      /// <summary>
+       /// <summary>
       /// Gets or sets a value governing the behavior or named implementations.
       /// </summary>
       /// <value>
@@ -30,9 +30,9 @@
       /// When the value changes from <c>true</c> to <c>false</c>; the collection of named registrations is emptied for this
       /// <see cref="IIocContainer" />.
       /// </remarks>
-      Boolean AllowNamedImplementations { get; set; }
+      bool AllowNamedImplementations { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Gets or sets a value governing the behavior of precluded types.
       /// </summary>
       /// <value>
@@ -43,9 +43,9 @@
       /// When the value changes from <c>true</c> to <c>false</c>; the collection of precluded types is emptied for this
       /// <see cref="IIocContainer" />.
       /// </remarks>
-      Boolean AllowPreclusionOfTypes { get; set; }
+      bool AllowPreclusionOfTypes { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container to which this configuration applies.
       /// </summary>
       /// <value>
@@ -53,7 +53,7 @@
       /// </value>
       IIocContainerMetaIdentity Container { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets or sets a value governing the behavior when a registration collision occurs.
       /// </summary>
       /// <value>
@@ -65,6 +65,6 @@
       /// <see cref="IIocContainerRegistrar.TryRegisterImplementation(Type, Type)" /> and
       /// <see cref="IIocContainerRegistrar.TryRegisterInstance(Type, Object)" /> and their overloads.
       /// </remarks>
-      Boolean ThrowOnRegistrationCollision { get; set; }
+      bool ThrowOnRegistrationCollision { get; set; }
    }
 }

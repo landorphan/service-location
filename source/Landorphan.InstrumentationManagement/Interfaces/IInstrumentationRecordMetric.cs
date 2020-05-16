@@ -8,7 +8,5 @@ namespace Landorphan.InstrumentationManagement.Interfaces
 #pragma warning disable S4023 // Interfaces should not be empty -- Not yet implmeneted but needed for future version.
    public interface IInstrumentationRecordMetric
 #pragma warning restore S4023 // Interfaces should not be empty
-   {
-
-   }
+   {}
 }

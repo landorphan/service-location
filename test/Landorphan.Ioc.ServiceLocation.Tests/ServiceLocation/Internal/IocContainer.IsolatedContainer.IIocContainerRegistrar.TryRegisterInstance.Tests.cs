@@ -1,32 +1,32 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using System.Linq;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class IocContainer_IsolatedContainer_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_isolated_container_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of RegisterImplementation that do not depend on the configuration state
+          // tests of RegisterImplementation that do not depend on the configuration state
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
 
@@ -38,7 +38,7 @@
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_me_to_register_an_instance_with_a_null_name_generic()
          {
@@ -53,7 +53,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -73,7 +73,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -93,7 +93,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -112,7 +112,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -124,7 +124,7 @@
             var fromType = typeof(IRegisteredType);
             var instance = new RegisteredTypeImplementingIRegisteredType();
 
-            target.TryRegisterInstance<IRegisteredType>(String.Empty, instance);
+            target.TryRegisterInstance<IRegisteredType>(string.Empty, instance);
 
             var registrations = target.Registrations;
             registrations.Count.Should().Be(1);
@@ -132,7 +132,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -144,7 +144,7 @@
             var fromType = typeof(IRegisteredType);
             var instance = new RegisteredTypeImplementingIRegisteredType();
 
-            target.TryRegisterInstance(fromType, String.Empty, instance);
+            target.TryRegisterInstance(fromType, string.Empty, instance);
 
             var registrations = target.Registrations;
             registrations.Count.Should().Be(1);
@@ -152,7 +152,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -172,7 +172,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -192,7 +192,7 @@
             var key = kvp.Key;
             var value = kvp.Value;
             key.RegisteredType.Should().Be(fromType);
-            key.RegisteredName.Should().Be(String.Empty);
+            key.RegisteredName.Should().Be(string.Empty);
             value.ImplementationType.Should().BeNull();
             value.ImplementationInstance.Should().Be(instance);
          }
@@ -210,7 +210,7 @@
             actual = target.TryRegisterInstance(typeof(IList<>), null, instance);
             actual.Should().BeFalse();
 
-            actual = target.TryRegisterInstance(typeof(IList<>), String.Empty, instance);
+            actual = target.TryRegisterInstance(typeof(IList<>), string.Empty, instance);
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(typeof(IList<>), registeredName, instance);
@@ -230,7 +230,7 @@
             actual = target.TryRegisterInstance(typeof(ConcreteClass), null, instance);
             actual.Should().BeFalse();
 
-            actual = target.TryRegisterInstance(typeof(ConcreteClass), String.Empty, instance);
+            actual = target.TryRegisterInstance(typeof(ConcreteClass), string.Empty, instance);
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(typeof(ConcreteClass), registeredName, instance);
@@ -250,7 +250,7 @@
             actual = target.TryRegisterInstance(null, null, instance);
             actual.Should().BeFalse();
 
-            actual = target.TryRegisterInstance(null, String.Empty, instance);
+            actual = target.TryRegisterInstance(null, string.Empty, instance);
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(null, registeredName, instance);
@@ -273,7 +273,7 @@
             actual = target.TryRegisterInstance(typeof(IRegisteredType), null, instance);
             actual.Should().BeFalse();
 
-            actual = target.TryRegisterInstance(typeof(IRegisteredType), String.Empty, instance);
+            actual = target.TryRegisterInstance(typeof(IRegisteredType), string.Empty, instance);
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(typeof(IRegisteredType), registeredName, instance);
@@ -298,7 +298,7 @@
             actual = target.TryRegisterInstance(typeof(IRegisteredType), null, null);
             actual.Should().BeFalse();
 
-            actual = target.TryRegisterInstance(typeof(IRegisteredType), String.Empty, null);
+            actual = target.TryRegisterInstance(typeof(IRegisteredType), string.Empty, null);
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(typeof(IRegisteredType), registeredName, null);
@@ -310,7 +310,7 @@
          public void It_should_fire_the_ContainerRegistrationAdded_event_generic_no_name()
          {
             var instance = new RegisteredTypeImplementingIRegisteredType();
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
 
             var eh = new EventHandler<ContainerTypeRegistrationEventArgs>(
@@ -340,7 +340,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerRegistrationAdded_event_generic_with_name()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var registeredName = Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture);
 
@@ -369,7 +369,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerRegistrationAdded_event_non_generic_named()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var fromType = typeof(IRegisteredType);
             var eh = new EventHandler<ContainerTypeRegistrationEventArgs>(
@@ -397,7 +397,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerRegistrationAdded_event_non_generic_no_name()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var fromType = typeof(IRegisteredType);
             var registeredName = Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture);
@@ -426,7 +426,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerTypeRegistered_event_generic_no_name()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var instance = new RegisteredTypeImplementingIRegisteredType();
 
@@ -458,7 +458,7 @@
          public void It_should_fire_the_ContainerTypeRegistered_event_generic_with_name()
          {
             var registeredName = Guid.NewGuid().ToString("D");
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var instance = new RegisteredTypeImplementingIRegisteredType();
 
@@ -489,7 +489,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerTypeRegistered_event_non_generic_no_name()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var instance = new RegisteredTypeImplementingIRegisteredType();
 
@@ -521,7 +521,7 @@
          public void It_should_fire_the_ContainerTypeRegistered_event_non_generic_with_name()
          {
             var registeredName = Guid.NewGuid().ToString("D");
-            Object actualSender = null;
+            object actualSender = null;
             ContainerTypeRegistrationEventArgs actualEventArgs = null;
             var instance = new RegisteredTypeImplementingIRegisteredType();
 
@@ -552,21 +552,21 @@
       [TestClass]
       public class When_I_have_an_isolated_container_configured_with_AllowNamedImplementations_false_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of TryRegisterInstance that depend on the configuration state:  AllowNamedImplementations == false
+          // tests of TryRegisterInstance that depend on the configuration state:  AllowNamedImplementations == false
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             container.Manager.Configuration.AllowNamedImplementations = false;
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void it_should_throw_when_I_attempt_to_register_an_instance_with_a_name_generic()
          {
@@ -586,26 +586,26 @@
       [TestClass]
       public class When_I_have_an_isolated_container_configured_with_AllowNamedImplementations_true_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of TryRegisterInstance that depend on the configuration state:  AllowNamedImplementations == true
+          // tests of TryRegisterInstance that depend on the configuration state:  AllowNamedImplementations == true
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             container.Manager.Configuration.AllowNamedImplementations = true;
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_me_to_register_an_instance_multiple_times_with_different_names()
          {
             var fromType = typeof(IRegisteredType);
-            var registeredName0 = String.Empty;
+            var registeredName0 = string.Empty;
             var registeredName1 = Guid.NewGuid().ToString("D");
             var registeredName2 = Guid.NewGuid().ToString("D");
 
@@ -672,14 +672,14 @@
       [TestClass]
       public class When_I_have_an_isolated_container_configured_with_AllowPreclusionOfTypes_false_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of TryRegisterInstance that depend on the configuration state:  AllowPreclusionOfTypes == false
+          // tests of TryRegisterInstance that depend on the configuration state:  AllowPreclusionOfTypes == false
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             container.Manager.Configuration.AllowPreclusionOfTypes = true;
@@ -688,7 +688,7 @@
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_me_to_register_a_type_that_was_previously_precluded()
          {
@@ -718,7 +718,7 @@
 
             target.Unregister<IRegisteredType>();
             target.Unregister<IRegisteredType>(registeredName);
-            target.TryRegisterInstance(typeof(IRegisteredType), String.Empty, new AnotherRegisteredDescendingFromIRegisteredType());
+            target.TryRegisterInstance(typeof(IRegisteredType), string.Empty, new AnotherRegisteredDescendingFromIRegisteredType());
             target.IsRegistered<IRegisteredType>().Should().BeTrue();
 
             target.Unregister<IRegisteredType>();
@@ -731,21 +731,21 @@
       [TestClass]
       public class When_I_have_an_isolated_container_configured_with_AllowPreclusionOfTypes_true_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of TryRegisterInstance that depend on the configuration state:  AllowPreclusionOfTypes == true
+          // tests of TryRegisterInstance that depend on the configuration state:  AllowPreclusionOfTypes == true
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             container.Manager.Configuration.AllowPreclusionOfTypes = true;
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fail_when_I_attempt_to_register_an_instance_with_a_fromType_that_is_precluded()
          {
@@ -765,7 +765,7 @@
             actual = target.TryRegisterInstance(typeof(IRegisteredType), null, typeof(AnotherRegisteredDescendingFromIRegisteredType));
             actual.Should().BeFalse();
 
-            actual = target.TryRegisterInstance(typeof(IRegisteredType), String.Empty, typeof(AnotherRegisteredDescendingFromIRegisteredType));
+            actual = target.TryRegisterInstance(typeof(IRegisteredType), string.Empty, typeof(AnotherRegisteredDescendingFromIRegisteredType));
             actual.Should().BeFalse();
 
             actual = target.TryRegisterInstance(typeof(IRegisteredType), registeredName, typeof(AnotherRegisteredDescendingFromIRegisteredType));
@@ -776,21 +776,21 @@
       [TestClass]
       public class When_I_have_an_isolated_container_configured_with_ThrowOnRegistrationCollision_false_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of TryRegisterInstance that depend on the configuration state:  ThrowOnRegistrationCollision == false
+          // tests of TryRegisterInstance that depend on the configuration state:  ThrowOnRegistrationCollision == false
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             container.Manager.Configuration.ThrowOnRegistrationCollision = false;
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_allow_me_to_register_with_the_same_key_twice_using_last_updater_generic()
          {
@@ -836,27 +836,27 @@
       [TestClass]
       public class When_I_have_an_isolated_container_configured_with_ThrowOnRegistrationCollision_true_and_call_TryRegisterInstance : DisposableArrangeActAssert
       {
-         // tests of TryRegisterInstance that depend on the configuration state:  ThrowOnRegistrationCollision == true
+          // tests of TryRegisterInstance that depend on the configuration state:  ThrowOnRegistrationCollision == true
 
-         private readonly String containerName = "Isolated Test Container: TryRegisterInstance Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerRegistrar target;
+          private readonly string containerName = "Isolated Test Container: TryRegisterInstance Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private IIocContainerRegistrar target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             container.Manager.Configuration.ThrowOnRegistrationCollision = true;
             target = container.Registrar;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fail_when_I_attempt_to_register_an_instance_again_with_the_same_empty_name_generic()
          {
-            target.TryRegisterInstance<IRegisteredType>(String.Empty, new RegisteredTypeImplementingIRegisteredType());
+            target.TryRegisterInstance<IRegisteredType>(string.Empty, new RegisteredTypeImplementingIRegisteredType());
 
-            var actual = target.TryRegisterInstance<IRegisteredType>(String.Empty, new RegisteredTypeImplementingIRegisteredType());
+            var actual = target.TryRegisterInstance<IRegisteredType>(string.Empty, new RegisteredTypeImplementingIRegisteredType());
             actual.Should().BeFalse();
          }
 
@@ -866,9 +866,9 @@
          {
             var fromType = typeof(IRegisteredType);
 
-            target.TryRegisterInstance(fromType, String.Empty, new RegisteredTypeImplementingIRegisteredType());
+            target.TryRegisterInstance(fromType, string.Empty, new RegisteredTypeImplementingIRegisteredType());
 
-            var actual = target.TryRegisterInstance(fromType, String.Empty, new RegisteredTypeImplementingIRegisteredType());
+            var actual = target.TryRegisterInstance(fromType, string.Empty, new RegisteredTypeImplementingIRegisteredType());
             actual.Should().BeFalse();
          }
 

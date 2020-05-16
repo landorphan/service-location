@@ -1,15 +1,15 @@
 ﻿namespace Landorphan.TestUtilities.MSTest.Tests.TestFacilities
 {
-   using System.Collections.Immutable;
-   using System.Reflection;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Immutable;
+    using System.Reflection;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   [TestClass]
+    [TestClass]
    public static class TestAssemblyInitializeCleanup
    {
-      internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
+       internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
 
-      /// <summary>
+       /// <summary>
       /// Performs assembly level initialization.
       /// </summary>
       /// <remarks>
@@ -27,7 +27,7 @@
          AssembliesUnderTest = assemblies.ToImmutable();
       }
 
-      /// <summary>
+       /// <summary>
       /// Frees resources obtained by the test assembly.
       /// </summary>
       /// <remarks>

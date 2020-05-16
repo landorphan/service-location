@@ -1,26 +1,26 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using System.Text;
-   using FluentAssertions;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Immutable;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using FluentAssertions;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_Open : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -198,17 +198,17 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            Action throwingAction = () => _target.Open(String.Empty, FileMode.Open);
+            Action throwingAction = () => _target.Open(string.Empty, FileMode.Open);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
-            throwingAction = () => _target.Open(String.Empty, FileMode.Open, FileAccess.ReadWrite);
+            throwingAction = () => _target.Open(string.Empty, FileMode.Open, FileAccess.ReadWrite);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
 
-            throwingAction = () => _target.Open(String.Empty, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            throwingAction = () => _target.Open(string.Empty, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
             e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -236,7 +236,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -292,7 +292,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var fileFullPath = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var fileFullPath = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.Open(fileFullPath, FileMode.Open);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -314,7 +314,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String fileFullPath = " \t ";
+            const string fileFullPath = " \t ";
 
             Action throwingAction = () => _target.Open(fileFullPath, FileMode.Open);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -363,7 +363,7 @@
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo
-            const String path = ":abcd";
+            const string path = ":abcd";
 
             Action throwingAction = () => _target.Open(path, FileMode.Create);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -388,27 +388,27 @@
             var path = _target.CreateTemporaryFile();
             try
             {
-               var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+               var expected = new byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
                _target.WriteAllBytes(path, expected);
                _target.FileExists(path).Should().BeTrue();
 
                using (var fs = _target.Open(path, FileMode.Open))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
 
                using (var fs = _target.Open(path, FileMode.Open, FileAccess.Read))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
 
                using (var fs = _target.Open(path, FileMode.Open, FileAccess.Read, FileShare.None))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
@@ -429,7 +429,7 @@
                return;
             }
 
-            var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+            var expected = new byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
             var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
@@ -439,21 +439,21 @@
 
                using (var fs = _target.Open(path, FileMode.Open))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
 
                using (var fs = _target.Open(path, FileMode.Open, FileAccess.Read))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
 
                using (var fs = _target.Open(path, FileMode.Open, FileAccess.Read, FileShare.None))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
@@ -468,7 +468,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_OpenRead : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -551,7 +551,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            Action throwingAction = () => _target.OpenRead(String.Empty);
+            Action throwingAction = () => _target.OpenRead(string.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -571,7 +571,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -607,7 +607,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var fileFullPath = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var fileFullPath = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.OpenRead(fileFullPath);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -619,7 +619,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String fileFullPath = " \t ";
+            const string fileFullPath = " \t ";
 
             Action throwingAction = () => _target.OpenRead(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -648,7 +648,7 @@
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo
-            const String path = ":abcd";
+            const string path = ":abcd";
 
             Action throwingAction = () => _target.OpenRead(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -663,13 +663,13 @@
             var path = _target.CreateTemporaryFile();
             try
             {
-               var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+               var expected = new byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
                _target.WriteAllBytes(path, expected);
                _target.FileExists(path).Should().BeTrue();
 
                using (var fs = _target.OpenRead(path))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
@@ -690,7 +690,7 @@
                return;
             }
 
-            var expected = new Byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
+            var expected = new byte[] {0x00, 0x01, 0x02, 0x03}.ToImmutableList();
             var path = _pathUtilities.Combine(TestHardCodes.WindowsUncTestPaths.UncFolderEveryoneFullControl, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             try
@@ -700,7 +700,7 @@
 
                using (var fs = _target.OpenRead(path))
                {
-                  var buffer = new Byte[4];
+                  var buffer = new byte[4];
                   fs.Read(buffer, 0, 4);
                   buffer.Should().BeEquivalentTo(expected);
                }
@@ -715,7 +715,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_OpenText : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -798,7 +798,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            Action throwingAction = () => _target.OpenText(String.Empty);
+            Action throwingAction = () => _target.OpenText(string.Empty);
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("path");
             e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: path");
@@ -818,7 +818,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_IOException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -854,7 +854,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var fileFullPath = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var fileFullPath = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.OpenText(fileFullPath);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -866,7 +866,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String fileFullPath = " \t ";
+            const string fileFullPath = " \t ";
 
             Action throwingAction = () => _target.OpenText(fileFullPath);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -895,7 +895,7 @@
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
             // ReSharper disable once StringLiteralTypo
-            const String path = ":abcd";
+            const string path = ":abcd";
 
             Action throwingAction = () => _target.OpenText(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -916,7 +916,7 @@
 
                using (var sr = _target.OpenText(path))
                {
-                  var actual = ImmutableList<String>.Empty.ToBuilder();
+                  var actual = ImmutableList<string>.Empty.ToBuilder();
                   var line = sr.ReadLine();
                   while (line != null)
                   {
@@ -953,7 +953,7 @@
 
                using (var sr = _target.OpenText(path))
                {
-                  var actual = ImmutableList<String>.Empty.ToBuilder();
+                  var actual = ImmutableList<string>.Empty.ToBuilder();
                   var line = sr.ReadLine();
                   while (line != null)
                   {

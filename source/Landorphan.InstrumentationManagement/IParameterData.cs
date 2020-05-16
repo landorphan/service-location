@@ -5,12 +5,12 @@ namespace Landorphan.InstrumentationManagement
    /// </summary>
    public interface IParameterData
    {
-      /// <summary>
+       /// <summary>
       /// Gets or sets the name of the Parameter
       /// </summary>
       string ParameterName { get; set; }
 
-      /// <summary>
+       /// <summary>
       /// Gets or sets the name of the Parameter Type
       /// </summary>
       string ParameterTypeFullName { get; set; }

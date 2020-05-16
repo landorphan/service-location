@@ -1,40 +1,40 @@
-﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal.ValueTypes
+namespace Landorphan.Ioc.Tests.ServiceLocation.Internal.ValueTypes
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.ReusableTestImplementations;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.ReusableTestImplementations;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable ObjectCreationAsStatement
 
    public static class RegistrationValueTypeInstancePair_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_RegistrationValueTypeInstancePair_Clone : CloneableArrangeActAssert<IRegistrationValue>
       {
-         private readonly Object instance = new ConcreteClassImplementingInterface();
-         private readonly Type type = typeof(ConcreteClassImplementingInterface);
-         private Object actualObject;
-         protected override IRegistrationValue Target { get; set; }
+          private readonly object instance = new ConcreteClassImplementingInterface();
+          private readonly Type type = typeof(ConcreteClassImplementingInterface);
+          private object actualObject;
+          protected override IRegistrationValue Target { get; set; }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             var obj = new RegistrationValueTypeInstancePair(type, instance);
             Target = obj;
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actualObject = Target.Clone();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_clone_correctly()
          {
@@ -62,14 +62,14 @@
       [TestClass]
       public class When_I_create_an_RegistrationValueTypeInstancePair_using_the_default_constructor : ArrangeActAssert
       {
-         private RegistrationValueTypeInstancePair target;
+          private RegistrationValueTypeInstancePair target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = new RegistrationValueTypeInstancePair();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_be_empty()
          {
@@ -98,7 +98,7 @@
          {
             ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
+            target.CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -126,16 +126,16 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_not_equal_null()
          {
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue)null).Should().BeFalse();
+            target.Equals(null).Should().BeFalse();
          }
       }
 
       [TestClass]
       public class When_I_create_an_RegistrationValueTypeInstancePair_using_the_implementation_instance_constructor : ArrangeActAssert
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_an_abstract_class()
          {
@@ -202,7 +202,7 @@
             var target = new RegistrationValueTypeInstancePair(instance);
             ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
+            target.CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -234,16 +234,16 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationValueTypeInstancePair(new ConcreteClass());
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue)null).Should().BeFalse();
+            target.Equals(null).Should().BeFalse();
          }
 
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_reject_null()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair((Object)null);
+            Action throwingAction = () => new RegistrationValueTypeInstancePair((object)null);
             var e = throwingAction.Should().Throw<ArgumentNullException>().WithMessage("*cannot be null*");
             e.And.ParamName.Should().Be("implementationInstance");
          }
@@ -254,7 +254,7 @@
          {
             var target = new RegistrationValueTypeInstancePair(new ConcreteClassImplementingInterface());
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -263,7 +263,7 @@
       [TestClass]
       public class When_I_create_an_RegistrationValueTypeInstancePair_using_the_implementation_type_and_instance_constructor : ArrangeActAssert
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_accept_a_concrete_class()
          {
@@ -281,7 +281,7 @@
             var type = typeof(ConcreteClassImplementingInterface);
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
-            Object o = target;
+            object o = target;
             ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
@@ -353,7 +353,7 @@
             var target = new RegistrationValueTypeInstancePair(type, instance);
             ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
+            target.CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -385,9 +385,9 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClass), new ConcreteClass());
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue)null).Should().BeFalse();
+            target.Equals(null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -404,7 +404,7 @@
          [SuppressMessage("ReSharper", "RedundantCast")]
          public void It_should_reject_a_null_type()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair((Type)null, new Object());
+            Action throwingAction = () => new RegistrationValueTypeInstancePair(null, new object());
             var e = throwingAction.Should().Throw<ArgumentNullException>().WithMessage("*cannot be null*");
             e.And.ParamName.Should().Be("implementationType");
          }
@@ -413,7 +413,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_reject_an_abstract_class()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair(typeof(AbstractClass), new Object());
+            Action throwingAction = () => new RegistrationValueTypeInstancePair(typeof(AbstractClass), new object());
             var e = throwingAction.Should().Throw<ToTypeMustNotBeInterfaceNorAbstractArgumentException>().WithMessage("*must not be an abstract or interface type, but is such a type.*");
             e.And.ToType.Should().Be<AbstractClass>();
             e.And.ParamName.Should().Be("implementationType");
@@ -448,7 +448,7 @@
             var instance = new ConcreteClassImplementingInterface();
             var target = new RegistrationValueTypeInstancePair(type, instance);
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -457,12 +457,12 @@
       [TestClass]
       public class When_I_create_an_RegistrationValueTypeInstancePair_using_the_implementation_type_constructor : ArrangeActAssert
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_be_equivalent_when_comparing_itself_when_I_IComparable_CompareTo()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
-            Object o = target;
+            object o = target;
             ((IComparable)target).CompareTo(o).Should().Be(0);
          }
 
@@ -535,7 +535,7 @@
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
             ((IComparable)target).CompareTo(null).Should().BeGreaterThan(0);
             // ReSharper disable once RedundantCast
-            target.CompareTo((IRegistrationValue)null).Should().BeGreaterThan(0);
+            target.CompareTo(null).Should().BeGreaterThan(0);
          }
 
          [TestMethod]
@@ -565,9 +565,9 @@
          public void It_should_not_equal_null()
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClass));
-            target.Equals((Object)null).Should().BeFalse();
+            target.Equals((object)null).Should().BeFalse();
             // ReSharper disable once RedundantCast
-            target.Equals((IRegistrationValue)null).Should().BeFalse();
+            target.Equals(null).Should().BeFalse();
          }
 
          [TestMethod]
@@ -595,7 +595,7 @@
          [SuppressMessage("ReSharper", "RedundantCast")]
          public void It_should_reject_null()
          {
-            Action throwingAction = () => new RegistrationValueTypeInstancePair((Type)null);
+            Action throwingAction = () => new RegistrationValueTypeInstancePair(null);
             var e = throwingAction.Should().Throw<ArgumentNullException>().WithMessage("*cannot be null*");
             e.And.ParamName.Should().Be("implementationType");
          }
@@ -606,7 +606,7 @@
          {
             var target = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
 
-            Action throwingAction = () => ((IComparable)target).CompareTo(new Object());
+            Action throwingAction = () => ((IComparable)target).CompareTo(new object());
             var e = throwingAction.Should().Throw<ArgumentException>();
             e.And.ParamName.Should().Be("obj");
          }
@@ -615,12 +615,12 @@
       [TestClass]
       public class When_I_use_operators_on_RegistrationValueTypeInstancePair : ArrangeActAssert
       {
-         private RegistrationValueTypeInstancePair emptyEquivalent;
-         private RegistrationValueTypeInstancePair implementedTypeAndInstance;
-         private RegistrationValueTypeInstancePair implementedTypeNoInstance;
-         private RegistrationValueTypeInstancePair instanceOnly;
+          private RegistrationValueTypeInstancePair emptyEquivalent;
+          private RegistrationValueTypeInstancePair implementedTypeAndInstance;
+          private RegistrationValueTypeInstancePair implementedTypeNoInstance;
+          private RegistrationValueTypeInstancePair instanceOnly;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             implementedTypeNoInstance = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface));
             implementedTypeAndInstance = new RegistrationValueTypeInstancePair(typeof(ConcreteClassImplementingInterface), new ConcreteClassImplementingInterface());
@@ -628,7 +628,7 @@
             emptyEquivalent = new RegistrationValueTypeInstancePair();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [SuppressMessage("Compiler.Warning", "CS1718: Comparison made to same variable", Justification = "Intended (MWP)")]
          [SuppressMessage("SonarLint.CodeSmell", "S1764: Identical expressions should not be used on both sides of a binary operator", Justification = "Intended (MWP)")]
@@ -824,27 +824,24 @@
       }
 
       private abstract class AbstractClass
-      {
-      }
+      {}
 
       private sealed class AnotherConcreteClass
-      {
-      }
+      {}
 
       private sealed class ConcreteClass
-      {
-      }
+      {}
 
       private sealed class ConcreteClassImplementingInterface : IInterface
-      {
-      }
+      {}
+
+      [SuppressMessage("Sonar.CodeSmell","S4275: Getters and setters should access the expected fields", Justification = "false positive")]
+
 
       private interface IAnotherInterface
-      {
-      }
+      {}
 
       private interface IInterface
-      {
-      }
+      {}
    }
 }

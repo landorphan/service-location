@@ -1,9 +1,9 @@
 namespace Landorphan.Ioc.Example.Service
 {
-   using RestSharp;
+    using RestSharp;
 
-   public interface IRestRequestFactory
+    public interface IRestRequestFactory
    {
-      IRestRequest Create();
+       IRestRequest Create();
    }
 }

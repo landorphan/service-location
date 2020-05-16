@@ -1,12 +1,12 @@
 namespace Landorphan.InstrumentationManagement.Tests.Aspects
 {
-   using System.Reflection;
-   using PostSharp.Serialization;
+    using System.Reflection;
+    using PostSharp.Serialization;
 
-   [PSerializable]
+    [PSerializable]
    public class AspectMethodCompilationData : MethodCompilationData
    {
-      public AspectMethodCompilationData(MethodBase method) : base(method)
+       public AspectMethodCompilationData(MethodBase method) : base(method)
       {
       }
    }

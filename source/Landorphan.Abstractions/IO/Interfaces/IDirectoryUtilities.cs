@@ -1,16 +1,16 @@
 ﻿namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.IO;
-   using System.Security;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Security;
 
-   /// <summary>
+    /// <summary>
    /// Exposes methods for creating, moving, and enumerating through directories and subdirectories.
    /// </summary>
    public interface IDirectoryUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -18,7 +18,7 @@
       /// </value>
       DateTimeOffset MaximumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the maximum precision file system ticks supported by the host operating system.
       /// </summary>
       /// <value>
@@ -27,9 +27,9 @@
       /// <remarks>
       /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
       /// </remarks>
-      Int64 MaximumPrecisionFileSystemTicks { get; }
+      long MaximumPrecisionFileSystemTicks { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -37,7 +37,7 @@
       /// </value>
       DateTimeOffset MinimumFileTimeAsDateTimeOffset { get; }
 
-      /// <summary>
+       /// <summary>
       /// Creates all directories and subdirectories in the specified path.
       /// </summary>
       /// <exception cref="IOException">
@@ -73,9 +73,9 @@
       /// <returns>
       /// An object that represents the directory for the specified path.
       /// </returns>
-      String CreateDirectory(String path);
+      string CreateDirectory(string path);
 
-      /// <summary>
+       /// <summary>
       /// Deletes an empty directory from a specified path.
       /// </summary>
       /// <exception cref="IOException">
@@ -117,9 +117,9 @@
       /// <param name="path">
       /// The name of the empty directory to remove. This directory must be writable or empty.
       /// </param>
-      void DeleteEmpty(String path);
+      void DeleteEmpty(string path);
 
-      /// <summary>
+       /// <summary>
       /// Deletes the specified directory and any subdirectories and files in the directory.
       /// </summary>
       /// <exception cref="IOException">
@@ -159,9 +159,9 @@
       /// <param name="path">
       /// The name of the directory to remove.
       /// </param>
-      void DeleteRecursively(String path);
+      void DeleteRecursively(string path);
 
-      /// <summary>
+       /// <summary>
       /// Determines whether the given path refers to an existing directory on disk.
       /// </summary>
       /// <param name="path">
@@ -170,9 +170,9 @@
       /// <returns>
       /// true if <paramref name="path"/> refers to an existing directory; otherwise, false.
       /// </returns>
-      Boolean DirectoryExists(String path);
+      bool DirectoryExists(string path);
 
-      /// <summary>
+       /// <summary>
       /// Gets the creation date and time of a directory.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -194,9 +194,9 @@
       /// <returns>
       /// A structure that is set to the creation date and time for the specified directory.
       /// </returns>
-      DateTimeOffset GetCreationTime(String path);
+      DateTimeOffset GetCreationTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Gets the current working directory of the application.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -210,9 +210,9 @@
       /// A string that contains the path of the current working directory, and does not end with a backslash (\).
       /// </returns>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetCurrentDirectory();
+      string GetCurrentDirectory();
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last accessed.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -239,9 +239,9 @@
       /// A structure that is set to the date and time the specified file or directory was last accessed.
       /// time.
       /// </returns>
-      DateTimeOffset GetLastAccessTime(String path);
+      DateTimeOffset GetLastAccessTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the date and time the specified file or directory was last written to.
       /// </summary>
       /// <exception cref="UnauthorizedAccessException">
@@ -265,9 +265,9 @@
       /// A structure that is set to the date and time the specified file or directory was last written to.
       /// time.
       /// </returns>
-      DateTimeOffset GetLastWriteTime(String path);
+      DateTimeOffset GetLastWriteTime(string path);
 
-      /// <summary>
+       /// <summary>
       /// Generates a a cryptographically strong, random string that can be used as a directory name.
       /// </summary>
       /// <returns>
@@ -277,9 +277,9 @@
       /// Does not create a directory.
       /// </remarks>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetRandomDirectoryName();
+      string GetRandomDirectoryName();
 
-      /// <summary>
+       /// <summary>
       /// Returns the path of the current user's temporary folder.
       /// </summary>
       /// <exception cref="SecurityException">
@@ -289,46 +289,46 @@
       /// The path to the temporary folder, ending with a backslash.
       /// </returns>
       [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
-      String GetTemporaryDirectoryPath();
+      string GetTemporaryDirectoryPath();
 
-      /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
-      /// <summary>
-      /// Sets the creation date and time for the specified file or directory.
-      /// </summary>
-      /// <exception cref="FileNotFoundException">
-      /// The specified path was not found.
-      /// </exception>
-      /// <exception cref="ArgumentException">
-      /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
-      /// more invalid characters as defined by
-      /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
-      /// </exception>
-      /// <exception cref="ArgumentNullException">
-      /// <paramref name="path"/> is null.
-      /// </exception>
-      /// <exception cref="PathTooLongException">
-      /// The specified path, file name, or both exceed the system-defined maximum length.
-      /// </exception>
-      /// <exception cref="UnauthorizedAccessException">
-      /// The caller does not have the required permission.
-      /// </exception>
-      /// <exception cref="ArgumentOutOfRangeException">
-      /// <paramref name="creationTime"/> specifies a value outside the range of dates or times
-      /// permitted for this operation.
-      /// </exception>
-      /// <exception cref="PlatformNotSupportedException">
-      /// The current operating system is not Windows NT or later.
-      /// </exception>
-      /// <param name="path">
-      /// The file or directory for which to set the creation date and time information.
-      /// </param>
-      /// <param name="creationTime">
-      /// An object that contains the value to set for the creation date and time of <paramref name="path"/>.
-      /// </param>
-      void SetCreationTime(String path, DateTimeOffset creationTime);
-      */
+       /*  REMOVE BECAUSE IT IS UNRELIABLE, ESPECIALLY ON LINUX
+       /// <summary>
+       /// Sets the creation date and time for the specified file or directory.
+       /// </summary>
+       /// <exception cref="FileNotFoundException">
+       /// The specified path was not found.
+       /// </exception>
+       /// <exception cref="ArgumentException">
+       /// <paramref name="path"/> is a zero-length string, contains only white space, or contains one or
+       /// more invalid characters as defined by
+       /// <see cref="IPathUtilities.GetInvalidPathCharacters"/>.
+       /// </exception>
+       /// <exception cref="ArgumentNullException">
+       /// <paramref name="path"/> is null.
+       /// </exception>
+       /// <exception cref="PathTooLongException">
+       /// The specified path, file name, or both exceed the system-defined maximum length.
+       /// </exception>
+       /// <exception cref="UnauthorizedAccessException">
+       /// The caller does not have the required permission.
+       /// </exception>
+       /// <exception cref="ArgumentOutOfRangeException">
+       /// <paramref name="creationTime"/> specifies a value outside the range of dates or times
+       /// permitted for this operation.
+       /// </exception>
+       /// <exception cref="PlatformNotSupportedException">
+       /// The current operating system is not Windows NT or later.
+       /// </exception>
+       /// <param name="path">
+       /// The file or directory for which to set the creation date and time information.
+       /// </param>
+       /// <param name="creationTime">
+       /// An object that contains the value to set for the creation date and time of <paramref name="path"/>.
+       /// </param>
+       void SetCreationTime(String path, DateTimeOffset creationTime);
+       */
 
-      /// <summary>
+       /// <summary>
       /// Sets the application's current working directory to the specified directory.
       /// </summary>
       /// <exception cref="IOException">
@@ -357,9 +357,9 @@
       /// <param name="path">
       /// The path to which the current working directory is set.
       /// </param>
-      void SetCurrentDirectory(String path);
+      void SetCurrentDirectory(string path);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time the specified file or directory was last accessed.
       /// </summary>
       /// <exception cref="FileNotFoundException">
@@ -392,9 +392,9 @@
       /// <param name="lastAccessTime">
       /// An object that contains the value to set for the access date and time of <paramref name="path"/>.
       /// </param>
-      void SetLastAccessTime(String path, DateTimeOffset lastAccessTime);
+      void SetLastAccessTime(string path, DateTimeOffset lastAccessTime);
 
-      /// <summary>
+       /// <summary>
       /// Sets the date and time a directory was last written to.
       /// </summary>
       /// <exception cref="FileNotFoundException">
@@ -427,6 +427,6 @@
       /// <param name="lastWriteTime">
       /// The date and time the directory was last written to.
       /// </param>
-      void SetLastWriteTime(String path, DateTimeOffset lastWriteTime);
+      void SetLastWriteTime(string path, DateTimeOffset lastWriteTime);
    }
 }

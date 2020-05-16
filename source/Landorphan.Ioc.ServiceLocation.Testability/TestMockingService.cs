@@ -1,10 +1,9 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Testability
 {
-   using System;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents the mocking capabilities of the test subsystem.
    /// </summary>
    /// <remarks>
@@ -22,17 +21,17 @@
    /// </remarks>
    public sealed class TestMockingService : DisposableObject, ITestMockingService
    {
-      private const String TestInstanceOnRootContainerName = "IoC Test Instance Container on IoC Root Container";
-      private const String TestInstanceOnTestRunOnRootContainerName = "IoC Test Instance Container on IoC Full Test Run Container on IoC Root Container";
-      private const String TestRunContainerName = "IoC Full Test Run Container";
+       private const string TestInstanceOnRootContainerName = "IoC Test Instance Container on IoC Root Container";
+       private const string TestInstanceOnTestRunOnRootContainerName = "IoC Test Instance Container on IoC Full Test Run Container on IoC Root Container";
+       private const string TestRunContainerName = "IoC Full Test Run Container";
 
-      private readonly Object _syncRoot = new Object();
+       private readonly object _syncRoot = new object();
 
-      private readonly IOwnedIocContainer _testRunContainer;
-      private IOwnedIocContainer _testInstanceOnRootContainer;
-      private IOwnedIocContainer _testInstanceOnTestRunOnRootContainer;
+       private readonly IOwnedIocContainer _testRunContainer;
+       private IOwnedIocContainer _testInstanceOnRootContainer;
+       private IOwnedIocContainer _testInstanceOnTestRunOnRootContainer;
 
-      internal TestMockingService()
+       internal TestMockingService()
       {
          RootContainer = IocServiceLocator.RootContainer;
          _testRunContainer = (IOwnedIocContainer)RootContainer.Manager.CreateChildContainer(TestRunContainerName);
@@ -40,43 +39,43 @@
          _testInstanceOnRootContainer = (IOwnedIocContainer)RootContainer.Manager.CreateChildContainer(TestInstanceOnRootContainerName);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IIocContainer RootContainer { get; }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IIocContainer TestInstanceOnRootContainer => _testInstanceOnRootContainer;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IIocContainer TestInstanceOnTestRunOnRootContainer => _testInstanceOnTestRunOnRootContainer;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IIocContainer TestRunContainer => _testRunContainer;
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public void ApplyNoMocking()
       {
          IocServiceLocator.Instance.Manager.SetAmbientContainer(RootContainer);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public void ApplyTestInstanceMockingOnly()
       {
          IocServiceLocator.Instance.Manager.SetAmbientContainer(TestInstanceOnRootContainer);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public void ApplyTestInstanceMockingOnTopOfTestRunMocking()
       {
          IocServiceLocator.Instance.Manager.SetAmbientContainer(TestInstanceOnTestRunOnRootContainer);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public void ApplyTestRunMockingOnly()
       {
          IocServiceLocator.Instance.Manager.SetAmbientContainer(TestRunContainer);
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public void ResetIndividualTestContainers()
       {
          lock (_syncRoot)

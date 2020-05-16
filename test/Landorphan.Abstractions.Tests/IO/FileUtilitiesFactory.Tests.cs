@@ -1,31 +1,31 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class FileUtilitiesFactory_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileUtilitiesFactory_Create : ArrangeActAssert
       {
-         private readonly FileUtilitiesFactory target = new FileUtilitiesFactory();
-         private IFileUtilities actual;
+          private readonly FileUtilitiesFactory target = new FileUtilitiesFactory();
+          private IFileUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = target.Create();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_an_IFileUtilities_instance()
          {
@@ -36,22 +36,22 @@
       [TestClass]
       public class When_I_call_FileUtilitiesFactory_Create_multiple_times : ArrangeActAssert
       {
-         private readonly FileUtilitiesFactory target = new FileUtilitiesFactory();
-         private HashSet<IFileUtilities> actuals;
+          private readonly FileUtilitiesFactory target = new FileUtilitiesFactory();
+          private HashSet<IFileUtilities> actuals;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             actuals = new HashSet<IFileUtilities>(new ReferenceEqualityComparer<IFileUtilities>());
          }
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actuals.Add(target.Create());
             actuals.Add(target.Create());
             actuals.Add(target.Create());
          }
 
-         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "anew")]
+          [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "anew")]
          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_new_instance_each_time()
@@ -63,14 +63,14 @@
       [TestClass]
       public class When_I_service_locate_IFileUtilitiesFactory : ArrangeActAssert
       {
-         private IFileUtilitiesFactory actual;
+          private IFileUtilitiesFactory actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IFileUtilitiesFactory>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_FileUtilitiesFactory()
          {

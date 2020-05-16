@@ -8,7 +8,7 @@
    /// </remarks>
    public abstract class ArrangeActAssert : TestBase
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       protected override void InitializeTestMethod()
       {
          base.InitializeTestMethod();
@@ -16,14 +16,14 @@
          ActMethod();
       }
 
-      /// <summary>
+       /// <summary>
       /// Further refines the context for a single test method invocation.
       /// </summary>
       protected virtual void ArrangeMethod()
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Acts on the context for a single test method invocation.
       /// </summary>
       protected virtual void ActMethod()

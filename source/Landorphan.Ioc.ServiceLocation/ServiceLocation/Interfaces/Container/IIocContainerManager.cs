@@ -1,11 +1,11 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using System.Collections.Generic;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using System;
+    using System.Collections.Generic;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Represents the management capabilities of a dependency injection container.
    /// </summary>
    /// <remarks>
@@ -18,32 +18,32 @@
    /// </remarks>
    public interface IIocContainerManager : IIocContainerMetaSharedCapacities
    {
-      /// <summary>
+       /// <summary>
       /// Occurs when a child container is added to this container.
       /// </summary>
       event EventHandler<ContainerParentChildEventArgs> ContainerChildAdded;
 
-      /// <summary>
+       /// <summary>
       /// Occurs when a child container is removed from this container.
       /// </summary>
       event EventHandler<ContainerParentChildEventArgs> ContainerChildRemoved;
 
-      /// <summary>
+       /// <summary>
       /// Occurs when the configuration of this container is changed.
       /// </summary>
       event EventHandler<ContainerConfigurationEventArgs> ContainerConfigurationChanged;
 
-      /// <summary>
+       /// <summary>
       /// Occurs when a type is precluded with this container.
       /// </summary>
       event EventHandler<ContainerTypeEventArgs> ContainerPrecludedTypeAdded;
 
-      /// <summary>
+       /// <summary>
       /// Occurs when a precluded type is removed from this container.
       /// </summary>
       event EventHandler<ContainerTypeEventArgs> ContainerPrecludedTypeRemoved;
 
-      /// <summary>
+       /// <summary>
       /// Gets the configuration settings for this container.
       /// </summary>
       /// <value>
@@ -51,15 +51,15 @@
       /// </value>
       IIocContainerConfiguration Configuration { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether or not the configuration of this instance is locked.
       /// </summary>
       /// <value>
       /// The value indicating whether or not the configuration of this instance is locked.
       /// </value>
-      Boolean IsConfigurationLocked { get; }
+      bool IsConfigurationLocked { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the collection of types precluded from registration by this container.
       /// </summary>
       /// <remarks>
@@ -70,7 +70,7 @@
       /// </value>
       IReadOnlyCollection<Type> PrecludedTypes { get; }
 
-      /// <summary>
+       /// <summary>
       /// Adds a precluded type.
       /// </summary>
       /// <typeparam name="TPrecluded">
@@ -88,9 +88,9 @@
       /// <exception cref="CannotPrecludeRegisteredTypeArgumentException">
       /// Thrown when <typeparamref name="TPrecluded"/> is currently registered.  To resolve, remove the registration before precluding the type.
       /// </exception>
-      Boolean AddPrecludedType<TPrecluded>();
+      bool AddPrecludedType<TPrecluded>();
 
-      /// <summary>
+       /// <summary>
       /// Adds a precluded type.
       /// </summary>
       /// <param name="precludedType">
@@ -108,9 +108,9 @@
       /// <exception cref="CannotPrecludeRegisteredTypeArgumentException">
       /// Thrown when <paramref name="precludedType"/> is already registered.  Remove the registration before precluding the type.
       /// </exception>
-      Boolean AddPrecludedType(Type precludedType);
+      bool AddPrecludedType(Type precludedType);
 
-      /// <summary>
+       /// <summary>
       /// Adds a new child container with the given name.
       /// </summary>
       /// <param name="name">
@@ -122,9 +122,9 @@
       /// <remarks>
       /// This instance becomes the owner of the newly created child instance.
       /// </remarks>
-      IIocContainer CreateChildContainer(String name);
+      IIocContainer CreateChildContainer(string name);
 
-      /// <summary>
+       /// <summary>
       /// Locks the configuration of this instance.
       /// </summary>
       /// <returns>
@@ -139,9 +139,9 @@
       /// Once locked, the container configuration cannot be unlocked.
       /// </para>
       /// </remarks>
-      Boolean LockConfiguration();
+      bool LockConfiguration();
 
-      /// <summary>
+       /// <summary>
       /// Removes a precluded type.
       /// </summary>
       /// <typeparam name="TPrecluded">
@@ -153,9 +153,9 @@
       /// <remarks>
       /// The primary intent of this method is to enable the removal of a precluded type after a test or battery of tests.
       /// </remarks>
-      Boolean RemovePrecludedType<TPrecluded>();
+      bool RemovePrecludedType<TPrecluded>();
 
-      /// <summary>
+       /// <summary>
       /// Removes a precluded type.
       /// </summary>
       /// <param name="precludedType">
@@ -167,6 +167,6 @@
       /// <exception cref="CannotPrecludeRegisteredTypeArgumentException">
       /// Thrown when <paramref name="precludedType"/> is already registered.  Remove the registration before precluding the type.
       /// </exception>
-      Boolean RemovePrecludedType(Type precludedType);
+      bool RemovePrecludedType(Type precludedType);
    }
 }

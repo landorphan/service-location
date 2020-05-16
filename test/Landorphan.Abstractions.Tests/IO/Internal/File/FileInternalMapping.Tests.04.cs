@@ -1,23 +1,23 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class FileInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_GetLastWriteTime : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -68,7 +68,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -80,7 +80,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -111,7 +111,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -123,7 +123,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -149,7 +149,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.GetLastWriteTime(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -161,7 +161,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -209,7 +209,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_GetRandomFileName : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_file_name_that_is_not_rooted_and_does_not_exist()
          {
@@ -222,7 +222,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_Move : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_destFileName_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -311,7 +311,7 @@
             var sourceFileName = _target.CreateTemporaryFile();
             try
             {
-               Action throwingAction = () => _target.Move(sourceFileName, String.Empty);
+               Action throwingAction = () => _target.Move(sourceFileName, string.Empty);
                var e = throwingAction.Should().Throw<ArgumentException>();
                e.And.ParamName.Should().Be("destFileName");
                e.And.Message.Should().ContainAll("The path is not well-formed (cannot be empty or all whitespace)", "Parameter name: destFileName");
@@ -391,7 +391,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_destFileName_is_too_long_It_should_throw_PathTooLongException()
          {
-            var destFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var destFileName = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             var sourceFileName = _target.CreateTemporaryFile();
             try
@@ -596,7 +596,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_empty_It_should_throw_ArgumentException()
          {
-            var sourceFileName = String.Empty;
+            var sourceFileName = string.Empty;
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(sourceFileName, destFileName);
@@ -609,7 +609,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_null_It_should_throw_ArgumentNullException()
          {
-            String sourceFileName = null;
+            string sourceFileName = null;
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             // ReSharper disable once ExpressionIsAlwaysNull
@@ -642,7 +642,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_too_long_It_should_throw_PathTooLongException()
          {
-            var sourceFileName = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var sourceFileName = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(sourceFileName, destFileName);
@@ -655,7 +655,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_is_white_space_It_should_throw_ArgumentException()
          {
-            const String SourceDirName = " \t ";
+            const string SourceDirName = " \t ";
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(SourceDirName, destFileName);
@@ -685,7 +685,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_sourceFileName_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String SourceDirName = ":";
+            const string SourceDirName = ":";
             var destFileName = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(SourceDirName, destFileName);
@@ -701,8 +701,8 @@
             var host = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
             var share = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceFileName = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destFileName = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();
@@ -714,11 +714,11 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_sourceFileName_uses_an_unknown_network_name_share_It_should_throw_FileNotFoundException()
          {
-            const String Host = "localhost";
+            const string Host = "localhost";
             var share = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
 
-            var sourceFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
-            var destFileName = String.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var sourceFileName = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
+            var destFileName = string.Format(CultureInfo.InvariantCulture, @"\\{0}\{1}\{2}", Host, share, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
 
             Action throwingAction = () => _target.Move(sourceFileName, destFileName);
             var e = throwingAction.Should().Throw<FileNotFoundException>();

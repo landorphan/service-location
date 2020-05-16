@@ -1,9 +1,9 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using Landorphan.Common.Interfaces;
+    using System;
+    using Landorphan.Common.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents a registration key.
    /// </summary>
    public interface IRegistrationKey :
@@ -13,28 +13,28 @@
       IComparable<IRegistrationKey>,
       IEquatable<IRegistrationKey>
    {
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether or not this registration represents the default registration for its container.
       /// </summary>
-      Boolean IsDefaultRegistration { get; }
+      bool IsDefaultRegistration { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether or not this instance is empty.
       /// </summary>
       /// <value>
       /// <c>true</c> when this instance is empty; otherwise <c>false</c>.
       /// </value>
-      Boolean IsEmpty { get; }
+      bool IsEmpty { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the abstract type or interface registered.
       /// </summary>
       /// <value>
       /// The abstract type or interface registered.
       /// </value>
-      String RegisteredName { get; }
+      string RegisteredName { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the name associated with the registration.
       /// </summary>
       /// <value>

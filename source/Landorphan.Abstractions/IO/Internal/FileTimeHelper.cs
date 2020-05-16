@@ -1,11 +1,11 @@
 ﻿namespace Landorphan.Abstractions.IO.Internal
 {
-   using System;
-   using System.Runtime.InteropServices;
+    using System;
+    using System.Runtime.InteropServices;
 
-   internal static class FileTimeHelper
+    internal static class FileTimeHelper
    {
-      /// <summary>
+       /// <summary>
       /// Gets the maximum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -34,7 +34,7 @@
             return new DateTimeOffset(new DateTime(3_155_378_975_990_000_000, DateTimeKind.Utc));
          })();
 
-      /// <summary>
+       /// <summary>
       /// Gets the maximum precision file system ticks supported by the host operating system.
       /// </summary>
       /// <value>
@@ -43,7 +43,7 @@
       /// <remarks>
       /// On Windows, the file system supports precision down to 1 tick, or 100 nanoseconds, on linux, the precision is to the second.
       /// </remarks>
-      internal static Int64 MaximumPrecisionFileSystemTicks { get; } = new Func<Int64>(
+      internal static long MaximumPrecisionFileSystemTicks { get; } = new Func<long>(
          () =>
          {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -54,7 +54,7 @@
             return TimeSpan.TicksPerSecond;
          })();
 
-      /// <summary>
+       /// <summary>
       /// Gets the minimum file time as a <see cref="DateTimeOffset"/>.
       /// </summary>
       /// <value>
@@ -84,7 +84,7 @@
             return new DateTimeOffset(new DateTime(1, 1, 1, 7, 28, 1, DateTimeKind.Utc));
          })();
 
-      /// <summary>
+       /// <summary>
       /// Truncates the given value to the maximum precision supported by the current platform.
       /// </summary>
       /// <param name="value">

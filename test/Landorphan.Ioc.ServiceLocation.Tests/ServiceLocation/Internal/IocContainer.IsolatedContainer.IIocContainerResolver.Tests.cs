@@ -1,35 +1,35 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class IocContainer_IsolatedContainer_Tests
    {
-      // TryResolve X 4
+       // TryResolve X 4
 
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_isolated_container_and_call_Resolve : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: IIocContainerResolver.Resolve Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private RegisteredTypeImplementingIRegisteredType defaultInstance;
-         private RegisteredTypeImplementingIRegisteredType namedInstance;
-         private String registeredName;
-         private IIocContainerRegistrar registrar;
-         private IIocContainerResolver target;
+          private readonly string containerName = "Isolated Test Container: IIocContainerResolver.Resolve Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private RegisteredTypeImplementingIRegisteredType defaultInstance;
+          private RegisteredTypeImplementingIRegisteredType namedInstance;
+          private string registeredName;
+          private IIocContainerRegistrar registrar;
+          private IIocContainerResolver target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Resolver;
@@ -46,7 +46,7 @@
             registrar.RegisterInstance<IRegisteredType>(registeredName, namedInstance);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fail_when_I_attempt_to_Resolve_a_concrete_type()
          {
@@ -221,16 +221,16 @@
       [TestClass]
       public class When_I_have_an_isolated_container_and_call_TryResolve : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: IIocContainerResolver.TryResolve Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private RegisteredTypeImplementingIRegisteredType defaultInstance;
-         private RegisteredTypeImplementingIRegisteredType namedInstance;
-         private String registeredName;
-         private IIocContainerRegistrar registrar;
-         private IIocContainerResolver target;
+          private readonly string containerName = "Isolated Test Container: IIocContainerResolver.TryResolve Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer container;
+          private RegisteredTypeImplementingIRegisteredType defaultInstance;
+          private RegisteredTypeImplementingIRegisteredType namedInstance;
+          private string registeredName;
+          private IIocContainerRegistrar registrar;
+          private IIocContainerResolver target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             target = container.Resolver;
@@ -247,7 +247,7 @@
             registrar.RegisterInstance<IRegisteredType>(registeredName, namedInstance);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [SuppressMessage("SonarLint.CodeSmell", "S1854: Dead stores should be removed", Justification = "By design (MWP)")]
          public void It_should_return_false_when_I_attempt_TryResolve_on_a_concrete_type()
@@ -272,14 +272,14 @@
 
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
-            var obj = new Object();
+            var obj = new object();
             actual = target.TryResolve(typeof(ConcreteClass), out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();
 
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
-            obj = new Object();
+            obj = new object();
             actual = target.TryResolve(typeof(ConcreteClass), name, out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();
@@ -297,14 +297,14 @@
 
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
-            var obj = new Object();
+            var obj = new object();
             var actual = target.TryResolve((Type)null, out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();
 
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
-            obj = new Object();
+            obj = new object();
             actual = target.TryResolve(null, name, out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();
@@ -328,14 +328,14 @@
 
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
-            var obj = new Object();
+            var obj = new object();
             actual = target.TryResolve(typeof(AbstractRegisteredType), out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();
 
             // ReSharper disable once RedundantAssignment
             // ReSharper disable once InlineOutVariableDeclaration
-            obj = new Object();
+            obj = new object();
             actual = target.TryResolve(typeof(AbstractRegisteredType), name, out obj);
             actual.Should().BeFalse();
             obj.Should().BeNull();

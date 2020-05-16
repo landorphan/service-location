@@ -1,10 +1,10 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using Landorphan.Common.Interfaces;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Landorphan.Common.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Represents an owned dependency injection container.
    /// </summary>
    /// <remarks>
@@ -12,6 +12,5 @@
    /// </remarks>
    [SuppressMessage("SonarLint.CodeSmell", "S1939: Inheritance list should not be redundant", Justification = "Being explicit (MWP)")]
    public interface IOwnedIocContainer : IIocContainer, IDisposable, IQueryDisposable
-   {
-   }
+   {}
 }

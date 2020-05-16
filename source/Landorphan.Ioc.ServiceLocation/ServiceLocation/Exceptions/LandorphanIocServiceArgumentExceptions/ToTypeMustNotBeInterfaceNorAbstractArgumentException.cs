@@ -1,37 +1,37 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when a type argument is required to be concrete but is abstract.
    /// </summary>
    [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
    public sealed class ToTypeMustNotBeInterfaceNorAbstractArgumentException : LandorphanIocServiceLocationArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustNotBeInterfaceNorAbstractArgumentException"/> class.
       /// </summary>
       public ToTypeMustNotBeInterfaceNorAbstractArgumentException() : this(null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustNotBeInterfaceNorAbstractArgumentException"/> class.
       /// </summary>
       /// <param name="message">
       /// The error message that explains the reason for the exception.
       /// </param>
-      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(String message) : this(null, null, message, null)
+      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(string message) : this(null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustNotBeInterfaceNorAbstractArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -41,11 +41,11 @@
       /// The exception that is the cause of the current exception, or a null reference
       /// if no inner exception is specified.
       /// </param>
-      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(String message, Exception innerException) : this(null, null, message, innerException)
+      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(string message, Exception innerException) : this(null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustNotBeInterfaceNorAbstractArgumentException"/> class.
       /// </summary>
       /// <param name="toType">
@@ -54,11 +54,11 @@
       /// <param name="paramName">
       /// The name of the parameter that caused the exception.
       /// </param>
-      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(Type toType, String paramName) : this(toType, paramName, null, null)
+      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(Type toType, string paramName) : this(toType, paramName, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustNotBeInterfaceNorAbstractArgumentException"/> class.
       /// </summary>
       /// <param name="toType">
@@ -73,13 +73,13 @@
       /// The exception that is the cause of the current exception, or a null reference
       /// if no inner exception is specified.
       /// </param>
-      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(Type toType, String paramName, String message, Exception innerException)
+      public ToTypeMustNotBeInterfaceNorAbstractArgumentException(Type toType, string paramName, string message, Exception innerException)
          : base(paramName, NullToDefaultMessage(toType, paramName, message), innerException)
       {
          ToType = toType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ToTypeMustNotBeInterfaceNorAbstractArgumentException"/> class.
       /// </summary>
       /// <param name="info">
@@ -94,7 +94,7 @@
          ToType = (Type)info.GetValue("fromType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -103,20 +103,20 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the type that gave rise to this exception.
       /// </summary>
       public Type ToType { get; }
 
-      private static String NullToDefaultMessage(Type toType, String paramName, String message)
+       private static string NullToDefaultMessage(Type toType, string paramName, string message)
       {
          var cleanedToType = null == toType ? StringResources.NullReplacementValue : toType.FullName;
          var cleanedParamName = paramName.TrimNullToEmpty();
          var paramNameSuffix = cleanedParamName.Length == 0
             ? StringResources.ArgumentExceptionNoParamNameSuffix
-            : String.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
+            : string.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ToTypeMustNotBeAbstractOrInterfaceArgumentExceptionDefaultMessageFmt,
                      cleanedToType,

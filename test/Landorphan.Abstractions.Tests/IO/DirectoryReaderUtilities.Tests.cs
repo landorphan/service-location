@@ -1,37 +1,37 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using System.IO;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO;
-   using Landorphan.Abstractions.IO.Interfaces;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO;
+    using Landorphan.Abstractions.IO.Interfaces;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static class DirectoryReaderUtilities_Tests
    {
-      // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
-      private const String Spaces = "   ";
-      private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-      private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
-      private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-      private static readonly IDirectoryReaderUtilities _target = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
-      private static readonly String _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
+       // b/c this is such a thin wrapper over tested implementation, negative testing is not implemented.
+       private const string Spaces = "   ";
+       private static readonly IDirectoryUtilities _directoryUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
+       private static readonly IFileUtilities _fileUtilities = IocServiceLocator.Resolve<IFileUtilities>();
+       private static readonly IPathUtilities _pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
+       private static readonly IDirectoryReaderUtilities _target = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
+       private static readonly string _tempPath = _directoryUtilities.GetTemporaryDirectoryPath();
 
-      [TestClass]
+       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_EnumerateDirectories : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_subdirectories()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateDirectories"));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(
                   _pathUtilities.Combine(
@@ -69,12 +69,12 @@
       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_EnumerateFiles : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_files()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFiles"));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(
                   _pathUtilities.Combine(
@@ -112,12 +112,12 @@
       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_EnumerateFileSystemEntries : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_the_known_FileSystemEntries()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + "When_I_call_EnumerateFileSystemEntries"));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(
                   _pathUtilities.Combine(
@@ -158,12 +158,12 @@
       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_GetDirectories : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_non_null_collection()
          {
             var outerFullPath = _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture))),
@@ -192,13 +192,13 @@
       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_GetFiles : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_non_null_collection()
          {
             var outerFullPath = _pathUtilities.GetFullPath(
                _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection) + ".txt")),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection) + ".txt")),
@@ -227,13 +227,13 @@
       [TestClass]
       public class When_I_call_DirectoryReaderUtilities_GetFileSystemEntries : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_return_a_non_null_collection()
          {
             var outerFullPath =
                _pathUtilities.GetFullPath(_pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection)));
-            var expected = new List<String>
+            var expected = new List<string>
             {
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection))),
                _pathUtilities.GetFullPath(_pathUtilities.Combine(outerFullPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + nameof(It_should_return_a_non_null_collection))),
@@ -262,14 +262,14 @@
       [TestClass]
       public class When_I_service_locate_IDirectoryReaderUtilities : ArrangeActAssert
       {
-         private IDirectoryReaderUtilities actual;
+          private IDirectoryReaderUtilities actual;
 
-         protected override void ActMethod()
+          protected override void ActMethod()
          {
             actual = IocServiceLocator.Resolve<IDirectoryReaderUtilities>();
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_give_me_a_DirectoryReaderUtilities()
          {

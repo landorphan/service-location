@@ -1,17 +1,16 @@
 ﻿namespace Landorphan.Ioc.Logging.Internal
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Collections.Immutable;
-   using System.Globalization;
-   using System.Linq;
-   using System.Reflection;
-   using System.Text;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Globalization;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Logging utilities specific to the<see cref="IocServiceLocator"/> singleton instance.   
    /// </summary>
    /// <remarks>
@@ -19,15 +18,15 @@
    /// </remarks>
    internal sealed class LoggingUtilitiesForIocServiceLocator : ILoggingUtilitiesForIocServiceLocator
    {
-      private readonly IIocLoggingUtilitiesService _parent;
+       private readonly IIocLoggingUtilitiesService _parent;
 
-      internal LoggingUtilitiesForIocServiceLocator(IIocLoggingUtilitiesService parent)
+       internal LoggingUtilitiesForIocServiceLocator(IIocLoggingUtilitiesService parent)
       {
          parent.ArgumentNotNull(nameof(parent));
          _parent = parent;
       }
 
-      public void GetMessageAmbientContainerChanged(IIocContainerMetaIdentity newContainer, out String message)
+       public void GetMessageAmbientContainerChanged(IIocContainerMetaIdentity newContainer, out string message)
       {
          newContainer.ArgumentNotNull(nameof(newContainer));
 
@@ -39,7 +38,7 @@
          message = $"Service Locator: Ambient container changed\t{timestamp}\t{threadId}\tContainerUid:{containerUid}\tContainerName:{containerName}";
       }
 
-      public void GetMessageContainerAssemblyCollectionSelfRegistrationInvokedAfter(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies, out String message)
+       public void GetMessageContainerAssemblyCollectionSelfRegistrationInvokedAfter(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies, out string message)
       {
          container.ArgumentNotNull(nameof(container));
          assemblies.ArgumentNotNullNorContainsNull(nameof(assemblies));
@@ -62,7 +61,7 @@
          message = builder.ToString();
       }
 
-      public void GetMessageContainerAssemblyCollectionSelfRegistrationInvokedBefore(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies, out String message)
+       public void GetMessageContainerAssemblyCollectionSelfRegistrationInvokedBefore(IIocContainerMetaIdentity container, IEnumerable<Assembly> assemblies, out string message)
       {
          container.ArgumentNotNull(nameof(container));
          assemblies.ArgumentNotNullNorContainsNull(nameof(assemblies));
@@ -85,10 +84,10 @@
          message = builder.ToString();
       }
 
-      public void GetMessageContainerSingleAssemblySelfRegistrationInvokedAfter(
+       public void GetMessageContainerSingleAssemblySelfRegistrationInvokedAfter(
          IIocContainerMetaIdentity container,
          IAssemblySelfRegistration assemblySelfRegistration,
-         out String message)
+         out string message)
       {
          container.ArgumentNotNull(nameof(container));
          assemblySelfRegistration.ArgumentNotNull(nameof(assemblySelfRegistration));
@@ -103,10 +102,10 @@
                    $"IAssemblySelfRegistration:{registrarName}";
       }
 
-      public void GetMessageContainerSingleAssemblySelfRegistrationInvokedBefore(
+       public void GetMessageContainerSingleAssemblySelfRegistrationInvokedBefore(
          IIocContainerMetaIdentity container,
          IAssemblySelfRegistration assemblySelfRegistration,
-         out String message)
+         out string message)
       {
          container.ArgumentNotNull(nameof(container));
          assemblySelfRegistration.ArgumentNotNull(nameof(assemblySelfRegistration));

@@ -1,11 +1,11 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Interfaces
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
 
-   /// <summary>
+    /// <summary>
    /// Represents registration services for an <see cref="IIocContainer"/> container.
    /// </summary>
    /// <remarks>
@@ -25,17 +25,17 @@
    [SuppressMessage("SonarLint.CodeSmell", "S1939: Inheritance list should not be redundant", Justification = "Being explicit (MWP)")]
    public interface IIocContainerRegistrar : IIocContainerMetaSharedCapacities, IIocContainerRegistrationRepository
    {
-      /// <summary>
+       /// <summary>
       /// Occurs when a type is registered with this container.
       /// </summary>
       event EventHandler<ContainerTypeRegistrationEventArgs> ContainerRegistrationAdded;
 
-      /// <summary>
+       /// <summary>
       /// Occurs when a type is unregistered with this container.
       /// </summary>
       event EventHandler<ContainerTypeRegistrationEventArgs> ContainerRegistrationRemoved;
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and implementation with this container as the default implementation.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -60,7 +60,7 @@
       /// </exception>
       void RegisterImplementation<TFrom, TTo>() where TFrom : class where TTo : class, TFrom, new();
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and implementation with this container as the default implementation.
       /// </summary>
       /// <param name="fromType">
@@ -85,7 +85,7 @@
       /// </exception>
       void RegisterImplementation(Type fromType, Type toType);
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and implementation with this container as a named implementation.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -115,9 +115,9 @@
       /// <exception cref="ContainerConfigurationNamedImplementationsDisabledException">
       /// Thrown when the container is configured to disallow named registrations and <paramref name="name"/> is neither null nor empty.
       /// </exception>
-      void RegisterImplementation<TFrom, TTo>(String name) where TFrom : class where TTo : class, TFrom, new();
+      void RegisterImplementation<TFrom, TTo>(string name) where TFrom : class where TTo : class, TFrom, new();
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and implementation with this container as a named implementation.
       /// </summary>
       /// <param name="fromType">
@@ -147,9 +147,9 @@
       /// <exception cref="ContainerConfigurationNamedImplementationsDisabledException">
       /// Thrown when the container is configured to disallow named registrations and <paramref name="name"/> is neither null nor empty.
       /// </exception>
-      void RegisterImplementation(Type fromType, String name, Type toType);
+      void RegisterImplementation(Type fromType, string name, Type toType);
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and instance with this container as the default instance.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -174,7 +174,7 @@
       /// </exception>
       void RegisterInstance<TFrom>(TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and instance with this container as the default instance.
       /// </summary>
       /// <param name="fromType">
@@ -192,9 +192,9 @@
       /// <exception cref="ContainerFromTypeNameAlreadyRegisteredArgumentException">
       /// Thrown when a default (un-named) interface or abstract type of the given <parmref name = "fromType"/> has already been registered with this container registrar.
       /// </exception>
-      void RegisterInstance(Type fromType, Object instance);
+      void RegisterInstance(Type fromType, object instance);
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and instance with this container as a named instance.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -218,9 +218,9 @@
       /// <exception cref="ContainerConfigurationNamedImplementationsDisabledException">
       /// Thrown when the container is configured to disallow named registrations and <paramref name="name"/> is neither null nor empty.
       /// </exception>
-      void RegisterInstance<TFrom>(String name, TFrom instance) where TFrom : class;
+      void RegisterInstance<TFrom>(string name, TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Registers a type and instance with this container as a named instance.
       /// </summary>
       /// <param name="fromType">
@@ -244,9 +244,9 @@
       /// <exception cref="ContainerConfigurationNamedImplementationsDisabledException">
       /// Thrown when the container is configured to disallow named registrations and <paramref name="name"/> is neither null nor empty.
       /// </exception>
-      void RegisterInstance(Type fromType, String name, Object instance);
+      void RegisterInstance(Type fromType, string name, object instance);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and implementation with this container as the default implementation.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -266,9 +266,9 @@
       /// Subject to collisions with registered instance of the given <typeparamref name="TTo"/> type.
       /// </para>
       /// </remarks>
-      Boolean TryRegisterImplementation<TFrom, TTo>() where TFrom : class where TTo : class, TFrom, new();
+      bool TryRegisterImplementation<TFrom, TTo>() where TFrom : class where TTo : class, TFrom, new();
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and implementation with this container as the default implementation.
       /// </summary>
       /// <param name="fromType">
@@ -288,9 +288,9 @@
       /// Subject to collisions with registered instance of the given <paramref name="fromType"/> type.
       /// </para>
       /// </remarks>
-      Boolean TryRegisterImplementation(Type fromType, Type toType);
+      bool TryRegisterImplementation(Type fromType, Type toType);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and implementation with this container as a named implementation.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -313,9 +313,9 @@
       /// Subject to collisions with registered instance of the given <typeparamref name="TTo"/> type.
       /// </para>
       /// </remarks>
-      Boolean TryRegisterImplementation<TFrom, TTo>(String name) where TFrom : class where TTo : class, TFrom, new();
+      bool TryRegisterImplementation<TFrom, TTo>(string name) where TFrom : class where TTo : class, TFrom, new();
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and implementation with this container as a named implementation.
       /// </summary>
       /// <param name="fromType">
@@ -338,9 +338,9 @@
       /// Subject to collisions with registered instance of the given <paramref name="fromType"/> type.
       /// </para>
       /// </remarks>
-      Boolean TryRegisterImplementation(Type fromType, String name, Type toType);
+      bool TryRegisterImplementation(Type fromType, string name, Type toType);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and instance with this container as the default instance.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -366,9 +366,9 @@
       /// <exception cref="ContainerFromTypeNameAlreadyRegisteredArgumentException">
       /// Thrown when a default (un-named) interface or abstract type of the given <typeparmref name = "TFrom"/> has already been registered with this container registrar.
       /// </exception>
-      Boolean TryRegisterInstance<TFrom>(TFrom instance) where TFrom : class;
+      bool TryRegisterInstance<TFrom>(TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and instance with this container as the default instance.
       /// </summary>
       /// <param name="fromType">
@@ -389,9 +389,9 @@
       /// <exception cref="ContainerFromTypeNameAlreadyRegisteredArgumentException">
       /// Thrown when a default (un-named) interface or abstract type of the given <parmref name = "fromType"/> has already been registered with this container registrar.
       /// </exception>
-      Boolean TryRegisterInstance(Type fromType, Object instance);
+      bool TryRegisterInstance(Type fromType, object instance);
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and instance with this container as a named instance.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -415,9 +415,9 @@
       /// <exception cref="ContainerFromTypeNameAlreadyRegisteredArgumentException">
       /// Thrown when a named interface or abstract type of the given <parmref name = "fromType"/> and given <paramref name = "name"/> has already been registered with this container registrar.
       /// </exception>
-      Boolean TryRegisterInstance<TFrom>(String name, TFrom instance) where TFrom : class;
+      bool TryRegisterInstance<TFrom>(string name, TFrom instance) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Attempts to register a type and instance with this container as a named instance.
       /// </summary>
       /// <param name="fromType">
@@ -441,9 +441,9 @@
       /// <exception cref="ContainerFromTypeNameAlreadyRegisteredArgumentException">
       /// Thrown when a named interface or abstract type of the given <parmref name = "fromType"/> and the given name <paramref name= "name"/> has already registered with this container registrar.
       /// </exception>
-      Boolean TryRegisterInstance(Type fromType, String name, Object instance);
+      bool TryRegisterInstance(Type fromType, string name, object instance);
 
-      /// <summary>
+       /// <summary>
       /// Unregisters the default (un-named) type from this registration.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -460,9 +460,9 @@
       /// Does not throw if no such registration found.
       /// </para>
       /// </remarks>
-      Boolean Unregister<TFrom>() where TFrom : class;
+      bool Unregister<TFrom>() where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Unregisters a default (un-named) type from this registration.
       /// </summary>
       /// <param name="fromType">
@@ -479,9 +479,9 @@
       /// Does not throw if no such registration found.
       /// </para>
       /// </remarks>
-      Boolean Unregister(Type fromType);
+      bool Unregister(Type fromType);
 
-      /// <summary>
+       /// <summary>
       /// Unregisters a named type registration from this container.
       /// </summary>
       /// <typeparam name="TFrom">
@@ -501,9 +501,9 @@
       /// Does not throw if no such registration found.
       /// </para>
       /// </remarks>
-      Boolean Unregister<TFrom>(String name) where TFrom : class;
+      bool Unregister<TFrom>(string name) where TFrom : class;
 
-      /// <summary>
+       /// <summary>
       /// Unregisters a named type registration from this container.
       /// </summary>
       /// <param name="fromType">
@@ -523,6 +523,6 @@
       /// Does not throw if no such registration found.
       /// </para>
       /// </remarks>
-      Boolean Unregister(Type fromType, String name);
+      bool Unregister(Type fromType, string name);
    }
 }

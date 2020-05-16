@@ -1,18 +1,39 @@
 namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
 {
 #pragma warning disable CS8019 // Unnecessary using directive -- This is needed for some targets and not others.  Keeping in for all.
-   using System;
+    using System.Collections.Concurrent;
+    using System.Threading;
+    using Landorphan.InstrumentationManagement.PlugIns;
 #pragma warning restore CS8019 // Unnecessary using directive
-   using System.Collections.Concurrent;
-   using Landorphan.InstrumentationManagement.PlugIns;
 
    public class AsyncStorage : IInstrumentationPluginStorage
    {
 #if NETCORE
-      private readonly System.Threading.AsyncLocal<ConcurrentDictionary<string, object>> asyncLocal = new System.Threading.AsyncLocal<ConcurrentDictionary<string, object>>();
+       private readonly AsyncLocal<ConcurrentDictionary<string, object>> asyncLocal = new AsyncLocal<ConcurrentDictionary<string, object>>();
 #endif
 
-      public void Set(string name, object value)
+       public object Get(string name)
+      {
+#if NETFX
+         object retval = null;
+         if(System.Runtime.Remoting.Messaging.CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage)
+         {
+            retval = localStorage[name];
+         }
+         return retval;
+#elif NETCORE
+         object retval = null;
+         if (asyncLocal.Value is ConcurrentDictionary<string, object> localStorage)
+         {
+            retval = localStorage[name];
+         }
+         return retval;
+#else
+         throw new NotImplementedException("This operation is not implemented for this runtime.");
+#endif
+      }
+
+       public void Set(string name, object value)
       {
 #if NETFX
          if (!(System.Runtime.Remoting.Messaging.CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage))
@@ -33,27 +54,6 @@ namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
          throw new NotImplementedException("This operation is not implemented for this runtime.");
 #endif
 
-      }
-
-      public object Get(string name)
-      {
-#if NETFX
-         object retval = null;
-         if(System.Runtime.Remoting.Messaging.CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage)
-         {
-            retval = localStorage[name];
-         }
-         return retval;
-#elif NETCORE
-         object retval = null;
-         if (asyncLocal.Value is ConcurrentDictionary<string, object> localStorage)
-         {
-            retval = localStorage[name];
-         }
-         return retval;
-#else
-         throw new NotImplementedException("This operation is not implemented for this runtime.");
-#endif
       }
    }
 }

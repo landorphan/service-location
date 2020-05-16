@@ -1,19 +1,18 @@
 namespace Landorphan.Ioc.ServiceLocation.Internal
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Linq;
-   using Landorphan.Common;
-   using Landorphan.Common.Threading;
-   using Landorphan.Ioc.Logging;
-   using Landorphan.Ioc.Logging.Internal;
-   using Landorphan.Ioc.Logging.Internal.Interfaces;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Landorphan.Common;
+    using Landorphan.Common.Threading;
+    using Landorphan.Ioc.Logging;
+    using Landorphan.Ioc.Logging.Internal;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   // ReSharper disable ConvertToAutoProperty
+    // ReSharper disable ConvertToAutoProperty
    // ReSharper disable InheritdocConsiderUsage
    // ReSharper disable RedundantExtendsListEntry
 
@@ -28,15 +27,15 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
    [SuppressMessage("SonarLint.CodeSmell", "S1200: Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
    internal sealed partial class IocContainer : DisposableObject, IOwnedIocContainer, IIocContainerManager, IIocContainerRegistrar, IIocContainerResolver
    {
-      private readonly IocContainerConfiguration _configuration;
-      private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationAdded =
+       private readonly IocContainerConfiguration _configuration;
+       private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationAdded =
          new SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs>();
-      private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationRemoved =
+       private readonly SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs> _listenersContainerRegistrationRemoved =
          new SourceWeakEventHandlerSet<ContainerTypeRegistrationEventArgs>();
-      private readonly String _name;
+       private readonly string _name;
 
-      // Parents own children, reverse references are not owned.
-      [DoNotDispose]
+       // Parents own children, reverse references are not owned.
+       [DoNotDispose]
       private readonly IocContainer _parent;
       private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
       private readonly Guid _uid;
@@ -83,14 +82,14 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          // used to instantiate the root container
          // This assembly's implementation of IocServiceLocator requires a single root container.
          _uid = Guid.Empty;
-         _name = String.Empty;
+         _name = string.Empty;
          _parent = null;
 
          _configuration = new IocContainerConfiguration(this);
          _configuration.ConfigurationChanged += ThisContainerConfigurationChanged;
       }
 
-      private IocContainer(Guid uid, String name)
+      private IocContainer(Guid uid, string name)
       {
          // NOTE:  when initialized in-line, the optimizer was allowing calls into the instance methods of IocServiceLocator and IocContainer before initialization was completed.
          // This behavior is not in-line with MSDocs.
@@ -121,7 +120,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
       /// <exception cref="ArgumentNullException">
       /// Thrown when <paramref name="parent" />is null.
       /// </exception>
-      private IocContainer(IocContainer parent, String name)
+      private IocContainer(IocContainer parent, string name)
       {
          // NOTE:  when initialized in-line, the optimizer was allowing calls into the instance methods of IocServiceLocator and IocContainer before initialization was completed.
          // This behavior is not in-line with MSDocs.
@@ -153,7 +152,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
       public IIocContainerManager Manager => this;
 
       /// <inheritdoc />
-      public String Name => _name;
+      public string Name => _name;
 
       /// <inheritdoc />
       public IIocContainerRegistrar Registrar => this;
@@ -183,7 +182,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          }
       }
 
-      private Boolean CanLog(out IIocLogger<IocContainer> logger, out IIocLoggingUtilitiesService loggingUtilitiesService)
+      private bool CanLog(out IIocLogger<IocContainer> logger, out IIocLoggingUtilitiesService loggingUtilitiesService)
       {
          logger = null;
          loggingUtilitiesService = null;
@@ -222,14 +221,14 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          IocServiceLocator.InternalInstance.CurrentDomainAssemblyLoad(null, null);
       }
 
-      private void TryLogChildAddedOrRemoved(Int32 eventId, IIocContainerMetaIdentity parentContainer, IIocContainerMetaIdentity childContainer)
+      private void TryLogChildAddedOrRemoved(int eventId, IIocContainerMetaIdentity parentContainer, IIocContainerMetaIdentity childContainer)
       {
          // reduce the complexities of in-line logging
 
          // do not use _logger, grab the instance form CanLog(...)
          if (CanLog(out var logger, out var loggingUtils))
          {
-            String message;
+            string message;
             switch (eventId)
             {
                case IocEventIdCodes.IocContainer.ChildContainerAdded:
@@ -252,14 +251,14 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          }
       }
 
-      private void TryLogConfigurationChanged(Int32 eventId, IIocContainerConfiguration configuration)
+      private void TryLogConfigurationChanged(int eventId, IIocContainerConfiguration configuration)
       {
          // reduce the complexities of in-line logging
 
          // do not use _logger, grab the instance form CanLog(...)
          if (CanLog(out var logger, out var loggingUtils))
          {
-            String message;
+            string message;
             switch (eventId)
             {
                case IocEventIdCodes.IocContainer.ConfigurationChanged:
@@ -278,14 +277,14 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          }
       }
 
-      private void TryLogPrecludedTypeAddedOrRemoved(Int32 eventId, IIocContainerMetaIdentity container, Type precludedType)
+      private void TryLogPrecludedTypeAddedOrRemoved(int eventId, IIocContainerMetaIdentity container, Type precludedType)
       {
          // reduce the complexities of in-line logging
 
          // do not use _logger, grab the instance form CanLog(...)
          if (CanLog(out var logger, out var loggingUtils))
          {
-            String message;
+            string message;
             switch (eventId)
             {
                case IocEventIdCodes.IocContainer.PrecludedTypeAdded:
@@ -308,14 +307,14 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          }
       }
 
-      private void TryLogRegistrationAddedOrRemoved(Int32 eventId, IRegistrationKey registrationKey, Type toType, Object instance)
+      private void TryLogRegistrationAddedOrRemoved(int eventId, IRegistrationKey registrationKey, Type toType, object instance)
       {
          // reduce the complexities of in-line logging
 
          // do not use _logger, grab the instance form CanLog(...)
          if (CanLog(out var logger, out var loggingUtils))
          {
-            String message;
+            string message;
             switch (eventId)
             {
                case IocEventIdCodes.IocContainer.RegistrationAdded:
@@ -338,7 +337,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          }
       }
 
-      private void ChildContainerDisposing(Object sender, EventArgs events)
+      private void ChildContainerDisposing(object sender, EventArgs events)
       {
          // handles Disposing events fired by child containers.
          if (sender is IOwnedIocContainer senderAsIOwnedIocContainer)
@@ -352,7 +351,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
          }
       }
 
-      private void ThisContainerConfigurationChanged(Object sender, EventArgs events)
+      private void ThisContainerConfigurationChanged(object sender, EventArgs events)
       {
          // handles container configuration changed event.
 

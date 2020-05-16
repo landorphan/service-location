@@ -1,30 +1,30 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
-   using System;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    public static partial class IocContainer_IsolatedContainer_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_isolated_IIocContainer : DisposableArrangeActAssert
       {
-         private readonly String containerName = "Isolated Test Container: IIocContainer Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer target;
+          private readonly string containerName = "Isolated Test Container: IIocContainer Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IOwnedIocContainer target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_have_a_null_parent()
          {
@@ -51,23 +51,23 @@
       [TestClass]
       public class When_I_have_an_isolated_IIocContainer_and_call_CreateChildContainer_and_Dispose_of_the_child_container : DisposableArrangeActAssert
       {
-         private readonly String childContainerName = "Isolated Child Test Container";
-         private readonly String containerName = "Isolated Test Container: IIocContainer.Children Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IIocContainerManager manager;
-         private IOwnedIocContainer target;
+          private readonly string childContainerName = "Isolated Child Test Container";
+          private readonly string containerName = "Isolated Test Container: IIocContainer.Children Tests";
+          private readonly Guid containerUid = Guid.NewGuid();
+          private IIocContainerManager manager;
+          private IOwnedIocContainer target;
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             target = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
             manager = target.Manager;
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_fire_the_ContainerChildRemoved_event()
          {
-            Object actualSender = null;
+            object actualSender = null;
             ContainerParentChildEventArgs actualEventArgs = null;
             var eh = new EventHandler<ContainerParentChildEventArgs>(
                (o, e) =>

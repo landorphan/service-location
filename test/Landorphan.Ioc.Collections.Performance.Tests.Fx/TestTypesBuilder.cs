@@ -1,20 +1,20 @@
 ﻿namespace Ioc.Collections.Performance.Tests
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Reflection;
-   using System.Reflection.Emit;
-   using System.Text;
-   using Landorphan.Common;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Reflection.Emit;
+    using System.Text;
+    using Landorphan.Common;
 
-   // ReSharper disable AssignNullToNotNullAttribute
+    // ReSharper disable AssignNullToNotNullAttribute
 
    [SuppressMessage("SonarLint.CodeSmell", "S4017: Method signatures should not contain nested generic types")]
    public sealed class TestTypesBuilder : DisposableObject
    {
-      public void BuildTypePairs(Int32 count, out AssemblyName assemblyName, out IList<KeyValuePair<Type, Type>> list)
+       public void BuildTypePairs(int count, out AssemblyName assemblyName, out IList<KeyValuePair<Type, Type>> list)
       {
          var randomName = BuildRandomIdentifierName();
          var asmName = new AssemblyName("DynamicAssemblyForPerformanceTests" + randomName);
@@ -35,7 +35,7 @@
          Dispose(true);
       }
 
-      private String BuildRandomIdentifierName()
+       private string BuildRandomIdentifierName()
       {
          // build a random string based on a GUID.
          var sb = new StringBuilder();
@@ -50,7 +50,7 @@
          return sb.ToString();
       }
 
-      private KeyValuePair<Type, Type> BuildTestKeyValuePair(ModuleBuilder moduleBuilder)
+       private KeyValuePair<Type, Type> BuildTestKeyValuePair(ModuleBuilder moduleBuilder)
       {
          var implementationTypeName = BuildRandomIdentifierName();
          var interfaceTypeName = "I" + implementationTypeName;

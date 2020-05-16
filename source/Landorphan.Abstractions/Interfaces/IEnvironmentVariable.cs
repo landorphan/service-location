@@ -1,26 +1,26 @@
 ﻿namespace Landorphan.Abstractions.Interfaces
 {
-   using System;
+    using System;
 
-   /// <summary>
+    /// <summary>
    /// Represents an environment variable.
    /// </summary>
    public interface IEnvironmentVariable : IEquatable<IEnvironmentVariable>
    {
-      /// <summary>
+       /// <summary>
       /// Gets the name of the environment variable.
       /// </summary>
       /// <value>
       /// The name of the environment variable.
       /// </value>
-      String Name { get; }
+      string Name { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the value of the environment variable.
       /// </summary>
       /// <value>
       /// The value of the environment variable.
       /// </value>
-      String Value { get; }
+      string Value { get; }
    }
 }

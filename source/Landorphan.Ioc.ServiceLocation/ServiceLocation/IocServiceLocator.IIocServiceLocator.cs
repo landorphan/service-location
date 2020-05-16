@@ -1,12 +1,12 @@
 namespace Landorphan.Ioc.ServiceLocation
 {
-   using System;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
+    public sealed partial class IocServiceLocator : IIocServiceLocator, IIocServiceLocatorManager
    {
-      /// <inheritdoc/>
-      Object IServiceProvider.GetService(Type serviceType)
+       /// <inheritdoc/>
+      object IServiceProvider.GetService(Type serviceType)
       {
          if (TryResolve(serviceType, out var instance))
          {
@@ -16,50 +16,50 @@ namespace Landorphan.Ioc.ServiceLocation
          return null;
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       TFrom IIocServiceLocator.Resolve<TFrom>()
       {
          return _ambientContainer.Resolver.Resolve<TFrom>();
       }
 
-      /// <inheritdoc/>
-      TFrom IIocServiceLocator.Resolve<TFrom>(String name)
+       /// <inheritdoc/>
+      TFrom IIocServiceLocator.Resolve<TFrom>(string name)
       {
          return _ambientContainer.Resolver.Resolve<TFrom>(name);
       }
 
-      /// <inheritdoc/>
-      Object IIocServiceLocator.Resolve(Type fromType)
+       /// <inheritdoc/>
+      object IIocServiceLocator.Resolve(Type fromType)
       {
          return _ambientContainer.Resolver.Resolve(fromType);
       }
 
-      /// <inheritdoc/>
-      Object IIocServiceLocator.Resolve(Type fromType, String name)
+       /// <inheritdoc/>
+      object IIocServiceLocator.Resolve(Type fromType, string name)
       {
          return _ambientContainer.Resolver.Resolve(fromType, name);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocServiceLocator.TryResolve<TFrom>(out TFrom instance)
+       /// <inheritdoc/>
+      bool IIocServiceLocator.TryResolve<TFrom>(out TFrom instance)
       {
          return _ambientContainer.Resolver.TryResolve(out instance);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocServiceLocator.TryResolve<TFrom>(String name, out TFrom instance)
+       /// <inheritdoc/>
+      bool IIocServiceLocator.TryResolve<TFrom>(string name, out TFrom instance)
       {
          return _ambientContainer.Resolver.TryResolve(name, out instance);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocServiceLocator.TryResolve(Type fromType, out Object instance)
+       /// <inheritdoc/>
+      bool IIocServiceLocator.TryResolve(Type fromType, out object instance)
       {
          return _ambientContainer.Resolver.TryResolve(fromType, out instance);
       }
 
-      /// <inheritdoc/>
-      Boolean IIocServiceLocator.TryResolve(Type fromType, String name, out Object instance)
+       /// <inheritdoc/>
+      bool IIocServiceLocator.TryResolve(Type fromType, string name, out object instance)
       {
          return _ambientContainer.Resolver.TryResolve(fromType, name, out instance);
       }

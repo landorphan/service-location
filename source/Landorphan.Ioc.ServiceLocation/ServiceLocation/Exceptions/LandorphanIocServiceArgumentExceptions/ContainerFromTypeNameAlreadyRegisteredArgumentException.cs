@@ -1,15 +1,15 @@
 ﻿namespace Landorphan.Ioc.ServiceLocation.Exceptions
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.Runtime.Serialization;
-   using System.Security;
-   using Landorphan.Common;
-   using Landorphan.Ioc.Resources;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.Serialization;
+    using System.Security;
+    using Landorphan.Common;
+    using Landorphan.Ioc.Resources;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   /// <summary>
+    /// <summary>
    /// Exception thrown when a container already has the given abstract or interface type registered with the same name.
    /// </summary>
    /// <remarks>
@@ -18,24 +18,24 @@
    [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
    public sealed class ContainerFromTypeNameAlreadyRegisteredArgumentException : LandorphanIocServiceLocationArgumentException
    {
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException"/> class.
       /// </summary>
       public ContainerFromTypeNameAlreadyRegisteredArgumentException() : this(null, null, null, null, null, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException"/> class.
       /// </summary>
       /// <param name="message">
       /// The error message that explains the reason for the exception.
       /// </param>
-      public ContainerFromTypeNameAlreadyRegisteredArgumentException(String message) : this(null, null, null, null, message, null)
+      public ContainerFromTypeNameAlreadyRegisteredArgumentException(string message) : this(null, null, null, null, message, null)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException"/> class.
       /// </summary>
       /// <param name="message">
@@ -44,11 +44,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public ContainerFromTypeNameAlreadyRegisteredArgumentException(String message, Exception innerException) : this(null, null, null, null, message, innerException)
+      public ContainerFromTypeNameAlreadyRegisteredArgumentException(string message, Exception innerException) : this(null, null, null, null, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException" /> class.
       /// </summary>
       /// <param name="paramName">
@@ -60,11 +60,11 @@
       /// <param name="innerException">
       /// The exception that is the cause of the current exception, or a null reference if no inner exception is specified.
       /// </param>
-      public ContainerFromTypeNameAlreadyRegisteredArgumentException(String paramName, String message, Exception innerException) : this(null, null, null, paramName, message, innerException)
+      public ContainerFromTypeNameAlreadyRegisteredArgumentException(string paramName, string message, Exception innerException) : this(null, null, null, paramName, message, innerException)
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException" /> class.
       /// </summary>
       /// <param name = "container">
@@ -82,7 +82,7 @@
       /// <remarks>
       /// The pair:  <paramref name="registeredType"/> and <paramref name="registeredName"/> represent the key to the registrations database, per container.
       /// </remarks>
-      public ContainerFromTypeNameAlreadyRegisteredArgumentException(IIocContainerMetaIdentity container, Type registeredType, String registeredName, String paramName) : this(
+      public ContainerFromTypeNameAlreadyRegisteredArgumentException(IIocContainerMetaIdentity container, Type registeredType, string registeredName, string paramName) : this(
          container,
          registeredType,
          registeredName,
@@ -92,7 +92,7 @@
       {
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException" /> class.
       /// </summary>
       /// <param name = "container">
@@ -117,9 +117,9 @@
       public ContainerFromTypeNameAlreadyRegisteredArgumentException(
          IIocContainerMetaIdentity container,
          Type registeredType,
-         String registeredName,
-         String paramName,
-         String message,
+         string registeredName,
+         string paramName,
+         string message,
          Exception innerException)
          : base(paramName, NullToDefaultMessage(container, registeredType, registeredName, paramName, message), innerException)
       {
@@ -128,7 +128,7 @@
          RegisteredType = registeredType;
       }
 
-      /// <summary>
+       /// <summary>
       /// Initializes a new instance of the <see cref="ContainerFromTypeNameAlreadyRegisteredArgumentException"/> class.
       /// </summary>
       /// <param name="info">
@@ -141,11 +141,11 @@
       private ContainerFromTypeNameAlreadyRegisteredArgumentException(SerializationInfo info, StreamingContext context) : base(info, context)
       {
          Container = (IIocContainerMetaIdentity)info.GetValue("container", typeof(IIocContainerMetaIdentity));
-         RegisteredName = (String)info.GetValue("registeredName", typeof(String));
+         RegisteredName = (string)info.GetValue("registeredName", typeof(string));
          RegisteredType = (Type)info.GetValue("registeredType", typeof(Type));
       }
 
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       [SecurityCritical]
       public override void GetObjectData(SerializationInfo info, StreamingContext context)
       {
@@ -157,22 +157,22 @@
          base.GetObjectData(info, context);
       }
 
-      /// <summary>
+       /// <summary>
       /// Gets the container that gave rise to this exception.
       /// </summary>
       public IIocContainerMetaIdentity Container { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the registered name that gave rise to this exception.
       /// </summary>
-      public String RegisteredName { get; }
+      public string RegisteredName { get; }
 
-      /// <summary>
+       /// <summary>
       /// Gets the registered type that gave rise to this exception.
       /// </summary>
       public Type RegisteredType { get; }
 
-      private static String NullToDefaultMessage(IIocContainerMetaIdentity container, Type registeredType, String registeredName, String paramName, String message)
+       private static string NullToDefaultMessage(IIocContainerMetaIdentity container, Type registeredType, string registeredName, string paramName, string message)
       {
          var cleanedContainerUid = StringResources.NullReplacementValue;
          var cleanedContainerName = StringResources.NullReplacementValue;
@@ -188,10 +188,10 @@
 
          var paramNameSuffix = cleanedParamName.Length == 0
             ? StringResources.ArgumentExceptionNoParamNameSuffix
-            : String.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
+            : string.Format(CultureInfo.InvariantCulture, StringResources.ArgumentExceptionWithParamNameSuffixFmt, paramName);
 
          var rv = message ??
-                  String.Format(
+                  string.Format(
                      CultureInfo.InvariantCulture,
                      StringResources.ContainerTypeNameAlreadyRegisteredArgumentExceptionFmt,
                      cleanedContainerUid,

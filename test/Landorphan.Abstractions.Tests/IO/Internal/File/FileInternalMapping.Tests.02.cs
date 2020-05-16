@@ -1,27 +1,27 @@
 ﻿namespace Landorphan.Abstractions.Tests.IO.Internal.File
 {
-   using System;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Globalization;
-   using System.IO;
-   using System.Linq;
-   using FluentAssertions;
-   using Landorphan.Abstractions.IO.Internal;
-   using Landorphan.Abstractions.Tests.TestFacilities;
-   using Landorphan.TestUtilities;
-   using Landorphan.TestUtilities.TestFacilities;
-   using Landorphan.TestUtilities.TestFilters;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using FluentAssertions;
+    using Landorphan.Abstractions.IO.Internal;
+    using Landorphan.Abstractions.Tests.TestFacilities;
+    using Landorphan.TestUtilities;
+    using Landorphan.TestUtilities.TestFacilities;
+    using Landorphan.TestUtilities.TestFilters;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
    // ReSharper disable StringLiteralTypo
 
    public static partial class FileInternalMapping_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_call_FileInternalMapping_CreateFile : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file()
          {
@@ -182,7 +182,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -194,7 +194,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -229,7 +229,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -283,7 +283,7 @@
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
             // directory path issue
-            var dirNameTooLong = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var dirNameTooLong = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var dirNameTooLongAndFileName = dirNameTooLong + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".TMP";
 
             Action throwingAction = () => _target.CreateFile(dirNameTooLongAndFileName);
@@ -293,7 +293,7 @@
 
             // combined directory path + file name issue
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-            var fileNameTooLong = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var fileNameTooLong = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             throwingAction = () => _target.CreateFile(fileNameTooLong);
             e = throwingAction.Should().Throw<PathTooLongException>();
@@ -306,7 +306,7 @@
          [SuppressMessage("SonarLint.CodeSmell", "S4144: Methods should not have identical implementations")]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -332,7 +332,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.CreateFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -363,7 +363,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_CreateTemporaryFile : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void It_should_create_a_file_in_the_temp_directory()
          {
@@ -383,7 +383,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_CreateText : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_more_than_one_directory_in_the_path_does_not_exist_It_should_create_the_file()
          {
@@ -544,7 +544,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.CreateText(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -556,7 +556,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.CreateText(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -591,7 +591,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_is_on_an_unknown_network_name_host_It_should_throw_DirectoryNotFoundException()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}\{2}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),
@@ -645,7 +645,7 @@
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
             // directory path issue
-            var dirNameTooLong = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var dirNameTooLong = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
             var dirNameTooLongAndFileName = dirNameTooLong + _pathUtilities.DirectorySeparatorCharacter + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".TMP";
 
             Action throwingAction = () => _target.CreateText(dirNameTooLongAndFileName);
@@ -655,7 +655,7 @@
 
             // combined directory path + file name issue
             _tempPath.Last().Should().Be(_pathUtilities.DirectorySeparatorCharacter);
-            var fileNameTooLong = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var fileNameTooLong = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             throwingAction = () => _target.CreateText(fileNameTooLong);
             e = throwingAction.Should().Throw<PathTooLongException>();
@@ -668,7 +668,7 @@
          [SuppressMessage("SonarLint.CodeSmell", "S4144: Methods should not have identical implementations")]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.CreateText(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -694,7 +694,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.CreateText(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -725,7 +725,7 @@
       [TestClass]
       public class When_I_call_FileInternalMapping_DeleteFile : TestBase
       {
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          [RunTestOnlyOnWindows]
          public void And_the_path_contains_a_colon_character_that_is_not_part_of_the_drive_label_It_should_throw_ArgumentException()
@@ -804,7 +804,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_empty_It_should_throw_ArgumentException()
          {
-            var path = String.Empty;
+            var path = string.Empty;
 
             Action throwingAction = () => _target.DeleteFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -816,7 +816,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_null_It_should_throw_ArgumentNullException()
          {
-            const String path = null;
+            const string path = null;
 
             Action throwingAction = () => _target.DeleteFile(path);
             var e = throwingAction.Should().Throw<ArgumentNullException>();
@@ -843,7 +843,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_too_long_It_should_throw_PathTooLongException()
          {
-            var path = _tempPath + new String('A', TestHardCodes.PathAlwaysTooLong);
+            var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
             //_target.DeleteFile(path);
             Action throwingAction = () => _target.DeleteFile(path);
@@ -856,7 +856,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_is_white_space_It_should_throw_ArgumentException()
          {
-            const String path = " \t ";
+            const string path = " \t ";
 
             Action throwingAction = () => _target.DeleteFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -886,7 +886,7 @@
          [RunTestOnlyOnWindows]
          public void And_the_path_starts_with_a_colon_It_should_throw_ArgumentException()
          {
-            const String path = ":";
+            const string path = ":";
 
             Action throwingAction = () => _target.DeleteFile(path);
             var e = throwingAction.Should().Throw<ArgumentException>();
@@ -898,7 +898,7 @@
          [TestCategory(TestTiming.CheckIn)]
          public void And_the_path_uses_an_unknown_network_name_host_It_should_not_throw()
          {
-            var path = String.Format(
+            var path = string.Format(
                CultureInfo.InvariantCulture,
                @"\\{0}\{1}",
                Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture),

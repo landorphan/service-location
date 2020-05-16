@@ -1,69 +1,69 @@
 namespace Landorphan.Abstractions.IO.Interfaces
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.IO;
-   using System.Security;
+    using System;
+    using System.Collections.Immutable;
+    using System.IO;
+    using System.Security;
 
-   /// <summary>
+    /// <summary>
    /// Performs operations on <see cref="string"/> instances that contain file or directory path information. These operations
    /// are performed in a cross-platform manner.
    /// </summary>
    public interface IPathUtilities
    {
-      /// <summary>
+       /// <summary>
       /// Provides a platform-specific alternate character used to separate directory levels in a path string that reflects a hierarchical
       /// file system organization.
       /// </summary>
       /// <value>
       /// The alternate directory separator character.
       /// </value>
-      Char AltDirectorySeparatorCharacter { get; }
+      char AltDirectorySeparatorCharacter { get; }
 
-      /// <summary>
+       /// <summary>
       /// Provides the platform-specific alternate directory separator as a string to simplify casting
       /// issues.
       /// </summary>
       /// <value>
       /// The alternate directory separator as a string.
       /// </value>
-      String AltDirectorySeparatorString { get; }
+      string AltDirectorySeparatorString { get; }
 
-      /// <summary>
+       /// <summary>
       /// Provides a platform-specific character used to separate directory levels in a path string that reflects a hierarchical file system
       /// organization.
       /// </summary>
       /// <value>
       /// The directory separator character.
       /// </value>
-      Char DirectorySeparatorCharacter { get; }
+      char DirectorySeparatorCharacter { get; }
 
-      /// <summary>
+       /// <summary>
       /// Provides the platform-specific directory separator as a string to simplify casting
       /// issues.
       /// </summary>
       /// <value>
       /// The directory separator as a string.
       /// </value>
-      String DirectorySeparatorString { get; }
+      string DirectorySeparatorString { get; }
 
-      /// <summary>
+       /// <summary>
       /// A platform-specific separator character used to separate path strings in environment variables.
       /// </summary>
       /// <value>
       /// The path separator.
       /// </value>
-      Char PathSeparatorCharacter { get; }
+      char PathSeparatorCharacter { get; }
 
-      /// <summary>
+       /// <summary>
       /// Provides a platform-specific volume separator character.
       /// </summary>
       /// <value>
       /// The volume separator character.
       /// </value>
-      Char VolumeSeparatorCharacter { get; }
+      char VolumeSeparatorCharacter { get; }
 
-      /// <summary>
+       /// <summary>
       /// Changes the extension of a path string.
       /// </summary>
       /// <param name="path">
@@ -84,9 +84,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      String ChangeExtension(String path, String extension);
+      string ChangeExtension(string path, string extension);
 
-      /// <summary>
+       /// <summary>
       /// Combines an array of strings into a path.
       /// </summary>
       /// <param name="paths">
@@ -102,9 +102,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// One of the strings in the array contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      String Combine(params String[] paths);
+      string Combine(params string[] paths);
 
-      /// <summary>
+       /// <summary>
       /// Returns the extension of the specified path string.
       /// </summary>
       /// <param name="path">
@@ -120,9 +120,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      String GetExtension(String path);
+      string GetExtension(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the file name and extension of the specified path string.
       /// </summary>
       /// <param name="path">
@@ -138,9 +138,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      String GetFileName(String path);
+      string GetFileName(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the file name of the specified path string without the extension.
       /// </summary>
       /// <param name="path">
@@ -154,9 +154,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      String GetFileNameWithoutExtension(String path);
+      string GetFileNameWithoutExtension(string path);
 
-      /// <summary>
+       /// <summary>
       /// Returns the absolute path for the specified path string.
       /// </summary>
       /// <paramref name="path"/> contains a colon (":") that is not part of a volume identifier (for
@@ -187,25 +187,25 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// </exception>
       /// <exception cref="NotSupportedException">
       /// </exception>
-      String GetFullPath(String path);
+      string GetFullPath(string path);
 
-      /// <summary>
+       /// <summary>
       /// Gets an array containing the characters that are not allowed in file names.
       /// </summary>
       /// <returns>
       /// A set of characters that are not allowed in file names.
       /// </returns>
-      IImmutableSet<Char> GetInvalidFileNameCharacters();
+      IImmutableSet<char> GetInvalidFileNameCharacters();
 
-      /// <summary>
+       /// <summary>
       /// Gets an array containing the characters that are not allowed in path names.
       /// </summary>
       /// <returns>
       /// A set of characters that are not allowed in path names.
       /// </returns>
-      IImmutableSet<Char> GetInvalidPathCharacters();
+      IImmutableSet<char> GetInvalidPathCharacters();
 
-      /// <summary>
+       /// <summary>
       /// Returns the parent path for the specified path string.
       /// </summary>
       /// <param name="path">
@@ -236,9 +236,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <exception cref="PathTooLongException">
       /// The <paramref name="path"/> parameter is longer than the system-defined maximum length.
       /// </exception>
-      String GetParentPath(String path);
+      string GetParentPath(string path);
 
-      /// <summary>
+       /// <summary>
       /// Gets the root directory information of the specified path.
       /// </summary>
       /// <param name="path">
@@ -259,9 +259,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// -or-
       /// <see cref="String.Empty"/> was passed to <paramref name="path"/>.
       /// </exception>
-      String GetRootPath(String path);
+      string GetRootPath(string path);
 
-      /// <summary>
+       /// <summary>
       /// Determines whether a path includes a file name extension.
       /// </summary>
       /// <param name="path">
@@ -275,9 +275,9 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      Boolean HasExtension(String path);
+      bool HasExtension(string path);
 
-      /// <summary>
+       /// <summary>
       /// Gets a value indicating whether the specified path string is a relative path.  
       /// </summary>
       /// <param name="path">
@@ -290,6 +290,6 @@ namespace Landorphan.Abstractions.IO.Interfaces
       /// <paramref name="path"/> contains one or more of the invalid characters defined in
       /// <see cref="GetInvalidPathCharacters"/>.
       /// </exception>
-      Boolean IsPathRelative(String path);
+      bool IsPathRelative(string path);
    }
 }

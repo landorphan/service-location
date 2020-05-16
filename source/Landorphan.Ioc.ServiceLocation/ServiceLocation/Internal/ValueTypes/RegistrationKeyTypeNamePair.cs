@@ -24,8 +24,8 @@
       /// </summary>
       public static readonly RegistrationKeyTypeNamePair Empty = new RegistrationKeyTypeNamePair();
 
-      private readonly Boolean _isDefaultRegistration;
-      private readonly String _registeredName;
+      private readonly bool _isDefaultRegistration;
+      private readonly string _registeredName;
       private readonly Type _registeredType;
 
       /// <inheritdoc/>
@@ -42,7 +42,7 @@
       /// <param name="registeredName">
       /// A name for associated with the registration.
       /// </param>
-      public RegistrationKeyTypeNamePair(Type registeredType, String registeredName)
+      public RegistrationKeyTypeNamePair(Type registeredType, string registeredName)
       {
          registeredType.ArgumentNotNull(nameof(registeredType));
          if (registeredType.ContainsGenericParameters)
@@ -74,29 +74,29 @@
       }
 
       /// <inheritdoc/>
-      public Object Clone()
+      public object Clone()
       {
          return new RegistrationKeyTypeNamePair(this);
       }
 
       /// <inheritdoc/>
-      public Boolean IsDefaultRegistration => _isDefaultRegistration;
+      public bool IsDefaultRegistration => _isDefaultRegistration;
 
       /// <inheritdoc/>
-      public String RegisteredName => _registeredName;
+      public string RegisteredName => _registeredName;
 
       /// <inheritdoc/>
 
       public Type RegisteredType => _registeredType;
 
       /// <inheritdoc/>
-      public Boolean IsEmpty => RegisteredType == null && RegisteredName.TrimNullToEmpty().Length == 0;
+      public bool IsEmpty => RegisteredType == null && RegisteredName.TrimNullToEmpty().Length == 0;
 
       /// <inheritdoc/>
-      public Boolean IsReadOnly => true;
+      public bool IsReadOnly => true;
 
       /// <inheritdoc/>
-      Int32 IComparable.CompareTo(Object obj)
+      int IComparable.CompareTo(object obj)
       {
          if (ReferenceEquals(obj, null))
          {
@@ -113,23 +113,23 @@
       }
 
       /// <inheritdoc/>
-      public Int32 CompareTo(RegistrationKeyTypeNamePair other)
+      public int CompareTo(RegistrationKeyTypeNamePair other)
       {
-         var thisRegisteredTypeFullName = RegisteredType == null ? String.Empty : RegisteredType.FullName;
-         var otherRegisteredTypeFullName = other.RegisteredType == null ? String.Empty : other.RegisteredType.FullName;
-         var rv = String.Compare(thisRegisteredTypeFullName, otherRegisteredTypeFullName, StringComparison.Ordinal);
+         var thisRegisteredTypeFullName = RegisteredType == null ? string.Empty : RegisteredType.FullName;
+         var otherRegisteredTypeFullName = other.RegisteredType == null ? string.Empty : other.RegisteredType.FullName;
+         var rv = string.Compare(thisRegisteredTypeFullName, otherRegisteredTypeFullName, StringComparison.Ordinal);
          if (0 == rv)
          {
-            var thisRegisteredName = RegisteredName ?? String.Empty;
-            var otherRegisteredName = other.RegisteredName ?? String.Empty;
-            rv = String.Compare(thisRegisteredName, otherRegisteredName, StringComparison.Ordinal);
+            var thisRegisteredName = RegisteredName ?? string.Empty;
+            var otherRegisteredName = other.RegisteredName ?? string.Empty;
+            rv = string.Compare(thisRegisteredName, otherRegisteredName, StringComparison.Ordinal);
          }
 
          return rv;
       }
 
       /// <inheritdoc/>
-      public Int32 CompareTo(IRegistrationKey other)
+      public int CompareTo(IRegistrationKey other)
       {
          if (other == null)
          {
@@ -137,41 +137,41 @@
             return 1;
          }
 
-         var thisRegisteredTypeFullName = RegisteredType == null ? String.Empty : RegisteredType.FullName;
-         var otherRegisteredTypeFullName = other.RegisteredType == null ? String.Empty : other.RegisteredType.FullName;
-         var rv = String.Compare(thisRegisteredTypeFullName, otherRegisteredTypeFullName, StringComparison.Ordinal);
+         var thisRegisteredTypeFullName = RegisteredType == null ? string.Empty : RegisteredType.FullName;
+         var otherRegisteredTypeFullName = other.RegisteredType == null ? string.Empty : other.RegisteredType.FullName;
+         var rv = string.Compare(thisRegisteredTypeFullName, otherRegisteredTypeFullName, StringComparison.Ordinal);
          if (0 == rv)
          {
-            var thisRegisteredName = RegisteredName ?? String.Empty;
-            var otherRegisteredName = other.RegisteredName ?? String.Empty;
-            rv = String.Compare(thisRegisteredName, otherRegisteredName, StringComparison.Ordinal);
+            var thisRegisteredName = RegisteredName ?? string.Empty;
+            var otherRegisteredName = other.RegisteredName ?? string.Empty;
+            rv = string.Compare(thisRegisteredName, otherRegisteredName, StringComparison.Ordinal);
          }
 
          return rv;
       }
 
       /// <inheritdoc/>
-      public override Boolean Equals(Object obj)
+      public override bool Equals(object obj)
       {
          return Equals(obj as IRegistrationKey);
       }
 
       /// <inheritdoc/>
-      public Boolean Equals(RegistrationKeyTypeNamePair other)
+      public bool Equals(RegistrationKeyTypeNamePair other)
       {
          return RegisteredType == other.RegisteredType &&
-                String.Equals(RegisteredName, other.RegisteredName, StringComparison.Ordinal);
+                string.Equals(RegisteredName, other.RegisteredName, StringComparison.Ordinal);
       }
 
       /// <inheritdoc/>
-      public Boolean Equals(IRegistrationKey other)
+      public bool Equals(IRegistrationKey other)
       {
-         return other != null && RegisteredType == other.RegisteredType && String.Equals(RegisteredName, other.RegisteredName, StringComparison.Ordinal);
+         return other != null && RegisteredType == other.RegisteredType && string.Equals(RegisteredName, other.RegisteredName, StringComparison.Ordinal);
       }
 
       /// <inheritdoc/>
       [SuppressMessage("Microsoft.Globalization", "CA1307: Specify StringComparison", Justification = "Not available in .Net Standard or .Net Framework")]
-      public override Int32 GetHashCode()
+      public override int GetHashCode()
       {
          unchecked
          {
@@ -192,7 +192,7 @@
       /// <returns>
       /// <c>true</c> when the instances are equal, otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator ==(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
+      public static bool operator ==(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
       {
          return left.Equals(right);
       }
@@ -209,7 +209,7 @@
       /// <returns>
       /// <c>true</c> when the instances are not equal, otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator ==(RegistrationKeyTypeNamePair left, IRegistrationKey right)
+      public static bool operator ==(RegistrationKeyTypeNamePair left, IRegistrationKey right)
       {
          return left.Equals(right);
       }
@@ -226,7 +226,7 @@
       /// <returns>
       /// <c>true</c> when the instances are not equal, otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator ==(IRegistrationKey left, RegistrationKeyTypeNamePair right)
+      public static bool operator ==(IRegistrationKey left, RegistrationKeyTypeNamePair right)
       {
          if (left == null)
          {
@@ -249,7 +249,7 @@
       /// <returns>
       /// <c>true</c> when the instances are not equal, otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator !=(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
+      public static bool operator !=(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
       {
          return !left.Equals(right);
       }
@@ -266,7 +266,7 @@
       /// <returns>
       /// <c>true</c> when the instances are not equal, otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator !=(RegistrationKeyTypeNamePair left, IRegistrationKey right)
+      public static bool operator !=(RegistrationKeyTypeNamePair left, IRegistrationKey right)
       {
          return !left.Equals(right);
       }
@@ -283,7 +283,7 @@
       /// <returns>
       /// <c>true</c> when the instances are not equal, otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator !=(IRegistrationKey left, RegistrationKeyTypeNamePair right)
+      public static bool operator !=(IRegistrationKey left, RegistrationKeyTypeNamePair right)
       {
          if (left == null)
          {
@@ -306,7 +306,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is less-than <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator <(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
+      public static bool operator <(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
       {
          return left.CompareTo(right) < 0;
       }
@@ -323,7 +323,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is less-than <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator <(RegistrationKeyTypeNamePair left, IRegistrationKey right)
+      public static bool operator <(RegistrationKeyTypeNamePair left, IRegistrationKey right)
       {
          return left.CompareTo(right) < 0;
       }
@@ -340,7 +340,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is less-than <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator <(IRegistrationKey left, RegistrationKeyTypeNamePair right)
+      public static bool operator <(IRegistrationKey left, RegistrationKeyTypeNamePair right)
       {
          if (left == null)
          {
@@ -363,7 +363,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is Less-than-or-equal-to <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator <=(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
+      public static bool operator <=(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
       {
          return left.CompareTo(right) <= 0;
       }
@@ -380,7 +380,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is Less-than-or-equal-to <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator <=(RegistrationKeyTypeNamePair left, IRegistrationKey right)
+      public static bool operator <=(RegistrationKeyTypeNamePair left, IRegistrationKey right)
       {
          return left.CompareTo(right) <= 0;
       }
@@ -397,7 +397,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is Less-than-or-equal-to <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator <=(IRegistrationKey left, RegistrationKeyTypeNamePair right)
+      public static bool operator <=(IRegistrationKey left, RegistrationKeyTypeNamePair right)
       {
          if (left == null)
          {
@@ -420,7 +420,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is greater-than <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator >(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
+      public static bool operator >(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
       {
          return left.CompareTo(right) > 0;
       }
@@ -437,7 +437,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is greater-than <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator >(RegistrationKeyTypeNamePair left, IRegistrationKey right)
+      public static bool operator >(RegistrationKeyTypeNamePair left, IRegistrationKey right)
       {
          return left.CompareTo(right) > 0;
       }
@@ -454,7 +454,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is greater-than <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator >(IRegistrationKey left, RegistrationKeyTypeNamePair right)
+      public static bool operator >(IRegistrationKey left, RegistrationKeyTypeNamePair right)
       {
          if (left == null)
          {
@@ -477,7 +477,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is Greater-than-or-equal-to <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator >=(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
+      public static bool operator >=(RegistrationKeyTypeNamePair left, RegistrationKeyTypeNamePair right)
       {
          return left.CompareTo(right) >= 0;
       }
@@ -494,7 +494,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is Greater-than-or-equal-to <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator >=(RegistrationKeyTypeNamePair left, IRegistrationKey right)
+      public static bool operator >=(RegistrationKeyTypeNamePair left, IRegistrationKey right)
       {
          return left.CompareTo(right) >= 0;
       }
@@ -511,7 +511,7 @@
       /// <returns>
       /// <c>true</c> when the <paramref name="left"/> is Greater-than-or-equal-to <paramref name="right"/> , otherwise <c>false</c>.
       /// </returns>
-      public static Boolean operator >=(IRegistrationKey left, RegistrationKeyTypeNamePair right)
+      public static bool operator >=(IRegistrationKey left, RegistrationKeyTypeNamePair right)
       {
          if (left == null)
          {

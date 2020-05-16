@@ -1,46 +1,46 @@
 ﻿namespace Ioc.Collections.Performance.Tests
 {
-   using System;
-   using System.Collections.Immutable;
-   using System.Diagnostics;
-   using System.Diagnostics.CodeAnalysis;
-   using System.Reflection;
-   using Landorphan.Common;
-   using Landorphan.Common.Threading;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
+    using System;
+    using System.Collections.Immutable;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Landorphan.Common;
+    using Landorphan.Common.Threading;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
 
-   // ReSharper disable IdentifierTypo
+    // ReSharper disable IdentifierTypo
 
    [SuppressMessage("SonarLint.CodeSmell", "S3459: Unassigned members should be removed")]
    [SuppressMessage("SonarLint.CodeSmell", "S3052: Members should not be initialized to default values")]
    [SuppressMessage("SonarLint.CodeSmell", "S1200: Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
    public sealed class ImmutableDictionaryTarget : DisposableObject, IRegistrationTarget
    {
-      // this class mimics the implementation of IocContainer so as to allow for performance testing.
-      private readonly IocContainerConfiguration _configuration;
-      private readonly ImmutableDictionaryTarget _parent = null;
-      private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
-      private readonly Stopwatch _swPrecludedTypeAdd;
-      private readonly Stopwatch _swPrecludedTypeRemove;
-      private readonly Stopwatch _swRegister;
-      private readonly Stopwatch _swRegisterValidation;
-      private readonly Stopwatch _swRegistrationOverwrite;
-      private readonly Stopwatch _swResolve;
-      private readonly Stopwatch _swResolveOverwrite;
-      private readonly Stopwatch _swResolveValidation;
-      private readonly Stopwatch _swUnregister;
-      private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
-      private Int32 _registrationOverwriteCount;
-      private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
+       // this class mimics the implementation of IocContainer so as to allow for performance testing.
+       private readonly IocContainerConfiguration _configuration;
+       private readonly ImmutableDictionaryTarget _parent = null;
+       private readonly NonRecursiveLock _registrationsLock = new NonRecursiveLock();
+       private readonly Stopwatch _swPrecludedTypeAdd;
+       private readonly Stopwatch _swPrecludedTypeRemove;
+       private readonly Stopwatch _swRegister;
+       private readonly Stopwatch _swRegisterValidation;
+       private readonly Stopwatch _swRegistrationOverwrite;
+       private readonly Stopwatch _swResolve;
+       private readonly Stopwatch _swResolveOverwrite;
+       private readonly Stopwatch _swResolveValidation;
+       private readonly Stopwatch _swUnregister;
+       private IImmutableSet<Type> _precludedTypes = ImmutableHashSet<Type>.Empty;
+       private int _registrationOverwriteCount;
+       private IImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair> _registrations =
          ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>.Empty;
-      private Int32 _registrationTotalCount;
-      private Int32 _resolutionNewInstancesCount;
-      private Int32 _resolutionTotalCount;
-      private Int32 _unregistrationTotalCount;
+       private int _registrationTotalCount;
+       private int _resolutionNewInstancesCount;
+       private int _resolutionTotalCount;
+       private int _unregistrationTotalCount;
 
-      public ImmutableDictionaryTarget(Boolean allowNamedImplementations, Boolean allowPreclusionOfTypes, Boolean throwOnRegistrationCollision)
+       public ImmutableDictionaryTarget(bool allowNamedImplementations, bool allowPreclusionOfTypes, bool throwOnRegistrationCollision)
       {
          var configuration = new IocContainerConfiguration((IIocContainerMetaIdentity)this)
          {
@@ -62,44 +62,44 @@
          _swUnregister = new Stopwatch();
       }
 
-      public Object Clone()
+       public object Clone()
       {
          throw new NotSupportedException();
       }
 
-      public event EventHandler<EventArgs> ConfigurationChanged
+       public event EventHandler<EventArgs> ConfigurationChanged
       {
          add => throw new NotSupportedException();
          remove => throw new NotSupportedException();
       }
 
-      public Boolean AllowNamedImplementations
+       public bool AllowNamedImplementations
       {
          get => _configuration.AllowNamedImplementations;
          set => throw new NotSupportedException();
       }
 
-      public Boolean AllowPreclusionOfTypes
+       public bool AllowPreclusionOfTypes
       {
          get => _configuration.AllowPreclusionOfTypes;
          set => throw new NotSupportedException();
       }
 
-      public IIocContainerMetaIdentity Container => this;
+       public IIocContainerMetaIdentity Container => this;
 
-      public Boolean IsReadOnly => false;
+       public bool IsReadOnly => false;
 
-      public String Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
+       public string Name => "Performance Test: ImmutableDictionary<RegistrationKeyTypeNamePair, RegistrationValueTypeInstancePair>";
 
-      public Boolean ThrowOnRegistrationCollision
+       public bool ThrowOnRegistrationCollision
       {
          get => _configuration.ThrowOnRegistrationCollision;
          set => throw new NotSupportedException();
       }
 
-      public Guid Uid { get; } = Guid.NewGuid();
+       public Guid Uid { get; } = Guid.NewGuid();
 
-      public Boolean AddPrecludedType(Type precludedType)
+       public bool AddPrecludedType(Type precludedType)
       {
          try
          {
@@ -126,16 +126,16 @@
          }
       }
 
-      [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
+       [SuppressMessage("SonarLint.CodeSmell", "S3877: Exceptions should not be thrown from unexpected methods")]
       [SuppressMessage("Microsoft.Design", "CA1065: Do not raise exceptions in unexpected locations", Justification = "Reviewed (MWP)")]
-      public Boolean Equals(IIocContainerConfiguration other)
+      public bool Equals(IIocContainerConfiguration other)
       {
          throw new NotSupportedException();
       }
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegistrationOverwrite")]
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetRegistrationOverwriteStats(out TimeSpan registrationOverwriteTime, out Int32 registrationOverwriteCount)
+      public void GetRegistrationOverwriteStats(out TimeSpan registrationOverwriteTime, out int registrationOverwriteCount)
       {
          if (_swRegistrationOverwrite.IsRunning)
          {
@@ -148,7 +148,7 @@
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swRegister")]
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out Int32 registrationTotalCount)
+      public void GetRegistrationTotalStats(out TimeSpan registrationTotalTime, out int registrationTotalCount)
       {
          if (_swRegister.IsRunning)
          {
@@ -173,7 +173,7 @@
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swResolveOverwrite")]
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetResolutionOverwriteStats(out TimeSpan resolutionOverwriteTime, out Int32 resolutionNewInstancesCount)
+      public void GetResolutionOverwriteStats(out TimeSpan resolutionOverwriteTime, out int resolutionNewInstancesCount)
       {
          if (_swResolveOverwrite.IsRunning)
          {
@@ -186,7 +186,7 @@
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swResolve")]
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetResolutionTotalStats(out TimeSpan resolutionTotalTime, out Int32 resolutionTotalCount)
+      public void GetResolutionTotalStats(out TimeSpan resolutionTotalTime, out int resolutionTotalCount)
       {
          if (_swResolve.IsRunning)
          {
@@ -211,7 +211,7 @@
 
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "swUnregister")]
       [SuppressMessage("Microsoft.Naming", "CA2204:Literals should be spelled correctly", MessageId = "IsRunning")]
-      public void GetUnregistrationStats(out TimeSpan unregistrationTotalTime, out Int32 unregistrationTotalCount)
+      public void GetUnregistrationStats(out TimeSpan unregistrationTotalTime, out int unregistrationTotalCount)
       {
          if (_swUnregister.IsRunning)
          {
@@ -226,9 +226,9 @@
       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-      public Boolean RegisterImplementationImplementation(Type fromType, String fromTypeParameterName, String name, Type toType, String toTypeParameterName, Boolean tryLogic)
+      public bool RegisterImplementationImplementation(Type fromType, string fromTypeParameterName, string name, Type toType, string toTypeParameterName, bool tryLogic)
       {
-         String cleanedName;
+         string cleanedName;
          try
          {
             _registrationTotalCount++;
@@ -420,9 +420,9 @@
       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-      public Boolean RegisterInstanceImplementation(Type fromType, String fromTypeParameterName, String name, Object instance, String instanceParameterName, Boolean tryLogic)
+      public bool RegisterInstanceImplementation(Type fromType, string fromTypeParameterName, string name, object instance, string instanceParameterName, bool tryLogic)
       {
-         String cleanedName;
+         string cleanedName;
          try
          {
             _registrationTotalCount++;
@@ -577,7 +577,7 @@
          }
       }
 
-      public Boolean RemovePrecludedType(Type precludedType)
+      public bool RemovePrecludedType(Type precludedType)
       {
          try
          {
@@ -598,10 +598,10 @@
       [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
       [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
       [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
-      public Boolean ResolveImplementation(Type fromType, String fromTypeParameterName, String name, Boolean tryLogic, out Object instance)
+      public bool ResolveImplementation(Type fromType, string fromTypeParameterName, string name, bool tryLogic, out object instance)
       {
          instance = null;
-         String cleanedName;
+         string cleanedName;
          try
          {
             _resolutionTotalCount++;
@@ -732,7 +732,7 @@
          }
       }
 
-      public Boolean UnregisterImplementation(Type fromType, String name)
+      public bool UnregisterImplementation(Type fromType, string name)
       {
          try
          {
@@ -749,7 +749,7 @@
                return false;
             }
 
-            Boolean rv;
+            bool rv;
             var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
             using (_registrationsLock.EnterWriteLock())
             {

@@ -1,34 +1,34 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation
 {
-   using System;
-   using System.Collections.Generic;
-   using System.Globalization;
-   using FluentAssertions;
-   using Landorphan.Common;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Exceptions;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using FluentAssertions;
+    using Landorphan.Common;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Exceptions;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
    // IocServiceLocator.TryResolve<>()
    // IocServiceLocator.TryResolve()
 
    public static class IocServiceLocator_Static_Tests
    {
-      [TestClass]
+       [TestClass]
       public class When_I_have_an_IocServiceLocator : ArrangeActAssert
       {
-         private readonly String nonUniqueName = "Registered Name";
-         private IIocContainer childContainer;
-         private IMyService registeredInChildDefault;
-         private IMyService registeredInChildNamed;
-         private IMyService registeredInRootDefault;
-         private IMyService registeredInRootNamed;
+          private readonly string nonUniqueName = "Registered Name";
+          private IIocContainer childContainer;
+          private IMyService registeredInChildDefault;
+          private IMyService registeredInChildNamed;
+          private IMyService registeredInRootDefault;
+          private IMyService registeredInRootNamed;
 
-         protected override void TeardownTestMethod()
+          protected override void TeardownTestMethod()
          {
             IocServiceLocator.Instance.Manager.RootContainer.Registrar.Unregister<IMyService>();
             IocServiceLocator.Instance.Manager.RootContainer.Registrar.Unregister<IMyService>(nonUniqueName);
@@ -38,7 +38,7 @@
             base.TeardownTestMethod();
          }
 
-         protected override void ArrangeMethod()
+          protected override void ArrangeMethod()
          {
             registeredInRootDefault = new MyService("Registered In Root Default");
             registeredInRootNamed = new MyService("Registered In Root Named");
@@ -56,7 +56,7 @@
             IocServiceLocator.Instance.Manager.RootContainer.Manager.AddPrecludedType(typeof(IPrecludedService));
          }
 
-         [TestMethod]
+          [TestMethod]
          [TestCategory(TestTiming.CheckIn)]
          public void And_call_Resolve_static_It_should_resolve_a_registered_type_name()
          {
@@ -313,32 +313,29 @@
       }
 
       private class ConcreteClass
-      {
-      }
+      {}
 
       private interface IMyService
       {
-         String GeName();
+          string GeName();
       }
 
       private interface IPrecludedService
-      {
-      }
+      {}
 
       private interface IUnregisteredService
-      {
-      }
+      {}
 
       private class MyService : IMyService
       {
-         private readonly String _name;
+          private readonly string _name;
 
-         public MyService(String name)
+          public MyService(string name)
          {
             _name = name.TrimNullToEmpty();
          }
 
-         public String GeName()
+          public string GeName()
          {
             return _name;
          }

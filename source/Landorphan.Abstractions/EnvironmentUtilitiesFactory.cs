@@ -1,14 +1,14 @@
 ﻿namespace Landorphan.Abstractions
 {
-   using Landorphan.Abstractions.Interfaces;
-   using Landorphan.Abstractions.Internal;
+    using Landorphan.Abstractions.Interfaces;
+    using Landorphan.Abstractions.Internal;
 
-   /// <summary>
+    /// <summary>
    /// Factory for instantiating <see cref="IEnvironmentUtilities"/> instances.
    /// </summary>
    public sealed class EnvironmentUtilitiesFactory : IEnvironmentUtilitiesFactory
    {
-      /// <inheritdoc/>
+       /// <inheritdoc/>
       public IEnvironmentUtilities Create()
       {
          return new EnvironmentInternalMapping();

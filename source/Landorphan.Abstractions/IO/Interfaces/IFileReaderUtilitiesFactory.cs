@@ -5,7 +5,7 @@
    /// </summary>
    public interface IFileReaderUtilitiesFactory
    {
-      /// <summary>
+       /// <summary>
       /// Creates a <see cref="IFileReaderUtilities"/> instance.
       /// </summary>
       /// <returns>
