@@ -65,6 +65,7 @@
         <ProjectReference Include="..\..\source\Landorphan.Abstractions\Landorphan.Abstractions.csproj" />
         <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation.Testability\Landorphan.Ioc.ServiceLocation.Testability.csproj" />
         <ProjectReference Include="..\..\source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
+        <ProjectReference Include="..\..\source\Landorphan.TestUtilities.Common\Landorphan.TestUtilities.Common.csproj" />
         <ProjectReference Include="..\..\source\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
     </ItemGroup>
 

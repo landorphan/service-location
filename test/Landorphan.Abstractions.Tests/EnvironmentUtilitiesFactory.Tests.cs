@@ -1,13 +1,12 @@
 namespace Landorphan.Abstractions.Tests
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using FluentAssertions;
     using Landorphan.Abstractions.Interfaces;
     using Landorphan.Common;
     using Landorphan.Ioc.ServiceLocation;
     using Landorphan.TestUtilities;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Generic;
 
     // ReSharper disable InconsistentNaming
 
