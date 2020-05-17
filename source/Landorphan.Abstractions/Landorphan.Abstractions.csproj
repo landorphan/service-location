@@ -32,35 +32,15 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.4" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.4" />
-        <PackageReference Include="SonarAnalyzer.CSharp" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="8.7.0.17535">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
         <ProjectReference Include="..\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Update="Microsoft.CodeQuality.Analyzers" Version="3.0.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
-        <PackageReference Update="Microsoft.NetCore.Analyzers" Version="3.0.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
-        <PackageReference Update="Microsoft.NetFramework.Analyzers" Version="3.0.0">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Update="SonarAnalyzer.CSharp" Version="8.7.0.17535">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-        <PackageReference Update="Text.Analyzers" Version="2.6.4">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 </Project>

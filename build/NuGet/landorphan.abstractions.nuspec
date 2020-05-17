@@ -34,7 +34,7 @@
             <dependency id="Landorphan.Ioc.ServiceLocation" version="0.9.467" exclude="Build,Analyzers" />
             <dependency id="Microsoft.Extensions.Logging" version="2.2.0" exclude="Build,Analyzers" />
             <dependency id="Microsoft.Extensions.Configuration" version="2.2.0" exclude="Build,Analyzers" />
-            <dependency id="System.Collections.Immutable" version="1.5.0" exclude="Build,Analyzers" />
+            <dependency id="System.Collections.Immutable" version="1.7.1" exclude="Build,Analyzers" />
          </group>
       </dependencies>
    </metadata>
