@@ -1,15 +1,13 @@
-namespace Landorphan.Ioc.Example.Service
+namespace Landorphan.Ioc.Example.ConsoleApp
 {
-   using Landorphan.Ioc.Example.ConsoleApp;
-   using Landorphan.Ioc.ServiceLocation;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using RestSharp;
+    using Landorphan.Ioc.ServiceLocation;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   public class AssemblySelfRegistration : IAssemblySelfRegistration
-   {
-      public void RegisterServiceInstances(IIocContainerRegistrar registrar)
-      {
-         IocServiceLocator.AmbientContainer.Registrar.RegisterImplementation<ICurrencyConverter, CurrencyConverter>();
-      }
-   }
+    public class AssemblySelfRegistration : IAssemblySelfRegistration
+    {
+        public void RegisterServiceInstances(IIocContainerRegistrar registrar)
+        {
+            IocServiceLocator.AmbientContainer.Registrar.RegisterImplementation<ICurrencyConverter, CurrencyConverter>();
+        }
+    }
 }

@@ -1,8 +1,8 @@
 @Check-In
 Feature: Bootstrap
-	In order to Instrument my code
-	As a developer
-	I want to bootstrap the Instrumentation system
+    In order to Instrument my code
+    As a developer
+    I want to bootstrap the Instrumentation system
 
 Background: Given a proper Bootstrap is setup
      Given I setup bootstrap data with:
@@ -18,7 +18,7 @@ Background: Given a proper Bootstrap is setup
            | SetLogger                 | True                           |
 
 Scenario: Bootstrapping is required to use the system
-	Given I do nothing
+    Given I do nothing
     Then the value of Instrumentation.IsBootstrapped should be 'False'
 
 Scenario: When I bootstrap without an EntryPointStorage, the system should not bootstrap

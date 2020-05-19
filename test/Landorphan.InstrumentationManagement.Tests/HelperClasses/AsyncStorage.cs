@@ -1,59 +1,70 @@
 namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
 {
+    // ReSharper disable RedundantUsingDirective
+#pragma warning disable S1128 // Unused "using" should be removed
 #pragma warning disable CS8019 // Unnecessary using directive -- This is needed for some targets and not others.  Keeping in for all.
-   using System;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Threading;
+    using Landorphan.InstrumentationManagement.PlugIns;
+#if NETFX
+    using System.Runtime.Remoting.Messaging;
+#endif
+
 #pragma warning restore CS8019 // Unnecessary using directive
-   using System.Collections.Concurrent;
-   using Landorphan.InstrumentationManagement.PlugIns;
-
-   public class AsyncStorage : IInstrumentationPluginStorage
-   {
+#pragma warning restore S1128 // Unused "using" should be removed
+    public class AsyncStorage : IInstrumentationPluginStorage
+    {
 #if NETCORE
-      private readonly System.Threading.AsyncLocal<ConcurrentDictionary<string, object>> asyncLocal = new System.Threading.AsyncLocal<ConcurrentDictionary<string, object>>();
+        private readonly AsyncLocal<ConcurrentDictionary<string, object>> asyncLocal = new AsyncLocal<ConcurrentDictionary<string, object>>();
 #endif
 
-      public void Set(string name, object value)
-      {
+        public object Get(string name)
+        {
 #if NETFX
-         if (!(System.Runtime.Remoting.Messaging.CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage))
-         {
-            localStorage = new ConcurrentDictionary<string, object>();
-            System.Runtime.Remoting.Messaging.CallContext.SetData(nameof(AsyncStorage), localStorage);
-         }
+            object retval = null;
+            if (CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage)
+            {
+                retval = localStorage[name];
+            }
 
-         localStorage[name] = value;
+            return retval;
 #elif NETCORE
-         if (!(asyncLocal.Value is ConcurrentDictionary<string, object> localStorage))
-         {
-            localStorage = new ConcurrentDictionary<string, object>();
-            asyncLocal.Value = localStorage;
-         }
-         localStorage[name] = value;
+            object retval = null;
+            if (asyncLocal.Value is ConcurrentDictionary<string, object> localStorage)
+            {
+                retval = localStorage[name];
+            }
+            return retval;
 #else
-         throw new NotImplementedException("This operation is not implemented for this runtime.");
+#pragma warning disable S3717 // Track use of "NotImplementedException"
+            throw new NotImplementedException("This operation is not implemented for this runtime.");
+#pragma warning restore S3717 // Track use of "NotImplementedException"
 #endif
+        }
 
-      }
-
-      public object Get(string name)
-      {
+        public void Set(string name, object value)
+        {
 #if NETFX
-         object retval = null;
-         if(System.Runtime.Remoting.Messaging.CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage)
-         {
-            retval = localStorage[name];
-         }
-         return retval;
+            if (!(CallContext.GetData(nameof(AsyncStorage)) is ConcurrentDictionary<string, object> localStorage))
+            {
+                localStorage = new ConcurrentDictionary<string, object>();
+                CallContext.SetData(nameof(AsyncStorage), localStorage);
+            }
+
+            localStorage[name] = value;
 #elif NETCORE
-         object retval = null;
-         if (asyncLocal.Value is ConcurrentDictionary<string, object> localStorage)
-         {
-            retval = localStorage[name];
-         }
-         return retval;
+            if (!(asyncLocal.Value is ConcurrentDictionary<string, object> localStorage))
+            {
+                localStorage = new ConcurrentDictionary<string, object>();
+                asyncLocal.Value = localStorage;
+            }
+            localStorage[name] = value;
 #else
-         throw new NotImplementedException("This operation is not implemented for this runtime.");
+#pragma warning disable S3717 // Track use of "NotImplementedException"
+            throw new NotImplementedException("This operation is not implemented for this runtime.");
+#pragma warning restore S3717 // Track use of "NotImplementedException"
 #endif
-      }
-   }
+        }
+    }
 }

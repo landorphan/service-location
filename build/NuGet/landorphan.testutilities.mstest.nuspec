@@ -1,46 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-   <metadata>
-      <!-- Required elements-->
-      <id>Landorphan.TestUtilities.MSTest</id>
-      <version>$version$</version>
-      <description>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the MSTest framework.</description>
-      <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
+  <metadata>
+    <!-- Required elements-->
+    <id>Landorphan.TestUtilities.MSTest</id>
+    <version>$version$</version>
+    <description>Test utilities including Ioc.ServiceLocation and Ioc.ServiceLocation.Testability targeting the MSTest framework.</description>
+    <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
 
-      <!-- Optional elements -->
-      <title>Landorphan.TestUtilities.MSTest</title>
-      <owners>landorphan, mprochaska, tstockstill</owners>
-      <projectUrl>https://github.com/landorphan/service-location</projectUrl>
-      <license type="expression">MIT</license>
-      <!-- Not deployed yet
+    <!-- Optional elements -->
+    <title>Landorphan.TestUtilities.MSTest</title>
+    <owners>landorphan, mprochaska, tstockstill</owners>
+    <projectUrl>https://github.com/landorphan/service-location</projectUrl>
+    <license type="expression">MIT</license>
+    <!-- Not deployed yet
         <iconUrl>https://github.com/landorphan/common/raw/master/logo.png</iconUrl>
         -->
-      <requireLicenseAcceptance>false</requireLicenseAcceptance>
-      <developmentDependency>false</developmentDependency>
-      <summary>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the MSTest framework.</summary>
-      <releaseNotes>Initial public release.</releaseNotes>
-      <copyright>Copyright © 2019 - Landorphan, LLC.</copyright>
-      <language></language>
-      <tags>common, utility</tags>
-      <repository type="git" url="https://github.com/landorphan/service-location"/>
-      <packageTypes>
-         <packageType name="Dependency" />
-      </packageTypes>
-      <dependencies>
-         <group targetFramework=".NETStandard2.0">
-            <dependency id="Landorphan.Common" version="0.9.467" exclude="Build,Analyzers" />
-            <!--TODO: improve so that current build version number is used-->
-            <dependency id="Landorphan.Ioc.ServiceLocation" version="0.9.467" exclude="Build,Analyzers" />
-            <!--TODO: improve so that current build version number is used-->
-            <dependency id="Landorphan.Ioc.ServiceLocation.Testability" version="0.9.467" exclude="Build,Analyzers" />
-            <dependency id="Microsoft.Extensions.Logging" version="2.2.0" exclude="Build,Analyzers" />
-            <dependency id="Microsoft.Extensions.Configuration" version="2.2.0" exclude="Build,Analyzers" />
-            <dependency id="System.Collections.Immutable" version="1.5.0" exclude="Build,Analyzers" />
-            <dependency id="Microsoft.NET.Test.Sdk" version="15.9.0" exclude="Build,Analyzers" />
-            <dependency id="Microsoft.VisualStudio.TestPlatform" version="14.0.0" exclude="Build,Analyzers" />
-            <dependency id="MSTest.TestFramework" version="14.0.0" exclude="Build,Analyzers" />
-            <dependency id="FluentAssertions" version="5.6.0" exclude="Build,Analyzers"/>
-         </group>
-      </dependencies>
-   </metadata>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <summary>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the MSTest framework.</summary>
+    <releaseNotes>Initial public release.</releaseNotes>
+    <copyright>Copyright © 2019 - Landorphan, LLC.</copyright>
+    <language></language>
+    <tags>common, utility</tags>
+    <repository type="git" url="https://github.com/landorphan/service-location"/>
+    <packageTypes>
+      <packageType name="Dependency" />
+    </packageTypes>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Landorphan.Common" version="0.9.814" exclude="Build,Analyzers" />
+
+        <!--TODO: improve so that current build version number is used for dependencies in this repo-->
+        <dependency id="Landorphan.Ioc.ServiceLocation" version="0.9.467" exclude="Build,Analyzers" />
+        <dependency id="Landorphan.Ioc.ServiceLocation.Testability" version="0.9.467" exclude="Build,Analyzers" />
+        <dependency id="Landorphan.TestUtilities.Common" version="0.9.467" exclude="Build,Analyzers" />
+
+        <dependency id="FluentAssertions" version="5.10.13" exclude="Build,Analyzers"/>
+        <dependency id="Microsoft.NET.Test.Sdk" version="16.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Immutable" version="1.7.1" exclude="Build,Analyzers" />
+
+        <dependency id="Microsoft.VisualStudio.TestPlatform" version="14.0.0" exclude="Build,Analyzers" />
+        <dependency id="MSTest.TestFramework" version="2.1.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
 </package>

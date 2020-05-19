@@ -1,8 +1,10 @@
-root = true
+# seeing issues caused by the presence of .editorconfig in Visual Studio 2019 16.5.5 (VS, VS Extensions, R#, analyzers), 
+# scoping to bash scripts
+root=true
 
-[*]
-indent_style = space
-indent_size = 3
-charset = utf-8
-trim_trailing_whitespace = true
-insert_final_newline = true
+[*.sh]
+indent_style=space
+charset=utf-8
+trim_trailing_whitespace=true
+insert_final_newline=true
+end_of_line = lf

@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Landorphan.Ioc.Logging.Internal.Interfaces
+namespace Landorphan.Ioc.Logging.Internal
 {
-   internal interface IIocLoggerManager
-   {
-      IIocLogger<TClass> GetLogger<TClass>();
-   }
+    internal interface IIocLoggerManager
+    {
+        IIocLogger<TClass> GetLogger<TClass>();
+    }
 }
