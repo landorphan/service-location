@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{65807C31-348B-4BC0-95E0-7D7F8938A547}"
 EndProject
@@ -29,9 +29,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JetBrains", "JetBrains", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF33A87D-5CD8-4335-A032-3D4638C23FE2}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		AssemblyVersion.cs = AssemblyVersion.cs
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
+		LICENSE = LICENSE
+		README.md = README.md
+		Resharper.Todo.Explorer.md = Resharper.Todo.Explorer.md
+		TODO.md = TODO.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocation", "source\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj", "{EDDD5388-8B57-4F5C-B394-2C48A27CB736}"
@@ -48,10 +55,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690-4432-4990-A9A0-BBB16EB45438}"
 	ProjectSection(SolutionItems) = preProject
-		landorphan.abstractions.nuspec = landorphan.abstractions.nuspec
+		build\NuGet\landorphan.abstractions.nuspec = build\NuGet\landorphan.abstractions.nuspec
+		build\NuGet\landorphan.instrumentationmanagement.nuspec = build\NuGet\landorphan.instrumentationmanagement.nuspec
 		build\NuGet\landorphan.ioc.servicelocation.nuspec = build\NuGet\landorphan.ioc.servicelocation.nuspec
 		build\NuGet\landorphan.ioc.servicelocation.testability.nuspec = build\NuGet\landorphan.ioc.servicelocation.testability.nuspec
+		build\NuGet\landorphan.testutilities.common.nuspec = build\NuGet\landorphan.testutilities.common.nuspec
 		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
+		build\NuGet\landorphan.testutilities.nunit.nuspec = build\NuGet\landorphan.testutilities.nunit.nuspec
+		build\NuGet\nuget.exe = build\NuGet\nuget.exe
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
@@ -79,14 +90,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8323FDA5-2688-425B-8A30-7836EE3F2C08}"
 	ProjectSection(SolutionItems) = preProject
-		build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset = build\CodeAnalysis\All.NetFx.15.0.WithSonarLint.ruleset
+		AllRules.16.5.WithSonarLint.ruleset = AllRules.16.5.WithSonarLint.ruleset
 		build\CodeAnalysis\Copy-FxCopRuleset.ps1 = build\CodeAnalysis\Copy-FxCopRuleset.ps1
 		build\CodeAnalysis\CustomDictionary.xml = build\CodeAnalysis\CustomDictionary.xml
-		build\CodeAnalysis\Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetFx.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.NetStd.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetCore.FxCop.15.0.WithSonarLint.ruleset
-		build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.NetFx.FxCop.15.0.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset
+		build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset
 		build\CodeAnalysis\README.md = build\CodeAnalysis\README.md
 	EndProjectSection
 EndProject
@@ -120,10 +128,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.ServiceLocat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.InstrumentationManagement.Tests", "test\Landorphan.InstrumentationManagement.Tests\Landorphan.InstrumentationManagement.Tests.csproj", "{09927D76-96AA-4AF5-BB0F-36876EFFEED1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{620F829C-E1A7-4618-A037-36B4A046B51F}"
-	ProjectSection(SolutionItems) = preProject
-		build\tests\Landorphan.Tests.Architecture.cs = build\tests\Landorphan.Tests.Architecture.cs
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.NUnit", "source\Landorphan.TestUtilities.NUnit\Landorphan.TestUtilities.NUnit.csproj", "{A01F991E-954E-4702-A99F-61DAF3B98A35}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.Common", "source\Landorphan.TestUtilities.Common\Landorphan.TestUtilities.Common.csproj", "{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.TestUtilities.NUnit.Tests", "test\Landorphan.TestUtilities.NUnit.Tests\Landorphan.TestUtilities.NUnit.Tests.csproj", "{681AEAD8-D6C3-41A6-9897-5C98FE00819E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +204,18 @@ Global
 		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09927D76-96AA-4AF5-BB0F-36876EFFEED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A01F991E-954E-4702-A99F-61DAF3B98A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A01F991E-954E-4702-A99F-61DAF3B98A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A01F991E-954E-4702-A99F-61DAF3B98A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A01F991E-954E-4702-A99F-61DAF3B98A35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{681AEAD8-D6C3-41A6-9897-5C98FE00819E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{681AEAD8-D6C3-41A6-9897-5C98FE00819E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{681AEAD8-D6C3-41A6-9897-5C98FE00819E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{681AEAD8-D6C3-41A6-9897-5C98FE00819E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -223,7 +244,9 @@ Global
 		{61E8A7B3-781B-4A1E-B18E-330CB852514F} = {63987B24-3E5E-4BE9-8827-7F6BEA9B4C75}
 		{2DBE3C92-AC61-492D-A68C-E7B5FD4CC62B} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 		{09927D76-96AA-4AF5-BB0F-36876EFFEED1} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
-		{620F829C-E1A7-4618-A037-36B4A046B51F} = {2B05C482-3783-4E78-B382-561792F5197B}
+		{A01F991E-954E-4702-A99F-61DAF3B98A35} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{A4A6E4B1-74FB-40BE-B4DB-515C1659B77F} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
+		{681AEAD8-D6C3-41A6-9897-5C98FE00819E} = {F10433A2-DCDF-476B-98D2-F3D9939EB5A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D7A10B5-2F3A-4084-B607-852B4FB0500D}

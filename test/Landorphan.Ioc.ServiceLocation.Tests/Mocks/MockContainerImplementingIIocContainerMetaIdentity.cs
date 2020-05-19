@@ -1,18 +1,18 @@
-﻿namespace Landorphan.Ioc.Tests.Mocks
+namespace Landorphan.Ioc.Tests.Mocks
 {
-   using System;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using System;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
 
-   public sealed class MockContainerImplementingIIocContainerMetaIdentity : IIocContainerMetaIdentity
-   {
-      public MockContainerImplementingIIocContainerMetaIdentity(String name, Guid uid)
-      {
-         Name = name;
-         Uid = uid;
-      }
+    public sealed class MockContainerImplementingIIocContainerMetaIdentity : IIocContainerMetaIdentity
+    {
+        public MockContainerImplementingIIocContainerMetaIdentity(string name, Guid uid)
+        {
+            Name = name;
+            Uid = uid;
+        }
 
-      public String Name { get; }
+        public string Name { get; }
 
-      public Guid Uid { get; }
-   }
+        public Guid Uid { get; }
+    }
 }

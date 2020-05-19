@@ -1,68 +1,70 @@
 namespace Landorphan.InstrumentationManagement.Tests.HelperClasses
 {
-   using System;
-   using System.Collections.Concurrent;
-   using System.Collections.Generic;
-   using Landorphan.Common;
-   using Landorphan.InstrumentationManagement.PlugIns;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using Landorphan.Common;
+    using Landorphan.InstrumentationManagement.PlugIns;
 
-   public class TestPerfSpan : DisposableObject, IPerfSpan
-   {
-      protected internal Guid spanId = Guid.NewGuid();
+    public class TestPerfSpan : DisposableObject, IPerfSpan
+    {
+        protected internal Guid SpanIdField = Guid.NewGuid();
 
-      public TestPerfSpan(string name)
-      {
-         this.Name = name;
-         this.ParentSpan = this;
-      }
+        public TestPerfSpan(string name)
+        {
+            Name = name;
+            ParentSpan = this;
+        }
 
-      public TestPerfSpan(string name, TestPerfTrace trace, TestPerfSpan parent)
-      {
-         this.Name = name;
-         this.ParentTrace = trace;
-         this.ParentSpan = parent;
-      }
+        public TestPerfSpan(string name, TestPerfTrace trace, TestPerfSpan parent)
+        {
+            Name = name;
+            ParentTrace = trace;
+            ParentSpan = parent;
+        }
 
-      protected override void ReleaseManagedResources()
-      {
-         base.ReleaseUnmanagedResources();
-         ((TestPerfTrace)this.ParentTrace).CurrentSpan = this.ParentSpan;
-      }
+        protected override void ReleaseManagedResources()
+        {
+            base.ReleaseUnmanagedResources();
+            ((TestPerfTrace)ParentTrace).CurrentSpan = ParentSpan;
+        }
 
-      public string SpanId => spanId.ToString();
+        public string Name { get; private set; }
 
-      public IPerfSpan ParentSpan { get; protected set; }
-      public IPerfTrace ParentTrace { get; set; }
-      public string Name { get; private set; }
-   }
+        public IPerfSpan ParentSpan { get; protected set; }
+        public IPerfTrace ParentTrace { get; set; }
 
-   public class TestPerfTrace : TestPerfSpan, IPerfTrace
-   {
-      internal static IDictionary<Guid, TestPerfTrace> traces = new ConcurrentDictionary<Guid, TestPerfTrace>();
-      private readonly Guid traceId = Guid.NewGuid();
+        public string SpanId => SpanIdField.ToString();
+    }
 
-      public TestPerfTrace(string name) : base (name)
-      {
-         this.ParentTrace = this;
-         traces.Add(traceId, this);
-         CurrentSpan = this;
-      }
+    public class TestPerfTrace : TestPerfSpan, IPerfTrace
+    {
+        internal static IDictionary<Guid, TestPerfTrace> traces = new ConcurrentDictionary<Guid, TestPerfTrace>();
+        private readonly Guid traceId = Guid.NewGuid();
 
-      protected override void ReleaseUnmanagedResources()
-      {
-         base.ReleaseUnmanagedResources();
-         traces.Remove(traceId);
-      }
+        public TestPerfTrace(string name) : base(name)
+        {
+            ParentTrace = this;
+            traces.Add(traceId, this);
+            CurrentSpan = this;
+        }
 
-      public string TraceId => traceId.ToString();
-      public IPerfSpan CurrentSpan { get; internal set; }   
-   }
+        protected override void ReleaseUnmanagedResources()
+        {
+            base.ReleaseUnmanagedResources();
+            traces.Remove(traceId);
+        }
 
-   public class TestPerfManager : IInstrumentationPluginPerfManager
-   {
-      public IPerfTrace StartTrace(string traceName)
-      {
-         return new TestPerfTrace(traceName);
-      }
-   }
+        public IPerfSpan CurrentSpan { get; internal set; }
+
+        public string TraceId => traceId.ToString();
+    }
+
+    public class TestPerfManager : IInstrumentationPluginPerfManager
+    {
+        public IPerfTrace StartTrace(string traceName)
+        {
+            return new TestPerfTrace(traceName);
+        }
+    }
 }

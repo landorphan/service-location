@@ -1,38 +1,35 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Landorphan.Ioc.Example.Tests.Simulators
 {
-   using Landorphan.Ioc.Example.ConsoleApp;
+    using System.Text;
+    using Landorphan.Ioc.Example.ConsoleApp;
 
-   class ConsoleSimulator : IConsole
-   {
-      private StringBuilder builder = new StringBuilder();
+    internal class ConsoleSimulator : IConsole
+    {
+        private StringBuilder builder = new StringBuilder();
 
-      public void Clear()
-      {
-         this.builder = new StringBuilder();
-      }
+        public void Write(string message)
+        {
+            builder.Append(message);
+        }
 
-      public string GetConsoleOutput()
-      {
-         return this.builder.ToString();
-      }
+        public void WriteLine()
+        {
+            builder.AppendLine();
+        }
 
-      public void Write(string message)
-      {
-         this.builder.Append(message);
-      }
+        public void WriteLine(string message)
+        {
+            builder.AppendLine(message);
+        }
 
-      public void WriteLine()
-      {
-         this.builder.AppendLine();
-      }
+        public void Clear()
+        {
+            builder = new StringBuilder();
+        }
 
-      public void WriteLine(string message)
-      {
-         this.builder.AppendLine(message);
-      }
-   }
+        public string GetConsoleOutput()
+        {
+            return builder.ToString();
+        }
+    }
 }

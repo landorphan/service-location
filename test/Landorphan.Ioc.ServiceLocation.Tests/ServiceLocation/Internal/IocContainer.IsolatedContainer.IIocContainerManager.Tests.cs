@@ -1,448 +1,448 @@
 ﻿namespace Landorphan.Ioc.Tests.ServiceLocation.Internal
 {
-   using System;
-   using FluentAssertions;
-   using Landorphan.Ioc.ServiceLocation.EventArguments;
-   using Landorphan.Ioc.ServiceLocation.Interfaces;
-   using Landorphan.Ioc.ServiceLocation.Internal;
-   using Landorphan.TestUtilities;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System;
+    using FluentAssertions;
+    using Landorphan.Ioc.ServiceLocation.EventArguments;
+    using Landorphan.Ioc.ServiceLocation.Interfaces;
+    using Landorphan.Ioc.ServiceLocation.Internal;
+    using Landorphan.TestUtilities;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   // ReSharper disable InconsistentNaming
+    // ReSharper disable InconsistentNaming
 
-   public static partial class IocContainer_IsolatedContainer_Tests
-   {
-      [TestClass]
-      public class When_I_have_an_isolated_container_and_call_AddPrecludedType : DisposableArrangeActAssert
-      {
-         private readonly String containerName = "Isolated Test Container: IIocContainerManager.AddPrecludedType Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+    public static partial class IocContainer_IsolatedContainer_Tests
+    {
+        [TestClass]
+        public class When_I_have_an_isolated_container_and_call_AddPrecludedType : DisposableArrangeActAssert
+        {
+            private readonly string containerName = "Isolated Test Container: IIocContainerManager.AddPrecludedType Tests";
+            private readonly Guid containerUid = Guid.NewGuid();
+            private IOwnedIocContainer container;
+            private IIocContainerManager target;
 
-         protected override void ArrangeMethod()
-         {
-            container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
-            target = container.Manager;
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void And_I_add_the_same_type_twice()
-         {
-            var first = target.AddPrecludedType<IRegisteredType>();
-            first.Should().BeTrue();
-            var second = target.AddPrecludedType<IRegisteredType>();
-            second.Should().BeFalse();
-
-            target.PrecludedTypes.Count.Should().Be(1);
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_accept_an_abstract_type()
-         {
-            var actual = target.AddPrecludedType<AbstractRegisteredType>();
-
-            actual.Should().BeTrue();
-            target.PrecludedTypes.Should().Contain(typeof(AbstractRegisteredType));
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_accept_an_interface_type()
-         {
-            var actual = target.AddPrecludedType<IRegisteredType>();
-
-            actual.Should().BeTrue();
-            target.PrecludedTypes.Should().Contain(typeof(IRegisteredType));
-         }
-
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerChildAdded_event()
-         {
-            Object actualSender = null;
-            ContainerParentChildEventArgs actualEventArgs = null;
-
-            var eh = new EventHandler<ContainerParentChildEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
-
-            target.Manager.ContainerChildAdded += eh;
-            var child = target.CreateChildContainer("child") as IOwnedIocContainer;
-            try
+            protected override void ArrangeMethod()
             {
-               actualSender.Should().NotBeNull();
-               actualSender.Should().Be(target);
-               actualEventArgs.Should().NotBeNull();
-               actualEventArgs.Child.Should().Be(child);
-               actualEventArgs.Parent.Should().Be(target);
+                container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
+                target = container.Manager;
             }
-            finally
+
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void And_I_add_the_same_type_twice()
             {
-               child?.Dispose();
+                var first = target.AddPrecludedType<IRegisteredType>();
+                first.Should().BeTrue();
+                var second = target.AddPrecludedType<IRegisteredType>();
+                second.Should().BeFalse();
+
+                target.PrecludedTypes.Count.Should().Be(1);
             }
-         }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerChildRemoved()
-         {
-            Object actualSender = null;
-            ContainerParentChildEventArgs actualEventArgs = null;
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_accept_an_abstract_type()
+            {
+                var actual = target.AddPrecludedType<AbstractRegisteredType>();
 
-            var eh = new EventHandler<ContainerParentChildEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+                actual.Should().BeTrue();
+                target.PrecludedTypes.Should().Contain(typeof(AbstractRegisteredType));
+            }
 
-            target.Manager.ContainerChildRemoved += eh;
-            var child = target.CreateChildContainer("child") as IOwnedIocContainer;
-            child?.Dispose();
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Child.Should().Be(child);
-            actualEventArgs.Parent.Should().Be(target);
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_accept_an_interface_type()
+            {
+                var actual = target.AddPrecludedType<IRegisteredType>();
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerPrecludedTypeAdded_event_generic()
-         {
-            Object actualSender = null;
-            ContainerTypeEventArgs actualEventArgs = null;
+                actual.Should().BeTrue();
+                target.PrecludedTypes.Should().Contain(typeof(IRegisteredType));
+            }
 
-            var eh = new EventHandler<ContainerTypeEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerChildAdded_event()
+            {
+                object actualSender = null;
+                ContainerParentChildEventArgs actualEventArgs = null;
 
-            target.Manager.ContainerPrecludedTypeAdded += eh;
+                var eh = new EventHandler<ContainerParentChildEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            target.Manager.AddPrecludedType<IRegisteredType>();
+                target.Manager.ContainerChildAdded += eh;
+                var child = target.CreateChildContainer("child") as IOwnedIocContainer;
+                try
+                {
+                    actualSender.Should().NotBeNull();
+                    actualSender.Should().Be(target);
+                    actualEventArgs.Should().NotBeNull();
+                    actualEventArgs.Child.Should().Be(child);
+                    actualEventArgs.Parent.Should().Be(target);
+                }
+                finally
+                {
+                    child?.Dispose();
+                }
+            }
 
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Container.Should().Be(target);
-            actualEventArgs.Type.Should().Be<IRegisteredType>();
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerChildRemoved()
+            {
+                object actualSender = null;
+                ContainerParentChildEventArgs actualEventArgs = null;
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerPrecludedTypeAdded_event_non_generic()
-         {
-            Object actualSender = null;
-            ContainerTypeEventArgs actualEventArgs = null;
+                var eh = new EventHandler<ContainerParentChildEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            var eh = new EventHandler<ContainerTypeEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+                target.Manager.ContainerChildRemoved += eh;
+                var child = target.CreateChildContainer("child") as IOwnedIocContainer;
+                child?.Dispose();
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Child.Should().Be(child);
+                actualEventArgs.Parent.Should().Be(target);
+            }
 
-            target.Manager.ContainerPrecludedTypeAdded += eh;
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerPrecludedTypeAdded_event_generic()
+            {
+                object actualSender = null;
+                ContainerTypeEventArgs actualEventArgs = null;
 
-            target.Manager.AddPrecludedType(typeof(IRegisteredType));
+                var eh = new EventHandler<ContainerTypeEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Container.Should().Be(target);
-            actualEventArgs.Type.Should().Be<IRegisteredType>();
-         }
+                target.Manager.ContainerPrecludedTypeAdded += eh;
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerPrecludedTypeRemoved_event_generic()
-         {
-            Object actualSender = null;
-            ContainerTypeEventArgs actualEventArgs = null;
+                target.Manager.AddPrecludedType<IRegisteredType>();
 
-            var eh = new EventHandler<ContainerTypeEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Container.Should().Be(target);
+                actualEventArgs.Type.Should().Be<IRegisteredType>();
+            }
 
-            target.Manager.ContainerPrecludedTypeRemoved += eh;
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerPrecludedTypeAdded_event_non_generic()
+            {
+                object actualSender = null;
+                ContainerTypeEventArgs actualEventArgs = null;
 
-            target.Manager.AddPrecludedType<IRegisteredType>();
-            target.Manager.RemovePrecludedType<IRegisteredType>();
+                var eh = new EventHandler<ContainerTypeEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Container.Should().Be(target);
-            actualEventArgs.Type.Should().Be<IRegisteredType>();
-         }
+                target.Manager.ContainerPrecludedTypeAdded += eh;
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerPrecludedTypeRemoved_event_non_generic()
-         {
-            Object actualSender = null;
-            ContainerTypeEventArgs actualEventArgs = null;
+                target.Manager.AddPrecludedType(typeof(IRegisteredType));
 
-            var eh = new EventHandler<ContainerTypeEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Container.Should().Be(target);
+                actualEventArgs.Type.Should().Be<IRegisteredType>();
+            }
 
-            target.Manager.ContainerPrecludedTypeRemoved += eh;
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerPrecludedTypeRemoved_event_generic()
+            {
+                object actualSender = null;
+                ContainerTypeEventArgs actualEventArgs = null;
 
-            target.Manager.AddPrecludedType(typeof(IRegisteredType));
-            target.Manager.RemovePrecludedType(typeof(IRegisteredType));
+                var eh = new EventHandler<ContainerTypeEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Container.Should().Be(target);
-            actualEventArgs.Type.Should().Be<IRegisteredType>();
-         }
+                target.Manager.ContainerPrecludedTypeRemoved += eh;
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_ignore_a_concrete_type()
-         {
-            var actual = target.AddPrecludedType<ConcreteClass>();
-            actual.Should().BeFalse();
-            target.PrecludedTypes.Should().BeEmpty();
+                target.Manager.AddPrecludedType<IRegisteredType>();
+                target.Manager.RemovePrecludedType<IRegisteredType>();
 
-            actual = target.AddPrecludedType(typeof(ConcreteClass));
-            actual.Should().BeFalse();
-            target.PrecludedTypes.Should().BeEmpty();
-         }
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Container.Should().Be(target);
+                actualEventArgs.Type.Should().Be<IRegisteredType>();
+            }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_ignore_a_null_type()
-         {
-            var actual = target.AddPrecludedType(null);
-            actual.Should().BeFalse();
-            target.PrecludedTypes.Should().BeEmpty();
-         }
-      }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerPrecludedTypeRemoved_event_non_generic()
+            {
+                object actualSender = null;
+                ContainerTypeEventArgs actualEventArgs = null;
 
-      [TestClass]
-      public class When_I_have_an_isolated_container_and_call_CreateChildContainer : DisposableArrangeActAssert
-      {
-         private readonly String childContainerName = "Isolated Child Test Container";
-         private readonly String containerName = "Isolated Test Container: IIocContainerManager.CreateChildContainer Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private ContainerParentChildEventArgs actualEventArgs;
-         private Object actualSender;
-         private IOwnedIocContainer child;
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+                var eh = new EventHandler<ContainerTypeEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-         protected override void ArrangeMethod()
-         {
-            container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
-            target = container.Manager;
+                target.Manager.ContainerPrecludedTypeRemoved += eh;
 
-            var eh = new EventHandler<ContainerParentChildEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+                target.Manager.AddPrecludedType(typeof(IRegisteredType));
+                target.Manager.RemovePrecludedType(typeof(IRegisteredType));
 
-            target.ContainerChildAdded += eh;
-            child = (IOwnedIocContainer)target.CreateChildContainer(childContainerName);
-         }
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Container.Should().Be(target);
+                actualEventArgs.Type.Should().Be<IRegisteredType>();
+            }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_create_the_child_container()
-         {
-            child.IsRoot.Should().BeFalse();
-            child.Parent.Should().Be(target);
-            child.Uid.Should().NotBe(Guid.Empty);
-            child.Uid.Should().NotBe(target.Uid);
-            container.Children.Should().Contain(child);
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_ignore_a_concrete_type()
+            {
+                var actual = target.AddPrecludedType<ConcreteClass>();
+                actual.Should().BeFalse();
+                target.PrecludedTypes.Should().BeEmpty();
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_ContainerChildAdded_event()
-         {
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Parent.Should().Be(container);
-            actualEventArgs.Child.Should().Be(child);
-         }
-      }
+                actual = target.AddPrecludedType(typeof(ConcreteClass));
+                actual.Should().BeFalse();
+                target.PrecludedTypes.Should().BeEmpty();
+            }
 
-      [TestClass]
-      public class When_I_have_an_isolated_container_and_call_RemovePrecludedType : DisposableArrangeActAssert
-      {
-         private readonly String containerName = "Isolated Test Container: RemovePrecludedType Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_ignore_a_null_type()
+            {
+                var actual = target.AddPrecludedType(null);
+                actual.Should().BeFalse();
+                target.PrecludedTypes.Should().BeEmpty();
+            }
+        }
 
-         protected override void ArrangeMethod()
-         {
-            container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
-            target = container.Manager;
-         }
+        [TestClass]
+        public class When_I_have_an_isolated_container_and_call_CreateChildContainer : DisposableArrangeActAssert
+        {
+            private readonly string childContainerName = "Isolated Child Test Container";
+            private readonly string containerName = "Isolated Test Container: IIocContainerManager.CreateChildContainer Tests";
+            private readonly Guid containerUid = Guid.NewGuid();
+            private ContainerParentChildEventArgs actualEventArgs;
+            private object actualSender;
+            private IOwnedIocContainer child;
+            private IOwnedIocContainer container;
+            private IIocContainerManager target;
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_PrecludedTypeRemoved_event_generic()
-         {
-            Object actualSender = null;
-            ContainerTypeEventArgs actualEventArgs = null;
+            protected override void ArrangeMethod()
+            {
+                container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
+                target = container.Manager;
 
-            var eh = new EventHandler<ContainerTypeEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+                var eh = new EventHandler<ContainerParentChildEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            target.Manager.ContainerPrecludedTypeRemoved += eh;
+                target.ContainerChildAdded += eh;
+                child = (IOwnedIocContainer)target.CreateChildContainer(childContainerName);
+            }
 
-            target.Manager.AddPrecludedType<IRegisteredType>();
-            target.Manager.RemovePrecludedType<IRegisteredType>();
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_create_the_child_container()
+            {
+                child.IsRoot.Should().BeFalse();
+                child.Parent.Should().Be(target);
+                child.Uid.Should().NotBe(Guid.Empty);
+                child.Uid.Should().NotBe(target.Uid);
+                container.Children.Should().Contain(child);
+            }
 
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Container.Should().Be(target);
-            actualEventArgs.Type.Should().Be<IRegisteredType>();
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_ContainerChildAdded_event()
+            {
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Parent.Should().Be(container);
+                actualEventArgs.Child.Should().Be(child);
+            }
+        }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_fire_the_PrecludedTypeRemoved_event_non_generic()
-         {
-            Object actualSender = null;
-            ContainerTypeEventArgs actualEventArgs = null;
+        [TestClass]
+        public class When_I_have_an_isolated_container_and_call_RemovePrecludedType : DisposableArrangeActAssert
+        {
+            private readonly string containerName = "Isolated Test Container: RemovePrecludedType Tests";
+            private readonly Guid containerUid = Guid.NewGuid();
+            private IOwnedIocContainer container;
+            private IIocContainerManager target;
 
-            var eh = new EventHandler<ContainerTypeEventArgs>(
-               (o, e) =>
-               {
-                  actualSender = o;
-                  actualEventArgs = e;
-               });
+            protected override void ArrangeMethod()
+            {
+                container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
+                target = container.Manager;
+            }
 
-            target.Manager.ContainerPrecludedTypeRemoved += eh;
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_PrecludedTypeRemoved_event_generic()
+            {
+                object actualSender = null;
+                ContainerTypeEventArgs actualEventArgs = null;
 
-            target.Manager.AddPrecludedType(typeof(IRegisteredType));
-            target.Manager.RemovePrecludedType(typeof(IRegisteredType));
+                var eh = new EventHandler<ContainerTypeEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-            actualSender.Should().NotBeNull();
-            actualSender.Should().Be(target);
-            actualEventArgs.Should().NotBeNull();
-            actualEventArgs.Container.Should().Be(target);
-            actualEventArgs.Type.Should().Be<IRegisteredType>();
-         }
+                target.Manager.ContainerPrecludedTypeRemoved += eh;
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_ignore_a_concrete_type()
-         {
-            var actual = target.RemovePrecludedType<ConcreteClass>();
-            actual.Should().BeFalse();
-         }
+                target.Manager.AddPrecludedType<IRegisteredType>();
+                target.Manager.RemovePrecludedType<IRegisteredType>();
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_ignore_nulls()
-         {
-            var actual = target.RemovePrecludedType(null);
-            actual.Should().BeFalse();
-         }
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Container.Should().Be(target);
+                actualEventArgs.Type.Should().Be<IRegisteredType>();
+            }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_false_when_given_precluded_type_is_not_precluded()
-         {
-            var actual = target.Manager.RemovePrecludedType<IRegisteredType>();
-            actual.Should().BeFalse();
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_fire_the_PrecludedTypeRemoved_event_non_generic()
+            {
+                object actualSender = null;
+                ContainerTypeEventArgs actualEventArgs = null;
 
-            actual = target.Manager.RemovePrecludedType(typeof(IRegisteredType));
-            actual.Should().BeFalse();
-         }
+                var eh = new EventHandler<ContainerTypeEventArgs>(
+                    (o, e) =>
+                    {
+                        actualSender = o;
+                        actualEventArgs = e;
+                    });
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_return_true_and_remove_the_entry_when_given_type_is_precluded()
-         {
-            target.Manager.AddPrecludedType<IRegisteredType>();
-            var actual = target.Manager.RemovePrecludedType<IRegisteredType>();
-            actual.Should().BeTrue();
+                target.Manager.ContainerPrecludedTypeRemoved += eh;
 
-            target.Manager.AddPrecludedType<IRegisteredType>();
-            actual = target.Manager.RemovePrecludedType(typeof(IRegisteredType));
-            actual.Should().BeTrue();
-         }
-      }
+                target.Manager.AddPrecludedType(typeof(IRegisteredType));
+                target.Manager.RemovePrecludedType(typeof(IRegisteredType));
 
-      [TestClass]
-      public class When_I_have_an_isolated_container_and_inspect_its_configuration : ArrangeActAssert
-      {
-         private readonly String containerName = "Isolated Test Container: IIocContainerManager.Configuration Tests";
-         private readonly Guid containerUid = Guid.NewGuid();
-         private IOwnedIocContainer container;
-         private IIocContainerManager target;
+                actualSender.Should().NotBeNull();
+                actualSender.Should().Be(target);
+                actualEventArgs.Should().NotBeNull();
+                actualEventArgs.Container.Should().Be(target);
+                actualEventArgs.Type.Should().Be<IRegisteredType>();
+            }
 
-         protected override void ArrangeMethod()
-         {
-            container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
-            target = container.Manager;
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_ignore_a_concrete_type()
+            {
+                var actual = target.RemovePrecludedType<ConcreteClass>();
+                actual.Should().BeFalse();
+            }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void It_should_have_a_configuration()
-         {
-            target.Configuration.Should().NotBeNull();
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_ignore_nulls()
+            {
+                var actual = target.RemovePrecludedType(null);
+                actual.Should().BeFalse();
+            }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void Its_configuration_should_AllowNamedImplementations_by_default()
-         {
-            target.Configuration.AllowNamedImplementations.Should().BeTrue();
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_return_false_when_given_precluded_type_is_not_precluded()
+            {
+                var actual = target.Manager.RemovePrecludedType<IRegisteredType>();
+                actual.Should().BeFalse();
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void Its_configuration_should_AllowPreclusionOfTypes_by_default()
-         {
-            target.Configuration.AllowPreclusionOfTypes.Should().BeTrue();
-         }
+                actual = target.Manager.RemovePrecludedType(typeof(IRegisteredType));
+                actual.Should().BeFalse();
+            }
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void Its_configuration_should_not_be_ReadOnly_by_default()
-         {
-            target.Configuration.IsReadOnly.Should().BeFalse();
-         }
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_return_true_and_remove_the_entry_when_given_type_is_precluded()
+            {
+                target.Manager.AddPrecludedType<IRegisteredType>();
+                var actual = target.Manager.RemovePrecludedType<IRegisteredType>();
+                actual.Should().BeTrue();
 
-         [TestMethod]
-         [TestCategory(TestTiming.CheckIn)]
-         public void Its_configuration_should_not_ThrowOnRegistrationCollision_by_default()
-         {
-            target.Configuration.ThrowOnRegistrationCollision.Should().BeFalse();
-         }
-      }
-   }
+                target.Manager.AddPrecludedType<IRegisteredType>();
+                actual = target.Manager.RemovePrecludedType(typeof(IRegisteredType));
+                actual.Should().BeTrue();
+            }
+        }
+
+        [TestClass]
+        public class When_I_have_an_isolated_container_and_inspect_its_configuration : ArrangeActAssert
+        {
+            private readonly string containerName = "Isolated Test Container: IIocContainerManager.Configuration Tests";
+            private readonly Guid containerUid = Guid.NewGuid();
+            private IOwnedIocContainer container;
+            private IIocContainerManager target;
+
+            protected override void ArrangeMethod()
+            {
+                container = IocContainer.TestHookCreateIsolatedContainer(containerUid, containerName);
+                target = container.Manager;
+            }
+
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void It_should_have_a_configuration()
+            {
+                target.Configuration.Should().NotBeNull();
+            }
+
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void Its_configuration_should_AllowNamedImplementations_by_default()
+            {
+                target.Configuration.AllowNamedImplementations.Should().BeTrue();
+            }
+
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void Its_configuration_should_AllowPreclusionOfTypes_by_default()
+            {
+                target.Configuration.AllowPreclusionOfTypes.Should().BeTrue();
+            }
+
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void Its_configuration_should_not_be_ReadOnly_by_default()
+            {
+                target.Configuration.IsReadOnly.Should().BeFalse();
+            }
+
+            [TestMethod]
+            [TestCategory(TestTiming.CheckIn)]
+            public void Its_configuration_should_not_ThrowOnRegistrationCollision_by_default()
+            {
+                target.Configuration.ThrowOnRegistrationCollision.Should().BeFalse();
+            }
+        }
+    }
 }

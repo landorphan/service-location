@@ -1,28 +1,43 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-      <TargetFramework Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0</TargetFramework>
-      <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;net451</TargetFrameworks>
-    </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DefineConstants>DEBUG;TRACE</DefineConstants>
-      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-      <WarningLevel>4</WarningLevel>
+  <PropertyGroup>
+    <TargetFramework Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0</TargetFramework>
+    <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;net472</TargetFrameworks>
+    <CodeAnalysisRuleSet>..\..\build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
 
-      <IntermediateOutputPath>..\..\obj\debug\$(AssemblyName)\</IntermediateOutputPath>
-      <OutputPath>..\..\bin\debug\$(AssemblyName)</OutputPath>
-      <DocumentationFile>..\..\bin\debug\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
-   </PropertyGroup>
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <DefineConstants>TRACE</DefineConstants>
-      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-      <WarningLevel>4</WarningLevel>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <WarningLevel>4</WarningLevel>
 
-      <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
-      <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
-      <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
-   </PropertyGroup>
-   <ItemGroup>
-     <PackageReference Include="Landorphan.Common" Version="0.9.814" />
-   </ItemGroup>
- </Project>
+    <IntermediateOutputPath>..\..\obj\debug\$(AssemblyName)\</IntermediateOutputPath>
+    <OutputPath>..\..\bin\debug\$(AssemblyName)</OutputPath>
+    <DocumentationFile>..\..\bin\debug\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <WarningLevel>4</WarningLevel>
+
+    <IntermediateOutputPath>..\..\obj\release\$(AssemblyName)\</IntermediateOutputPath>
+    <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
+    <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Landorphan.Common" Version="0.9.814" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.7.0.17535">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.Extensions.Configuration">
+      <Version>3.1.4</Version>
+    </PackageReference>
+  </ItemGroup>
+</Project>

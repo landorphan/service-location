@@ -1,49 +1,47 @@
-﻿namespace Landorphan.Abstractions.Resources
+namespace Landorphan.Abstractions.Resources
 {
-   using System;
+    internal static class StringResources
+    {
+        // interim replacement for a string resource file until I understand why incremental builds are defeated by the presence of a resource file.
+        internal const string AccessToThePathIsDeniedFmt = "Access to the path '{0}' is denied.";
 
-   internal static class StringResources
-   {
-      // interim replacement for a string resource file until I understand why incremental builds are defeated by the presence of a resource file.
-      internal const String AccessToThePathIsDeniedFmt = "Access to the path '{0}' is denied.";
+        internal const string CannotCopyToDestinationDirectoryFileAlreadyExistsFmt =
+            "Cannot copy to the destination directory '{0}' because a file with the same name already exists.";
 
-      internal const String CannotCopyToDestinationDirectoryFileAlreadyExistsFmt =
-         "Cannot copy to the destination directory '{0}' because a file with the same name already exists.";
+        internal const string CannotCopyToDestinationDirectorySubfolderOfSourceFmt =
+            "Cannot copy to the destination directory '{0}' because it is a subdirectory of the source directory '{1}'.";
 
-      internal const String CannotCopyToDestinationDirectorySubfolderOfSourceFmt =
-         "Cannot copy to the destination directory '{0}' because it is a subdirectory of the source directory '{1}'.";
+        internal const string CannotCreateFileDirectoryAlreadyExistsFmt =
+            "Cannot create the file '{0}' because a directory with the same name already exists.";
 
-      internal const String CannotCreateFileDirectoryAlreadyExistsFmt =
-         "Cannot create the file '{0}' because a directory with the same name already exists.";
+        internal const string CannotMoveToDestinationDirectoryDirectoryAlreadyExistsFmt =
+            "Cannot move to the destination directory '{0}' because a directory with the same name already exists.";
 
-      internal const String CannotMoveToDestinationDirectoryDirectoryAlreadyExistsFmt =
-         "Cannot move to the destination directory '{0}' because a directory with the same name already exists.";
+        internal const string CannotMoveToDestinationDirectoryFileAlreadyExistsFmt =
+            "Cannot move to the destination directory '{0}' because a file with the same name already exists.";
 
-      internal const String CannotMoveToDestinationDirectoryFileAlreadyExistsFmt =
-         "Cannot move to the destination directory '{0}' because a file with the same name already exists.";
+        internal const string CannotMoveToDestinationDirectorySubfolderOfSourceFmt =
+            "Cannot move to the destination directory '{0}' because it is a subdirectory of the source directory '{1}'.";
 
-      internal const String CannotMoveToDestinationDirectorySubfolderOfSourceFmt =
-         "Cannot move to the destination directory '{0}' because it is a subdirectory of the source directory '{1}'.";
+        internal const string CannotOpenFileDirectoryAlreadyExistsFmt =
+            "Cannot open the file '{0}' because a directory with the same name already exists.";
 
-      internal const String CannotOpenFileDirectoryAlreadyExistsFmt =
-         "Cannot open the file '{0}' because a directory with the same name already exists.";
+        internal const string CouldNotFindAllOrPartDirectoryPathParamNameFmt =
+            "Could not find a part of the directory path '{0}'.\r\nParameter name: {1}";
 
-      internal const String CouldNotFindAllOrPartDirectoryPathParamNameFmt =
-         "Could not find a part of the directory path '{0}'.\r\nParameter name: {1}";
+        internal const string FileNameInvalidMatchesDirectoryNameFmt = "The file name is invalid.  The path '{0}' is a directory.";
 
-      internal const String FileNameInvalidMatchesDirectoryNameFmt = "The file name is invalid.  The path '{0}' is a directory.";
+        internal const string PublicKey = "0024000004800000140100000602000000240000525341310008000001000100c33ba254dba2d79dba4c1fe136efb36588f73cc16afd66a43aebf7489ac82ab66c2fff42d8503459eff95139e0" +
+                                          "ff790b6688513b19edf991760ef7ad02740a296c3ce5d098586b236b6abaa75038eb03af7d643d9a84b47bca0ed1cabbf4de9605c76007aab2e3abe7633d90860648ab1e38035fda5943971c64" +
+                                          "71249a0bd80f2ab04686c2110ebb10f909fb773e3d87f67fb1e2f33ee791e4d8284fe9c6848ea81b3cf6a081df100716a10c68e0dd5219ff1657995777bf03961afdc3c09b040edb5a36baab50" +
+                                          "75410507f3ba1d9f59c6bd67401819abbbe7712b5f473e052b96efe98c39210bb485c1ba0489ed396983beb914a3b2443f6aa2be4f49a88bb0";
+        internal const string SearchPatternCannotContain = "Search pattern cannot contain";
 
-      internal const String PublicKey = "0024000004800000140100000602000000240000525341310008000001000100c33ba254dba2d79dba4c1fe136efb36588f73cc16afd66a43aebf7489ac82ab66c2fff42d8503459eff95139e0" +
-                                        "ff790b6688513b19edf991760ef7ad02740a296c3ce5d098586b236b6abaa75038eb03af7d643d9a84b47bca0ed1cabbf4de9605c76007aab2e3abe7633d90860648ab1e38035fda5943971c64" +
-                                        "71249a0bd80f2ab04686c2110ebb10f909fb773e3d87f67fb1e2f33ee791e4d8284fe9c6848ea81b3cf6a081df100716a10c68e0dd5219ff1657995777bf03961afdc3c09b040edb5a36baab50" +
-                                        "75410507f3ba1d9f59c6bd67401819abbbe7712b5f473e052b96efe98c39210bb485c1ba0489ed396983beb914a3b2443f6aa2be4f49a88bb0";
-      internal const String SearchPatternCannotContain = "Search pattern cannot contain";
+        internal const string SearchPatternContainsInvalidCharacters = @"The search pattern is not well-formed (contains invalid characters).";
 
-      internal const String SearchPatternContainsInvalidCharacters = @"The search pattern is not well-formed (contains invalid characters).";
+        internal const string TheDirectoryNameIsInvalidFileAlreadyExistsFmt =
+            "The directory name '{0}' is invalid because a file with the same name already exists.";
 
-      internal const String TheDirectoryNameIsInvalidFileAlreadyExistsFmt =
-         "The directory name '{0}' is invalid because a file with the same name already exists.";
-
-      internal const String ValueMustBeGreaterThanOrEqualToTicksFmt = "The value must be greater than or equal to ({0} ticks).";
-   }
+        internal const string ValueMustBeGreaterThanOrEqualToTicksFmt = "The value must be greater than or equal to ({0} ticks).";
+    }
 }

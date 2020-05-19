@@ -1,58 +1,56 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Landorphan.Ioc.Example.Tests.Simulators
 {
-   using Landorphan.Ioc.Example.Service;
+    using System;
+    using System.Collections.Generic;
+    using Landorphan.Ioc.Example.Service;
 
-   public class CurrencyExchangeRateSimulator : ICurrencyExchangeRates
-   {
-      private readonly Dictionary<string, decimal> usdRates = new Dictionary<string, decimal>();
+    public class CurrencyExchangeRateSimulator : ICurrencyExchangeRates
+    {
+        private readonly Dictionary<string, decimal> usdRates = new Dictionary<string, decimal>();
 
-      public void SetUsdRate(string currency, decimal ammount)
-      {
-         usdRates[currency] = ammount;
-      }
+        public IEnumerable<string> GetCurrencyCodes()
+        {
+            return usdRates.Keys;
+        }
 
-      public decimal GetUsdRate(string currency)
-      {
-         return usdRates[currency];
-      }
+        public decimal GetRate(string baseCurrency, string exchangeCurrency)
+        {
+            // Invert the base rate so that the conversion will work.
+            var baseRate = 1 / GetUsdRate(baseCurrency);
+            var exchangeRate = GetUsdRate(exchangeCurrency);
+            return baseRate * exchangeRate;
+        }
 
-      public IEnumerable<string> GetCurrencyCodes()
-      {
-         return usdRates.Keys;
-      }
+        public DateTime GetRateDate()
+        {
+            return DateTime.Now;
+        }
 
-      public void Clear()
-      {
-         usdRates.Clear();
-      }
+        public IDictionary<string, decimal> GetRates(string baseCurrency)
+        {
+            var exchangeRates = new Dictionary<string, decimal>();
+            foreach (var rate in usdRates)
+            {
+                var exchangeRate = GetRate(baseCurrency, rate.Key);
+                exchangeRates.Add(rate.Key, exchangeRate);
+            }
 
-      public decimal GetRate(string baseCurrency, string exchangeCurrency)
-      {
-         // Invert the base rate so that the conversion will work.
-         var baseRate = 1 / GetUsdRate(baseCurrency);
-         var exchangeRate = GetUsdRate(exchangeCurrency);
-         return baseRate * exchangeRate;
-      }
+            return exchangeRates;
+        }
 
-      public IDictionary<string, decimal> GetRates(string baseCurrency)
-      {
-         Dictionary<string, decimal> exchangeRates = new Dictionary<string, decimal>();
-         foreach (var rate in usdRates)
-         {
-            var exchangeRate = GetRate(baseCurrency, rate.Key);
-            exchangeRates.Add(rate.Key, exchangeRate);
-         }
+        public void Clear()
+        {
+            usdRates.Clear();
+        }
 
-         return exchangeRates;
-      }
+        public decimal GetUsdRate(string currency)
+        {
+            return usdRates[currency];
+        }
 
-      public DateTime GetRateDate()
-      {
-         return DateTime.Now;
-      }
-   }
+        public void SetUsdRate(string currency, decimal ammount)
+        {
+            usdRates[currency] = ammount;
+        }
+    }
 }
