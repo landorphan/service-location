@@ -35,7 +35,7 @@
         <dependency id="Landorphan.Ioc.ServiceLocation.Testability" version="0.9.467" exclude="Build,Analyzers" />
         <dependency id="Landorphan.TestUtilities.Common" version="0.9.467" exclude="Build,Analyzers" />
 
-        <dependency id="FluentAssertions" version="5.10.13" exclude="Build,Analyzers"/>
+        <dependency id="FluentAssertions" version="5.10.3" exclude="Build,Analyzers"/>
         <dependency id="Microsoft.NET.Test.Sdk" version="16.6.1" exclude="Build,Analyzers" />
         <dependency id="System.Collections.Immutable" version="1.7.1" exclude="Build,Analyzers" />
 
