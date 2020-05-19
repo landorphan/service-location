@@ -1,8 +1,3 @@
-use or delete ._Landorphan.Ioc.ServiceLocation.Only.sln
-use or delete ._Landorphan.Ioc.ServiceLocation.sln
-use or delete Landorphan.Ioc.Collections.Performance.Tests.Fx\Landorphan.Ioc.Collections.Performance.Tests.Fx.csproj
-
-
 GOTCHA:  takeaway use /// <inheritdoc/> above any [SuppressMessage] attributes
 
 SYNTAX UNFLAGGED:
