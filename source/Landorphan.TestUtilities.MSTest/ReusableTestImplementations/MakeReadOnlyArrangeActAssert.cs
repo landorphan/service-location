@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
@@ -44,6 +45,7 @@
         /// <summary>
         /// Asserts <see cref="IQueryReadOnly.IsReadOnly"/> is true.
         /// </summary>
+        [Category(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void It_Should_Inform_That_It_Is_A_Read_Only_Implementation()
         {
@@ -53,6 +55,7 @@
         /// <summary>
         /// Asserts all property setters throw <see cref="NotSupportedException"/>.
         /// </summary>
+        [Category(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", MessageId = "System.String.Format(System.String,System.Object)")]
         [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used", Justification = "reflection")]
