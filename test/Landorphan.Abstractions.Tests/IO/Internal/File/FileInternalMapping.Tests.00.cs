@@ -76,7 +76,7 @@
             {
                 // HAPPY PATH TEST:
                 var path = _target.CreateTemporaryFile();
-                var contents = new[] {"one", null, "three", null, "five"};
+                var contents = new[] { "one", null, "three", null, "five" };
                 var expected = (from e in contents select e ?? string.Empty).ToList();
 
                 try
@@ -100,7 +100,7 @@
                 var unalteredPath = _target.CreateTemporaryFile();
                 try
                 {
-                    var contents = new[] {"one", "two", "three"};
+                    var contents = new[] { "one", "two", "three" };
                     var path = _pathUtilities.GetParentPath(unalteredPath) + Spaces + _pathUtilities.DirectorySeparatorCharacter + _pathUtilities.GetFileName(unalteredPath);
 
                     var enc = new UTF8Encoding(false, true);
@@ -120,7 +120,7 @@
             public void And_the_encoding_is_null_It_should_throw_ArgumentNullException()
             {
                 var path = _target.CreateTemporaryFile();
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 try
                 {
@@ -143,7 +143,7 @@
                 var path = _pathUtilities.GetParentPath(unalteredPath) + _pathUtilities.DirectorySeparatorCharacter + Spaces + _pathUtilities.GetFileName(unalteredPath);
                 try
                 {
-                    var contents = new[] {"one", "two", "three"};
+                    var contents = new[] { "one", "two", "three" };
 
                     var enc = new UTF8Encoding(false, true);
                     _target.AppendAllLines(path, contents, enc);
@@ -165,7 +165,7 @@
             {
                 // TODO: change the exception to an ArgumentException
                 var path = _tempPath + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ":" + Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture);
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 var enc = new UTF8Encoding(false, true);
                 Action throwingAction = () => _target.AppendAllLines(path, contents, enc);
@@ -179,7 +179,7 @@
             [RunTestOnlyOnWindows]
             public void And_the_path_contains_an_invalid_character_It_should_throw_ArgumentException()
             {
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 // invalid character in the path before the file name.
                 var invalidFilePathDirectoryPath = string.Format(
@@ -216,7 +216,7 @@
                 var path = _target.CreateTemporaryFile();
                 _target.DeleteFile(path);
 
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 try
                 {
@@ -240,7 +240,7 @@
             public void And_the_path_does_not_exist_in_the_parent_directory_It_should_create_the_directory_and_the_file_and_append_the_lines()
             {
                 var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture), Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 try
                 {
@@ -263,7 +263,7 @@
             [TestCategory(TestTiming.CheckIn)]
             public void And_the_path_does_not_match_an_existing_file_It_should_create_the_file_and_append_the_lines()
             {
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
                 var path = _pathUtilities.Combine(
                     _tempPath,
                     "And_the_path_does_not_match_an_existing_file_It_should_create_the_file_and_append_the_lines.txt");
@@ -291,7 +291,7 @@
                 var unalteredPath = _target.CreateTemporaryFile();
                 try
                 {
-                    var contents = new[] {"one", "two", "three"};
+                    var contents = new[] { "one", "two", "three" };
                     var path = Spaces + unalteredPath;
 
                     var enc = new UTF8Encoding(false, true);
@@ -314,7 +314,7 @@
                 var unalteredPath = _target.CreateTemporaryFile();
                 try
                 {
-                    var contents = new[] {"one", "two", "three"};
+                    var contents = new[] { "one", "two", "three" };
                     var path = unalteredPath + Spaces;
 
                     var enc = new UTF8Encoding(false, true);
@@ -334,7 +334,7 @@
             public void And_the_path_is_empty_It_should_throw_ArgumentException()
             {
                 var path = string.Empty;
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 var enc = new UTF8Encoding(false, true);
                 Action throwingAction = () => _target.AppendAllLines(path, contents, enc);
@@ -347,7 +347,7 @@
             [TestCategory(TestTiming.CheckIn)]
             public void And_the_path_is_null_It_should_throw_ArgumentNullException()
             {
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 var enc = new UTF8Encoding(false, true);
                 Action throwingAction = () => _target.AppendAllLines(null, contents, enc);
@@ -370,7 +370,7 @@
 
                 var dirName = _pathUtilities.GetParentPath(path);
 
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 Action throwingAction = () => _target.AppendAllLines(path, contents, Encoding.ASCII);
                 var e = throwingAction.Should().Throw<DirectoryNotFoundException>();
@@ -384,7 +384,7 @@
             {
                 var path = _tempPath + new string('A', TestHardCodes.PathAlwaysTooLong);
 
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 Action throwingAction = () => _target.AppendAllLines(path, contents, Encoding.ASCII);
                 var e = throwingAction.Should().Throw<PathTooLongException>();
@@ -398,7 +398,7 @@
             {
                 // with tab
                 const string path0 = " \t ";
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 Action throwingAction = () => _target.AppendAllLines(path0, contents, Encoding.ASCII);
                 var e = throwingAction.Should().Throw<ArgumentException>();
@@ -419,7 +419,7 @@
             {
                 var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture));
                 _directoryInternalMapping.CreateDirectory(path);
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 try
                 {
@@ -443,7 +443,7 @@
             {
                 // HAPPY PATH TEST:
                 var path = _target.CreateTemporaryFile();
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
 
                 try
                 {
@@ -464,7 +464,7 @@
             [TestCategory(TestTiming.CheckIn)]
             public void And_the_path_matches_an_existing_file_It_should_append_the_lines()
             {
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
                 var path = _pathUtilities.Combine(_tempPath, Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture) + ".txt");
                 _target.CreateFile(path);
                 try
@@ -486,7 +486,7 @@
             [TestCategory(TestTiming.CheckIn)]
             public void It_should_append_the_lines()
             {
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
                 var path = _target.CreateTemporaryFile();
                 try
                 {

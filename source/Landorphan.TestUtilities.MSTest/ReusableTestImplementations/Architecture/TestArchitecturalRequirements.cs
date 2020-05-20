@@ -1,6 +1,7 @@
 namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
     using System;
+    using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Diagnostics;
@@ -8,6 +9,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using Landorphan.Common;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -16,6 +18,9 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
     /// <summary>
     /// Test implementations for test architectural requirements.
     /// </summary>
+    /// <remarks>
+    /// Only considers public types.  Ignores abstract types.  Ignores types decorated with any of the following: CompilerGeneratedAttribute, GeneratedCodeAttribute, IgnoreAttribute.
+    /// </remarks>
     public abstract class TestArchitecturalRequirements : TestBase
     {
         /// <summary>
@@ -198,14 +203,16 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return ImmutableHashSet<Type>.Empty;
         }
 
+        [SuppressMessage("Sonar.CodeSmell", "S1067: Expressions should not be too complex", Justification = "needed (MWP)")]
         private IList<Type> GetAllEffectiveTestTypesTestAssembly()
         {
             return (
                 from t in GetAllTestTypesInTestAssembly()
-                where
-                    (t.IsPublic || t.IsNestedPublic) &&
-                    !t.IsAbstract /* excludes statics as well */ &&
-                    !t.GetCustomAttributes(typeof(IgnoreAttribute), true).Any()
+                where (t.IsPublic || t.IsNestedPublic) &&
+                      !t.IsAbstract /* excludes statics as well */ &&
+                      !t.GetCustomAttributes(typeof(IgnoreAttribute), true).Any() &&
+                      !t.GetCustomAttributes(typeof(GeneratedCodeAttribute), true).Any() &&
+                      !t.GetCustomAttributes(typeof(CompilerGeneratedAttribute), true).Any()
                 select t).ToList();
         }
 
