@@ -7,6 +7,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
     using System.Reflection;
     using FluentAssertions;
     using Landorphan.Common;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Test implementations for architectural requirements.
@@ -16,6 +17,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Asserts all declarations not under an internal or resource namespace leaf node are either public, or nested.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("SonarLint.CodeSmell", "S1067:Expressions should not be too complex", Justification = "Test Code addressing a general problem (MWP)")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high", Justification = "Test Code addressing a general problem (MWP)")]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
@@ -67,6 +69,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates all declarations under an internal namespace.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         [SuppressMessage("Microsoft.Globalization", "CA1307: Specify StringComparison", Justification = "Not available in .Net Standard or .Net Framework")]
         [SuppressMessage("SonarLint.CodeSmell", "S4058: Overloads with a StringComparison parameter should be used", Justification = "Not available in .Net Standard or .Net Framework")]

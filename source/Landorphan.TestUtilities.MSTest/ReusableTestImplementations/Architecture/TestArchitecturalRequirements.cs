@@ -21,6 +21,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Verifies that all test classes descend from <see cref="TestBase" /> except for those explicitly excluded.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
         {
@@ -51,6 +52,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Verifies that all tests that are not ignored have one and only one timing category.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Control flow statements if, switch, for, foreach, while, do and try should not be nested too deeply")]
         protected void All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
@@ -99,7 +101,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                                 failureMessages.Add(
                                     string.Format(
                                         CultureInfo.InvariantCulture,
-                                        "The test '{0}.{1}' is not decorated with [TestCategory(WellKnownCategories.Timing.*)] but should be.",
+                                        "The test '{0}.{1}' is not decorated with [TestCategory(TestTiming.*)] but should be.",
                                         testClass.Name,
                                         testMethod));
                                 break;
@@ -108,7 +110,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                                 failureMessages.Add(
                                     string.Format(
                                         CultureInfo.InvariantCulture,
-                                        "The test '{0}.{1}' is decorated with more than one [TestCategory(WellKnownCategories.Timing.*)] but should only have one timing attribute.",
+                                        "The test '{0}.{1}' is decorated with more than one [TestCategory(TestTiming.*)] but should only have one timing attribute.",
                                         testClass.Name,
                                         testMethod));
                                 break;
@@ -132,6 +134,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// Trace output enumerates the ignored tests, if any.
         /// </remarks>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Find_ignored_tests_in_assembly(Assembly assembly)
         {

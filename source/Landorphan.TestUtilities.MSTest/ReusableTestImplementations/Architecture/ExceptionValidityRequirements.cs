@@ -24,6 +24,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that it is NOT decorated with [Serializable].
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
         {
@@ -44,6 +45,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// Evaluates each exception to ensure that it is either abstract or sealed.
         /// </summary>
         /// <exception cref="AssertFailedException" />
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "AbstractOr", Justification = "Years old bug.")]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
@@ -65,6 +67,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// Evaluates each exception to ensure that it is public.
         /// </summary>
         /// <exception cref="AssertFailedException" />
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Be_Public_Implementation()
         {
@@ -94,6 +97,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <see cref="GetAcceptableBaseExceptionTypes" />
         /// </remarks>
         /// <exception cref="AssertFailedException" />
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
         {
@@ -113,6 +117,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has a default constructor.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Default_Constructor_Implementation()
         {
@@ -133,6 +138,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has message and inner exception constructor.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
         {
@@ -152,6 +158,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has a message constructor.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Message_Constructor_Implementation()
         {
@@ -173,6 +180,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// </summary>
         // WHAT IS THE BP?  [Serializable] is deprecated but BCL classes have this .ctor as well as 
         // GetObjectData
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
         {
@@ -192,6 +200,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has a inner exception constructor.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
         {
@@ -213,6 +222,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// constructor,
         /// the message constructor and the serialization constructor.
         /// </summary>
+        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
         {
@@ -317,13 +327,13 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
 
         private static ConstructorInfo GetPublicInnerExceptionConstructor(Type exceptionType)
         {
-            var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] {typeof(Exception)}, null);
+            var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] { typeof(Exception) }, null);
             return rv;
         }
 
         private static ConstructorInfo GetPublicMessageConstructor(Type exceptionType)
         {
-            var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] {typeof(string)}, null);
+            var rv = exceptionType.GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new[] { typeof(string) }, null);
             return rv;
         }
 
@@ -332,7 +342,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             var messageInnerExceptionConstructor = exceptionType.GetConstructor(
                 BindingFlags.Instance | BindingFlags.Public,
                 null,
-                new[] {typeof(string), typeof(Exception)},
+                new[] { typeof(string), typeof(Exception) },
                 null);
             return messageInnerExceptionConstructor;
         }
@@ -342,7 +352,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             var serializationConstructor = exceptionType.GetConstructor(
                 BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                 null,
-                new[] {typeof(SerializationInfo), typeof(StreamingContext)},
+                new[] { typeof(SerializationInfo), typeof(StreamingContext) },
                 null);
             return serializationConstructor;
         }
@@ -440,7 +450,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                     try
                     {
                         // invoke with nulls
-                        publicInnerExceptionConstructor.Invoke(new object[] {null});
+                        publicInnerExceptionConstructor.Invoke(new object[] { null });
                     }
                     catch
                     {
@@ -452,7 +462,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                     {
                         // invoke with non-null
                         var innerException = new ArgumentNullException(Guid.NewGuid().ToString());
-                        var exception = publicInnerExceptionConstructor.Invoke(new object[] {innerException}) as Exception;
+                        var exception = publicInnerExceptionConstructor.Invoke(new object[] { innerException }) as Exception;
 
                         // ReSharper disable once PossibleNullReferenceException
                         if (exception.InnerException != innerException)
@@ -505,7 +515,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                     try
                     {
                         // invoke with nulls
-                        publicMessageInnerExceptionConstructor.Invoke(new object[] {null, null});
+                        publicMessageInnerExceptionConstructor.Invoke(new object[] { null, null });
                     }
                     catch
                     {
@@ -519,7 +529,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                         // invoke with non-nulls
                         var message = Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture);
                         var innerException = new ArgumentNullException(Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture));
-                        var exception = publicMessageInnerExceptionConstructor.Invoke(new object[] {message, innerException}) as Exception;
+                        var exception = publicMessageInnerExceptionConstructor.Invoke(new object[] { message, innerException }) as Exception;
 
                         // ReSharper disable once PossibleNullReferenceException
                         if (!exception.Message.Equals(message, StringComparison.Ordinal))
@@ -581,7 +591,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                     {
                         // invoke with a null message.
 
-                        messageConstructor.Invoke(new object[] {null});
+                        messageConstructor.Invoke(new object[] { null });
                     }
                     catch
                     {
@@ -594,7 +604,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                         // invoke with a non-null message.
                         var message = Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture);
 
-                        var exception = messageConstructor.Invoke(new object[] {message}) as Exception;
+                        var exception = messageConstructor.Invoke(new object[] { message }) as Exception;
 
                         // the message constructor should not mangle the message.
                         if (!exception.Message.Equals(message, StringComparison.Ordinal))
@@ -932,7 +942,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                     }
                     else if (typeof(IEnumerable<Type>) == p.ParameterType)
                     {
-                        argumentNameValuePairs.Add(p.Name, new List<Type> {typeof(object), typeof(Guid), typeof(ConsoleColor)});
+                        argumentNameValuePairs.Add(p.Name, new List<Type> { typeof(object), typeof(Guid), typeof(ConsoleColor) });
                     }
                     else if (typeof(Exception) == p.ParameterType)
                     {
