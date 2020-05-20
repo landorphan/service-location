@@ -136,7 +136,7 @@ namespace Landorphan.TestUtilities.NUnit.Tests
 
             protected override void ArrangeMethod()
             {
-                var listener = new TextWriterTraceListener(_memoryStream) {Filter = new EventTypeFilter(SourceLevels.Warning)};
+                var listener = new TextWriterTraceListener(_memoryStream) { Filter = new EventTypeFilter(SourceLevels.Warning) };
 
                 Trace.Listeners.Add(listener);
                 _eventSource = new TestClassSourcingAPublicEventArgsEvent();

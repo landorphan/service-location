@@ -36,7 +36,7 @@ namespace Landorphan.Abstractions.Tests.IO
             [TestCategory(TestTiming.CheckIn)]
             public void It_should_append_all_lines()
             {
-                var contents = new[] {"one", "two", "three"};
+                var contents = new[] { "one", "two", "three" };
                 var path = _fileUtilities.CreateTemporaryFile();
                 try
                 {
@@ -177,7 +177,7 @@ namespace Landorphan.Abstractions.Tests.IO
             public void It_should_replace_the_contents()
             {
                 var encoding = Encoding.UTF8;
-                var sourceContents = new[] {"one", "two", "three"}.ToImmutableList();
+                var sourceContents = new[] { "one", "two", "three" }.ToImmutableList();
 
                 var sourceFileName = _fileUtilities.CreateTemporaryFile();
                 var destinationFileName = _fileUtilities.CreateTemporaryFile();
@@ -209,7 +209,7 @@ namespace Landorphan.Abstractions.Tests.IO
             public void It_should_replace_the_contents()
             {
                 var encoding = Encoding.UTF8;
-                var sourceContents = new[] {"one", "two", "three"}.ToImmutableList();
+                var sourceContents = new[] { "one", "two", "three" }.ToImmutableList();
 
                 var sourceFileName = _fileUtilities.CreateTemporaryFile();
                 var destinationFileName = _fileUtilities.CreateTemporaryFile();
@@ -240,8 +240,8 @@ namespace Landorphan.Abstractions.Tests.IO
             public void It_should_replace_the_contents_and_back_up_destination()
             {
                 var encoding = Encoding.UTF8;
-                var sourceContents = new[] {"one", "two", "three"}.ToImmutableList();
-                var destinationContents = new[] {"4", "5", "6"}.ToImmutableList();
+                var sourceContents = new[] { "one", "two", "three" }.ToImmutableList();
+                var destinationContents = new[] { "4", "5", "6" }.ToImmutableList();
 
                 var sourceFileName = _fileUtilities.CreateTemporaryFile();
                 var destinationFileName = _fileUtilities.CreateTemporaryFile();
@@ -277,8 +277,8 @@ namespace Landorphan.Abstractions.Tests.IO
             public void It_should_replace_the_contents_and_back_up_destination()
             {
                 var encoding = Encoding.UTF8;
-                var sourceContents = new[] {"one", "two", "three"}.ToImmutableList();
-                var destinationContents = new[] {"4", "5", "6"}.ToImmutableList();
+                var sourceContents = new[] { "one", "two", "three" }.ToImmutableList();
+                var destinationContents = new[] { "4", "5", "6" }.ToImmutableList();
 
                 var sourceFileName = _fileUtilities.CreateTemporaryFile();
                 var destinationFileName = _fileUtilities.CreateTemporaryFile();
@@ -313,7 +313,7 @@ namespace Landorphan.Abstractions.Tests.IO
             [TestCategory(TestTiming.CheckIn)]
             public void It_should_write_the_bytes()
             {
-                var expected = new byte[] {0x01, 0x01, 0x02, 0x03}.ToImmutableList();
+                var expected = new byte[] { 0x01, 0x01, 0x02, 0x03 }.ToImmutableList();
 
                 var path = _fileUtilities.CreateTemporaryFile();
                 try
@@ -346,7 +346,7 @@ namespace Landorphan.Abstractions.Tests.IO
             [TestCategory(TestTiming.CheckIn)]
             public void It_should_write_the_contents()
             {
-                var expected = new[] {"zero", "one", "two", "three"}.ToImmutableList();
+                var expected = new[] { "zero", "one", "two", "three" }.ToImmutableList();
 
                 var path = _fileUtilities.CreateTemporaryFile();
                 try
