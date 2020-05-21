@@ -1,6 +1,7 @@
 namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
     using System;
+    using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.Collections.Immutable;
     using System.Diagnostics;
@@ -8,6 +9,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.CompilerServices;
     using Landorphan.Common;
     using NUnit.Framework;
 
@@ -16,11 +18,17 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
     /// <summary>
     /// Test implementations for test architectural requirements.
     /// </summary>
+    /// <remarks>
+    /// Only considers public types.  
+    /// </remarks>
     public abstract class TestArchitecturalRequirements : TestBase
     {
         /// <summary>
         /// Verifies that all test classes descend from <see cref="TestBase" /> except for those explicitly excluded.
         /// </summary>
+        /// <remarks>
+        /// Ignores abstract types.  Ignores non-public types.  Ignores types decorated with any of the following: CompilerGeneratedAttribute, GeneratedCodeAttribute (i.e., SpecFlow), IgnoreAttribute.
+        /// </remarks>
         [Category(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
@@ -30,7 +38,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             var excludedTypes = GetTestTypesNotRequiredToDescendFromTestBase();
             Trace.Assert(excludedTypes != null, "GetTestTypesNotRequiredToDescendFromTestBase() returned null -- which it must not do");
 
-            var testClassTypes = GetAllEffectiveTestTypesTestAssembly();
+            var testClassTypes = GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnoredAndGenerated();
             foreach (var testClass in testClassTypes)
             {
                 if (!typeof(TestBase).IsAssignableFrom(testClass) && !excludedTypes.Contains(testClass))
@@ -45,13 +53,17 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
 
             if (failureMessages.Count > 0)
             {
-                throw new AssertionException(string.Join("\r\n", failureMessages.ToArray()));
+                throw new AssertionException(string.Join(Environment.NewLine, failureMessages.ToArray()));
             }
         }
 
         /// <summary>
         /// Verifies that all tests that are not ignored have one and only one timing category.
         /// </summary>
+        /// <remarks>
+        /// Ignores abstract types. Ignores non-public types.  Ignores types decorated with IgnoreAttribute.
+        /// Generated tests such as SpecFlow ARE included.
+        /// </remarks>
         [Category(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Control flow statements if, switch, for, foreach, while, do and try should not be nested too deeply")]
@@ -68,7 +80,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
                 testTimingValues.Add((string)f.GetValue(null));
             }
 
-            var testClassTypes = GetAllEffectiveTestTypesTestAssembly();
+            var testClassTypes = GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnored();
             foreach (var testClass in testClassTypes)
             {
                 var allPublicMethodsForType = testClass.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
@@ -118,7 +130,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
 
             if (failureMessages.Count > 0)
             {
-                throw new AssertionException(string.Join("\r\n", failureMessages.ToArray()));
+                throw new AssertionException(string.Join(Environment.NewLine, failureMessages.ToArray()));
             }
         }
 
@@ -131,6 +143,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// Trace output enumerates the ignored tests, if any.
         /// </remarks>
+        [Category(TestTiming.CheckIn)]
         [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Find_ignored_tests_in_assembly(Assembly assembly)
         {
@@ -194,21 +207,28 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return ImmutableHashSet<Type>.Empty;
         }
 
-        private IList<Type> GetAllEffectiveTestTypesTestAssembly()
+        private IList<Type> GetAllTestTypesInTestAssembly()
+        {
+            return (from t in GetTestAssembly().SafeGetTypes() where t.GetCustomAttributes(typeof(TestFixtureAttribute), true).Any() select t).ToList();
+        }
+
+        private IList<Type> GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnored()
         {
             return (
                 from t in GetAllTestTypesInTestAssembly()
-                where
-                    (t.IsPublic || t.IsNestedPublic) &&
-                    !t.IsAbstract /* excludes statics as well */ &&
-                    !t.GetCustomAttributes(typeof(IgnoreAttribute), true).Any()
+                where (t.IsPublic || t.IsNestedPublic) &&
+                      !t.IsAbstract /* excludes statics as well */ &&
+                      !t.GetCustomAttributes(typeof(IgnoreAttribute), true).Any()
                 select t).ToList();
         }
 
-        private IList<Type> GetAllTestTypesInTestAssembly()
+        private IList<Type> GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnoredAndGenerated()
         {
-            return (from t in GetTestAssembly().SafeGetTypes() where t.GetCustomAttributes(typeof(TestFixtureAttribute), true).Any() select t)
-                .ToList();
+            return (
+                from t in GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnored()
+                where !t.GetCustomAttributes(typeof(GeneratedCodeAttribute), true).Any() &&
+                      !t.GetCustomAttributes(typeof(CompilerGeneratedAttribute), true).Any()
+                select t).ToList();
         }
     }
 }
