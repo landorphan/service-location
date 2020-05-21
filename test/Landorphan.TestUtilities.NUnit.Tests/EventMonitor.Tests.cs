@@ -167,6 +167,7 @@ namespace Landorphan.TestUtilities.NUnit.Tests
 
             [Test]
             [Category(TestTiming.CheckIn)]
+            // 2020.05.21 .. intermittently failing, rare, but often enough MWP noticed....the stream is not writable
             public void It_should_record_that_the_event_fired_once()
             {
                 var recordedEvents = (from re in MonitoredEvents select re).ToList();
