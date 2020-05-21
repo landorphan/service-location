@@ -110,10 +110,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Layout", "Layout", "{0FE84C
 	ProjectSection(SolutionItems) = preProject
 		build\JetBrains\Layout\ResharperLayout.Current.xml = build\JetBrains\Layout\ResharperLayout.Current.xml
 		build\JetBrains\Layout\ResharperLayout.Editing.xml = build\JetBrains\Layout\ResharperLayout.Editing.xml
-		build\JetBrains\Layout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.1.4.WithoutRegions.xml
-		build\JetBrains\Layout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.2.3.WithoutRegions.xml
-		build\JetBrains\Layout\ResharperLayoutFull.2018.3.2.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.2.WithoutRegions.xml
-		build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml = build\JetBrains\Layout\ResharperLayoutFull.2018.3.3.WithoutRegions.xml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.InstrumentationManagement", "source\Landorphan.InstrumentationManagement\Landorphan.InstrumentationManagement.csproj", "{4DA690A7-6837-4481-963B-C285E53C4A6C}"

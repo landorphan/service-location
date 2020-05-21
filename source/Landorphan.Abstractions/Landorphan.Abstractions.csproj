@@ -41,6 +41,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Landorphan.Ioc.ServiceLocation\Landorphan.Ioc.ServiceLocation.csproj" />
-    <ProjectReference Include="..\Landorphan.TestUtilities.MSTest\Landorphan.TestUtilities.MSTest.csproj" />
   </ItemGroup>
 </Project>

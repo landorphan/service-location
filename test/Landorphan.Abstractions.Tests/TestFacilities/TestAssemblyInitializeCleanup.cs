@@ -1,15 +1,9 @@
 ﻿namespace Landorphan.Abstractions.Tests.TestFacilities
 {
-    using System;
     using System.Collections.Immutable;
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Runtime.InteropServices;
-    using Landorphan.Abstractions.Interfaces;
-    using Landorphan.Abstractions.IO;
-    using Landorphan.Abstractions.IO.Interfaces;
-    using Landorphan.Ioc.ServiceLocation;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
@@ -25,11 +19,12 @@
         /// </remarks>
         [AssemblyInitialize]
         [SuppressMessage("SonarLint.CodeSmell", "S3923: All branches in a conditional structure should not have exactly the same implementation")]
+        [SuppressMessage("Microsoft.IDE", "IDE0060: remove unused parameter if it is not part of a public API.", Justification = "This is part of a MS public API")]
         public static void AssemblyInitialize(TestContext context)
         {
             // acquire assemblies under test
             var assemblies = ImmutableHashSet<Assembly>.Empty.ToBuilder();
-            assemblies.Add(typeof(DirectoryUtilities).Assembly);
+            assemblies.Add(typeof(IEnvironmentUtilities).Assembly);
             AssembliesUnderTest = assemblies.ToImmutable();
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -53,28 +48,7 @@
         [AssemblyCleanup]
         public static void AssemblyCleanup()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                // if the windows test target root directory exists, tear it down (requires elevation) by calling PS script.
-                var envUtilities = IocServiceLocator.Resolve<IEnvironmentUtilities>();
-                var pathUtilities = IocServiceLocator.Resolve<IPathUtilities>();
-                var dirUtilities = IocServiceLocator.Resolve<IDirectoryUtilities>();
-                var systemDrive = pathUtilities.GetRootPath(envUtilities.GetSpecialFolderPath(Environment.SpecialFolder.System));
-                var localFolderRootTest = pathUtilities.Combine(systemDrive, @"Landorphan.Abstractions.Test.UnitTestTarget");
-
-                if (dirUtilities.DirectoryExists(localFolderRootTest))
-                {
-                    var windowsArrange = new TestAssemblyInitializeCleanupWindowsHelper();
-                    try
-                    {
-                        windowsArrange.Teardown();
-                    }
-                    catch (Exception e)
-                    {
-                        Trace.WriteLine("ERROR", e.ToString());
-                    }
-                }
-            }
+            // currently empty
         }
     }
 }

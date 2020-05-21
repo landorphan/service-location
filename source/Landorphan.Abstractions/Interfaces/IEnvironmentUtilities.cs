@@ -1,4 +1,4 @@
-namespace Landorphan.Abstractions.Interfaces
+namespace Landorphan.Abstractions
 {
     using System;
     using System.Collections.Immutable;
@@ -6,6 +6,7 @@ namespace Landorphan.Abstractions.Interfaces
     using System.IO;
     using System.Security;
     using System.Security.Permissions;
+    using Landorphan.Abstractions.Interfaces;
     using Landorphan.Common.Exceptions;
 
     /// <summary>
