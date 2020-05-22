@@ -71,23 +71,14 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         {
             var failureMessages = new List<string>();
 
-            // Get the Timing fields
-            var testTimingValues = new HashSet<string>(StringComparer.Ordinal);
-            var categoryTimingType = typeof(TestTiming);
-            var fields = categoryTimingType.GetFields(BindingFlags.Public | BindingFlags.Static);
-            foreach (var f in fields)
-            {
-                testTimingValues.Add((string)f.GetValue(null));
-            }
-
+            var testTimingValues = GetRecognizedTestTimingCategories().ToImmutableHashSet(StringComparer.OrdinalIgnoreCase);
             var testClassTypes = GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnored();
             foreach (var testClass in testClassTypes)
             {
                 var allPublicMethodsForType = testClass.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
                 foreach (var m in allPublicMethodsForType)
                 {
-                    if (m.GetCustomAttributes(typeof(TestAttribute), true).Any() &&
-                        !m.GetCustomAttributes(typeof(IgnoreAttribute), true).Any())
+                    if (m.GetCustomAttributes(typeof(TestAttribute), true).Any() && !m.GetCustomAttributes(typeof(IgnoreAttribute), true).Any())
                     {
                         var testMethod = m.Name;
 
@@ -184,8 +175,40 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         }
 
         /// <summary>
+        /// Gets the set of values recognized as valid test timing categories.
+        /// </summary>
+        /// <remarks>
+        /// The default implementation returns all values in <see cref="Landorphan.TestUtilities.TestTiming"/>.
+        /// </remarks>
+        /// <returns>
+        /// A non-null collection containing at least one recognized value.
+        /// </returns>
+        protected virtual ICollection<string> GetRecognizedTestTimingCategories()
+        {
+            var fieldInfos = typeof(TestTiming).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+
+            // no .ToHashSet(StringComparer.OrdinalIgnoreCase) ... do it manually
+            var lst = fieldInfos.Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.FieldType == typeof(string)).Select(x => ((string)x.GetRawConstantValue()).TrimNullToEmpty()).ToList();
+            var rv = new HashSet<string>(lst, StringComparer.OrdinalIgnoreCase);
+            if (rv.Contains(string.Empty))
+            {
+                rv.Remove(string.Empty);
+            }
+
+            return rv.ToImmutableHashSet(StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
         /// Gets the test assembly to be evaluated.
         /// </summary>
+        /// <example>
+        /// <code>
+        ///         protected override Assembly GetTestAssembly()
+        ///         {
+        ///             return GetType().Assembly;
+        ///         }
+        /// </code>
+        /// </example>
         /// <returns>
         /// The test assembly to be evaluated.
         /// </returns>
@@ -209,6 +232,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
 
         private IList<Type> GetAllTestTypesInTestAssembly()
         {
+            // this is capturing types outside the test assembly in .Net Core 3.1.102
             return (from t in GetTestAssembly().SafeGetTypes() where t.GetCustomAttributes(typeof(TestFixtureAttribute), true).Any() select t).ToList();
         }
 
