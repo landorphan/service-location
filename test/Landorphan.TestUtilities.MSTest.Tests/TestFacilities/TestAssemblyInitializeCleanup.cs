@@ -1,42 +1,42 @@
 ﻿namespace Landorphan.TestUtilities.MSTest.Tests.TestFacilities
 {
-   using System.Collections.Immutable;
-   using System.Reflection;
-   using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Collections.Immutable;
+    using System.Reflection;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-   [TestClass]
-   public static class TestAssemblyInitializeCleanup
-   {
-      internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
+    [TestClass]
+    public static class TestAssemblyInitializeCleanup
+    {
+        internal static IImmutableSet<Assembly> AssembliesUnderTest { get; private set; }
 
-      /// <summary>
-      /// Performs assembly level initialization.
-      /// </summary>
-      /// <remarks>
-      /// Executes once, before any tests to be executed are run.
-      /// </remarks>
-      [AssemblyInitialize]
-      public static void AssemblyInitialize(TestContext context)
-      {
-         // acquire assemblies under test
-         var assemblies = ImmutableHashSet<Assembly>.Empty.ToBuilder();
+        /// <summary>
+        /// Performs assembly level initialization.
+        /// </summary>
+        /// <remarks>
+        /// Executes once, before any tests to be executed are run.
+        /// </remarks>
+        [AssemblyInitialize]
+        public static void AssemblyInitialize(TestContext context)
+        {
+            // acquire assemblies under test
+            var assemblies = ImmutableHashSet<Assembly>.Empty.ToBuilder();
 
-         // Landorphan.TestUtilities.MSTest
-         assemblies.Add(typeof(ArrangeActAssert).Assembly);
+            // Landorphan.TestUtilities.MSTest
+            assemblies.Add(typeof(ArrangeActAssert).Assembly);
 
-         AssembliesUnderTest = assemblies.ToImmutable();
-      }
+            AssembliesUnderTest = assemblies.ToImmutable();
+        }
 
-      /// <summary>
-      /// Frees resources obtained by the test assembly.
-      /// </summary>
-      /// <remarks>
-      /// Executes once, after all tests to be executed are run.
-      /// </remarks>
-      [AssemblyCleanup]
-      public static void AssemblyCleanup()
-      {
-         // currently no resources to clean up.
-      }
-   }
+        /// <summary>
+        /// Frees resources obtained by the test assembly.
+        /// </summary>
+        /// <remarks>
+        /// Executes once, after all tests to be executed are run.
+        /// </remarks>
+        [AssemblyCleanup]
+        public static void AssemblyCleanup()
+        {
+            // currently no resources to clean up.
+        }
+    }
 }

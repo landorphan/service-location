@@ -3,17 +3,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)\AssemblyVersion.cs" />
   </ItemGroup>
 
-   <PropertyGroup>
-      <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-      <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-      <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-   </PropertyGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(SYSTEM_TEAMFOUNDATIONSERVERURI)' != ''">
     <NoWarn>1701;1702;</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
+
+  <!-- Updated analyzers and rebuilt rules 
 
    <ItemGroup>
       <None Remove="Default.Source.NetCore.FxCop.15.0.WithSonarLint.ruleset" />
@@ -106,5 +108,6 @@
          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       </PackageReference>
    </ItemGroup>
+   -->
 
 </Project>

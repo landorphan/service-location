@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <!-- Required elements-->
+    <id>Landorphan.TestUtilities.NUnit</id>
+    <version>$version$</version>
+    <description>Test utilities including Ioc.ServiceLocation and Ioc.ServiceLocation.Testability targeting the NUnit3 framework.</description>
+    <authors>Landorphan LLC, Michael Prochaska, Timothy Stockstill</authors>
+
+    <!-- Optional elements -->
+    <title>Landorphan.TestUtilities.NUnit</title>
+    <owners>landorphan, mprochaska, tstockstill</owners>
+    <projectUrl>https://github.com/landorphan/service-location</projectUrl>
+    <license type="expression">MIT</license>
+    <!-- Not deployed yet
+        <iconUrl>https://github.com/landorphan/common/raw/master/logo.png</iconUrl>
+        -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <developmentDependency>false</developmentDependency>
+    <summary>Test utilities including Ioc.ServiceLocation and IocServiceLocationTestability targeting the NUnit3 framework.</summary>
+    <releaseNotes>Initial public release.</releaseNotes>
+    <copyright>Copyright Â© 2020 - Landorphan, LLC.</copyright>
+    <language></language>
+    <tags>common, utility</tags>
+    <repository type="git" url="https://github.com/landorphan/service-location"/>
+    <packageTypes>
+      <packageType name="Dependency" />
+    </packageTypes>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Landorphan.Common" version="0.9.814" exclude="Build,Analyzers" />
+
+        <!--TODO: improve so that current build version number is used for dependencies in this repo-->
+        <dependency id="Landorphan.Ioc.ServiceLocation" version="0.9.467" exclude="Build,Analyzers" />
+        <dependency id="Landorphan.Ioc.ServiceLocation.Testability" version="0.9.467" exclude="Build,Analyzers" />
+        <dependency id="Landorphan.TestUtilities.Common" version="0.9.467" exclude="Build,Analyzers" />
+
+        <dependency id="FluentAssertions" version="5.10.3" exclude="Build,Analyzers"/>
+        <dependency id="Microsoft.NET.Test.Sdk" version="16.6.1" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Immutable" version="1.7.1" exclude="Build,Analyzers" />
+
+        <dependency id="NUnit" version="3.12.0"  exclude="Build,Analyzers"/>
+        <dependency id="NUnit3TestAdapter" version="3.16.1"  exclude="Build,Analyzers"/>
+      </group>
+    </dependencies>
+  </metadata>
+</package>
