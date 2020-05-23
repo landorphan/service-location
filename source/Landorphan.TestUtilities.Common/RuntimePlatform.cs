@@ -32,10 +32,7 @@ namespace Landorphan.TestUtilities
         /// True if the current runtime operating system platform is not any of the
         /// platforms provided, otherwise false.
         /// </returns>
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S100: Name does not match camel case rules",
-            Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
+        [SuppressMessage("SonarLint.CodeSmell", "S100: Name does not match camel case rules", Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
         public static bool IsNotOSPlatform(params OSPlatform[] platforms)
         {
             return !IsOSPlatform(platforms);
@@ -52,10 +49,7 @@ namespace Landorphan.TestUtilities
         /// True if the current runtime operating system platform one of the provided
         /// platforms, otherwise false.
         /// </returns>
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S100: Name does not match camel case rules",
-            Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
+        [SuppressMessage("SonarLint.CodeSmell", "S100: Name does not match camel case rules", Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
         public static bool IsOSPlatform(params OSPlatform[] platforms)
         {
             return (
@@ -70,10 +64,7 @@ namespace Landorphan.TestUtilities
         /// <returns> 
         /// True if the runtime operating system platform is OSX, otherwise false.
         /// </returns>
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S100: Name does not match camel case rules",
-            Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
+        [SuppressMessage("SonarLint.CodeSmell", "S100: Name does not match camel case rules", Justification = "This name is consistent with the name chosen by dotnet core for OSPlatform")]
         public static bool IsOSX()
         {
             return RuntimeInformation.IsOSPlatform(OSPlatform.OSX);

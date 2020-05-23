@@ -29,8 +29,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// Ignores abstract types.  Ignores non-public types.  Ignores types decorated with any of the following: CompilerGeneratedAttribute, GeneratedCodeAttribute (i.e., SpecFlow), IgnoreAttribute.
         /// </remarks>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
         {
             var failureMessages = new List<string>();
@@ -64,30 +62,19 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// Ignores abstract types. Ignores non-public types.  Ignores types decorated with IgnoreAttribute.
         /// Generated tests such as SpecFlow ARE included.
         /// </remarks>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Control flow statements if, switch, for, foreach, while, do and try should not be nested too deeply")]
         protected void All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
         {
             var failureMessages = new List<string>();
 
-            // Get the Timing fields
-            var testTimingValues = new HashSet<string>(StringComparer.Ordinal);
-            var categoryTimingType = typeof(TestTiming);
-            var fields = categoryTimingType.GetFields(BindingFlags.Public | BindingFlags.Static);
-            foreach (var f in fields)
-            {
-                testTimingValues.Add((string)f.GetValue(null));
-            }
-
+            var testTimingValues = GetRecognizedTestTimingCategories().ToImmutableHashSet(StringComparer.OrdinalIgnoreCase);
             var testClassTypes = GetAllTestTypesInTestAssemblyExcludeNonPublicAndAbstractAndIgnored();
             foreach (var testClass in testClassTypes)
             {
                 var allPublicMethodsForType = testClass.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
                 foreach (var m in allPublicMethodsForType)
                 {
-                    if (m.GetCustomAttributes(typeof(TestMethodAttribute), true).Any() &&
-                        !m.GetCustomAttributes(typeof(IgnoreAttribute), true).Any())
+                    if (m.GetCustomAttributes(typeof(TestMethodAttribute), true).Any() && !m.GetCustomAttributes(typeof(IgnoreAttribute), true).Any())
                     {
                         var testMethod = m.Name;
 
@@ -146,8 +133,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// Trace output enumerates the ignored tests, if any.
         /// </remarks>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Find_ignored_tests_in_assembly(Assembly assembly)
         {
             assembly.ArgumentNotNull(nameof(assembly));
@@ -187,12 +172,43 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         }
 
         /// <summary>
+        /// Gets the set of values recognized as valid test timing categories.
+        /// </summary>
+        /// <remarks>
+        /// The default implementation returns all values in <see cref="Landorphan.TestUtilities.TestTiming"/>.
+        /// </remarks>
+        /// <returns>
+        /// A non-null collection containing at least one recognized value.
+        /// </returns>
+        protected virtual ICollection<string> GetRecognizedTestTimingCategories()
+        {
+            var fieldInfos = typeof(TestTiming).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+
+            // no .ToHashSet(StringComparer.OrdinalIgnoreCase) ... do it manually
+            var lst = fieldInfos.Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.FieldType == typeof(string)).Select(x => ((string)x.GetRawConstantValue()).TrimNullToEmpty()).ToList();
+            var rv = new HashSet<string>(lst, StringComparer.OrdinalIgnoreCase);
+            if (rv.Contains(string.Empty))
+            {
+                rv.Remove(string.Empty);
+            }
+
+            return rv.ToImmutableHashSet(StringComparer.OrdinalIgnoreCase);
+        }
+
+        /// <summary>
         /// Gets the test assembly to be evaluated.
         /// </summary>
+        /// <example>
+        /// <code>
+        ///         protected override Assembly GetTestAssembly()
+        ///         {
+        ///             return GetType().Assembly;
+        ///         }
+        /// </code>
+        /// </example>
         /// <returns>
         /// The test assembly to be evaluated.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         protected abstract Assembly GetTestAssembly();
 
         /// <summary>
@@ -204,7 +220,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// May not be null.
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         protected virtual IImmutableSet<Type> GetTestTypesNotRequiredToDescendFromTestBase()
         {
             return ImmutableHashSet<Type>.Empty;
@@ -212,6 +227,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
 
         private IList<Type> GetAllTestTypesInTestAssembly()
         {
+            // this is capturing types outside the test assembly in .Net Core 3.1.102
             return (from t in GetTestAssembly().SafeGetTypes() where t.GetCustomAttributes(typeof(TestClassAttribute), true).Any() select t).ToList();
         }
 

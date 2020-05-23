@@ -9,7 +9,6 @@
     using System.Xml.Linq;
     using FluentAssertions;
     using Landorphan.Common;
-    using NUnit.Framework;
 
     // ReSharper disable StringLiteralTypo
     // ReSharper disable InconsistentNaming
@@ -23,10 +22,8 @@
         /// Asserts the given ruleset file contains no duplicate rule id values.
         /// </summary>
         /// <param name="rulesetPath">
-        /// The path the the ruleset file to inspect.
+        /// The path the ruleset file to inspect.
         /// </param>
-        [Category(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
         protected void Rulesets_should_not_have_duplicate_rule_ids_implementation(string rulesetPath)
         {

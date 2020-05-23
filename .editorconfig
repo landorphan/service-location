@@ -1,10 +1,12 @@
-# seeing issues caused by the presence of .editorconfig in Visual Studio 2019 16.5.5 (VS, VS Extensions, R#, analyzers), 
-# scoping to bash scripts
 root=true
+# seeing issues caused by the presence of .editorconfig in Visual Studio 2019 16.5.5 (VS, VS Extensions, R#, analyzers), 
+# scoping to bash scripts and yml
 
-[*.sh]
+[*.{sh,yml}]
 indent_style=space
 charset=utf-8
 trim_trailing_whitespace=true
 insert_final_newline=true
-end_of_line = lf
+
+[*.yml]
+indent_size=2

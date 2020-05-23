@@ -1461,6 +1461,9 @@
 	<s:Boolean x:Key="/Default/CodeStyle/EditorConfig/ShowEditorConfigStatusBarIndicator/@EntryValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeStyle/EditorConfig/SyncToVisualStudio/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=IO/@EntryIndexedValue">IO</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=OS/@EntryIndexedValue">OS</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=OSX/@EntryIndexedValue">OSX</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=PS/@EntryIndexedValue">PS</s:String>
 	<s:Boolean x:Key="/Default/CodeStyle/Naming/CSharpNaming/ApplyAutoDetectedRules/@EntryValue">False</s:Boolean>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=PrivateStaticFields/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="t_" Suffix="" Style="aaBb" /&gt;</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/PredefinedNamingRules/=PrivateStaticReadonly/@EntryIndexedValue">&lt;Policy Inspect="True" Prefix="t_" Suffix="" Style="aaBb" /&gt;</s:String>
@@ -1557,6 +1560,14 @@
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002ECSharpPlaceAttributeOnSameLineMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EMigrateBlankLinesAroundFieldToBlankLinesAroundProperty/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EMigrateThisQualifierSettings/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/CppTestProvider/UseNamedPipes/@EntryValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=BoostTest/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=Catch/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=Doctest/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=GTest/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=Jasmine/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=NUnit2x/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/UnitTesting/DisabledProviders/=xUnit/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/UnitTesting/ExcludedCategoriesList/@EntryValue">Check-In-Non-Ide, Nightly, Manual</s:String>
 	<s:Int64 x:Key="/Default/Environment/UnitTesting/ParallelProcessesCount/@EntryValue">8</s:Int64>
 	<s:Boolean x:Key="/Default/Environment/UnitTesting/ShadowCopy/@EntryValue">False</s:Boolean>
@@ -1565,6 +1576,7 @@
 	<s:String x:Key="/Default/FilterSettingsManager/AttributeFilterXml/@EntryValue">&lt;data /&gt;</s:String>
 	<s:String x:Key="/Default/FilterSettingsManager/CoverageFilterXml/@EntryValue">&lt;data&gt;&lt;IncludeFilters /&gt;&lt;ExcludeFilters&gt;&lt;Filter ModuleMask="*.Tests" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;Filter ModuleMask="*.tests" ModuleVersionMask="*" ClassMask="*" FunctionMask="*" IsEnabled="True" /&gt;&lt;/ExcludeFilters&gt;&lt;/data&gt;</s:String>
 	<s:Int64 x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestRunner/CheckForHangingExecutionInterval/@EntryValue">30</s:Int64>
+	<s:String x:Key="/Default/Housekeeping/UnitTestingMru/UnitTestSessionDefault/PlatformType/@EntryValue">Automatic</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=94C8962283DF094BA00798562BEA4D79/@KeyIndexDefined">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=94C8962283DF094BA00798562BEA4D79/Color/@EntryValue">WindowText</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/Todo/TodoPatterns/=94C8962283DF094BA00798562BEA4D79/MatchComments/@EntryValue">True</s:Boolean>
