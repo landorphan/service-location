@@ -133,18 +133,17 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
                 throw new ContainerConfigurationNamedImplementationsDisabledException(this, null, null);
             }
 
-            // Kludge:
-            // REFACTOR:  Trying to address .Net Core 3.1.102 issue with self-registration
+            // Kludge: to address .Net Core 3.1.102 issue with self-registration
             var targetFromAsm = Assembly.GetAssembly(fromType);
             var loadedAsmName = (from a in AppDomain.CurrentDomain.GetAssemblies() select a.GetName()).ToImmutableHashSet(new AssemblyNameEqualityComparer());
             if (!loadedAsmName.Contains(targetFromAsm.GetName()))
             {
                 Assembly.Load(targetFromAsm.FullName);
             }
-            // end refactor
+            // end Kludge: to address .Net Core 3.1.102 issue with self-registration
 
             CheckForNewRegistrations();
-            // end Kludge
+
             var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
             RegistrationValueTypeInstancePair value;
             bool found;
@@ -160,6 +159,15 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
                     instance = value.ImplementationInstance;
                     return true;
                 }
+
+                // Kludge: to address .Net Core 3.1.102 issue with self-registration
+                var implementationAsm = Assembly.GetAssembly(fromType);
+                loadedAsmName = (from a in AppDomain.CurrentDomain.GetAssemblies() select a.GetName()).ToImmutableHashSet(new AssemblyNameEqualityComparer());
+                if (!loadedAsmName.Contains(implementationAsm.GetName()))
+                {
+                    Assembly.Load(implementationAsm.FullName);
+                }
+                // end Kludge: to address .Net Core 3.1.102 issue with self-registration
 
                 // lazily construct registered instance using default ctor
                 // ReSharper disable once AssignNullToNotNullAttribute
