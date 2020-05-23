@@ -8,22 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F10433A2-DCDF-476B-98D2-F3D9939EB5A0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{2B05C482-3783-4E78-B382-561792F5197B}"
-	ProjectSection(SolutionItems) = preProject
-		build\.gitignore = build\.gitignore
-		build\CSharpBuild.psd1 = build\CSharpBuild.psd1
-		build\CSharpBuild.psm1 = build\CSharpBuild.psm1
-		build\LICENSE = build\LICENSE
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildScripts", "BuildScripts", "{F4EC09B2-5F75-407D-AD71-4527BE778A49}"
-	ProjectSection(SolutionItems) = preProject
-		build\BuildScripts\Build-Clean.ps1 = build\BuildScripts\Build-Clean.ps1
-		build\BuildScripts\Build-Debug.ps1 = build\BuildScripts\Build-Debug.ps1
-		build\BuildScripts\Build-Release.ps1 = build\BuildScripts\Build-Release.ps1
-		build\BuildScripts\README.md = build\BuildScripts\README.md
-		build\BuildScripts\Test-Debug.ps1 = build\BuildScripts\Test-Debug.ps1
-		build\BuildScripts\Test-Release.ps1 = build\BuildScripts\Test-Release.ps1
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JetBrains", "JetBrains", "{982D60AF-AA0E-4BAF-A541-0BB9F80D385D}"
 EndProject
@@ -64,7 +48,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{40821690
 		build\NuGet\landorphan.testutilities.common.nuspec = build\NuGet\landorphan.testutilities.common.nuspec
 		build\NuGet\landorphan.testutilities.mstest.nuspec = build\NuGet\landorphan.testutilities.mstest.nuspec
 		build\NuGet\landorphan.testutilities.nunit.nuspec = build\NuGet\landorphan.testutilities.nunit.nuspec
-		build\NuGet\nuget.exe = build\NuGet\nuget.exe
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "help.projects", "help.projects", "{4EF5277F-5624-477A-9142-B2892EB32B15}"
@@ -92,12 +75,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeAnalysis", "CodeAnalysis", "{8323FDA5-2688-425B-8A30-7836EE3F2C08}"
 	ProjectSection(SolutionItems) = preProject
-		AllRules.16.5.WithSonarLint.ruleset = AllRules.16.5.WithSonarLint.ruleset
-		build\CodeAnalysis\Copy-FxCopRuleset.ps1 = build\CodeAnalysis\Copy-FxCopRuleset.ps1
+		build\CodeAnalysis\AllRules.16.5.WithSonarLint.ruleset = build\CodeAnalysis\AllRules.16.5.WithSonarLint.ruleset
 		build\CodeAnalysis\CustomDictionary.xml = build\CodeAnalysis\CustomDictionary.xml
 		build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset = build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset
 		build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset = build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset
-		build\CodeAnalysis\README.md = build\CodeAnalysis\README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rider", "Rider", "{98D67DA8-2430-43D3-9844-636F2FDDF3AB}"
@@ -219,7 +200,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{F4EC09B2-5F75-407D-AD71-4527BE778A49} = {2B05C482-3783-4E78-B382-561792F5197B}
 		{982D60AF-AA0E-4BAF-A541-0BB9F80D385D} = {2B05C482-3783-4E78-B382-561792F5197B}
 		{EDDD5388-8B57-4F5C-B394-2C48A27CB736} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
 		{0C8A1698-545B-4844-B472-7CA45B46A75A} = {65807C31-348B-4BC0-95E0-7D7F8938A547}
