@@ -1,7 +1,10 @@
 namespace Landorphan.Ioc.ServiceLocation.Internal
 {
     using System;
+    using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Reflection;
     using Landorphan.Common;
     using Landorphan.Ioc.ServiceLocation.Exceptions;
     using Landorphan.Ioc.ServiceLocation.Interfaces;
@@ -59,7 +62,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
         }
 
         /// <inheritdoc/>
-        [SuppressMessage("SonarLint.CodeSmell", "S1067:Expressions should not be too complex", Justification = "Extending the type system, it is complex")]
+        [SuppressMessage("SonarLint.CodeSmell", "S1067: Expressions should not be too complex", Justification = "Extending the type system, it is complex")]
         public bool TryResolve(Type fromType, string name, out object instance)
         {
             var rv = ResolveImplementation(fromType, nameof(fromType), name, true, out var obj);
@@ -67,6 +70,7 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
             return rv;
         }
 
+        [SuppressMessage("SonarLint.CodeSmell", "S138: Expressions should not be too complex", Justification = "Extending the type system, it is complex")]
         [SuppressMessage("SonarLint.CodeSmell", "S1541: Methods and properties should not be too complex")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
         private bool ResolveImplementation(Type fromType, string fromTypeParameterName, string name, bool tryLogic, out object instance)
@@ -129,7 +133,18 @@ namespace Landorphan.Ioc.ServiceLocation.Internal
                 throw new ContainerConfigurationNamedImplementationsDisabledException(this, null, null);
             }
 
+            // Kludge:
+            // REFACTOR:  Trying to address .Net Core 3.1.102 issue with self-registration
+            var targetFromAsm = Assembly.GetAssembly(fromType);
+            var loadedAsmName = (from a in AppDomain.CurrentDomain.GetAssemblies() select a.GetName()).ToImmutableHashSet(new AssemblyNameEqualityComparer());
+            if (!loadedAsmName.Contains(targetFromAsm.GetName()))
+            {
+                Assembly.Load(targetFromAsm.FullName);
+            }
+            // end refactor
+
             CheckForNewRegistrations();
+            // end Kludge
             var key = new RegistrationKeyTypeNamePair(fromType, cleanedName);
             RegistrationValueTypeInstancePair value;
             bool found;
