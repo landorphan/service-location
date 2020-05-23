@@ -27,15 +27,6 @@
             assemblies.Add(typeof(IEnvironmentUtilities).Assembly);
             AssembliesUnderTest = assemblies.ToImmutable();
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                // TestAssemblyInitializeCleanupWindowsHelper.Arrange() is now called upon demand in TestHardCodes.WindowsTestPaths
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                // TODO: Arrange local and UNC paths
-            }
-
             // Configure the simulator as needed.
         }
 
