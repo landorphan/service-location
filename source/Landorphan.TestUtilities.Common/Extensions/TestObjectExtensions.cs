@@ -23,10 +23,8 @@
         /// <remarks>
         /// Only works on <see cref="Activator"/> instantiateable types (i.e., a public parameterless constructor is required).
         /// </remarks>
-        [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters", MessageId = "System.ComponentModel.TypeConverter.ConvertFromInvariantString(System.String)")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502: Avoid excessive complexity")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high")]
-        [SuppressMessage("Microsoft.Globlization", "CA1303: Do not pass literals as localized parameter")]
         public static object NonDefaultValue(this Type type)
         {
             // NOTE:  this method should not be used outside of testing scenarios.
@@ -99,13 +97,13 @@
 
             if (type == typeof(IEnumerable<string>))
             {
-                IEnumerable<string> rv = new[] {"abc", "def", "ghi"};
+                IEnumerable<string> rv = new[] { "abc", "def", "ghi" };
                 return rv;
             }
 
             if (type == typeof(IEnumerable<Type>))
             {
-                IEnumerable<Type> rv = new[] {typeof(int), typeof(string), typeof(Guid)};
+                IEnumerable<Type> rv = new[] { typeof(int), typeof(string), typeof(Guid) };
                 return rv;
             }
 

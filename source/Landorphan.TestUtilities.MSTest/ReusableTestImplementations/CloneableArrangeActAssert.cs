@@ -1,8 +1,6 @@
 ﻿namespace Landorphan.TestUtilities.ReusableTestImplementations
 {
     using System;
-    using System.ComponentModel;
-    using System.Diagnostics.CodeAnalysis;
     using FluentAssertions;
 
     // ReSharper disable  InconsistentNaming
@@ -26,8 +24,6 @@
         /// <summary>
         /// Implementation of the test of <see cref="ICloneable.Clone"/>.
         /// </summary>
-        [Category(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void It_Should_Clone_Correctly_Implementation()
         {
             var actualObject = Target.Clone();

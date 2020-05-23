@@ -72,7 +72,6 @@
         /// <returns>
         /// <c>true</c> if the event source is added; otherwise <c>false</c> (the instance was previously added).
         /// </returns>
-        [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
         public bool AddEventSource(object eventSource)
         {
             eventSource.ArgumentNotNull(nameof(eventSource));
@@ -117,13 +116,13 @@
                 var concreteRecorderType = genericRecorderType.MakeGenericType(eventArgsType);
 
                 // EventRecorder(Object expectedEventSource, EventInfo eventInfo, IEventStore eventStore)
-                var recorderCtorTypes = new[] {typeof(object), typeof(EventInfo), typeof(IEventStore)};
+                var recorderCtorTypes = new[] { typeof(object), typeof(EventInfo), typeof(IEventStore) };
                 var ctor = concreteRecorderType.GetConstructor(
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                     null,
                     recorderCtorTypes,
                     null);
-                var recorderInstance = (IEventRecorder)ctor.Invoke(new[] {eventSource, eventInfo, this});
+                var recorderInstance = (IEventRecorder)ctor.Invoke(new[] { eventSource, eventInfo, this });
                 lock (_recordersLock)
                 {
                     _eventRecorders = _eventRecorders.Add(recorderInstance);

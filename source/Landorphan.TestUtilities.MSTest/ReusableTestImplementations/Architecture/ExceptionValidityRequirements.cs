@@ -24,8 +24,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that it is NOT decorated with [Serializable].
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable_Implementation()
         {
             var failureMessages = new List<string>();
@@ -45,9 +43,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// Evaluates each exception to ensure that it is either abstract or sealed.
         /// </summary>
         /// <exception cref="AssertFailedException" />
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "AbstractOr", Justification = "Years old bug.")]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Be_Abstract_Or_Sealed_Implementation()
         {
             var failureMessages = new List<string>();
@@ -67,8 +62,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// Evaluates each exception to ensure that it is public.
         /// </summary>
         /// <exception cref="AssertFailedException" />
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Be_Public_Implementation()
         {
             var failureMessages = new List<string>();
@@ -97,8 +90,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <see cref="GetAcceptableBaseExceptionTypes" />
         /// </remarks>
         /// <exception cref="AssertFailedException" />
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Descend_From_An_Acceptable_Base_Implementation()
         {
             var failureMessages = new List<string>();
@@ -117,8 +108,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has a default constructor.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Default_Constructor_Implementation()
         {
             var failureMessages = new List<string>();
@@ -138,8 +127,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has message and inner exception constructor.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Message_And_Inner_Exception_Constructor_Implementation()
         {
             var failureMessages = new List<string>();
@@ -158,8 +145,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has a message constructor.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Message_Constructor_Implementation()
         {
             var failureMessages = new List<string>();
@@ -180,8 +165,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// </summary>
         // WHAT IS THE BP?  [Serializable] is deprecated but BCL classes have this .ctor as well as 
         // GetObjectData
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_A_Serialization_Constructor_Implementation()
         {
             var failureMessages = new List<string>();
@@ -200,8 +183,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates each exception to ensure that has a inner exception constructor.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_An_Inner_Exception_Constructor_Implementation()
         {
             var failureMessages = new List<string>();
@@ -222,8 +203,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// constructor,
         /// the message constructor and the serialization constructor.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Exceptions_Should_Have_Valid_Other_Public_Constructors_When_Present_Implementation()
         {
             var failureMessages = new List<string>();
@@ -298,7 +277,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// }
         /// </code>
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1021: Avoid out parameters")]
         [SuppressMessage("Microsoft.Design", "CA1007: Use generics where appropriate", Justification = "Sure, recommend generics, then require I implement this same method to avoid generics.")]
         protected virtual bool GetDefaultValueForParameterType(Type parameterType, out object defaultValue)
         {
@@ -395,8 +373,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return rv;
         }
 
-        [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
-        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "Appropriate in this case.")]
         private static IEnumerable<string> ValidatePublicDefaultConstructor(Type exceptionType)
         {
             var rv = new List<string>();
@@ -426,8 +402,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return rv;
         }
 
-        [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
-        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "Appropriate in this case.")]
         private static IEnumerable<string> ValidatePublicInnerExceptionConstructor(Type exceptionType)
         {
             var rv = new List<string>();
@@ -487,9 +461,7 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return rv;
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high", Justification = "Test code (MWP)")]
-        [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used", Justification = "reflection (MWP)")]
         private static IEnumerable<string> ValidatePublicMessageAndInnerExceptionConstructor(Type exceptionType)
         {
             var rv = new List<string>();
@@ -564,8 +536,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return rv;
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        [SuppressMessage("SonarLint.CodeSmell", "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used", Justification = "reflection (MWP)")]
         private static IEnumerable<string> ValidatePublicMessageConstructor(Type exceptionType)
         {
             var rv = new List<string>();
@@ -724,18 +694,14 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
             return rv;
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1800:DoNotCastUnnecessarily")]
-        [SuppressMessage("Microsoft.Globalization", "CA1305:SpecifyIFormatProvider", MessageId = "System.String.Format(System.String,System.Object)")]
         [SuppressMessage("Microsoft.Maintainability", "CA1505:AvoidUnmaintainableCode")]
         [SuppressMessage("Microsoft.Performance", "CA1809:AvoidExcessiveLocals")]
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
-        [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         [SuppressMessage("SonarLint.CodeSmell", "S3242: Consider using a more general type", Justification = "Considered (MWP)")]
         [SuppressMessage(
             "SonarLint.CodeSmell",
             "S3776: Cognitive Complexity of methods should not be too high",
             Justification = "Known issue (MWP)")]
-        [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used")]
         private IEnumerable<string> ValidateOtherPublicConstructors(Type exceptionType)
         {
             var rv = new List<string>();

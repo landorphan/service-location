@@ -57,8 +57,6 @@ namespace Landorphan.TestUtilities
     /// </para>
     /// </remarks>
     [TestClass]
-    [SuppressMessage("Microsoft.", "CA1063: Implement IDisposable Correctly", Justification = "Reviewed, deviates to be thread-safe and handle multiple disposals (MWP)")]
-    [SuppressMessage("SonarLint.CodeSmell", "S3881: IDisposable should be implemented correctly", Justification = "Reviewed, deviates to be thread-safe and handle multiple disposals (MWP)")]
     public abstract class DisposableArrangeActAssert : ArrangeActAssert, INotifyingQueryDisposable
     {
         // eases maintenance
@@ -72,7 +70,6 @@ namespace Landorphan.TestUtilities
         private InterlockedBoolean _isDisposing = new InterlockedBoolean(false);
 
         /// <inheritdoc/>
-        [SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly", Justification = "Reviewed (MWP)")]
         public void Dispose()
         {
             if (_isDisposed)
@@ -119,20 +116,12 @@ namespace Landorphan.TestUtilities
         /// </summary>
         [SuppressMessage(
             "SonarLint.CodeSmell",
-            "S134: Control flow statements ... should not be nested too deeply",
-            Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
             "S1541: Methods and properties should not be too complex",
             Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
         [SuppressMessage(
             "SonarLint.CodeSmell",
             "S3776:Cognitive Complexity of methods should not be too high",
             Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S4056:Overloads with a 'CultureInfo' or an 'IFormatProvider' parameter should be used",
-            Justification = "I see no value in applying a culture to a null value (MWP).")]
         protected virtual void ReleaseManagedResources()
         {
             // use reflection to find fields and AutoProperties that implement IDisposable, or are IEnumerable<IDisposable>
@@ -292,24 +281,15 @@ namespace Landorphan.TestUtilities
 
         [SuppressMessage(
             "SonarLint.CodeSmell",
-            "S134: Control flow statements ... should not be nested too deeply",
-            Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
             "S1541: Methods and properties should not be too complex",
             Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S2221: Exception should not be caught when not required by called methods",
-            Justification = "Reviewed (MWP)")]
+        [SuppressMessage("SonarLint.CodeSmell", "S2221: Exception should not be caught when not required by called methods", Justification = "Reviewed (MWP)")]
         [SuppressMessage(
             "SonarLint.CodeSmell",
             "S3776:Cognitive Complexity of methods should not be too high",
             Justification = "This method addresses the general problem of disposing, reviewed as acceptable (MWP)")]
-        [SuppressMessage("SonarLint.CodeSmell", "S4056: Overloads with a CultureInfo or an IFormatProvider parameter should be used", Justification = "Not displaying")]
         [SuppressMessage("SonarLint.CodeSmell", "S138: Functions should not have too many lines of code")]
         [SuppressMessage("SonarLint.CodeSmell", "S109: Magic numbers should not be used", Justification = "2 is not a magic number for dictionary type arguments.")]
-        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "by design")]
         private bool TryHandleDictionaryOfDisposables(object fieldValue)
         {
             // Handles:
@@ -425,10 +405,7 @@ namespace Landorphan.TestUtilities
             return rv;
         }
 
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S1696:NullReferenceException should not be caught",
-            Justification = "Eats the exception in a race condition (MWP)")]
+        [SuppressMessage("SonarLint.CodeSmell", "S1696:NullReferenceException should not be caught", Justification = "Eats the exception in a race condition (MWP)")]
         private bool TryHandleEnumerableOfDisposables(object fieldValue)
         {
             var rv = false;
@@ -454,10 +431,7 @@ namespace Landorphan.TestUtilities
             return rv;
         }
 
-        [SuppressMessage(
-            "SonarLint.CodeSmell",
-            "S1696:NullReferenceException should not be caught",
-            Justification = "Eats the exception in a race condition (MWP)")]
+        [SuppressMessage("SonarLint.CodeSmell", "S1696:NullReferenceException should not be caught", Justification = "Eats the exception in a race condition (MWP)")]
         private bool TryHandleSimpleDisposable(object fieldValue)
         {
             var rv = false;

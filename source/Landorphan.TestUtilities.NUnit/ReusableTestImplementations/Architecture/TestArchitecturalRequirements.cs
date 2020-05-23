@@ -29,8 +29,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// Ignores abstract types.  Ignores non-public types.  Ignores types decorated with any of the following: CompilerGeneratedAttribute, GeneratedCodeAttribute (i.e., SpecFlow), IgnoreAttribute.
         /// </remarks>
-        [Category(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void All_But_Excluded_Tests_Descend_From_TestBase_Implementation()
         {
             var failureMessages = new List<string>();
@@ -64,8 +62,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// Ignores abstract types. Ignores non-public types.  Ignores types decorated with IgnoreAttribute.
         /// Generated tests such as SpecFlow ARE included.
         /// </remarks>
-        [Category(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Control flow statements if, switch, for, foreach, while, do and try should not be nested too deeply")]
         protected void All_Tests_Not_Ignored_Have_Exactly_One_Timing_Category_Implementation()
         {
@@ -134,8 +130,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// Trace output enumerates the ignored tests, if any.
         /// </remarks>
-        [Category(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
         protected void Find_ignored_tests_in_assembly(Assembly assembly)
         {
             assembly.ArgumentNotNull(nameof(assembly));
@@ -212,7 +206,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <returns>
         /// The test assembly to be evaluated.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         protected abstract Assembly GetTestAssembly();
 
         /// <summary>
@@ -224,7 +217,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <remarks>
         /// May not be null.
         /// </remarks>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         protected virtual IImmutableSet<Type> GetTestTypesNotRequiredToDescendFromTestBase()
         {
             return ImmutableHashSet<Type>.Empty;

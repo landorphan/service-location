@@ -28,8 +28,6 @@ namespace Landorphan.TestUtilities
         /// <summary>
         /// Initializes a new instance of the <see cref="TestBase" /> class.
         /// </summary>
-        //      [SuppressMessage("SonarLint.CodeSmell", "S4005: Call the overload that takes a 'System.Uri' as an argument instead.",
-        //         Justification = "Needed to work around Unix/Linux base parsing and source is consitered to be safe.")]
         protected TestBase()
         {
             // ReSharper disable once AssignNullToNotNullAttribute
