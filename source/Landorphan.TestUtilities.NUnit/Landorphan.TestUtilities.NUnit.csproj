@@ -5,7 +5,7 @@
     <LangVersion>7.2</LangVersion>
     <RootNamespace>Landorphan.TestUtilities</RootNamespace>
     <AssemblyName>Landorphan.TestUtilities.NUnit</AssemblyName>
-    <CodeAnalysisRuleSet>..\..\build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\..\build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

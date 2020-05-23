@@ -7,7 +7,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
     using System.Reflection;
     using FluentAssertions;
     using Landorphan.Common;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>
     /// Test implementations for architectural requirements.
@@ -17,11 +16,8 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Asserts all declarations not under an internal or resource namespace leaf node are either public, or nested.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
         [SuppressMessage("SonarLint.CodeSmell", "S1067:Expressions should not be too complex", Justification = "Test Code addressing a general problem (MWP)")]
         [SuppressMessage("SonarLint.CodeSmell", "S3776: Cognitive Complexity of methods should not be too high", Justification = "Test Code addressing a general problem (MWP)")]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
-        [SuppressMessage("Microsoft.Globalization", "CA1307: Specify StringComparison", Justification = "Not available in .Net Standard or .Net Framework")]
         [SuppressMessage("SonarLint.CodeSmell", "S4058: Overloads with a StringComparison parameter should be used", Justification = "Not available in .Net Standard or .Net Framework")]
         public void All_Declarations_Not_Under_An_Internal_Or_Resources_Namespace_Are_Public_Or_Nested_Implementation()
         {
@@ -69,9 +65,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <summary>
         /// Evaluates all declarations under an internal namespace.
         /// </summary>
-        [TestCategory(TestTiming.CheckIn)]
-        [SuppressMessage("Microsoft.Naming", "CA1707: Identifiers should not contain underscores")]
-        [SuppressMessage("Microsoft.Globalization", "CA1307: Specify StringComparison", Justification = "Not available in .Net Standard or .Net Framework")]
         [SuppressMessage("SonarLint.CodeSmell", "S4058: Overloads with a StringComparison parameter should be used", Justification = "Not available in .Net Standard or .Net Framework")]
         public void All_Declarations_Under_An_Internal_Namespace_Are_Not_Public_Implementation()
         {
@@ -103,7 +96,6 @@ namespace Landorphan.TestUtilities.ReusableTestImplementations
         /// <returns>
         /// The assemblies to be evaluated.
         /// </returns>
-        [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
         protected abstract IImmutableSet<Assembly> GetAssembliesUnderTest();
     }
 }
