@@ -11,6 +11,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <summary>
     /// Exception thrown when a type argument is an open generic type but required not to be an open generic type.
     /// </summary>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class TypeMustNotBeAnOpenGenericArgumentException : LandorphanIocServiceLocationArgumentException
     {

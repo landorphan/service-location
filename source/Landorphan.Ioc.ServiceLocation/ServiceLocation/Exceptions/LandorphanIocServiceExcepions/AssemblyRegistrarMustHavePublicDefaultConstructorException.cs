@@ -12,6 +12,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Exception thrown when service location finds an implementation of <see cref="IAssemblySelfRegistration"/> without a public parameterless constructor.
     /// </summary>
     /// <seealso cref="LandorphanIocServiceLocationException"/>
+    [Serializable]
     public sealed class AssemblyRegistrarMustHavePublicDefaultConstructorException : LandorphanIocServiceLocationException
     {
         /// <summary>

@@ -14,6 +14,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Exception thrown when service location finds an assembly with multiple implementations of <see cref="IAssemblySelfRegistration"/>.
     /// </summary>
     /// <seealso cref="LandorphanIocServiceLocationException"/>
+    [Serializable]
     public sealed class MultipleAssemblyRegistrarException : LandorphanIocServiceLocationException
     {
         /// <summary>

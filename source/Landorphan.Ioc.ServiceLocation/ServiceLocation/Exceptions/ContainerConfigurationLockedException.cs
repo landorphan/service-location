@@ -12,6 +12,7 @@
     /// <summary>
     /// Thrown when attempting to change the configuration of a locked <see cref="IIocContainerConfiguration"/> instance.
     /// </summary>
+    [Serializable]
     [SuppressMessage("SonarLint.CodeSmell", "S4027: Exceptions should provide standard constructors", Justification = "False Positive(MWP)")]
     public sealed class ContainerConfigurationLockedException : LandorphanIocServiceLocationException
     {

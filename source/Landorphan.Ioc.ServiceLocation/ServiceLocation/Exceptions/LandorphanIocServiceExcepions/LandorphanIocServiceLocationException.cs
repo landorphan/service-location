@@ -9,6 +9,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Base class for thrown <see cref="Exception"/> instances specific to the <see cref="Landorphan.Ioc.ServiceLocation"/> implementations.
     /// </summary>
     /// <seealso cref="LandorphanArgumentException"/>
+    [Serializable]
     [SuppressMessage("SonarLint.CodeSmell", "S4027: Exceptions should provide standard constructors", Justification = "False Positive(MWP)")]
     public abstract class LandorphanIocServiceLocationException : LandorphanException
     {

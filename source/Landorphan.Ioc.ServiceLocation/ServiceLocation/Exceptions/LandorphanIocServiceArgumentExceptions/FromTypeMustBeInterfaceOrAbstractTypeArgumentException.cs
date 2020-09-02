@@ -15,6 +15,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <remarks>
     /// Concrete types and open generics are not acceptable for service location keys.
     /// </remarks>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class FromTypeMustBeInterfaceOrAbstractTypeArgumentException : LandorphanIocServiceLocationArgumentException
     {

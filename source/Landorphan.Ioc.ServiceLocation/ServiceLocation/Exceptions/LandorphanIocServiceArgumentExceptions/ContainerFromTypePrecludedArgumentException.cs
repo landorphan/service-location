@@ -12,6 +12,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <summary>
     /// Exception thrown when a type argument is a precluded type.
     /// </summary>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class ContainerFromTypePrecludedArgumentException : LandorphanIocServiceLocationArgumentException
     {

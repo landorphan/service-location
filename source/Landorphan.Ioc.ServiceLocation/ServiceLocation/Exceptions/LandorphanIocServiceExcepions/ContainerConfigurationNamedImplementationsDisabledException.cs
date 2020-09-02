@@ -12,6 +12,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Exception thrown when a container is configured to disable named implementations, but an attempt is made to register a named implementation or instance.
     /// </summary>
     /// <seealso cref="LandorphanIocServiceLocationException"/>
+    [Serializable]
     public sealed class ContainerConfigurationNamedImplementationsDisabledException : LandorphanIocServiceLocationException
     {
         /// <summary>

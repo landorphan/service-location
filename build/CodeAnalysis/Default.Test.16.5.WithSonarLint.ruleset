@@ -30,6 +30,10 @@
     <Rule Id="CA1040" Action="None" />
     <!--CA1500: Variable names should not match field names -->
     <Rule Id="CA1500" Action="None" />
+	<!--CA1713: Events should not have before or after prefix -->
+    <Rule Id="CA1713" Action="None" />
+    <!--CA1805: Do not initialize unnecessarily:  This rule causes a circle of warnings-->
+    <Rule Id="CA1805" Action="None" />
     <!--CA1822: Mark members as static -->
     <Rule Id="CA1822" Action="None" />
     <!--CA2202: Do not dispose objects multiple times -->
@@ -177,7 +181,6 @@
     <Rule Id="CA1708" Action="Warning" />
     <Rule Id="CA1710" Action="Warning" />
     <Rule Id="CA1712" Action="Warning" />
-    <Rule Id="CA1713" Action="Warning" />
     <Rule Id="CA1714" Action="Warning" />
     <Rule Id="CA1715" Action="Warning" />
     <Rule Id="CA1716" Action="Warning" />
