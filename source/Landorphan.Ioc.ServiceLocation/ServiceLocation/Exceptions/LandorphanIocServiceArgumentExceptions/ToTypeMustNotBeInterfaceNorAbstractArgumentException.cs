@@ -11,6 +11,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <summary>
     /// Exception thrown when a type argument is required to be concrete but is abstract.
     /// </summary>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class ToTypeMustNotBeInterfaceNorAbstractArgumentException : LandorphanIocServiceLocationArgumentException
     {

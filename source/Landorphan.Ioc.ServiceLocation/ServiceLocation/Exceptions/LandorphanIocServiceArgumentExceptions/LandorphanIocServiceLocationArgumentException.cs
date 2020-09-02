@@ -17,6 +17,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// This is in contrast with <see cref="ArgumentException"/> and its derivatives in the BCL which violate the pattern.
     /// </para>
     /// </remarks>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     [SuppressMessage("SonarLint.CodeSmell", "S4027: Exceptions should provide standard constructors", Justification = "False positive (MWP)")]
     public abstract class LandorphanIocServiceLocationArgumentException : LandorphanArgumentException

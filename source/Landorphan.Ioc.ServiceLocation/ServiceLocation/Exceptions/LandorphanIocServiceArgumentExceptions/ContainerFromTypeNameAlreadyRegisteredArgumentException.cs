@@ -15,6 +15,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <remarks>
     /// This is a key violations.  There can only be one type per name.  String.Empty, null reference, and whitespace all represent the default registration.
     /// </remarks>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class ContainerFromTypeNameAlreadyRegisteredArgumentException : LandorphanIocServiceLocationArgumentException
     {

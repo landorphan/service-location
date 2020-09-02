@@ -11,6 +11,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <summary>
     /// Exception thrown when an attempt is made to precluded a type that has already been registered.
     /// </summary>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class CannotPrecludeRegisteredTypeArgumentException : LandorphanIocServiceLocationArgumentException
     {

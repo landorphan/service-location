@@ -12,6 +12,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Exception thrown when an attempt is made to add a precluded type, but the configuration of the container disables preclusion of types.
     /// </summary>
     /// <seealso cref="LandorphanIocServiceLocationException"/>
+    [Serializable]
     public sealed class ContainerConfigurationPrecludedTypesDisabledException : LandorphanIocServiceLocationException
     {
         /// <summary>

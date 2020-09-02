@@ -11,6 +11,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// <summary>
     /// Exception thrown when an implementation type argument is required have a public default constructor.
     /// </summary>
+    [Serializable]
     [SuppressMessage("Microsoft.Maintainability", "CA1501: Avoid excessive inheritance", Justification = "Reviewed")]
     public sealed class ToTypeMustHavePublicDefaultConstructorArgumentException : LandorphanIocServiceLocationArgumentException
     {

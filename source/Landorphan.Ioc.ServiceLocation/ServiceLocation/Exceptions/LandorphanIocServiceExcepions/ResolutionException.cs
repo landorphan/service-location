@@ -11,6 +11,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Exception thrown when a requested type could not be resolved to an implementation.
     /// </summary>
     /// <seealso cref="LandorphanIocServiceLocationException"/>
+    [Serializable]
     public sealed class ResolutionException : LandorphanIocServiceLocationException
     {
         /// <summary>

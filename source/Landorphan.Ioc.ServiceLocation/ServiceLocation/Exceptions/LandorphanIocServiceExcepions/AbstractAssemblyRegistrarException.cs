@@ -12,6 +12,7 @@ namespace Landorphan.Ioc.ServiceLocation.Exceptions
     /// Exception thrown when service location finds an abstract implementation of <see cref="IAssemblySelfRegistration"/>.
     /// </summary>
     /// <seealso cref="LandorphanIocServiceLocationException"/>
+    [Serializable]
     public sealed class AbstractAssemblyRegistrarException : LandorphanIocServiceLocationException
     {
         /// <summary>
