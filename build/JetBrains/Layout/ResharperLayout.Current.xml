@@ -635,7 +635,8 @@
         <Or>
           <And>
             <Kind Is="Method" />
-            <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.AssemblyInitializeAttribute" Inherited="True" />
+            <HasAttribute Name="Microsoft.VisualStudio.TestTools.UnitTesting.AssemblyInitializeAttribute"
+                          Inherited="True" />
           </And>
           <And>
             <!-- could improve this to check for no namespace -->
@@ -808,7 +809,7 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-    <Entry Priority ="57" DisplayName="Test Methods">
+    <Entry Priority="57" DisplayName="Test Methods">
       <Entry.Match>
         <Or>
           <And>
@@ -837,7 +838,7 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-    <Entry Priority="50" DisplayName="Interface Implementations" >
+    <Entry Priority="50" DisplayName="Interface Implementations">
       <Entry.Match>
         <And>
           <Kind Is="Member" />
@@ -855,7 +856,7 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-    <Entry Priority ="45" DisplayName="Non Test/Non Interface Methods">
+    <Entry Priority="45" DisplayName="Non Test/Non Interface Methods">
       <Entry.Match>
         <And>
           <Kind Is="Method" />
@@ -882,7 +883,7 @@
     <Entry Priority="40" DisplayName="Event Handlers">
       <Entry.Match>
         <Or>
-          <HandlesEvent/>
+          <HandlesEvent />
         </Or>
       </Entry.Match>
       <Entry.SortBy>
@@ -921,7 +922,7 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-    <Entry Priority="30" DisplayName="All Test Hooks" >
+    <Entry Priority="30" DisplayName="All Test Hooks">
       <Entry.Match>
         <And>
           <Kind Is="Method" />
@@ -984,7 +985,6 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-
     <Entry Priority="145" DisplayName="All Enumerations">
       <Entry.Match>
         <Kind Is="Enum" />
@@ -1000,7 +1000,6 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-
     <Entry Priority="140" DisplayName="All Fields And Constants">
       <Entry.Match>
         <Or>
@@ -1022,7 +1021,6 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-
     <Entry Priority="135" DisplayName="Constructors">
       <Entry.Match>
         <Kind Is="Constructor" />
@@ -1038,7 +1036,6 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-
     <Entry Priority="130" DisplayName="Dispose">
       <Entry.Match>
         <And>
@@ -1050,7 +1047,7 @@
                      as if they were dispose methods, ignoring the Name constraint above.
                      This kludge fixes the problem.
                      -->
-            <HandlesEvent/>
+            <HandlesEvent />
           </Not>
         </And>
       </Entry.Match>
@@ -1141,17 +1138,20 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-
     <Entry Priority="100" DisplayName="Clone">
       <Entry.Match>
         <And>
           <Kind Is="Method" />
-          <Name Is="^Clone$" />
+          <Or>
+            <Name Is="^Clone$" />
+            <Name Is="^DeepClone$" />
+          </Or>
         </And>
       </Entry.Match>
       <Entry.SortBy>
-        <Static />
         <Access Order="Public Internal ProtectedInternal Protected Private" />
+        <Static />
+        <Name />
       </Entry.SortBy>
     </Entry>
     <!--</Region>-->
@@ -1243,7 +1243,7 @@
         <Name />
       </Region.GroupBy>-->
 
-    <Entry Priority="55" DisplayName="Interface Implementations" >
+    <Entry Priority="55" DisplayName="Interface Implementations">
       <Entry.Match>
         <And>
           <Kind Is="Member" />
@@ -1261,7 +1261,7 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-    <Entry Priority ="11" DisplayName="Methods">
+    <Entry Priority="11" DisplayName="Methods">
       <Entry.Match>
         <And>
           <Kind Is="Method" />
@@ -1289,7 +1289,7 @@
     <Entry Priority="50" DisplayName="Event Handlers">
       <Entry.Match>
         <Or>
-          <HandlesEvent/>
+          <HandlesEvent />
         </Or>
       </Entry.Match>
       <Entry.SortBy>
@@ -1328,7 +1328,7 @@
       <Region.GroupBy>
         <Name />
       </Region.GroupBy>-->
-    <Entry Priority="40" DisplayName="All Test Hooks" >
+    <Entry Priority="40" DisplayName="All Test Hooks">
       <Entry.Match>
         <And>
           <Kind Is="Method" />
