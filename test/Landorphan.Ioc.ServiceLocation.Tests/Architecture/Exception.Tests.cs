@@ -17,6 +17,7 @@ namespace Landorphan.Ioc.Tests.Architecture
     [TestClass]
     public class Exception_Tests : ExceptionValidityRequirements
     {
+        [Ignore("Standard is in flux")]
         [TestMethod]
         [TestCategory(TestTiming.CheckIn)]
         public void Exceptions_In_DotNet_Core_Should_Not_Be_Marked_As_Serializable()

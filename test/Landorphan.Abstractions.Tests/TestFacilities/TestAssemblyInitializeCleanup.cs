@@ -3,7 +3,6 @@
     using System.Collections.Immutable;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
-    using System.Runtime.InteropServices;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
