@@ -67,8 +67,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docfx_project", "docfx_proj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions", "source\Landorphan.Abstractions\Landorphan.Abstractions.csproj", "{DDBF3B5F-8B92-487D-B277-AA3BEFBF0BA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Abstractions.Tests", "test\Landorphan.Abstractions.Tests\Landorphan.Abstractions.Tests.csproj", "{976B1FED-3B23-40C0-85DC-2C089DF2060E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.ObjectStore.CosmosDb", "source\Landorphan.ObjectStore.CosmosDb\Landorphan.ObjectStore.CosmosDb.csproj", "{290768D8-A155-4148-96CA-BEAE88241430}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Landorphan.Ioc.Collections.Performance.Tests", "test\Landorphan.Ioc.Collections.Performance.Tests\Landorphan.Ioc.Collections.Performance.Tests.csproj", "{6DE0B638-3929-45DD-9DB4-213CE5AF0A8C}"
