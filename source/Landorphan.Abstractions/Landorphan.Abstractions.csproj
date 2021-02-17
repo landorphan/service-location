@@ -10,7 +10,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     <WarningLevel>4</WarningLevel>
-
     <IntermediateOutputPath>..\..\obj\debug\$(AssemblyName)\</IntermediateOutputPath>
     <OutputPath>..\..\bin\debug\$(AssemblyName)</OutputPath>
     <DocumentationFile>..\..\bin\debug\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
