@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Landorphan.Ioc.Logging
 {
     /// <summary>
@@ -12,6 +14,7 @@ namespace Landorphan.Ioc.Logging
     /// package to provide an implementation.
     /// </summary>
     /// <typeparam name="TClass">The class to log.  May not be needed for all logging systems.</typeparam>
+    [SuppressMessage("SonarLint.CodeSmell", "S2326: Unused type parameters should be removed", Justification = "New rule, old code (MWP)")]
     public interface IIocLogger<TClass>
     {
         /// <summary>

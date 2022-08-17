@@ -43,7 +43,7 @@ namespace Landorphan.Ioc.Logging.Internal
         ///<inheritdoc/>
         public string GetThreadId()
         {
-            var rv = Thread.CurrentThread.ManagedThreadId.ToString(CultureInfo.InvariantCulture);
+            var rv = Environment.CurrentManagedThreadId.ToString(CultureInfo.InvariantCulture);
             return rv;
         }
 
