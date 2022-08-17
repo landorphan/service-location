@@ -50,7 +50,7 @@ namespace Landorphan.TestUtilities.Internal.EventMonitoring
                 AdditionalData = e,
                 EventName = EventName,
                 ExpectedEventSource = ExpectedEventSource,
-                ManagedThreadId = Thread.CurrentThread.ManagedThreadId,
+                ManagedThreadId = Environment.CurrentManagedThreadId,
                 SequenceNumber = _eventStore.TakeSequenceNumber(),
                 Timestamp = timestamp
             };

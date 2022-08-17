@@ -4,7 +4,6 @@
     <TargetFramework Condition=" '$(OS)' != 'Windows_NT' ">netstandard2.0</TargetFramework>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">netstandard2.0;net472</TargetFrameworks>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <CodeAnalysisRuleSet>..\..\build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,20 +24,26 @@
     <OutputPath>..\..\bin\release\$(AssemblyName)</OutputPath>
     <DocumentationFile>..\..\bin\release\$(AssemblyName)\$(AssemblyName).XML</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\build\CodeAnalysis\CustomDictionary.xml" Link="CustomDictionary.xml" />
+    <GlobalAnalyzerConfigFiles Include="..\..\build\CodeAnalysis\Landorphan.Source.Default.Analyzer.globalconfig" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Landorphan.Common" Version="0.9.1343" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.17.0.26580">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.43.0.51858">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.Extensions.Configuration">
-      <Version>5.0.0</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
   </ItemGroup>
 </Project>

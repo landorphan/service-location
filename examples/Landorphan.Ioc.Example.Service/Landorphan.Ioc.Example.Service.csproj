@@ -4,17 +4,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Landorphan.Ioc.Example.Service</RootNamespace>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <CodeAnalysisRuleSet>..\..\build\CodeAnalysis\Default.Source.16.5.WithSonarLint.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+    <CodeAnalysisDictionary Include="..\..\build\CodeAnalysis\CustomDictionary.xml" Link="CustomDictionary.xml" />
+    <GlobalAnalyzerConfigFiles Include="..\..\build\CodeAnalysis\Landorphan.Source.Default.Analyzer.globalconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-    <PackageReference Include="RestSharp" Version="106.11.7" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.17.0.26580">
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="RestSharp" Version="108.0.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.43.0.51858">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

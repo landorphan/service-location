@@ -6,10 +6,15 @@
     <AssemblyName>IocPerf</AssemblyName>
     <IsTestProject>True</IsTestProject>
     <HasTestFramework>False</HasTestFramework>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.3</LangVersion>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <CodeAnalysisRuleSet>..\..\build\CodeAnalysis\Default.Test.16.5.WithSonarLint.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\..\build\CodeAnalysis\CustomDictionary.xml" Link="CustomDictionary.xml" />
+    <GlobalAnalyzerConfigFiles Include="..\..\build\CodeAnalysis\Landorphan.Test.Default.Analyzer.globalconfig" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <Compile Include="..\Landorphan.Ioc.Collections.Performance.Tests.Fx\**\*.cs" LinkBase="" />
@@ -18,12 +23,12 @@
 
   <ItemGroup>
     <PackageReference Include="Landorphan.Common" Version="0.9.1343" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.3">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.17.0.26580">
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.43.0.51858">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
